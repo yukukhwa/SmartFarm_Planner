@@ -14,7 +14,7 @@
 	<!-- commons dbcp : 앞 예제들처럼 properties를 사용하여 값설정을 하여도 됨 -->
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3306/cjsghka?useUnicode=true&amp;characterEncoding=utf8"/>
+        <property name="url" value="jdbc:mysql://umj64-008.cafe24.com:3306/cjsghka?useUnicode=true&amp;characterEncoding=utf8"/>
         <property name="username" value="cjsghka"/>
         <property name="password" value="gugu1006@"/>
     </bean>
@@ -34,7 +34,7 @@
 		<!-- mybatis 세션생성후 쿼리를 실행시킬때 사용할 쿼리위치(메퍼)설정 -->
 		<property name="mapperLocations">
 			<list>
-				<value></value>
+				<value>classpath:com/spam/sfplanner/Mapper.xml</value>
 			</list>
 		</property>
 	</bean>
