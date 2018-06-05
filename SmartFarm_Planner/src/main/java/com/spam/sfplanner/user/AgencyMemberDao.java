@@ -15,7 +15,7 @@ public class AgencyMemberDao {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	public String IdCheck(String aMemberId) {
+	public String idCheck(String aMemberId) {
 		return sqlSessionTemplate.selectOne(NAMESPACE+"idCheck", aMemberId);
 	}
 	
@@ -23,7 +23,7 @@ public class AgencyMemberDao {
 	 * 관리기관 회원가입화면 처리Dao
 	 * @param agencyMemberView
 	 */
-	public void InsertAgencyMember(AgencyMemberView agencyMemberView) {
+	public void insertAgencyMember(AgencyMemberView agencyMemberView) {
 		sqlSessionTemplate.insert(NAMESPACE+"InsertAgencyMember", agencyMemberView);
 	}
 }

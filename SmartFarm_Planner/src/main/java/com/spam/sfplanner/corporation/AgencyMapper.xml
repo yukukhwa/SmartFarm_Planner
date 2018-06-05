@@ -5,7 +5,18 @@
   
 <!-- 나성수 -->
 <mapper namespace="com.spam.sfplanner.corporation.AgencyMapper">
-	<insert id="InsertAgency"
+	<select id="numberCheck"
+			parameterType="int"
+			resultType="String">
+		select
+			sp_agency.a_name
+		from
+			sp_agency
+		where
+			sp_agency.a_number = #{aNumber}
+	</select>
+	
+	<insert id="insertAgency"
 			parameterType="com.spam.sfplanner.user.AgencyMemberView">
 		<selectKey resultType="int" keyProperty="aNumber" order="AFTER">
 			SELECT LAST_INSERT_ID()
