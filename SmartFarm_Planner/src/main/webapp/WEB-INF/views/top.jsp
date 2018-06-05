@@ -26,8 +26,7 @@
 		<ul class="nav pull-right top-menu">
 			<li class="dropdown">
 				<c:if test="${empty loginMember}">
-					<span class="username"><a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/loginFarm">로그인</a></span>
-					<span class="username"><a class="btn btn-primary btn-sm" href="${pageContext.request.contextPath}/loginFarm">회원가입</a></span>
+					<span class="username"><a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/login">로그인</a></span>
 				</c:if>
 				<c:if test="${!empty loginMember}">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
@@ -49,7 +48,7 @@
 							<a href="#"><i class="icon_desktop"></i>나의 회사 정보</a>
 						</li>
 						<li>
-							<a href="${pageContext.request.contextPath}/logout"><i class="icon_key_alt"></i> LogOut</a>
+							<a href="${pageContext.request.contextPath}/logout"><i class="icon_key_alt"></i>로그아웃</a>
 						</li>
 					</ul>
 				</c:if>

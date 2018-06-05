@@ -28,11 +28,11 @@ public class LoginController {
 	}
 	/*
 	 * loginFarm 매핑
-	 * : get방식은 loginFarm.jsp로 이동
+	 * : get방식은 login.jsp로 이동
 	 * post방식은 loginDb를 매개변수로 받아 id, pw가 일치하면 session에 정보를 저장하고 home화면으로 redirect한다.
 	 * farm, company, agency로 로그인하는 것에 따라 매핑이 나누어 진다.
 	 */
-	@RequestMapping(value = "/loginFarm", method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String loginFarm() {
 		
 		return "/login/login";
@@ -47,11 +47,6 @@ public class LoginController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/loginCompany", method = RequestMethod.GET)
-	public String loginCompany() {
-		
-		return "/login/login";
-	}
 	@RequestMapping(value = "/loginCompany", method = RequestMethod.POST)
 	public String loginCompany(LoginDb loginDb, HttpSession session) {
 		LoginDb returnLogin = loginService.oneSelectCompanyMember(loginDb);
@@ -62,11 +57,6 @@ public class LoginController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping(value = "/loginAgency", method = RequestMethod.GET)
-	public String loginAgency() {
-		
-		return "/login/login";
-	}
 	@RequestMapping(value = "/loginAgency", method = RequestMethod.POST)
 	public String loginAgency(LoginDb loginDb, HttpSession session) {
 		LoginDb returnLogin = loginService.oneSelectAgencyMember(loginDb);
