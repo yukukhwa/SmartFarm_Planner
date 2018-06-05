@@ -37,22 +37,22 @@
 				<label>아이디</label>
 				<div class="input-group">
 					<span class="input-group-addon"><i class="icon_profile"></i></span>
-					<input type="text" class="form-control" name="MemberId" placeholder="아이디를 입력해주세요." autofocus>
+					<input type="text" class="form-control" name="MemberId" value="cjsghka" placeholder="아이디를 입력해주세요." autofocus>
 				</div>
 				<label>이름</label>
 				<div class="input-group">
 					<span class="input-group-addon"><i class="icon_profile"></i></span>
-					<input type="text" class="form-control" name="MemberName" placeholder="이름을 입력해주세요." autofocus>
+					<input type="text" class="form-control" name="MemberName" value="유국화" placeholder="이름을 입력해주세요.">
 				</div>
 				<label>소속</label>
 				<div class="input-group">
 					<span class="input-group-addon"><i class="icon_profile"></i></span>
-					<input type="text" class="form-control" name="CorpName" placeholder="소속단체를 입력해주세요." autofocus>
+					<input type="text" class="form-control" name="CorpName" value="국화농장" placeholder="소속단체를 입력해주세요.">
 				</div>
 				<label>이메일</label>
 				<div class="input-group">
 					<span class="input-group-addon"><i class="icon_key_alt"></i></span>
-					<input type="text" class="form-control" name="MemberEmail"placeholder="@을 포함한 이메일을 입력해주세요.">
+					<input type="text" class="form-control" name="MemberEmail" value="cjsghkz@naver.com" placeholder="@을 포함한 이메일을 입력해주세요.">
 				</div>
 				<button class="btn btn-primary btn-lg btn-block" type="submit">찾기</button>
 			</div>

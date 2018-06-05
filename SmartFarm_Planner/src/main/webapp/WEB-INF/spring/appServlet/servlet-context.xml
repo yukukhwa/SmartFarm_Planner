@@ -43,6 +43,26 @@
 				<value>classpath:com/spam/sfplanner/corporation/CompanyMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/corporation/AgencyMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/user/AgencyMemberMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/category/CategoryMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/category/CategoryDealMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/category/CategoryEquipMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/category/CompanyRentEquipMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/category/CategoryIndustryMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/category/CategoryItemMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/category/CategoryThemeMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/category/CategoryMaterialsMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/category/CategoryEtcSpendPayMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/plan/PlanMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/plan/PpWorkMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/plan/ProductionPlanMapper.xml</value>				
+				<value>classpath:com/spam/sfplanner/plan/TitlePlanMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/plan/WoEtcSpendPayMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/plan/WoHumanPayMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/plan/WoInsurancePayMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/plan/WoMaterialsPayMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/plan/NeRentPayMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/plan/WoNeedEquipMapper.xml</value>
+				
 			</list>
 		</property>
 	</bean>

@@ -36,12 +36,12 @@
 				<label>이름</label>
 				<div class="input-group">
 					<span class="input-group-addon"><i class="icon_profile"></i></span>					
-					<input type="text" class="form-control" name="MemberName" placeholder="회원이름을 입력해주세요." autofocus>
+					<input type="text" class="form-control" name="MemberName" value="유국화" placeholder="회원이름을 입력해주세요." autofocus>
 				</div>
 				<label>이메일</label>
 				<div class="input-group">
 					<span class="input-group-addon"><i class="icon_key_alt"></i></span>					
-					<input type="text" class="form-control" name="MemberEmail"placeholder="@을 포함한 이메일을 입력해주세요.">
+					<input type="text" class="form-control" name="MemberEmail" value="cjsghkz@naver.com" placeholder="@을 포함한 이메일을 입력해주세요.">
 				</div>
 				<label class="checkbox">
 					<span class="pull-right"><a href="${pageContext.request.contextPath}/findPw">비밀번호 찾기</a></span>
