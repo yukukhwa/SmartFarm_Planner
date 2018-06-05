@@ -4,15 +4,38 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.spam.sfplanner.login.LoginMapper">
-	<!-- loginDb에 있는 sp_farm_member 테이블에 id와 pw와 일치하면 loginDb를 가져오는 쿼리문 -->
+	<!-- loginDb에 있는 id와 pw가 디비와 일치하면 id, name, boss를 가져오는 쿼리문
+	farm, company, agency 동일하게 처리 -->
 	<select id="oneSelectFarmMember"
 			parameterType="com.spam.sfplanner.login.LoginDb"
 			resultType="com.spam.sfplanner.login.LoginDb">
 		SELECT
-			f_member_id AS id,
-			f_member_pw AS pw
+			sp_farm_member.f_member_id AS id,
+			sp_farm_member.f_member_name AS name,
+			sp_farm.f_member_id AS boss
 		FROM sp_farm_member
-		WHERE f_member_id = #{id}
-		AND f_member_pw = #{pw}
+		JOIN sp_farm ON sp_farm.f_number = sp_farm_member.f_number
+		WHERE sp_farm_member.f_member_id = #{id} AND sp_farm_member.f_member_pw = #{pw}
+	</select>
+	<select id="oneSelectCompanyMember"
+			parameterType="com.spam.sfplanner.login.LoginDb"
+			resultType="com.spam.sfplanner.login.LoginDb">
+		SELECT
+			sp_deal_company_member.c_member_id AS id,
+			sp_deal_company_member.c_member_name AS name,
+			sp_deal_company.c_member_id AS boss
+		FROM sp_deal_company_member
+		JOIN sp_deal_company ON sp_deal_company_member.c_number = sp_deal_company.c_number
+		WHERE sp_deal_company_member.c_member_id = #{id} AND sp_deal_company_member.c_member_pw = #{pw}
+	</select>
+	<select id="oneSelectAgencyMember"
+			parameterType="com.spam.sfplanner.login.LoginDb"
+			resultType="com.spam.sfplanner.login.LoginDb">
+		SELECT
+			sp_agency_master.a_member_id AS id,
+			sp_agency_master.a_member_name AS name,
+			sp_agency.a_member_id AS boss
+		FROM sp_agency_master JOIN sp_agency ON sp_agency.a_number = sp_agency_master.a_number
+		WHERE sp_agency_master.a_member_id = #{id} AND sp_agency_master.a_member_id = #{pw}
 	</select>
 </mapper>

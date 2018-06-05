@@ -25,20 +25,28 @@
 		<!-- user login dropdown start-->
 		<ul class="nav pull-right top-menu">
 			<li class="dropdown">
-				<c:if test="${empty loginMemberId}">
+				<c:if test="${empty loginMember}">
 					<span class="username"><a class="btn btn-default btn-sm" href="${pageContext.request.contextPath}/loginFarm">로그인</a></span>
 					<span class="username"><a class="btn btn-primary btn-sm" href="${pageContext.request.contextPath}/loginFarm">회원가입</a></span>
 				</c:if>
-				<c:if test="${!empty loginMemberId}">
+				<c:if test="${!empty loginMember}">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
-						<span class="username">농가 환영</span><b class="caret"></b>
+						<c:if test="${loginMember.level eq 'farm'}">
+							<span class="username">농가 ${loginMember.id}님 환영합니다</span><b class="caret"></b>
+						</c:if>
+						<c:if test="${loginMember.level eq 'company'}">
+							<span class="username">업체 ${loginMember.id}님 환영합니다</span><b class="caret"></b>
+						</c:if>
+						<c:if test="${loginMember.level eq 'agency'}">
+							<span class="username">관리기관 ${loginMember.id}님 환영합니다</span><b class="caret"></b>
+						</c:if>
 					</a>
 					<ul class="dropdown-menu extended logout">
 						<li class="eborder-top">
 							<a href="#"><i class="icon_profile"></i>나의 정보</a>
 						</li>
 						<li>
-							<a href="#"><i class="icon_desktop"></i>나의 농가 정보</a>
+							<a href="#"><i class="icon_desktop"></i>나의 회사 정보</a>
 						</li>
 						<li>
 							<a href="${pageContext.request.contextPath}/logout"><i class="icon_key_alt"></i> LogOut</a>

@@ -18,8 +18,17 @@ public class LoginDao {
 	
 	/*
 	 * loginDb를 매개변수로 받아 select 쿼리문에 입력하여 실행하고 나온 결과값을 리턴한다.
+	 * farm, company, agency 동일하게 처리한다.
 	 */
 	public LoginDb oneSelectFarmMember(LoginDb loginDb) {
 		return sqlSession.selectOne(NS+"oneSelectFarmMember", loginDb);
+	}
+
+	public LoginDb oneSelectCompanyMember(LoginDb loginDb) {
+		return sqlSession.selectOne(NS+"oneSelectCompanyMember", loginDb);
+	}
+
+	public LoginDb oneSelectAgencyMember(LoginDb loginDb) {
+		return sqlSession.selectOne(NS+"oneSelectAgencyMember", loginDb);
 	}
 }
