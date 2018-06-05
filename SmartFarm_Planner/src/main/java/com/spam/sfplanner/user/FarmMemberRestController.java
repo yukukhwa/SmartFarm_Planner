@@ -1,5 +1,5 @@
 package com.spam.sfplanner.user;
 
-public class UserService {
+public class FarmMemberRestController {
 
 }

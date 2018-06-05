@@ -35,9 +35,9 @@
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:com/spam/sfplanner/Mapper.xml</value>
-				<value>classpath:com/spam/sfplanner/corporation/CorporationMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/corporation/FarmMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/login/LoginMapper.xml</value>
-				<value>classpath:com/spam/sfplanner/user/UserMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/user/FarmMemberMapper.xml</value>
 			</list>
 		</property>
 	</bean>
