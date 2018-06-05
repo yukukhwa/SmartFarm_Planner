@@ -12,19 +12,19 @@ import com.spam.sfplanner.corporation.FarmDao;
 import com.spam.sfplanner.corporation.FarmService;
 
 @Controller
-@Transactional
 public class FarmMemberController {
 	@Autowired FarmMemberService farmMemberService;
 	@Autowired FarmService farmService;
 		private final static Logger LOGGER = LoggerFactory.getLogger(FarmMemberController.class);
 		
+		@Transactional
 		@RequestMapping(value="/addFarmMember", method=RequestMethod.POST)
 		public String insertFarmMember(FarmMemberView farmMemberView) {
 			LOGGER.info("FarmMemberController 호출");
 			LOGGER.info("FarmMemberView 내용 ====> " + farmMemberView.toString());
 			farmService.insertFarm(farmMemberView);
 			farmMemberService.insertFarmMember(farmMemberView);
-			return "redirect:user/farm_member/addFarmMember";
+			return "redirect:/";
 		}
 		
 		@RequestMapping(value="/addFarmMember", method=RequestMethod.GET)

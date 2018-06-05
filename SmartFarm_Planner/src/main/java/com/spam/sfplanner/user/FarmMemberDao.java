@@ -12,7 +12,7 @@ import com.spam.sfplanner.corporation.FarmDao;
 public class FarmMemberDao {
 	@Autowired SqlSessionTemplate sqlSession;
 	private final static Logger LOGGER = LoggerFactory.getLogger(FarmDao.class);
-	private final String NAMESPACE = "com.spam.sfplanner.corporation.FarmMemberMapper.";
+	private final static String NAMESPACE = "com.spam.sfplanner.user.FarmMemberMapper.";
 
 	public void insertFarmMember(FarmMemberView farmMemberView) {
 		LOGGER.info("FarmMemberDao 호출");
