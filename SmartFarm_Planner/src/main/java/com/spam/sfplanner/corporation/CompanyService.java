@@ -4,7 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.spam.sfplanner.user.CompanyMemberView;
+@Transactional
 @Service
 public class CompanyService {
 	
@@ -13,8 +16,8 @@ public class CompanyService {
 	@Autowired 
 	private CompanyDao companyDao;
 	
-	public int insertCompanyDB(CompanyDB companyDB) {
-		int row = companyDao.insertCompanyDB(companyDB);
+	public int insertCompany(CompanyMemberView companyMemberView) {
+		int row = companyDao.insertCompany(companyMemberView);
 		return row;
 	}
 	

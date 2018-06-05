@@ -18,7 +18,11 @@ public class AgencyDao {
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
 	
-	public void InsertAgency(AgencyMemberView agencyMemberView) {
-		sqlSessionTemplate.insert(NAMESPACE+"InsertAgency", agencyMemberView);
+	public void insertAgency(AgencyMemberView agencyMemberView) {
+		sqlSessionTemplate.insert(NAMESPACE+"insertAgency", agencyMemberView);
+	}
+	
+	public String numberCheck(int aNumber) {
+		return sqlSessionTemplate.selectOne(NAMESPACE+"aNumber", aNumber);
 	}
 }

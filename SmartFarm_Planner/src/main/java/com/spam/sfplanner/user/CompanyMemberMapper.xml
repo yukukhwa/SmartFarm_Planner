@@ -4,5 +4,31 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.spam.sfplanner.user.CompanyMemberMapper">
-
+	<insert id="insertCompanyMember" parameterType="com.spam.sfplanner.user.CompanyMemberDB">
+		INSERT INTO sp_deal_company_member
+	(c_member_id
+	,c_number
+	,c_member_pw
+	,c_member_name
+	,c_member_phone
+	,c_member_gender
+	,c_member_email
+	,c_member_privacy
+	,c_member_doroaddress
+	,c_member_jibunaddress
+	,c_member_detailaddress
+	,c_member_registdate)
+	VALUES (#{cMemberId}
+	,#{cNumber}
+	,#{cMemberPw}
+	,#{cMemberName}
+	,#{cMemberPhone}
+	,#{cMemberGender}
+	,#{cMemberEmail}
+	,#{cMemberPrivacy}
+	,#{cMemberDoroaddress}
+	,#{cMemberJibunaddress}
+	,#{cMemberDetailaddress}
+	,NOW())
+	</insert>
 </mapper>

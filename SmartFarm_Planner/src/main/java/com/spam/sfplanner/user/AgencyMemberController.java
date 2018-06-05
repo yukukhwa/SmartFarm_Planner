@@ -42,9 +42,13 @@ public class AgencyMemberController {
 	@RequestMapping(value="/addAgencyMember",method = RequestMethod.POST)
 	public String InsertAgencyMember(AgencyMemberView agencyMemberView) {
 		System.out.println(agencyMemberView.toString());
-		agencyService.InsertAgency(agencyMemberView);
-		System.out.println(agencyMemberView.getaNumber());
-		agencyMemberService.InsertAgencyMember(agencyMemberView);
+		int aNumber = agencyMemberView.getaNumber();
+		if(aNumber == 0) {
+			System.out.println(aNumber);
+			agencyService.insertAgency(agencyMemberView);
+		}
+		System.out.println(aNumber);
+		agencyMemberService.insertAgencyMember(agencyMemberView);
 		return "redirect:/";
 	}
 }

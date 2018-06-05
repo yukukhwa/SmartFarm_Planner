@@ -16,7 +16,11 @@ public class AgencyService {
 	@Autowired
 	private AgencyDao agencyDao;
 	
-	public void InsertAgency(AgencyMemberView agencyMemberView) {
-		agencyDao.InsertAgency(agencyMemberView);
+	public String numberCheck(int aNumber) {
+		return agencyDao.numberCheck(aNumber);
+	}
+	
+	public void insertAgency(AgencyMemberView agencyMemberView) {
+		agencyDao.insertAgency(agencyMemberView);
 	}
 }
