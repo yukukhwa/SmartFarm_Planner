@@ -11,7 +11,7 @@
 		$('input#level').click(function(){
 				var level = $(this).val();
 				if(level == '업체직원'){
-					$('div#company').html('<br>업체코드 : <input type="number" name="cNumber" id="cNumber">');
+					$('div#company').html('<br>업체넘버 : <input type="number" name="cNumber" id="cNumber">');
 					return;
 				}else{
 					$('div#company').html('<h5>'
@@ -30,7 +30,10 @@
 											+'지번주소 : <input type="text" name="cJibunaddress" id="cJibunaddress">'
 										+'</div>'
 										+'<div>'
-											+'업체인원 : <input type="number" name="cParty" id="cParty">'
+											+'업체인원 : <input type="text" name="cParty" id="cParty">명'
+										+'<div>'
+										+'<div>'
+											+'<button type="submit">등록</button>'
 										+'<div>');
 					return;
 				}
@@ -74,14 +77,17 @@
 						지번주소 : <input type="text" name="cJibunaddress" id="cJibunaddress">
 					</div>
 					<div>
-						업체인원 : <input type="number" name="cParty" id="cParty">
+						업체인원 : <input type="text" name="cParty" id="cParty">명
+					</div>
+					<div>
+						<button type="submit">등록</button>
 					</div>
 				</div>
 			</div>
 			<div>
 				회원가입<br>
 				아이디 : 
-				<input type="text" name="cMemberId" placeholder="아이디를 입력해주세요"> 
+				<input type="text" name="cMemberId" placeholder="아이디를 입력해주세요">&nbsp;<button type="button">아이디<br>중복확인</button>
 			</div>
 			<div>
 				패스워드 : 
