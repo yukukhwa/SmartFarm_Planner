@@ -1,5 +1,5 @@
 package com.spam.sfplanner.login;
 
-public class FindDB {
+public class ResultDb {
 
 }

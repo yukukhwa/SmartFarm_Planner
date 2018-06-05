@@ -37,6 +37,7 @@
 				<value>classpath:com/spam/sfplanner/Mapper.xml</value>
 				<value>classpath:com/spam/sfplanner/corporation/FarmMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/login/LoginMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/login/FindMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/user/FarmMemberMapper.xml</value>		
 				<value>classpath:com/spam/sfplanner/user/CompanyMemberMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/corporation/CompanyMapper.xml</value>
