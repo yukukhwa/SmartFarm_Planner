@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 나성수 -->
+<mapper namespace="com.spam.sfplanner.user.AgencyMemberMapper">
+	<select id="idCheck"
+			parameterType="String"
+			resultType="String">
+		select
+			sp_agency_master.a_member_id
+		from
+			sp_agency_master
+		where
+			sp_agency_master.a_member_id = #{aMemberId}
+	</select>
+	
+	<insert id="InsertAgencyMember"
+			parameterType="com.spam.sfplanner.user.AgencyMemberView">
+		INSERT INTO sp_agency_master
+		(a_member_id, a_number, a_member_pw, a_member_name, a_member_phone, a_member_gender, a_member_email, a_member_privacy, a_member_doroaddress, a_member_jibunaddress, a_member_detailaddress, a_member_registdate)
+		VALUES (#{aMemberId}, #{aNumber}, #{aMemberPw}, #{aMemberName}, #{aMemberPhone}, #{aMemberGender}, #{aMemberEmail}, #{aMemberPrivacy}, #{aMemberDoroaddress}, #{aMemberJibunaddress}, #{aMemberDetailaddress}, NOW())
+	</insert>
+</mapper>

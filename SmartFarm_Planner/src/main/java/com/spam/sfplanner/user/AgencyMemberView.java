@@ -1,15 +1,11 @@
 /*나성수*/
 package com.spam.sfplanner.user;
 
-import java.util.Date;
-
 /*
- * 데이터베이스 : cjsghka
- * 테이블 : sp_agency_master
+ * addAgencyMember화면 테이블
  */
-public class AgencyMemberDB {
+public class AgencyMemberView {
 	private String aMemberId; //관리자아이디
-	private int aNumber; //관리기관통합넘버
 	private String aMemberPw; //비밀번호
 	private String aMemberName; //실명
 	private String aMemberPhone; //연락처
@@ -19,18 +15,16 @@ public class AgencyMemberDB {
 	private String aMemberDoroaddress; //관리기관회원도로명주소
 	private String aMemberJibunaddress; //관리기관회원지번주소
 	private String aMemberDetailaddress; //관리기관회원상세주소
-	private Date aMemberRegistdate; //가입일자
-	public String getaMasterId() {
+	private int aNumber; //관리기관통합넘버
+	private String aName; //관리기관명
+	private String aDoroaddress; //관리기관도로명주소
+	private String aJibunaddress; //관리기관지번주소
+	private String aPhone; //관리기관연락처
+	public String getaMemberId() {
 		return aMemberId;
 	}
-	public void setaMasterId(String aMasterId) {
-		this.aMemberId = aMasterId;
-	}
-	public int getaNumber() {
-		return aNumber;
-	}
-	public void setaNumber(int aNumber) {
-		this.aNumber = aNumber;
+	public void setaMemberId(String aMemberId) {
+		this.aMemberId = aMemberId;
 	}
 	public String getaMemberPw() {
 		return aMemberPw;
@@ -86,18 +80,43 @@ public class AgencyMemberDB {
 	public void setaMemberDetailaddress(String aMemberDetailaddress) {
 		this.aMemberDetailaddress = aMemberDetailaddress;
 	}
-	public Date getaMemberRegistdate() {
-		return aMemberRegistdate;
+	public int getaNumber() {
+		return aNumber;
 	}
-	public void setaMemberRegistdate(Date aMemberRegistdate) {
-		this.aMemberRegistdate = aMemberRegistdate;
+	public void setaNumber(int aNumber) {
+		this.aNumber = aNumber;
+	}
+	public String getaName() {
+		return aName;
+	}
+	public void setaName(String aName) {
+		this.aName = aName;
+	}
+	public String getaDoroaddress() {
+		return aDoroaddress;
+	}
+	public void setaDoroaddress(String aDoroaddress) {
+		this.aDoroaddress = aDoroaddress;
+	}
+	public String getaJibunaddress() {
+		return aJibunaddress;
+	}
+	public void setaJibunaddress(String aJibunaddress) {
+		this.aJibunaddress = aJibunaddress;
+	}
+	public String getaPhone() {
+		return aPhone;
+	}
+	public void setaPhone(String aPhone) {
+		this.aPhone = aPhone;
 	}
 	@Override
 	public String toString() {
-		return "AgencyMemberDB [aMasterId=" + aMemberId + ", aNumber=" + aNumber + ", aMemberPw=" + aMemberPw
-				+ ", aMemberName=" + aMemberName + ", aMemberPhone=" + aMemberPhone + ", aMemberGender=" + aMemberGender
-				+ ", aMemberEmail=" + aMemberEmail + ", aMemberPrivacy=" + aMemberPrivacy + ", aMemberDoroaddress="
-				+ aMemberDoroaddress + ", aMemberJibunaddress=" + aMemberJibunaddress + ", aMemberDetailaddress="
-				+ aMemberDetailaddress + ", aMemberRegistdate=" + aMemberRegistdate + "]";
+		return "AgencyMemberView [aMemberId=" + aMemberId + ", aMemberPw=" + aMemberPw + ", aMemberName=" + aMemberName
+				+ ", aMemberPhone=" + aMemberPhone + ", aMemberGender=" + aMemberGender + ", aMemberEmail="
+				+ aMemberEmail + ", aMemberPrivacy=" + aMemberPrivacy + ", aMemberDoroaddress=" + aMemberDoroaddress
+				+ ", aMemberJibunaddress=" + aMemberJibunaddress + ", aMemberDetailaddress=" + aMemberDetailaddress
+				+ ", aNumber=" + aNumber + ", aName=" + aName + ", aDoroaddress=" + aDoroaddress + ", aJibunaddress="
+				+ aJibunaddress + ", aPhone=" + aPhone + "]";
 	}
 }

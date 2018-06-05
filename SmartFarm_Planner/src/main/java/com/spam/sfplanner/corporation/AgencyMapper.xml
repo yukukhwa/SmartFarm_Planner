@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- 나성수 -->
+<mapper namespace="com.spam.sfplanner.corporation.AgencyMapper">
+	<insert id="InsertAgency"
+			parameterType="com.spam.sfplanner.user.AgencyMemberView">
+		<selectKey resultType="int" keyProperty="aNumber" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		INSERT INTO sp_agency
+		(a_name, a_member_id, a_doroaddress, a_jibunaddress, a_phone, a_registdate)
+		VALUES (#{aName}, #{aMemberId}, #{aDoroaddress}, #{aJibunaddress}, #{aPhone}, NOW())
+	</insert>
+</mapper>

@@ -40,6 +40,8 @@
 				<value>classpath:com/spam/sfplanner/user/FarmMemberMapper.xml</value>		
 				<value>classpath:com/spam/sfplanner/user/CompanyMemberMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/corporation/CompanyMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/corporation/AgencyMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/user/AgencyMemberMapper.xml</value>
 			</list>
 		</property>
 	</bean>
