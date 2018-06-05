@@ -5,4 +5,28 @@
   
  
  <mapper namespace="com.spam.sfplanner.corporation.FarmMapper">
+ 	<insert id="insertFarm"
+ 		parameterType="com.spam.sfplanner.user.FarmMemberView">
+ 		<selectKey resultType="int"
+ 					keyProperty="fNumber"
+ 					order="AFTER">
+ 			SELECT LAST_INSERT_ID()
+ 		</selectKey>
+ 		INSERT INTO sp_farm(
+ 			f_name
+ 			, f_member_id
+ 			, f_phone
+ 			, f_doroaddress
+ 			, f_jibunaddress
+ 			, f_party
+ 			, f_registdate)
+		VALUES (
+			#{fName}
+			, #{fMemberId}
+			, #{fPhone}
+			, #{fDoroaddress}
+			, #{fJibunaddress}
+			, #{fParty}
+			, NOW())
+ 	</insert>
  </mapper>

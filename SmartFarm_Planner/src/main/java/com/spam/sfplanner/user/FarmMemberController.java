@@ -1,16 +1,31 @@
 package com.spam.sfplanner.user;
-
-import org.apache.log4j.spi.LoggerFactory;
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.spam.sfplanner.corporation.FarmDB;
+import com.spam.sfplanner.corporation.FarmDao;
+import com.spam.sfplanner.corporation.FarmService;
+
 @Controller
+@Transactional
 public class FarmMemberController {
 	@Autowired FarmMemberService farmMemberService;
-		private final static Logger LOGGER = org.slf4j.LoggerFactory.getLogger(FarmMemberController.class);
+	@Autowired FarmService farmService;
+		private final static Logger LOGGER = LoggerFactory.getLogger(FarmMemberController.class);
+		
+		@RequestMapping(value="/addFarmMember", method=RequestMethod.POST)
+		public String insertFarmMember(FarmMemberView farmMemberView) {
+			LOGGER.info("FarmMemberController 호출");
+			LOGGER.info("FarmMemberView 내용 ====> " + farmMemberView.toString());
+			farmService.insertFarm(farmMemberView);
+			farmMemberService.insertFarmMember(farmMemberView);
+			return "redirect:user/farm_member/addFarmMember";
+		}
 		
 		@RequestMapping(value="/addFarmMember", method=RequestMethod.GET)
 		public String insertFarmMember() {

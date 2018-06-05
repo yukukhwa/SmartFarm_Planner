@@ -20,7 +20,7 @@
 		</div>
 		<div>
 			<b>농가연락처</b>
-			<input type="text" placeholder="-를 빼고 입력해주세요" name="fPhone" id="fPhone">
+			<input type="text" placeholder="-를 붙이고 입력해주세요" name="fPhone" id="fPhone">
 		</div>
 		<div>
 			<b>도로명 주소 : </b>
@@ -32,7 +32,6 @@
 			<b>농가인원</b> <br>
 			<input type="text" placeholder="농가인원 숫자를 입력해주세요" name="fParty" id="fParty"> 명
 		</div>
-		<br>
 		<input type="submit" value="농장등록하기">
 	</form>
 </body>

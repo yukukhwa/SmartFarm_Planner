@@ -4,4 +4,33 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.spam.sfplanner.user.FarmMemberMapper">
+ 	<insert id="insertFarmMember"
+ 		parameterType="com.spam.sfplanner.user.FarmMemberView">
+ 		INSERT INTO sp_farm_member(
+ 			f_member_id
+ 			, f_number
+ 			, f_member_pw
+ 			, f_member_name
+ 			, f_member_phone
+ 			, f_member_gender
+ 			, f_member_email
+ 			, f_member_privacy
+ 			, f_member_doroaddress
+ 			, f_member_jibunaddress
+ 			, f_member_detailaddress
+ 			, f_member_registdate)
+		VALUES (
+			#{fMemberId}
+			, #{fNumber}
+			, #{fMemberPw}
+			, #{fMemberName}
+			, #{fMemberPhone}
+			, #{fMemberGender}
+			, #{fMemberEmail}
+			, #{fMemberPrivacy}
+			, #{fMemberDoroaddress}
+			, #{fMemberJibunaddress}
+			, #{fMemberDetailaddress}
+			, NOW())
+ 	</insert>
  </mapper>
