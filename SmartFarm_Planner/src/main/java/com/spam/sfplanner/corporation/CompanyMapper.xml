@@ -3,28 +3,31 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
+  
 <mapper namespace="com.spam.sfplanner.corporation.CompanyMapper">
-<insert id="insertCompany" parameterType="com.spam.sfplanner.corporation.CompanyDB">
+<insert id="insertCompany" parameterType="com.spam.sfplanner.user.CompanyMemberView">
+
+	<selectKey resultType="int" keyProperty="cNumber" order="AFTER">
+		SELECT LAST_INSERT_ID()
+	</selectKey>
 	INSERT INTO sp_deal_company
-	(c_number
-		, deal_number
-		, c_name
-		, c_member_id
-		, c_doroaddress
-		, c_jibunaddress
-		, c_phone
-		, c_registdate
-		, c_party)
-	VALUES 
-		(#{cNumber}
-		,#{dealNumber}
-		,#{cName}
-		,#{cMemberId}
-		,#{cDoroaddress}
-		,#{cJibunaddress}
-		,#{cPhone}
-		,#{cRegistdate}
-		,#{cParty})
+	(deal_number
+	,c_name
+	,c_member_id
+	,c_doroaddress
+	,c_jibunaddress
+	,c_phone
+	,c_registdate
+	,c_party)
+	VALUES
+	(#{dealNumber}
+	,#{cName}
+	,#{cMemberId}
+	,#{cDoroaddress}
+	,#{cJibunaddress}
+	,#{cPhone}
+	,NOW()
+	,#{cParty})
 
 </insert>
 </mapper>
