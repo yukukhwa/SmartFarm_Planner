@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.spam.sfplanner.corporation.CompanyMapper">
+<insert id="insertCompany" parameterType="com.spam.sfplanner.corporation.CompanyDB">
+	INSERT INTO sp_deal_company
+	(c_number
+		, deal_number
+		, c_name
+		, c_member_id
+		, c_doroaddress
+		, c_jibunaddress
+		, c_phone
+		, c_registdate
+		, c_party)
+	VALUES 
+		(#{cNumber}
+		,#{dealNumber}
+		,#{cName}
+		,#{cMemberId}
+		,#{cDoroaddress}
+		,#{cJibunaddress}
+		,#{cPhone}
+		,#{cRegistdate}
+		,#{cParty})
+
+</insert>
+</mapper>
