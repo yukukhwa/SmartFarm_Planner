@@ -25,6 +25,9 @@
 			<li>
 				<a class="" href="#"><i class="icon_genius"></i><span>대여물품</span></a>
 			</li>
+			<li>
+				<a class="" href="https://bootstrapmade.com/demo/NiceAdmin/"><i class="icon_documents_alt"></i><span>데모 링크</span></a>
+			</li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>

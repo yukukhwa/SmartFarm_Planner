@@ -36,6 +36,6 @@
 			sp_agency_master.a_member_name AS name,
 			sp_agency.a_member_id AS boss
 		FROM sp_agency_master JOIN sp_agency ON sp_agency.a_number = sp_agency_master.a_number
-		WHERE sp_agency_master.a_member_id = #{id} AND sp_agency_master.a_member_id = #{pw}
+		WHERE sp_agency_master.a_member_id = #{id} AND sp_agency_master.a_member_pw = #{pw}
 	</select>
 </mapper>
