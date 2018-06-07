@@ -1,5 +1,5 @@
 package com.spam.sfplanner.plan;
 
-public class NeRentPayController {
+public class WoNeRentPayController {
 
 }

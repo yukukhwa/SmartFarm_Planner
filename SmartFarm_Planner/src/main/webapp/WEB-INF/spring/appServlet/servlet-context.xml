@@ -60,9 +60,19 @@
 				<value>classpath:com/spam/sfplanner/plan/WoHumanPayMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/plan/WoInsurancePayMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/plan/WoMaterialsPayMapper.xml</value>
-				<value>classpath:com/spam/sfplanner/plan/NeRentPayMapper.xml</value>
-				<value>classpath:com/spam/sfplanner/plan/WoNeedEquipMapper.xml</value>
-				
+				<value>classpath:com/spam/sfplanner/plan/WoNeRentPayMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/plan/WoNeedEquipMapper.xml</value>				
+				<value>classpath:com/spam/sfplanner/actresult/WrEtcSpendPayMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/actresult/WrNe_RentPayMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/actresult/WrNeedEquipMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/actresult/MemoFileMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/actresult/MemoMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/actresult/ActResultMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/actresult/WrInsurancePayMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/actresult/WrMaterialsPayMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/actresult/WrHumanPayMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/actresult/PpWoResultMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/actresult/PpResultListMapper.xml</value>
 			</list>
 		</property>
 	</bean>
