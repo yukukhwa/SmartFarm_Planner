@@ -3,7 +3,7 @@ package com.spam.sfplanner.user;
 
 import java.util.Date;
 
-public class CompanyMemberDB {
+public class CompanyMemberDb {
 	private String cMemberId;  //업체회원아이디
 	private int cNumber;  //업체통합넘버
 	private String cMemberPw;  //비밀번호
@@ -91,7 +91,7 @@ public class CompanyMemberDB {
 	}
 	@Override
 	public String toString() {
-		return "CompanyMemberDB [cMemberId=" + cMemberId + ", cNumber=" + cNumber + ", cMemberPw=" + cMemberPw
+		return "CompanyMemberDb [cMemberId=" + cMemberId + ", cNumber=" + cNumber + ", cMemberPw=" + cMemberPw
 				+ ", cMemberName=" + cMemberName + ", cMemberPhone=" + cMemberPhone + ", cMemberGender=" + cMemberGender
 				+ ", cMemberEmail=" + cMemberEmail + ", cMemberPrivacy=" + cMemberPrivacy + ", cMemberDoroaddress="
 				+ cMemberDoroaddress + ", cMemberJibunaddress=" + cMemberJibunaddress + ", cMemberDetailaddress="

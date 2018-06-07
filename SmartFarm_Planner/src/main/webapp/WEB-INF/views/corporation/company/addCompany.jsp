@@ -1,3 +1,4 @@
+<!-- 배건혜 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -9,7 +10,7 @@
 	<form action="${pageContext.request.contextPath}/addCompany" method="post">
 		<h5>업체등록회면</h5>
 		<div>
-			거래처넘버 : 
+			거래처넘버 : <input type="number" name="dealNumber" id="dealNumber">
 		</div>
 		<div>
 			업체명 : <input type="text" name="cName" id="cName">
@@ -27,7 +28,7 @@
 			업체인원 : <input type="text" name="cParty" id="cParty">
 		</div>
 		<div>
-			<button type="submit">등록</button>
+			<input type="submit" value="업체등록하기">
 		</div>
 	</form>
 </body>
