@@ -3,7 +3,7 @@ package com.spam.sfplanner.corporation;
 
 import java.util.Date;
 
-public class FarmDB {
+public class FarmDb {
 	private int fNumber; // f_number
 	private String fName; // f_name
 	private String fMemberId; // f_member_id
@@ -12,6 +12,8 @@ public class FarmDB {
 	private String fJibunaddress; // f_jibunaddress
 	private double fParty; // f_party
 	private Date fRegistdate; // f_registdate
+	
+	
 	public int getfNumber() {
 		return fNumber;
 	}
@@ -60,13 +62,14 @@ public class FarmDB {
 	public void setfRegistdate(Date fRegistdate) {
 		this.fRegistdate = fRegistdate;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "FarmDB [fNumber=" + fNumber + ", fName=" + fName + ", fMemberId=" + fMemberId + ", fPhone=" + fPhone
+		return "FarmDb [fNumber=" + fNumber + ", fName=" + fName + ", fMemberId=" + fMemberId + ", fPhone=" + fPhone
 				+ ", fDoroaddress=" + fDoroaddress + ", fJibunaddress=" + fJibunaddress + ", fParty=" + fParty
 				+ ", fRegistdate=" + fRegistdate + "]";
 	}
+	
 	
 	
 	

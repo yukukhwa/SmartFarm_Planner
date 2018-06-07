@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.spam.sfplanner.corporation.FarmDB;
+import com.spam.sfplanner.corporation.FarmDb;
 import com.spam.sfplanner.corporation.FarmDao;
 import com.spam.sfplanner.corporation.FarmService;
 

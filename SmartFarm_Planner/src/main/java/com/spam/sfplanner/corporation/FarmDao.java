@@ -1,5 +1,7 @@
 package com.spam.sfplanner.corporation;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,8 +17,13 @@ public class FarmDao {
 	private final static Logger LOGGER = LoggerFactory.getLogger(FarmDao.class);
 	private static final String NAMESPACE = "com.spam.sfplanner.corporation.FarmMapper.";
 	
+	public List<FarmDb> listSelectFarm() {
+		LOGGER.info("FarmDao listSelectFarm 호출");
+		return sqlSession.selectList(NAMESPACE+"listSelectFarm");
+	}
+	
 	public void insertFarm(FarmMemberView farmMemberView) {
-		LOGGER.info("FarmDao 호출");
+		LOGGER.info("FarmDao insertFarm 호출");
 		sqlSession.insert(NAMESPACE+"insertFarm", farmMemberView);
 	}
 }

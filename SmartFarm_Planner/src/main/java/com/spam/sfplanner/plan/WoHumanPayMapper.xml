@@ -4,4 +4,16 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.spam.sfplanner.plan.WoHumanPayMapper">
+ 	<select id="listSelectWoHumanPay"
+ 		resultType="com.spam.sfplanner.plan.WoHumanPayDb">
+ 		SELECT e_humanpay_number AS eHumanpayNumber
+ 			, theme_number AS themeNumber
+ 			, pp_work_number AS ppWorkNumber
+ 			, e_humanpay_name AS eHumanpayName
+ 			, e_humanpay_residentnumber AS eHumanpayResidentnumber
+ 			, e_humanpay_expectpay AS eHumanpayExpectpay
+ 			, e_humanpay_expectday AS eHumanpayExpectday
+ 			, e_humanpay_secret AS eHumanpaySecret
+		FROM sp_e_humanpay
+ 	</select>
  </mapper>

@@ -3,7 +3,7 @@ package com.spam.sfplanner.user;
 
 import java.util.Date;
 
-public class FarmMemberDB {
+public class FarmMemberDb {
 	private String fMemberId; // f_member_id
 	private int fNumber; // f_number
 	private String fMemberPw; // f_member_pw
@@ -16,6 +16,8 @@ public class FarmMemberDB {
 	private String fMemberJibunaddress; // f_member_jibunaddress
 	private String fMemberDetailaddress; // f_member_detailaddress
 	private Date fMemberRegistdate; // f_member_registdate;
+	
+	
 	public String getfMemberId() {
 		return fMemberId;
 	}
@@ -88,15 +90,17 @@ public class FarmMemberDB {
 	public void setfMemberRegistdate(Date fMemberRegistdate) {
 		this.fMemberRegistdate = fMemberRegistdate;
 	}
-	
+
 	@Override
 	public String toString() {
-		return "FarmMemberDB [fMemberId=" + fMemberId + ", fNumber=" + fNumber + ", fMemberPw=" + fMemberPw
+		return "FarmMemberDb [fMemberId=" + fMemberId + ", fNumber=" + fNumber + ", fMemberPw=" + fMemberPw
 				+ ", fMemberName=" + fMemberName + ", fMemberPhone=" + fMemberPhone + ", fMemberGender=" + fMemberGender
 				+ ", fMemberEmail=" + fMemberEmail + ", fMemberPrivacy=" + fMemberPrivacy + ", fMemberDoroaddress="
 				+ fMemberDoroaddress + ", fMemberJibunaddress=" + fMemberJibunaddress + ", fMemberDetailaddress="
 				+ fMemberDetailaddress + ", fMemberRegistdate=" + fMemberRegistdate + "]";
 	}
+	
+	
 
 
 }
