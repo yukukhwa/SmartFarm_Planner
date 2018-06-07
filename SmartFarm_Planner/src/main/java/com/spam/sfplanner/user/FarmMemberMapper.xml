@@ -5,18 +5,27 @@
   
  <mapper namespace="com.spam.sfplanner.user.FarmMemberMapper">
 	 <resultMap type="com.spam.sfplanner.user.FarmMemberDb" id="resultFarmMember">
+			<id column="f_member_id" property="fMemberId"/>
 			<!-- property : 대상객체의 setter메소드명 지정 -->
-			<result column="fNumber" property="fNumber"/>
-	        <result column="fMemberId" property="fMemberId"/>
-	        <result column="fMemberName" property="fMemberName"/>
-	        <result column="fMemberEmail" property="fMemberEmail"/>
+			<result column="f_number" property="fNumber"/>
+	        <result column="f_member_id" property="fMemberId"/>
+	        <result column="f_member_pw" property="fMemberPw"/>
+	        <result column="f_member_name" property="fMemberName"/>
+	        <result column="f_member_email" property="fMemberEmail"/>
+	        <result column="f_member_gender" property="fMemberGender"/>
+	        <result column="f_member_privacy" property="fMemberPrivacy"/>
+	        <result column="f_member_doroaddress" property="fMemberDoroaddress"/>
+	        <result column="f_member_jibunaddress" property="fMemberJibunaddress"/>
+			<result column="f_member_detailaddress" property="fMemberDetailaddress"/>
+			<result column="f_member_registdate" property="fMemberRegistdate"/>
 	        <!-- ofType : 목록을 구성하는 객체의 타입을 지정.실제 반환타입은 List<>가 된다   -->
-	        <collection property="FarmMemberDb" ofType="com.spam.sfplanner.user.FarmMemberDb">
-	            <id column="fNumber" property="fNumber"/>
-	            <result column="fNumber" property="fNumber"/>
-	            <result column="fMemberId" property="fMemberId"/>
-	            <result column="fMemberName" property="fMemberName"/>
-	            <result column="fMemberEmail" property="fMemberEmail"/>
+	        <collection property="FarmDb" ofType="com.spam.sfplanner.corporation.FarmDb">
+	            <id column="f_number" property="fNumber"/>
+	            <result column="f_member_id" property="f_member_id"/>
+	            <result column="f_name" property="fMemberName"/>
+	            <result column="f_doroaddress" property="fDoroaddress"/>
+	            <result column="f_jibunaddress" property="fJibunaddress"/>
+	            <result column="f_registdate" property="fRegistdate"/>
 	        </collection>
 	  </resultMap>
  	<!-- 해당 회원의 상세정보 보기 -->
@@ -26,16 +35,18 @@
  	<select id="selectOneFarmMemberList"
  		parameterType="integer"
  		resultMap="resultFarmMember">
-	 		SELECT sp_farm_member.f_number AS fNumber
-				, sp_farm_member.f_member_id AS fMemberId
-				, sp_farm_member.f_member_name AS fMemberName
-				, sp_farm_member.f_member_email AS fMemberEmail
-			FROM sp_farm
-			JOIN sp_farm_member 
-			ON sp_farm.f_number = sp_farm_member.f_number
-			WHERE sp_farm_member.f_number=#{fNumber}
+	 		SELECT sp_farm_member.f_number
+	 			, sp_farm_member.f_member_id
+				, sp_farm_member.f_member_name
+				, sp_farm_member.f_member_phone
+				, sp_farm_member.f_member_email
+			FROM sp_farm_member
+			JOIN sp_farm
+			ON sp_farm_member.f_number = sp_farm.f_number
+			WHERE sp_farm.f_number=#{fNumber}
  	</select>
  	
+ 	<!-- 회원을 등록하는 쿼리문 -->
  	<insert id="insertFarmMember"
  		parameterType="com.spam.sfplanner.user.FarmMemberView">
  		INSERT INTO sp_farm_member(

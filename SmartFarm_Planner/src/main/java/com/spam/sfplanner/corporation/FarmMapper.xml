@@ -5,7 +5,7 @@
  
  <mapper namespace="com.spam.sfplanner.corporation.FarmMapper">
  
- 
+ 	<!-- 한개의 농가에 대한 상세정보 -->
  	<select id="oneSelectFarm"
  		parameterType="integer"
  		resultType="com.spam.sfplanner.corporation.FarmDb">
@@ -20,6 +20,7 @@
  		WHERE sp_farm.f_number=#{fNumber}
  	</select>
  	
+ 	<!-- 농가의 리스트를 조회 -->
  	<select id="listSelectFarm"
  		resultType="com.spam.sfplanner.corporation.FarmDb">
 	 		SELECT f_number AS fNumber
