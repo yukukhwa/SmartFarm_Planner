@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class LoginService {
+	
 	@Autowired
 	private LoginDao loginDao;
 	
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	private static final Logger logger = LoggerFactory.getLogger(LoginService.class);
 	
 	/*
 	 * loginDb를 매개변수로 받아 loginDao에서

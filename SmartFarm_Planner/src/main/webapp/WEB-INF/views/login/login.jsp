@@ -3,40 +3,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>login.jsp</title>
-<jsp:include page="../css.jsp"></jsp:include>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-	$(document).ready(function(){
-		/* a태그 농가, 업체, 관리기관을 클릭할때 해당하는 경우에 따라 회원가입 uri가 바뀌고
-		li태그를 활성화하고 나머지는 비활성화 한다. */
-		$('#farm').click(function(){
-			$('#loginForm').attr('action','${pageContext.request.contextPath}/loginFarm');
-			$(this).parents('ul').find('li').attr('class', '');
-			$(this).parents('li').attr('class', 'active');
-			$('#SignUp').html('농가 회원가입');
-			$('#SignUp').attr('onclick', 'location=\'${pageContext.request.contextPath}/addFarmMember\'');
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>login.jsp</title>
+	<jsp:include page="/WEB-INF/views/css.jsp"></jsp:include>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			/* a태그 농가, 업체, 관리기관을 클릭할때 해당하는 경우에 따라 회원가입, 로그인 uri가 바뀌고
+			li태그를 활성화하고 나머지는 비활성화 한다. */
+			$('#farm').click(function(){
+				$('#loginForm').attr('action','${pageContext.request.contextPath}/loginFarm');
+				$(this).parents('ul').find('li').attr('class', '');
+				$(this).parents('li').attr('class', 'active');
+				$('#SignUp').html('농가 회원가입');
+				$('#SignUp').attr('onclick', 'location=\'${pageContext.request.contextPath}/addFarmMember\'');
+			});
+			$('#company').click(function(){
+				$('#loginForm').attr('action','${pageContext.request.contextPath}/loginCompany');
+				$(this).parents('ul').find('li').attr('class', '');
+				$(this).parent('li').attr('class', 'active');
+				$('#SignUp').html('업체 회원가입');
+				$('#SignUp').attr('onclick', 'location=\'${pageContext.request.contextPath}/addCompanyMember\'');
+			});
+			$('#agency').click(function(){
+				$('#loginForm').attr('action','${pageContext.request.contextPath}/loginAgency');
+				$(this).parents('ul').find('li').attr('class', '');
+				$(this).parent('li').attr('class', 'active');
+				$('#SignUp').html('관리기관 회원가입');
+				$('#SignUp').attr('onclick', 'location=\'${pageContext.request.contextPath}/addAgencyMember\'');
+			});
 		});
-		$('#company').click(function(){
-			$('#loginForm').attr('action','${pageContext.request.contextPath}/loginCompany');
-			$(this).parents('ul').find('li').attr('class', '');
-			$(this).parent('li').attr('class', 'active');
-			$('#SignUp').html('업체 회원가입');
-			$('#SignUp').attr('onclick', 'location=\'${pageContext.request.contextPath}/addCompanyMember\'');
-		});
-		$('#agency').click(function(){
-			$('#loginForm').attr('action','${pageContext.request.contextPath}/loginAgency');
-			$(this).parents('ul').find('li').attr('class', '');
-			$(this).parent('li').attr('class', 'active');
-			$('#SignUp').html('관리기관 회원가입');
-			$('#SignUp').attr('onclick', 'location=\'${pageContext.request.contextPath}/addAgencyMember\'');
-		});
-	});
-</script>
+	</script>
 </head>
-<jsp:include page="../top.jsp"></jsp:include>
-<jsp:include page="../left.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/top.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/left.jsp"></jsp:include>
 <body class="login-img3-body">
 	<div class="container">
 		<form class="login-form" id="loginForm" action="${pageContext.request.contextPath}/loginFarm" method="post">

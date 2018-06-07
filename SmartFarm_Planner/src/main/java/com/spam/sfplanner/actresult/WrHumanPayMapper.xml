@@ -3,5 +3,20 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
- <mapper namespace="com.spam.sfplanner.actresult.WrHumanPayMapper">
- </mapper>
+<mapper namespace="com.spam.sfplanner.actresult.WrHumanPayMapper">
+	<insert id="insertWrHumanPay"
+			parameterType="com.spam.sfplanner.actresult.WrHumanPayDb">
+		INSERT INTO sp_wr_humanpay (
+			wr_number,
+			e_humanpay_number,
+			wr_humanpay_realcost,
+			wr_humanpay_date
+		)
+		VALUES (
+			#{wrNumber},
+			#{eHumanpayNumber},
+			#{wrHumanpayRealcost},
+			#{wrHumanpayDate}
+		)
+	</insert>
+</mapper>

@@ -2,16 +2,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<jsp:include page="css.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/css.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>home.jsp</title>
 </head>
 <body>
 	<!-- container section start -->
 	<section id="container" class="">
-		<jsp:include page="top.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/views/top.jsp"></jsp:include>
     <!--sidebar start-->
-    	<jsp:include page="left.jsp"></jsp:include>
+    	<jsp:include page="/WEB-INF/views/left.jsp"></jsp:include>
     <!--sidebar end-->
 
     <!--main content start-->

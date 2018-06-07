@@ -12,7 +12,7 @@ public class LoginDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	private static final Logger logger = LoggerFactory.getLogger(LoginDao.class);
 	
 	final String NS = "com.spam.sfplanner.login.LoginMapper.";
 	

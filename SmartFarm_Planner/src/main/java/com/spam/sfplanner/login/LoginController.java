@@ -40,9 +40,13 @@ public class LoginController {
 	@RequestMapping(value = "/loginFarm", method = RequestMethod.POST)
 	public String loginFarm(LoginDb loginDb, HttpSession session) {
 		LoginDb returnLogin = loginService.oneSelectFarmMember(loginDb);
+		/*
+		 * 로그인 실패시 login.jsp로 포워드한다.
+		 */
 		if(returnLogin == null) {
 			return "/login/login";
 		}
+		logger.debug("LoginController.loginFarm.returnLogin : "+returnLogin);
 		session.setAttribute("loginMember", returnLogin);
 		return "redirect:/";
 	}
@@ -50,6 +54,7 @@ public class LoginController {
 	@RequestMapping(value = "/loginCompany", method = RequestMethod.POST)
 	public String loginCompany(LoginDb loginDb, HttpSession session) {
 		LoginDb returnLogin = loginService.oneSelectCompanyMember(loginDb);
+		
 		if(returnLogin == null) {
 			return "/login/login";
 		}
@@ -60,6 +65,7 @@ public class LoginController {
 	@RequestMapping(value = "/loginAgency", method = RequestMethod.POST)
 	public String loginAgency(LoginDb loginDb, HttpSession session) {
 		LoginDb returnLogin = loginService.oneSelectAgencyMember(loginDb);
+		
 		if(returnLogin == null) {
 			return "/login/login";
 		}
