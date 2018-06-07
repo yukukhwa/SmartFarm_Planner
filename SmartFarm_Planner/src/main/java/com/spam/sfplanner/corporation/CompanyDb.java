@@ -3,8 +3,8 @@ package com.spam.sfplanner.corporation;
 
 import java.util.Date;
 
-public class CompanyDB {
-	private int cNumber;  //업체총합넘버
+public class CompanyDb {
+	private int cNumber;  //업체통합넘버
 	private int dealNumber;  //거래처넘버
 	private String cName;  //업체명
 	private String cMemberId;  //업체회원아이디
@@ -70,7 +70,7 @@ public class CompanyDB {
 	}
 	@Override
 	public String toString() {
-		return "CompanyDB [cNumber=" + cNumber + ", dealNumber=" + dealNumber + ", cName=" + cName + ", cMemberId="
+		return "CompanyDb [cNumber=" + cNumber + ", dealNumber=" + dealNumber + ", cName=" + cName + ", cMemberId="
 				+ cMemberId + ", cDoroaddress=" + cDoroaddress + ", cJibunaddress=" + cJibunaddress + ", cPhone="
 				+ cPhone + ", cRegistdate=" + cRegistdate + ", cParty=" + cParty + "]";
 	}

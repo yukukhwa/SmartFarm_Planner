@@ -6,14 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service
 public class CompanyMemberService {
-	
-	private static final Logger logger = LoggerFactory.getLogger(CompanyMemberService.class);
-	
 	@Autowired
 	private CompanyMemberDao companyMemberDao;
-	
-	public int insertCompanyMember(CompanyMemberDB companyMemberDB) {
-		int row = companyMemberDao.insertCompanyMember(companyMemberDB);
-		return row;
+	private static final Logger logger = LoggerFactory.getLogger(CompanyMemberService.class);
+	public void insertCompanyMember(CompanyMemberView companyMemberView) {
+		logger.info("CompanyMemberService 호출");
+		companyMemberDao.insertCompanyMember(companyMemberView);
 	}
 }

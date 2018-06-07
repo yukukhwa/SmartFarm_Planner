@@ -1,3 +1,4 @@
+/*배건헤*/
 package com.spam.sfplanner.corporation;
 
 import org.slf4j.Logger;
@@ -10,17 +11,13 @@ import com.spam.sfplanner.user.CompanyMemberView;
 @Transactional
 @Service
 public class CompanyService {
-	
-	private static final Logger logger = LoggerFactory.getLogger(CompanyService.class);
-	
 	@Autowired 
 	private CompanyDao companyDao;
+	private static final Logger logger = LoggerFactory.getLogger(CompanyService.class);
 	
-	public int insertCompany(CompanyMemberView companyMemberView) {
-		int row = companyDao.insertCompany(companyMemberView);
-		return row;
+	public void insertCompany(CompanyMemberView companyMemberView) {
+		logger.info("CompanyService 호출");
+		companyDao.insertCompany(companyMemberView);
+		
 	}
-	
-	
-
 }
