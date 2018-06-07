@@ -17,13 +17,15 @@ public class AgencyMemberRestController {
 	@Autowired
 	private AgencyMemberService agencyMemberService;
 	
-	@RequestMapping(value="/idCheck",method = RequestMethod.POST)
+	@RequestMapping(value="/agencyMemberIdCheck",method = RequestMethod.POST)
 	public String IdCheck(@RequestParam(value="aMemberId")String aMemberId) {
-		String result = agencyMemberService.idCheck(aMemberId);
-		if(result.equals("")) {
-			System.out.println(result+" 아이디는 사용가능합니다");
+		String result = null;
+		if(agencyMemberService.idCheck(aMemberId) == null) {
+			System.out.println(aMemberId+"아이디는 사용가능합니다");
+			result = "T";//아이디 사용가능
 		}else {
-			System.out.println(result+" 아이디는 사용불가능합니다");
+			System.out.println(aMemberId+"아이디는 사용불가능합니다");
+			result = "F";//아이디 사용불가능
 		}
 		return result;
 	}
