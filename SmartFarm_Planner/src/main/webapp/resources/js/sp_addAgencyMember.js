@@ -8,7 +8,9 @@ $(document).ready(function(){
 		$('input#level').click(function(){
 			var level = $(this).val();
 			if(level == '직원'){
-				$('div#agency').html('<br>관리기관코드 : <input type="number" name="aNumber" id="aNumber">');
+				$('div#agency').html('<br>관리기관코드 : <input type="number" name="aNumber" id="aNumber">'
+									+'<input type="button" id="aNumberCheck" value="관리기관 확인">'
+									+'<p id="NumberCheckResult"/>');
 				return;
 			}else{
 				$('div#agency').html('<h4>'
@@ -54,6 +56,8 @@ $(document).ready(function(){
 				alert('관리기관코드를 입력해주세요.');
 				$('input#aNumber').focus();
 				return;
+			}else if($('p#NumberCheckResult').text() == '해당기관은 존재하지 않습니다.'){
+				alert('관리기관을 다시 확인하세요.');
 			}
 			if($('input#aName').val() == ''){
 				alert('관리기관명을 입력해주세요.');

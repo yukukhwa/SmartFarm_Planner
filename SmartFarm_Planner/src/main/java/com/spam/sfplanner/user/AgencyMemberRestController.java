@@ -19,14 +19,11 @@ public class AgencyMemberRestController {
 	
 	@RequestMapping(value="/agencyMemberIdCheck",method = RequestMethod.POST)
 	public String IdCheck(@RequestParam(value="aMemberId")String aMemberId) {
-		String result = null;
 		if(agencyMemberService.idCheck(aMemberId) == null) {
 			System.out.println(aMemberId+"아이디는 사용가능합니다");
-			result = "T";//아이디 사용가능
-		}else {
-			System.out.println(aMemberId+"아이디는 사용불가능합니다");
-			result = "F";//아이디 사용불가능
+			return "T";//아이디 사용가능
 		}
-		return result;
+		System.out.println(aMemberId+"아이디는 사용불가능합니다");
+		return "F";//아이디 사용불가능
 	}
 }

@@ -6,8 +6,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spam.sfplanner.corporation.AgencyService;
 
@@ -24,6 +26,20 @@ public class AgencyMemberController {
 	
 	@Autowired
 	private AgencyService agencyService;
+	
+	/**
+	 * 해당 관리기관의 직원 리스트 출력 컨트롤러
+	 * @param 해당 관리기관명
+	 * @param model
+	 * @return 해당 관리기관의 직원리스트
+	 */
+	@RequestMapping(value="/listAgencyMember",method = RequestMethod.GET)
+	public String listSelectAgencyMember(@RequestParam(value="aName",required=true)String aName,Model model) {
+		model.addAttribute("list", agencyMemberService.listSelectAgencyMember(aName));
+		model.addAttribute("aName", aName);
+		return "user/agency_member/listAgencyMember";
+	}
+	
 	/**
 	 * 관리기관 회원가입화면 호출컨트롤러
 	 * @return 관리기관 회원가입화면

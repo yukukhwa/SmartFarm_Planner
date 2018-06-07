@@ -3,14 +3,16 @@ package com.spam.sfplanner.corporation;
 
 import java.util.Date;
 
+import com.spam.sfplanner.user.AgencyMemberDb;
+
 /*
  * 데이터베이스 : cjsghka
- * 테이블 : sp_agency
+ * 테이블 : sp_agency(관리기관 테이블)
  */
-public class AgencyDB {
+public class AgencyDb {
 	private int aNumber; //관리기관통합넘버
 	private String aName; //관리기관명
-	private String aMemberId; //관리자아이디
+	private AgencyMemberDb agencyMemberDb; //관리기관 회원 테이블
 	private String aDoroaddress; //관리기관도로명주소
 	private String aJibunaddress; //관리기관지번주소
 	private String aPhone; //관리기관연락처
@@ -27,11 +29,11 @@ public class AgencyDB {
 	public void setaName(String aName) {
 		this.aName = aName;
 	}
-	public String getaMemberId() {
-		return aMemberId;
+	public AgencyMemberDb getAgencyMemberDb() {
+		return agencyMemberDb;
 	}
-	public void setaMemberId(String aMemberId) {
-		this.aMemberId = aMemberId;
+	public void setAgencyMemberDb(AgencyMemberDb agencyMemberDb) {
+		this.agencyMemberDb = agencyMemberDb;
 	}
 	public String getaDoroaddress() {
 		return aDoroaddress;
@@ -59,8 +61,8 @@ public class AgencyDB {
 	}
 	@Override
 	public String toString() {
-		return "AgencyDB [aNumber=" + aNumber + ", aName=" + aName + ", aMemberId=" + aMemberId + ", aDoroaddress="
-				+ aDoroaddress + ", aJibunaddress=" + aJibunaddress + ", aPhone=" + aPhone + ", aRegistdate="
-				+ aRegistdate + "]";
+		return "AgencyDb [aNumber=" + aNumber + ", aName=" + aName + ", agencyMemberDb=" + agencyMemberDb
+				+ ", aDoroaddress=" + aDoroaddress + ", aJibunaddress=" + aJibunaddress + ", aPhone=" + aPhone
+				+ ", aRegistdate=" + aRegistdate + "]";
 	}
 }

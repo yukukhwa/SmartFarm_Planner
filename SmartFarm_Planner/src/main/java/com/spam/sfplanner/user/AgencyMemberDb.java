@@ -3,13 +3,15 @@ package com.spam.sfplanner.user;
 
 import java.util.Date;
 
+import com.spam.sfplanner.corporation.AgencyDb;
+
 /*
  * 데이터베이스 : cjsghka
- * 테이블 : sp_agency_master
+ * 테이블 : sp_agency_master(관리기관 회원 테이블)
  */
-public class AgencyMemberDB {
+public class AgencyMemberDb {
 	private String aMemberId; //관리자아이디
-	private int aNumber; //관리기관통합넘버
+	private AgencyDb agencyDb; //관리기관 테이블
 	private String aMemberPw; //비밀번호
 	private String aMemberName; //실명
 	private String aMemberPhone; //연락처
@@ -20,17 +22,17 @@ public class AgencyMemberDB {
 	private String aMemberJibunaddress; //관리기관회원지번주소
 	private String aMemberDetailaddress; //관리기관회원상세주소
 	private Date aMemberRegistdate; //가입일자
-	public String getaMasterId() {
+	public String getaMemberId() {
 		return aMemberId;
 	}
-	public void setaMasterId(String aMasterId) {
-		this.aMemberId = aMasterId;
+	public void setaMemberId(String aMemberId) {
+		this.aMemberId = aMemberId;
 	}
-	public int getaNumber() {
-		return aNumber;
+	public AgencyDb getAgencyDb() {
+		return agencyDb;
 	}
-	public void setaNumber(int aNumber) {
-		this.aNumber = aNumber;
+	public void setAgencyDb(AgencyDb agencyDb) {
+		this.agencyDb = agencyDb;
 	}
 	public String getaMemberPw() {
 		return aMemberPw;
@@ -94,7 +96,7 @@ public class AgencyMemberDB {
 	}
 	@Override
 	public String toString() {
-		return "AgencyMemberDB [aMasterId=" + aMemberId + ", aNumber=" + aNumber + ", aMemberPw=" + aMemberPw
+		return "AgencyMemberDb [aMemberId=" + aMemberId + ", agencyDb=" + agencyDb + ", aMemberPw=" + aMemberPw
 				+ ", aMemberName=" + aMemberName + ", aMemberPhone=" + aMemberPhone + ", aMemberGender=" + aMemberGender
 				+ ", aMemberEmail=" + aMemberEmail + ", aMemberPrivacy=" + aMemberPrivacy + ", aMemberDoroaddress="
 				+ aMemberDoroaddress + ", aMemberJibunaddress=" + aMemberJibunaddress + ", aMemberDetailaddress="

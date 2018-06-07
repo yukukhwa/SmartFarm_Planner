@@ -6,11 +6,41 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>addAgencyMember</title>
-<jsp:include page="../../css.jsp"/>
+<jsp:include page="/WEB-INF/views/css.jsp"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="js/sp_addAgencyMember.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		/* 관리기관 확인버튼을 클릭시 ajax처리로 관리기관 존재여부를 파악해준다 */
+		$('input:button[id="aNumberCheck"]').on('click',function(){
+			var aNumber = $('input#aNumber').val();
+			if(aNumber == ''){
+				alert('관리기관코드를 입력해주세요');
+				$('input#aNumber').focus();
+				return;
+			}
+			/* $.ajax({
+				type: "POST",
+				url: "${pageContext.request.contextPath}/agencyNumberCheck",
+				data: {"aNumber":aNumber},
+				success:function(resultMap) {		
+				    	if(resultMap[0].TF == 'F'){// 해당기관이 존재하지 않을때
+				    		alert(resultMap[0].result);
+				    		$('p#NumberCheckResult').show();
+				    		$('p#NumberCheckResult').text(resultMap.result);
+				    		return;
+				    	}
+				    	if(resultMap[0].TF == 'T'){// 해당기관이 존재할때
+				    		alert(resultMap[0].result);
+				    		$('p#NumberCheckResult').show();
+				    		$('p#NumberCheckResult').text(resultMap.result);
+				    		return;
+				    	}
+				    }
+			}); */
+			return;
+		});
+		
 		/* 아이디 중복체크버튼을 클릭시 ajax처리로 아이디 중복체크를 해준다 */
 		$('input:button[id="aMemberIdCheck"]').click(function(){
 			var aMemberId = $('input#aMemberId').val();
@@ -45,9 +75,9 @@
 </head>
 <body>
 	<!-- container section start -->
-		<jsp:include page="../../top.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/views/top.jsp"></jsp:include>
     <!--sidebar start-->
-    	<jsp:include page="../../left.jsp"></jsp:include>
+    	<jsp:include page="/WEB-INF/views/left.jsp"></jsp:include>
     <!--sidebar end-->
     
     <!--main content start-->
@@ -79,8 +109,6 @@
 							</h4>
 							<div>
 								관리기관명 : <input type="text" name="aName" id="aName">
-								<input type="button" id="aMemberIdCheck" value="아이디 중복체크">
-								<p id="idCheckResult"/>
 							</div>
 							<div>
 								관리기관연락처 : <input type="text" name="aPhone" id="aPhone">
