@@ -13,14 +13,13 @@
 		<table border="1">
 			<thead>
 				<tr>
-					<th>농가 통합넘버 </th>
 					<th>농가 이름</th>
 				</tr>
 			</thead>
 			<c:forEach var="farm" items="${list}">
+			<input type="hidden" name="fNumber" value="${farm.fNumber}">
 			<tbody>
 				<tr>
-					<td>${farm.fNumber}</td>
 					<td>
 						<a href="${pageContext.request.contextPath}/oneFarm?fNumber=${farm.fNumber}">${farm.fName}</a>
 					</td>

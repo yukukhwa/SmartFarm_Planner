@@ -4,20 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
  <mapper namespace="com.spam.sfplanner.corporation.FarmMapper">
- 	<!-- <select id="oneSelectFarm"
+ 
+ 
+ 	<select id="oneSelectFarm"
  		parameterType="integer"
- 		resultType="">
+ 		resultType="com.spam.sfplanner.corporation.FarmDb">
  		SELECT f_number AS fNumber
  			, f_name AS fName
- 			, f_member_Id AS fMemberId
  			, f_phone AS fPhone
  			, f_doroaddress AS fDoroaddress
  			, f_jibunaddress AS fJibunaddress
  			, f_party AS fParty
- 		FROM sp_farm 
- 		WHERE f_number=#{fNumber}
+ 			, f_registdate AS fRegistdate
+ 		FROM sp_farm
+ 		WHERE sp_farm.f_number=#{fNumber}
  	</select>
- 	 -->
+ 	
  	<select id="listSelectFarm"
  		resultType="com.spam.sfplanner.corporation.FarmDb">
 	 		SELECT f_number AS fNumber

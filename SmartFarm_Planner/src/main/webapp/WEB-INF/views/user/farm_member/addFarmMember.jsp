@@ -104,7 +104,7 @@
 		<div>
 			<b>개인정보제공동의</b><br>
 			<textarea rows="10" cols="50" id="fMemberPrivacyContent" readonly="readonly">개인정보제공 동의?</textarea> <br>
-			<input type="checkbox" id="fMemberPrivacy" name="fMemberPrivacy" value="T"> 예, 동의합니다.
+			<input type="checkbox" id="fMemberPrivacy" name="fMemberPrivacy" value="true"> 예, 동의합니다.
 		</div>
 		<!-- 농가등록 폼 시작 -->
 		<!-- include버리고 html체인지로 하기 -->

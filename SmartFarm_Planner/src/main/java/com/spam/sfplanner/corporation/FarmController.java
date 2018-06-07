@@ -1,3 +1,4 @@
+/*[김재희]*/
 package com.spam.sfplanner.corporation;
 
 import java.util.List;
@@ -10,11 +11,28 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.mysql.fabric.xmlrpc.base.Value;
+
 @Controller
 public class FarmController {
 	@Autowired FarmService farmService;
 		private final static Logger LOGGER = LoggerFactory.getLogger(FarmController.class);
 		
+		@RequestMapping(value="updateFarm", method=RequestMethod.GET)
+		public String updateForFarmSelect() {
+			return "/corporation/farm/updateFarm";
+		}
+		
+		// 선택된 농가 하나의 상세정보 보기로 포워드
+		@RequestMapping(value="oneFarm", method=RequestMethod.GET)
+		public String oneSelectFarm(Model model, FarmDb farmDb) {
+			LOGGER.info("FarmController oneSelectFarm 호출");
+			model.addAttribute("oneFarmList", farmService.oneSelectFarm(farmDb));
+			System.out.println(farmService.oneSelectFarm(farmDb));
+			return "corporation/farm/oneFarm";
+		}
+		
+		// 등록된 전체 농가 리스트로 포워드
 		@RequestMapping(value="listFarm", method=RequestMethod.GET)
 		public String listSelectFarm(Model model) {
 			LOGGER.info("FarmController listSelectFarm 호출");
