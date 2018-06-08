@@ -12,10 +12,10 @@
 		FROM sp_agency_master
 		JOIN sp_agency
 		ON sp_agency.a_number = sp_agency_master.a_number 
-		and sp_agency_master.a_member_id=#{MemberId}
-		and sp_agency_master.a_member_name=#{MemberName}
-		and sp_agency.a_name=#{CorpName}
-		and sp_agency_master.a_member_email=#{MemberEmail}
+		and sp_agency_master.a_member_id=#{memberId}
+		and sp_agency_master.a_member_name=#{memberName}
+		and sp_agency.a_name=#{corpName}
+		and sp_agency_master.a_member_email=#{memberEmail}
  	</select>
  	
  	<!-- 업체회원 비밀번호찾기 -->
@@ -26,10 +26,10 @@
 		FROM sp_deal_company_member
 		JOIN sp_deal_company
 		ON sp_deal_company.c_number = sp_deal_company_member.c_number 
-		and sp_deal_company_member.c_member_id=#{MemberId}
-		and sp_deal_company_member.c_member_name=#{MemberName}
-		and sp_deal_company.c_name=#{CorpName}
-		and sp_deal_company_member.c_member_email=#{MemberEmail}
+		and sp_deal_company_member.c_member_id=#{memberId}
+		and sp_deal_company_member.c_member_name=#{memberName}
+		and sp_deal_company.c_name=#{corpName}
+		and sp_deal_company_member.c_member_email=#{memberEmail}
  	</select> 	
  	
  	<!-- 농가회원 비밀번호찾기 -->
@@ -40,10 +40,10 @@
 		FROM sp_farm_member
 		JOIN sp_farm
 		ON sp_farm.f_number = sp_farm_member.f_number 
-		and sp_farm_member.f_member_id=#{MemberId}
-		and sp_farm_member.f_member_name=#{MemberName}
-		and sp_farm.f_name=#{CorpName}
-		and sp_farm_member.f_member_email=#{MemberEmail}
+		and sp_farm_member.f_member_id=#{memberId}
+		and sp_farm_member.f_member_name=#{memberName}
+		and sp_farm.f_name=#{corpName}
+		and sp_farm_member.f_member_email=#{memberEmail}
  	</select>
  	
  	<!-- 관리자 아이디찾기 -->
@@ -52,7 +52,7 @@
  			resultType="String">
  		SELECT a_member_id
 		FROM sp_agency_master
-		WHERE a_member_name =#{MemberName} and a_member_email=#{MemberEmail} 	
+		WHERE a_member_name =#{memberName} and a_member_email=#{memberEmail} 	
  	</select>
  	
  	<!-- 업체회원 아이디찾기 -->
@@ -61,7 +61,7 @@
  			resultType="String">
  		SELECT c_member_id
 		FROM sp_deal_company_member
-		WHERE c_member_name =#{MemberName} and c_member_email=#{MemberEmail} 	
+		WHERE c_member_name =#{memberName} and c_member_email=#{memberEmail} 	
  	</select>
  	
  	<!-- 농가회원 아이디찾기 -->
@@ -70,7 +70,7 @@
  			resultType="String">
  		SELECT f_member_id
 		FROM sp_farm_member
-		WHERE f_member_name =#{MemberName} and f_member_email=#{MemberEmail} 	
+		WHERE f_member_name =#{memberName} and f_member_email=#{memberEmail} 	
  	</select>
  
  </mapper>

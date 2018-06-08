@@ -4,25 +4,11 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
-	<meta name="author" content="GeeksLabs">
-	<meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
-	<link rel="shortcut icon" href="img/favicon.png">
 	<title>resultFarmId</title>
-	<!-- Bootstrap CSS -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<!-- bootstrap theme -->
-	<link href="css/bootstrap-theme.css" rel="stylesheet">
-	<!--external css-->
-	<!-- font icon -->
-	<link href="css/elegant-icons-style.css" rel="stylesheet" />
-	<link href="css/font-awesome.css" rel="stylesheet" />
-	<!-- Custom styles -->
-	<link href="css/style.css" rel="stylesheet">
-	<link href="css/style-responsive.css" rel="stylesheet" />
+	<jsp:include page="/WEB-INF/views/css.jsp"></jsp:include>	
 </head>
-<jsp:include page="../top.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/top.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/views/left.jsp"></jsp:include>
 <body class="login-img3-body">
 	<div class="container">
 		<form class="login-form">

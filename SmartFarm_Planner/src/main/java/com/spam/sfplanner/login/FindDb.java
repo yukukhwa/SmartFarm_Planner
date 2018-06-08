@@ -5,45 +5,45 @@ public class FindDb {
 	/*
 	 * 입력받은 회원정보로 아이디, 비번 찾기
 	 */
-	private String Corp;
-	private String CorpName;
-	private String MemberId;
-	private String MemberName;
-	private String MemberEmail;
+	private String corp; // 회사 분류
+	private String corpName; // 회사분류명 (농가, 업체, 관리기관)
+	private String memberId; // 회원 아이디
+	private String memberName; // 회원 이름
+	private String memberEmail; // 회원 이메일
 	public String getCorp() {
-		return Corp;
+		return corp;
 	}
 	public void setCorp(String corp) {
-		Corp = corp;
+		this.corp = corp;
 	}
 	public String getCorpName() {
-		return CorpName;
+		return corpName;
 	}
 	public void setCorpName(String corpName) {
-		CorpName = corpName;
+		this.corpName = corpName;
 	}
 	public String getMemberId() {
-		return MemberId;
+		return memberId;
 	}
 	public void setMemberId(String memberId) {
-		MemberId = memberId;
+		this.memberId = memberId;
 	}
 	public String getMemberName() {
-		return MemberName;
+		return memberName;
 	}
 	public void setMemberName(String memberName) {
-		MemberName = memberName;
+		this.memberName = memberName;
 	}
 	public String getMemberEmail() {
-		return MemberEmail;
+		return memberEmail;
 	}
 	public void setMemberEmail(String memberEmail) {
-		MemberEmail = memberEmail;
+		this.memberEmail = memberEmail;
 	}
 	@Override
 	public String toString() {
-		return "FindDb [Corp=" + Corp + ", CorpName=" + CorpName + ", MemberId=" + MemberId + ", MemberName="
-				+ MemberName + ", MemberEmail=" + MemberEmail + "]";
+		return "FindDb [corp=" + corp + ", corpName=" + corpName + ", memberId=" + memberId + ", memberName="
+				+ memberName + ", memberEmail=" + memberEmail + "]";
 	}
 	
 }
