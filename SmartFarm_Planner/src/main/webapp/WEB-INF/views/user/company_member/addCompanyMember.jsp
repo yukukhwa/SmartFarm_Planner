@@ -1,4 +1,4 @@
-<!--배건혜-->
+<!-- 배건혜 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -41,96 +41,112 @@
 				}
 				return;
 			});
-	});
-	$('button#submitCompanyMember').click(function(){
-		if(!$('input#cMemberPrivacy').prop('checked')){
+	});/* 
+	$('#submitCompanyMember').click(function(){
+		var cMemberPrivacy = $('#cMemberPrivacy').val();
+		var dealNumber = $('#dealNumber').val();
+		var cName = $('#cName').val();
+		var cPhone = $('#cPhone').val();
+		var cDoroaddress = $('#cDoroaddress').val();
+		var cJibunaddress = $('#cJibunaddress').val();
+		var cParty = $('#cParty').val();
+		var cMemberId = $('#cMemberId').val();
+		var cMemberPw = $('#cMemberPw').val();
+		var cMemberPwCheck = $('#cMemberPwCheck').val();
+		var cMemberName = $('#cMemberName').val();
+		var cMemberPhone = $('#cMemberPhone').val();
+		var cMemberEmail = $('#cMemberEmail').val();
+		var cMemberDoroaddress = $('#cMemberDoroaddress').val();
+		var cMemberJibunaddress = $('#cMemberJibunaddress').val();
+		var cMemberDetailaddress = $('#cMemberDetailaddress').val();
+		
+		
+		if($('#cMemberPrivacy').val() == ''){
 			alert('개인정보동의를 체크해주세요.');
-			$('input#cMemberPrivacy').focus();
-			return;
+			$('#cMemberPrivacy').focus();
+			return false;
 		}
-		if($('input#cMemberId').val() == ''){
+		if($('#cMemberId').val() == ''){
 			alert('아이디를 입력해주세요.');
-			$('input#cMemberId').focus();
-			return;
-		}else if($('p#idCheckResult').text() == '이미 사용중 인  아이디 입니다.'){
-			alert('아이디 중복체크를 다시 해주세요.');
+			$('#cMemberId').focus();
+			return false;
 		}
-		if($('input#cMemberPw').val() == ''){
+		if($('#cMemberPw').val() == ''){
 			alert('비밀번호를 입력해주세요.');
-			$('input#cMemberPw').focus();
-			return;
-		}else if($('input#cMemberPw').val() != $('input#cMemberPwCheck').val()){
+			$('#cMemberPw').focus();
+			return false;
+		}else if($('#cMemberPw').val() != $('#cMemberPwCheck').val()){
 			alert('비밀번호가 일치하지 않습니다.');
-			$('p#PwCheck').show();
-			$('input#cMemberPwCheck').focus();
+			$('#cMemberPwCheck').focus();
+			return false;
 		}
-		if(!$('input#cMemberName').val() ==''){
+		if($('#cMemberName').val() ==''){
 			alert('이름을 입력해주세요.');
-			$('input#cMemberName').focus();
-			return;
+			$('#cMemberName').focus();
+			return false;
 		}
-		if(!$('input#cMemberPhone').val() ==''){
+		if($('#cMemberPhone').val() ==''){
 			alert('연락처를 입력해주세요.');
-			$('input#cMemberPhone').focus();
-			return;
+			$('#cMemberPhone').focus();
+			return false;
 		}
-		if(!$('input#cMemberEmail').val() ==''){
+		if($('#cMemberEmail').val() ==''){
 			alert('이메일을 입력해주세요.');
-			$('input#cMemberEmail').focus();
-			return;
+			$('#cMemberEmail').focus();
+			return false;
 		}
-		if($('input#cMemberDoroaddress').val() == ''){
+		if($('#cMemberDoroaddress').val() == ''){
 			alert('도로명주소를 입력해주세요.');
-			$('input#cMemberDoroaddress').focus();
-			return;
+			$('#cMemberDoroaddress').focus();
+			return false;
 		}
-		if($('input#cMemberJibunaddress').val() == ''){
+		if($('#cMemberJibunaddress').val() == ''){
 			alert('지번주소를 입력해주세요.');
-			$('input#cMemberJibunaddress').focus();
-			return;
+			$('#cMemberJibunaddress').focus();
+			return false;
 		}
-		if($('input#cMemberDetailaddress').val() == ''){
+		if($('#cMemberDetailaddress').val() == ''){
 			alert('상세주소를 입력해주세요.');
-			$('input#cMemberDetailaddress').focus();
-			return;
+			$('#cMemberDetailaddress').focus();
+			return false;
 		}
-		if($('input#cNumber').val() == ''){
+		if($('#cNumber').val() == ''){
 			alert('업체넘버를 입력해주세요.');
-			$('input#cNumber').focus();
-			return;
+			$('#cNumber').focus();
+			return false;
 		}
-		if($('input#dealNumber').val() == ''){
+		if($('#dealNumber').val() == ''){
 			alert('거래처넘버를 입력해주세요.');
-			$('input#dealNumber').focus();
-			return;
+			$('#dealNumber').focus();
+			return false;
 		}		
-		if($('input#cName').val() == ''){
+		if($('#cName').val() == ''){
 			alert('업체명을 입력해주세요.');
-			$('input#cName').focus();
-			return;
+			$('#cName').focus();
+			return false;
 		}
-		if($('input#cPhone').val() == ''){
+		if($('#cPhone').val() == ''){
 			alert('업체연락처를 입력해주세요.');
-			$('input#cPhone').focus();
-			return;
+			$('#cPhone').focus();
+			return false;
 		}
-		if($('input#cDoroaddress').val() == ''){
+		if($('#cDoroaddress').val() == ''){
 			alert('업체도로명주소를 입력해주세요.');
-			$('input#cDoroaddress').focus();
-			return;
+			$('#cDoroaddress').focus();
+			return false;
 		}
-		if($('input#aJibunaddress').val() == ''){
+		if($('#cJibunaddress').val() == ''){
 			alert('업체지번주소를 입력해주세요.');
-			$('input#aJibunaddress').focus();
-			return;
+			$('#cJibunaddress').focus();
+			return false;
 		}
-		if($('input#aJibunaddress').val() == ''){
+		if($('#cParty').val() == ''){
 			alert('업체인원을 입력해주세요.');
-			$('input#aJibunaddress').focus();
-			return;
+			$('#cParty').focus();
+			return false;
 		}
 		$('form#companyMember').submit();
-	});	 
+	});	  */
 	</script>
 </head>
 <body>
@@ -146,84 +162,81 @@
 			<h1>업체회원가입</h1>
 			<form action="${pageContext.request.contextPath}/addCompanyMember" method="post" id="companyMember">
 				<div>
-					<div>
-						개인정보제공동의<br>
-						<textarea rows="" cols=""  readonly="readonly"></textarea><br>
-						<input type="checkbox" name="cMemberPrivacy" value="true" id="cMemberPrivacy">예 동의합니다.
-					</div>
-					<div id="companyLevel">
-						업체회원권한선택
-						<div id="level">
-							<input type="radio" id="level" name="level" value="업체대표" checked="checked">업체대표
-							<input type="radio" id="level" name="level" value="업체직원">업체직원
-						</div>
-						<div id="company">
-							<h5>
-								업체등록화면
-							</h5>
-							<div>
-								거래처넘버 : <input type="number" name="dealNumber" id="dealNumber">
-							</div>
-							<div>
-								업체명 : <input type="text" name="cName" id="cName">
-							</div>
-							<div>
-								업체연락처 : <input type="text" name="cPhone" id="cPhone" placeholder="-를 넣고 입력해주세요">
-							</div>
-							<div>
-								도로명주소 : <input type="text" name="cDoroaddress" id="cDoroaddress" placeholder="도로명주소를 입력해주세요">
-							</div>
-							<div>
-								지번주소 : <input type="text" name="cJibunaddress" id="cJibunaddress" placeholder="지번주소를 입력해주세요">
-							</div>
-							<div>
-								업체인원 : <input type="text" name="cParty" id="cParty" placeholder="숫자로 입력해주세요">명
-							</div>
-						</div>
-					</div>
-					<div>
-						회원가입<br>
-						아이디 : 
-						<input type="text" name="cMemberId" id="cMemberId" placeholder="아이디를 입력해주세요">&nbsp;<button type="button">아이디<br>중복확인</button>
-					</div>
-					<div>
-						패스워드 : 
-						<input type="password" name="cMemberPw" id="cMemberPw" placeholder="패스워드를 입력해주세요">
-					</div>
-					<div>
-						패스워드확인 : 
-						<input type="password" name="cMemberPwCheck" id="cMemberPwCheck" placeholder="패스워드를 한번 더 입력해주세요">	
-						<p id="PwCheck">패스워드 불일치</p>	
-					</div>
-					<div>
-						이름 :
-						<input type="text" name="cMemberName" id="cMemberName" placeholder="이름을 입력해주세요">
-					</div>
-					<div>
-						연락처 : 
-						<input type="text" name="cMemberPhone" id="cMemberPhone" placeholder="-를 넣고 입력해주세요">
-					</div>
-					<div>
-						성별 :
-						<input type="radio" name="cMemberGender" value="남" checked="checked">남
-						<input type="radio" name="cMemberGender" value="여">여
-					</div>
-					<div>
-						이메일 : 
-						<input type="text" name="cMemberEmail" id="cMemberEmail">
-					</div>
-					<div>
-						도로명주소
-						<input type="text" name="cMemberDoroaddress" id="cMemberDoroaddress" placeholder="도로명주소를 입력해주세요">
-						지번주소
-						<input type="text" name="cMemberJibunaddress" id="cMemberJibunaddress" placeholder="지번주소를 입력해주세요">
-						상세주소
-						<input type="text" name="cMemberDetailaddress" id="cMemberDetailaddress" placeholder="상세주소를 입력해주세요">
-					</div>
-					<div>
-						<button id="submitComapnyMember">회원가입 </button>		
-					</div>		
+					개인정보제공동의<br>
+					<textarea rows="" cols=""  readonly="readonly"></textarea><br>
+					<input type="checkbox" name="cMemberPrivacy" value="true" id="cMemberPrivacy">예 동의합니다.
 				</div>
+				<div id="companyLevel">
+					업체회원권한선택
+					<div id="level">
+						<input type="radio" id="level" name="level" value="업체대표" checked="checked">업체대표
+						<input type="radio" id="level" name="level" value="업체직원">업체직원
+					</div>
+				</div>	
+				<div id="company">
+					<h5>
+						업체등록화면
+					</h5>
+					<div>
+						거래처넘버 : <input type="number" name="dealNumber" id="dealNumber">
+					</div>
+					<div>
+						업체명 : <input type="text" name="cName" id="cName">
+					</div>
+					<div>
+						업체연락처 : <input type="text" name="cPhone" id="cPhone" placeholder="-를 넣고 입력해주세요">
+					</div>
+					<div>
+						도로명주소 : <input type="text" name="cDoroaddress" id="cDoroaddress" placeholder="도로명주소를 입력해주세요">
+					</div>
+					<div>
+						지번주소 : <input type="text" name="cJibunaddress" id="cJibunaddress" placeholder="지번주소를 입력해주세요">
+					</div>
+					<div>
+						업체인원 : <input type="text" name="cParty" id="cParty" placeholder="숫자로 입력해주세요">명
+					</div>
+				</div>
+				<div>
+					회원가입<br>
+					아이디 : 
+					<input type="text" name="cMemberId" id="cMemberId" placeholder="아이디를 입력해주세요">&nbsp;&nbsp;<button type="button">아이디<br>중복확인</button>
+				</div>
+				<div>
+					패스워드 : 
+					<input type="password" name="cMemberPw" id="cMemberPw" placeholder="패스워드를 입력해주세요">
+				</div>
+				<div>
+					패스워드확인 : 
+					<input type="password" name="cMemberPwCheck" id="cMemberPwCheck" placeholder="패스워드를 한번 더 입력해주세요">		
+				</div>
+				<div>
+					이름 :
+					<input type="text" name="cMemberName" id="cMemberName" placeholder="이름을 입력해주세요">
+				</div>
+				<div>
+					연락처 : 
+					<input type="text" name="cMemberPhone" id="cMemberPhone" placeholder="-를 넣고 입력해주세요">
+				</div>
+				<div>
+					성별 :
+					<input type="radio" name="cMemberGender" value="남" checked="checked">남
+					<input type="radio" name="cMemberGender" value="여">여
+				</div>
+				<div>
+					이메일 : 
+					<input type="text" name="cMemberEmail" id="cMemberEmail">
+				</div>
+				<div>
+					도로명주소
+					<input type="text" name="cMemberDoroaddress" id="cMemberDoroaddress" placeholder="도로명주소를 입력해주세요">
+					지번주소
+					<input type="text" name="cMemberJibunaddress" id="cMemberJibunaddress" placeholder="지번주소를 입력해주세요">
+					상세주소
+					<input type="text" name="cMemberDetailaddress" id="cMemberDetailaddress" placeholder="상세주소를 입력해주세요">
+				</div>
+				<div>
+					<button type="submit" id="submitCompanyMember" value="submit">회원가입 </button>		
+				</div>		
 			</form>
 		</section>
 	</section>

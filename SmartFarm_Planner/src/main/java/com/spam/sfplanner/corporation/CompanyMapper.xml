@@ -1,33 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper 
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="com.spam.sfplanner.corporation.CompanyMapper">
-<insert id="insertCompany" parameterType="com.spam.sfplanner.user.CompanyMemberView">
-
-	<selectKey resultType="int" keyProperty="cNumber" order="AFTER">
-		SELECT LAST_INSERT_ID()
-	</selectKey>
-	INSERT INTO sp_deal_company
-	(deal_number
-	,c_name
-	,c_member_id
-	,c_doroaddress
-	,c_jibunaddress
-	,c_phone
-	,c_registdate
-	,c_party)
-	VALUES
-	(#{dealNumber}
-	,#{cName}
-	,#{cMemberId}
-	,#{cDoroaddress}
-	,#{cJibunaddress}
-	,#{cPhone}
-	,NOW()
-	,#{cParty})
-
-</insert>
+	<resultMap type="com.spam.sfplanner.corporation.CompanyDb" id="companyDb">
+		<id column="c_number" property="cNumber"/>
+		<result column="c_name" property="cName"/>
+		<result column="c_doroaddress" property="cDoroaddress"/>
+		<result column="c_jibunaddress" property="cJibunaddress"/>
+		<result column="c_phone" property="cPhone"/>
+		<result column="c_registdate" property="cRegistdate"/>
+		<result column="c_party" property="cParty"/>
+		<collection property="companyMemberDb" ofType="com.spam.sfplanner.user.CompanyMemberDb">
+			<id column="c_member_id" property="cMemberId"/>
+			<result column="c_member_name" property="cMemberName"/>
+		</collection>
+		<collection property="categoryDealDb" ofType="com.spam.sfplanner.category.CategoryDealDb">
+			<id column="deal_number" property="dealNumber"/>
+			<result column="deal_classification" property="dealClassfication"/>	
+		</collection>
+	</resultMap>
+	
+	<select id="oneSelectCompany"
+			parameterType="String"
+			resultMap="companyDb">
+	select
+		sp_deal_company.c_number
+		,sp_deal_cate.deal_number
+		,sp_deal_company.c_name
+		,sp_deal_company.c_member_id
+		,sp_deal_company.c_doroaddress
+		,sp_deal_company.c_jibunaddress
+		,sp_deal_company.c_phone
+		,sp_deal_company.c_registdate
+		,sp_deal_company.c_party
+	from
+		sp_deal_company join sp_deal_cate join sp_deal_company_member
+	on
+		sp_deal_company.c_member_id = sp_deal_company_member.c_member_id
+	where
+		sp_deal_company.c_name = #{cName}	
+	</select>
+	
+	<!-- 모든 업체와 업체의 작업인원 출력하는  select쿼리 문장 -->
+	<select id="listSelectCompany"
+			resultMap="String">
+	select
+		sp_deal_company.c_name AS cName
+		,sp_deal_company.c_party AS cParty
+	from
+		sp_deal_company
+	
+	</select>
+	
+	<!-- 업체 있는지 확인하는 select쿼리문장 -->
+	<select id="listSelectCompany" 
+			parameterType="int"
+			resultMap="String">
+		SELECT
+			sp_deal_company.c_name
+		FROM
+			sp_deal_company
+		where
+			sp_deal_company.c_number = #{cNumber}
+	
+	</select>
+	<!-- 업체입력 -->
+	<insert id="insertCompany" 
+			parameterType="com.spam.sfplanner.user.CompanyMemberView">
+		<selectKey resultType="int" 
+					keyProperty="cNumber"
+					order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		INSERT INTO sp_deal_company
+		(deal_number
+		,c_name
+		,c_member_id
+		,c_doroaddress
+		,c_jibunaddress
+		,c_phone
+		,c_registdate
+		,c_party)
+		VALUES
+		(#{dealNumber}
+		,#{cName}
+		,#{cMemberId}
+		,#{cDoroaddress}
+		,#{cJibunaddress}
+		,#{cPhone}
+		,NOW()
+		,#{cParty})
+	</insert>
 </mapper>

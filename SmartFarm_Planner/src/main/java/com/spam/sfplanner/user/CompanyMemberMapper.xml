@@ -2,8 +2,57 @@
 <!DOCTYPE mapper 
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-<mapper namespace="com.spam.sfplanner.user.CompanyMemberMapper">
+ <mapper namespace="com.spam.sfplanner.user.CompanyMemberMapper">
+  <resultMap type="com.spam.sfplanner.user.CompanyMemberDb" id="companyMemberDb">
+		<id column="c_member_id" property="cMemberId"/>
+		<result column="c_member_pw" property="cMemberPw"/>
+		<result column="c_member_name" property="cMemberName"/>
+		<result column="c_member_phone" property="cMemberPhone"/>
+		<result column="c_member_gender" property="cMemberGender"/>
+		<result column="c_member_email" property="cMemberEmail"/>
+		<result column="c_member_privacy" property="cMemberPrivacy"/>
+		<result column="c_member_doroaddress" property="cMemberDoroaddress"/>
+		<result column="c_member_jibunaddress" property="cMemberJibunaddress"/>
+		<result column="c_member_detailaddress" property="cMemberDetailaddress"/>
+		<result column="c_member_registdate" property="cMemberRegistdate"/>
+		<collection property="companyDb" ofType="com.spam.sfplanner.corporation.CompanyDb">
+			<id column="c_number" property="cNumber"/>
+			<result column="c_name" property="cName"/>
+			<result column="c_member_id" property="cMemberId"/>
+			<result column="c_doroaddress" property="cDoroaddress"/>
+			<result column="c_jibunaddress" property="cJibunaddress"/>
+			<result column="c_phone" property="cPhone"/>
+			<result column="c_registdate" property="cRegistdate"/>
+			<result column="c_party" property="cParty"/>
+		</collection>
+	</resultMap>
+	
+	<select id="listSelectCompanyMember"
+			parameterType="String"
+			resultMap="companyMemberDb">
+	SELECT
+		sp_deal_company_member.c_member_name
+		,sp_deal_company_member.c_member_phone
+		,sp_deal_company_member.c_member_email
+	FROM
+		sp_deal_company_member JOIN sp_deal_company
+	ON
+		sp_deal_company_member.c_number = sp_deal_company.c_number
+	WHERE
+		sp_deal_company_member.c_member_name = #{cMemberName}	
+	</select>
+	
+	<select id="checkId"
+			parameterType="String" 
+			resultMap="String">
+		select
+			sp_deal_company_member.c_member_id
+		from
+			sp_deal_company_member
+		where
+			sp_deal_company_member.c_member_id = #{cMemberId}  
+	</select>
+
 	<insert id="insertCompanyMember" parameterType="com.spam.sfplanner.user.CompanyMemberView">
 		INSERT INTO sp_deal_company_member
 	(c_member_id

@@ -1,6 +1,8 @@
 /*배건혜*/
 package com.spam.sfplanner.user;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +15,16 @@ public class CompanyMemberDao {
 	private SqlSessionTemplate sqlSession;
 	private static final Logger logger = LoggerFactory.getLogger(CompanyMemberDao.class);
 	final private String NAMESPACE = "com.spam.sfplanner.user.CompanyMemberMapper.";
+	
+	
+	
+	public List<CompanyMemberDb> listSelectCompanyMember(String cMemberName){
+		return sqlSession.selectList(NAMESPACE+"listSelectCompanyMember", cMemberName);
+	}
+	
+	public String checkId(String cMemberId) {
+		return sqlSession.selectOne(NAMESPACE+"checkId",cMemberId);
+	}
 	
 	public void insertCompanyMember(CompanyMemberView companyMemberView) {
 		logger.info("CompanyMemberDao 호출");
