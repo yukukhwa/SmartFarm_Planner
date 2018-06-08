@@ -44,7 +44,7 @@
 	
 	<!-- 모든 업체와 업체의 작업인원 출력하는  select쿼리 문장 -->
 	<select id="listSelectCompany"
-			resultMap="String">
+			resultMap="companyDb">
 	select
 		sp_deal_company.c_name AS cName
 		,sp_deal_company.c_party AS cParty
@@ -54,9 +54,9 @@
 	</select>
 	
 	<!-- 업체 있는지 확인하는 select쿼리문장 -->
-	<select id="listSelectCompany" 
+	<select id="listOneSelectCompany" 
 			parameterType="int"
-			resultMap="String">
+			resultMap="companyDb">
 		SELECT
 			sp_deal_company.c_name
 		FROM

@@ -44,7 +44,7 @@
 	
 	<select id="checkId"
 			parameterType="String" 
-			resultMap="String">
+			resultMap="companyMemberDb">
 		select
 			sp_deal_company_member.c_member_id
 		from
