@@ -17,11 +17,19 @@ public class FarmMemberService {
 	@Autowired FarmMemberDao farmMemberDao;
 	private final static Logger LOGGER = LoggerFactory.getLogger(FarmService.class);
 	
+	/*농가회원 한명의 상세한 정보를 보기*/
+	public FarmMemberDb oneSelectFarmMember(FarmMemberDb farmMemberDb) {
+		LOGGER.info("FarmMemberService oneSelectFarmMember 호출");
+		return farmMemberDao.oneSelectFarmMember(farmMemberDb);
+	}
+	
+	/*농가회원 전체 리스트*/
 	public List<FarmMemberDb> listFarmMember(int fNumber){
 		LOGGER.info("FarmMemberService listFarmMember 호출");
 		return farmMemberDao.listFarmMember(fNumber);
 	}
 	
+	/*농가회원 등록*/
 	public void insertFarmMember(FarmMemberView farmMemberView) {
 		LOGGER.info("FarmMemberService 호출");
 		LOGGER.info("FarmMemberService farmMemberView ===>"+farmMemberView);

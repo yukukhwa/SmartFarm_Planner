@@ -14,7 +14,6 @@
     <!--sidebar start-->
     <jsp:include page="/WEB-INF/views/left.jsp"></jsp:include>
     <!--sidebar end-->
-    
      <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">

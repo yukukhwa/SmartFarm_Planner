@@ -3,8 +3,11 @@ package com.spam.sfplanner.user;
 
 import java.util.Date;
 
+import com.spam.sfplanner.corporation.FarmDb;
+
 public class FarmMemberDb {
 	private String fMemberId; // f_member_id
+	private FarmDb farmDb;
 	private int fNumber; // f_number
 	private String fMemberPw; // f_member_pw
 	private String fMemberName; // f_member_name
@@ -16,13 +19,17 @@ public class FarmMemberDb {
 	private String fMemberJibunaddress; // f_member_jibunaddress
 	private String fMemberDetailaddress; // f_member_detailaddress
 	private Date fMemberRegistdate; // f_member_registdate;
-	
-	
 	public String getfMemberId() {
 		return fMemberId;
 	}
 	public void setfMemberId(String fMemberId) {
 		this.fMemberId = fMemberId;
+	}
+	public FarmDb getFarmDb() {
+		return farmDb;
+	}
+	public void setFarmDb(FarmDb farmDb) {
+		this.farmDb = farmDb;
 	}
 	public int getfNumber() {
 		return fNumber;
@@ -90,17 +97,13 @@ public class FarmMemberDb {
 	public void setfMemberRegistdate(Date fMemberRegistdate) {
 		this.fMemberRegistdate = fMemberRegistdate;
 	}
-
 	@Override
 	public String toString() {
-		return "FarmMemberDb [fMemberId=" + fMemberId + ", fNumber=" + fNumber + ", fMemberPw=" + fMemberPw
-				+ ", fMemberName=" + fMemberName + ", fMemberPhone=" + fMemberPhone + ", fMemberGender=" + fMemberGender
-				+ ", fMemberEmail=" + fMemberEmail + ", fMemberPrivacy=" + fMemberPrivacy + ", fMemberDoroaddress="
-				+ fMemberDoroaddress + ", fMemberJibunaddress=" + fMemberJibunaddress + ", fMemberDetailaddress="
-				+ fMemberDetailaddress + ", fMemberRegistdate=" + fMemberRegistdate + "]";
+		return "FarmMemberDb [fMemberId=" + fMemberId + ", farmDb=" + farmDb + ", fNumber=" + fNumber + ", fMemberPw="
+				+ fMemberPw + ", fMemberName=" + fMemberName + ", fMemberPhone=" + fMemberPhone + ", fMemberGender="
+				+ fMemberGender + ", fMemberEmail=" + fMemberEmail + ", fMemberPrivacy=" + fMemberPrivacy
+				+ ", fMemberDoroaddress=" + fMemberDoroaddress + ", fMemberJibunaddress=" + fMemberJibunaddress
+				+ ", fMemberDetailaddress=" + fMemberDetailaddress + ", fMemberRegistdate=" + fMemberRegistdate + "]";
 	}
 	
-	
-
-
 }

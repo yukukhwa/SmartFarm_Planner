@@ -21,17 +21,19 @@
 				<table border="1">
 					<thead>
 						<tr>
-							<th>농가 통합 코드</th>
-							<th>농가 아이디</th>
+							<th>농가 통합 넘버</th>
 							<th>농가 회원 이름</th>
+							<th>농가 회원 이메일</th>
+							<th>농가 회원 연락처 </th>
 						</tr>
 					</thead>
-					<c:forEach var="onefarmMemberList" items="farmMemberList">
+					<c:forEach var="onefarmMemberList" items="${farmMemberList}">
 					<tbody>
 						<tr>
 							<td>${fNumber}</td>
-							<td>${fMemberId }</td>
-							<td>${fMemberName}</td>
+							<td>${onefarmMemberList.fMemberName}</td>
+							<td>${onefarmMemberList.fMemberEmail}</td>
+							<td>${onefarmMemberList.fMemberPhone}</td>
 						</tr>
 					</tbody>
 					</c:forEach>

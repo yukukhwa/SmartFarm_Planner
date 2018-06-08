@@ -25,10 +25,10 @@ public class FarmController {
 		
 		// 선택된 농가 하나의 상세정보 보기로 포워드
 		@RequestMapping(value="oneFarm", method=RequestMethod.GET)
-		public String oneSelectFarm(Model model, FarmDb farmDb) {
+		public String oneSelectFarm(Model model, int fNumber) {
 			LOGGER.info("FarmController oneSelectFarm 호출");
-			model.addAttribute("oneFarmList", farmService.oneSelectFarm(farmDb));
-			System.out.println(farmService.oneSelectFarm(farmDb));
+			model.addAttribute("oneFarmDb", farmService.oneSelectFarm(fNumber));
+			System.out.println(farmService.oneSelectFarm(fNumber));
 			return "corporation/farm/oneFarm";
 		}
 		

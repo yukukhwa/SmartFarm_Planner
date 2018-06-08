@@ -86,10 +86,10 @@
 			/* if(fParty) */
 			
 			// 모든 조건이 완료되면 submit으로 넘어가게
-			if(confirm("농가로 회원가입 하시겠습니까?")){
+			/* if(confirm("농가로 회원가입 하시겠습니까?")){
 				alert("농가로 회원가입 되셨습니다")
 				return true;
-			}
+			} */
 		})
 	})
 </script>
@@ -100,8 +100,9 @@
     <!--sidebar start-->
     <jsp:include page="/WEB-INF/views/left.jsp"></jsp:include>
     <!--sidebar end-->
-	<section id="main-content">
-		<section class="wrapper">
+     <!--main content start-->
+    <section id="main-content">
+    	<section class="wrapper">
 			<h3>농가회원가입하기</h3>
 			<div>
 				<b>회원가입폼 선택</b><br>
@@ -186,7 +187,7 @@
 				</div>
 			</div>
 			<br>
-			<button type="button" id="insertFarmMember" value="submit">회원가입하기</button>
+			<input type="submit" value="회원가입하기">
 				<!-- 회원가입 폼 끝 -->
 			</form>
 		</section>

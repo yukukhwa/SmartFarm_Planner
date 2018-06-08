@@ -15,7 +15,9 @@
     <!--sidebar end-->
     <section id="main-content">
 		<section class="wrapper">
-			<h3>농가회원 수정화면</h3>
+			<div>
+				<h3>농가회원 수정화면</h3>
+			</div>
 		</section>
 	</section>
 </body>

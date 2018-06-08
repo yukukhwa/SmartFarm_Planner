@@ -3,8 +3,11 @@ package com.spam.sfplanner.corporation;
 
 import java.util.Date;
 
+import com.spam.sfplanner.user.FarmMemberDb;
+
 public class FarmDb {
 	private int fNumber; // f_number
+	private FarmMemberDb farmMemberDb;
 	private String fName; // f_name
 	private String fMemberId; // f_member_id
 	private String fPhone; // f_phone
@@ -12,13 +15,17 @@ public class FarmDb {
 	private String fJibunaddress; // f_jibunaddress
 	private double fParty; // f_party
 	private Date fRegistdate; // f_registdate
-	
-	
 	public int getfNumber() {
 		return fNumber;
 	}
 	public void setfNumber(int fNumber) {
 		this.fNumber = fNumber;
+	}
+	public FarmMemberDb getFarmMemberDb() {
+		return farmMemberDb;
+	}
+	public void setFarmMemberDb(FarmMemberDb farmMemberDb) {
+		this.farmMemberDb = farmMemberDb;
 	}
 	public String getfName() {
 		return fName;
@@ -62,14 +69,12 @@ public class FarmDb {
 	public void setfRegistdate(Date fRegistdate) {
 		this.fRegistdate = fRegistdate;
 	}
-
 	@Override
 	public String toString() {
-		return "FarmDb [fNumber=" + fNumber + ", fName=" + fName + ", fMemberId=" + fMemberId + ", fPhone=" + fPhone
-				+ ", fDoroaddress=" + fDoroaddress + ", fJibunaddress=" + fJibunaddress + ", fParty=" + fParty
-				+ ", fRegistdate=" + fRegistdate + "]";
+		return "FarmDb [fNumber=" + fNumber + ", farmMemberDb=" + farmMemberDb + ", fName=" + fName + ", fMemberId="
+				+ fMemberId + ", fPhone=" + fPhone + ", fDoroaddress=" + fDoroaddress + ", fJibunaddress="
+				+ fJibunaddress + ", fParty=" + fParty + ", fRegistdate=" + fRegistdate + "]";
 	}
-	
 	
 	
 	

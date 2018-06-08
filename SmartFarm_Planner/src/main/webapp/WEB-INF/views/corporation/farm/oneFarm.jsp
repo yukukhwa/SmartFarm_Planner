@@ -10,11 +10,11 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#selectFarmMemberList').click(function(){
-			location.href = "listFarmMember?fNumber=${oneFarmList.fNumber}";
+			location.href = "listFarmMember?fNumber=${oneFarmDb.fNumber}";
 		})
 		
 		$('#updateFarm').click(function(){
-			location.href = "updateFarm?fNumber=${oneFarmList.fNumber}";
+			location.href = "updateFarm?fNumber=${oneFarmDb.fNumber}";
 		})
 	})
 </script>
@@ -43,13 +43,13 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>${oneFarmList.fNumber}</td>
-							<td>${oneFarmList.fName}</td>
-							<td>${oneFarmList.fPhone}</td>
-							<td>${oneFarmList.fDoroaddress}</td>
-							<td>${oneFarmList.fJibunaddress}</td>
-							<td>${oneFarmList.fParty}</td>
-							<td>${oneFarmList.fRegistdate}</td>
+							<td>${oneFarmDb.fNumber}</td>
+							<td>${oneFarmDb.fName}</td>
+							<td>${oneFarmDb.fPhone}</td>
+							<td>${oneFarmDb.fDoroaddress}</td>
+							<td>${oneFarmDb.fJibunaddress}</td>
+							<td>${oneFarmDb.fParty}</td>
+							<td>${oneFarmDb.fRegistdate}</td>
 						</tr>
 					</tbody>
 				</table>
