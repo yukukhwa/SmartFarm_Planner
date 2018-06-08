@@ -1,3 +1,4 @@
+/*나성수*/
 package com.spam.sfplanner.user;
 
 import java.util.List;
@@ -16,6 +17,23 @@ public class AgencyMemberDao {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSessionTemplate;
+	
+	/**
+	 * 관리기관 회원 한명 탈퇴 처리 Dao
+	 * @param 해당 회원 아이디
+	 */
+	public void deleteAgencyMember(String aMemberId) {
+		sqlSessionTemplate.delete(NAMESPACE+"deleteAgencyMember", aMemberId);
+	}
+	
+	/**
+	 * 관리기관 회원 한명의 상세내용 출력 Dao
+	 * @param 해당회원아이디
+	 * @return 해당회원의 상세내용
+	 */
+	public AgencyMemberDb oneSelectAgencyMember(String aMemberId) {
+		return sqlSessionTemplate.selectOne(NAMESPACE+"oneSelectAgencyMember", aMemberId);
+	}
 	
 	/**
 	 * 해당 관리기관 직원리스트 출력 Dao

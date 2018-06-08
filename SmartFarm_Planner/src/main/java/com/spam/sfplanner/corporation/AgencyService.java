@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spam.sfplanner.user.AgencyMemberDao;
+import com.spam.sfplanner.user.AgencyMemberDb;
 import com.spam.sfplanner.user.AgencyMemberView;
 /*
  * 관리기관 서비스
@@ -17,6 +19,20 @@ public class AgencyService {
 	
 	@Autowired
 	private AgencyDao agencyDao;
+	
+	@Autowired
+	private AgencyMemberDao agencyMemberDao;
+	
+	/**
+	 * 관리기관 삭제처리 서비스
+	 * @param 해당 관리기관코드
+	 */
+	public void deleteAgency(int aNumber,String aName) {
+		for(AgencyMemberDb agencyMemberDb : agencyMemberDao.listSelectAgencyMember(aName)) {
+			agencyMemberDao.deleteAgencyMember(agencyMemberDb.getaMemberId());
+		}
+		agencyDao.deleteAgency(aNumber);
+	}
 	
 	/**
 	 * 선택한 관리기관의 상세내용 출력 서비스

@@ -17,6 +17,13 @@ public class AgencyController {
 	@Autowired
 	private AgencyService agencyService;
 	
+	@RequestMapping(value="deleteAgency",method = RequestMethod.GET)
+	public String deleteAgency(@RequestParam(value="aNumber",required=true)int aNumber
+								,@RequestParam(value="aName",required=true)String aName) {
+		agencyService.deleteAgency(aNumber, aName);
+		return "redirect:/";
+	}
+	
 	/**
 	 * 선택된 관리기관명에 해당하는 상세 내용 출력 컨트롤러
 	 * @param 선택한 관리기관명

@@ -1,6 +1,8 @@
 /*나성수*/
 package com.spam.sfplanner.user;
 
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,36 @@ public class AgencyMemberController {
 	
 	@Autowired
 	private AgencyService agencyService;
+	
+	/**
+	 * 관리기관 한명의 회원 탈퇴 처리 컨트롤러
+	 * @param 해당 회원아이디
+	 * @return 로그아웃 처리 요청주소
+	 */
+	@RequestMapping(value="/deleteAgencyMember")
+	public String deleteAgencyMember(@RequestParam(value="aMemberId",required=true)String aMemberId
+									,@RequestParam(value="aName",required=true)String aName,Model model) {
+		int result = agencyMemberService.deleteAgencyMember(aMemberId, aName);
+		if(result == 0) {// 대표는 탈퇴되면 않된다
+			return "redirect:/oneAgencyMember?aMemberId="+aMemberId;
+		}
+		return "redirect:/logout";
+	}
+	
+	/**
+	 * 관리기관 한명의 회원 상세정보 출력 컨트롤러
+	 * @param 해당 회원 아이디
+	 * @param model
+	 * @return 회원 상세정보 화면
+	 */
+	@RequestMapping(value="/oneAgencyMember",method = RequestMethod.GET)
+	public String oneSelectAgencyMember(@RequestParam(value="aMemberId",required=true)String aMemberId
+										,@RequestParam(value="aName",required=true)String aName,Model model) {
+		Map<String, Object> map = agencyMemberService.oneSelectAgencyMember(aMemberId, aName);
+		model.addAttribute("level", map.get("level"));
+		model.addAttribute("agencyMember",map.get("agencyMember"));
+		return "user/agency_member/oneAgencyMember";
+	}
 	
 	/**
 	 * 해당 관리기관의 직원 리스트 출력 컨트롤러

@@ -1,3 +1,4 @@
+<!-- 나성수 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,7 +27,15 @@
 	   				연락처 : ${agencyDb.aPhone}<br>
 	   				등록일자 : ${agencyDb.aRegistdate}
 	   			</div>
-	   			<a class="btn btn-danger  btn-sm" href="${pageContext.request.contextPath}/listAgencyMember?aName=${agencyDb.aName}">회사조직도</a>
+	   			<div>
+	   				<a class="btn btn-danger  btn-sm" href="${pageContext.request.contextPath}/listAgencyMember?aName=${agencyDb.aName}">회사조직도</a>
+	   			</div>
+	   			<div>
+	   				<a class="btn btn-danger  btn-sm" href="#">관리기관정보 수정하기</a>
+	   			</div>
+	   			<div>
+	   				<a class="btn btn-danger  btn-sm" href="${pageContext.request.contextPath}/deleteAgency?aNumber=${agencyDb.aNumber}&aName=${agencyDb.aName}">관리기관정보 삭제하기</a>
+	   			</div>
 	    	</div>
     	</section>
     </section>

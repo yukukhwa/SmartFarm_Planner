@@ -21,6 +21,14 @@ public class AgencyDao {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	/**
+	 * 관리기관 삭제처리 Dao
+	 * @param 해당 관리기관 코드
+	 */
+	public void deleteAgency(int aNumber) {
+		sqlSessionTemplate.delete(NAMESPACE+"deleteAgency", aNumber);
+	}
+	
+	/**
 	 * 선택한 관리기관의 산세내용 출력 Dao
 	 * @param 선택한 관리기관명
 	 * @return 선택한 관리기관의 상세내용

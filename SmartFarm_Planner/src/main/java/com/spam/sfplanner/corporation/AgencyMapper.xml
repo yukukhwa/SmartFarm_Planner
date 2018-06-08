@@ -18,6 +18,12 @@
 		</collection>
 	</resultMap>
 	
+	<!-- 관리기관 삭제 처리 delete 쿼리문장 -->
+	<delete id="deleteAgency"
+			parameterType="int">
+		DELETE FROM sp_agency WHERE a_number=#{aNumber}
+	</delete>
+	
 	<!-- 해당 관리기관 상세내용 출력처리 select 쿼리문장 -->
 	<select id="oneSelectAgency"
 			parameterType="String"

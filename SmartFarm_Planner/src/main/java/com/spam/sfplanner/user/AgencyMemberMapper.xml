@@ -27,12 +27,42 @@
 		</collection>
 	</resultMap>
 
+	<!-- 관리기관 회원 탈퇴 처리 delete 쿼리문장 -->
+	<delete id="deleteAgencyMember"
+			parameterType="String">
+		DELETE FROM sp_agency_master WHERE a_member_id=#{aMemberId}
+	</delete>
+
+	<!-- 관리기관 회원 한명의 상세내용 출력 처리 select 쿼리문장 -->
+	<select id="oneSelectAgencyMember"
+			parameterType="String"
+			resultMap="agencyMemberDb">
+	select
+		sp_agency_master.a_member_id
+		,sp_agency_master.a_number
+		,sp_agency.a_name
+		,sp_agency_master.a_member_name
+		,sp_agency_master.a_member_phone
+		,sp_agency_master.a_member_gender
+		,sp_agency_master.a_member_email
+		,sp_agency_master.a_member_doroaddress
+		,sp_agency_master.a_member_jibunaddress
+		,sp_agency_master.a_member_detailaddress
+	from
+		sp_agency_master join sp_agency
+	on
+		sp_agency_master.a_number = sp_agency.a_number
+	where
+		sp_agency_master.a_member_id = #{aMemberId}
+	</select>
+
 	<!-- 관리기관 직원리트스 출력 처리 select 쿼리문장 -->
 	<select id="listSelectAgencyMember"
 			parameterType="String"
 			resultMap="agencyMemberDb">
 		select
 			sp_agency_master.a_member_name
+			,sp_agency_master.a_member_id
 			,sp_agency_master.a_member_phone
 			,sp_agency_master.a_member_email
 		from
