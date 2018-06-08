@@ -63,7 +63,7 @@
 				<value>classpath:com/spam/sfplanner/plan/WoNeRentPayMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/plan/WoNeedEquipMapper.xml</value>				
 				<value>classpath:com/spam/sfplanner/actresult/WrEtcSpendPayMapper.xml</value>
-				<value>classpath:com/spam/sfplanner/actresult/WrNe_RentPayMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/actresult/WrNeRentPayMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/actresult/WrNeedEquipMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/actresult/MemoFileMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/actresult/MemoMapper.xml</value>

@@ -41,12 +41,30 @@
 						</c:if>
 					</a>
 					<ul class="dropdown-menu extended logout">
-						<li class="eborder-top">
-							<a href="#"><i class="icon_profile"></i>나의 정보</a>
-						</li>
-						<li>
-							<a href="#"><i class="icon_desktop"></i>나의 회사 정보</a>
-						</li>
+						<c:if test="${loginMember.level eq 'farm'}">
+							<li class="eborder-top">
+								<a href="${pageContext.request.contextPath}/oneAgencyMember?aMemberId=${loginMember.id}&aName=${corpName}"><i class="icon_profile"></i>나의 정보</a>
+							</li>
+							<li>
+								<a href="${pageContext.request.contextPath}/oneAgency?aName=${corpName}"><i class="icon_desktop"></i>나의 농가 정보</a>
+							</li>
+						</c:if>
+						<c:if test="${loginMember.level eq 'company'}">
+							<li class="eborder-top">
+								<a href="#"><i class="icon_profile"></i>나의 정보</a>
+							</li>
+							<li>
+								<a href="#"><i class="icon_desktop"></i>나의 업체 정보</a>
+							</li>
+						</c:if>
+						<c:if test="${loginMember.level eq 'agency'}">
+							<li class="eborder-top">
+								<a href="#"><i class="icon_profile"></i>나의 정보</a>
+							</li>
+							<li>
+								<a href="#"><i class="icon_desktop"></i>나의 관리기관 정보</a>
+							</li>
+						</c:if>
 						<li>
 							<a href="${pageContext.request.contextPath}/logout"><i class="icon_key_alt"></i>로그아웃</a>
 						</li>

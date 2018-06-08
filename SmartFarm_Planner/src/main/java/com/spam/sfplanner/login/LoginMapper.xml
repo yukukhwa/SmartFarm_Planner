@@ -12,7 +12,9 @@
 		SELECT
 			sp_farm_member.f_member_id AS id,
 			sp_farm_member.f_member_name AS name,
-			sp_farm.f_member_id AS boss
+			sp_farm.f_member_id AS boss,
+			sp_farm.f_number AS corpNumber,
+			sp_farm.f_name AS corpName
 		FROM sp_farm_member
 		JOIN sp_farm ON sp_farm.f_number = sp_farm_member.f_number
 		WHERE sp_farm_member.f_member_id = #{id} AND sp_farm_member.f_member_pw = #{pw}
@@ -23,7 +25,9 @@
 		SELECT
 			sp_deal_company_member.c_member_id AS id,
 			sp_deal_company_member.c_member_name AS name,
-			sp_deal_company.c_member_id AS boss
+			sp_deal_company.c_member_id AS boss,
+			sp_deal_company.c_number AS corpNumber,
+			sp_deal_company.c_name AS corpName
 		FROM sp_deal_company_member
 		JOIN sp_deal_company ON sp_deal_company_member.c_number = sp_deal_company.c_number
 		WHERE sp_deal_company_member.c_member_id = #{id} AND sp_deal_company_member.c_member_pw = #{pw}
@@ -34,7 +38,9 @@
 		SELECT
 			sp_agency_master.a_member_id AS id,
 			sp_agency_master.a_member_name AS name,
-			sp_agency.a_member_id AS boss
+			sp_agency.a_member_id AS boss,
+			sp_agency.a_number AS corpNumber,
+			sp_agency.a_name AS corpName
 		FROM sp_agency_master JOIN sp_agency ON sp_agency.a_number = sp_agency_master.a_number
 		WHERE sp_agency_master.a_member_id = #{id} AND sp_agency_master.a_member_pw = #{pw}
 	</select>
