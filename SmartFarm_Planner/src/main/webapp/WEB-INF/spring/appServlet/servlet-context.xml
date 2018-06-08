@@ -72,7 +72,6 @@
 				<value>classpath:com/spam/sfplanner/actresult/WrMaterialsPayMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/actresult/WrHumanPayMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/actresult/PpWoResultMapper.xml</value>
-				<value>classpath:com/spam/sfplanner/actresult/PpResultListMapper.xml</value>
 			</list>
 		</property>
 	</bean>

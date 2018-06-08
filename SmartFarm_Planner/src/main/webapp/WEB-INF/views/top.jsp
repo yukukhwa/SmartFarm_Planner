@@ -43,10 +43,10 @@
 					<ul class="dropdown-menu extended logout">
 						<c:if test="${loginMember.level eq 'farm'}">
 							<li class="eborder-top">
-								<a href="${pageContext.request.contextPath}/oneAgencyMember?aMemberId=${loginMember.id}&aName=${corpName}"><i class="icon_profile"></i>나의 정보</a>
+								<a href="${pageContext.request.contextPath}/oneFarmMember?fMemberId=${loginMember.id}"><i class="icon_profile"></i>나의 정보</a>
 							</li>
 							<li>
-								<a href="${pageContext.request.contextPath}/oneAgency?aName=${corpName}"><i class="icon_desktop"></i>나의 농가 정보</a>
+								<a href="${pageContext.request.contextPath}/"><i class="icon_desktop"></i>나의 농가 정보</a>
 							</li>
 						</c:if>
 						<c:if test="${loginMember.level eq 'company'}">
@@ -59,10 +59,10 @@
 						</c:if>
 						<c:if test="${loginMember.level eq 'agency'}">
 							<li class="eborder-top">
-								<a href="#"><i class="icon_profile"></i>나의 정보</a>
+								<a href="${pageContext.request.contextPath}/oneAgencyMember?aMemberId=${loginMember.id}&aName=${loginMember.corpName}"><i class="icon_profile"></i>나의 정보</a>
 							</li>
 							<li>
-								<a href="#"><i class="icon_desktop"></i>나의 관리기관 정보</a>
+								<a href="${pageContext.request.contextPath}/oneAgency?aName=${loginMember.corpName}"><i class="icon_desktop"></i>나의 관리기관 정보</a>
 							</li>
 						</c:if>
 						<li>
