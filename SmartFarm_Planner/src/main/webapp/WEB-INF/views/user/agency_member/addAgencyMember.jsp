@@ -139,10 +139,10 @@
 							<p id="idCheckResult"/>
 						</div>
 						<div>
-							PW : <input type="text" name="aMemberPw" id="aMemberPw">
+							PW : <input type="password" name="aMemberPw" id="aMemberPw">
 						</div>
 						<div>
-							PW확인 : <input type="text" id="aMemberPwCheck">
+							PW확인 : <input type="password" id="aMemberPwCheck">
 							<p id="PwCheckResult">비밀번호 불일치</p>
 						</div>
 						<div>

@@ -19,6 +19,14 @@ public class AgencyMemberDao {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	/**
+	 * 관리기관 회원 정보 수정 처리 Dao
+	 * @param 관리기관 수정화면에서 받아온 데이터
+	 */
+	public void updateAgencyMember(AgencyMemberView agencyMemberView) {
+		sqlSessionTemplate.update(NAMESPACE+"updateAgencyMember", agencyMemberView);
+	}
+	
+	/**
 	 * 관리기관 회원 한명 탈퇴 처리 Dao
 	 * @param 해당 회원 아이디
 	 */

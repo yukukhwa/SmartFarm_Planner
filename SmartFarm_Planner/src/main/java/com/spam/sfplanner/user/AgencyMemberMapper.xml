@@ -27,6 +27,21 @@
 		</collection>
 	</resultMap>
 
+	<!-- 관리기관 회원 정보 수정 처리 update 쿼리문장 -->
+	<update id="updateAgencyMember"
+			parameterType="com.spam.sfplanner.user.AgencyMemberView">
+		UPDATE sp_agency_master
+		SET
+			a_member_pw=#{aMemberPw}
+			,a_member_name=#{aMemberName}
+			,a_member_phone=#{aMemberPhone}
+			,a_member_email=#{aMemberEmail}
+			,a_member_doroaddress=#{aMemberDoroaddress}
+			,a_member_jibunaddress=#{aMemberJibunaddress}
+			,a_member_detailaddress=#{aMemberDetailaddress}
+		WHERE a_member_id=#{aMemberId}
+	</update>
+
 	<!-- 관리기관 회원 탈퇴 처리 delete 쿼리문장 -->
 	<delete id="deleteAgencyMember"
 			parameterType="String">
@@ -39,6 +54,7 @@
 			resultMap="agencyMemberDb">
 	select
 		sp_agency_master.a_member_id
+		,sp_agency_master.a_member_pw
 		,sp_agency_master.a_number
 		,sp_agency.a_name
 		,sp_agency_master.a_member_name

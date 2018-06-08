@@ -1,6 +1,8 @@
 /*나성수*/
 package com.spam.sfplanner.user;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -30,6 +32,44 @@ public class AgencyMemberController {
 	private AgencyService agencyService;
 	
 	/**
+	 * 관리기관 회원 정보 수정 처리 컨트롤러
+	 * @param 회원 정보 수정 화면에서 받아온 데이터
+	 * @return 회원 상세내용 화면 요청
+	 */
+	@RequestMapping(value="/updateAgencyMember",method = RequestMethod.POST)
+	public String updateAgencyMember(AgencyMemberView agencyMemberView) {
+		agencyMemberService.updateAgencyMember(agencyMemberView);
+		/*
+		 * url일부가 한글이 들어와야하는데 한글자체가 깨져서 경로에러가 발생한다
+		 * 이때 한글부분만 utf-8로 인코딩해주면 되는데
+		 * 바로 URLEncoder라는 객체를 이용하면 된다
+		 */
+		String aName = agencyMemberView.getaName();
+		try {
+			aName = URLEncoder.encode(aName, "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return "redirect:/oneAgencyMember?aMemberId="+agencyMemberView.getaMemberId()+"&aName="+aName;
+	}
+	
+	/**
+	 * 관리기관 회원 정보 수정화면 출력 컨트롤럭
+	 * @param 요청 회원 아이디
+	 * @param 요청 회원 관리기관명
+	 * @param model
+	 * @return 회원 정보수정 화면
+	 */
+	@RequestMapping(value="/updateAgencyMember",method = RequestMethod.GET)
+	public String updateAgencyMember(@RequestParam(value="aMemberId",required=true)String aMemberId
+									,@RequestParam(value="aName",required=true)String aName,Model model) {
+		Map<String, Object> map = agencyMemberService.oneSelectAgencyMember(aMemberId, aName);
+		model.addAttribute("level", map.get("level"));
+		model.addAttribute("agencyMember",map.get("agencyMember"));
+		return "user/agency_member/updateAgencyMember";
+	}
+	
+	/**
 	 * 관리기관 한명의 회원 탈퇴 처리 컨트롤러
 	 * @param 해당 회원아이디
 	 * @return 로그아웃 처리 요청주소
@@ -39,7 +79,7 @@ public class AgencyMemberController {
 									,@RequestParam(value="aName",required=true)String aName,Model model) {
 		int result = agencyMemberService.deleteAgencyMember(aMemberId, aName);
 		if(result == 0) {// 대표는 탈퇴되면 않된다
-			return "redirect:/oneAgencyMember?aMemberId="+aMemberId;
+			return "redirect:/oneAgencyMember?aMemberId="+aMemberId+"&aName="+aName;
 		}
 		return "redirect:/logout";
 	}

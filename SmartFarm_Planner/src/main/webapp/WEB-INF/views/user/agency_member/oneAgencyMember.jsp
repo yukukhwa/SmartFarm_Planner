@@ -36,13 +36,25 @@
     		<div>
 	    		<label>
 	    			관리기관코드
-	    			<input type="text" value="${agencyMember.agencyDb.aNumber}" disabled="disabled">
+	    			<input type="number" value="${agencyMember.agencyDb.aNumber}" disabled="disabled">
 	    		</label>
     		</div>
     		<div>
 	    		<label>
 	    			아이디
 	    			<input type="text" value="${agencyMember.aMemberId}" disabled="disabled">
+	    		</label>
+    		</div>
+    		<div>
+	    		<label>
+	    			패스워드
+	    			<input type="password" value="${agencyMember.aMemberPw}" disabled="disabled">
+	    		</label>
+    		</div>
+    		<div>
+	    		<label>
+	    			이름
+	    			<input type="text" value="${agencyMember.aMemberName}" disabled="disabled">
 	    		</label>
     		</div>
     		<div>
@@ -60,7 +72,7 @@
     		<div>
     			<label>
 	    			이메일
-	    			<input type="text" value="${agencyMember.aMemberEmail}" disabled="disabled">
+	    			<input type="email" value="${agencyMember.aMemberEmail}" disabled="disabled">
 	    		</label>
     		</div>
     		<div>
@@ -81,7 +93,7 @@
 	    		</label>
     		</div>
     		<div>
-    			<a href="#">회원정보 수정하기</a>
+    			<a href="${pageContext.request.contextPath}/updateAgencyMember?aMemberId=${agencyMember.aMemberId}&aName=${agencyMember.agencyDb.aName}">회원정보 수정하기</a>
     		</div>
     		<div>
     			<c:if test="${level == '대표'}">
