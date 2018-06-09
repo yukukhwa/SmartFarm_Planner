@@ -1,6 +1,7 @@
 /*나성수*/
 package com.spam.sfplanner.user;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,8 +69,15 @@ public class AgencyMemberService {
 	 * @param 해당 관리기관명
 	 * @return 해당 관리기관 직원 리스트
 	 */
-	public List<AgencyMemberDb> listSelectAgencyMember(String aName) {
-		return agencyMemberDao.listSelectAgencyMember(aName);
+	public Map<String,Object> listSelectAgencyMember(String aName) {
+		Map<String,Object> map = new HashMap<String, Object>();
+		/*
+		 * 해당 관리기관의 직원리스트 출력
+		 * 해당 관리기관의 대표자 아이디 출력
+		 */
+		map.put("list", agencyMemberDao.listSelectAgencyMember(aName));
+		map.put("bossId", agencyDao.oneSelectAgency(aName).getAgencyMemberDb().getaMemberId());
+		return map;
 	}
 	
 	/**

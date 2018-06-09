@@ -1,5 +1,6 @@
 <!-- 나성수 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,11 +31,18 @@
 	   			<div>
 	   				<a class="btn btn-danger  btn-sm" href="${pageContext.request.contextPath}/listAgencyMember?aName=${agencyDb.aName}">회사조직도</a>
 	   			</div>
+	   			<c:if test="${loginMember.level == 'agency' && loginMember.corpNumber == agencyDb.aNumber}">
+	   				<div>
+		   				<a class="btn btn-danger  btn-sm" href="${pageContext.request.contextPath}/updateAgency?aName=${agencyDb.aName}">관리기관정보 수정하기</a>
+		   			</div>
+		   			<c:if test="${loginMember.boss == 'boss'}">
+			   			<div>
+			   				<a class="btn btn-danger  btn-sm" href="${pageContext.request.contextPath}/deleteAgency?aNumber=${agencyDb.aNumber}&aName=${agencyDb.aName}">관리기관정보 삭제하기</a>
+			   			</div>
+		   			</c:if>
+	   			</c:if>
 	   			<div>
-	   				<a class="btn btn-danger  btn-sm" href="#">관리기관정보 수정하기</a>
-	   			</div>
-	   			<div>
-	   				<a class="btn btn-danger  btn-sm" href="${pageContext.request.contextPath}/deleteAgency?aNumber=${agencyDb.aNumber}&aName=${agencyDb.aName}">관리기관정보 삭제하기</a>
+	   				<a class="btn btn-danger  btn-sm" href="${pageContext.request.contextPath}/listAgency">목록보기</a>
 	   			</div>
 	    	</div>
     	</section>

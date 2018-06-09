@@ -18,6 +18,19 @@
 		</collection>
 	</resultMap>
 	
+	<!-- 관리기관 수정 처리 update 쿼리문장 -->
+	<update id="updateAgency"
+			parameterType="com.spam.sfplanner.user.AgencyMemberView">
+		UPDATE sp_agency
+		SET
+			a_name=#{aName}
+			,a_member_id=#{aMemberId}
+			,a_doroaddress=#{aDoroaddress}
+			,a_jibunaddress=#{aJibunaddress}
+			,a_phone=#{aPhone}
+		WHERE a_number=#{aNumber}
+	</update>
+	
 	<!-- 관리기관 삭제 처리 delete 쿼리문장 -->
 	<delete id="deleteAgency"
 			parameterType="int">

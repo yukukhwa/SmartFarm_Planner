@@ -21,6 +21,14 @@ public class AgencyDao {
 	private SqlSessionTemplate sqlSessionTemplate;
 	
 	/**
+	 * 관리기관 수정처리 Dao
+	 * @param 관리기관 수정화면에서 받은 데이터
+	 */
+	public void updateAgency(AgencyMemberView agencyMemberView) {
+		sqlSessionTemplate.update(NAMESPACE+"updateAgency", agencyMemberView);
+	}
+	
+	/**
 	 * 관리기관 삭제처리 Dao
 	 * @param 해당 관리기관 코드
 	 */
@@ -68,6 +76,6 @@ public class AgencyDao {
 	 * @return 관리기관 존재여부결과
 	 */
 	public String numberCheck(int aNumber) {
-		return sqlSessionTemplate.selectOne(NAMESPACE+"aNumber", aNumber);
+		return sqlSessionTemplate.selectOne(NAMESPACE+"numberCheck", aNumber);
 	}
 }

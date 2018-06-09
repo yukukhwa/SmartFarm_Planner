@@ -107,7 +107,9 @@ public class AgencyMemberController {
 	 */
 	@RequestMapping(value="/listAgencyMember",method = RequestMethod.GET)
 	public String listSelectAgencyMember(@RequestParam(value="aName",required=true)String aName,Model model) {
-		model.addAttribute("list", agencyMemberService.listSelectAgencyMember(aName));
+		Map<String, Object> resultMap = agencyMemberService.listSelectAgencyMember(aName);
+		model.addAttribute("list", resultMap.get("list"));
+		model.addAttribute("bossId", resultMap.get("bossId"));
 		model.addAttribute("aName", aName);
 		return "user/agency_member/listAgencyMember";
 	}

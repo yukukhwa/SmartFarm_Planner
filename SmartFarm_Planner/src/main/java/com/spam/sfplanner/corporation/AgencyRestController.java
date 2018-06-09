@@ -16,7 +16,7 @@ public class AgencyRestController {
 	@Autowired
 	private AgencyService agencyService;
 	
-	@RequestMapping(value="/agencyNumberCheck",method = RequestMethod.POST)
+	@RequestMapping(value="/agencyNumberCheck",method = RequestMethod.GET)
 	public Map numberCheck(@RequestParam(value="aNumber")int aNumber) {
 		String result = agencyService.numberCheck(aNumber);
 		Map<String, String> resultMap = new HashMap<String, String>();

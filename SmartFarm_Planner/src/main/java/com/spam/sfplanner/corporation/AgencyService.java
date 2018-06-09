@@ -24,6 +24,37 @@ public class AgencyService {
 	private AgencyMemberDao agencyMemberDao;
 	
 	/**
+	 * 관리기관 수정 처리 서비스
+	 * @param 관리기관 수정 화면에서 받아온 데이터
+	 * @return 실행 결과
+	 */
+	public int updateAgency(AgencyMemberView agencyMemberView) {
+		int idCheck = 0;
+		for(AgencyMemberDb agencyMemberDb : agencyMemberDao.listSelectAgencyMember(agencyMemberView.getaName())) {
+			/*
+			 * 해당 아이디가 해당 관리기관에 존재할때
+			 */
+			if(agencyMemberView.getaMemberId().equals(agencyMemberDb.getaMemberId())) {
+				idCheck = 1;
+			}
+		}
+		if(idCheck == 0) {// 해당 아이디는 해당 관리기관에 존재하지 않을때
+			return 0;
+		}
+		agencyDao.updateAgency(agencyMemberView);
+		return 1;
+	}
+	
+	/**
+	 * 관리기관 수정 화면 출력 서비스
+	 * @param 해당 관리기관명
+	 * @return 해당 관리기관 상세내용
+	 */
+	public AgencyDb updateAgency(String aName) {
+		return agencyDao.oneSelectAgency(aName);
+	}
+	
+	/**
 	 * 관리기관 삭제처리 서비스
 	 * @param 해당 관리기관코드
 	 */

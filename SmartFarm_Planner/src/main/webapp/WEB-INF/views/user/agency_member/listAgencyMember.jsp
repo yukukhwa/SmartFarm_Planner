@@ -22,6 +22,7 @@
 			<table>
 				<thead>
 					<tr>
+						<th>직급</th>
 						<th>이름</th>
 						<th>연락처</th>
 						<th>이메일</th>
@@ -30,6 +31,16 @@
 				<tbody>
 					<c:forEach items="${list}" var="agencyMember">
 						<tr>
+							<c:if test="${bossId == agencyMember.aMemberId}">
+								<td>
+									대표
+								</td>
+							</c:if>
+							<c:if test="${bossId != agencyMember.aMemberId}">
+								<td>
+									직원
+								</td>
+							</c:if>
 							<td>
 								${agencyMember.aMemberName}
 							</td>
@@ -43,6 +54,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<a href="${pageContext.request.contextPath}/oneAgency?aName=${aName}">뒤로가기</a>
     	</section>
     </section>
 </body>
