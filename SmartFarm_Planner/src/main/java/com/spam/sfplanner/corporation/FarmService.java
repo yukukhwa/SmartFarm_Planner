@@ -17,9 +17,9 @@ public class FarmService {
 	@Autowired FarmDao farmDao;
 	private final static Logger LOGGER = LoggerFactory.getLogger(FarmService.class);
 	
-	public FarmDb oneSelectFarm(int fNumber) {
+	public FarmDb oneSelectFarm(String fName) {
 		LOGGER.info("FarmService oneSelectFarm 호출");
-		return farmDao.oneSelectFarm(fNumber);
+		return farmDao.oneSelectFarm(fName);
 	}
 	
 	public List<FarmDb> listSelectFarm(){

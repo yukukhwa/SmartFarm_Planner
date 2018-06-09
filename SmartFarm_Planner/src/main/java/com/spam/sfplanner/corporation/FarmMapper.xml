@@ -6,9 +6,9 @@
  <mapper namespace="com.spam.sfplanner.corporation.FarmMapper">
 
  	
- 	<!-- 한개의 농가에 대한 상세정보 -->
+ <!-- 한개의 농가에 대한 상세정보 -->
   <select id="oneSelectFarm"
-       parameterType="integer"
+       parameterType="String"
        resultType="com.spam.sfplanner.corporation.FarmDb">
        SELECT f_number AS fNumber
           , f_name AS fName
@@ -18,10 +18,10 @@
           , f_party AS fParty
           , f_registdate AS fRegistdate
        FROM sp_farm
-       WHERE sp_farm.f_number=#{fNumber}
+       WHERE sp_farm.f_Name=#{fName}
     </select>
  	
- 	<!-- 농가의 리스트를 조회 -->
+ 	<!-- 농가의 전체 리스트를 조회 -->
  	<select id="listSelectFarm"
  		resultType="com.spam.sfplanner.corporation.FarmDb">
 	 		SELECT f_number AS fNumber

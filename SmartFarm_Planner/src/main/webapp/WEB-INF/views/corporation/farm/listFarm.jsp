@@ -7,6 +7,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>listFarm</title>
 <jsp:include page="/WEB-INF/views/css.jsp"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		/* 메인으로 버튼을 누르면 인덱스로 가기 */
+		$('#goHome').click(function(){
+			location.href = "${pageContext.request.contextPath}/";
+		})
+	})
+</script>
 </head>
 <body>
 	<!-- container section start -->
@@ -30,13 +39,13 @@
 					<tbody>
 						<tr>
 							<td>
-								<a href="${pageContext.request.contextPath}/oneFarm?fNumber=${farm.fNumber}">${farm.fName}</a>
+								<a href="${pageContext.request.contextPath}/oneFarm?fName=${farm.fName}">${farm.fName}</a>
 							</td>
 						</tr>
 					</tbody>
 					</c:forEach>
 				</table>
-				<a href="#">메인화면으로</a>
+				<button id="goHome">메인으로 가기</button>
 			</div>
 		</section>
 	</section>

@@ -24,9 +24,9 @@ public class FarmMemberService {
 	}
 	
 	/*농가회원 전체 리스트*/
-	public List<FarmMemberDb> listFarmMember(int fNumber){
+	public List<FarmMemberDb> listFarmMember(String fName){
 		LOGGER.info("FarmMemberService listFarmMember 호출");
-		return farmMemberDao.listFarmMember(fNumber);
+		return farmMemberDao.listFarmMember(fName);
 	}
 	
 	/*농가회원 등록*/

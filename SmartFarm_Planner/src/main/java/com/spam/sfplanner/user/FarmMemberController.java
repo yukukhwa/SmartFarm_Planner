@@ -25,6 +25,21 @@ public class FarmMemberController {
 	@Autowired FarmService farmService;
 		private final static Logger LOGGER = LoggerFactory.getLogger(FarmMemberController.class);
 		
+		/*포스트 방식으로 넘어올때 수정처리*/
+		@RequestMapping(value="updateFarmMember", method=RequestMethod.POST)
+		public String updateFarmMember(FarmMemberDb farmMemberDb) {
+			LOGGER.info("FarmMemberController updateFarmMember post 호출");
+			return "redirect:/";
+		}
+		
+		/*업데이트를 하기 위해 수정할 화면을 불러옴*/
+		@RequestMapping(value="updateFarmMember", method=RequestMethod.GET)
+		public String updateFarmMember(Model model, FarmMemberDb farmMemberDb) {
+			LOGGER.info("FarmMemberController updateFarmMember 호출");
+			model.addAttribute("updateFarm", farmMemberService.oneSelectFarmMember(farmMemberDb));
+			return "user/farm_member/updateFarmMember";
+		}
+		
 		/*한 농가회원의 정보를 상세보기*/
 		@RequestMapping(value="oneFarmMember", method=RequestMethod.GET)
 		public String oneSelectFarmMember(Model model
@@ -38,13 +53,13 @@ public class FarmMemberController {
 		
 		/*하나의 농가의 농가회원전체리스트 보기*/ 
 		@RequestMapping(value="/listFarmMember", method=RequestMethod.GET)
-		public String listSelectFarmMember(int fNumber
+		public String listSelectFarmMember(String fName
 										, Model model) {
 			LOGGER.info("FarmMemberController listFarmMember 호출");
-			farmMemberService.listFarmMember(fNumber);
-			model.addAttribute("farmMemberList",farmMemberService.listFarmMember(fNumber));
-			model.addAttribute("fNumber", fNumber);
-			System.out.println("farmMemberList====> "+farmMemberService.listFarmMember(fNumber));
+			farmMemberService.listFarmMember(fName);
+			model.addAttribute("farmMemberList",farmMemberService.listFarmMember(fName));
+			model.addAttribute("fNumber", fName);
+			System.out.println("farmMemberList====> "+farmMemberService.listFarmMember(fName));
 			return "user/farm_member/listFarmMember";
 		}
 		

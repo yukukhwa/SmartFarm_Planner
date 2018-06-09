@@ -7,6 +7,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>listFarmMember</title>
 <jsp:include page="/WEB-INF/views/css.jsp"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		/* 메인으로 버튼을 누르면 인덱스로 가기 */
+		$('#goHome').click(function(){
+			location.href = "${pageContext.request.contextPath}/";
+		})
+	})
+</script>
 </head>
 <body>
 	<!-- container section start -->
@@ -17,11 +26,12 @@
     <section id="main-content">
 		<section class="wrapper">
 			<div>
-				<h3>농가 회원 리스트</h3>
+				<div>
+					<h3>${fNumber}의 회원 리스트</h3>
+				</div>
 				<table border="1">
 					<thead>
 						<tr>
-							<th>농가 통합 넘버</th>
 							<th>농가 회원 이름</th>
 							<th>농가 회원 이메일</th>
 							<th>농가 회원 연락처 </th>
@@ -30,7 +40,6 @@
 					<c:forEach var="onefarmMemberList" items="${farmMemberList}">
 					<tbody>
 						<tr>
-							<td>${fNumber}</td>
 							<td>${onefarmMemberList.fMemberName}</td>
 							<td>${onefarmMemberList.fMemberEmail}</td>
 							<td>${onefarmMemberList.fMemberPhone}</td>
@@ -38,6 +47,7 @@
 					</tbody>
 					</c:forEach>
 				</table>
+				<button id="goHome">메인으로</button>
 			</div>
 		</section>
 	</section>

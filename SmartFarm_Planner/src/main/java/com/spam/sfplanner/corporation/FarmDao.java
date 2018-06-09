@@ -19,9 +19,9 @@ public class FarmDao {
 	private static final String NAMESPACE = "com.spam.sfplanner.corporation.FarmMapper.";
 	
 	/*하나의 농가의 정보를 상세보기 가능한 메서드 매개변수로 farmDb를 받음*/
-	public FarmDb oneSelectFarm(int fNumber) {
+	public FarmDb oneSelectFarm(String fName) {
 		LOGGER.info("FarmDao oneSelectFarm 호출");
-		return sqlSession.selectOne(NAMESPACE+"oneSelectFarm", fNumber);
+		return sqlSession.selectOne(NAMESPACE+"oneSelectFarm", fName);
 	}
 	
 	/*전체 농가 리스트를 출력하는 메서드*/

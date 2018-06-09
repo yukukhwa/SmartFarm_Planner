@@ -6,6 +6,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>oneFarmMember</title>
 <jsp:include page="/WEB-INF/views/css.jsp"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		/* 메인으로 버튼을 클릭하면 홈으로 돌아감 */ 
+		$('#goHome').click(function(){
+			location.href = "${pageContext.request.contextPath}/";
+		})
+		
+		$('#updateFarmMember').click(function(){
+			location.href = "updateFarmMember?fMemberId=${farmMemberInfo.fMemberId}";
+		})
+	})
+</script>
 </head>
 <body>
 	<!-- container section start -->

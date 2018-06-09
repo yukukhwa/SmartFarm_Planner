@@ -10,7 +10,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#selectFarmMemberList').click(function(){
-			location.href = "listFarmMember?fNumber=${oneFarmDb.fNumber}";
+			location.href = "listFarmMember?fName=${oneFarmDb.fName}";
 		})
 		
 		$('#updateFarm').click(function(){
@@ -29,10 +29,10 @@
 		<section class="wrapper">
 			<div>
 				<h3>농가 상세보기</h3>
+				<input type="hidden" value="${oneFarmDb.fNumber}">
 				<table border="1">
 					<thead>
 						<tr>
-							<th>농가 통합넘버</th>
 							<th>농가 이름</th>
 							<th>농가 대표번호</th>
 							<th>농가 도로명주소</th>
@@ -43,7 +43,6 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>${oneFarmDb.fNumber}</td>
 							<td>${oneFarmDb.fName}</td>
 							<td>${oneFarmDb.fPhone}</td>
 							<td>${oneFarmDb.fDoroaddress}</td>

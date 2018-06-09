@@ -23,9 +23,9 @@ public class FarmMemberDao {
 	}
 	
 	/*한 농가의 회원전체리스트를 출력하는 메서드*/ 
-	public List<FarmMemberDb> listFarmMember(int fNumber) {
+	public List<FarmMemberDb> listFarmMember(String fName) {
 		LOGGER.info("FarmMemberDao listFarmMember 호출");
-		return sqlSession.selectList(NAMESPACE+"selectFarmMemberList", fNumber);
+		return sqlSession.selectList(NAMESPACE+"selectFarmMemberList", fName);
 	}
 	
 	/*농가회원을 등록하는 메서드*/
