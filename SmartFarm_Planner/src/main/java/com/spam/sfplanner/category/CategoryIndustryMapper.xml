@@ -2,6 +2,13 @@
 <!DOCTYPE mapper 
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
- <mapper namespace="com.spam.sfplanner.category.CategoryIndustryMapper">
- </mapper>
+
+<!-- 나성수 -->
+<mapper namespace="com.spam.sfplanner.category.CategoryIndustryMapper">
+	<insert id="insertCategoryIndustry"
+			parameterType="java.util.Map">
+		INSERT INTO sp_industry_cate
+		(a_number, industry_name)
+		VALUES (#{aNumber}, #{industryName})
+	</insert>
+</mapper>
