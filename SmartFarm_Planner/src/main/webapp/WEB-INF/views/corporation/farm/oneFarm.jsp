@@ -14,7 +14,15 @@
 		})
 		
 		$('#updateFarm').click(function(){
-			location.href = "updateFarm?fNumber=${oneFarmDb.fNumber}";
+			location.href = "updateFarm?fName=${oneFarmDb.fName}";
+		})
+		
+		$('#goList').click(function(){
+			location.href = "listFarm";
+		})
+		
+		$('#deleteFarm').click(function(){
+			location.href = "deleteFarm?fNumber=${oneFarmDb.fNumber}";
 		})
 	})
 </script>
@@ -53,7 +61,9 @@
 					</tbody>
 				</table>
 				<button type="button" id="selectFarmMemberList">이 농가의 농가회원보기</button>
-				<button type="button" id="updateFarm">농가정보 수정하기</button>
+				<button id="goList">리스트로 돌아가기</button>
+				<button id="updateFarm">농가정보 수정하기</button>
+				<button id="deleteFarm">농가정보 삭제하기</button>
 			</div>
 		</section>
 	</section>

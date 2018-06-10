@@ -18,8 +18,11 @@ public class FarmController {
 	@Autowired FarmService farmService;
 		private final static Logger LOGGER = LoggerFactory.getLogger(FarmController.class);
 		
+		
+		/*updateFarm에서 get방식으로 들어올 때 수정화면 조회*/
 		@RequestMapping(value="updateFarm", method=RequestMethod.GET)
-		public String updateForFarmSelect() {
+		public String updateFarm(Model model, String fName) {
+			model.addAttribute("farmDb", farmService.oneSelectFarm(fName));
 			return "/corporation/farm/updateFarm";
 		}
 		
@@ -30,6 +33,13 @@ public class FarmController {
 			model.addAttribute("oneFarmDb", farmService.oneSelectFarm(fName));
 			System.out.println(farmService.oneSelectFarm(fName));
 			return "corporation/farm/oneFarm";
+		}
+		
+		/*listFarm에서 post방식으로 들어올때 listFarm으로 포워드*/
+		@RequestMapping(value="listFarm", method=RequestMethod.POST)
+		public String searchFarmList(String fName, Model model) {
+			
+			return "corporation/farm/listFarm";
 		}
 		
 		// 등록된 전체 농가 리스트로 포워드
