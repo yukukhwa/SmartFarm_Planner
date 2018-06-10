@@ -14,8 +14,14 @@
 			location.href = "${pageContext.request.contextPath}/";
 		})
 		
+		/* 수정하기 버튼을 누르면 내정보를 수정하는 화면으로 간다 */
 		$('#updateFarmMember').click(function(){
 			location.href = "updateFarmMember?fMemberId=${farmMemberInfo.fMemberId}";
+		})
+		
+		/* 탈퇴하기 버튼을 누르면 탈퇴가 된다. */
+		$('#deleteFarmMember').click(function(){
+			location.href = "deleteFarmMember?fMemberId=${farmMemberInfo.fMemberId}";
 		})
 	})
 </script>
@@ -29,7 +35,13 @@
     <section id="main-content">
     	<section class="wrapper">
 			<div>
-				<h3>농가 회원 상세보기(내정보보기)</h3>
+				<h3>내정보 보기</h3>
+				<div>
+					<label>
+						<b>소속 농가 : </b><br>
+						<input type="text" disabled="disabled" value="${farmMemberInfo.farmDb.fName}">
+					</label>
+				</div>
 				<div>
 					<label>
 						<b>아이디 : </b><br>
@@ -92,6 +104,7 @@
 				</div>
 				<button id="updateFarmMember">내정보 수정하기</button>
 				<button id="goHome">메인으로</button>
+				<button id="deleteFarmMember">탈퇴하기</button>
 			</div>
 			</section>
 	</section>

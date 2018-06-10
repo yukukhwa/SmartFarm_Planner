@@ -16,10 +16,22 @@ public class FarmMemberDao {
 	private final static Logger LOGGER = LoggerFactory.getLogger(FarmDao.class);
 	private final static String NAMESPACE = "com.spam.sfplanner.user.FarmMemberMapper.";
 	
+	/*농가회원정보를 삭제처리하는 메서드*/
+	public void deleteFarmMember(String fMemberId) {
+		LOGGER.info("FarmMemberDao deleteFarmMember");
+		sqlSession.delete(NAMESPACE+"deleteFarmMember", fMemberId);
+	}
+	
+	/*농가회원의 정보를 수정처리하는 메서드*/
+	public void updateFarmMember(FarmMemberView farmMemberView) {
+		LOGGER.info("FarmMemberDao updateFarmMember 호출");
+		sqlSession.update(NAMESPACE+"updateFarmMember", farmMemberView);
+	}
+	
 	/*농가회원의 상세정보,내정보를 보는 메서드*/
-	public FarmMemberDb oneSelectFarmMember(FarmMemberDb farmMemberDb) {
+	public FarmMemberDb oneSelectFarmMember(String fMemberId) {
 		LOGGER.info("FarmMemberDao oneSelectFarmMember 호출");
-		return sqlSession.selectOne(NAMESPACE+"selectOneFarmMember", farmMemberDb.getfMemberId());
+		return sqlSession.selectOne(NAMESPACE+"selectOneFarmMember", fMemberId);
 	}
 	
 	/*한 농가의 회원전체리스트를 출력하는 메서드*/ 

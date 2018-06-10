@@ -17,10 +17,19 @@ public class FarmMemberService {
 	@Autowired FarmMemberDao farmMemberDao;
 	private final static Logger LOGGER = LoggerFactory.getLogger(FarmService.class);
 	
-	/*농가회원 한명의 상세한 정보를 보기*/
-	public FarmMemberDb oneSelectFarmMember(FarmMemberDb farmMemberDb) {
+	public void deleteFarmMember(String fMemberId) {
+		farmMemberDao.deleteFarmMember(fMemberId);
+	}
+	
+	/*농가회원의 한명의 정보를 수정처리*/
+	public void updateFarmMember(FarmMemberView farmMemberView) {
+		farmMemberDao.updateFarmMember(farmMemberView);
+	}
+	
+	/*농가회원 한명의 상세한 정보를 보기 + 수정할조회화면*/
+	public FarmMemberDb oneSelectFarmMember(String fMemberId) {
 		LOGGER.info("FarmMemberService oneSelectFarmMember 호출");
-		return farmMemberDao.oneSelectFarmMember(farmMemberDb);
+		return farmMemberDao.oneSelectFarmMember(fMemberId);
 	}
 	
 	/*농가회원 전체 리스트*/

@@ -27,9 +27,17 @@
 				<h3>농가회원 수정화면</h3>
 				<form id="updateFMember" action="${pageContext.request.contextPath}/updateFarmMember" method="post">
 					<div>
+					<label>
+						<b>소속 농가 : </b><br>
+						<input type="text" disabled="disabled" value="${updateFarm.farmDb.fName}">
+						<input type="hidden" name="fName" value="${updateFarm.farmDb.fName}">
+					</label>
+					</div>
+					<div>
 						<label>
 							<b>아이디 : </b><br>
-							<input type="text" readonly="readonly" name="fMemberId" value="${updateFarm.fMemberId}">
+							<input type="text" disabled="disabled"  value="${updateFarm.fMemberId}">
+							<input type="hidden" name="fMemberId" value="${updateFarm.fMemberId}">					
 						</label>
 					</div>
 					<div>
@@ -53,7 +61,8 @@
 					<div>
 						<label>
 							<b>성별 : </b><br>
-							<input type="text" readonly="readonly" name="fMemberGender" value="${updateFarm.fMemberGender}">
+							<input type="text" disabled="disabled" value="${updateFarm.fMemberGender}">
+							<input type="hidden" name="fMemberGender" value="${updateFarm.fMemberGender}">						
 						</label>
 					</div>
 					<div>
@@ -83,7 +92,8 @@
 					<div>
 						<label>
 							<b>등록일자 : </b><br>
-							<input type="text" readonly="readonly" name="fMemberRegistdate" value="${updateFarm.fMemberRegistdate}">
+							<input type="text" disabled="disabled" value="${updateFarm.fMemberRegistdate}">
+							<input type="hidden" name="fMemberRegistdate" value="${updateFarm.fMemberRegistdate}">						
 						</label>
 					</div>
 					<button id="updateMember">내 정보 업데이트하기</button>

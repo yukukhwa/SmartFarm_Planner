@@ -12,7 +12,10 @@
 		$("input:radio[name=formCheck]").click(function(){
 			// 농가직원이면 addFarmForm이 농합코드 입력폼이 오게 
 			if($(this).val() == 'staff'){
-				$('#addFarmForm').html('<div><b>농가통합코드 입력 : </b><input type="text" id="farmNumber" name="fNumber" placeholder="농가코드를 입력해주세요"><br></div>');
+				$('#addFarmForm').html('<div><b>농가통합넘버 입력 : </b>'
+						+'<input type="number" id="fNumber" name="fNumber" placeholder="농가코드를 입력해주세요">'
+						+'<br></div>');
+				return;
 			}else{
 				$('#addFarmForm').html('<h3>농가등록하기</h3>'
 						+'<div><b>농장이름 : </b><input type="text" placeholder="농장이름을 등록해주세요" name="fName" id="fName"></div>'
@@ -20,11 +23,12 @@
 						+'<div><b>도로명 주소 : </b><input type="text" name="fDoroaddress" placeholder="도로명주소를 입력해주세요"><br>'
 						+'<b>지번 주소 : </b><input type="text" name="fJibunaddress" placeholder="지번주소를 입력해주세요"><br></div>'
 						+'<div><b>농가인원</b> <br><input type="text" placeholder="농가인원 숫자를 입력해주세요" name="fParty" id="fParty"> 명</div>');
+				return;
 			}
+			return;
 		})
 		
 		$("#insertFarmMember").click(function(){
-			var fMemberPrivacy = $('#fMemberPrivacy').val();
 			var fName = $('#fName').val();
 			var fPhone = $('#fPhone').val();
 			var fDoroaddress = $('#fDoroaddress').val();
@@ -33,55 +37,66 @@
 			var fMemberId = $('#fMemberId').val();
 			var fMemberPw = $('#fMemberPw').val();
 			
+			//개인정보동의에 체크하지 않으면 경고문과 함께 submit하지 못하게
+			if($('#fMemberPrivacy').prop('checked')){
+				alert('개인정보 제공을 동의하셨습니다');
+				return;
+			}else{
+				alert('개인정보제공동의를 체크하셔야 회원가입 됩니다');
+				$('#fMemberPrivacy').focus();
+				return false;
+			}
+				
 			//아이디를 입력하지 않으면 아이디입력칸으로 돌아감
 			if(fMemberId.length == 0){
 				alert("아이디를 입력해주세요");
 				$('#fMemberId').focus();
-				return false;
+				return;
 			}
 			
 			//비밀번호를 입력하지 않으면 비밀번호 입력칸으로 돌아감
 			if(fMemberPw.length == 0){
 				alert("아이디를 입력해주세요");
 				$('#fMemberPw').focus();
-				return false;
+				return;
 			}
 			
 			//농가이름이 없으면 다시 입력칸으로 돌아감
 			if(fName.length == 0){
 				alert("농장이름을 입력해주세요");
 				$('#fName').focus();
-				return false;
+				return;
 			}
 			
 			//농가의 대표번호가 없으면 다시 입력칸으로 돌아감
 			if(fPhone.length == 0){
 				alert("농장의 대표번호를 입력해주세요");
 				$('#fPhone').focus();
-				return false;
+				return;
 			}
 			
 			// 농가의 도로명주소가 없으면 다시 입력칸으로 돌아가게
 			if(fDoroaddress.length == 0){
 				alert("농장의 도로명주소를 입력해주세요");
 				$('#fDoroaddress').focus();
-				return false;
+				return;
 			}
 			
 			// 농가의 지번주소가 없으면 다시 입력칸으로 돌아가게
 			if(fJibunaddress.length == 0){
 				alert("농장의 도로명주소를 입력해주세요");
 				$('#fJibunaddress').focus();
-				return false;
+				return;
 			}
 			
 			// 농가의 인원을 입력하지 않으면 다시 입력칸으로 돌아감
 			if(fParty.length == 0){
 				alert("농가의 인원을 입력해주세요");
 				$('#fParty').focus();
-				return false;
+				return;
+				
 			}
-			
+			$('#farmMemberInsert').submit();
 			// 농가의 인원은 숫자만 받을 수 있게
 			/* if(fParty) */
 			
@@ -109,7 +124,7 @@
 				<input type="radio" name="formCheck" value="exponent" checked="checked"/> 농가대표
 				<input type="radio" name="formCheck" value="staff" /> 농가직원
 			</div>
-			<form action="${pageContext.request.contextPath}/addFarmMember" method="post">
+			<form id="farmMemberInsert" action="${pageContext.request.contextPath}/addFarmMember" method="post">
 				<div>
 					<b>개인정보제공동의</b><br>
 					<textarea rows="10" cols="50" id="fMemberPrivacyContent" readonly="readonly">개인정보제공 동의?</textarea> <br>
@@ -175,7 +190,6 @@
 				<div>
 					<b>이메일 : </b>
 					<input type="text" name="fMemberEmail" placeholder="이메일을 입력해주세요">
-					<button type="button" id="emailCheck">이메일 중복확인</button> <br>
 				</div>
 				<div>	
 					<b>도로명 주소 : </b>
@@ -187,7 +201,7 @@
 				</div>
 			</div>
 			<br>
-			<input type="submit" value="회원가입하기">
+			<button id="insertFarmMember">회원가입</button>
 				<!-- 회원가입 폼 끝 -->
 			</form>
 		</section>
