@@ -3,5 +3,18 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
- <mapper namespace="com.spam.sfplanner.category.CategoryEquipMapper">
+ <mapper namespace="com.spam.sfplanner.category.CategoryMaterialsMapper">
+ 	<insert id="insertCategoryMaterials"
+ 		parameterType="com.spam.sfplanner.category.CategoryMaterialsDb">
+	 		INSERT INTO sp_materials_cate(
+	 			theme_number
+				, materials_name
+				, materials_unit
+				, a_number)
+				VALUES (
+				#{themeNumber}
+				, #{materialsName}
+				, #{materialsUnit}
+				, #{aNumber})
+ 	</insert>
  </mapper>
