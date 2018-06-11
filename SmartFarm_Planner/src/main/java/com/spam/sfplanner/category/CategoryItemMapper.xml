@@ -1,7 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper 
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
- <mapper namespace="com.spam.sfplanner.category.CategoryEquipMapper">
- </mapper>
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 나성수 -->
+<mapper namespace="com.spam.sfplanner.category.CategoryEquipMapper">
+	<resultMap type="com.spam.sfplanner.category.CategoryItemDb" id="categoryItemDb">
+		<id column="i_item_number" property="iItemNumber"/>
+		<result column="i_item_name" property="iItemName"/>
+		<collection ofType="com.spam.sfplanner.category.CategoryIndustryDb" property="categoryIndustryDb">
+			<id column="industry_number" property="industryNumber"/>
+			<result column="industry_name" property="industryName"/>
+		</collection>
+		<collection ofType="com.spam.sfplanner.corporation.AgencyDb" property="agencyDb">
+			<id column="a_number" property="aNumber"/>
+			<result column="a_name" property="aName"/>
+		</collection>
+	</resultMap>
+	<!-- <select id="">
+	select
+		sp_industry_item_cate.i_item_number
+		,sp_industry_item_cate.industry_number
+		,sp_industry_cate.industry_name
+		,sp_industry_item_cate.i_item_name
+		,sp_industry_item_cate.a_number
+		,sp_agency.a_name
+	from
+		sp_industry_item_cate join sp_agency join sp_industry_cate
+	on
+		sp_industry_item_cate.industry_number = sp_industry_cate.industry_number
+	and
+		sp_industry_item_cate.a_number = sp_agency.a_number
+	where
+		sp_agency.a_name like '%%'
+	and
+		sp_industry_cate.industry_name like '%%'
+	and
+		sp_industry_item_cate.i_item_name like '%%'
+	</select> -->
+	
+	<select id="listSelectCategoryItem"
+			resultMap="categoryItemDb">
+	select
+		sp_industry_item_cate.i_item_number
+		,sp_industry_item_cate.industry_number
+		,sp_industry_cate.industry_name
+		,sp_industry_item_cate.i_item_name
+		,sp_industry_item_cate.a_number
+		,sp_agency.a_name
+	from
+		sp_industry_item_cate join sp_agency join sp_industry_cate
+	on
+		sp_industry_item_cate.industry_number = sp_industry_cate.industry_number
+	and
+		sp_industry_item_cate.a_number = sp_agency.a_number
+	</select>
+	
+	<!-- 품목카테고리 등록 처리 insert 쿼리문장 -->
+	<insert id="insertCategoryItem"
+			parameterType="java.util.Map">
+		INSERT INTO sp_industry_item_cate
+		(industry_number, a_number, i_item_name)
+		VALUES (#{industryNumber}, #{aNumber}, #{iItemName})
+	</insert>
+</mapper>

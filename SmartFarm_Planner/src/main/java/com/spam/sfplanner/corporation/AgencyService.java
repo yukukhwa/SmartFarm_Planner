@@ -80,9 +80,6 @@ public class AgencyService {
 	 * @return 관리기관 리스트
 	 */
 	public List<String> listSelectAgency(String aName) {
-		if(aName.equals("")) {
-			return agencyDao.listSelectAgency();
-		}
 		return agencyDao.listSelectAgency("%"+aName+"%");
 	}
 	

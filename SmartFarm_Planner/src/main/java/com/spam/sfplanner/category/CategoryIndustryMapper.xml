@@ -5,6 +5,76 @@
 
 <!-- 나성수 -->
 <mapper namespace="com.spam.sfplanner.category.CategoryIndustryMapper">
+	<resultMap type="com.spam.sfplanner.category.CategoryIndustryDb" id="categoryIndustryDb">
+		<id column="industry_number" property="industryNumber"/>
+		<result column="industry_name" property="industryName"/>
+		<collection ofType="com.spam.sfplanner.corporation.AgencyDb" property="agencyDb">
+			<id column="a_number" property="aNumber"/>
+			<result column="a_name" property="aName"/>
+		</collection>
+	</resultMap>
+	
+	<!-- 산업카테고리 수정 처리 update 쿼리문장 -->
+	<update id="updateCategoryIndustry"
+			parameterType="com.spam.sfplanner.category.CategoryIndustryDb">
+		UPDATE sp_industry_cate
+		SET
+			industry_name=#{industryName}
+		WHERE 
+			industry_number=#{industryNumber}
+	</update>
+	
+	<!-- 산업카테고리 수정 화면 출력 처리 select 쿼리문장 -->
+	<select id="oneSelectCategoryIndustry"
+			parameterType="int"
+			resultMap="categoryIndustryDb">
+		select
+			sp_industry_cate.industry_name
+			,sp_industry_cate.industry_number
+		from
+			sp_industry_cate
+		where
+			sp_industry_cate.industry_number = #{industryNumber}
+	</select>
+	
+	<!-- 산업카테고리 삭제 처리 delete 쿼리문장 -->
+	<delete id="deleteCategoryIndustry"
+			parameterType="int">
+		DELETE FROM sp_industry_cate WHERE industry_number=#{industryNumber}
+	</delete>
+	
+	<!-- 검색 조건에 따른 산업카테고리 리스트 출력 처리 select 쿼리문장 -->
+	<select id="searchListSelectCategoryIndustry"
+			parameterType="java.util.Map"
+			resultMap="categoryIndustryDb">
+		select
+			sp_industry_cate.industry_number
+			,sp_industry_cate.industry_name
+			,sp_agency.a_name
+		from
+			sp_industry_cate join sp_agency
+		on
+			sp_industry_cate.a_number = sp_agency.a_number
+		where
+			sp_industry_cate.industry_name like #{industryName}
+		and
+			sp_agency.a_name like #{aName}
+	</select>
+	
+	<!-- 산업카테고리 리스트 출력 처리 select 쿼리문장 -->
+	<select id="listSelectCategoryIndustry"
+			resultMap="categoryIndustryDb">
+		select
+			sp_industry_cate.industry_number
+			,sp_industry_cate.industry_name
+			,sp_agency.a_name
+		from
+			sp_industry_cate join sp_agency
+		on
+			sp_industry_cate.a_number = sp_agency.a_number
+	</select>
+	
+	<!-- 산업카테고리 등록 처리 insert 쿼리문장 -->
 	<insert id="insertCategoryIndustry"
 			parameterType="java.util.Map">
 		INSERT INTO sp_industry_cate
