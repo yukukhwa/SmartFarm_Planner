@@ -14,6 +14,11 @@ public class CategoryMaterialsController {
 	@Autowired CategoryThemeService categoryThemeService;
 	private static final Logger LOGGER = LoggerFactory.getLogger(CategoryMaterialsController.class);
 	
+	@RequestMapping(value="/listMaterialsCate", method=RequestMethod.GET)
+	public String listSelectCategoryMaterials(Model model) {
+		return "category/materials/listMaterialsCate";
+	}
+	
 	@RequestMapping(value="/addMaterialsCate", method=RequestMethod.POST)
 	public String insertCategoryMaterials(CategoryMaterialsDb categoryMaterialsDb) {
 		System.out.println("insertCateMaterials categoryMaterialsDb====> "+categoryMaterialsDb);
