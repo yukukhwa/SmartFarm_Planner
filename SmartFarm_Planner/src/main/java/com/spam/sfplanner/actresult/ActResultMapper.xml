@@ -3,5 +3,24 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
- <mapper namespace="com.spam.sfplanner.actresult.ActResultMapper">
- </mapper>
+<mapper namespace="com.spam.sfplanner.actresult.ActResultMapper">
+<resultMap type="com.spam.sfplanner.actresult.ActResultDb" id="actResult">
+	<result column="wr_number" property="wrNumber"></result>
+		<collection property="wrHumanPayDb" ofType="com.spam.sfplanner.actresult.WrHumanPayDb">
+			<id column="wr_humanpay_number" property="wrHumanpayNumber"/>
+			<result column="first_name" property="wrNumber"/>
+			<result column="last_name" property="eHumanpayNumber"/>
+			<result column="email" property="wrHumanpayRealcost"/>
+			<result column="phone_number" property="wrHumanpayDate"/>
+		</collection>
+	</resultMap>
+	<insert id="insertActResult" parameterType="com.spam.sfplanner.actresult.ActResultDb">
+		INSERT INTO sp_wr_humanpay (
+			e_humanpay_number
+		)
+		VALUES (
+			#{wrHumanpayRealcost}
+		)
+	</insert>
+</mapper>
+

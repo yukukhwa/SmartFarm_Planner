@@ -55,11 +55,11 @@
 				</p>
 				<div class="input-group">
 					<span class="input-group-addon"><i class="icon_profile"></i></span>
-					<input type="text" class="form-control" name="id" placeholder="id001" autofocus>
+					<input type="text" class="form-control" name="id" value="id001" autofocus>
 				</div>
 				<div class="input-group">
 					<span class="input-group-addon"><i class="icon_key_alt"></i></span>
-					<input type="password" class="form-control" name="pw" placeholder="pw001">
+					<input type="password" class="form-control" name="pw" value="pw001">
 				</div>
 				<label class="checkbox">
 					<span class="pull-left"><a href="${pageContext.request.contextPath}/findId">아이디 찾기</a></span>
