@@ -1,16 +1,22 @@
 // [유국화]
 package com.spam.sfplanner.actresult;
-
 import java.util.Date;
-
-public class WrInsurancePayDb {
-	/*
-	 * 작업단계 결과별 보험비 결과 db
-	 */
-	private int wrNumber; // 작업단계결과 넘버
-	private int eInsurancepayNumber; // 예상 보험비 넘버
-	private double wrInsurancepayMonthcost; // 작업단계결과별 실제 납부한 보험비(월)
-	private Date wrInsurancepayDate; // 보험비 납부일
+/*
+ * 작업단계 결과별 보험비 결과 db
+ */
+public class WrInsurancePayDb {	
+	private int wrInsurancepayNumber; //보험비 결과 넘버
+	private int wrNumber; //작업단계결과 넘버
+	private int eInsurancepayNumber; //예상 보험비 넘버
+	private double wrInsurancepayMonthcost; //작업단계결과별 실제 납부한 보험비(월)
+	private Date wrInsurancepayDate; //보험비 납부일
+	
+	public int getWrInsurancepayNumber() {
+		return wrInsurancepayNumber;
+	}
+	public void setWrInsurancepayNumber(int wrInsurancepayNumber) {
+		this.wrInsurancepayNumber = wrInsurancepayNumber;
+	}
 	public int getWrNumber() {
 		return wrNumber;
 	}
@@ -37,9 +43,8 @@ public class WrInsurancePayDb {
 	}
 	@Override
 	public String toString() {
-		return "WrInsurancePayDb [wrNumber=" + wrNumber + ", eInsurancepayNumber=" + eInsurancepayNumber
-				+ ", wrInsurancepayMonthcost=" + wrInsurancepayMonthcost + ", wrInsurancepayDate=" + wrInsurancepayDate
-				+ "]";
-	}
-	
+		return "WrInsurancePayDb [wrInsurancepayNumber=" + wrInsurancepayNumber + ", wrNumber=" + wrNumber
+				+ ", eInsurancepayNumber=" + eInsurancepayNumber + ", wrInsurancepayMonthcost="
+				+ wrInsurancepayMonthcost + ", wrInsurancepayDate=" + wrInsurancepayDate + "]";
+	}	
 }

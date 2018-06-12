@@ -4,4 +4,23 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.spam.sfplanner.actresult.WrEtcSpendPayMapper">
+ 
+<select id="selectListWrEtcSpendPay"
+		parameterType="Integer"
+		resultType="com.spam.sfplanner.actresult.WrEtcSpendPayDb">
+		SELECT *
+		FROM sp_wr_etcspendpay	
+		WHERE wr_number=#{wrNumber}	
+</select>
+ 
+ <insert id="insertWrEtcSpendPay"
+ 		parameterType="com.spam.sfplanner.actresult.WrEtcSpendPayDb">
+ 	INSERT INTO sp_wr_etcspendpay(
+ 		wr_number
+ 		, e_etcspendpay_number
+ 		, wr_etcspendpay_realcost
+ 		, wr_etcspendpay_date)
+	VALUES (#{wrNumber}, #{eEtcspendpayNumber}, #{wrEtcspendpayRealcost}, #{wrEtcspendpayDate}); 
+ </insert>
+ 
  </mapper>

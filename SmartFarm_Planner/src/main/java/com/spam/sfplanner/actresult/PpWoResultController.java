@@ -11,16 +11,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class PpWoResultController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(PpWoResultController.class);
 	
+	// 작업단계 등록화면 POST
 	@RequestMapping(value="/addWorkResult", method=RequestMethod.POST)
-	public String addWorkResult(PpWoResultRequestDb list) {
+	public String addWorkResult(PpWoResultDb ppWoResultDb) {
 		LOGGER.info("작업단계결과 등록 화면에서 포스트 보냄");
-		System.out.println(list);
-		LOGGER.debug("list : "+list.getInsuranceList());
+		LOGGER.debug("WrEtcSpendPayDb : "+ppWoResultDb.getWrEtcSpendPayDb());
+		LOGGER.debug("WrHumanPayDb : "+ppWoResultDb.getWrHumanPayDb());
+		LOGGER.debug("WrInsurancePayDb : "+ppWoResultDb.getWrInsurancePayDb());
+		LOGGER.debug("WrMaterialsPayDb : "+ppWoResultDb.getWrMaterialsPayDb());
+		LOGGER.debug("WrNeedEquipDb : "+ppWoResultDb.getWrNeedEquipDb());
 
-		return "redirect:/";
+		return "redirect:/home";
 	}
 	
-	
+	// 작업단계 등록화면 GET
 	@RequestMapping(value="/addWorkResult", method=RequestMethod.GET)
 	public String addWorkResult() {
 		LOGGER.info("작업단계결과 등록 화면으로 포워드");
