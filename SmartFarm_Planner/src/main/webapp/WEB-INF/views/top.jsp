@@ -65,7 +65,7 @@
 								<a href="${pageContext.request.contextPath}/oneAgency?aName=${loginMember.corpName}"><i class="icon_desktop"></i>나의 관리기관 정보</a>
 							</li>
 							<li>
-								<a href="#"><i class="icon_documents_alt"></i>카테고리 관리</a>
+								<a href="#"><i class="fa fa-list-alt"></i>카테고리 관리</a>
 							</li>
 						</c:if>
 						<li>

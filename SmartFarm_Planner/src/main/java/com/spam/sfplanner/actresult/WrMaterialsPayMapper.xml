@@ -3,5 +3,64 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
- <mapper namespace="com.spam.sfplanner.actresult.WrMaterialsPayMapper">
- </mapper>
+<mapper namespace="com.spam.sfplanner.actresult.WrMaterialsPayMapper">
+	<!-- 작업단계넘버를 매개변수로 받아 해당하는 원자재비결괄르 삭제하는 쿼리문 -->
+	<delete id="deleteWrMaterialsPay"
+			parameterType="Integer">
+		DELETE FROM
+			sp_wr_materialspay
+		WHERE wr_materialspay_number = #{wrNumber}
+	</delete>
+	<!-- WrMaterialsPayDb를 매개변수로 받아 수정하고 싶은 원자재비결과넘버 조건에 맞춘 원자재비결과 내용을 수정하는 쿼리문 -->
+	<update id="updateWrMaterialsPay"
+			parameterType="com.spam.sfplanner.actresult.WrMaterialsPayDb">
+		UPDATE
+			sp_wr_materialspay
+		SET
+			wr_materialspay_quantity = #{wrMaterialspayQuantity},
+			wr_materialspay_unitcost = #{wrMaterialspayUnitcost}
+		WHERE wr_materialspay_number = #{wrMaterialspayNumber}
+	</update>
+	<!-- 원자재비결과넘버를 매개변수로 받아 해당하는 원자재비결과 한개를 출력하여 WrMaterialsPayDb type으로 받는 쿼리문 -->
+	<select id="oneSelectWrMaterialsPay"
+			parameterType="Integer"
+			resultType="com.spam.sfplanner.actresult.WrMaterialsPayDb">
+		SELECT
+			wr_materialspay_number AS wrMaterialspayNumber,
+			wr_number AS wrNumber,
+			e_materialspay_number AS eMaterialspayNumber,
+			wr_materialspay_quantity AS wrMaterialspayQuantity,
+			wr_materialspay_unitcost AS wrMaterialspayUnitcost
+		FROM sp_wr_materialspay
+		WHERE wr_number = #{wrMaterialspayNumber}
+	</select>
+	<!-- 작업단계넘버를 매개변수로 받아 해당하는 원자재비결과 리스트를 WrMaterialsPayDb type으로 받는 쿼리문 -->
+	<select id="listSelectWrMaterialsPay"
+			parameterType="Integer"
+			resultType="com.spam.sfplanner.actresult.WrMaterialsPayDb">
+		SELECT
+			wr_materialspay_number AS wrMaterialspayNumber,
+			wr_number AS wrNumber,
+			e_materialspay_number AS eMaterialspayNumber,
+			wr_materialspay_quantity AS wrMaterialspayQuantity,
+			wr_materialspay_unitcost AS wrMaterialspayUnitcost
+		FROM sp_wr_materialspay
+		WHERE wr_number = #{wrNumber}
+	</select>
+	<!-- 매개변수를 원자재비결과 db로 받아 insert하는 쿼리문 -->
+	<insert id="insertWrMaterialsPay"
+			parameterType="com.spam.sfplanner.actresult.WrMaterialsPayDb">
+		INSERT INTO sp_wr_materialspay (
+			wr_number,
+			e_materialspay_number,
+			wr_materialspay_quantity,
+			wr_materialspay_unitcost
+		)
+		VALUES (
+			#{wrNumber},
+			#{eMaterialspayNumber},
+			#{wrMaterialspayQuantity},
+			#{wrMaterialspayUnitcost}
+		)
+	</insert>
+</mapper>

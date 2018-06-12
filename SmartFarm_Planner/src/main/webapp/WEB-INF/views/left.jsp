@@ -17,14 +17,26 @@
 					<li><a class="" href="#">전체 계획서</a></li>
 				</ul>
 			</li>
-			<li class="sub-menu">
-				<a href="#" class=""><i class="icon_desktop"></i><span>실행결과</span></a>
-			</li>
+			<c:if test="${loginMember.level eq 'farm'||loginMember.level eq 'agency'}">
+				<li class="sub-menu">
+					<a href="javascript:;" class=""><i class="icon_desktop"></i><span>실행결과</span><span class="menu-arrow arrow_carrot-right"></span></a>
+					<ul class="sub">
+						<c:if test="${loginMember.level eq 'farm'}">
+							<li><a class="" href="${pageContext.request.contextPath}/choicePlanner">등록</a></li>
+							<li><a class="" href="#">나의 리스트</a></li>
+						</c:if>
+						<li><a class="" href="#">전체 리스트</a></li>
+					</ul>
+				</li>
+				<li>
+					<a class="" href="#"><i class="icon_piechart"></i><span>비교분석</span></a>
+				</li>
+			</c:if>
 			<li>
 				<a class="" href="#"><i class="icon_genius"></i><span>대여물품</span></a>
 			</li>
 			<li class="sub-menu">
-				<a href="javascript:;" class=""><i class="icon_document_alt"></i><span>카테고리</span><span class="menu-arrow arrow_carrot-right"></span></a>
+				<a href="javascript:;" class=""><i class="icon_table"></i><span>카테고리</span><span class="menu-arrow arrow_carrot-right"></span></a>
 				<ul class="sub">
 					<li><a class="" href="#">거래처</a></li>
 					<li><a class="" href="#">장비종류</a></li>

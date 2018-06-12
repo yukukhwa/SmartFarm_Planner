@@ -1,3 +1,4 @@
+/*[김기성]*/
 package com.spam.sfplanner.actresult;
 
 import java.util.List;
@@ -8,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spam.sfplanner.plan.WoHumanPayDao;
+import com.spam.sfplanner.plan.WoHumanPayDb;
+
 @Service
 @Transactional
 public class ActResultService {
@@ -16,15 +20,16 @@ public class ActResultService {
 	private ActResultDao actResultDao;
 	@Autowired
 	private WrHumanPayDao wrHumanPayDao;
+	@Autowired
+	private WoHumanPayDao woHumanPayDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ActResultService.class);
 	
 	public int insertActResult(ActResultDb actResultDb) {
-		System.out.println(actResultDb);
-		System.out.println(actResultDb.getWrHumanPayDb());
-		for(WrHumanPayDb wrHumanPayDb : actResultDb.getWrHumanPayDb()) {
-			System.out.println(wrHumanPayDb);
-		}
 		return 0;
+	}
+	
+	public List<WoHumanPayDb> listSelectWoHumanPay() {
+		return woHumanPayDao.listSelectWoHumanPay();
 	}
 }

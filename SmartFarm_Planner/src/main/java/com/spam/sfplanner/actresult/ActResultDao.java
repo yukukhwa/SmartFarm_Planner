@@ -1,3 +1,4 @@
+/*[김기성]*/
 package com.spam.sfplanner.actresult;
 
 import org.mybatis.spring.SqlSessionTemplate;

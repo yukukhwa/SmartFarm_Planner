@@ -4,14 +4,82 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.spam.sfplanner.actresult.ActResultMapper">
-<resultMap type="com.spam.sfplanner.actresult.ActResultDb" id="actResult">
-	<result column="wr_number" property="wrNumber"></result>
-		<collection property="wrHumanPayDb" ofType="com.spam.sfplanner.actresult.WrHumanPayDb">
-			<id column="wr_humanpay_number" property="wrHumanpayNumber"/>
-			<result column="first_name" property="wrNumber"/>
-			<result column="last_name" property="eHumanpayNumber"/>
-			<result column="email" property="wrHumanpayRealcost"/>
-			<result column="phone_number" property="wrHumanpayDate"/>
+	<!-- 실행결과 리스트 db에서 1:N관계를 해결하기 위해 resultMap을 사용하였다
+	실행결과와 작업단계가 1:N관계라 작업단계db를 collection하였다.
+	작업단계와 보험비/기타지출비/원자재비/필요장비/인건비/메모가 1:N관계라 각각 collection하였다.
+	필요장비와 대여비가 1:N 관계라 collection하였다
+	메모와 메모파일이 1:N관계라 collection하였다.
+	외래키로 되어있는 컬럼이 상위와 하위에 중복되더라도 테이블에 컬림이 되어있으므로 추가해두었다. -->
+	<resultMap type="com.spam.sfplanner.actresult.ActResultDb" id="actResult">
+		<id column="pp_resultlist_number" property="ppResultlistNumber"/>
+		<result column="pp_number" property="ppNumber"/>
+		<result column="f_number" property="fNumber"/>
+		<result column="pp_resultlist_date" property="ppResultlistDate"/>
+		<result column="f_member_id" property="fMemberId"/>
+		<collection property="ppWoResultDb" ofType="com.spam.sfplanner.actresult.PpWoResultDb">
+			<id column="wr_number" property="wrNumber"/>
+			<result column="pp_resultlist_number" property="ppResultlistNumber"/>
+			<result column="pp_work_number" property="ppWorkNumber"/>
+			<result column="wr_totalarea" property="wrTotalarea"/>
+			<result column="wr_reworkarea" property="wrReworkarea"/>
+			<collection property="wrInsurancePayDb" ofType="com.spam.sfplanner.actresult.WrInsurancePayDb">
+				<id column="wr_insurancepay_number" property="wrInsurancepayNumber"/>
+				<result column="wr_number" property="wrNumber"/>
+				<result column="e_insurancepay_number" property="eInsurancepayNumber"/>
+				<result column="wr_insurancepay_monthcost" property="wrInsurancepayMonthcost"/>
+				<result column="wr_insurancepay_date" property="wrInsurancepayDate"/>
+			</collection>
+			<collection property="wrEtcSpendPayDb" ofType="com.spam.sfplanner.actresult.WrEtcSpendPayDb">
+				<id column="wr_etcspendpay_number" property="wrEtcspendpayNumber"/>
+				<result column="wr_number" property="wrNumber"/>
+				<result column="e_etcspendpay_number" property="eEtcspendpayNumber"/>
+				<result column="wr_etcspendpay_realcost" property="wrEtcspendpayRealcost"/>
+				<result column="wr_etcspendpay_date" property="wrEtcspendpayDate"/>
+			</collection>
+			<collection property="wrMaterialsPayDb" ofType="com.spam.sfplanner.actresult.WrMaterialsPayDb">
+				<id column="wr_materialspay_number" property="wrMaterialspayNumber"/>
+				<result column="wr_number" property="wrNumber"/>
+				<result column="e_materialspay_number" property="eMaterialspayNumber"/>
+				<result column="wr_materialspay_quantity" property="wrMaterialspayQuantity"/>
+				<result column="wr_materialspay_unitcost" property="wrMaterialspayUnitcost"/>
+			</collection>
+			<collection property="wrNeedEquipDb" ofType="com.spam.sfplanner.actresult.WrNeedEquipDb">
+				<id column="wr_needequip_number" property="wrNeedequipNumber"/>
+				<result column="wr_number" property="wrNumber"/>
+				<result column="e_needequip_number" property="eNeedequipNumber"/>
+				<result column="wr_needequip_state" property="wrNeedequipState"/>
+				<collection property="wrNeRentPayDb" ofType="com.spam.sfplanner.actresult.WrNeRentPayDb">
+					<id column="ne_rentpay_number" property="neRentpayNumber"/>
+					<result column="wr_needequip_number" property="wrNeedequipNumber"/>
+					<result column="ne_rentpay_cost" property="neRentpayCost"/>
+					<result column="ne_rentpay_date" property="neRentpayDate"/>
+					<result column="ne_e_rentpay_number" property="neERentpayNumber"/>
+				</collection>
+			</collection>
+			<collection property="wrHumanPayDb" ofType="com.spam.sfplanner.actresult.WrHumanPayDb">
+				<id column="wr_humanpay_number" property="wrHumanpayNumber"/>
+				<result column="wr_number" property="wrNumber"/>
+				<result column="e_humanpay_number" property="eHumanpayNumber"/>
+				<result column="wr_humanpay_realcost" property="wrHumanpayRealcost"/>
+				<result column="wr_humanpay_date" property="wrHumanpayDate"/>
+			</collection>
+			<collection property="memoDb" ofType="com.spam.sfplanner.actresult.MemoDb">
+				<id column="wr_memo_number" property="wrHumanpayNumber"/>
+				<result column="theme_number" property="wrNumber"/>
+				<result column="wr_number" property="wrNumber"/>
+				<result column="wr_memo_subject" property="wrNumber"/>
+				<result column="wr_memo_content" property="wrNumber"/>
+				<collection property="memoFileDb" ofType="com.spam.sfplanner.actresult.MemoFileDb">
+					<id column="memo_file_number" property="memoFileNumber"/>
+					<result column="wr_memo_number" property="wrMemoNumber"/>
+					<result column="memo_file_realname" property="memoFileFealname"/>
+					<result column="memo_file_randomname" property="memoFileRandomname"/>
+					<result column="memo_file_ext" property="memoFileExt"/>
+					<result column="memo_file_type" property="memoFileType"/>
+					<result column="memo_file_size" property="memoFileSize"/>
+					<result column="memo_file_date" property="memoFileDate"/>
+				</collection>
+			</collection>
 		</collection>
 	</resultMap>
 	<insert id="insertActResult" parameterType="com.spam.sfplanner.actresult.ActResultDb">
