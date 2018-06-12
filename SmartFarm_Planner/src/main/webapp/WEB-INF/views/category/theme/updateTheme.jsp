@@ -53,6 +53,7 @@
 					</div>
 					<button id="updateTheme">테마 카테고리 수정하기</button>
 				</form>
+				<a href="${pageContext.request.contextPath}/listTheme">테마 리스트로 가기</a>
 			</div>
 			</c:if>
 		</section>

@@ -71,6 +71,8 @@
 	    			</c:forEach>
 	    		</table>
 	    		<button id="goHome">메인화면으로</button>
+	    		<a href="${pageContext.request.contextPath}/addTheme">테마 등록하기</a>
+	    		<a href="${pageContext.request.contextPath}/listMaterialsCate">원자재비 리스트로 가기</a>
     		</c:if>
     	</section>
     </section>

@@ -60,6 +60,7 @@
 	    				</div> <br>
 	    				<button id="updateMaterials">원자재 카테고리 수정하기</button>
 	    			</form>
+	    			<a href="${pageContext.request.contextPath}/listMaterialsCate">원자재 카테고리 리스트로 가기</a>
 	    		</div>
     		</c:if>
     	</section>

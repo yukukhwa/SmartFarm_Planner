@@ -112,6 +112,7 @@
 					<button id="updateFarmMember">내정보 수정하기</button>
 					<button id="goHome">메인으로</button>
 					<button id="deleteFarmMember">탈퇴하기</button>
+					<a href="${pageContext.request.contextPath}/oneFarm?fName=${farmMemberInfo.farmDb.fName}">나의 농가 정보로 가기</a>
 				</div>
 			</c:if>
 			</section>

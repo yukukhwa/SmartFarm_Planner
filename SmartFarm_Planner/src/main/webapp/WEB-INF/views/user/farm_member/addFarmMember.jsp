@@ -204,6 +204,7 @@
 			<button id="insertFarmMember">회원가입</button>
 				<!-- 회원가입 폼 끝 -->
 			</form>
+			<a href="${pageContext.request.contextPath}/listFarm">농가 리스트로 가기</a>
 		</section>
 	</section>
 </body>

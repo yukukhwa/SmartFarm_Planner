@@ -81,6 +81,7 @@
 					</c:forEach>
 				</table>
 				<button id="goHome">메인으로</button>
+				<a href="${pageContext.request.contextPath}/addMaterialsCate">원자재 카테고리 등록하기</a>
 			</div>
 			</c:if>
 		</section>

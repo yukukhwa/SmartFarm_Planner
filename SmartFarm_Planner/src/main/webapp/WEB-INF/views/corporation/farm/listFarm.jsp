@@ -61,6 +61,7 @@
 					</c:forEach>
 				</table>
 				<button id="goHome">메인으로 가기</button>
+				<a href="${pageContext.request.contextPath}/oneFarmMember?fMemberId=${loginMember.id}">내 정보 보기</a>
 			</div>
 		</section>
 	</section>

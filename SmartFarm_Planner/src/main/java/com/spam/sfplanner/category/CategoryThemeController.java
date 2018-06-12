@@ -66,7 +66,7 @@ public class CategoryThemeController {
 		LOGGER.info("CategoryThemeController addTheme post호출");
 		categoryThemeService.insertCategoryTheme(categoryThemeDb);
 		System.out.println("categoryThemeDb==> "+categoryThemeDb);
-		return "redirect:/";
+		return "category/theme/listTheme";
 	}
 	
 	/*addTheme에서 겟방식으로 요청하면 테마카테고리를 등록하는 폼으로 포워드*/

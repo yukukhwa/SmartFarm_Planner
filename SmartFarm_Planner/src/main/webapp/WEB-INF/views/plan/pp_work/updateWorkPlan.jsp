@@ -21,6 +21,8 @@
      <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
+    		<h3>작업단계 수정화면</h3>
+    			<a href="${pageContext.request.contextPath}/listWorkPlan">작업단계 리스트로 가기</a>
     	</section>
     </section>
 </body>

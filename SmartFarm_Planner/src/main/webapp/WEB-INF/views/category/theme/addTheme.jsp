@@ -44,6 +44,7 @@
 			    		</div>
 			    		<button id="insertThemeCate">테마등록하기</button>
 		    		</form>
+		    		<a href="${pageContext.request.contextPath}/listTheme">테마 리스트로 가기</a>
 	    		</c:if>
     		</div>
     	</section>

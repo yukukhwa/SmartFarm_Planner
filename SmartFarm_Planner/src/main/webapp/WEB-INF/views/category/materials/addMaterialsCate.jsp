@@ -56,6 +56,7 @@
     						</label>
 	    				</div>
 	    				<button id="insertMaterialsCate">원자재카테고리 등록하기</button>
+	    				<a href="${pageContext.request.contextPath}/listMaterialsCate">원자재 카테고리 리스트로 가기</a>
 	    			</form>
 	    		</div>
 			</c:if>

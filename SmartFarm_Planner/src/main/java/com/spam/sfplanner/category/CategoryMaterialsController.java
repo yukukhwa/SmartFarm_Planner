@@ -46,7 +46,6 @@ public class CategoryMaterialsController {
 	public String listSelectCategoryMaterials(Model model
 										, @RequestParam(value="materialsCateSearchOption")String materialsCateSearchOption
 										, @RequestParam(value="searchKeyword", defaultValue="")String searchKeyword) {
-		
 		List<CategoryMaterialsDb> list = categoryMaterialsService.searchListSelectCategoryMaterials(searchKeyword, materialsCateSearchOption);
 		model.addAttribute("list", list);
 		System.out.println("list==> "+list);
@@ -65,7 +64,7 @@ public class CategoryMaterialsController {
 	public String insertCategoryMaterials(CategoryMaterialsDb categoryMaterialsDb) {
 		System.out.println("insertCateMaterials categoryMaterialsDb====> "+categoryMaterialsDb);
 		categoryMaterialsService.insertCategoryMaterials(categoryMaterialsDb);
-		return "redirect:/";
+		return "category/materials/listMaterialsCate";
 	}
 	
 	/*addMaterialsCate로 겟방식으로 요철받을때 addMaterialsCate view로 포워드*/

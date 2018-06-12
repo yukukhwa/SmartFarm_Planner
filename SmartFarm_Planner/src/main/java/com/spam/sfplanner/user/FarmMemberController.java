@@ -85,7 +85,7 @@ public class FarmMemberController {
 				farmService.insertFarm(farmMemberView);
 			}
 			farmMemberService.insertFarmMember(farmMemberView);
-			return "redirect:/";
+			return "user/farm_member/addFarmMember";
 		}
 		
 		/*농가 회원가입 폼으로 가기*/
