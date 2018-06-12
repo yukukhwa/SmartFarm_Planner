@@ -27,11 +27,59 @@
 		</collection>
 	</resultMap>
 	
+	<delete id="deleteCompanyMember"
+			parameterType="String">
+		delete 
+		from sp_deal_comapny_member
+		where c_member_id=#{cMemberId}		
+	</delete>
+	
+	<!-- 업체 회원정보 수정쿼리문장 -->
+	<update id="updateCompanyMember"
+			parameterType="com.spam.sfplanner.user.CompanyMemberView">
+	update sp_deal_company_member
+	set
+		c_member_pw=#{cMemberPw}
+		,c_member_name=#{cMemberName}
+		,c_member_phone=#{cMemberPhone}
+		,c_member_email=#{cMemberEmail}
+		,c_member_doroaddress=#{cMemberDoroaddress}
+		,c_member_jibunaddress=#{cMemberJibunaddress}
+		,c_member_detailaddress=#{cMemberDetailaddress}
+	where c_member_id=#{cMemberId}
+	</update>
+	
+	<!-- 업체회원 상세내용 출력쿼리문장 -->
+	<select id="oneSelectCompanyMember"
+			parameterType="String"
+			resultMap="companyMemberDb">
+	select
+		 sp_deal_company_member.c_member_id
+		 ,sp_deal_company_member.c_member_pw
+		 ,sp_deal_company_member.c_number
+		 ,sp_deal_company.c_name
+		 ,sp_deal_company_member.c_member_name
+		 ,sp_deal_company_member.c_member_phone
+		 ,sp_deal_company_member.c_member_gender
+		 ,sp_deal_company_member.c_member_email
+		 ,sp_deal_company_member.c_member_doroaddress
+		 ,sp_deal_company_member.c_member_jibunaddress
+		 ,sp_deal_company_member.c_member_detailaddress
+	 from
+	 	sp_deal_company_member join sp_deal_company
+	 on
+	 	sp_deal_company_member.c_number = sp_company.c_number
+	 where
+	 	sp_deal_company_member.c_member_id = #{cMemberId}          
+	</select>
+	
+	<!-- 업체 직원 리스트 출력 처리 쿼리문장 -->
 	<select id="listSelectCompanyMember"
 			parameterType="String"
 			resultMap="companyMemberDb">
 	SELECT
-		sp_deal_company_member.c_member_name
+		sp_deal_company_member.c_member_id
+		,sp_deal_company_member.c_member_name
 		,sp_deal_company_member.c_member_phone
 		,sp_deal_company_member.c_member_email
 	FROM
@@ -39,9 +87,10 @@
 	ON
 		sp_deal_company_member.c_number = sp_deal_company.c_number
 	WHERE
-		sp_deal_company_member.c_member_name = #{cMemberName}	
+		sp_deal_company.c_name = #{cName}	
 	</select>
 	
+	<!-- 업체 회원등록 할때 아이디 중복체크 쿼리문장 -->
 	<select id="checkId"
 			parameterType="String" 
 			resultMap="companyMemberDb">
@@ -52,32 +101,34 @@
 		where
 			sp_deal_company_member.c_member_id = #{cMemberId}  
 	</select>
-
+	
+	<!-- 업체 회원 등록하는 쿼리문장 -->
 	<insert id="insertCompanyMember" parameterType="com.spam.sfplanner.user.CompanyMemberView">
-		INSERT INTO sp_deal_company_member
-	(c_member_id
-	,c_number
-	,c_member_pw
-	,c_member_name
-	,c_member_phone
-	,c_member_gender
-	,c_member_email
-	,c_member_privacy
-	,c_member_doroaddress
-	,c_member_jibunaddress
-	,c_member_detailaddress
-	,c_member_registdate)
-	VALUES (#{cMemberId}
-	,#{cNumber}
-	,#{cMemberPw}
-	,#{cMemberName}
-	,#{cMemberPhone}
-	,#{cMemberGender}
-	,#{cMemberEmail}
-	,#{cMemberPrivacy}
-	,#{cMemberDoroaddress}
-	,#{cMemberJibunaddress}
-	,#{cMemberDetailaddress}
-	,NOW())
+		insert into sp_deal_company_member
+			(c_member_id
+			,c_number
+			,c_member_pw
+			,c_member_name
+			,c_member_phone
+			,c_member_gender
+			,c_member_email
+			,c_member_privacy
+			,c_member_doroaddress
+			,c_member_jibunaddress
+			,c_member_detailaddress
+			,c_member_registdate)
+		values 
+			(#{cMemberId}
+			,#{cNumber}
+			,#{cMemberPw}
+			,#{cMemberName}
+			,#{cMemberPhone}
+			,#{cMemberGender}
+			,#{cMemberEmail}
+			,#{cMemberPrivacy}
+			,#{cMemberDoroaddress}
+			,#{cMemberJibunaddress}
+			,#{cMemberDetailaddress}
+			,NOW())
 	</insert>
 </mapper>

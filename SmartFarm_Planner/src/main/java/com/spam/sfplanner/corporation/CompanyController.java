@@ -21,22 +21,42 @@ public class CompanyController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CompanyController.class);
 	
+	/*업체 삭제처리 Controller*/
+	@RequestMapping(value="/deleteCompany" , method = RequestMethod.GET)
+	public String deleteCompany(int cNumber, String cName) {
+		companyService.deleteCompany(cNumber, cName);
+		return "redirect:/logout";
+	}
+	
+	/*업체 수정처리 Controller*/
+	@RequestMapping(value="/updateCompany" , method = RequestMethod.POST)
+	public String updateCompany(CompanyMemberView companyMemberView) {
+		int result = companyService.updateCompany(companyMemberView);
+		String cName  = companyMemberView.getcName();
+		if(result == 0) {
+			return "redirect:/updateCompany?cName="+cName;
+		}
+		return "redirect:/oneCompany?cName"+cName;
+	}
+	
+	/*업체 수정화면 출력  Controller*/
+	@RequestMapping(value="/updateCompany" , method = RequestMethod.GET)
+	public String updateCompany(String cName, Model model) {
+		model.addAttribute("company", companyService.updateCompany(cName));
+		return "corporation/company/updateCompany";
+	}
+	
+	/*업체 상세내용 출력 Controller*/
 	@RequestMapping(value="/oneCompany" , method = RequestMethod.GET)
-	public String oneSelectCompany(@RequestParam(value="cName",required=true)String cName,Model model) {
+	public String oneSelectCompany(String cName,Model model) {
 		model.addAttribute("companyDb", companyService.oneSelectCompany(cName));
 		return "corporation/company/oneCompany";
 	}
 	
-	@RequestMapping(value="/listCompany" , method = RequestMethod.POST)
-	public String listSelectCompany(@RequestParam(value="cName",required=false)String cName,Model model) {
-		model.addAttribute("list", companyService.listSelectCompany(cName));
-		return "corporation/company/listCompany";
-	}
-	
+	/*업체 리스트 출력 Controller*/
 	@RequestMapping(value="/listCompany" , method = RequestMethod.GET)
 	public String listSelectCompany(Model model) {
-		List<String> list = companyService.listSelectCompany();
-		model.addAttribute("list", list);
+		model.addAttribute("list", companyService.listSelectCompany());
 		return "corporation/company/listCompany";
 		
 	}

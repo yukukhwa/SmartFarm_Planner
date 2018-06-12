@@ -1,4 +1,3 @@
-<!-- 배건혜 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -6,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>addCompanyMember</title>
-	<jsp:include page="../../css.jsp"/>
+	<jsp:include page="/WEB-INF/views/css.jsp"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(document).ready(function(){
@@ -35,13 +34,13 @@
 											+'지번주소 : <input type="text" name="cJibunaddress" id="cJibunaddress">'
 										+'</div>'
 										+'<div>'
-											+'업체인원 : <input type="text" name="cParty" id="cParty">명'
+											+'업체인원 : <input type="number" name="cParty" id="cParty">명'
 										+'<div>');
 					return;
 				}
 				return;
 			});
-	});/* 
+	}); 
 	$('#submitCompanyMember').click(function(){
 		var cMemberPrivacy = $('#cMemberPrivacy').val();
 		var dealNumber = $('#dealNumber').val();
@@ -146,14 +145,14 @@
 			return false;
 		}
 		$('form#companyMember').submit();
-	});	  */
+	});	
 	</script>
 </head>
 <body>
 	<!-- container section start -->
-		<jsp:include page="../../top.jsp"></jsp:include>
+		<jsp:include page="/WEB-INF/views/top.jsp"></jsp:include>
     <!--sidebar start-->
-    	<jsp:include page="../../left.jsp"></jsp:include>
+    	<jsp:include page="/WEB-INF/views/left.jsp"></jsp:include>
     <!--sidebar end-->
     
 	 <!--main content start-->
@@ -193,7 +192,7 @@
 						지번주소 : <input type="text" name="cJibunaddress" id="cJibunaddress" placeholder="지번주소를 입력해주세요">
 					</div>
 					<div>
-						업체인원 : <input type="text" name="cParty" id="cParty" placeholder="숫자로 입력해주세요">명
+						업체인원 : <input type="number" name="cParty" id="cParty" placeholder="숫자로 입력해주세요">명
 					</div>
 				</div>
 				<div>
@@ -219,7 +218,7 @@
 				</div>
 				<div>
 					성별 :
-					<input type="radio" name="cMemberGender" value="남" checked="checked">남
+					<input type="radio"  name="cMemberGender" value="남" checked="checked">남
 					<input type="radio" name="cMemberGender" value="여">여
 				</div>
 				<div>
@@ -233,10 +232,8 @@
 					<input type="text" name="cMemberJibunaddress" id="cMemberJibunaddress" placeholder="지번주소를 입력해주세요">
 					상세주소
 					<input type="text" name="cMemberDetailaddress" id="cMemberDetailaddress" placeholder="상세주소를 입력해주세요">
-				</div>
-				<div>
-					<button type="submit" id="submitCompanyMember" value="submit">회원가입 </button>		
-				</div>		
+				</div>	
+			<button type="submit" id="submitCompanyMember">회원가입 </button>
 			</form>
 		</section>
 	</section>

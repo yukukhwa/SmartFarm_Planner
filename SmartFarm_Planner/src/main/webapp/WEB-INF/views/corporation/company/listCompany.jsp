@@ -5,6 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>listCompany</title>
+	<jsp:include page="/WEB-INF/views/css.jsp"/>
 </head>
 <body>
 	<!-- container section start -->
@@ -17,29 +18,20 @@
     <section id="main-content">
     	<section class="wrapper">
 			<h5>업체리스트</h5>
-			<table border="1">
+			<form action="${pageContext.request.contextPath}/listCompany">
+				<input type="text" name="cName">&nbsp;<button>업체검색</button>
+			</form>
+			<table>
 				<thead>
 					<tr>
-						<th>업체넘버</th>
-						<th>거래처넘버</th>
 						<th>업체명</th>
-						<th>업체인원</th>
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="companyDb" items="${list}">
+					<c:forEach var="company" items="${list}">
 						<tr>
 							<td>
-								${companyDb.cNumber}
-							</td>
-							<td>
-								${companyDb.DealNumber}
-							</td>
-							<td>
-								${companyDb.cName}
-							</td>
-							<td>
-								${companyDb.cParty}
+								<a href="${pageContext.request.contextPath}/oneCompany?cName=${company.cName}">${company.cName}</a>
 							</td>
 						</tr>
 					</c:forEach>

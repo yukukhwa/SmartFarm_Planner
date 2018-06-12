@@ -18,6 +18,7 @@
      <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
+    		<h3>${cName}업체의 회원 리스트</h3>
 			<table>
 				<thead>
 					<tr>

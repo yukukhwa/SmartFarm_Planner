@@ -9,37 +9,75 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.spam.sfplanner.corporation.CompanyService;
 
 @Controller
 public class CompanyMemberController {
-	@Autowired 
-	private CompanyMemberService companyMemberService;
-	private CompanyService companyService;
+	
 	private static final Logger logger = LoggerFactory.getLogger(CompanyMemberController.class);
+	
+	@Autowired
+	private CompanyMemberService companyMemberService;
+	@Autowired
+	private CompanyService companyService;
+	
+	
 		
+		/*업체 회원 삭제 처리 Controller*/
+		@RequestMapping(value="/deleteCompanyMember", method=RequestMethod.GET)
+		public String deleteCompanyMember(String cMemberId) {
+			companyMemberService.deleteCompanyMember(cMemberId);
+			return "redirect:/logout";
+		}
+		
+		/*업체 회원 수정 처리 Controller*/
+		@RequestMapping(value="/updateCompanyMember", method=RequestMethod.POST)
+		public String updateCompanyMember(CompanyMemberView companyMemberView) {
+			companyMemberService.updateCompanyMember(companyMemberView);
+			return "redirect:/oneCompanyMember?cMemberId="+companyMemberView.getcMemberId();
+		}
+		
+		/*업체 회원 수정 화면 호출 Controller*/
+		@RequestMapping(value="/updateCompanyMember", method=RequestMethod.GET)
+		public String updateCompanyMember(Model model, String cMemberId) {
+			model.addAttribute("updateCompany", companyMemberService.oneSelectCompanyMember(cMemberId));
+			return "user/company_member/updateCompanyMember";
+		}
+		
+		/*업체 회원 정보 상세내용 Controller*/ 
+		@RequestMapping(value="/oneCompanyMember", method=RequestMethod.GET)
+		public String oneSelectCompanyMember(Model model, String cMemberId) {
+			model.addAttribute("CompanyMember", companyMemberService.oneSelectCompanyMember(cMemberId));
+			return "user/company_member/oneCompanyMember";
+		}
+		
+		/*업체회원 전체 리스트 Controller*/
 		@RequestMapping(value="/listCompanyMember", method=RequestMethod.GET)
-		public String listSelectCompanyMember(@RequestParam(value="cMemberName",required=true)String cMemberName, Model model) {
-			model.addAttribute("list", companyMemberService.listSelectCompanyMember(cMemberName));
-			model.addAttribute("cMemberName", cMemberName);
+		public String listSelectCompanyMember(String cName, Model model) {
+			model.addAttribute("list", companyMemberService.listSelectCompanyMember(cName));
+			model.addAttribute("cName", cName);
 			return "user/company_member/listCompanyMember";
 		}
-		@RequestMapping(value="/addCompanyMember", method=RequestMethod.GET)
-		public String insertcompanyMember() {
-			return "user/company_member/addCompanyMember";
-		}
+		
+		/*업체 회원가입 처리 Controller*/
 		@Transactional
 		@RequestMapping(value="/addCompanyMember", method=RequestMethod.POST)
-		public String insertcompanyMember(CompanyMemberView companyMemberView) {
+		public String insertCompanyMember(CompanyMemberView companyMemberView) {
 			logger.info("CompanyMemberController 호출");
+			logger.info("CompanyMemberView 내용" + companyMemberView.toString());
 			int cNumber = companyMemberView.getcNumber();
 			if(cNumber == 0) {
 				companyService.insertCompany(companyMemberView);
 			}
+			
 			companyMemberService.insertCompanyMember(companyMemberView);
 			return "redirect:/";
+		}
+		
+		/*업체 회원가입 화면 호출 Controller*/ 
+		@RequestMapping(value="/addCompanyMember", method=RequestMethod.GET)
+		public String insertCompanyMember() {
+			return "user/company_member/addCompanyMember";
 		}
 		
 }

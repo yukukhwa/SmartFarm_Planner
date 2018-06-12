@@ -1,8 +1,10 @@
 package com.spam.sfplanner.category;
 
+import com.spam.sfplanner.corporation.AgencyDb;
+
 public class CategoryDealDb {
 	private int dealNumber;
-	private int aNumber;
+	private AgencyDb agencyDb;
 	private String dealClassification;
 	public int getDealNumber() {
 		return dealNumber;
@@ -10,11 +12,11 @@ public class CategoryDealDb {
 	public void setDealNumber(int dealNumber) {
 		this.dealNumber = dealNumber;
 	}
-	public int getaNumber() {
-		return aNumber;
+	public AgencyDb getAgencyDb() {
+		return agencyDb;
 	}
-	public void setaNumber(int aNumber) {
-		this.aNumber = aNumber;
+	public void setAgencyDb(AgencyDb agencyDb) {
+		this.agencyDb = agencyDb;
 	}
 	public String getDealClassification() {
 		return dealClassification;
@@ -24,7 +26,8 @@ public class CategoryDealDb {
 	}
 	@Override
 	public String toString() {
-		return "CategoryDealDb [dealNumber=" + dealNumber + ", aNumber=" + aNumber + ", dealClassification="
+		return "CategoryDealDb [dealNumber=" + dealNumber + ", agencyDb=" + agencyDb + ", dealClassification="
 				+ dealClassification + "]";
 	}
+	
 }
