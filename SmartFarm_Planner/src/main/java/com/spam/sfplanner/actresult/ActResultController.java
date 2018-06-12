@@ -21,13 +21,32 @@ public class ActResultController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ActResultController.class);
 	
+	/*
+	 * 자신의 농가 실행결과 리스트를 보여주는 화면 매핑
+	 */
+	@RequestMapping(value="/oneSelectActResult", method = RequestMethod.GET)
+	public String oneSelectActResult () {
+		return "actresult/oneActResultList";
+	}
+	/*
+	 * 실행결과리스트 전체 보여주는 화면 매핑
+	 */
+	@RequestMapping(value="/listSelectActResult", method = RequestMethod.GET)
+	public String listSelectActResult () {
+		return "actresult/askActResultList";
+	}
+	/*
+	 * 실행결과 등록 전 계획서 선택 화면 매핑
+	 */
 	@RequestMapping(value="/choicePlanner", method = RequestMethod.GET)
 	public String choicePlanner (HttpSession session, Model model) {
 		LoginDb loginDb = (LoginDb) session.getAttribute("loginMember");
 		model.addAttribute("plannerList", loginDb.getCorpNumber());
 		return "actresult/choicePlanner";
 	}
-	
+	/*
+	 * 실행결과리스트 등록화면으로 가는 매핑
+	 */
 	@RequestMapping(value="/insertActResult", method = RequestMethod.GET)
 	public String insertActResult (Model model) {
 		model.addAttribute("humanPayList", actResultService.listSelectWoHumanPay());
