@@ -11,13 +11,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.mysql.fabric.xmlrpc.base.Value;
 
 @Controller
 public class FarmController {
 	@Autowired FarmService farmService;
 		private final static Logger LOGGER = LoggerFactory.getLogger(FarmController.class);
-		
 		
 		/*updateFarm에서 get방식으로 들어올 때 수정화면 조회*/
 		@RequestMapping(value="updateFarm", method=RequestMethod.GET)
@@ -30,7 +28,7 @@ public class FarmController {
 		@RequestMapping(value="oneFarm", method=RequestMethod.GET)
 		public String oneSelectFarm(Model model, String fName) {
 			LOGGER.info("FarmController oneSelectFarm 호출");
-			model.addAttribute("oneFarmDb", farmService.oneSelectFarm(fName));
+			model.addAttribute("farmDb", farmService.oneSelectFarm(fName));
 			System.out.println(farmService.oneSelectFarm(fName));
 			return "corporation/farm/oneFarm";
 		}
@@ -38,7 +36,9 @@ public class FarmController {
 		/*listFarm에서 post방식으로 들어올때 listFarm으로 포워드*/
 		@RequestMapping(value="listFarm", method=RequestMethod.POST)
 		public String searchFarmList(String fName, Model model) {
-			
+			List<FarmDb> list = farmService.searchlistSelectFarm(fName);
+			model.addAttribute("list", list);
+			System.out.println("search list==> "+list);
 			return "corporation/farm/listFarm";
 		}
 		

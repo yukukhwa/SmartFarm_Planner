@@ -9,6 +9,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('#updateMaterials').click(function(){
+			('#updateMaterialsForm').submit();
+		})
 	})
 </script>
 </head>
@@ -30,6 +33,31 @@
 	    		<div>
 	    			<h3>원자재 카테고리 수정하기</h3>
 	    			<form id="updateMaterialsForm" action="${pageContext.request.contextPath}/updateMaterialsCate" method="post">
+	    				<div>
+	    					<label>
+	    						<input type="hidden" name="themeNumber" readonly="readonly" value="${categoryMaterialsDb.categoryThemeDb.themeNumber}">
+	    						테마 이름 : <input type="text" disabled="disabled" value="${categoryMaterialsDb.categoryThemeDb.themeName}">
+	    						<input type="hidden" name="themeName" value="${categoryMaterialsDb.categoryThemeDb.themeName}">
+	    					</label>
+	    				</div> 
+	    				<div>
+	    					<label>
+	    						<input type="hidden" name="materialsNumber" readonly="readonly" value="${categoryMaterialsDb.materialsNumber}">
+	    						원자재 이름 : <input type="text" name="materialsName" value="${categoryMaterialsDb.materialsName}">
+	    					</label>
+	    				</div>
+	    				<div>
+	    					<label>
+	    						 원자재 단위 : <input type="text" name="materialsUnit" value="${categoryMaterialsDb.materialsUnit}">
+	    					</label>
+	    				</div> 
+	    				<div>
+	    					<label>
+	    						<input type="hidden" name="aNumber" readonly="readonly" value="${categoryMaterialsDb.agencyDb.aNumber}">
+	    						등록기관 명 : <input type="text" disabled="disabled" value="${categoryMaterialsDb.agencyDb.aName}">
+	    						<input type="hidden" name="aName" value="${categoryMaterialsDb.agencyDb.aName}">
+	    					</label> 
+	    				</div> <br>
 	    				<button id="updateMaterials">원자재 카테고리 수정하기</button>
 	    			</form>
 	    		</div>

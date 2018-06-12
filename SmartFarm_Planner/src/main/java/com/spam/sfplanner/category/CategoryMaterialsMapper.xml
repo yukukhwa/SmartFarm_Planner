@@ -4,6 +4,103 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.spam.sfplanner.category.CategoryMaterialsMapper">
+ 	<resultMap type="com.spam.sfplanner.category.CategoryMaterialsDb" id="categoryMaterialsDb">
+ 		<id column="materials_number" property="materialsNumber"/>
+ 		<result column="materials_name" property="materialsName"/>
+ 		<result column="materials_unit" property="materialsUnit"/>
+ 		<collection property="categoryThemeDb" ofType="com.spam.sfplanner.category.CategoryThemeDb">
+ 			<id column="theme_number" property="themeNumber"/>
+ 			<result column="theme_name" property="themeName"/>
+ 		</collection>
+ 		<collection property="agencyDb" ofType="com.spam.sfplanner.corporation.AgencyDb">
+ 			<id column="a_number" property="aNumber"/>
+ 			<result column="a_name" property="aName"/>
+ 			<result column="a_doroaddress" property="aDoroaddress"/>
+ 			<result column="a_jibunaddress" property="aJibunaddress"/>
+ 			<result column="a_phone" property="aPhone"/>
+ 			<result column="a_registdate" property="aRegistdate"/>
+ 		</collection>
+ 	</resultMap>
+ 	
+ 	<!-- 해당하는 원자재카테고리넘버를 가져와 원자재 카테고리의 정보들을 삭제처리 하는 쿼리문  -->
+ 	<delete id="deleteCategoryMaterials"
+ 		parameterType="integer">
+ 			DELETE FROM sp_materials_cate
+			WHERE sp_materials_cate.materials_number=#{materialsNumber}
+ 	</delete>
+ 	
+ 	<!-- 원자재 카테고리의 정보를 수정처리하는 쿼리문 -->
+ 	<update id="updateCategoryMaterials"
+ 		parameterType="com.spam.sfplanner.category.CategoryMaterialsDb">
+ 			UPDATE sp_materials_cate
+			SET sp_materials_cate.materials_name=#{materialsName}
+				, sp_materials_cate.materials_unit=#{materialsUnit}
+			WHERE sp_materials_cate.materials_number=#{materialsNumber}
+ 	</update>
+ 	
+ 	<!-- 원자재 카테고리의 내용을 수정하기위해 해당 카테고리의 이름을 가져와 수정을 위한 조회화면을 출력하는 쿼리문  -->
+ 	<select id="oneSelectCategoryMaterials"
+ 		parameterType="String"
+ 		resultMap="categoryMaterialsDb">
+ 			SELECT sp_materials_cate.materials_number
+				, sp_materials_cate.materials_name
+				, sp_materials_cate.materials_unit
+				, sp_theme_cate.theme_number
+				, sp_theme_cate.theme_name
+				, sp_agency.a_number
+				, sp_agency.a_name
+			FROM sp_materials_cate
+			JOIN sp_theme_cate
+			ON sp_materials_cate.theme_number = sp_theme_cate.theme_number
+			JOIN sp_agency
+			ON sp_materials_cate.a_number = sp_agency.a_number
+			WHERE sp_materials_cate.materials_name=#{materialsName}
+ 	</select>
+ 
+ 	<!-- 검색키워드에 해당하는 원자재카테고리의 전체 리스트를 출력하고 조회하는 쿼리문 -->
+ 	<select id="searchListSelectCategoryMaterials"
+ 		parameterType="java.util.Map"
+ 		resultMap="categoryMaterialsDb">
+ 			SELECT sp_materials_cate.materials_number
+				, sp_materials_cate.materials_name
+				, sp_materials_cate.materials_unit
+				, sp_theme_cate.theme_number
+				, sp_theme_cate.theme_name
+				, sp_agency.a_number
+				, sp_agency.a_name
+			FROM sp_materials_cate
+			JOIN sp_theme_cate
+			ON sp_materials_cate.theme_number = sp_theme_cate.theme_number
+			JOIN sp_agency
+			ON sp_materials_cate.a_number = sp_agency.a_number
+			<if test="materialsCateSearchOption != null">
+				<if test="materialsCateSearchOption == 'aName'">
+					WHERE sp_agency.a_name LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+				<if test="materialsCateSearchOption == 'materialsName'">
+					WHERE sp_materials_cate.materials_name LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>
+ 	</select>
+ 
+ 	<!-- agencyDb와 themeDb, materials 3개의 테이블을 조인해 원자재카테고리의 전체 내용리스트를 조회하는 쿼리문 -->
+ 	<select id="listSelectCategoryMaterials"
+ 		resultMap="categoryMaterialsDb">
+	 		SELECT sp_materials_cate.materials_number
+				, sp_materials_cate.materials_name
+				, sp_materials_cate.materials_unit
+				, sp_theme_cate.theme_number
+				, sp_theme_cate.theme_name
+				, sp_agency.a_number
+				, sp_agency.a_name
+			FROM sp_materials_cate
+			JOIN sp_theme_cate
+			ON sp_materials_cate.theme_number = sp_theme_cate.theme_number
+			JOIN sp_agency
+			ON sp_materials_cate.a_number = sp_agency.a_number
+ 	</select>
+ 
+ 	<!-- 원자재 카테고리를 등록하는 인서트 쿼리문 -->
  	<insert id="insertCategoryMaterials"
  		parameterType="com.spam.sfplanner.category.CategoryMaterialsDb">
 	 		INSERT INTO sp_materials_cate(

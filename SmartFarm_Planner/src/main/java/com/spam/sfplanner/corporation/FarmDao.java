@@ -18,6 +18,10 @@ public class FarmDao {
 	private final static Logger LOGGER = LoggerFactory.getLogger(FarmDao.class);
 	private static final String NAMESPACE = "com.spam.sfplanner.corporation.FarmMapper.";
 	
+	public List<FarmDb> searchlistSelectFarm(String fName){
+		return sqlSession.selectList(NAMESPACE+"searchlistSelectFarm", fName);
+	}
+	
 	/*하나의 농가의 정보를 상세보기 가능한 메서드 매개변수로 farmDb를 받음*/
 	public FarmDb oneSelectFarm(String fName) {
 		LOGGER.info("FarmDao oneSelectFarm 호출");

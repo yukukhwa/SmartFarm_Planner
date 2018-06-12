@@ -1,6 +1,7 @@
 package com.spam.sfplanner.category;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -28,6 +29,11 @@ public class CategoryThemeDao {
 	/*매개변수 themeName을 받아 테마카테고리 수정할 때 수정할화면 하나를 조회해 출력하는 메서드*/
 	public CategoryThemeDb oneSelectCategoryTheme(String themeName) {
 		return sqlSession.selectOne(NAMESPACE+"oneSelectCategoryTheme", themeName);
+	}
+	
+	public List<CategoryThemeDb> searchListSelectCategoryTheme(Map<String, String> map){
+		System.out.println("map: "+map);
+		return sqlSession.selectList(NAMESPACE+"searchListSelectCategoryTheme", map);
 	}
 	
 	/*테마카테고리의 전체 리스트를 조회하는 메서드*/

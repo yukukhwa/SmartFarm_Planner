@@ -15,13 +15,13 @@
 			location.href = "${pageContext.request.contextPath}/";
 		})
 		
-		$('#search').click(function(){
-			if($('#searchForm').val() == ''){
-				alert('검색어를 입력해주세요')
-			}else{
-				$('#searchForm').submit();
+		$('#searchFarm').click(function(){
+			if($('#searchFarmForm').val() == ''){
+				alert('검색어를 입력해주세요');
+				$('#fName').focus();
+				return;
 			}
-			
+			$('#searchFarmForm').submit();
 		})
 	})
 </script>
@@ -38,9 +38,9 @@
 			<div>
 				<h3>농가 리스트</h3>
 				<div>
-					<form id="searchForm" method="post" action="${pageContext.request.contextPath}/listFarm">
-						<input type="text" name="fName">
-						<button id="search">농가 검색</button>
+					<form id="searchFarmForm" method="post" action="${pageContext.request.contextPath}/listFarm">
+						<input type="text" name="fName" id="fName">
+						<button id="searchFarm">농가 검색</button>
 					</form>
 				</div>
 				<table border="1">

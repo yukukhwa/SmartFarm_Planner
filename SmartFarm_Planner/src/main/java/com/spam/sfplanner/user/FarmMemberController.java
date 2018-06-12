@@ -46,7 +46,7 @@ public class FarmMemberController {
 		@RequestMapping(value="updateFarmMember", method=RequestMethod.GET)
 		public String updateFarmMember(Model model, String fMemberId) {
 			LOGGER.info("FarmMemberController updateFarmMember 호출");
-			model.addAttribute("updateFarm", farmMemberService.oneSelectFarmMember(fMemberId));
+			model.addAttribute("farmMemberDb", farmMemberService.oneSelectFarmMember(fMemberId));
 			return "user/farm_member/updateFarmMember";
 		}
 		
