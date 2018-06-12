@@ -17,7 +17,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<result column="a_name" property="aName"/>
 		</collection>
 	</resultMap>
-	<!-- <select id="">
+	
+	<!-- 품목카테고리 수정 처리 update 쿼리문장 -->
+	<update id="updateCategoryItem"
+			parameterType="com.spam.sfplanner.category.CategoryItemDb">
+		UPDATE sp_industry_item_cate
+		SET
+			industry_number=#{categoryIndustryDb.industryNumber}
+			,i_item_name=#{iItemName}
+		WHERE i_item_number=#{iItemNumber}
+	</update>
+	
+	<!-- 품목카테고리 수정 화면 출력 select 쿼리문장 -->
+	<select id="oneSelectCategoryItem"
+			parameterType="int"
+			resultMap="categoryItemDb">
+	select
+		sp_industry_item_cate.i_item_name
+		,sp_industry_item_cate.i_item_number
+		,sp_industry_item_cate.industry_number
+	from
+		sp_industry_item_cate
+	where
+		sp_industry_item_cate.i_item_number = #{iItemNumber}
+	</select>
+	
+	<!-- 품목카테고리 삭제 처리 delete 쿼리문장 -->
+	<delete id="deleteCategoryItem"
+			parameterType="int">
+		DELETE FROM sp_industry_item_cate WHERE i_item_number=#{iItemNumber}
+	</delete>
+	
+	<!-- 검색 조건에 따른 품목카테고리 리스트 출력 처리 select 쿼리문장 -->
+	<select id="searchListSelectCategoryItem"
+			parameterType="java.util.Map"
+			resultMap="categoryItemDb">
 	select
 		sp_industry_item_cate.i_item_number
 		,sp_industry_item_cate.industry_number
@@ -32,13 +66,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	and
 		sp_industry_item_cate.a_number = sp_agency.a_number
 	where
-		sp_agency.a_name like '%%'
+		sp_agency.a_name like #{aName}
 	and
-		sp_industry_cate.industry_name like '%%'
+		sp_industry_cate.industry_name like #{industryName}
 	and
-		sp_industry_item_cate.i_item_name like '%%'
-	</select> -->
+		sp_industry_item_cate.i_item_name like #{iItemName}
+	</select>
 	
+	<!-- 품목카테고리 리스트 춫력 처리 select 쿼리문장 -->
 	<select id="listSelectCategoryItem"
 			resultMap="categoryItemDb">
 	select

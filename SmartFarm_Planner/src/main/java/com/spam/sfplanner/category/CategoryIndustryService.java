@@ -9,12 +9,14 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.spam.sfplanner.login.LoginDb;
 
 /*
  * 산업분류카테고리 관련 서비스
  */
+@Transactional
 @Service
 public class CategoryIndustryService {
 	

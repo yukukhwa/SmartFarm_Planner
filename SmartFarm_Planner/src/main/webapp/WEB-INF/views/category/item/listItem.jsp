@@ -9,16 +9,20 @@
 <jsp:include page="/WEB-INF/views/css.jsp"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
-		$('select#column').change(function(){
-			if($(this).val() == 'sp_agency.a_name'){
-				$('input#property').attr('name','aName');
-				return;
-			}
+$(document).ready(function(){
+	$('select#column').change(function(){
+		if($(this).val() == '등록기관명'){
+			$('input#property').attr('name','aName');
+			return;
+		}
+		if($(this).val() == '산업명'){
 			$('input#property').attr('name','industryName');
 			return;
-		});
+		}
+		$('input#property').attr('name','iItemName');
+		return;
 	});
+});
 </script>
 </head>
 <body>
@@ -31,14 +35,15 @@
     <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
-    		<%-- <form action="${pageContext.request.contextPath}/listIndustry" method="post">
-				<select id="column" name="column">
-					<option value="sp_industry_cate.industry_name">산업명</option>
-					<option value="sp_agency.a_name">등록기관명</option>
+    		<form action="${pageContext.request.contextPath}/listItem" method="post">
+				<select id="column">
+					<option>품목명</option>
+					<option>산업명</option>
+					<option>등록기관명</option>
 				</select>
-				<input type="text" name="industryName" id="property">
+				<input type="text" name="iItemName" id="property">
 				<button type="submit">검색</button>
-			</form> --%>
+			</form>
 			<table>
 				<thead>
 					<tr>
@@ -65,10 +70,10 @@
 							</td>
 							<c:if test="${loginMember.corpName == categoryItemDb.agencyDb.aName}">
 								<td>
-									<a href="#"><i class="icon_plus_alt2"></i></a>
+									<a href="${pageContext.request.contextPath}/updateItem?iItemNumber=${categoryItemDb.iItemNumber}"><i class="icon_plus_alt2"></i></a>
 								</td>
 								<td>
-									<a href="#"><i class="icon_close_alt2"></i></a>
+									<a href="${pageContext.request.contextPath}/deleteItem?iItemNumber=${categoryItemDb.iItemNumber}"><i class="icon_close_alt2"></i></a>
 								</td>
 							</c:if>
 						</tr>

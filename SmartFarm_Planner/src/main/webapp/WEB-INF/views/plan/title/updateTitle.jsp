@@ -5,12 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>updateItem</title>
+<title>updateTitle</title>
 <jsp:include page="/WEB-INF/views/css.jsp"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('select#industry').val(${item.categoryIndustryDb.industryNumber});
+		$('select#iItemNumber').val(${title.categoryItemDb.iItemNumber});
 		$('button').click(function(){
 			$('form').submit();
 		});
@@ -27,18 +27,18 @@
     <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
-  			<h3>품목카테고리를 수정해주세요.</h3>
-	   		<form action="${pageContext.request.contextPath}/updateItem" method="post">
-	   			<select name="categoryIndustryDb.industryNumber" id="industry">
-	   				<c:forEach items="${list}" var="industry">
-	   					<option value="${industry.industryNumber}">${industry.industryName}</option>
-	   				</c:forEach>
-	   			</select>
-	   			품목명 : <input type="text" name="iItemName" id="iItemName" value="${item.iItemName}">
-	   			<input type="hidden" name="iItemNumber" id="iItemNumber" value="${item.iItemNumber}">
-	   		</form>
-	   		<button type="button">등록</button>
+	    		<h1>계획명을 수정해주세요.</h1>
+	    		<form action="${pageContext.request.contextPath}/updateTitle" method="post">
+		    		<select name="categoryItemDb.iItemNumber" id="iItemNumber">
+		    			<c:forEach items="${list}" var="item">
+		    				<option value="${item.iItemNumber}">${item.iItemName}</option>
+		    			</c:forEach>
+		    		</select>
+	    			계획명 : <input type="text" name="ppNamePlanname" id="ppNamePlanname" value="${title.ppNamePlanname}">
+	    			<input type="hidden" name="ppNameNumber" id="ppNameNumber" value="${title.ppNameNumber}">
+	    		</form>
+	    		<button type="button">등록</button>
     	</section>
-    </section>
+   	</section>
 </body>
 </html>

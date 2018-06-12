@@ -1,7 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper 
-  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
- <mapper namespace="com.spam.sfplanner.plan.TitlePlanMapper">
- </mapper>
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 나성수 -->
+<mapper namespace="com.spam.sfplanner.plan.TitlePlanMapper">
+	<resultMap type="com.spam.sfplanner.plan.TitlePlanDb" id="titlePlanDb">
+		<id column="pp_name_number" property="ppNameNumber"/>
+		<result column="pp_name_planname" property="ppNamePlanname"/>
+		<collection ofType="com.spam.sfplanner.category.CategoryItemDb" property="categoryItemDb">
+			<id column="i_item_number" property="iItemNumber"/>
+			<result column="i_item_name" property="iItemName"/>
+		</collection>
+		<collection ofType="com.spam.sfplanner.corporation.FarmDb" property="farmDb">
+			<id column="f_number" property="fNumber"/>
+			<result column="f_name" property="fName"/>
+		</collection>
+	</resultMap>
+
+	<!-- 계획명 수정 처리 update 쿼리문장 -->
+	<update id="updateTitlePlan"
+			parameterType="com.spam.sfplanner.plan.TitlePlanDb">
+		UPDATE sp_pp_name_cate
+		SET
+			i_item_number=#{categoryItemDb.iItemNumber}
+			,pp_name_planname=#{ppNamePlanname}
+		WHERE pp_name_number=#{ppNameNumber}
+	</update>
+
+	<!-- 계획명 수정 화면 출력 처리 select 쿼리문장 -->
+	<select id="oneSelectTitlePlan"
+			parameterType="int"
+			resultMap="titlePlanDb">
+		select
+			sp_pp_name_cate.pp_name_number
+			,sp_pp_name_cate.i_item_number
+			,sp_industry_item_cate.i_item_name
+			,sp_pp_name_cate.pp_name_planname
+		from
+			sp_pp_name_cate join sp_industry_item_cate
+		on
+			sp_pp_name_cate.i_item_number = sp_industry_item_cate.i_item_number
+		where
+			sp_pp_name_cate.pp_name_number = #{ppNameNumber}
+	</select>
+
+	<!-- 계획명 삭제 처리 delete 쿼리문장 -->
+	<delete id="deleteTitlePlan"
+			parameterType="int">
+		DELETE FROM sp_pp_name_cate WHERE pp_name_number=#{ppNameNumber}
+	</delete>
+
+	<!-- 계획명 리스트 출력 처리 select 쿼리문장 -->
+	<select id="listSelectTitlePlan"
+			parameterType="java.util.Map"
+			resultMap="titlePlanDb">
+		select
+			sp_pp_name_cate.pp_name_number
+			,sp_pp_name_cate.i_item_number
+			,sp_industry_item_cate.i_item_name
+			,sp_pp_name_cate.pp_name_planname
+			,sp_pp_name_cate.f_number
+			,sp_farm.f_name
+		from
+			sp_pp_name_cate join sp_industry_item_cate join sp_farm
+		on
+			sp_pp_name_cate.i_item_number = sp_industry_item_cate.i_item_number
+		and
+			sp_pp_name_cate.f_number = sp_farm.f_number
+		<if test="search == 'yes'">
+			where
+			<if test="column == '계획명'">
+				sp_pp_name_cate.pp_name_planname like concat('%',#{property},'%')
+			</if>
+			<if test="column == '품목명'">
+				sp_industry_item_cate.i_item_name like concat('%',#{property},'%')
+			</if>
+			<if test="column == '등록농가명'">
+				sp_farm.f_name like concat('%',#{property},'%')
+			</if>
+		</if>
+	</select>
+	
+	<!-- 계획명 등록 처리 insert 쿼리문장 -->
+	<insert id="insertTitlePlan"
+			parameterType="java.util.Map">
+		INSERT INTO sp_pp_name_cate
+		(f_number, i_item_number, pp_name_planname)
+		VALUES (#{fNumber}, #{iItemNumber}, #{ppNamePlanname})
+	</insert>
+</mapper>
