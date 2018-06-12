@@ -1,5 +1,7 @@
 package com.spam.sfplanner.category;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CategoryThemeController {
@@ -39,10 +42,14 @@ public class CategoryThemeController {
 	
 	/*listTheme에서 포스트방식으로 요청이 들어올 때*/
 	@RequestMapping(value="/listTheme", method=RequestMethod.POST)
-	public String listSelectCategoryTheme(Model model, String searchKeyword, String themeCateSearchOption) {
+	public String listSelectCategoryTheme(Model model
+									,@RequestParam(value="searchKeyword", defaultValue="")String searchKeyword
+									,@RequestParam(value="themeCateSearchOption")String themeCateSearchOption) {
 		System.out.println("searchKeyword===> "+searchKeyword);
-		System.out.println("themeCateSearchOption====> "+themeCateSearchOption);
-		model.addAttribute("list", categoryThemeService.listSelectCategoryTheme());
+		System.out.println("themeCateSearchOption===> "+themeCateSearchOption);
+		List<CategoryThemeDb> list = categoryThemeService.searchListSelectCategoryTheme(searchKeyword, themeCateSearchOption);
+		model.addAttribute("list", list);
+		System.out.println("list ==>"+list);
 		return "category/theme/listTheme";
 	}
 	
@@ -53,13 +60,13 @@ public class CategoryThemeController {
 		return "category/theme/listTheme";
 	}
 	
-	/*addTheme에서 포스트방식으로 요청하면 테마카테고리를 등록처리 후 으로 포워드 */
+	/*addTheme에서 포스트방식으로 요청하면 테마카테고리를 등록처리 후 인덱스로 리다이렉트 */
 	@RequestMapping(value="/addTheme", method=RequestMethod.POST)
 	public String insertCategoryTheme(CategoryThemeDb categoryThemeDb) {
 		LOGGER.info("CategoryThemeController addTheme post호출");
 		categoryThemeService.insertCategoryTheme(categoryThemeDb);
 		System.out.println("categoryThemeDb==> "+categoryThemeDb);
-		return "category/theme/addTheme";
+		return "redirect:/";
 	}
 	
 	/*addTheme에서 겟방식으로 요청하면 테마카테고리를 등록하는 폼으로 포워드*/

@@ -2,25 +2,53 @@
 <!DOCTYPE mapper 
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
- <mapper namespace="com.spam.sfplanner.actresult.WrEtcSpendPayMapper">
+<mapper namespace="com.spam.sfplanner.actresult.WrEtcSpendPayMapper">
+
+<!-- 기타지출비용 결과 레코드 하나 선택 후 수정 쿼리문 -->
+<update id="updateWrEtcSpendPay"
+		parameterType="com.spam.sfplanner.actresult.WrEtcSpendPayDb">
+	UPDATE sp_wr_etcspendpay
+	SET
+		wr_etcspendpay_realcost=#{wrEtcspendpayRealcost}
+		wr_etcspendpay_date=#{wrEtcspendpayDate}
+	WHERE wr_etcspendpay_number=#{wrEtcspendpayNumber}
+</update>
  
-<select id="selectListWrEtcSpendPay"
-		parameterType="Integer"
+<!-- 기타지출비용 결과 레코드 하나 선택 쿼리문 -->
+<select id="selectOneWrEtcSpendPay"
+		parameterType="int"
 		resultType="com.spam.sfplanner.actresult.WrEtcSpendPayDb">
-		SELECT *
-		FROM sp_wr_etcspendpay	
-		WHERE wr_number=#{wrNumber}	
+	SELECT wr_etcspendpay_number AS wrEtcspendpayNumber
+		, wr_number AS wrNumber
+		, e_etcspendpay_number AS eEtcspendpayNumber
+		, wr_etcspendpay_realcost AS wrEtcspendpayRealcost
+		, wr_etcspendpay_date AS wrEtcspendpayDate
+	FROM sp_wr_etcspendpay
+	WHERE wr_etcspendpay_number=#{wrEtcspendpayNumber}
 </select>
  
- <insert id="insertWrEtcSpendPay"
- 		parameterType="com.spam.sfplanner.actresult.WrEtcSpendPayDb">
- 	INSERT INTO sp_wr_etcspendpay(
- 		wr_number
- 		, e_etcspendpay_number
- 		, wr_etcspendpay_realcost
- 		, wr_etcspendpay_date)
-	VALUES (#{wrNumber}, #{eEtcspendpayNumber}, #{wrEtcspendpayRealcost}, #{wrEtcspendpayDate}); 
- </insert>
+<!-- 기타지출비용 결과 리스트 선택 쿼리문 -->
+<select id="selectListWrEtcSpendPay"
+		parameterType="int"
+		resultType="com.spam.sfplanner.actresult.WrEtcSpendPayDb">
+	SELECT wr_etcspendpay_number AS wrEtcspendpayNumber
+		, wr_number AS wrNumber
+		, e_etcspendpay_number AS eEtcspendpayNumber
+		, wr_etcspendpay_realcost AS wrEtcspendpayRealcost
+		, wr_etcspendpay_date AS wrEtcspendpayDate
+	FROM sp_wr_etcspendpay
+	WHERE wr_number=#{wrNumber}	
+</select>
  
- </mapper>
+<!-- 기타지출비용 결과 입력 쿼리문 -->
+<insert id="insertWrEtcSpendPay"
+		parameterType="com.spam.sfplanner.actresult.WrEtcSpendPayDb">
+	INSERT INTO sp_wr_etcspendpay(
+		wr_number
+		, e_etcspendpay_number
+		, wr_etcspendpay_realcost
+		, wr_etcspendpay_date)
+	VALUES (#{wrNumber}, #{eEtcspendpayNumber}, #{wrEtcspendpayRealcost}, #{wrEtcspendpayDate}); 
+</insert>
+
+</mapper>

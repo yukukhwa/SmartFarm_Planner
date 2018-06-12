@@ -17,10 +17,34 @@
 		</collection>
 		<collection property="categoryDealDb" ofType="com.spam.sfplanner.category.CategoryDealDb">
 			<id column="deal_number" property="dealNumber"/>
-			<result column="deal_classification" property="dealClassfication"/>	
+			<result column="deal_classification" property="dealClassification"/>	
 		</collection>
 	</resultMap>
 	
+	
+	<!-- 업체삭제 처리 쿼리문장 -->
+	<delete id="deleteCompany"
+			parameterType="int">
+		delete 
+		from sp_deal_company 
+		where c_number=#{cNumber}	
+	</delete>
+	
+	<!-- 업체 수정처리 쿼리문장 -->
+	<update id="updateCompany"
+			parameterType="com.spam.sfplanner.user.CompanyMemberView">
+	update sp_deal_company
+	set
+		c_name=#{cName}
+		,c_member_id=#{cMemberId}
+		,c_doroaddress=#{cDoroaddress}
+		,c_jibunaddress=#{cJibunaddress}
+		,c_phone=#{cPhone}
+		,c_party=#{cParty}
+	where c_number=#{cNumber}
+	</update>
+	
+	<!-- 업체 상세내용 출력하는  쿼리문장 -->
 	<select id="oneSelectCompany"
 			parameterType="String"
 			resultMap="companyDb">
@@ -34,6 +58,7 @@
 		,sp_deal_company.c_phone
 		,sp_deal_company.c_registdate
 		,sp_deal_company.c_party
+		,sp_deal_company_member.c_member_name
 	from
 		sp_deal_company join sp_deal_cate join sp_deal_company_member
 	on
@@ -42,30 +67,29 @@
 		sp_deal_company.c_name = #{cName}	
 	</select>
 	
-	<!-- 모든 업체와 업체의 작업인원 출력하는  select쿼리 문장 -->
+	<!-- 모든 업체  출력하는 쿼리 문장 -->
 	<select id="listSelectCompany"
 			resultMap="companyDb">
 	select
-		sp_deal_company.c_name AS cName
-		,sp_deal_company.c_party AS cParty
+		sp_deal_company.c_name 
 	from
 		sp_deal_company
 	
 	</select>
 	
-	<!-- 업체 있는지 확인하는 select쿼리문장 -->
+	<!-- 업체 있는지 확인하는 쿼리문장 -->
 	<select id="listOneSelectCompany" 
 			parameterType="int"
 			resultMap="companyDb">
-		SELECT
+		select
 			sp_deal_company.c_name
-		FROM
+		from
 			sp_deal_company
 		where
 			sp_deal_company.c_number = #{cNumber}
 	
 	</select>
-	<!-- 업체입력 -->
+	<!-- 업체입력 쿼리문장 -->
 	<insert id="insertCompany" 
 			parameterType="com.spam.sfplanner.user.CompanyMemberView">
 		<selectKey resultType="int" 
@@ -73,23 +97,23 @@
 					order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>
-		INSERT INTO sp_deal_company
-		(deal_number
-		,c_name
-		,c_member_id
-		,c_doroaddress
-		,c_jibunaddress
-		,c_phone
-		,c_registdate
-		,c_party)
-		VALUES
-		(#{dealNumber}
-		,#{cName}
-		,#{cMemberId}
-		,#{cDoroaddress}
-		,#{cJibunaddress}
-		,#{cPhone}
-		,NOW()
-		,#{cParty})
+		insert into sp_deal_company
+			(deal_number
+			,c_name
+			,c_member_id
+			,c_doroaddress
+			,c_jibunaddress
+			,c_phone
+			,c_registdate
+			,c_party)
+		values
+			(#{dealNumber}
+			,#{cName}
+			,#{cMemberId}
+			,#{cDoroaddress}
+			,#{cJibunaddress}
+			,#{cPhone}
+			,NOW()
+			,#{cParty})
 	</insert>
 </mapper>

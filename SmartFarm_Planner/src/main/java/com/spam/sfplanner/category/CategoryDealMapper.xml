@@ -4,4 +4,73 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.spam.sfplanner.category.CategoryDealMapper">
+ <resultMap type="com.spam.sfplanner.category.CategoryDealDb" id="categoryDealDb">
+ 	<id column="deal_number" property="dealNumber"/>
+ 	<result column="deal_Classification" property="dealClassification"/>
+ 	<collection property="agencyDb" ofType="com.spam.sfplanner.corporation.AgencyDb">
+			<id column="a_number" property="aNumber"/>
+			<result column="a_name" property="aName"/>
+			<result column="a_doroaddress" property="aDoroaddress"/>
+			<result column="a_jibunaddress" property="aJibunaddress"/>
+			<result column="a_phone" property="aPhone"/>
+			<result column="a_registdate" property="aRegistdate"/>
+		</collection>
+ </resultMap>
+ 	
+ 	<!-- 거래처카테고리 삭제 쿼리문장 -->
+ 	<delete id="deleteCategoryDeal"
+ 			parameterType="int">
+ 		DELETE FROM sp_deal_cate WHERE deal_number=#{dealNumber}
+ 	</delete>
+ 	
+ 	<!-- 거래처카테고리 수정처리 쿼리문장 -->
+ 	<update id="updateCategoryDeal"
+ 			parameterType="com.spam.sfplanner.category.CategoryDealDb">
+ 	UPDATE sp_deal_cate
+	SET
+		deal_classification=#{dealClassification}
+	WHERE 
+		deal_number=#{dealNumber}
+ 	</update>
+ 	
+ 	<!-- 리스트에서 하나의 거래처카테고리 호출쿼리문장 -->
+ 	<select id="oneSelectCategoryDeal"
+ 			parameterType="int"
+ 			resultMap="categoryDealDb">
+	select
+		sp_deal_cate.deal_number
+		,sp_deal_cate.deal_classification
+		,sp_agency.a_name
+	from
+		sp_deal_cate join sp_agency
+	on
+		sp_deal_cate.a_number = sp_agency.a_number
+	where
+		sp_deal_cate.deal_number = #{dealNumber}
+ 	
+ 	</select>
+ 	
+ 	<!-- 거래처카테고리 리스트 출력 쿼리문장 -->
+ 	<select id="listSelectCategoryDeal"
+ 			resultMap="categoryDealDb">
+	select
+		sp_deal_cate.deal_number
+		,sp_deal_cate.deal_classification
+		,sp_agency.a_name
+	from
+		sp_deal_cate join sp_agency
+	on
+		sp_deal_cate.a_number = sp_agency.a_number
+ 	</select>
+ 	
+	<!-- 거래처카테고리 등록 쿼리문장 --> 
+	 <insert id="insertCategoryDeal"
+	 		parameterType="java.util.Map">
+	 	INSERT INTO sp_deal_cate
+			(a_number
+			,deal_classification)
+		VALUES (
+			#{aNumber}
+			,#{dealClassification})
+	 </insert>
  </mapper>

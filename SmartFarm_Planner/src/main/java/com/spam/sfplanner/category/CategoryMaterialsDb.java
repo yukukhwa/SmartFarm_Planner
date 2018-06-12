@@ -1,11 +1,15 @@
 package com.spam.sfplanner.category;
 
+import com.spam.sfplanner.corporation.AgencyDb;
+
 public class CategoryMaterialsDb {
 	private int materialsNumber; // 원자재카테고리 넘버
 	private int themeNumber; // 테마카테고리 넘버
 	private int aNumber; // 관리기관 넘버
 	private String materialsName; // 원자재이름
 	private String materialsUnit; // 원자재의 단위
+	private CategoryThemeDb categoryThemeDb;
+	private AgencyDb agencyDb;
 	
 	public int getMaterialsNumber() {
 		return materialsNumber;
@@ -37,10 +41,24 @@ public class CategoryMaterialsDb {
 	public void setMaterialsUnit(String materialsUnit) {
 		this.materialsUnit = materialsUnit;
 	}
-	
+	public CategoryThemeDb getCategoryThemeDb() {
+		return categoryThemeDb;
+	}
+	public void setCategoryThemeDb(CategoryThemeDb categoryThemeDb) {
+		this.categoryThemeDb = categoryThemeDb;
+	}
+	public AgencyDb getAgencyDb() {
+		return agencyDb;
+	}
+	public void setAgencyDb(AgencyDb agencyDb) {
+		this.agencyDb = agencyDb;
+	}
 	@Override
 	public String toString() {
 		return "CategoryMaterialsDb [materialsNumber=" + materialsNumber + ", themeNumber=" + themeNumber + ", aNumber="
-				+ aNumber + ", materialsName=" + materialsName + ", materialsUnit=" + materialsUnit + "]";
+				+ aNumber + ", materialsName=" + materialsName + ", materialsUnit=" + materialsUnit
+				+ ", categoryThemeDb=" + categoryThemeDb + ", agencyDb=" + agencyDb + "]";
 	}
+	
+	
 }

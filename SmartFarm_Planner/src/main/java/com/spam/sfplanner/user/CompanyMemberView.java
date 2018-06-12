@@ -5,13 +5,13 @@ public class CompanyMemberView {
 	private int dealNumber; //거래처 넘버
 	private String cName; //업체명
 	private String cMemberId; //업체회원아이디
-	private String cDoroAddress; //업체도로명주소
+	private String cDoroaddress; //업체도로명주소
 	private String cJibunaddress; //업체지번주소
 	private String cPhone; //업체연락처
 	private double cParty; //업체인원
 	private String cMemberPw; //업체회원비번
 	private String cMemberName; //업체회원이름
-	private String cmemberPhone; //업체회원연락처
+	private String cMemberPhone; //업체회원연락처
 	private String cMemberGender; //업체회원성별
 	private String cMemberEmail; //업체회원이메일
 	private String cMemberPrivacy; //업체회원개인정보동의
@@ -42,11 +42,11 @@ public class CompanyMemberView {
 	public void setcMemberId(String cMemberId) {
 		this.cMemberId = cMemberId;
 	}
-	public String getcDoroAddress() {
-		return cDoroAddress;
+	public String getcDoroaddress() {
+		return cDoroaddress;
 	}
-	public void setcDoroAddress(String cDoroAddress) {
-		this.cDoroAddress = cDoroAddress;
+	public void setcDoroaddress(String cDoroaddress) {
+		this.cDoroaddress = cDoroaddress;
 	}
 	public String getcJibunaddress() {
 		return cJibunaddress;
@@ -78,11 +78,11 @@ public class CompanyMemberView {
 	public void setcMemberName(String cMemberName) {
 		this.cMemberName = cMemberName;
 	}
-	public String getCmemberPhone() {
-		return cmemberPhone;
+	public String getcMemberPhone() {
+		return cMemberPhone;
 	}
-	public void setCmemberPhone(String cmemberPhone) {
-		this.cmemberPhone = cmemberPhone;
+	public void setcMemberPhone(String cMemberPhone) {
+		this.cMemberPhone = cMemberPhone;
 	}
 	public String getcMemberGender() {
 		return cMemberGender;
@@ -123,13 +123,14 @@ public class CompanyMemberView {
 	@Override
 	public String toString() {
 		return "CompanyMemberView [cNumber=" + cNumber + ", dealNumber=" + dealNumber + ", cName=" + cName
-				+ ", cMemberId=" + cMemberId + ", cDoroAddress=" + cDoroAddress + ", cJibunaddress=" + cJibunaddress
+				+ ", cMemberId=" + cMemberId + ", cDoroaddress=" + cDoroaddress + ", cJibunaddress=" + cJibunaddress
 				+ ", cPhone=" + cPhone + ", cParty=" + cParty + ", cMemberPw=" + cMemberPw + ", cMemberName="
-				+ cMemberName + ", cmemberPhone=" + cmemberPhone + ", cMemberGender=" + cMemberGender
+				+ cMemberName + ", cMemberPhone=" + cMemberPhone + ", cMemberGender=" + cMemberGender
 				+ ", cMemberEmail=" + cMemberEmail + ", cMemberPrivacy=" + cMemberPrivacy + ", cMemberDoroaddress="
 				+ cMemberDoroaddress + ", cMemberJibunaddress=" + cMemberJibunaddress + ", cMemberDetailaddress="
 				+ cMemberDetailaddress + "]";
 	}
+	
 	
 	
 	

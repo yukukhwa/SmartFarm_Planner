@@ -36,7 +36,7 @@
     			<div>
 	    			<form id="themeCateSearchForm" method="post" action="${pageContext.request.contextPath}/listTheme">
 	    				<select name="themeCateSearchOption">
-	    					<option value="themeName" <c:out value=""/> >테마이름</option>
+	    					<option value="themeName">테마이름</option>
 	    					<option value="aName">등록기관이름</option>
 	    				</select> <br>
 	    				<input type="text" name="searchKeyword">

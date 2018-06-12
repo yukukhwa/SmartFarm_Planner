@@ -43,6 +43,27 @@
 			WHERE sp_theme_cate.theme_name=#{themeName}
 	 </select>
 	 
+	<!-- 검색키워드에 해당하는 테마카테고리 전체리스트를 출력하는 셀렉트쿼리문  -->
+ 	<select id="searchListSelectCategoryTheme"
+ 		resultMap="categoryThemeDb"
+ 		parameterType="java.util.Map">
+	 		SELECT sp_theme_cate.theme_number
+	 			, sp_theme_cate.theme_name
+	 			, sp_agency.a_number
+	 			, sp_agency.a_name
+			FROM sp_theme_cate
+			JOIN sp_agency
+			ON sp_theme_cate.a_number = sp_agency.a_number
+			<if test="themeCateSearchOption != null">
+				<if test="themeCateSearchOption == 'themeName'">
+					WHERE sp_theme_cate.theme_name LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+				<if test="themeCateSearchOption == 'aName'">
+					WHERE sp_agency.a_name LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>
+ 	</select>
+	 
  	<!-- 테마카테고리 전체리스트를 출력하는 셀렉트쿼리문  -->
  	<select id="listSelectCategoryTheme"
  		resultMap="categoryThemeDb">

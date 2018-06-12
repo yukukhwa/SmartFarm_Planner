@@ -3,31 +3,34 @@ package com.spam.sfplanner.user;
 
 import java.util.Date;
 
+import com.spam.sfplanner.corporation.CompanyDb;
+
+
+
 public class CompanyMemberDb {
-	private String cMemberId;  //업체회원아이디
-	private int cNumber;  //업체통합넘버
-	private String cMemberPw;  //비밀번호
-	private String cMemberName;  //실명
-	private String cMemberPhone;  //연락처
-	private String cMemberGender;  //성별
-	private String cMemberEmail;  //이메일
-	private String cMemberPrivacy;  //개인정보동의
-	private String cMemberDoroaddress;  //업체회원도로명주소
-	private String cMemberJibunaddress;  //업체회원지번주소
-	private String cMemberDetailaddress;  //업체지번주소
+	private String cMemberId;  //업체회원 아이디
+	private CompanyDb companyDb; //업체테이블
+	private String cMemberPw;  //업체회원 비밀번호
+	private String cMemberName;  //업체회원실명ㄴㄴㄴ
+	private String cMemberPhone;  //업체회원 연락처
+	private String cMemberGender;  //업체회원 성별
+	private String cMemberEmail;  //업체회원 이메일
+	private String cMemberPrivacy;  //업체회원 개인정보동의
+	private String cMemberDoroaddress;  //업체회원 도로명주소
+	private String cMemberJibunaddress;  //업체회원 지번주소
+	private String cMemberDetailaddress;  //업체회원 상세주소
 	private Date cMemberRegistdate;  //가입일자
-	
 	public String getcMemberId() {
 		return cMemberId;
 	}
 	public void setcMemberId(String cMemberId) {
 		this.cMemberId = cMemberId;
 	}
-	public int getcNumber() {
-		return cNumber;
+	public CompanyDb getCompanyDb() {
+		return companyDb;
 	}
-	public void setcNumber(int cNumber) {
-		this.cNumber = cNumber;
+	public void setCompanyDb(CompanyDb companyDb) {
+		this.companyDb = companyDb;
 	}
 	public String getcMemberPw() {
 		return cMemberPw;
@@ -91,7 +94,7 @@ public class CompanyMemberDb {
 	}
 	@Override
 	public String toString() {
-		return "CompanyMemberDb [cMemberId=" + cMemberId + ", cNumber=" + cNumber + ", cMemberPw=" + cMemberPw
+		return "CompanyMemberDb [cMemberId=" + cMemberId + ", companyDb=" + companyDb + ", cMemberPw=" + cMemberPw
 				+ ", cMemberName=" + cMemberName + ", cMemberPhone=" + cMemberPhone + ", cMemberGender=" + cMemberGender
 				+ ", cMemberEmail=" + cMemberEmail + ", cMemberPrivacy=" + cMemberPrivacy + ", cMemberDoroaddress="
 				+ cMemberDoroaddress + ", cMemberJibunaddress=" + cMemberJibunaddress + ", cMemberDetailaddress="
@@ -99,8 +102,4 @@ public class CompanyMemberDb {
 	}
 	
 	
-	
-	
-	
-
 }

@@ -7,6 +7,7 @@ public class CategoryThemeDb {
 	private int aNumber; // 테마를 등록하는 관리기관넘버
 	private String themeName; // 테마이름
 	private AgencyDb agencyDb;
+	private CategoryMaterialsDb categoryMaterialsDb;
 	
 	public int getThemeNumber() {
 		return themeNumber;
@@ -32,11 +33,16 @@ public class CategoryThemeDb {
 	public void setAgencyDb(AgencyDb agencyDb) {
 		this.agencyDb = agencyDb;
 	}
+	public CategoryMaterialsDb getCategoryMaterialsDb() {
+		return categoryMaterialsDb;
+	}
+	public void setCategoryMaterialsDb(CategoryMaterialsDb categoryMaterialsDb) {
+		this.categoryMaterialsDb = categoryMaterialsDb;
+	}
 	
 	@Override
 	public String toString() {
 		return "CategoryThemeDb [themeNumber=" + themeNumber + ", aNumber=" + aNumber + ", themeName=" + themeName
-				+ ", agencyDb=" + agencyDb + "]";
+				+ ", agencyDb=" + agencyDb + ", categoryMaterialsDb=" + categoryMaterialsDb + "]";
 	}
-	
 }
