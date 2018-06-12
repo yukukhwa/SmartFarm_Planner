@@ -4,4 +4,68 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.spam.sfplanner.category.CategoryEquipMapper">
+ <resultMap type="com.spam.sfplanner.category.CategoryEquipDb" id="categoryEquipDb">
+ 	<id column="equip_number" property="equipNumber"/>
+ 	<result column="equip_name" property="equipName"/>
+ 	<collection property="agencyDb" ofType="com.spam.sfplanner.corporation.AgencyDb">
+			<id column="a_number" property="aNumber"/>
+			<result column="a_name" property="aName"/>
+			<result column="a_doroaddress" property="aDoroaddress"/>
+			<result column="a_jibunaddress" property="aJibunaddress"/>
+			<result column="a_phone" property="aPhone"/>
+			<result column="a_registdate" property="aRegistdate"/>
+		</collection>
+ </resultMap>
+ 	<!-- 장비종류카테고리 삭제 쿼리문장 -->
+ 	<delete id="deleteCategoryEquip"
+ 			parameterType="int">
+ 	DELETE FROM sp_equip_cate WHERE equip_number= #{equipNumber}
+ 	</delete>
+	<!-- 장비종류카테고리 수정처리 쿼리문장 -->
+	<update id="updateCategoryEquip"
+			parameterType="com.spam.sfplanner.category.CategoryEquipDb">
+	UPDATE sp_equip_cate
+	SET
+		equip_name = #{equipName}
+	WHERE
+		equip_number = #{equipNumber}		
+	</update>
+	 	<!-- 리스트에서 하나의 장비종류카테고리 호출 쿼리 문장 -->
+ 	<select id="oneSelectCategoryEquip"
+ 			parameterType="int"
+ 			resultMap="categoryEquipDb">
+	SELECT
+		sp_equip_cate.equip_number
+		,sp_agency.a_name
+		,sp_equip_cate.equip_name
+	FROM
+		sp_equip_cate join sp_agency
+	on
+		sp_equip_cate.a_number = sp_agency.a_number
+	WHERE
+		sp_equip_cate.equip_number = #{equipNumber}
+ 	</select>
+	 <!-- 장비종류카테고리 리스트출력쿼리문장 -->
+	 <select id="listSelectCategoryEquip"
+			resultMap="categoryEquipDb">
+	SELECT
+		sp_equip_cate.equip_number
+		,sp_agency.a_number
+		,sp_equip_cate.equip_name
+	FROM
+		sp_equip_cate join sp_agency
+	on
+		sp_equip_cate.a_number = sp_agency.a_number
+	 
+	 </select>
+	 <!-- 장비종류카테고리 등록 쿼리문장 -->
+	 <insert id="insertCategoryEquip"
+	 		parameterType="java.util.Map">
+	 	INSERT INTO sp_equip_cate
+			(a_number
+			, equip_name)
+		VALUES 
+			(#{aNumber}
+			, #{equipName})
+	 </insert>
  </mapper>

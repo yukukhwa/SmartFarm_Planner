@@ -32,8 +32,8 @@ public class CompanyMemberDao {
 	}
 	
 	/*업체 회원 리스트 Dao*/
-	public List<CompanyMemberDb> listSelectCompanyMember(String cMemberName){
-		return sqlSession.selectList(NAMESPACE+"listSelectCompanyMember", cMemberName);
+	public List<CompanyMemberDb> listSelectCompanyMember(String cName){
+		return sqlSession.selectList(NAMESPACE+"listSelectCompanyMember", cName);
 	}
 	
 	/*업체 회원 등록 아이디 중복체크 Dao*/

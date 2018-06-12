@@ -1,6 +1,8 @@
 /*배건혜*/
 package com.spam.sfplanner.user;
 
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +56,9 @@ public class CompanyMemberController {
 		/*업체회원 전체 리스트 Controller*/
 		@RequestMapping(value="/listCompanyMember", method=RequestMethod.GET)
 		public String listSelectCompanyMember(String cName, Model model) {
-			model.addAttribute("list", companyMemberService.listSelectCompanyMember(cName));
+			Map<String, Object> resultMap = companyMemberService.listSelectCompanyMember(cName);
+			model.addAttribute("list", resultMap.get("list"));
+			model.addAttribute("cName", cName);
 			model.addAttribute("cName", cName);
 			return "user/company_member/listCompanyMember";
 		}

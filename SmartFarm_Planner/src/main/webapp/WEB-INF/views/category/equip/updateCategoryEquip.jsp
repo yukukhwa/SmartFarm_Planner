@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>updateCategoryDeal</title>
+	<title>updateCategoryEquip</title>
 	<jsp:include page="/WEB-INF/views/css.jsp"/>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -30,31 +30,33 @@
     			접근 할 수 없는 권한 입니다.
     		</c:if>
     		<c:if test="${loginMember.level == 'agency'}">
-    		<h3>거래처 카테고리 수정</h3>
-    		<div>
-	    		<form action="${pageContext.request.contextPath}/updateCategoryDeal" method="post" id="updateForm">
-	    			<div>
-	    				<label>
-		    				거래처넘버
-		    				<input type="number" value="${listCategoryDeal.dealNumber}" disabled="disabled">
-	    				</label>
-	    			</div>
-	    			<div>
-	    				<label>
-		    				거래처분류
-		    				<input type="text" id="dealClassification" name="dealClassification" value="${listCategoryDeal.dealClassification}">
-	    					<input type="hidden" id="dealNumber" name="dealNumber" value="${listCategoryDeal.dealNumber}">
-	    				</label>
-	    			</div>
-	    			<div>
-	    				<label>
-		    				관리기관
-		    				<input type="text" id="aName" name="aName" value="${listCategoryDeal.agencyDb.aName}" disabled="disabled">
-	    				</label>
-	    			</div>
-	    			<button id="updateSubmit">수정</button>
-	    		</form>
-	    	</div>
+    			<h3>장비종류카테고리 수정</h3>
+    			<div>
+    				<form action="${pageContext.request.contextPath}/updateCategoryEquip" method="post" id="updateForm">
+    					<div>
+    						<label>
+    							장비종류넘버
+    							<input type="number" value="${listCategoryEquip.equipNumber}" disabled="disabled">
+    						</label>
+    					</div>
+    					<div>
+    						<label>
+    							장비명
+    							<input type="text" id="equipName" name="equipName" value="${listCategoryEquip.equipName}">
+    							<input type="text" id="equipNumber" name="equipNumber" value="${listCategoryEquip.equipNumber}">
+    						</label>
+    					</div>
+    					<div>
+    						<label>
+    							관리기관
+    							<input type="text" id="aName" name="aName" value="${listCategoryEquip.agencyDb.aName}" disabled="disabled">
+    						</label>
+    					</div>
+    					<button id="updateSubmit">수정</button>
+    				
+    				</form>
+    			
+    			</div>
     		</c:if>
     	</section>
     </section>

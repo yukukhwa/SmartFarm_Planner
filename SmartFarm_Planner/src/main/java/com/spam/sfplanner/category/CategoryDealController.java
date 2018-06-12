@@ -18,7 +18,7 @@ public class CategoryDealController {
 	private CategoryDealService categoryDealService;
 	private static final Logger logger = LoggerFactory.getLogger(CategoryDealController.class);
 	
-	/*거래처카테고리 삭제 COntroller*/
+	/*거래처카테고리 삭제 Controller*/
 	@RequestMapping(value="/deleteCategoryDeal", method=RequestMethod.GET)
 	public String deleteCategoryDeal(int dealNumber) {
 		categoryDealService.deleteCategoryDeal(dealNumber);

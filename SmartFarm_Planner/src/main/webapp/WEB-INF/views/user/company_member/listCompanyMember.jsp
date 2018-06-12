@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>listCompanyMember</title>
-<jsp:include page="/WEB-INF/views/css.jsp"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>listCompanyMember</title>
+	<jsp:include page="/WEB-INF/views/css.jsp"/>
 </head>
 <body>
 	<!-- container section start -->
@@ -22,14 +22,24 @@
 			<table>
 				<thead>
 					<tr>
-						<th>업체회원이름</th>
-						<th>업체회원연락처</th>
-						<th>업체회원이메일</th>
+						<th>업체회원 이름</th>
+						<th>업체회원 연락처</th>
+						<th>업체회원 이메일</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="companyMember" items="${list}">
 						<tr>
+							<c:if test="${bossId == companyMember.cMemberId}">
+								<td>
+									대표
+								</td>
+							</c:if>
+							<c:if test="${bossId != companyMember.cMemberId}">
+								<td>
+									직원
+								</td>
+							</c:if>
 							<td>${companyMember.cMemberName}</td>
 							<td>${companyMember.cMemberPhone}</td>
 							<td>${companyMember.cMemberEmail}</td>

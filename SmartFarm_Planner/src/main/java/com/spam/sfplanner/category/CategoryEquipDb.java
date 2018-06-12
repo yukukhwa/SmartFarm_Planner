@@ -1,10 +1,12 @@
 /*배건혜*/
 package com.spam.sfplanner.category;
 
+import com.spam.sfplanner.corporation.AgencyDb;
+
 public class CategoryEquipDb {
 	
 	private int equipNumber;
-	private int aNumber;
+	private AgencyDb agencyDb;
 	private String equipName;
 	public int getEquipNumber() {
 		return equipNumber;
@@ -12,11 +14,11 @@ public class CategoryEquipDb {
 	public void setEquipNumber(int equipNumber) {
 		this.equipNumber = equipNumber;
 	}
-	public int getaNumber() {
-		return aNumber;
+	public AgencyDb getAgencyDb() {
+		return agencyDb;
 	}
-	public void setaNumber(int aNumber) {
-		this.aNumber = aNumber;
+	public void setAgencyDb(AgencyDb agencyDb) {
+		this.agencyDb = agencyDb;
 	}
 	public String getEquipName() {
 		return equipName;
@@ -26,10 +28,9 @@ public class CategoryEquipDb {
 	}
 	@Override
 	public String toString() {
-		return "CategoryEquipDb [equipNumber=" + equipNumber + ", aNumber=" + aNumber + ", equipName=" + equipName
+		return "CategoryEquipDb [equipNumber=" + equipNumber + ", agencyDb=" + agencyDb + ", equipName=" + equipName
 				+ "]";
 	}
 	
 	
-
 }

@@ -1,24 +1,25 @@
 /*배건혜*/
 package com.spam.sfplanner.category;
 
+import com.spam.sfplanner.corporation.FarmDb;
+
 public class CategoryEtcSpendPayDb {
 	
 	private int etcspendpayNumber;
-	private int themeNumber;
+	private  CategoryThemeDb categoryThemeDb;
 	private String etcspendpayName;
-	private int fNumber;
-	private String fMemberId;
+	private FarmDb farmDb;
 	public int getEtcspendpayNumber() {
 		return etcspendpayNumber;
 	}
 	public void setEtcspendpayNumber(int etcspendpayNumber) {
 		this.etcspendpayNumber = etcspendpayNumber;
 	}
-	public int getThemeNumber() {
-		return themeNumber;
+	public CategoryThemeDb getCategoryThemeDb() {
+		return categoryThemeDb;
 	}
-	public void setThemeNumber(int themeNumber) {
-		this.themeNumber = themeNumber;
+	public void setCategoryThemeDb(CategoryThemeDb categoryThemeDb) {
+		this.categoryThemeDb = categoryThemeDb;
 	}
 	public String getEtcspendpayName() {
 		return etcspendpayName;
@@ -26,23 +27,16 @@ public class CategoryEtcSpendPayDb {
 	public void setEtcspendpayName(String etcspendpayName) {
 		this.etcspendpayName = etcspendpayName;
 	}
-	public int getfNumber() {
-		return fNumber;
+	public FarmDb getFarmDb() {
+		return farmDb;
 	}
-	public void setfNumber(int fNumber) {
-		this.fNumber = fNumber;
-	}
-	public String getfMemberId() {
-		return fMemberId;
-	}
-	public void setfMemberId(String fMemberId) {
-		this.fMemberId = fMemberId;
+	public void setFarmDb(FarmDb farmDb) {
+		this.farmDb = farmDb;
 	}
 	@Override
 	public String toString() {
-		return "CategoryEtcSpendPayDb [etcspendpayNumber=" + etcspendpayNumber + ", themeNumber=" + themeNumber
-				+ ", etcspendpayName=" + etcspendpayName + ", fNumber=" + fNumber + ", fMemberId=" + fMemberId + "]";
+		return "CategoryEtcSpendPayDb [etcspendpayNumber=" + etcspendpayNumber + ", categoryThemeDb=" + categoryThemeDb
+				+ ", etcspendpayName=" + etcspendpayName + ", farmDb=" + farmDb + "]";
 	}
-	
 	
 }

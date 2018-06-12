@@ -14,9 +14,9 @@
 	<!-- commons dbcp : 앞 예제들처럼 properties를 사용하여 값설정을 하여도 됨 -->
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://umj64-008.cafe24.com:3306/cjsghka?useUnicode=true&amp;characterEncoding=utf8"/>
-        <property name="username" value="cjsghka"/>
-        <property name="password" value="gugu1006@"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/cjsghka?useUnicode=true&amp;characterEncoding=utf8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="java0000"/>
     </bean>
    
     <!-- connection가진 tx기능을 spring에게 위임 -->

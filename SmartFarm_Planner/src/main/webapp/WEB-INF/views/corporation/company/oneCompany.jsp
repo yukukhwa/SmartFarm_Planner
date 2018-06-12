@@ -22,10 +22,23 @@
  			<div>
  				대표 : ${companyDb.companyMemberDb.cMemberName}<br>
  				거래처넘버 : ${companyDb.categoryDealDb.dealNumber}<br>
-		 		업체주소 : ${companyDb.cDoroaddress}${companyDb.cJibunaddress}<br>
+		 		업체주소 : ${companyDb.cDoroaddress}(${companyDb.cJibunaddress})<br>
 		 		업체 연락처 : ${companyDb.cPhone}<br>
 		 		업체 인원 : ${companyDb.cParty}<br>
  			</div>
+ 			<div>
+ 				<a href="${pageContext.request.contextPath}/listCompanyMember?cName=${companyDb.cName}">업체회원정보</a>
+ 			</div>
+ 			<c:if test="${loginMember.level == 'company' && loginMember.corpNumber == companyDb.cNumber}">
+ 				<div>
+ 					<a href="${pageContext.request.contextPath}/updateCompany?cName=${companyDb.cName}">업체정보 수정</a>
+ 				</div>
+	 			<c:if test="${loginMember.boss == 'boss'}">
+	 				<div>
+	 					<a href="${pageContext.request.contextPath}/deleteCompany?cNumber=${companyDb.cNumber}&cName=${companyDb.cName}">업체정보 삭제</a>
+	 				</div>
+	 			</c:if>
+ 			</c:if>
     		<div>
     			<a href="${pageContext.request.contextPath}/listCompany">리스트로 돌아가기</a>
     		</div>

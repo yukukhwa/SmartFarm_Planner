@@ -69,8 +69,8 @@
 	 	INSERT INTO sp_deal_cate
 			(a_number
 			,deal_classification)
-		VALUES (
-			#{aNumber}
+		VALUES 
+			(#{aNumber}
 			,#{dealClassification})
 	 </insert>
  </mapper>
