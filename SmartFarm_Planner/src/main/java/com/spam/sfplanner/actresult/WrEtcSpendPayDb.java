@@ -1,5 +1,9 @@
 // [유국화]
 package com.spam.sfplanner.actresult;
+
+import java.text.ParseException;
+import java.util.Date;
+
 /*
  * 작업단계 결과별 기타지출비용 결과 db
  */
@@ -40,7 +44,7 @@ public class WrEtcSpendPayDb {
 	public void setWrEtcspendpayDate(String wrEtcspendpayDate) {
 		java.util.Date date = new java.util.Date(); 
 		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 	
-
+		
 		this.wrEtcspendpayDate = sdf.format(date);
 	}
 	@Override

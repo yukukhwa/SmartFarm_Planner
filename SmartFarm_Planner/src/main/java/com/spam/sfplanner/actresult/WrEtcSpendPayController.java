@@ -14,15 +14,33 @@ public class WrEtcSpendPayController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(WrEtcSpendPayController.class);
 	@Autowired private WrEtcSpendPayService wrEtcSpendPayService;
 	
+	//기타지출비용 결과 수정 POST
+	@RequestMapping(value="/updateWrEtcSpendPay", method=RequestMethod.POST)
+	public String updateWrEtcSpendPay(WrEtcSpendPayDb wrEtcSpendPayDb) {
+		LOGGER.info("기타지출비결과 수정 화면에서 POST");
+		wrEtcSpendPayService.updateWrEtcSpendPay(wrEtcSpendPayDb);
+		return "actresult/wr_etcspendpay/listWrEtcSpendPay";
+	}
+	
+	//기타지출비용 결과 수정 GET
+	@RequestMapping(value="/updateWrEtcSpendPay", method=RequestMethod.GET)
+	public String updateWrEtcSpendPay(Model model) {
+		LOGGER.info("기타지출비결과 수정 화면으로 포워드");
+		int wrEtcspendpayNumber=6;
+		model.addAttribute("wrEtcSpendPayDb", wrEtcSpendPayService.selectOneWrEtcSpendPay(wrEtcspendpayNumber));
+		return "actresult/wr_etcspendpay/updateWrEtcSpendPay";
+	}
+	
+	//test
 	//기타지출비용 결과 전체리스트 GET
-		@RequestMapping(value="/listWrEtcSpendPay", method=RequestMethod.GET)
-		public String selectListWrEtcSpendPay(Model model) {			
-			LOGGER.info("리스트 기타지출비 화면에서 GET");
-			int wrNumber=1;
-			LOGGER.debug("리스트 리턴값:"+wrEtcSpendPayService.selectListWrEtcSpendPay(wrNumber));
-			//model.addAttribute("list", wrEtcSpendPayService.selectListWrEtcSpendPay(wrNumber));
-			return "actresult/wr_etcspendpay/listWrEtcSpendPay";
-		}
+	@RequestMapping(value="/listWrEtcSpendPay", method=RequestMethod.GET)
+	public String selectListWrEtcSpendPay(Model model) {			
+		LOGGER.info("리스트 기타지출비 화면에서 GET");
+		int wrNumber=1;
+		LOGGER.debug("리스트 리턴값:"+wrEtcSpendPayService.selectListWrEtcSpendPay(wrNumber));
+		model.addAttribute("list", wrEtcSpendPayService.selectListWrEtcSpendPay(wrNumber));
+		return "actresult/wr_etcspendpay/listWrEtcSpendPay";
+	}
 		
 		
 	//기타지출비용 결과 등록 POST

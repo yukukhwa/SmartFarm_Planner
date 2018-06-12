@@ -5,6 +5,7 @@ import java.util.List;
  * 실행결과리스트별 작업단계 결과 db
  */
 public class PpWoResultDb {
+	private int wrNumber; //실행결과리스트별 작업단계 결과 넘버
 	private int ppResultlistNumber; //실행결과리스트 넘버
 	private int ppWorkNumber; //실행결과리스트별 작업단계넘버
 	private double wrTotalarea; //실행결과 작업 총 면적
@@ -15,7 +16,12 @@ public class PpWoResultDb {
 	private List<WrNeedEquipDb> wrNeedEquipDb; //작업단계 결과별 필요장비-대여비
 	private List<WrHumanPayDb> wrHumanPayDb; //작업단계 결과별 인건비
 	private List<MemoDb> memoDb; //메모
-	
+	public int getWrNumber() {
+		return wrNumber;
+	}
+	public void setWrNumber(int wrNumber) {
+		this.wrNumber = wrNumber;
+	}
 	public int getPpResultlistNumber() {
 		return ppResultlistNumber;
 	}
@@ -78,9 +84,10 @@ public class PpWoResultDb {
 	}
 	@Override
 	public String toString() {
-		return "PpWoResultDb [ppResultlistNumber=" + ppResultlistNumber + ", ppWorkNumber=" + ppWorkNumber
-				+ ", wrTotalarea=" + wrTotalarea + ", wrReworkarea=" + wrReworkarea + ", wrInsurancePayDb="
-				+ wrInsurancePayDb + ", wrEtcSpendPayDb=" + wrEtcSpendPayDb + ", wrMaterialsPayDb=" + wrMaterialsPayDb
-				+ ", wrNeedEquipDb=" + wrNeedEquipDb + ", wrHumanPayDb=" + wrHumanPayDb + ", memoDb=" + memoDb + "]";
+		return "PpWoResultDb [wrNumber=" + wrNumber + ", ppResultlistNumber=" + ppResultlistNumber + ", ppWorkNumber="
+				+ ppWorkNumber + ", wrTotalarea=" + wrTotalarea + ", wrReworkarea=" + wrReworkarea
+				+ ", wrInsurancePayDb=" + wrInsurancePayDb + ", wrEtcSpendPayDb=" + wrEtcSpendPayDb
+				+ ", wrMaterialsPayDb=" + wrMaterialsPayDb + ", wrNeedEquipDb=" + wrNeedEquipDb + ", wrHumanPayDb="
+				+ wrHumanPayDb + ", memoDb=" + memoDb + "]";
 	}	
 }

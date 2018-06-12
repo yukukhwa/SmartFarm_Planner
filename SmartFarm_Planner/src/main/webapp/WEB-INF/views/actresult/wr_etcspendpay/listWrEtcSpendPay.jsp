@@ -29,11 +29,11 @@
 					<tbody>
 						<c:forEach var="list" items="${list}">
 							<tr>
-								<%-- <td>${list.wrEtcspendpayNumber }</td>
-								<td>${list.wrNumber}</td>
-								<td>${list.eEtcspendpayNumber }</td>
-								<td>${list.wrEtcspendpayRealcost }</td>
-								<td>${list.wrEtcspendpayDate }</td> --%>
+							<td>${list.wrEtcspendpayNumber }</td>
+							<td>${list.wrNumber}</td>
+							<td>${list.eEtcspendpayNumber }</td>
+							<td>${list.wrEtcspendpayRealcost }</td>
+							<td>${list.wrEtcspendpayDate }</td>
 							</tr>
 						</c:forEach>
 					</tbody>				
