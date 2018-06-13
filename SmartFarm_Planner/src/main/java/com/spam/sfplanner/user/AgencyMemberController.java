@@ -139,6 +139,6 @@ public class AgencyMemberController {
 		}
 		System.out.println(aNumber);
 		agencyMemberService.insertAgencyMember(agencyMemberView);
-		return "redirect:/";
+		return "redirect:/home";
 	}
 }

@@ -19,7 +19,7 @@
 					<input type="text" class="form-control" name="pw" value="${resultpw}">
 				</div>
 				<label class="checkbox">
-					<span class="pull-left"><a href="${pageContext.request.contextPath}/">메인화면</a></span>
+					<span class="pull-left"><a href="${pageContext.request.contextPath}/home">메인화면</a></span>
 					<span class="pull-right"><a href="${pageContext.request.contextPath}/login">로그인하러 가기</a></span>
 				</label>
 			</div>

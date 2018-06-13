@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class CategoryEtcSpendPayController {
-	@Autowired
-	private CategoryEtcSpendPayService categoryEtcSpendPayService;
+	/*@Autowired
+	private CategoryEtcSpendPayService categoryEtcSpendPayService;*/
 	private static final Logger logger = LoggerFactory.getLogger(CategoryEtcSpendPayController.class);
 	
 	@RequestMapping(value="/updateCategoryEtcSpendPay", method=RequestMethod.GET)

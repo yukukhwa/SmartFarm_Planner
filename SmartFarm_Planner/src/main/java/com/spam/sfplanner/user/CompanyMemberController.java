@@ -75,7 +75,7 @@ public class CompanyMemberController {
 			}
 			
 			companyMemberService.insertCompanyMember(companyMemberView);
-			return "redirect:/";
+			return "redirect:/home";
 		}
 		
 		/*업체 회원가입 화면 호출 Controller*/ 

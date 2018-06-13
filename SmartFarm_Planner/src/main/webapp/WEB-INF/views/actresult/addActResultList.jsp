@@ -44,7 +44,7 @@
 			<div class="col-lg-10">
 				<h3 class="page-header"><i class="fa fa-table"></i> 실행결과등록</h3>
 				<section class="panel">
-					<form action="${pageContext.request.contextPath}/insertWrHumanPay" method="post">
+					<form action="${pageContext.request.contextPath}/insertActResult" method="post">
 						<header class="panel-heading">
 							{계획서명}
 						</header>

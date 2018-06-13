@@ -34,6 +34,9 @@
     		</c:if>
     		<c:if test="${loginMember.level == 'farm'}">
 	    		<h1>계획서를 작성해주세요.</h1>
+	    		<form action="${pageContext.request.contextPath}/addPlanner" method="post">
+	    			<button type="submit">계획서 등록 완료</button>
+	    		</form>
 	    		
     		</c:if>
     	</section>

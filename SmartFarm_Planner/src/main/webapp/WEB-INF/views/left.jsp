@@ -12,9 +12,10 @@
 				<a href="javascript:;" class=""><i class="icon_document_alt"></i><span>계획서</span><span class="menu-arrow arrow_carrot-right"></span></a>
 				<ul class="sub">
 					<c:if test="${loginMember.level eq 'farm'}">
-						<li><a class="" href="#">나의 농가 계획서</a></li>
+						<li><a class="" href="${pageContext.request.contextPath}/addPlanner">My 계획서 등록</a></li>
+						<li><a class="" href="${pageContext.request.contextPath}/onePlanner">My 계획서 리스트</a></li>
 					</c:if>
-					<li><a class="" href="#">전체 계획서</a></li>
+					<li><a class="" href="${pageContext.request.contextPath}/listPlanner">전체 농가 계획서</a></li>
 				</ul>
 			</li>
 			<c:if test="${loginMember.level eq 'farm'||loginMember.level eq 'agency'}">
@@ -22,10 +23,10 @@
 					<a href="javascript:;" class=""><i class="icon_desktop"></i><span>실행결과</span><span class="menu-arrow arrow_carrot-right"></span></a>
 					<ul class="sub">
 						<c:if test="${loginMember.level eq 'farm'}">
-							<li><a class="" href="${pageContext.request.contextPath}/choicePlanner">등록</a></li>
-							<li><a class="" href="#">나의 리스트</a></li>
+							<li><a class="" href="${pageContext.request.contextPath}/choicePlanner">My 실행결과 등록</a></li>
+							<li><a class="" href="${pageContext.request.contextPath}/oneSelectActResult">My 실행결과 리스트</a></li>
 						</c:if>
-						<li><a class="" href="#">전체 리스트</a></li>
+						<li><a class="" href="${pageContext.request.contextPath}/listSelectActResult">전체 농가 실행결과 리스트</a></li>
 					</ul>
 				</li>
 				<li>
@@ -38,10 +39,10 @@
 			<li class="sub-menu">
 				<a href="javascript:;" class=""><i class="icon_table"></i><span>카테고리</span><span class="menu-arrow arrow_carrot-right"></span></a>
 				<ul class="sub">
-					<li><a class="" href="#">거래처</a></li>
-					<li><a class="" href="#">장비종류</a></li>
-					<li><a class="" href="#">산업분류</a></li>
-					<li><a class="" href="#">테마</a></li>
+					<li><a class="" href="${pageContext.request.contextPath}/listCategoryDeal">거래처</a></li>
+					<li><a class="" href="${pageContext.request.contextPath}/listCategoryEquip">장비종류</a></li>
+					<li><a class="" href="${pageContext.request.contextPath}/listIndustry">산업분류</a></li>
+					<li><a class="" href="${pageContext.request.contextPath}/listTheme">테마</a></li>
 				</ul>
 			</li>
 			<li>

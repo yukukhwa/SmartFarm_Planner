@@ -24,7 +24,7 @@ public class LoginController {
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.removeAttribute("loginMember");
-		return "redirect:/";
+		return "redirect:/home";
 	}
 	/*
 	 * loginFarm 매핑
@@ -48,7 +48,7 @@ public class LoginController {
 		}
 		logger.debug("LoginController.loginFarm.returnLogin : "+returnLogin);
 		session.setAttribute("loginMember", returnLogin);
-		return "redirect:/";
+		return "redirect:/home";
 	}
 	
 	@RequestMapping(value = "/loginCompany", method = RequestMethod.POST)
@@ -59,7 +59,7 @@ public class LoginController {
 			return "/login/login";
 		}
 		session.setAttribute("loginMember", returnLogin);
-		return "redirect:/";
+		return "redirect:/home";
 	}
 	
 	@RequestMapping(value = "/loginAgency", method = RequestMethod.POST)
@@ -70,6 +70,6 @@ public class LoginController {
 			return "/login/login";
 		}
 		session.setAttribute("loginMember", returnLogin);
-		return "redirect:/";
+		return "redirect:/home";
 	}
 }

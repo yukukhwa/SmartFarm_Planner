@@ -22,57 +22,63 @@
           <div class="col-lg-12">
             <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="${pageContext.request.contextPath}/">Home</a></li>
-              <li><i class="fa fa-laptop"></i><a href="${pageContext.request.contextPath}/">회원가입</a></li>
+              <li><i class="fa fa-home"></i><a href="${pageContext.request.contextPath}/home">Home</a></li>
+              <li><i class="fa fa-laptop"></i><a href="${pageContext.request.contextPath}/home">회원가입</a></li>
             </ol>
           </div>
         </div>
 
         <div class="row">
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <div class="info-box blue-bg">
+           <a href="${pageContext.request.contextPath}/nongsaroApi?number=1"> 
+           	<div class="info-box blue-bg">
               <i class="fa fa-cloud-download"></i>
-              <div class="count">6.674</div>
-              <div class="title">Download</div>
+              <div class="count" style="font-size: 20px;">과수</div>
+              <div class="title">표준 데이터</div>
             </div>
+            </a>
             <!--/.info-box-->
           </div>
           <!--/.col-->
 
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+           <a href="${pageContext.request.contextPath}/nongsaroApi?number=2"> 
             <div class="info-box brown-bg">
               <i class="fa fa-shopping-cart"></i>
-              <div class="count">7.538</div>
-              <div class="title">Purchased</div>
+              <div class="count" style="font-size: 20px;">축산</div>
+              <div class="title">표준 데이터</div>
             </div>
+            </a>
             <!--/.info-box-->
           </div>
           <!--/.col-->
 
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+           <a href="${pageContext.request.contextPath}/nongsaroApi?number=3"> 
             <div class="info-box dark-bg">
               <i class="fa fa-thumbs-o-up"></i>
-              <div class="count">4.362</div>
-              <div class="title">Order</div>
+              <div class="count" style="font-size: 20px;">식량작물</div>
+              <div class="title">표준 데이터</div>
             </div>
+            </a>
             <!--/.info-box-->
           </div>
           <!--/.col-->
 
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+           <a href="${pageContext.request.contextPath}/nongsaroApi?number=4"> 
             <div class="info-box green-bg">
               <i class="fa fa-cubes"></i>
-              <div class="count">1.426</div>
-              <div class="title">Stock</div>
+              <div class="count" style="font-size: 20px;">특용작물</div>
+              <div class="title">표준 데이터</div>
             </div>
+            </a>
             <!--/.info-box-->
           </div>
           <!--/.col-->
 
         </div>
         <!--/.row-->
-
-
         <div class="row">
           <div class="col-lg-9 col-md-12">
 
@@ -133,7 +139,7 @@
           <div class="col-lg-9 col-md-12">
             <div class="panel panel-default">
               <div class="panel-heading">
-                <h2><i class="fa fa-flag-o red"></i><strong>Registered Users</strong></h2>
+                <h2><i class="fa fa-flag-o red"></i><strong>대여장비 현황</strong></h2>
                 <div class="panel-actions">
                   <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
                   <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
@@ -145,10 +151,10 @@
                   <thead>
                     <tr>
                       <th></th>
-                      <th>Country</th>
-                      <th>Users</th>
-                      <th>Online</th>
-                      <th>Performance</th>
+                      <th>업체</th>
+                      <th>대여장비 모델</th>
+                      <th>가격</th>
+                      <th>선호도</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -341,11 +347,7 @@
 
 
         <!-- statics end -->
-
-
-
-
-        <!-- project team & activity start -->
+		<!-- project team & activity start -->
         <div class="row">
           <div class="col-md-4 portlets">
             <!-- Widget -->
@@ -656,7 +658,7 @@
 
 
                 </div>
-                <div class="widget-foot">
+					<div class="widget-foot">
                   <!-- Footer goes here -->
                 </div>
               </div>
@@ -668,6 +670,13 @@
         <!-- project team & activity end -->
 
       </section>
+        
+
+
+
+
+        
+                
       <div class="text-right">
         <div class="credits">
           <!--

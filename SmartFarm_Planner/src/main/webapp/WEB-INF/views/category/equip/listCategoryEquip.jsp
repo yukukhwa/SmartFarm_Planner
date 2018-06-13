@@ -18,6 +18,7 @@
     <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
+    	해당 페이지에 접근할 수 없는 권한입니다.
     		<c:if test="${loginMember.level == 'agency'}">
     			<table>
     				<thead>

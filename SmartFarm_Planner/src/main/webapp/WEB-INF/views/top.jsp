@@ -8,7 +8,7 @@
 		</div>
 	</div>
 	<!--logo start-->
-	<a href="${pageContext.request.contextPath}/" class="logo">Smart<span class="lite">Farm</span></a>
+	<a href="${pageContext.request.contextPath}/home" class="logo">Smart<span class="lite">Farm</span></a>
 	<!--logo end-->
 	<div class="nav search-row" id="top_menu">
 		<!--  search form start -->

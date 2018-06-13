@@ -61,7 +61,7 @@ public class CategoryIndustryController {
 	 * @param model
 	 * @return 산업카테고리 리스트
 	 */
-	@RequestMapping(value="listIndustry",method = RequestMethod.POST)
+	@RequestMapping(value="/listIndustry",method = RequestMethod.POST)
 	public String listSelectCategoryIndustry(@RequestParam(value="industryName",required=false)String industryName
 											,@RequestParam(value="aName",required=false)String aName,Model model) {
 		//System.out.println(industryName+aName);
@@ -89,7 +89,7 @@ public class CategoryIndustryController {
 	@RequestMapping(value="/addIndustry",method = RequestMethod.POST)
 	public String insertCategoryIndustry(CategoryIndustryDb categoryIndustryDb,HttpSession session) {
 		categoryIndustryService.insertCategoryIndustry(categoryIndustryDb, session);
-		return "redirect:/";
+		return "redirect:/home";
 	}
 	
 	/**

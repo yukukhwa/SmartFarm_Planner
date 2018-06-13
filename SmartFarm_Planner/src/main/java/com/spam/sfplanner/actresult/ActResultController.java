@@ -44,6 +44,14 @@ public class ActResultController {
 		model.addAttribute("plannerList", loginDb.getCorpNumber());
 		return "actresult/choicePlanner";
 	}
+	
+	/*
+	 * 실행결과리스트 등록화면에서 리스트가는 매핑
+	 */
+	@RequestMapping(value="/oneSelectActResult", method = RequestMethod.POST)
+	public String insertActResult () {		
+		return "redirect:/addActResultList";
+	}
 	/*
 	 * 실행결과리스트 등록화면으로 가는 매핑
 	 */
