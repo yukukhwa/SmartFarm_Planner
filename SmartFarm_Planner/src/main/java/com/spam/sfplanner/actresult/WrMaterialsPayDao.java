@@ -30,27 +30,27 @@ public class WrMaterialsPayDao {
 	 * WrMaterialsPayDb를 매개변수로 받아 원자재비결과넘버에 해당하는 값들을 수정하는 쿼리문을 실행한 후 
 	 * 횟수를 리턴받는 매서드
 	 */
-	public int updateWrMaterialsPay(WrMaterialsPayDb wrMaterialsPayDb) {
-		return sqlSession.update(NS+"updateWrMaterialsPay", wrMaterialsPayDb);
+	public int updateWrMaterialsPay(WrMaterialsPay wrMaterialsPay) {
+		return sqlSession.update(NS+"updateWrMaterialsPay", wrMaterialsPay);
 	}
 	/*
 	 * 원자재비결과넘버를 매개변수로 받아 해당하는 원자재비결과 한개를 출력하는 쿼리문을 실행한 후
-	 * WrMaterialsPayDb type으로 리턴받는 매서드
+	 * WrMaterialsPay type으로 리턴받는 매서드
 	 */
-	public WrMaterialsPayDb oneSelectWrMaterialsPay(int wrMaterialspayNumber) {
+	public WrMaterialsPay oneSelectWrMaterialsPay(int wrMaterialspayNumber) {
 		return sqlSession.selectOne(NS+"oneSelectWrMaterialsPay", wrMaterialspayNumber);
 	}
 	/*
 	 * 작업단계넘버를 매개변수로 받아 해당하는 원자재비결과를 출력하는 쿼리문을 실행한 후 나온 결과를
 	 * 리스트로 리턴받는 매서드
 	 */
-	public List<WrMaterialsPayDb> listSelectWrMaterialsPay(int wrNumber) {
+	public List<WrMaterialsPay> listSelectWrMaterialsPay(int wrNumber) {
 		return sqlSession.selectList(NS+"listSelectWrMaterialsPay", wrNumber);
 	}
 	/*
 	 * wrMaterialsPayDb를 매개변수로 받아 insert쿼리문을 실행한후 횟수를 리턴하는 매서드
 	 */
-	public int insertWrMaterialsPay(WrMaterialsPayDb wrMaterialsPayDb) {
-		return sqlSession.insert(NS+"insertWrMaterialsPay", wrMaterialsPayDb);
+	public int insertWrMaterialsPay(WrMaterialsPay wrMaterialsPay) {
+		return sqlSession.insert(NS+"insertWrMaterialsPay", wrMaterialsPay);
 	}
 }

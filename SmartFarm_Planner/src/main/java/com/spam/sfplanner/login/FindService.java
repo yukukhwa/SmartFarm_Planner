@@ -12,7 +12,7 @@ public class FindService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FindController.class);
 	
 	// 이름, 이메일, 아이디, 농가명으로 비번 찾기
-	public String oneSelectFindPw(FindDb finddb) {
+	public String oneSelectFindPw(Find finddb) {
 		LOGGER.info("아이디 찾기 서비스");
 		// Corporation 분기문
 		if(finddb.getCorp().equals("농가")) {
@@ -25,7 +25,7 @@ public class FindService {
 	}
 	
 	// 이름, 이메일로 아이디 찾기
-	public String oneSelectFindId(FindDb finddb) {
+	public String oneSelectFindId(Find finddb) {
 		LOGGER.info("아이디 찾기 서비스");
 		// Corporation 분기문
 		if(finddb.getCorp().equals("농가")) {

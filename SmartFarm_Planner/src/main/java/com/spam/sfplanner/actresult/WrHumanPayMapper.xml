@@ -13,7 +13,7 @@
 	</delete>
 	<!-- 수정하는 데이터를 WrHumanPayDb type 매개변수로 받아 update하는 쿼리문 -->
 	<update id="updateWrHumanPay"
-			parameterType="com.spam.sfplanner.actresult.WrHumanPayDb">
+			parameterType="com.spam.sfplanner.actresult.WrHumanPay">
 		UPDATE
 			sp_wr_humanpay
 		SET
@@ -24,7 +24,7 @@
 	<!-- 인건비넘버를 매개변수로 받아 한개의 인건비 목록을 select하는 쿼리문 -->
 	<select id="oneSelectWrHumanPay"
 			parameterType="Integer"
-			resultType="com.spam.sfplanner.actresult.WrHumanPayDb">
+			resultType="com.spam.sfplanner.actresult.WrHumanPay">
 		SELECT
 			wr_humanpay_number AS wrHumanpayNumber,
 			wr_number AS wrNumber,
@@ -37,7 +37,7 @@
 	<!-- 작업단계넘버를 매개변수로 받아 WrHumanPayDb type으로 리턴하여 단계별 인건비를 select하는 쿼리문 -->
 	<select id="listSelectWrHumanPay"
 			parameterType="Integer"
-			resultType="com.spam.sfplanner.actresult.WrHumanPayDb">
+			resultType="com.spam.sfplanner.actresult.WrHumanPay">
 		SELECT
 			wr_humanpay_number AS wrHumanpayNumber,
 			wr_number AS wrNumber,
@@ -49,7 +49,7 @@
 	</select>
 	<!-- 매개변수를 WrHumanPayDb로 받아 인건비 등록하는 쿼리문 -->
 	<insert id="insertWrHumanPay"
-			parameterType="com.spam.sfplanner.actresult.WrHumanPayDb">
+			parameterType="com.spam.sfplanner.actresult.WrHumanPay">
 		INSERT INTO sp_wr_humanpay (
 			wr_number,
 			e_humanpay_number,

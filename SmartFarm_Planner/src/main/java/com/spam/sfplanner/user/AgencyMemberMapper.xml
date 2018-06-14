@@ -5,7 +5,7 @@
   
 <!-- 나성수 -->
 <mapper namespace="com.spam.sfplanner.user.AgencyMemberMapper">
-	<resultMap type="com.spam.sfplanner.user.AgencyMemberDb" id="agencyMemberDb">
+	<resultMap type="com.spam.sfplanner.user.AgencyMember" id="agencyMemberDb">
 		<id column="a_member_id" property="aMemberId"/>
 		<result column="a_member_pw" property="aMemberPw"/>
 		<result column="a_member_name" property="aMemberName"/>
@@ -17,7 +17,7 @@
 		<result column="a_member_jibunaddress" property="aMemberJibunaddress"/>
 		<result column="a_member_detailaddress" property="aMemberDetailaddress"/>
 		<result column="a_member_registdate" property="aMemberRegistdate"/>
-		<collection property="agencyDb" ofType="com.spam.sfplanner.corporation.AgencyDb">
+		<collection property="agencyDb" ofType="com.spam.sfplanner.corporation.Agency">
 			<id column="a_number" property="aNumber"/>
 			<result column="a_name" property="aName"/>
 			<result column="a_doroaddress" property="aDoroaddress"/>
@@ -29,7 +29,7 @@
 
 	<!-- 관리기관 회원 정보 수정 처리 update 쿼리문장 -->
 	<update id="updateAgencyMember"
-			parameterType="com.spam.sfplanner.user.AgencyMemberView">
+			parameterType="com.spam.sfplanner.user.AgencyMemberRequest">
 		UPDATE sp_agency_master
 		SET
 			a_member_pw=#{aMemberPw}
@@ -103,7 +103,7 @@
 	
 	<!-- 해당 관리기관의 회원등록 처리 insert 쿼리문장 -->
 	<insert id="InsertAgencyMember"
-			parameterType="com.spam.sfplanner.user.AgencyMemberView">
+			parameterType="com.spam.sfplanner.user.AgencyMemberRequest">
 		INSERT INTO sp_agency_master
 		(a_member_id, a_number, a_member_pw, a_member_name, a_member_phone, a_member_gender, a_member_email, a_member_privacy, a_member_doroaddress, a_member_jibunaddress, a_member_detailaddress, a_member_registdate)
 		VALUES (#{aMemberId}, #{aNumber}, #{aMemberPw}, #{aMemberName}, #{aMemberPhone}, #{aMemberGender}, #{aMemberEmail}, #{aMemberPrivacy}, #{aMemberDoroaddress}, #{aMemberJibunaddress}, #{aMemberDetailaddress}, NOW())

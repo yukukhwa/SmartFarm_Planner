@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spam.sfplanner.user.CompanyMemberDao;
-import com.spam.sfplanner.user.CompanyMemberDb;
-import com.spam.sfplanner.user.CompanyMemberView;
+import com.spam.sfplanner.user.CompanyMember;
+import com.spam.sfplanner.user.CompanyMemberRequest;
 @Transactional
 @Service
 public class CompanyService {
@@ -23,34 +23,34 @@ public class CompanyService {
 	
 	/*업체 삭제처리 Service*/
 	public void deleteCompany(int cNumber, String cName) {
-		for(CompanyMemberDb companyMemberDb : companyMemberDao.listSelectCompanyMember(cName)) {
-			companyMemberDao.deleteCompanyMember(companyMemberDb.getcMemberId());
+		for(CompanyMember companyMember : companyMemberDao.listSelectCompanyMember(cName)) {
+			companyMemberDao.deleteCompanyMember(companyMember.getcMemberId());
 		}
 		companyDao.deleteCompany(cNumber);
 	}
 	
 	/*업체 수정처리 Service*/
-	public int updateCompany(CompanyMemberView companyMemberView) {
+	public int updateCompany(CompanyMemberRequest companyMemberRequest) {
 		int checkId = 0;
-		for(CompanyMemberDb companyMemberDb : companyMemberDao.listSelectCompanyMember(companyMemberView.getcName())) {
-			if(companyMemberView.getcMemberId().equals(companyMemberDb.getcMemberId())) {
+		for(CompanyMember companyMember : companyMemberDao.listSelectCompanyMember(companyMemberRequest.getcName())) {
+			if(companyMemberRequest.getcMemberId().equals(companyMember.getcMemberId())) {
 				checkId = 1;
 			}
 		}
 		if(checkId == 0) {
 			return 0;
 		}
-		companyDao.updateCompany(companyMemberView);
+		companyDao.updateCompany(companyMemberRequest);
 		return 1;
 	}
 	
 	/*업체 수정화면 출력 Service*/
-	public CompanyDb updateCompany(String cName) {
+	public Company updateCompany(String cName) {
 		return companyDao.oneSelectCompany(cName);
 	}
 	
 	/*업체 상세내용 출력 Service*/
-	public CompanyDb oneSelectCompany(String cName) {
+	public Company oneSelectCompany(String cName) {
 		return companyDao.oneSelectCompany(cName);
 	}
 	
@@ -65,8 +65,8 @@ public class CompanyService {
 	}
 	
 	/*업체 등록처리 Service*/
-	public void insertCompany(CompanyMemberView companyMemberView) {
+	public void insertCompany(CompanyMemberRequest companyMemberRequest) {
 		logger.info("CompanyService 호출");
-		companyDao.insertCompany(companyMemberView);
+		companyDao.insertCompany(companyMemberRequest);
 	}
 }

@@ -12,9 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spam.sfplanner.plan.ProductionPlanDao;
-import com.spam.sfplanner.plan.ProductionPlanDb;
+import com.spam.sfplanner.plan.ProductionPlan;
 import com.spam.sfplanner.plan.WoHumanPayDao;
-import com.spam.sfplanner.plan.WoHumanPayDb;
+import com.spam.sfplanner.plan.WoHumanPay;
 
 @Service
 @Transactional
@@ -31,15 +31,15 @@ public class ActResultService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ActResultService.class);
 	
-	public int insertActResult(ActResultDb actResultDb) {
+	public int insertActResult(ActResult actResult) {
 		return 0;
 	}
 	
-	public List<WoHumanPayDb> listSelectWoHumanPay() {
+	public List<WoHumanPay> listSelectWoHumanPay() {
 		return woHumanPayDao.listSelectWoHumanPay();
 	}
 	
-	public List<ActResultDb> listSelectActResult(int fNumber) {
+	public List<ActResult> listSelectActResult(int fNumber) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		System.out.println(fNumber);
 		if(fNumber != 0) {
@@ -49,7 +49,7 @@ public class ActResultService {
 		return actResultDao.listSelectActResult(map);
 	}
 	
-	public List<ProductionPlanDb> listSelectPlan(int corpNumber) {
+	public List<ProductionPlan> listSelectPlan(int corpNumber) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("search", "yes");
 		map.put("column", "농가넘버");

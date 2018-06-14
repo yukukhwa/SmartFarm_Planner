@@ -36,7 +36,7 @@ public class FarmController {
 		/*listFarm에서 post방식으로 들어올때 listFarm으로 포워드*/
 		@RequestMapping(value="listFarm", method=RequestMethod.POST)
 		public String searchFarmList(String fName, Model model) {
-			List<FarmDb> list = farmService.searchlistSelectFarm(fName);
+			List<Farm> list = farmService.searchlistSelectFarm(fName);
 			model.addAttribute("list", list);
 			System.out.println("search list==> "+list);
 			return "corporation/farm/listFarm";
@@ -46,7 +46,7 @@ public class FarmController {
 		@RequestMapping(value="listFarm", method=RequestMethod.GET)
 		public String listSelectFarm(Model model) {
 			LOGGER.info("FarmController listSelectFarm 호출");
-			List<FarmDb> list = farmService.listSelectFarm();
+			List<Farm> list = farmService.listSelectFarm();
 			System.out.println("FarmSelect list ---> "+list);
 			model.addAttribute("list", list);
 			return "corporation/farm/listFarm";

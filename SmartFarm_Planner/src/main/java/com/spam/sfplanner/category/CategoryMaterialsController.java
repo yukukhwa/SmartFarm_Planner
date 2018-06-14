@@ -27,9 +27,9 @@ public class CategoryMaterialsController {
 	
 	/*updateMaterialsCate로 post방식으로 요청받을 시 원자재 카테고리 정보들을 수정처리 후 리스트로 리다이렉트 한다*/
 	@RequestMapping(value="/updateMaterialsCate", method=RequestMethod.POST)
-	public String updateCategoryMaterials(CategoryMaterialsDb categoryMaterialsDb) {
+	public String updateCategoryMaterials(CategoryMaterials categoryMaterials) {
 		//System.out.println("updateMaterials categoryMaterialsDb===> "+categoryMaterialsDb);
-		categoryMaterialsService.updateCategoryMaterials(categoryMaterialsDb);
+		categoryMaterialsService.updateCategoryMaterials(categoryMaterials);
 		return "redirect:/listMaterialsCate";
 	}
 	
@@ -46,7 +46,7 @@ public class CategoryMaterialsController {
 	public String listSelectCategoryMaterials(Model model
 										, @RequestParam(value="materialsCateSearchOption")String materialsCateSearchOption
 										, @RequestParam(value="searchKeyword", defaultValue="")String searchKeyword) {
-		List<CategoryMaterialsDb> list = categoryMaterialsService.searchListSelectCategoryMaterials(searchKeyword, materialsCateSearchOption);
+		List<CategoryMaterials> list = categoryMaterialsService.searchListSelectCategoryMaterials(searchKeyword, materialsCateSearchOption);
 		model.addAttribute("list", list);
 		System.out.println("list==> "+list);
 		return "category/materials/listMaterialsCate";
@@ -61,9 +61,9 @@ public class CategoryMaterialsController {
 	
 	/*addMaterialsCate로 post방식으로 요청받았을 때 원자재 카테고리 등록처리 후 인덱스로 리다이렉트*/
 	@RequestMapping(value="/addMaterialsCate", method=RequestMethod.POST)
-	public String insertCategoryMaterials(CategoryMaterialsDb categoryMaterialsDb) {
-		System.out.println("insertCateMaterials categoryMaterialsDb====> "+categoryMaterialsDb);
-		categoryMaterialsService.insertCategoryMaterials(categoryMaterialsDb);
+	public String insertCategoryMaterials(CategoryMaterials categoryMaterials) {
+		System.out.println("insertCateMaterials categoryMaterialsDb====> "+categoryMaterials);
+		categoryMaterialsService.insertCategoryMaterials(categoryMaterials);
 		return "category/materials/listMaterialsCate";
 	}
 	

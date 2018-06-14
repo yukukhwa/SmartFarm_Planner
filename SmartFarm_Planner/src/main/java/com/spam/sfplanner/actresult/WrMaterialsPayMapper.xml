@@ -13,7 +13,7 @@
 	</delete>
 	<!-- WrMaterialsPayDb를 매개변수로 받아 수정하고 싶은 원자재비결과넘버 조건에 맞춘 원자재비결과 내용을 수정하는 쿼리문 -->
 	<update id="updateWrMaterialsPay"
-			parameterType="com.spam.sfplanner.actresult.WrMaterialsPayDb">
+			parameterType="com.spam.sfplanner.actresult.WrMaterialsPay">
 		UPDATE
 			sp_wr_materialspay
 		SET
@@ -24,7 +24,7 @@
 	<!-- 원자재비결과넘버를 매개변수로 받아 해당하는 원자재비결과 한개를 출력하여 WrMaterialsPayDb type으로 받는 쿼리문 -->
 	<select id="oneSelectWrMaterialsPay"
 			parameterType="Integer"
-			resultType="com.spam.sfplanner.actresult.WrMaterialsPayDb">
+			resultType="com.spam.sfplanner.actresult.WrMaterialsPay">
 		SELECT
 			wr_materialspay_number AS wrMaterialspayNumber,
 			wr_number AS wrNumber,
@@ -37,7 +37,7 @@
 	<!-- 작업단계넘버를 매개변수로 받아 해당하는 원자재비결과 리스트를 WrMaterialsPayDb type으로 받는 쿼리문 -->
 	<select id="listSelectWrMaterialsPay"
 			parameterType="Integer"
-			resultType="com.spam.sfplanner.actresult.WrMaterialsPayDb">
+			resultType="com.spam.sfplanner.actresult.WrMaterialsPay">
 		SELECT
 			wr_materialspay_number AS wrMaterialspayNumber,
 			wr_number AS wrNumber,
@@ -49,7 +49,7 @@
 	</select>
 	<!-- 매개변수를 원자재비결과 db로 받아 insert하는 쿼리문 -->
 	<insert id="insertWrMaterialsPay"
-			parameterType="com.spam.sfplanner.actresult.WrMaterialsPayDb">
+			parameterType="com.spam.sfplanner.actresult.WrMaterialsPay">
 		INSERT INTO sp_wr_materialspay (
 			wr_number,
 			e_materialspay_number,

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.spam.sfplanner.login.LoginDb;
+import com.spam.sfplanner.login.Login;
 
 @Controller
 public class ActResultController {
@@ -27,8 +27,8 @@ public class ActResultController {
 	 */
 	@RequestMapping(value="/listSelectMyActResult", method = RequestMethod.GET)
 	public String listSelectMyActResult (Model model, HttpSession session) {
-		LoginDb loginDb = (LoginDb) session.getAttribute("loginMember");
-		model.addAttribute("actResultList", actResultService.listSelectActResult(loginDb.getCorpNumber()));
+		Login login = (Login) session.getAttribute("loginMember");
+		model.addAttribute("actResultList", actResultService.listSelectActResult(login.getCorpNumber()));
 		return "actresult/askActResultList";
 	}
 	/*
@@ -51,8 +51,8 @@ public class ActResultController {
 	 */
 	@RequestMapping(value="/choicePlanner", method = RequestMethod.GET)
 	public String choicePlanner (HttpSession session, Model model) {
-		LoginDb loginDb = (LoginDb) session.getAttribute("loginMember");
-		model.addAttribute("plannerList", actResultService.listSelectPlan(loginDb.getCorpNumber()));
+		Login login = (Login) session.getAttribute("loginMember");
+		model.addAttribute("plannerList", actResultService.listSelectPlan(login.getCorpNumber()));
 		return "actresult/choicePlanner";
 	}
 	

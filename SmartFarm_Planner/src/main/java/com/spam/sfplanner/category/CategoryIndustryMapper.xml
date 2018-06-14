@@ -5,10 +5,10 @@
 
 <!-- 나성수 -->
 <mapper namespace="com.spam.sfplanner.category.CategoryIndustryMapper">
-	<resultMap type="com.spam.sfplanner.category.CategoryIndustryDb" id="categoryIndustryDb">
+	<resultMap type="com.spam.sfplanner.category.CategoryIndustry" id="categoryIndustryDb">
 		<id column="industry_number" property="industryNumber"/>
 		<result column="industry_name" property="industryName"/>
-		<collection ofType="com.spam.sfplanner.corporation.AgencyDb" property="agencyDb">
+		<collection ofType="com.spam.sfplanner.corporation.Agency" property="agencyDb">
 			<id column="a_number" property="aNumber"/>
 			<result column="a_name" property="aName"/>
 		</collection>
@@ -16,7 +16,7 @@
 	
 	<!-- 산업카테고리 수정 처리 update 쿼리문장 -->
 	<update id="updateCategoryIndustry"
-			parameterType="com.spam.sfplanner.category.CategoryIndustryDb">
+			parameterType="com.spam.sfplanner.category.CategoryIndustry">
 		UPDATE sp_industry_cate
 		SET
 			industry_name=#{industryName}

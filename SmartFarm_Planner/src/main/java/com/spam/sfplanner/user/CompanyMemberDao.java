@@ -22,17 +22,17 @@ public class CompanyMemberDao {
 	}
 	
 	/*업체 회원 수정처리 Dao*/
-	public void updateCompanyMember(CompanyMemberView companyMemberView) {
-		sqlSession.update(NAMESPACE+"updateCompanyMember", companyMemberView);
+	public void updateCompanyMember(CompanyMemberRequest companyMemberRequest) {
+		sqlSession.update(NAMESPACE+"updateCompanyMember", companyMemberRequest);
 	}
 	
 	/*업체 회원 상세내용 Dao*/
-	public CompanyMemberDb onSelectCompanyMember(String cMemberId) {
+	public CompanyMember onSelectCompanyMember(String cMemberId) {
 		return sqlSession.selectOne(NAMESPACE+"onSelectCompanyMember", cMemberId);
 	}
 	
 	/*업체 회원 리스트 Dao*/
-	public List<CompanyMemberDb> listSelectCompanyMember(String cName){
+	public List<CompanyMember> listSelectCompanyMember(String cName){
 		return sqlSession.selectList(NAMESPACE+"listSelectCompanyMember", cName);
 	}
 	
@@ -42,9 +42,9 @@ public class CompanyMemberDao {
 	}
 	
 	/*업체 회원 등록처리 Dao*/
-	public void insertCompanyMember(CompanyMemberView companyMemberView) {
+	public void insertCompanyMember(CompanyMemberRequest companyMemberRequest) {
 		logger.info("CompanyMemberDao 호출");
-		sqlSession.insert(NAMESPACE+"insertCompanyMember", companyMemberView);
+		sqlSession.insert(NAMESPACE+"insertCompanyMember", companyMemberRequest);
 	}
 
 }

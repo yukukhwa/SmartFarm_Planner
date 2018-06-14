@@ -20,15 +20,15 @@ public class CategoryMaterialsService {
 		categoryMaterialsDao.deleteCategoryMaterials(materialsNumber);
 	}
 	
-	public void updateCategoryMaterials(CategoryMaterialsDb categoryMaterialsDb) {
-		categoryMaterialsDao.updateCategoryMaterials(categoryMaterialsDb);
+	public void updateCategoryMaterials(CategoryMaterials categoryMaterials) {
+		categoryMaterialsDao.updateCategoryMaterials(categoryMaterials);
 	}
 	
-	public CategoryMaterialsDb oneSelectCategoryMaterials(String materialsName) {
+	public CategoryMaterials oneSelectCategoryMaterials(String materialsName) {
 		return categoryMaterialsDao.oneSelectCategoryMaterials(materialsName);
 	}
 	
-	public List<CategoryMaterialsDb> searchListSelectCategoryMaterials(String searchKeyword, String materialsCateSearchOption){
+	public List<CategoryMaterials> searchListSelectCategoryMaterials(String searchKeyword, String materialsCateSearchOption){
 		Map<String, String> map = new HashMap<String, String>();
 		// 원자재검색의 옵션값이 "aName"과 같다면 map에 검색옵션키의 밸류값을 "aName"이라고 저장 후 dao에 넘긴다.
 		if(materialsCateSearchOption.equals("aName")) {
@@ -42,11 +42,11 @@ public class CategoryMaterialsService {
 		return categoryMaterialsDao.searchListSelectCategoryMaterials(map);
 	}
 	
-	public List<CategoryMaterialsDb> listSelectCategoryMaterials(){
+	public List<CategoryMaterials> listSelectCategoryMaterials(){
 		return categoryMaterialsDao.listSelectCategoryMaterials();
 	}
 	
-	public void insertCategoryMaterials(CategoryMaterialsDb categoryMaterialsDb) {
-		categoryMaterialsDao.insertCategoryMaterials(categoryMaterialsDb);
+	public void insertCategoryMaterials(CategoryMaterials categoryMaterials) {
+		categoryMaterialsDao.insertCategoryMaterials(categoryMaterials);
 	}
 }

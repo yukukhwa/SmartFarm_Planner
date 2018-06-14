@@ -24,7 +24,7 @@ public class FindController {
 	
 	// 회원 비번찾기 POST
 	@RequestMapping(value="/findPw", method=RequestMethod.POST)
-	public String findFarmPw(FindDb finddb, Model model) {
+	public String findFarmPw(Find finddb, Model model) {
 		LOGGER.info("비번 찾기 화면에서 포스트로 보냄");
 		System.out.println("입력받은 정보: "+finddb);
 		// 서비스에서 셀렉트 호출		
@@ -51,7 +51,7 @@ public class FindController {
 	
 	// 회원 아이디찾기 POST
 	@RequestMapping(value="/findId", method=RequestMethod.POST)
-	public String findFarmId(FindDb finddb, Model model) {
+	public String findFarmId(Find finddb, Model model) {
 		LOGGER.info("아이디 찾기 화면에서 포스트로 보냄");		
 		System.out.println("입력받은 정보: "+finddb);
 		// 서비스에서 셀렉트 호출

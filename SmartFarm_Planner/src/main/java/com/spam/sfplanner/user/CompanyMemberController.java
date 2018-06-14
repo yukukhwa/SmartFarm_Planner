@@ -34,9 +34,9 @@ public class CompanyMemberController {
 		
 		/*업체 회원 수정 처리 Controller*/
 		@RequestMapping(value="/updateCompanyMember", method=RequestMethod.POST)
-		public String updateCompanyMember(CompanyMemberView companyMemberView) {
-			companyMemberService.updateCompanyMember(companyMemberView);
-			return "redirect:/oneCompanyMember?cMemberId="+companyMemberView.getcMemberId();
+		public String updateCompanyMember(CompanyMemberRequest companyMemberRequest) {
+			companyMemberService.updateCompanyMember(companyMemberRequest);
+			return "redirect:/oneCompanyMember?cMemberId="+companyMemberRequest.getcMemberId();
 		}
 		
 		/*업체 회원 수정 화면 호출 Controller*/
@@ -66,15 +66,15 @@ public class CompanyMemberController {
 		/*업체 회원가입 처리 Controller*/
 		@Transactional
 		@RequestMapping(value="/addCompanyMember", method=RequestMethod.POST)
-		public String insertCompanyMember(CompanyMemberView companyMemberView) {
+		public String insertCompanyMember(CompanyMemberRequest companyMemberRequest) {
 			logger.info("CompanyMemberController 호출");
-			logger.info("CompanyMemberView 내용" + companyMemberView.toString());
-			int cNumber = companyMemberView.getcNumber();
+			logger.info("CompanyMemberRequest 내용" + companyMemberRequest.toString());
+			int cNumber = companyMemberRequest.getcNumber();
 			if(cNumber == 0) {
-				companyService.insertCompany(companyMemberView);
+				companyService.insertCompany(companyMemberRequest);
 			}
 			
-			companyMemberService.insertCompanyMember(companyMemberView);
+			companyMemberService.insertCompanyMember(companyMemberRequest);
 			return "redirect:/home";
 		}
 		

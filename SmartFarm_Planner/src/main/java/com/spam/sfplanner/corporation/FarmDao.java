@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.spam.sfplanner.user.FarmMemberView;
+import com.spam.sfplanner.user.FarmMemberRequest;
 
 @Repository
 public class FarmDao {
@@ -18,24 +18,24 @@ public class FarmDao {
 	private final static Logger LOGGER = LoggerFactory.getLogger(FarmDao.class);
 	private static final String NAMESPACE = "com.spam.sfplanner.corporation.FarmMapper.";
 	
-	public List<FarmDb> searchlistSelectFarm(String fName){
+	public List<Farm> searchlistSelectFarm(String fName){
 		return sqlSession.selectList(NAMESPACE+"searchlistSelectFarm", fName);
 	}
 	
 	/*하나의 농가의 정보를 상세보기 가능한 메서드 매개변수로 farmDb를 받음*/
-	public FarmDb oneSelectFarm(String fName) {
+	public Farm oneSelectFarm(String fName) {
 		LOGGER.info("FarmDao oneSelectFarm 호출");
 		return sqlSession.selectOne(NAMESPACE+"oneSelectFarm", fName);
 	}
 	
 	/*전체 농가 리스트를 출력하는 메서드*/
-	public List<FarmDb> listSelectFarm() {
+	public List<Farm> listSelectFarm() {
 		LOGGER.info("FarmDao listSelectFarm 호출");
 		return sqlSession.selectList(NAMESPACE+"listSelectFarm");
 	}
 
-	public void insertFarm(FarmMemberView farmMemberView) {
+	public void insertFarm(FarmMemberRequest farmMemberRequest) {
 		LOGGER.info("FarmDao insertFarm 호출");
-		sqlSession.insert(NAMESPACE+"insertFarm", farmMemberView);
+		sqlSession.insert(NAMESPACE+"insertFarm", farmMemberRequest);
 	}
 }

@@ -25,8 +25,8 @@ public class CategoryIndustryController {
 	 * @return 산업카테고리 리스트
 	 */
 	@RequestMapping(value="/updateIndustry",method = RequestMethod.POST)
-	public String updateCategoryIndustry(CategoryIndustryDb categoryIndustryDb) {
-		categoryIndustryService.updateCategoryIndustry(categoryIndustryDb);
+	public String updateCategoryIndustry(CategoryIndustry categoryIndustry) {
+		categoryIndustryService.updateCategoryIndustry(categoryIndustry);
 		return "redirect:/listIndustry";
 	}
 	
@@ -87,8 +87,8 @@ public class CategoryIndustryController {
 	 * @return
 	 */
 	@RequestMapping(value="/addIndustry",method = RequestMethod.POST)
-	public String insertCategoryIndustry(CategoryIndustryDb categoryIndustryDb,HttpSession session) {
-		categoryIndustryService.insertCategoryIndustry(categoryIndustryDb, session);
+	public String insertCategoryIndustry(CategoryIndustry categoryIndustry,HttpSession session) {
+		categoryIndustryService.insertCategoryIndustry(categoryIndustry, session);
 		return "redirect:/home";
 	}
 	

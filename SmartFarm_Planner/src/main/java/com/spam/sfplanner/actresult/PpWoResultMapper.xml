@@ -7,7 +7,7 @@
 
 <!-- 작업단계 결과 선택 쿼리문 -->
 <select id="listSelectWorkResult"
-		resultType="com.spam.sfplanner.actresult.PpWoResultDb">
+		resultType="com.spam.sfplanner.actresult.PpWoResult">
 	SELECT wr_number AS wrNumber
 			,pp_resultlist_number AS ppResultlistNumber
 			,pp_work_number AS ppWorkNumber
@@ -18,7 +18,7 @@
 
 <!-- 작업단계 결과 입력 쿼리문 -->
 <insert id="insertWorkResult"
-		parameterType="com.spam.sfplanner.actresult.PpWoResultDb">
+		parameterType="com.spam.sfplanner.actresult.PpWoResult">
 	INSERT INTO sp_wr(
 		pp_resultlist_number
 		, pp_work_number

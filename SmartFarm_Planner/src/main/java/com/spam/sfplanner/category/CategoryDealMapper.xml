@@ -4,10 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.spam.sfplanner.category.CategoryDealMapper">
- <resultMap type="com.spam.sfplanner.category.CategoryDealDb" id="categoryDealDb">
+ <resultMap type="com.spam.sfplanner.category.CategoryDeal" id="categoryDealDb">
  	<id column="deal_number" property="dealNumber"/>
  	<result column="deal_Classification" property="dealClassification"/>
- 	<collection property="agencyDb" ofType="com.spam.sfplanner.corporation.AgencyDb">
+ 	<collection property="agencyDb" ofType="com.spam.sfplanner.corporation.Agency">
 			<id column="a_number" property="aNumber"/>
 			<result column="a_name" property="aName"/>
 			<result column="a_doroaddress" property="aDoroaddress"/>
@@ -25,7 +25,7 @@
  	
  	<!-- 거래처카테고리 수정처리 쿼리문장 -->
  	<update id="updateCategoryDeal"
- 			parameterType="com.spam.sfplanner.category.CategoryDealDb">
+ 			parameterType="com.spam.sfplanner.category.CategoryDeal">
  	UPDATE sp_deal_cate
 	SET
 		deal_classification=#{dealClassification}

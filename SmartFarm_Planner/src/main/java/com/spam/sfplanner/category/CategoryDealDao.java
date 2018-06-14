@@ -23,17 +23,17 @@ public class CategoryDealDao {
 	}
 	
 	/*거래처카테고리 수정처리 Dao*/
-	public void updateCategoryDeal(CategoryDealDb categoryDealDb) {
-		sqlSession.update(NAMESPACE+"updateCategoryDeal", categoryDealDb);
+	public void updateCategoryDeal(CategoryDeal categoryDeal) {
+		sqlSession.update(NAMESPACE+"updateCategoryDeal", categoryDeal);
 	}
 	
 	/*하나의 거래처카테고리 호출Dao*/
-	public CategoryDealDb oneSelectCategoryDeal(int dealNumber) {
+	public CategoryDeal oneSelectCategoryDeal(int dealNumber) {
 		return sqlSession.selectOne(NAMESPACE+"oneSelectCategoryDeal", dealNumber);
 	}
 	
 	/*거래처카테고리 리스트 출력Dao*/
-	public List<CategoryDealDb> listSelectCategoryDeal(){
+	public List<CategoryDeal> listSelectCategoryDeal(){
 		return sqlSession.selectList(NAMESPACE+"listSelectCategoryDeal");
 	}
 	

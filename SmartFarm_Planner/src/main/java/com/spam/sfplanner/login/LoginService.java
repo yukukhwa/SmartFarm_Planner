@@ -21,8 +21,8 @@ public class LoginService {
 	 * 그후 returnLogin을 리턴한다.
 	 * farm, company, agency 동일하게 처리한다.
 	 */
-	public LoginDb oneSelectFarmMember(LoginDb loginDb) {
-		LoginDb returnLogin = loginDao.oneSelectFarmMember(loginDb);
+	public Login oneSelectFarmMember(Login login) {
+		Login returnLogin = loginDao.oneSelectFarmMember(login);
 		/*
 		 * 로그인 실패시 셋팅을 하지 않고 바로 returnLogin을 리턴한다.
 		 */
@@ -42,8 +42,8 @@ public class LoginService {
 		return returnLogin;
 	}
 
-	public LoginDb oneSelectCompanyMember(LoginDb loginDb) {
-		LoginDb returnLogin = loginDao.oneSelectCompanyMember(loginDb);
+	public Login oneSelectCompanyMember(Login login) {
+		Login returnLogin = loginDao.oneSelectCompanyMember(login);
 		
 		if(returnLogin != null) {
 			returnLogin.setLevel("company");
@@ -58,8 +58,8 @@ public class LoginService {
 		return returnLogin;
 	}
 
-	public LoginDb oneSelectAgencyMember(LoginDb loginDb) {
-		LoginDb returnLogin = loginDao.oneSelectAgencyMember(loginDb);
+	public Login oneSelectAgencyMember(Login login) {
+		Login returnLogin = loginDao.oneSelectAgencyMember(login);
 		
 		if(returnLogin != null) {
 			returnLogin.setLevel("agency");

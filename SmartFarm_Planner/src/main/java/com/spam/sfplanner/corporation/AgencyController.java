@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.spam.sfplanner.user.AgencyMemberView;
+import com.spam.sfplanner.user.AgencyMemberRequest;
 
 /*
  * 관리기관 관리 컨트롤러
@@ -28,14 +28,14 @@ public class AgencyController {
 	 * @return 관리기관 상세 화면
 	 */
 	@RequestMapping(value="/updateAgency",method = RequestMethod.POST)
-	public String updateAgency(AgencyMemberView agencyMemberView) {
-		int result = agencyService.updateAgency(agencyMemberView);
+	public String updateAgency(AgencyMemberRequest agencyMemberRequest) {
+		int result = agencyService.updateAgency(agencyMemberRequest);
 		/*
 		 * url일부가 한글이 들어와야하는데 한글자체가 깨져서 경로에러가 발생한다
 		 * 이때 한글부분만 utf-8로 인코딩해주면 되는데
 		 * 바로 URLEncoder라는 객체를 이용하면 된다
 		 */
-		String aName = agencyMemberView.getaName();
+		String aName = agencyMemberRequest.getaName();
 		try {
 			aName = URLEncoder.encode(aName, "UTF-8");
 		} catch (UnsupportedEncodingException e) {

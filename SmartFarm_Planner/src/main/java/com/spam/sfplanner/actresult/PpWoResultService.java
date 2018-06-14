@@ -17,7 +17,7 @@ public class PpWoResultService {
 	 * 작업단계 결과 전체리스트 출력 서비스
 	 * @return
 	 */
-	public List<PpWoResultDb> listSelectWorkResult() {
+	public List<PpWoResult> listSelectWorkResult() {
 		LOGGER.debug("return : "+ppWoResultDao.listSelectWorkResult());
 		return ppWoResultDao.listSelectWorkResult();
 	}
@@ -26,7 +26,7 @@ public class PpWoResultService {
 	 * 작업단계 결과 입력 서비스
 	 * @return
 	 */
-	public void insertWorkResult(PpWoResultDb ppWoResultDb) {
-		ppWoResultDao.insertWorkResult(ppWoResultDb);
+	public void insertWorkResult(PpWoResult ppWoResult) {
+		ppWoResultDao.insertWorkResult(ppWoResult);
 	}
 }

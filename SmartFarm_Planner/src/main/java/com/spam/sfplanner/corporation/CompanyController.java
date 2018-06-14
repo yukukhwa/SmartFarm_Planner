@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.spam.sfplanner.user.CompanyMemberView;
+import com.spam.sfplanner.user.CompanyMemberRequest;
 
 @Controller
 public class CompanyController {
@@ -30,9 +30,9 @@ public class CompanyController {
 	
 	/*업체 수정처리 Controller*/
 	@RequestMapping(value="/updateCompany" , method = RequestMethod.POST)
-	public String updateCompany(CompanyMemberView companyMemberView) {
-		int result = companyService.updateCompany(companyMemberView);
-		String cName  = companyMemberView.getcName();
+	public String updateCompany(CompanyMemberRequest companyMemberRequest) {
+		int result = companyService.updateCompany(companyMemberRequest);
+		String cName  = companyMemberRequest.getcName();
 		if(result == 0) {
 			return "redirect:/updateCompany?cName="+cName;
 		}

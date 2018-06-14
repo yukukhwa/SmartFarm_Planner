@@ -4,14 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.spam.sfplanner.category.CategoryEtcSpendPayMapper">
- 	<resultMap type="com.spam.sfplanner.category.CategoryEtcSpendPayDb" id="categoryEtcSpendPayDb">
+ 	<resultMap type="com.spam.sfplanner.category.CategoryEtcSpendPay" id="categoryEtcSpendPayDb">
 	 	<id column="etcspendpay_number" property="etcspendpayNumber"/>
 	 	<result column="etcspendpay_name" property="etcspendpayName"/>
-	 	<collection property="categoryThemeDb" ofType="com.spam.sfplanner.category.CategoryThemeDb">
+	 	<collection property="categoryThemeDb" ofType="com.spam.sfplanner.category.CategoryTheme">
 	 			<id column="theme_number" property="themeNumber"/>
 	 			<result column="theme_name" property="themeName"/>
 	 	</collection>
-	 	<collection property="farmDb" ofType="com.spam.sfplanner.corporation.FarmDb">
+	 	<collection property="farmDb" ofType="com.spam.sfplanner.corporation.Farm">
 	 		<id column="f_number" property="fNumber"/>
 	 		<result column="f_name" property="fName"/>
 	 		<result column="f_member_id" property="fMemberId"/>

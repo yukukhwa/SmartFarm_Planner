@@ -23,26 +23,26 @@ public class FarmMemberDao {
 	}
 	
 	/*농가회원의 정보를 수정처리하는 메서드*/
-	public void updateFarmMember(FarmMemberView farmMemberView) {
+	public void updateFarmMember(FarmMemberRequest farmMemberRequest) {
 		LOGGER.info("FarmMemberDao updateFarmMember 호출");
-		sqlSession.update(NAMESPACE+"updateFarmMember", farmMemberView);
+		sqlSession.update(NAMESPACE+"updateFarmMember", farmMemberRequest);
 	}
 	
 	/*농가회원의 상세정보,내정보를 보는 메서드*/
-	public FarmMemberDb oneSelectFarmMember(String fMemberId) {
+	public FarmMember oneSelectFarmMember(String fMemberId) {
 		LOGGER.info("FarmMemberDao oneSelectFarmMember 호출");
 		return sqlSession.selectOne(NAMESPACE+"selectOneFarmMember", fMemberId);
 	}
 	
 	/*한 농가의 회원전체리스트를 출력하는 메서드*/ 
-	public List<FarmMemberDb> listFarmMember(String fName) {
+	public List<FarmMember> listFarmMember(String fName) {
 		LOGGER.info("FarmMemberDao listFarmMember 호출");
 		return sqlSession.selectList(NAMESPACE+"selectFarmMemberList", fName);
 	}
 	
 	/*농가회원을 등록하는 메서드*/
-	public void insertFarmMember(FarmMemberView farmMemberView) {
+	public void insertFarmMember(FarmMemberRequest farmMemberRequest) {
 		LOGGER.info("FarmMemberDao 호출");
-		sqlSession.insert(NAMESPACE+"insertFarmMember", farmMemberView);
+		sqlSession.insert(NAMESPACE+"insertFarmMember", farmMemberRequest);
 	}
 }

@@ -5,14 +5,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 나성수 -->
 <mapper namespace="com.spam.sfplanner.category.CategoryEquipMapper">
-	<resultMap type="com.spam.sfplanner.category.CategoryItemDb" id="categoryItemDb">
+	<resultMap type="com.spam.sfplanner.category.CategoryItem" id="categoryItemDb">
 		<id column="i_item_number" property="iItemNumber"/>
 		<result column="i_item_name" property="iItemName"/>
-		<collection ofType="com.spam.sfplanner.category.CategoryIndustryDb" property="categoryIndustryDb">
+		<collection ofType="com.spam.sfplanner.category.CategoryIndustry" property="categoryIndustryDb">
 			<id column="industry_number" property="industryNumber"/>
 			<result column="industry_name" property="industryName"/>
 		</collection>
-		<collection ofType="com.spam.sfplanner.corporation.AgencyDb" property="agencyDb">
+		<collection ofType="com.spam.sfplanner.corporation.Agency" property="agencyDb">
 			<id column="a_number" property="aNumber"/>
 			<result column="a_name" property="aName"/>
 		</collection>
@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 품목카테고리 수정 처리 update 쿼리문장 -->
 	<update id="updateCategoryItem"
-			parameterType="com.spam.sfplanner.category.CategoryItemDb">
+			parameterType="com.spam.sfplanner.category.CategoryItem">
 		UPDATE sp_industry_item_cate
 		SET
 			industry_number=#{categoryIndustryDb.industryNumber}

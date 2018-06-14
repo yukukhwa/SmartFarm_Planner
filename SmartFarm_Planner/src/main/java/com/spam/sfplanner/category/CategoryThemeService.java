@@ -22,17 +22,17 @@ public class CategoryThemeService {
 	}
 	
 	/*테마카테고리의 수정정보를 입력후 수정처리*/ 
-	public void updateCategoryTheme(CategoryThemeDb categoryThemeDb) {
+	public void updateCategoryTheme(CategoryTheme categoryTheme) {
 		LOGGER.info("CategoryThemeService updateTheme 호출");
-		categoryThemeDao.updateCategoryTheme(categoryThemeDb);
+		categoryThemeDao.updateCategoryTheme(categoryTheme);
 	}
 	
 	/*수정할 때 수정할 테마카테고리 하나의 정보를 출력*/
-	public CategoryThemeDb oneSelectCategoryTheme(String themeName) {
+	public CategoryTheme oneSelectCategoryTheme(String themeName) {
 		return categoryThemeDao.oneSelectCategoryTheme(themeName);
 	}
 	
-	public List<CategoryThemeDb> searchListSelectCategoryTheme(String searchKeyword, String themeCateSearchOption){
+	public List<CategoryTheme> searchListSelectCategoryTheme(String searchKeyword, String themeCateSearchOption){
 		Map<String, String> map = new HashMap<String, String>();
 		// 테마의 검색옵션이 aName과 같다면 map에 테마검색옵션의 키의 밸류를 "aName"이라 저장후 dao에 매개변수로 map을 넘긴다.
 		if(themeCateSearchOption.equals("aName")) {
@@ -47,13 +47,13 @@ public class CategoryThemeService {
 	}
 	
 	/*테마 카테고리의 전체 리스트 출력*/ 
-	public List<CategoryThemeDb> listSelectCategoryTheme(){
+	public List<CategoryTheme> listSelectCategoryTheme(){
 		return categoryThemeDao.listSelectCategoryTheme();
 	}
 	
 	/*테마 카테고리 등록*/
-	public void insertCategoryTheme(CategoryThemeDb categoryThemeDb) {
-		categoryThemeDao.insertCategoryTheme(categoryThemeDb);
-		System.out.println("CategoryThemeService CategoryThemeDb===> "+categoryThemeDb);
+	public void insertCategoryTheme(CategoryTheme categoryTheme) {
+		categoryThemeDao.insertCategoryTheme(categoryTheme);
+		System.out.println("CategoryThemeService CategoryTheme===> "+categoryTheme);
 	}
 }

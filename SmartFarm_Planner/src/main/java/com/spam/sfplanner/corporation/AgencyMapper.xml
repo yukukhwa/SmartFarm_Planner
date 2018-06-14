@@ -5,14 +5,14 @@
   
 <!-- 나성수 -->
 <mapper namespace="com.spam.sfplanner.corporation.AgencyMapper">
-	<resultMap type="com.spam.sfplanner.corporation.AgencyDb" id="agencyDb">
+	<resultMap type="com.spam.sfplanner.corporation.Agency" id="agencyDb">
 		<id column="a_number" property="aNumber"/>
 		<result column="a_name" property="aName"/>
 		<result column="a_doroaddress" property="aDoroaddress"/>
 		<result column="a_jibunaddress" property="aJibunaddress"/>
 		<result column="a_phone" property="aPhone"/>
 		<result column="a_registdate" property="aRegistdate"/>
-		<collection property="agencyMemberDb" ofType="com.spam.sfplanner.user.AgencyMemberDb">
+		<collection property="agencyMemberDb" ofType="com.spam.sfplanner.user.AgencyMember">
 			<id column="a_member_id" property="aMemberId"/>
 			<result column="a_member_name" property="aMemberName"/>
 		</collection>
@@ -20,7 +20,7 @@
 	
 	<!-- 관리기관 수정 처리 update 쿼리문장 -->
 	<update id="updateAgency"
-			parameterType="com.spam.sfplanner.user.AgencyMemberView">
+			parameterType="com.spam.sfplanner.user.AgencyMemberRequest">
 		UPDATE sp_agency
 		SET
 			a_name=#{aName}
@@ -93,7 +93,7 @@
 	
 	<!-- 관리기관 등록처리 insert 쿼리문장 -->
 	<insert id="insertAgency"
-			parameterType="com.spam.sfplanner.user.AgencyMemberView">
+			parameterType="com.spam.sfplanner.user.AgencyMemberRequest">
 		<selectKey resultType="int" keyProperty="aNumber" order="AFTER">
 			SELECT LAST_INSERT_ID()
 		</selectKey>

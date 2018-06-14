@@ -29,29 +29,29 @@ public class WrHumanPayDao {
 	 * wrHumanPayDb를 매개변수로 받아 그 데이터로 수정하는 쿼리문을 실행한 후
 	 * 실행횟수를 리턴받는 매서드
 	 */
-	public int updateWrHumanPay(WrHumanPayDb wrHumanPayDb) {
-		return sqlSession.update(NS+"updateWrHumanPay", wrHumanPayDb);
+	public int updateWrHumanPay(WrHumanPay wrHumanPay) {
+		return sqlSession.update(NS+"updateWrHumanPay", wrHumanPay);
 	}
 	/*
 	 * wrHumanpayNumber를 매개변수로 받아 해당하는 인건비 목록 한개만 출력하는 쿼리문을 실행하여
 	 * 그 인건비를 리턴받는 매서드
 	 */
-	public WrHumanPayDb oneSelectWrHumanPay(int wrHumanpayNumber) {
+	public WrHumanPay oneSelectWrHumanPay(int wrHumanpayNumber) {
 		return sqlSession.selectOne(NS+"oneSelectWrHumanPay", wrHumanpayNumber);
 	}
 	/*
 	 * wrNumber를 매개변수로 받아 작업단계별 인건비 목록을 출력하는 쿼리문을 실행하여
 	 * 그 리스트를 리턴받는 매서드
 	 */
-	public List<WrHumanPayDb> listSelectWrHumanPay(int wrNumber) {
+	public List<WrHumanPay> listSelectWrHumanPay(int wrNumber) {
 		return sqlSession.selectList(NS+"listSelectWrHumanPay", wrNumber);
 	}
 	/*
 	 * wrHumanPayDb를 매개변수로 받아 인건비를 등록하는 쿼리문을 실행한 후
 	 * 실행횟수를 리턴받는 매서드
 	 */
-	public int insertWrHumanPay(WrHumanPayDb wrHumanPayDb) {
-		return sqlSession.insert(NS+"insertWrHumanPay", wrHumanPayDb);
+	public int insertWrHumanPay(WrHumanPay wrHumanPay) {
+		return sqlSession.insert(NS+"insertWrHumanPay", wrHumanPay);
 	}
 	
 }

@@ -16,12 +16,12 @@ public class PpWorkDao {
 	private final static Logger LOGGER = LoggerFactory.getLogger(PpWorkDao.class);
 	private final static String NAMESPACE = "com.spam.sfplanner.plan.PpWorkMapper.";
 	
-	public List<PpWorkDb> searchListSelectPpWork(Map<String, Object> map){
+	public List<PpWork> searchListSelectPpWork(Map<String, Object> map){
 		System.out.println("ppWork map : "+map);
 		return sqlSession.selectList(NAMESPACE+"listSelectPpWork", map);
 	}
 	
-	public List<PpWorkDb> listSelectPpWork(Map<String, Integer> map){
+	public List<PpWork> listSelectPpWork(Map<String, Integer> map){
 		return sqlSession.selectList(NAMESPACE+"listSelectPpWork", map);
 	}
 }

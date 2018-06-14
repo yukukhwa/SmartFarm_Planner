@@ -34,13 +34,13 @@ public class CategoryEtcSpendPayController {
 	}
 	/**
 	 * 기타지출비카테고리 등록 처리 Controller post방식
-	 * @param categoryEtcSpendPayDb
+	 * @param categoryEtcSpendPay
 	 * @return
 	 */
 	@RequestMapping(value="/addCategoryEtcSpendPay", method=RequestMethod.POST)
-	public String insertCategoryEtcSpendPay(CategoryEtcSpendPayDb categoryEtcSpendPayDb, HttpSession session) {
-		System.out.println("insertCategoryEtcSpendPay categoryEtcSpendPayDb====> "+categoryEtcSpendPayDb);
-		categoryEtcSpendPayService.insertCategoryEtcSpendPay(categoryEtcSpendPayDb, session);
+	public String insertCategoryEtcSpendPay(CategoryEtcSpendPay categoryEtcSpendPay, HttpSession session) {
+		System.out.println("insertCategoryEtcSpendPay categoryEtcSpendPayDb====> "+categoryEtcSpendPay);
+		categoryEtcSpendPayService.insertCategoryEtcSpendPay(categoryEtcSpendPay, session);
 		return "category/etcspendpay/listCategoryEtcSpendPay";
 	}
 	

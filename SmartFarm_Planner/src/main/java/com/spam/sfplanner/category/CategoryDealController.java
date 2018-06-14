@@ -27,8 +27,8 @@ public class CategoryDealController {
 	
 	/*거래처카테고리 수정처리 Controller*/
 	@RequestMapping(value="/updateCategoryDeal", method=RequestMethod.POST)
-	public String updateCategoryDeal(CategoryDealDb categoryDealDb) {
-		categoryDealService.updateCategoryDeal(categoryDealDb);
+	public String updateCategoryDeal(CategoryDeal categoryDeal) {
+		categoryDealService.updateCategoryDeal(categoryDeal);
 		return "redirect:/listCategoryDeal";
 	}
 	
@@ -47,8 +47,8 @@ public class CategoryDealController {
 	}
 	/*거래처카테고리 등록 처리 Controller*/
 	@RequestMapping(value="/addCategoryDeal", method=RequestMethod.POST)
-	public String insertCategoryDeal(CategoryDealDb categoryDealDb, HttpSession session) {
-		categoryDealService.insertCategoryDeal(categoryDealDb, session);
+	public String insertCategoryDeal(CategoryDeal categoryDeal, HttpSession session) {
+		categoryDealService.insertCategoryDeal(categoryDeal, session);
 		return "redirect:/listCategoryDeal";
 	}
 	

@@ -17,7 +17,7 @@ public class CategoryEtcSpendPayDao {
 	private SqlSessionTemplate sqlSession;
 
 	/*기타지출비 카테고리 리스트 Dao*/
-	public List<CategoryEtcSpendPayDb> listSelectCategoryEtcSpendPay(){
+	public List<CategoryEtcSpendPay> listSelectCategoryEtcSpendPay(){
 		return sqlSession.selectList(NAMESPACE+"listSelectEtcSpendPay");
 	}
 	

@@ -21,28 +21,28 @@ public class CategoryMaterialsDao {
 	}
 	
 	/*원자재 카테고리에서 수정할 정보들을 매개변수 categoryMaterialsDb를 받아 수정처리하는 메서드*/
-	public void updateCategoryMaterials(CategoryMaterialsDb categoryMaterialsDb) {
-		sqlSession.update(NAMESPACE+"updateCategoryMaterials", categoryMaterialsDb);
+	public void updateCategoryMaterials(CategoryMaterials categoryMaterials) {
+		sqlSession.update(NAMESPACE+"updateCategoryMaterials", categoryMaterials);
 	}
 	
 	/*매개변수 materialsName을 받아 원자재 카테고리 하나에대한 정보들을 출력해주는 메서드*/
-	public CategoryMaterialsDb oneSelectCategoryMaterials(String materialsName) {
+	public CategoryMaterials oneSelectCategoryMaterials(String materialsName) {
 		return sqlSession.selectOne(NAMESPACE+"oneSelectCategoryMaterials", materialsName);
 	}
 	
-	public List<CategoryMaterialsDb> searchListSelectCategoryMaterials(Map<String, String> map){
+	public List<CategoryMaterials> searchListSelectCategoryMaterials(Map<String, String> map){
 		System.out.println("Materials map: "+map);
 		return sqlSession.selectList(NAMESPACE+"searchListSelectCategoryMaterials", map);
 	}
 	
 	/*원자재 카테고리의 전체 리스트를 출력조회 하는 메서드*/  
-	public List<CategoryMaterialsDb> listSelectCategoryMaterials(){
+	public List<CategoryMaterials> listSelectCategoryMaterials(){
 		return sqlSession.selectList(NAMESPACE+"listSelectCategoryMaterials");
 	}
 	
 	/*매개변수로 categoryMaterialsDb를 받아 원자재카테고리를 등록하는 메서드*/
-	public void insertCategoryMaterials(CategoryMaterialsDb categoryMaterialsDb) {
-		sqlSession.insert(NAMESPACE+"insertCategoryMaterials", categoryMaterialsDb);
+	public void insertCategoryMaterials(CategoryMaterials categoryMaterials) {
+		sqlSession.insert(NAMESPACE+"insertCategoryMaterials", categoryMaterials);
 	}
 	
 }

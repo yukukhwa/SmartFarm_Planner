@@ -20,12 +20,12 @@ public class ActResultDao {
 	
 	final String NS = "com.spam.sfplanner.actresult.ActResultMapper.";
 	
-	public List<ActResultDb> listSelectActResult(Map<String, Object> map) {
+	public List<ActResult> listSelectActResult(Map<String, Object> map) {
 		return sqlSession.selectList(NS+"listSelectActResult", map);
 	}
 	
-	public int insertActResult(ActResultDb actResultDb) {
-		return sqlSession.insert(NS+"insertActResult", actResultDb);
+	public int insertActResult(ActResult actResult) {
+		return sqlSession.insert(NS+"insertActResult", actResult);
 	}
 
 }

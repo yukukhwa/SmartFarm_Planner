@@ -21,15 +21,15 @@ public class CategoryEquipDao {
 		sqlSession.delete(NAMESPACE+"deleteCategoryEquip", equipNumber);
 	}
 	/*장비종류카테고리 수정처리 Dao*/
-	public void updateCategoryEquip(CategoryEquipDb categoryEquipDb) {
-		sqlSession.update(NAMESPACE+"updateCategoryEquip", categoryEquipDb);
+	public void updateCategoryEquip(CategoryEquip categoryEquip) {
+		sqlSession.update(NAMESPACE+"updateCategoryEquip", categoryEquip);
 	}
 	/*하나의 장비종류카테고리 호출 Dao*/
-	public CategoryEquipDb oneSelectCategoryEquip(int equipNumber) {
+	public CategoryEquip oneSelectCategoryEquip(int equipNumber) {
 		return sqlSession.selectOne(NAMESPACE+"oneSelectCategoryEquip", equipNumber);
 	}
 	/*장비종류카테고리 리스트 출력 Dao*/
-	public List<CategoryEquipDb> listSelectCategoryEquip(){
+	public List<CategoryEquip> listSelectCategoryEquip(){
 		return sqlSession.selectList(NAMESPACE+"listSelectCategoryEquip");
 	}
 	/*장비종류카테고리 등록 Dao*/

@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spam.sfplanner.category.CategoryItemDao;
-import com.spam.sfplanner.category.CategoryItemDb;
-import com.spam.sfplanner.login.LoginDb;
+import com.spam.sfplanner.category.CategoryItem;
+import com.spam.sfplanner.login.Login;
 
 @Transactional
 @Service
@@ -29,8 +29,8 @@ public class TitlePlanService {
 	 * 계획명 수정 처리 서비스
 	 * @param 계획명 수정 화면에서 받아온 데이터
 	 */
-	public void updateTitlePlan(TitlePlanDb titlePlanDb) {
-		titlePlanDao.updateTitlePlan(titlePlanDb);
+	public void updateTitlePlan(TitlePlan titlePlan) {
+		titlePlanDao.updateTitlePlan(titlePlan);
 	}
 	
 	/**
@@ -59,7 +59,7 @@ public class TitlePlanService {
 	 * @param 검색어
 	 * @return 계획명 리스트
 	 */
-	public List<TitlePlanDb> listSelectTitlePlan(String column,String property) {
+	public List<TitlePlan> listSelectTitlePlan(String column,String property) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("search", "yes");
 		map.put("column", column);
@@ -71,7 +71,7 @@ public class TitlePlanService {
 	 * 계획명 리스트 처리 서비스
 	 * @return 계획명 리스트
 	 */
-	public List<TitlePlanDb> listSelectTitlePlan() {
+	public List<TitlePlan> listSelectTitlePlan() {
 		Map<String, Object> map = null;
 		return titlePlanDao.listSelectTitlePlan(map);
 	}
@@ -81,11 +81,11 @@ public class TitlePlanService {
 	 * @param 품목넘버,계획명
 	 * @param 농가 넘버
 	 */
-	public void insertTitlePlan(TitlePlanDb titlePlanDb,HttpSession session) {
+	public void insertTitlePlan(TitlePlan titlePlan,HttpSession session) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("fNumber", ((LoginDb)session.getAttribute("loginMember")).getCorpNumber());
-		map.put("iItemNumber", titlePlanDb.getCategoryItemDb().getiItemNumber());
-		map.put("ppNamePlanname", titlePlanDb.getPpNamePlanname());
+		map.put("fNumber", ((Login)session.getAttribute("loginMember")).getCorpNumber());
+		map.put("iItemNumber", titlePlan.getCategoryItemDb().getiItemNumber());
+		map.put("ppNamePlanname", titlePlan.getPpNamePlanname());
 		titlePlanDao.insertTitlePlan(map);
 	}
 	
@@ -93,7 +93,7 @@ public class TitlePlanService {
 	 * 계획명 등록 화면 출력 서비스
 	 * @return 품목카테고리 리스트
 	 */
-	public List<CategoryItemDb> insertTitlePlan() {
+	public List<CategoryItem> insertTitlePlan() {
 		return categoryItemDao.listSelectCategoryItem();
 	}
 }

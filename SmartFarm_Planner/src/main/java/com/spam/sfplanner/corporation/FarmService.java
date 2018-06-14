@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.spam.sfplanner.user.FarmMemberView;
+import com.spam.sfplanner.user.FarmMemberRequest;
 
 @Service
 @Transactional
@@ -17,24 +17,24 @@ public class FarmService {
 	@Autowired FarmDao farmDao;
 	private final static Logger LOGGER = LoggerFactory.getLogger(FarmService.class);
 	
-	public List<FarmDb> searchlistSelectFarm(String fName) {
+	public List<Farm> searchlistSelectFarm(String fName) {
 		return farmDao.searchlistSelectFarm(fName);
 	}
 	
-	public FarmDb oneSelectFarm(String fName) {
+	public Farm oneSelectFarm(String fName) {
 		LOGGER.info("FarmService oneSelectFarm 호출");
 		return farmDao.oneSelectFarm(fName);
 	}
 	
-	public List<FarmDb> listSelectFarm(){
+	public List<Farm> listSelectFarm(){
 		LOGGER.info("FarmService listSelectFarm 호출");
 		return farmDao.listSelectFarm();
 	}
 	
-	public void insertFarm(FarmMemberView farmMemberView) {
+	public void insertFarm(FarmMemberRequest farmMemberRequest) {
 		LOGGER.info("FarmService 호출");
-		LOGGER.info("FarmService farmMemberView ===> "+farmMemberView);
-		farmDao.insertFarm(farmMemberView);
+		LOGGER.info("FarmService farmMemberView ===> "+farmMemberRequest);
+		farmDao.insertFarm(farmMemberRequest);
 		
 	}
 }

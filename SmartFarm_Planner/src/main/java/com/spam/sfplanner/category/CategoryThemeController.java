@@ -26,10 +26,10 @@ public class CategoryThemeController {
 	
 	/*post방식으로 수정처리 후 listTheme으로 리다이렉트한다*/
 	@RequestMapping(value="/updateTheme", method=RequestMethod.POST)
-	public String updateCategoryTheme(CategoryThemeDb categoryThemeDb) {
+	public String updateCategoryTheme(CategoryTheme categoryTheme) {
 		LOGGER.info("CategoryTheme updateTheme post 호출");
-		System.out.println("categoryThemeDb===> "+categoryThemeDb);
-		categoryThemeService.updateCategoryTheme(categoryThemeDb);
+		System.out.println("categoryThemeDb===> "+categoryTheme);
+		categoryThemeService.updateCategoryTheme(categoryTheme);
 		return "redirect:/listTheme";
 	}
 	
@@ -47,7 +47,7 @@ public class CategoryThemeController {
 									,@RequestParam(value="themeCateSearchOption")String themeCateSearchOption) {
 		System.out.println("searchKeyword===> "+searchKeyword);
 		System.out.println("themeCateSearchOption===> "+themeCateSearchOption);
-		List<CategoryThemeDb> list = categoryThemeService.searchListSelectCategoryTheme(searchKeyword, themeCateSearchOption);
+		List<CategoryTheme> list = categoryThemeService.searchListSelectCategoryTheme(searchKeyword, themeCateSearchOption);
 		model.addAttribute("list", list);
 		System.out.println("list ==>"+list);
 		return "category/theme/listTheme";
@@ -62,10 +62,10 @@ public class CategoryThemeController {
 	
 	/*addTheme에서 포스트방식으로 요청하면 테마카테고리를 등록처리 후 인덱스로 리다이렉트 */
 	@RequestMapping(value="/addTheme", method=RequestMethod.POST)
-	public String insertCategoryTheme(CategoryThemeDb categoryThemeDb) {
+	public String insertCategoryTheme(CategoryTheme categoryTheme) {
 		LOGGER.info("CategoryThemeController addTheme post호출");
-		categoryThemeService.insertCategoryTheme(categoryThemeDb);
-		System.out.println("categoryThemeDb==> "+categoryThemeDb);
+		categoryThemeService.insertCategoryTheme(categoryTheme);
+		System.out.println("categoryThemeDb==> "+categoryTheme);
 		return "category/theme/listTheme";
 	}
 	

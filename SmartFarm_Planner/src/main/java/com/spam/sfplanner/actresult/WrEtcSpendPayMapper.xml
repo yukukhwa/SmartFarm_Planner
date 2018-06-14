@@ -6,7 +6,7 @@
 
 <!-- 기타지출비용 결과 레코드 하나 선택 후 수정 쿼리문 -->
 <update id="updateWrEtcSpendPay"
-		parameterType="com.spam.sfplanner.actresult.WrEtcSpendPayDb">
+		parameterType="com.spam.sfplanner.actresult.WrEtcSpendPay">
 	UPDATE sp_wr_etcspendpay
 	SET
 		wr_etcspendpay_realcost=#{wrEtcspendpayRealcost}
@@ -17,7 +17,7 @@
 <!-- 기타지출비용 결과 레코드 하나 선택 쿼리문 -->
 <select id="oneSelectWrEtcSpendPay"
 		parameterType="int"
-		resultType="com.spam.sfplanner.actresult.WrEtcSpendPayDb">
+		resultType="com.spam.sfplanner.actresult.WrEtcSpendPay">
 	SELECT wr_etcspendpay_number AS wrEtcspendpayNumber
 		, wr_number AS wrNumber
 		, e_etcspendpay_number AS eEtcspendpayNumber
@@ -30,7 +30,7 @@
 <!-- 기타지출비용 결과 리스트 선택 쿼리문 -->
 <select id="listSelectWrEtcSpendPay"
 		parameterType="int"
-		resultType="com.spam.sfplanner.actresult.WrEtcSpendPayDb">
+		resultType="com.spam.sfplanner.actresult.WrEtcSpendPay">
 	SELECT wr_etcspendpay_number AS wrEtcspendpayNumber
 		, wr_number AS wrNumber
 		, e_etcspendpay_number AS eEtcspendpayNumber
@@ -42,7 +42,7 @@
  
 <!-- 기타지출비용 결과 입력 쿼리문 -->
 <insert id="insertWrEtcSpendPay"
-		parameterType="com.spam.sfplanner.actresult.WrEtcSpendPayDb">
+		parameterType="com.spam.sfplanner.actresult.WrEtcSpendPay">
 	INSERT INTO sp_wr_etcspendpay(
 		wr_number
 		, e_etcspendpay_number

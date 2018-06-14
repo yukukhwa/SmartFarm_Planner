@@ -24,8 +24,8 @@ public class CategoryItemController {
 	 * @return 품목카테고리 리스트 화면
 	 */
 	@RequestMapping(value="/updateItem",method = RequestMethod.POST)
-	public String updateCategoryItem(CategoryItemDb categoryItemDb) {
-		categoryItemService.updateCategoryItem(categoryItemDb);
+	public String updateCategoryItem(CategoryItem categoryItem) {
+		categoryItemService.updateCategoryItem(categoryItem);
 		return "redirect:/listItem";
 	}
 	
@@ -88,9 +88,9 @@ public class CategoryItemController {
 	 * @return 품목카테고리 리스트 화면
 	 */
 	@RequestMapping(value="/addItem",method = RequestMethod.POST)
-	public String insertCategoryItem(CategoryItemDb categoryItemDb,HttpSession session) {
+	public String insertCategoryItem(CategoryItem categoryItem,HttpSession session) {
 		//System.out.println(categoryItemDb.toString());
-		categoryItemService.insertCategoryItem(categoryItemDb, session);
+		categoryItemService.insertCategoryItem(categoryItem, session);
 		return "redirect:/listItem";
 	}
 	

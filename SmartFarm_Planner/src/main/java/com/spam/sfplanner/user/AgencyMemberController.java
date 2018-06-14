@@ -37,20 +37,20 @@ public class AgencyMemberController {
 	 * @return 회원 상세내용 화면 요청
 	 */
 	@RequestMapping(value="/updateAgencyMember",method = RequestMethod.POST)
-	public String updateAgencyMember(AgencyMemberView agencyMemberView) {
-		agencyMemberService.updateAgencyMember(agencyMemberView);
+	public String updateAgencyMember(AgencyMemberRequest agencyMemberRequest) {
+		agencyMemberService.updateAgencyMember(agencyMemberRequest);
 		/*
 		 * url일부가 한글이 들어와야하는데 한글자체가 깨져서 경로에러가 발생한다
 		 * 이때 한글부분만 utf-8로 인코딩해주면 되는데
 		 * 바로 URLEncoder라는 객체를 이용하면 된다
 		 */
-		String aName = agencyMemberView.getaName();
+		String aName = agencyMemberRequest.getaName();
 		try {
 			aName = URLEncoder.encode(aName, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		return "redirect:/oneAgencyMember?aMemberId="+agencyMemberView.getaMemberId()+"&aName="+aName;
+		return "redirect:/oneAgencyMember?aMemberId="+agencyMemberRequest.getaMemberId()+"&aName="+aName;
 	}
 	
 	/**
@@ -125,20 +125,20 @@ public class AgencyMemberController {
 	
 	/**
 	 * 관리기관 회원가입화면 처리컨트롤러
-	 * @param agencyMemberView
+	 * @param agencyMemberRequest
 	 * @return
 	 */
 	@Transactional
 	@RequestMapping(value="/addAgencyMember",method = RequestMethod.POST)
-	public String InsertAgencyMember(AgencyMemberView agencyMemberView) {
-		System.out.println(agencyMemberView.toString());
-		int aNumber = agencyMemberView.getaNumber();
+	public String InsertAgencyMember(AgencyMemberRequest agencyMemberRequest) {
+		System.out.println(agencyMemberRequest.toString());
+		int aNumber = agencyMemberRequest.getaNumber();
 		if(aNumber == 0) {
 			System.out.println(aNumber);
-			agencyService.insertAgency(agencyMemberView);
+			agencyService.insertAgency(agencyMemberRequest);
 		}
 		System.out.println(aNumber);
-		agencyMemberService.insertAgencyMember(agencyMemberView);
+		agencyMemberService.insertAgencyMember(agencyMemberRequest);
 		return "redirect:/home";
 	}
 }

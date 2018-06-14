@@ -17,7 +17,7 @@ public class PpWorkService {
 	@Autowired PpWorkDao ppWorkDao;
 	private final static Logger LOGGER = LoggerFactory.getLogger(PpWorkService.class);
 	
-	public List<PpWorkDb> searchListSelectPpWork(String searchWorkPlanOption, String searchKeyword, int ppNumber){
+	public List<PpWork> searchListSelectPpWork(String searchWorkPlanOption, String searchKeyword, int ppNumber){
 		LOGGER.info("PpWorkService searchList 호출");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchWorkPlanOption", searchWorkPlanOption);
@@ -26,7 +26,7 @@ public class PpWorkService {
 		return ppWorkDao.searchListSelectPpWork(map);
 	}
 	
-	public List<PpWorkDb> listSelectPpWork(int ppNumber){
+	public List<PpWork> listSelectPpWork(int ppNumber){
 		Map<String, Integer> map = new HashMap<String, Integer>();
 		map.put("ppNumber", ppNumber);
 		return ppWorkDao.listSelectPpWork(map);

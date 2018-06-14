@@ -19,7 +19,7 @@ public class PpWoResultDao {
 	 * 작업단계 결과 전체리스트 메서드
 	 * @return
 	 */
-	public List<PpWoResultDb> listSelectWorkResult() {
+	public List<PpWoResult> listSelectWorkResult() {
 		return sqlsession.selectList(nameSpace+"listSelectWorkResult");
 	}
 	
@@ -27,7 +27,7 @@ public class PpWoResultDao {
 	 * 작업단계 결과 입력 메서드
 	 * @return
 	 */
-	public void insertWorkResult(PpWoResultDb ppWoResultDb) {
-		sqlsession.insert(nameSpace+"insertWorkResult", ppWoResultDb);
+	public void insertWorkResult(PpWoResult ppWoResult) {
+		sqlsession.insert(nameSpace+"insertWorkResult", ppWoResult);
 	}
 }

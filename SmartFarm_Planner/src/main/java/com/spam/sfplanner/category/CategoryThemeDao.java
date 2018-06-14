@@ -21,29 +21,29 @@ public class CategoryThemeDao {
 	}
 	
 	/*매개변수 categoryThemeDb를 받아 테마카테고리를 수정처리하는 메서드*/
-	public void updateCategoryTheme(CategoryThemeDb categoryThemeDb) {
+	public void updateCategoryTheme(CategoryTheme categoryTheme) {
 		LOGGER.info("CategoryThemeDao updateCategoryTheme 호출");
-		sqlSession.update(NAMESPACE+"updateCategoryTheme", categoryThemeDb);
+		sqlSession.update(NAMESPACE+"updateCategoryTheme", categoryTheme);
 	}
 	
 	/*매개변수 themeName을 받아 테마카테고리 수정할 때 수정할화면 하나를 조회해 출력하는 메서드*/
-	public CategoryThemeDb oneSelectCategoryTheme(String themeName) {
+	public CategoryTheme oneSelectCategoryTheme(String themeName) {
 		return sqlSession.selectOne(NAMESPACE+"oneSelectCategoryTheme", themeName);
 	}
 	
-	public List<CategoryThemeDb> searchListSelectCategoryTheme(Map<String, String> map){
+	public List<CategoryTheme> searchListSelectCategoryTheme(Map<String, String> map){
 		System.out.println("map: "+map);
 		return sqlSession.selectList(NAMESPACE+"searchListSelectCategoryTheme", map);
 	}
 	
 	/*테마카테고리의 전체 리스트를 조회하는 메서드*/
-	public List<CategoryThemeDb> listSelectCategoryTheme(){
+	public List<CategoryTheme> listSelectCategoryTheme(){
 		return sqlSession.selectList(NAMESPACE+"listSelectCategoryTheme");
 	}
 	
 	/*매개변수 categoryThemeDb를 받아 테마 카테고리를 등록하는 메서드*/
-	public void insertCategoryTheme(CategoryThemeDb categoryThemeDb) {
-		sqlSession.insert(NAMESPACE+"insertTheme", categoryThemeDb);
+	public void insertCategoryTheme(CategoryTheme categoryTheme) {
+		sqlSession.insert(NAMESPACE+"insertTheme", categoryTheme);
 	}
 
 }

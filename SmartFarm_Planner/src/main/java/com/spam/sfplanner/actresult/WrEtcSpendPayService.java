@@ -17,13 +17,13 @@ public class WrEtcSpendPayService {
 	
 	/**
 	 * 기타지출비 결과 리스트 중 한 줄의 레코드 선택해서 수정하는 서비스
-	 * @param wrEtcSpendPayDb
+	 * @param wrEtcSpendPay
 	 * @return
 	 */
-	public int updateWrEtcSpendPay(WrEtcSpendPayDb wrEtcSpendPayDb) {
-		LOGGER.debug("input : "+wrEtcSpendPayDb);	
-		LOGGER.debug("return : "+wrEtcSpendPayDao.updateWrEtcSpendPay(wrEtcSpendPayDb));
-		return wrEtcSpendPayDao.updateWrEtcSpendPay(wrEtcSpendPayDb);
+	public int updateWrEtcSpendPay(WrEtcSpendPay wrEtcSpendPay) {
+		LOGGER.debug("input : "+wrEtcSpendPay);	
+		LOGGER.debug("return : "+wrEtcSpendPayDao.updateWrEtcSpendPay(wrEtcSpendPay));
+		return wrEtcSpendPayDao.updateWrEtcSpendPay(wrEtcSpendPay);
 	} 
 	
 	/**
@@ -31,7 +31,7 @@ public class WrEtcSpendPayService {
 	 * @param wrEtcspendpayNumber
 	 * @return
 	 */
-	public WrEtcSpendPayDb oneSelectWrEtcSpendPay(int wrEtcspendpayNumber) {
+	public WrEtcSpendPay oneSelectWrEtcSpendPay(int wrEtcspendpayNumber) {
 		LOGGER.debug("input : "+wrEtcspendpayNumber);	
 		LOGGER.debug("return : "+wrEtcSpendPayDao.oneSelectWrEtcSpendPay(wrEtcspendpayNumber));
 		return wrEtcSpendPayDao.oneSelectWrEtcSpendPay(wrEtcspendpayNumber);
@@ -42,22 +42,22 @@ public class WrEtcSpendPayService {
 	 * @param wrNumber
 	 * @return
 	 */
-	public List<WrEtcSpendPayDb> listSelectWrEtcSpendPay(int wrNumber) {
+	public List<WrEtcSpendPay> listSelectWrEtcSpendPay(int wrNumber) {
 		LOGGER.debug("input : "+wrNumber);
 		LOGGER.debug("return : "+wrEtcSpendPayDao.listSelectWrEtcSpendPay(wrNumber));
-		List<WrEtcSpendPayDb> list = wrEtcSpendPayDao.listSelectWrEtcSpendPay(wrNumber);
+		List<WrEtcSpendPay> list = wrEtcSpendPayDao.listSelectWrEtcSpendPay(wrNumber);
 		
 		return list;
 	}
 	
 	/**
 	 * 기타지출비 결과 등록 서비스
-	 * @param wrEtcSpendPayDb
+	 * @param wrEtcSpendPay
 	 */
-	public void insertWrEtcSpendPay(WrEtcSpendPayDb wrEtcSpendPayDb) {
-		LOGGER.debug("input : "+wrEtcSpendPayDb);
+	public void insertWrEtcSpendPay(WrEtcSpendPay wrEtcSpendPay) {
+		LOGGER.debug("input : "+wrEtcSpendPay);
 		
-		wrEtcSpendPayDb.setWrEtcspendpayDate(sdf.format(date));
-		wrEtcSpendPayDao.insertWrEtcSpendPay(wrEtcSpendPayDb);
+		wrEtcSpendPay.setWrEtcspendpayDate(sdf.format(date));
+		wrEtcSpendPayDao.insertWrEtcSpendPay(wrEtcSpendPay);
 	}	
 }

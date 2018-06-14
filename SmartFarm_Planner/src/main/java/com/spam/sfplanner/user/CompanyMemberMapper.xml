@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.spam.sfplanner.user.CompanyMemberMapper">
-  <resultMap type="com.spam.sfplanner.user.CompanyMemberDb" id="companyMemberDb">
+  <resultMap type="com.spam.sfplanner.user.CompanyMember" id="companyMemberDb">
 		<id column="c_member_id" property="cMemberId"/>
 		<result column="c_member_pw" property="cMemberPw"/>
 		<result column="c_member_name" property="cMemberName"/>
@@ -15,7 +15,7 @@
 		<result column="c_member_jibunaddress" property="cMemberJibunaddress"/>
 		<result column="c_member_detailaddress" property="cMemberDetailaddress"/>
 		<result column="c_member_registdate" property="cMemberRegistdate"/>
-		<collection property="companyDb" ofType="com.spam.sfplanner.corporation.CompanyDb">
+		<collection property="companyDb" ofType="com.spam.sfplanner.corporation.Company">
 			<id column="c_number" property="cNumber"/>
 			<result column="c_name" property="cName"/>
 			<result column="c_member_id" property="cMemberId"/>
@@ -36,7 +36,7 @@
 	
 	<!-- 업체 회원정보 수정쿼리문장 -->
 	<update id="updateCompanyMember"
-			parameterType="com.spam.sfplanner.user.CompanyMemberView">
+			parameterType="com.spam.sfplanner.user.CompanyMemberRequest">
 	update sp_deal_company_member
 	set
 		c_member_pw=#{cMemberPw}
@@ -103,7 +103,7 @@
 	</select>
 	
 	<!-- 업체 회원 등록하는 쿼리문장 -->
-	<insert id="insertCompanyMember" parameterType="com.spam.sfplanner.user.CompanyMemberView">
+	<insert id="insertCompanyMember" parameterType="com.spam.sfplanner.user.CompanyMemberRequest">
 		insert into sp_deal_company_member
 			(c_member_id
 			,c_number

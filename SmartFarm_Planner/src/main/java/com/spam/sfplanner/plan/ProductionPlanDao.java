@@ -16,7 +16,7 @@ public class ProductionPlanDao {
 	
 	private static final String NAMESPACE = "com.spam.sfplanner.plan.ProductionPlanMapper.";
 	
-	public List<ProductionPlanDb> listSelectProductionPlan(Map<String,Object> map) {
+	public List<ProductionPlan> listSelectProductionPlan(Map<String,Object> map) {
 		return sqlSessionTemplate.selectList(NAMESPACE+"listSelectProductionPlan",map);
 	}
 }

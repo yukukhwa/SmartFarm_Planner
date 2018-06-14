@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="com.spam.sfplanner.corporation.CompanyMapper">
-	<resultMap type="com.spam.sfplanner.corporation.CompanyDb" id="companyDb">
+	<resultMap type="com.spam.sfplanner.corporation.Company" id="companyDb">
 		<id column="c_number" property="cNumber"/>
 		<result column="c_name" property="cName"/>
 		<result column="c_doroaddress" property="cDoroaddress"/>
@@ -11,11 +11,11 @@
 		<result column="c_phone" property="cPhone"/>
 		<result column="c_registdate" property="cRegistdate"/>
 		<result column="c_party" property="cParty"/>
-		<collection property="companyMemberDb" ofType="com.spam.sfplanner.user.CompanyMemberDb">
+		<collection property="companyMemberDb" ofType="com.spam.sfplanner.user.CompanyMember">
 			<id column="c_member_id" property="cMemberId"/>
 			<result column="c_member_name" property="cMemberName"/>
 		</collection>
-		<collection property="categoryDealDb" ofType="com.spam.sfplanner.category.CategoryDealDb">
+		<collection property="categoryDealDb" ofType="com.spam.sfplanner.category.CategoryDeal">
 			<id column="deal_number" property="dealNumber"/>
 			<result column="deal_classification" property="dealClassification"/>	
 		</collection>
@@ -32,7 +32,7 @@
 	
 	<!-- 업체 수정처리 쿼리문장 -->
 	<update id="updateCompany"
-			parameterType="com.spam.sfplanner.user.CompanyMemberView">
+			parameterType="com.spam.sfplanner.user.CompanyMemberRequest">
 	update sp_deal_company
 	set
 		c_name=#{cName}
@@ -91,7 +91,7 @@
 	</select>
 	<!-- 업체입력 쿼리문장 -->
 	<insert id="insertCompany" 
-			parameterType="com.spam.sfplanner.user.CompanyMemberView">
+			parameterType="com.spam.sfplanner.user.CompanyMemberRequest">
 		<selectKey resultType="int" 
 					keyProperty="cNumber"
 					order="AFTER">

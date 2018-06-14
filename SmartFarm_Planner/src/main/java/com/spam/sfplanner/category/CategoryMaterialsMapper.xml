@@ -4,15 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.spam.sfplanner.category.CategoryMaterialsMapper">
- 	<resultMap type="com.spam.sfplanner.category.CategoryMaterialsDb" id="categoryMaterialsDb">
+ 	<resultMap type="com.spam.sfplanner.category.CategoryMaterials" id="categoryMaterialsDb">
  		<id column="materials_number" property="materialsNumber"/>
  		<result column="materials_name" property="materialsName"/>
  		<result column="materials_unit" property="materialsUnit"/>
- 		<collection property="categoryThemeDb" ofType="com.spam.sfplanner.category.CategoryThemeDb">
+ 		<collection property="categoryThemeDb" ofType="com.spam.sfplanner.category.CategoryTheme">
  			<id column="theme_number" property="themeNumber"/>
  			<result column="theme_name" property="themeName"/>
  		</collection>
- 		<collection property="agencyDb" ofType="com.spam.sfplanner.corporation.AgencyDb">
+ 		<collection property="agencyDb" ofType="com.spam.sfplanner.corporation.Agency">
  			<id column="a_number" property="aNumber"/>
  			<result column="a_name" property="aName"/>
  			<result column="a_doroaddress" property="aDoroaddress"/>
@@ -31,7 +31,7 @@
  	
  	<!-- 원자재 카테고리의 정보를 수정처리하는 쿼리문 -->
  	<update id="updateCategoryMaterials"
- 		parameterType="com.spam.sfplanner.category.CategoryMaterialsDb">
+ 		parameterType="com.spam.sfplanner.category.CategoryMaterials">
  			UPDATE sp_materials_cate
 			SET sp_materials_cate.materials_name=#{materialsName}
 				, sp_materials_cate.materials_unit=#{materialsUnit}
@@ -102,7 +102,7 @@
  
  	<!-- 원자재 카테고리를 등록하는 인서트 쿼리문 -->
  	<insert id="insertCategoryMaterials"
- 		parameterType="com.spam.sfplanner.category.CategoryMaterialsDb">
+ 		parameterType="com.spam.sfplanner.category.CategoryMaterials">
 	 		INSERT INTO sp_materials_cate(
 	 			theme_number
 				, materials_name

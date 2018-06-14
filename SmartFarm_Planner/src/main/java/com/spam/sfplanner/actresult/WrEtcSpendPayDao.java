@@ -16,13 +16,13 @@ public class WrEtcSpendPayDao {
 	
 	/**
 	 * 기타지출비 결과 하나의 레코드 선택 후 수정 메서드
-	 * @param wrEtcSpendPayDb
+	 * @param wrEtcSpendPay
 	 * @return
 	 */
-	public int updateWrEtcSpendPay(WrEtcSpendPayDb wrEtcSpendPayDb) {
+	public int updateWrEtcSpendPay(WrEtcSpendPay wrEtcSpendPay) {
 		LOGGER.info("WrEtcSpendPayDao 호출");
-		LOGGER.debug(NAMESPACE+"updateOneWrEtcSpendPay", wrEtcSpendPayDb);
-		return session.update(NAMESPACE+"updateOneWrEtcSpendPay", wrEtcSpendPayDb);
+		LOGGER.debug(NAMESPACE+"updateOneWrEtcSpendPay", wrEtcSpendPay);
+		return session.update(NAMESPACE+"updateOneWrEtcSpendPay", wrEtcSpendPay);
 	}
 		
 	/**
@@ -30,7 +30,7 @@ public class WrEtcSpendPayDao {
 	 * @param wrEtcspendpayNumber
 	 * @return
 	 */
-	public WrEtcSpendPayDb oneSelectWrEtcSpendPay(int wrEtcspendpayNumber) {
+	public WrEtcSpendPay oneSelectWrEtcSpendPay(int wrEtcspendpayNumber) {
 		LOGGER.info("WrEtcSpendPayDao 호출");
 		LOGGER.debug(NAMESPACE+"oneSelectWrEtcSpendPay", wrEtcspendpayNumber);
 		return session.selectOne(NAMESPACE+"oneSelectWrEtcSpendPay", wrEtcspendpayNumber);
@@ -41,17 +41,17 @@ public class WrEtcSpendPayDao {
 	 * @param wrNumber
 	 * @return
 	 */
-	public List<WrEtcSpendPayDb> listSelectWrEtcSpendPay(int wrNumber) {
+	public List<WrEtcSpendPay> listSelectWrEtcSpendPay(int wrNumber) {
 		LOGGER.info("WrEtcSpendPayDao 호출");
 		return session.selectList(NAMESPACE+"listSelectWrEtcSpendPay", wrNumber);
 	}
 	
 	/**
 	 * 기타지출비 결과 등록 메서드
-	 * @param wrEtcSpendPayDb
+	 * @param wrEtcSpendPay
 	 */
-	public void insertWrEtcSpendPay(WrEtcSpendPayDb wrEtcSpendPayDb) {
+	public void insertWrEtcSpendPay(WrEtcSpendPay wrEtcSpendPay) {
 		LOGGER.info("WrEtcSpendPayDao 호출");
-		session.insert(NAMESPACE+"insertWrEtcSpendPay",wrEtcSpendPayDb);
+		session.insert(NAMESPACE+"insertWrEtcSpendPay",wrEtcSpendPay);
 	}
 }

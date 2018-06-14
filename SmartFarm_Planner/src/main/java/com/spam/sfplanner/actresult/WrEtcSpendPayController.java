@@ -16,13 +16,13 @@ public class WrEtcSpendPayController {
 	
 	/**
 	 * 기타지출비용 결과 수정화면에서 POST로 받아서 업데이트 
-	 * @param wrEtcSpendPayDb
+	 * @param wrEtcSpendPay
 	 * @return 기타지출비용 결과 리스트로 포워드
 	 */
 	@RequestMapping(value="/updateWrEtcSpendPay", method=RequestMethod.POST)
-	public String updateWrEtcSpendPay(WrEtcSpendPayDb wrEtcSpendPayDb) {
+	public String updateWrEtcSpendPay(WrEtcSpendPay wrEtcSpendPay) {
 		LOGGER.info("기타지출비결과 수정 화면에서 POST");
-		wrEtcSpendPayService.updateWrEtcSpendPay(wrEtcSpendPayDb);
+		wrEtcSpendPayService.updateWrEtcSpendPay(wrEtcSpendPay);
 		return "actresult/wr_etcspendpay/listWrEtcSpendPay";
 	}
 	
@@ -54,13 +54,13 @@ public class WrEtcSpendPayController {
 		
 	/**
 	 * 기타지출비용 결과 등록화면에서 POST로 받아 인서트
-	 * @param wrEtcSpendPayDb
+	 * @param wrEtcSpendPay
 	 * @return 홈(메인)화면으로 리다이렉트
 	 */
 	@RequestMapping(value="/addWrEtcSpendPay", method=RequestMethod.POST)
-	public String insertWrEtcSpendPay(WrEtcSpendPayDb wrEtcSpendPayDb) {
+	public String insertWrEtcSpendPay(WrEtcSpendPay wrEtcSpendPay) {
 		LOGGER.info("기타지출비결과 등록 화면에서 POST");
-		wrEtcSpendPayService.insertWrEtcSpendPay(wrEtcSpendPayDb);
+		wrEtcSpendPayService.insertWrEtcSpendPay(wrEtcSpendPay);
 		return "redirect:/home";
 	}
 	

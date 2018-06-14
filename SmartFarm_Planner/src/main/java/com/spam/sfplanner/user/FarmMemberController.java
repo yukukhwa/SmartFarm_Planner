@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.spam.sfplanner.corporation.FarmDb;
+import com.spam.sfplanner.corporation.Farm;
 import com.spam.sfplanner.corporation.FarmDao;
 import com.spam.sfplanner.corporation.FarmService;
 
@@ -36,10 +36,10 @@ public class FarmMemberController {
 		
 		/*포스트 방식으로 넘어올때 수정처리*/
 		@RequestMapping(value="updateFarmMember", method=RequestMethod.POST)
-		public String updateFarmMember(FarmMemberView farmMemberView) {
+		public String updateFarmMember(FarmMemberRequest farmMemberRequest) {
 			LOGGER.info("FarmMemberController updateFarmMember post 호출");
-			farmMemberService.updateFarmMember(farmMemberView);
-			return "redirect:/oneFarmMember?fMemberId="+farmMemberView.getfMemberId();
+			farmMemberService.updateFarmMember(farmMemberRequest);
+			return "redirect:/oneFarmMember?fMemberId="+farmMemberRequest.getfMemberId();
 		}
 		
 		/*업데이트를 하기 위해 수정할 화면을 불러옴*/
@@ -76,15 +76,15 @@ public class FarmMemberController {
 		/*농가 회원가입 처리 post*/
 		@Transactional
 		@RequestMapping(value="/addFarmMember", method=RequestMethod.POST)
-		public String insertFarmMember(FarmMemberView farmMemberView) {
+		public String insertFarmMember(FarmMemberRequest farmMemberRequest) {
 			LOGGER.info("FarmMemberController 호출");
-			LOGGER.info("FarmMemberView 내용 ====> " + farmMemberView.toString());
-			int fNumber = farmMemberView.getfNumber();
+			LOGGER.info("FarmMemberRequest 내용 ====> " + farmMemberRequest.toString());
+			int fNumber = farmMemberRequest.getfNumber();
 			if(fNumber == 0) {
 				LOGGER.info(" addFarmMember fNumber--> "+fNumber);
-				farmService.insertFarm(farmMemberView);
+				farmService.insertFarm(farmMemberRequest);
 			}
-			farmMemberService.insertFarmMember(farmMemberView);
+			farmMemberService.insertFarmMember(farmMemberRequest);
 			return "user/farm_member/addFarmMember";
 		}
 		

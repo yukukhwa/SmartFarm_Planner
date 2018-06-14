@@ -10,45 +10,45 @@
 	필요장비와 대여비가 1:N 관계라 collection하였다
 	메모와 메모파일이 1:N관계라 collection하였다.
 	외래키로 되어있는 컬럼이 상위와 하위에 중복되더라도 테이블에 컬림이 되어있으므로 추가해두었다. -->
-	<resultMap type="com.spam.sfplanner.actresult.ActResultDb" id="actResult">
+	<resultMap type="com.spam.sfplanner.actresult.ActResult" id="actResult">
 		<id column="pp_resultlist_number" property="ppResultlistNumber"/>
 		<result column="pp_number" property="ppNumber"/>
 		<result column="f_number" property="fNumber"/>
 		<result column="pp_resultlist_date" property="ppResultlistDate"/>
 		<result column="f_member_id" property="fMemberId"/>
-		<collection property="ppWoResultDb" ofType="com.spam.sfplanner.actresult.PpWoResultDb">
+		<collection property="ppWoResultDb" ofType="com.spam.sfplanner.actresult.PpWoResult">
 			<id column="wr_number" property="wrNumber"/>
 			<result column="pp_resultlist_number" property="ppResultlistNumber"/>
 			<result column="pp_work_number" property="ppWorkNumber"/>
 			<result column="wr_totalarea" property="wrTotalarea"/>
 			<result column="wr_reworkarea" property="wrReworkarea"/>
-			<collection property="wrInsurancePayDb" ofType="com.spam.sfplanner.actresult.WrInsurancePayDb">
+			<collection property="wrInsurancePayDb" ofType="com.spam.sfplanner.actresult.WrInsurancePay">
 				<id column="wr_insurancepay_number" property="wrInsurancepayNumber"/>
 				<result column="wr_number" property="wrNumber"/>
 				<result column="e_insurancepay_number" property="eInsurancepayNumber"/>
 				<result column="wr_insurancepay_monthcost" property="wrInsurancepayMonthcost"/>
 				<result column="wr_insurancepay_date" property="wrInsurancepayDate"/>
 			</collection>
-			<collection property="wrEtcSpendPayDb" ofType="com.spam.sfplanner.actresult.WrEtcSpendPayDb">
+			<collection property="wrEtcSpendPayDb" ofType="com.spam.sfplanner.actresult.WrEtcSpendPay">
 				<id column="wr_etcspendpay_number" property="wrEtcspendpayNumber"/>
 				<result column="wr_number" property="wrNumber"/>
 				<result column="e_etcspendpay_number" property="eEtcspendpayNumber"/>
 				<result column="wr_etcspendpay_realcost" property="wrEtcspendpayRealcost"/>
 				<result column="wr_etcspendpay_date" property="wrEtcspendpayDate"/>
 			</collection>
-			<collection property="wrMaterialsPayDb" ofType="com.spam.sfplanner.actresult.WrMaterialsPayDb">
+			<collection property="wrMaterialsPayDb" ofType="com.spam.sfplanner.actresult.WrMaterialsPay">
 				<id column="wr_materialspay_number" property="wrMaterialspayNumber"/>
 				<result column="wr_number" property="wrNumber"/>
 				<result column="e_materialspay_number" property="eMaterialspayNumber"/>
 				<result column="wr_materialspay_quantity" property="wrMaterialspayQuantity"/>
 				<result column="wr_materialspay_unitcost" property="wrMaterialspayUnitcost"/>
 			</collection>
-			<collection property="wrNeedEquipDb" ofType="com.spam.sfplanner.actresult.WrNeedEquipDb">
+			<collection property="wrNeedEquipDb" ofType="com.spam.sfplanner.actresult.WrNeedEquip">
 				<id column="wr_needequip_number" property="wrNeedequipNumber"/>
 				<result column="wr_number" property="wrNumber"/>
 				<result column="e_needequip_number" property="eNeedequipNumber"/>
 				<result column="wr_needequip_state" property="wrNeedequipState"/>
-				<collection property="wrNeRentPayDb" ofType="com.spam.sfplanner.actresult.WrNeRentPayDb">
+				<collection property="wrNeRentPayDb" ofType="com.spam.sfplanner.actresult.WrNeRentPay">
 					<id column="ne_rentpay_number" property="neRentpayNumber"/>
 					<result column="wr_needequip_number" property="wrNeedequipNumber"/>
 					<result column="ne_rentpay_cost" property="neRentpayCost"/>
@@ -56,20 +56,20 @@
 					<result column="ne_e_rentpay_number" property="neERentpayNumber"/>
 				</collection>
 			</collection>
-			<collection property="wrHumanPayDb" ofType="com.spam.sfplanner.actresult.WrHumanPayDb">
+			<collection property="wrHumanPayDb" ofType="com.spam.sfplanner.actresult.WrHumanPay">
 				<id column="wr_humanpay_number" property="wrHumanpayNumber"/>
 				<result column="wr_number" property="wrNumber"/>
 				<result column="e_humanpay_number" property="eHumanpayNumber"/>
 				<result column="wr_humanpay_realcost" property="wrHumanpayRealcost"/>
 				<result column="wr_humanpay_date" property="wrHumanpayDate"/>
 			</collection>
-			<collection property="memoDb" ofType="com.spam.sfplanner.actresult.MemoDb">
+			<collection property="memoDb" ofType="com.spam.sfplanner.actresult.Memo">
 				<id column="wr_memo_number" property="wrHumanpayNumber"/>
 				<result column="theme_number" property="wrNumber"/>
 				<result column="wr_number" property="wrNumber"/>
 				<result column="wr_memo_subject" property="wrNumber"/>
 				<result column="wr_memo_content" property="wrNumber"/>
-				<collection property="memoFileDb" ofType="com.spam.sfplanner.actresult.MemoFileDb">
+				<collection property="memoFileDb" ofType="com.spam.sfplanner.actresult.MemoFile">
 					<id column="memo_file_number" property="memoFileNumber"/>
 					<result column="wr_memo_number" property="wrMemoNumber"/>
 					<result column="memo_file_realname" property="memoFileFealname"/>
@@ -84,7 +84,7 @@
 	</resultMap>
 	<select id="listSelectActResult"
 			parameterType="Map"
-			resultType="com.spam.sfplanner.actresult.ActResultRequestDb">
+			resultType="com.spam.sfplanner.actresult.ActResultRequest">
 		SELECT
 			sp_pp_name_cate.pp_name_planname AS ppNamePlanname,
 			sp_pp_resultlist.pp_resultlist_number AS ppResultlistNumber,
@@ -97,7 +97,7 @@
 			WHERE sp_pp_resultlist.f_number = #{fNumber}
 		</if>
 	</select>
-	<insert id="insertActResult" parameterType="com.spam.sfplanner.actresult.ActResultDb">
+	<insert id="insertActResult" parameterType="com.spam.sfplanner.actresult.ActResult">
 		INSERT INTO sp_wr_humanpay (
 			e_humanpay_number
 		)

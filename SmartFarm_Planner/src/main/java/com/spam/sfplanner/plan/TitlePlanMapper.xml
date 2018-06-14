@@ -5,14 +5,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 나성수 -->
 <mapper namespace="com.spam.sfplanner.plan.TitlePlanMapper">
-	<resultMap type="com.spam.sfplanner.plan.TitlePlanDb" id="titlePlanDb">
+	<resultMap type="com.spam.sfplanner.plan.TitlePlan" id="titlePlanDb">
 		<id column="pp_name_number" property="ppNameNumber"/>
 		<result column="pp_name_planname" property="ppNamePlanname"/>
-		<collection ofType="com.spam.sfplanner.category.CategoryItemDb" property="categoryItemDb">
+		<collection ofType="com.spam.sfplanner.category.CategoryItem" property="categoryItemDb">
 			<id column="i_item_number" property="iItemNumber"/>
 			<result column="i_item_name" property="iItemName"/>
 		</collection>
-		<collection ofType="com.spam.sfplanner.corporation.FarmDb" property="farmDb">
+		<collection ofType="com.spam.sfplanner.corporation.Farm" property="farmDb">
 			<id column="f_number" property="fNumber"/>
 			<result column="f_name" property="fName"/>
 		</collection>
@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 계획명 수정 처리 update 쿼리문장 -->
 	<update id="updateTitlePlan"
-			parameterType="com.spam.sfplanner.plan.TitlePlanDb">
+			parameterType="com.spam.sfplanner.plan.TitlePlan">
 		UPDATE sp_pp_name_cate
 		SET
 			i_item_number=#{categoryItemDb.iItemNumber}

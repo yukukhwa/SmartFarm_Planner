@@ -7,7 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.spam.sfplanner.user.AgencyMemberView;
+import com.spam.sfplanner.user.AgencyMemberRequest;
 
 /*
  * 관리기관관리 Dao
@@ -24,8 +24,8 @@ public class AgencyDao {
 	 * 관리기관 수정처리 Dao
 	 * @param 관리기관 수정화면에서 받은 데이터
 	 */
-	public void updateAgency(AgencyMemberView agencyMemberView) {
-		sqlSessionTemplate.update(NAMESPACE+"updateAgency", agencyMemberView);
+	public void updateAgency(AgencyMemberRequest agencyMemberRequest) {
+		sqlSessionTemplate.update(NAMESPACE+"updateAgency", agencyMemberRequest);
 	}
 	
 	/**
@@ -41,7 +41,7 @@ public class AgencyDao {
 	 * @param 선택한 관리기관명
 	 * @return 선택한 관리기관의 상세내용
 	 */
-	public AgencyDb oneSelectAgency(String aName) {
+	public Agency oneSelectAgency(String aName) {
 		return sqlSessionTemplate.selectOne(NAMESPACE+"oneSelectAgency", aName);
 	}
 	
@@ -66,8 +66,8 @@ public class AgencyDao {
 	 * 관리기관 등록처리 Dao
 	 * @param 관리기관등록정보
 	 */
-	public void insertAgency(AgencyMemberView agencyMemberView) {
-		sqlSessionTemplate.insert(NAMESPACE+"insertAgency", agencyMemberView);
+	public void insertAgency(AgencyMemberRequest agencyMemberRequest) {
+		sqlSessionTemplate.insert(NAMESPACE+"insertAgency", agencyMemberRequest);
 	}
 	
 	/**

@@ -22,8 +22,8 @@ public class AgencyMemberDao {
 	 * 관리기관 회원 정보 수정 처리 Dao
 	 * @param 관리기관 수정화면에서 받아온 데이터
 	 */
-	public void updateAgencyMember(AgencyMemberView agencyMemberView) {
-		sqlSessionTemplate.update(NAMESPACE+"updateAgencyMember", agencyMemberView);
+	public void updateAgencyMember(AgencyMemberRequest agencyMemberRequest) {
+		sqlSessionTemplate.update(NAMESPACE+"updateAgencyMember", agencyMemberRequest);
 	}
 	
 	/**
@@ -39,7 +39,7 @@ public class AgencyMemberDao {
 	 * @param 해당회원아이디
 	 * @return 해당회원의 상세내용
 	 */
-	public AgencyMemberDb oneSelectAgencyMember(String aMemberId) {
+	public AgencyMember oneSelectAgencyMember(String aMemberId) {
 		return sqlSessionTemplate.selectOne(NAMESPACE+"oneSelectAgencyMember", aMemberId);
 	}
 	
@@ -48,7 +48,7 @@ public class AgencyMemberDao {
 	 * @param 해당 관리기관명
 	 * @return 해당 관리기관 직원리스트
 	 */
-	public List<AgencyMemberDb> listSelectAgencyMember(String aName) {
+	public List<AgencyMember> listSelectAgencyMember(String aName) {
 		return sqlSessionTemplate.selectList(NAMESPACE+"listSelectAgencyMember", aName);
 	}
 	
@@ -63,9 +63,9 @@ public class AgencyMemberDao {
 	
 	/**
 	 * 관리기관 회원가입화면 처리Dao
-	 * @param agencyMemberView
+	 * @param agencyMemberRequest
 	 */
-	public void insertAgencyMember(AgencyMemberView agencyMemberView) {
-		sqlSessionTemplate.insert(NAMESPACE+"InsertAgencyMember", agencyMemberView);
+	public void insertAgencyMember(AgencyMemberRequest agencyMemberRequest) {
+		sqlSessionTemplate.insert(NAMESPACE+"InsertAgencyMember", agencyMemberRequest);
 	}
 }

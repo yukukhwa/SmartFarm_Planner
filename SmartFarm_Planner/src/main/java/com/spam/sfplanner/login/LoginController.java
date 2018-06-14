@@ -38,8 +38,8 @@ public class LoginController {
 		return "/login/login";
 	}
 	@RequestMapping(value = "/loginFarm", method = RequestMethod.POST)
-	public String loginFarm(LoginDb loginDb, HttpSession session) {
-		LoginDb returnLogin = loginService.oneSelectFarmMember(loginDb);
+	public String loginFarm(Login login, HttpSession session) {
+		Login returnLogin = loginService.oneSelectFarmMember(login);
 		/*
 		 * 로그인 실패시 login.jsp로 포워드한다.
 		 */
@@ -52,8 +52,8 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/loginCompany", method = RequestMethod.POST)
-	public String loginCompany(LoginDb loginDb, HttpSession session) {
-		LoginDb returnLogin = loginService.oneSelectCompanyMember(loginDb);
+	public String loginCompany(Login login, HttpSession session) {
+		Login returnLogin = loginService.oneSelectCompanyMember(login);
 		
 		if(returnLogin == null) {
 			return "/login/login";
@@ -63,8 +63,8 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/loginAgency", method = RequestMethod.POST)
-	public String loginAgency(LoginDb loginDb, HttpSession session) {
-		LoginDb returnLogin = loginService.oneSelectAgencyMember(loginDb);
+	public String loginAgency(Login login, HttpSession session) {
+		Login returnLogin = loginService.oneSelectAgencyMember(login);
 		
 		if(returnLogin == null) {
 			return "/login/login";

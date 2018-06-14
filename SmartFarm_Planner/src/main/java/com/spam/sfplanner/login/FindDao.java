@@ -14,37 +14,37 @@ public class FindDao {
 	private static final Logger LOGGER = LoggerFactory.getLogger(FindController.class);
 	
 	// 농가 회원 비밀번호 찾기
-	public String oneSelectFindAgencyPw(FindDb finddb) {
+	public String oneSelectFindAgencyPw(Find finddb) {
 		LOGGER.info("비번 찾기 Dao");
 		return sqlSession.selectOne(namespace+"selectAgencyMemberPw", finddb);
 	}
 	
 	// 농가 회원 비밀번호 찾기
-	public String oneSelectFindCompanyPw(FindDb finddb) {
+	public String oneSelectFindCompanyPw(Find finddb) {
 		LOGGER.info("비번 찾기 Dao");
 		return sqlSession.selectOne(namespace+"selectCompanyMemberPw", finddb);
 	}
 	
 	// 농가 회원 비밀번호 찾기
-	public String oneSelectFindFarmPw(FindDb finddb) {
+	public String oneSelectFindFarmPw(Find finddb) {
 		LOGGER.info("비번 찾기 Dao");
 		return sqlSession.selectOne(namespace+"selectFarmMemberPw", finddb);
 	}
 	
 	// 업체 회원 아이디 찾기
-	public String oneSelectFindAgencyId(FindDb finddb) {
+	public String oneSelectFindAgencyId(Find finddb) {
 		LOGGER.info("아이디 찾기 Dao");
 		return sqlSession.selectOne(namespace+"selectAgencyMemberId", finddb);
 	}
 	
 	// 업체 회원 아이디 찾기
-	public String oneSelectFindCompanyId(FindDb finddb) {
+	public String oneSelectFindCompanyId(Find finddb) {
 		LOGGER.info("아이디 찾기 Dao");
 		return sqlSession.selectOne(namespace+"selectCompanyMemberId", finddb);
 	}
 	
 	// 농가 회원 아이디 찾기
-	public String oneSelectFindFarmId(FindDb finddb) {
+	public String oneSelectFindFarmId(Find finddb) {
 		LOGGER.info("아이디 찾기 Dao");
 		return sqlSession.selectOne(namespace+"selectFarmMemberId", finddb);
 	}

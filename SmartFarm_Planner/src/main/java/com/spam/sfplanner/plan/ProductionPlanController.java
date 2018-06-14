@@ -53,8 +53,8 @@ public class ProductionPlanController {
 	 * @return
 	 */
 	@RequestMapping(value="/addPlanner",method = RequestMethod.POST)
-	public String insertProductionPlan(ProductionPlanDb productionPlanDb,HttpSession session) {
-		System.out.println(productionPlanDb.toString());
+	public String insertProductionPlan(ProductionPlan productionPlan,HttpSession session) {
+		System.out.println(productionPlan.toString());
 		return "plan/productionplan/listPlanner";
 	}
 	

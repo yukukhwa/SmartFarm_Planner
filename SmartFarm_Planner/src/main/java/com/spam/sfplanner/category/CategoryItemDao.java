@@ -20,8 +20,8 @@ public class CategoryItemDao {
 	 * 품목카테고리 수정 처리 Dao
 	 * @param 품목카테고리 수정 화면에서 받아온 데이터
 	 */
-	public void updateCategoryItem(CategoryItemDb categoryItemDb) {
-		sqlSessionTemplate.update(NAMESPACE+"updateCategoryItem", categoryItemDb);
+	public void updateCategoryItem(CategoryItem categoryItem) {
+		sqlSessionTemplate.update(NAMESPACE+"updateCategoryItem", categoryItem);
 	}
 	
 	/**
@@ -29,7 +29,7 @@ public class CategoryItemDao {
 	 * @param 품목 넘버
 	 * @return 품목카테고리 수정 화면
 	 */
-	public CategoryItemDb updateCategoryItem(int iItemNumber) {
+	public CategoryItem updateCategoryItem(int iItemNumber) {
 		return sqlSessionTemplate.selectOne(NAMESPACE+"oneSelectCategoryItem", iItemNumber);
 	}
 	
@@ -46,7 +46,7 @@ public class CategoryItemDao {
 	 * @param 품목명,산업명,등록기관명
 	 * @return 품목카테고리 리스트
 	 */
-	public List<CategoryItemDb> listSelectCategoryItem(Map<String,String> map) {
+	public List<CategoryItem> listSelectCategoryItem(Map<String,String> map) {
 		return sqlSessionTemplate.selectList(NAMESPACE+"searchListSelectCategoryItem",map);
 	} 
 	
@@ -54,7 +54,7 @@ public class CategoryItemDao {
 	 * 품목카테고리 리스트 출력 Dao
 	 * @return 품목카테고리 리스트
 	 */
-	public List<CategoryItemDb> listSelectCategoryItem() {
+	public List<CategoryItem> listSelectCategoryItem() {
 		return sqlSessionTemplate.selectList(NAMESPACE+"listSelectCategoryItem");
 	}
 	

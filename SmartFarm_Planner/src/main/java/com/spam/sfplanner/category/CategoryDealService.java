@@ -13,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.spam.sfplanner.login.LoginDb;
+import com.spam.sfplanner.login.Login;
 @Transactional
 @Service
 public class CategoryDealService {
@@ -27,26 +27,26 @@ public class CategoryDealService {
 	}
 	
 	/*거래처카테고리 수정처리 Service*/
-	public void updateCategoryDeal(CategoryDealDb categoryDealDb) {
-		categoryDealDao.updateCategoryDeal(categoryDealDb);
+	public void updateCategoryDeal(CategoryDeal categoryDeal) {
+		categoryDealDao.updateCategoryDeal(categoryDeal);
 	}
 	
 	/*하나의 거래처카테고리 호출 Service*/ 
-	public CategoryDealDb oneSelectCategoryDeal(int dealNumber) {
+	public CategoryDeal oneSelectCategoryDeal(int dealNumber) {
 		return categoryDealDao.oneSelectCategoryDeal(dealNumber);
 	}
 	
 	/*거래처카테고리 리스트 출력 Service*/
-	public List<CategoryDealDb> listSelectCategoryDeal(){
+	public List<CategoryDeal> listSelectCategoryDeal(){
 		return categoryDealDao.listSelectCategoryDeal();
 	}
 	
 	/*거래처카테고리 등록 Service*/
-	public void insertCategoryDeal(CategoryDealDb categoryDealDb, HttpSession session) {
+	public void insertCategoryDeal(CategoryDeal categoryDeal, HttpSession session) {
 		logger.info("CategoryDealService 호출");
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("aNumber", ((LoginDb)session.getAttribute("loginMember")).getCorpNumber());
-		map.put("dealClassification", categoryDealDb.getDealClassification());
+		map.put("aNumber", ((Login)session.getAttribute("loginMember")).getCorpNumber());
+		map.put("dealClassification", categoryDeal.getDealClassification());
 		categoryDealDao.insertCategoryDeal(map);
 	}
 }

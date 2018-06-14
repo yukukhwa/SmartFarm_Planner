@@ -29,8 +29,8 @@ public class AgencyMemberService {
 	 * 관리기관 회원 정보 수정 처리 서비스
 	 * @param 관리기관 회원 정보 수정화면에서 받아온 데이터
 	 */
-	public void updateAgencyMember(AgencyMemberView agencyMemberView) {
-		agencyMemberDao.updateAgencyMember(agencyMemberView);
+	public void updateAgencyMember(AgencyMemberRequest agencyMemberRequest) {
+		agencyMemberDao.updateAgencyMember(agencyMemberRequest);
 	}
 	
 	/**
@@ -91,9 +91,9 @@ public class AgencyMemberService {
 	
 	/**
 	 * 관리기관 회원가입화면 처리서비스
-	 * @param agencyMemberView
+	 * @param agencyMemberRequest
 	 */
-	public void insertAgencyMember(AgencyMemberView agencyMemberView) {
-		agencyMemberDao.insertAgencyMember(agencyMemberView);
+	public void insertAgencyMember(AgencyMemberRequest agencyMemberRequest) {
+		agencyMemberDao.insertAgencyMember(agencyMemberRequest);
 	}
 }

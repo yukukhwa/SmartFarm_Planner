@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.spam.sfplanner.login.LoginDb;
+import com.spam.sfplanner.login.Login;
 
 @Transactional
 @Service
@@ -23,7 +23,7 @@ public class ProductionPlanService {
 	@Autowired
 	private TitlePlanDao titlePlanDao;
 	
-	public List<ProductionPlanDb> listSelectProductionPlan(String column,Object property) {
+	public List<ProductionPlan> listSelectProductionPlan(String column,Object property) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("search", "yes");
 		map.put("column", column);
@@ -31,16 +31,16 @@ public class ProductionPlanService {
 		return productionPlanDao.listSelectProductionPlan(map);
 	}
 	
-	public List<ProductionPlanDb> listSelectProductionPlan() {
+	public List<ProductionPlan> listSelectProductionPlan() {
 		Map<String,Object> map = null;
 		return productionPlanDao.listSelectProductionPlan(map);
 	}
 	
-	public List<TitlePlanDb> insertProductionPlan(HttpSession session) {
+	public List<TitlePlan> insertProductionPlan(HttpSession session) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("search", "yes");
 		map.put("column", "농가넘버");
-		map.put("property", ((LoginDb)session.getAttribute("loginMember")).getCorpNumber());
+		map.put("property", ((Login)session.getAttribute("loginMember")).getCorpNumber());
 		return titlePlanDao.listSelectTitlePlan(map);
 	}
 }

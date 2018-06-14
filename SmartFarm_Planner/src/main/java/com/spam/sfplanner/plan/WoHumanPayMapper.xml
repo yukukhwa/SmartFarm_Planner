@@ -5,7 +5,7 @@
   
  <mapper namespace="com.spam.sfplanner.plan.WoHumanPayMapper">
  	<select id="listSelectWoHumanPay"
- 		resultType="com.spam.sfplanner.plan.WoHumanPayDb">
+ 		resultType="com.spam.sfplanner.plan.WoHumanPay">
  		SELECT e_humanpay_number AS eHumanpayNumber
  			, theme_number AS themeNumber
  			, pp_work_number AS ppWorkNumber

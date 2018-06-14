@@ -11,7 +11,7 @@ public class WoHumanPayDao {
 	@Autowired private SqlSessionTemplate sqlSession;
 	final static String NAMESPACE = "com.spam.sfplanner.plan.WoHumanPayMapper.";
 	
-	public List<WoHumanPayDb> listSelectWoHumanPay(){
+	public List<WoHumanPay> listSelectWoHumanPay(){
 		return sqlSession.selectList(NAMESPACE+"listSelectWoHumanPay");
 	}
 }

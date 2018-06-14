@@ -28,13 +28,13 @@ public class CompanyMemberService {
 	}
 	
 	/*업체 회원 수정처리 Service*/
-	public void updateCompanyMember(CompanyMemberView companyMemberView) {
+	public void updateCompanyMember(CompanyMemberRequest companyMemberRequest) {
 		logger.info("CompanyMemberService updateCompanyMember 호출");
-		companyMemberDao.updateCompanyMember(companyMemberView);
+		companyMemberDao.updateCompanyMember(companyMemberRequest);
 	}
 	
 	/*업체 회원 상세보기 Service*/
-	public CompanyMemberDb oneSelectCompanyMember(String cMemberId) {
+	public CompanyMember oneSelectCompanyMember(String cMemberId) {
 		logger.info("CompanyMemberService oneSelectCompanyMember 호출");
 		return companyMemberDao.onSelectCompanyMember(cMemberId);
 	}
@@ -53,8 +53,8 @@ public class CompanyMemberService {
 	}
 	
 	/*업체 회원 등록 처리 Service*/
-	public void insertCompanyMember(CompanyMemberView companyMemberView) {
+	public void insertCompanyMember(CompanyMemberRequest companyMemberRequest) {
 		logger.info("CompanyMemberService 호출");
-		companyMemberDao.insertCompanyMember(companyMemberView);
+		companyMemberDao.insertCompanyMember(companyMemberRequest);
 	}
 }

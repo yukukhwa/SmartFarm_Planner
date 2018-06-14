@@ -6,7 +6,7 @@
  
  	<!-- 농가회원 비밀번호찾기 -->
  	<select id="selectAgencyMemberPw"
- 			parameterType="com.spam.sfplanner.login.FindDb"
+ 			parameterType="com.spam.sfplanner.login.Find"
  			resultType="String">
  		SELECT sp_agency_master.a_member_pw
 		FROM sp_agency_master
@@ -20,7 +20,7 @@
  	
  	<!-- 업체회원 비밀번호찾기 -->
  	<select id="selectCompanyMemberPw"
- 			parameterType="com.spam.sfplanner.login.FindDb"
+ 			parameterType="com.spam.sfplanner.login.Find"
  			resultType="String">
  		SELECT sp_deal_company_member.c_member_pw
 		FROM sp_deal_company_member
@@ -34,7 +34,7 @@
  	
  	<!-- 농가회원 비밀번호찾기 -->
  	<select id="selectFarmMemberPw"
- 			parameterType="com.spam.sfplanner.login.FindDb"
+ 			parameterType="com.spam.sfplanner.login.Find"
  			resultType="String">
  		SELECT sp_farm_member.f_member_pw
 		FROM sp_farm_member
@@ -48,7 +48,7 @@
  	
  	<!-- 관리자 아이디찾기 -->
  	<select id="selectAgencyMemberId"
- 			parameterType="com.spam.sfplanner.login.FindDb"
+ 			parameterType="com.spam.sfplanner.login.Find"
  			resultType="String">
  		SELECT a_member_id
 		FROM sp_agency_master
@@ -57,7 +57,7 @@
  	
  	<!-- 업체회원 아이디찾기 -->
  	<select id="selectCompanyMemberId"
- 			parameterType="com.spam.sfplanner.login.FindDb"
+ 			parameterType="com.spam.sfplanner.login.Find"
  			resultType="String">
  		SELECT c_member_id
 		FROM sp_deal_company_member
@@ -66,7 +66,7 @@
  	
  	<!-- 농가회원 아이디찾기 -->
  	<select id="selectFarmMemberId"
- 			parameterType="com.spam.sfplanner.login.FindDb"
+ 			parameterType="com.spam.sfplanner.login.Find"
  			resultType="String">
  		SELECT f_member_id
 		FROM sp_farm_member

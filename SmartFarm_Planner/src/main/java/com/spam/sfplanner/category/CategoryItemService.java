@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.spam.sfplanner.login.LoginDb;
+import com.spam.sfplanner.login.Login;
 
 @Transactional
 @Service
@@ -27,8 +27,8 @@ public class CategoryItemService {
 	 * 품목카테고리 수정 처리 서비스
 	 * @param 품목카테고리 수정 화면에서 받아온 데이터
 	 */
-	public void updateCategoryItem(CategoryItemDb categoryItemDb) {
-		categoryItemDao.updateCategoryItem(categoryItemDb);
+	public void updateCategoryItem(CategoryItem categoryItem) {
+		categoryItemDao.updateCategoryItem(categoryItem);
 	}
 	
 	/**
@@ -58,7 +58,7 @@ public class CategoryItemService {
 	 * @param 등록기관명
 	 * @return 품목카테고리 리스트
 	 */
-	public List<CategoryItemDb> listSelectCategoryItem(String iItemName,String industryName,String aName) {
+	public List<CategoryItem> listSelectCategoryItem(String iItemName,String industryName,String aName) {
 		Map<String,String> map = new HashMap<String, String>();
 		if(iItemName != null) {
 			map.put("iItemName", "%"+iItemName+"%");
@@ -82,7 +82,7 @@ public class CategoryItemService {
 	 * 품목분류카테고리 리스트 출력 서비스
 	 * @return 품목카테고리 리스트
 	 */
-	public List<CategoryItemDb> listSelectCategoryItem() {
+	public List<CategoryItem> listSelectCategoryItem() {
 		return categoryItemDao.listSelectCategoryItem();
 	}
 	
@@ -91,11 +91,11 @@ public class CategoryItemService {
 	 * @param 품목카테고리 등록 화면에서 받아온 데이터
 	 * @param 등록기관넘버
 	 */
-	public void insertCategoryItem(CategoryItemDb categoryItemDb,HttpSession session) {
+	public void insertCategoryItem(CategoryItem categoryItem,HttpSession session) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("industryNumber", categoryItemDb.getCategoryIndustryDb().getIndustryNumber());
-		map.put("aNumber", ((LoginDb)session.getAttribute("loginMember")).getCorpNumber());
-		map.put("iItemName", categoryItemDb.getiItemName());
+		map.put("industryNumber", categoryItem.getCategoryIndustryDb().getIndustryNumber());
+		map.put("aNumber", ((Login)session.getAttribute("loginMember")).getCorpNumber());
+		map.put("iItemName", categoryItem.getiItemName());
 		categoryItemDao.insertCategoryItem(map);
 	}
 	
@@ -103,7 +103,7 @@ public class CategoryItemService {
 	 * 품목카테고리 등록 화면 출력 처리 서비스
 	 * @return 산업카테고리 리스트
 	 */
-	public List<CategoryIndustryDb>  insertCategoryItem() {
+	public List<CategoryIndustry>  insertCategoryItem() {
 		return categoryIndustryDao.listSelectCategoryIndustry();
 	}
 }

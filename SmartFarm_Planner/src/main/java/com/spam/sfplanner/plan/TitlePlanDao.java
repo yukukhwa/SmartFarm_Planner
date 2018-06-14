@@ -20,8 +20,8 @@ public class TitlePlanDao {
 	 * 계획명 수정 처리 Dao
 	 * @param 계획명 수정 화면에서 받아온 데이터
 	 */
-	public void updateTitlePlan(TitlePlanDb titlePlanDb) {
-		sqlSessionTemplate.update(NAMESPACE+"updateTitlePlan", titlePlanDb);
+	public void updateTitlePlan(TitlePlan titlePlan) {
+		sqlSessionTemplate.update(NAMESPACE+"updateTitlePlan", titlePlan);
 	}
 	
 	/**
@@ -29,7 +29,7 @@ public class TitlePlanDao {
 	 * @param 계획명 넘버
 	 * @return 계획명 수정 화면
 	 */
-	public TitlePlanDb updateTitlePlan(int ppNameNumber) {
+	public TitlePlan updateTitlePlan(int ppNameNumber) {
 		return sqlSessionTemplate.selectOne(NAMESPACE+"oneSelectTitlePlan", ppNameNumber);
 	}
 	
@@ -46,7 +46,7 @@ public class TitlePlanDao {
 	 * @param 검색 조건(search,column,property)
 	 * @return 계획명 리스트
 	 */
-	public List<TitlePlanDb> listSelectTitlePlan(Map<String,Object> map) {
+	public List<TitlePlan> listSelectTitlePlan(Map<String,Object> map) {
 		return sqlSessionTemplate.selectList(NAMESPACE+"listSelectTitlePlan",map);
 	}
 	

@@ -24,8 +24,8 @@ public class TitlePlanController {
 	 * @return 계획명 리스트 화면
 	 */
 	@RequestMapping(value="/updateTitle",method=RequestMethod.POST)
-	public String updateTitlePlan(TitlePlanDb titlePlanDb) {
-		titlePlanService.updateTitlePlan(titlePlanDb);
+	public String updateTitlePlan(TitlePlan titlePlan) {
+		titlePlanService.updateTitlePlan(titlePlan);
 		return "redirect:/listTitle";
 	}
 	
@@ -86,8 +86,8 @@ public class TitlePlanController {
 	 * @return 계획명 리스트 화면
 	 */
 	@RequestMapping(value="/addTitle",method = RequestMethod.POST)
-	public String insertTitlePlan(TitlePlanDb titlePlanDb,HttpSession session) {
-		titlePlanService.insertTitlePlan(titlePlanDb, session);
+	public String insertTitlePlan(TitlePlan titlePlan,HttpSession session) {
+		titlePlanService.insertTitlePlan(titlePlan, session);
 		return "redirect:/listTitle";
 	}
 	

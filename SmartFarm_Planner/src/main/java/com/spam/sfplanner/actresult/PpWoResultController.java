@@ -28,13 +28,13 @@ public class PpWoResultController {
 	
 	/**
 	 * 작업단계 등록화면 POST
-	 * @param ppWoResultDb
+	 * @param ppWoResult
 	 * @return
 	 */
 	@RequestMapping(value="/addWorkResult", method=RequestMethod.POST)
-	public String insertWorkResult(PpWoResultDb ppWoResultDb) {
+	public String insertWorkResult(PpWoResult ppWoResult) {
 		LOGGER.info("작업단계결과 등록 화면에서 포스트 보냄");
-		ppWoResultService.insertWorkResult(ppWoResultDb);
+		ppWoResultService.insertWorkResult(ppWoResult);
 		return "redirect:/home";
 	}
 	

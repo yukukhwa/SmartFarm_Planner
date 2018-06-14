@@ -4,10 +4,10 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.spam.sfplanner.category.CategoryThemeMapper">
- 	<resultMap type="com.spam.sfplanner.category.CategoryThemeDb" id="categoryThemeDb">
+ 	<resultMap type="com.spam.sfplanner.category.CategoryTheme" id="categoryThemeDb">
  		<id column="theme_number" property="themeNumber"/>
  		<result column="theme_name" property="themeName"/>
- 		<collection property="agencyDb" ofType="com.spam.sfplanner.corporation.AgencyDb">
+ 		<collection property="agencyDb" ofType="com.spam.sfplanner.corporation.Agency">
  			<id column="a_number" property="aNumber"/>
  			<result column="a_name" property="aName"/>
  			<result column="a_doroaddress" property="aDoroaddress"/>
@@ -23,7 +23,7 @@
  	</delete>
  	
  	<update id="updateCategoryTheme"
- 		parameterType="com.spam.sfplanner.category.CategoryThemeDb">
+ 		parameterType="com.spam.sfplanner.category.CategoryTheme">
 	 		UPDATE sp_theme_cate
 			SET theme_name=#{themeName}
 			WHERE theme_number=#{themeNumber}
@@ -78,7 +78,7 @@
  	
  	<!-- 테마 카테고리를 등록하는 인서트쿼리문 -->
  	<insert id="insertTheme"
- 		parameterType="com.spam.sfplanner.category.CategoryThemeDb">
+ 		parameterType="com.spam.sfplanner.category.CategoryTheme">
  		INSERT INTO sp_theme_cate(
  			a_number
  			, theme_name)

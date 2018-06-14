@@ -7,14 +7,14 @@
   
   <!-- 농가정보를 수정처리하는 쿼리문 -->
   <!-- <update id="updateFarm"
-  	parameterType="com.spam.sfplanner.user.FarmMemberView">
+  	parameterType="com.spam.sfplanner.user.FarmMemberRequest">
   		
   </update> -->
   
   <!-- 한개의 농가에 대한 상세정보 -->
   <select id="oneSelectFarm"
        parameterType="String"
-       resultType="com.spam.sfplanner.corporation.FarmDb">
+       resultType="com.spam.sfplanner.corporation.Farm">
        SELECT f_number AS fNumber
           , f_name AS fName
           , f_phone AS fPhone
@@ -28,7 +28,7 @@
  	
  	<!-- 검색 키워드에 해당하는 농가의 전체 리스트를 조회 -->
  	<select id="searchlistSelectFarm"
- 		resultType="com.spam.sfplanner.corporation.FarmDb"
+ 		resultType="com.spam.sfplanner.corporation.Farm"
  		parameterType="String">
 	 		SELECT f_number AS fNumber
 	 			, f_name AS fName
@@ -38,7 +38,7 @@
  	
  	<!-- 농가의 전체 리스트를 조회 -->
  	<select id="listSelectFarm"
- 		resultType="com.spam.sfplanner.corporation.FarmDb">
+ 		resultType="com.spam.sfplanner.corporation.Farm">
 	 		SELECT f_number AS fNumber
 	 			, f_name AS fName
 	 		FROM sp_farm
@@ -46,7 +46,7 @@
  	
  	<!-- 농가 등록 후 농가의 통합코드pk를 다음 쿼리로 리턴한다 -->
  	<insert id="insertFarm"
- 		parameterType="com.spam.sfplanner.user.FarmMemberView">
+ 		parameterType="com.spam.sfplanner.user.FarmMemberRequest">
  		<selectKey resultType="int"
  					keyProperty="fNumber"
  					order="AFTER">

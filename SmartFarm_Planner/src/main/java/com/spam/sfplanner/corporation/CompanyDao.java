@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.spam.sfplanner.user.CompanyMemberView;
+import com.spam.sfplanner.user.CompanyMemberRequest;
 
 @Repository
 public class CompanyDao {
@@ -27,12 +27,12 @@ public class CompanyDao {
 	}
 	
 	/*업체 수정처리 Dao*/
-	public void updateCompany(CompanyMemberView companyMemberView) {
-		sqlSession.update(NAMESPACE+"updateCompany", companyMemberView);
+	public void updateCompany(CompanyMemberRequest companyMemberRequest) {
+		sqlSession.update(NAMESPACE+"updateCompany", companyMemberRequest);
 	}
 	
 	/*업체 상세내용 출력 Dao*/
-	public CompanyDb oneSelectCompany(String cName) {
+	public Company oneSelectCompany(String cName) {
 		logger.info("CompanyDao oneSelectCompany호출");
 		return sqlSession.selectOne(NAMESPACE+"oneSelectCompany", cName);
 	}
@@ -49,9 +49,9 @@ public class CompanyDao {
 	}
 	
 	/*업체 등록 Dao*/
-	public void insertCompany(CompanyMemberView companyMemberView) {
+	public void insertCompany(CompanyMemberRequest companyMemberRequest) {
 		logger.info("CompanyDao 호출");
-		sqlSession.insert(NAMESPACE+"insertCompany", companyMemberView);		
+		sqlSession.insert(NAMESPACE+"insertCompany", companyMemberRequest);		
 	}
 	
 	

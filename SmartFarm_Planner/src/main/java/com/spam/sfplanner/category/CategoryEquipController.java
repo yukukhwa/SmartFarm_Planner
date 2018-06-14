@@ -26,8 +26,8 @@ public class CategoryEquipController {
 	
 	/*장비종류카테고리 수정처리 Controller*/
 	@RequestMapping(value="/updateCategoryEquip", method=RequestMethod.POST)
-	public String updateCategoryEquip(CategoryEquipDb categoryEquipDb) {
-		categoryEquipService.updateCategoryEquip(categoryEquipDb);
+	public String updateCategoryEquip(CategoryEquip categoryEquip) {
+		categoryEquipService.updateCategoryEquip(categoryEquip);
 		return "redirect:/listCategoryEquip";
 	}
 	/*하나의 장비종류카테고리 호출 Controller*/
@@ -44,8 +44,8 @@ public class CategoryEquipController {
 	}
 	/*장비종류카테고리 등록처리 Controller*/
 	@RequestMapping(value="/addCategoryEquip", method=RequestMethod.POST)
-	public String insertCategoryEquip(CategoryEquipDb categoryEquipDb, HttpSession session) {
-		categoryEquipService.insertCategoryEquip(categoryEquipDb, session);
+	public String insertCategoryEquip(CategoryEquip categoryEquip, HttpSession session) {
+		categoryEquipService.insertCategoryEquip(categoryEquip, session);
 		return "redirect:/listCategoryEquip";
 	}
 		

@@ -12,7 +12,7 @@ public class WrInsurancePayController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(WrInsurancePayController.class);
 	
 	@RequestMapping(value="/addWrInsurancePay", method=RequestMethod.POST)
-	public String addWrInsurancePay(WrInsurancePayDb wrinsurancepaydb) {
+	public String addWrInsurancePay(WrInsurancePay wrinsurancepaydb) {
 		LOGGER.info("작업단계별 실제 보험비 화면에서 post로 넘김");
 		
 		return "actresult/wr_insurancepay/listWrInsurancePay";

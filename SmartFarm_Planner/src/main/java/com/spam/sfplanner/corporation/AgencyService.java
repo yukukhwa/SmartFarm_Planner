@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spam.sfplanner.user.AgencyMemberDao;
-import com.spam.sfplanner.user.AgencyMemberDb;
-import com.spam.sfplanner.user.AgencyMemberView;
+import com.spam.sfplanner.user.AgencyMember;
+import com.spam.sfplanner.user.AgencyMemberRequest;
 /*
  * 관리기관 서비스
  */
@@ -28,20 +28,20 @@ public class AgencyService {
 	 * @param 관리기관 수정 화면에서 받아온 데이터
 	 * @return 실행 결과
 	 */
-	public int updateAgency(AgencyMemberView agencyMemberView) {
+	public int updateAgency(AgencyMemberRequest agencyMemberRequest) {
 		int idCheck = 0;
-		for(AgencyMemberDb agencyMemberDb : agencyMemberDao.listSelectAgencyMember(agencyMemberView.getaName())) {
+		for(AgencyMember agencyMember : agencyMemberDao.listSelectAgencyMember(agencyMemberRequest.getaName())) {
 			/*
 			 * 해당 아이디가 해당 관리기관에 존재할때
 			 */
-			if(agencyMemberView.getaMemberId().equals(agencyMemberDb.getaMemberId())) {
+			if(agencyMemberRequest.getaMemberId().equals(agencyMember.getaMemberId())) {
 				idCheck = 1;
 			}
 		}
 		if(idCheck == 0) {// 해당 아이디는 해당 관리기관에 존재하지 않을때
 			return 0;
 		}
-		agencyDao.updateAgency(agencyMemberView);
+		agencyDao.updateAgency(agencyMemberRequest);
 		return 1;
 	}
 	
@@ -50,7 +50,7 @@ public class AgencyService {
 	 * @param 해당 관리기관명
 	 * @return 해당 관리기관 상세내용
 	 */
-	public AgencyDb updateAgency(String aName) {
+	public Agency updateAgency(String aName) {
 		return agencyDao.oneSelectAgency(aName);
 	}
 	
@@ -59,8 +59,8 @@ public class AgencyService {
 	 * @param 해당 관리기관코드
 	 */
 	public void deleteAgency(int aNumber,String aName) {
-		for(AgencyMemberDb agencyMemberDb : agencyMemberDao.listSelectAgencyMember(aName)) {
-			agencyMemberDao.deleteAgencyMember(agencyMemberDb.getaMemberId());
+		for(AgencyMember agencyMember : agencyMemberDao.listSelectAgencyMember(aName)) {
+			agencyMemberDao.deleteAgencyMember(agencyMember.getaMemberId());
 		}
 		agencyDao.deleteAgency(aNumber);
 	}
@@ -70,7 +70,7 @@ public class AgencyService {
 	 * @param 선택한 관리기관명
 	 * @return 선택한 관리기관의 상세내용
 	 */
-	public AgencyDb oneSelectAgency(String aName) {
+	public Agency oneSelectAgency(String aName) {
 		return agencyDao.oneSelectAgency(aName);
 	}
 	
@@ -104,7 +104,7 @@ public class AgencyService {
 	 * 관리기관 등록 처리 서비스
 	 * @param 관리기관 등록정보
 	 */
-	public void insertAgency(AgencyMemberView agencyMemberView) {
-		agencyDao.insertAgency(agencyMemberView);
+	public void insertAgency(AgencyMemberRequest agencyMemberRequest) {
+		agencyDao.insertAgency(agencyMemberRequest);
 	}
 }

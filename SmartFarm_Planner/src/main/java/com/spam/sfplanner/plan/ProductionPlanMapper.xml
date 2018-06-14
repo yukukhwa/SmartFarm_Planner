@@ -5,7 +5,7 @@
  
  <!-- 나성수 -->
  <mapper namespace="com.spam.sfplanner.plan.ProductionPlanMapper">
- 	<resultMap type="com.spam.sfplanner.plan.ProductionPlanDb" id="productionPlanDb">
+ 	<resultMap type="com.spam.sfplanner.plan.ProductionPlan" id="productionPlanDb">
  		<id column="pp_number" property="ppNumber"/>
  		<result column="pp_startday" property="ppStartday"/>
  		<result column="pp_endday" property="ppEndday"/>
@@ -13,11 +13,11 @@
  		<result column="pp_rentarea" property="ppRentarea"/>
  		<result column="pp_recordday" property="ppRecordday"/>
  		<result column="pp_secret" property="ppSecret"/>
- 		<collection ofType="com.spam.sfplanner.user.FarmMemberDb" property="farmMemberDb">
+ 		<collection ofType="com.spam.sfplanner.user.FarmMember" property="farmMemberDb">
  			<id column="f_member_id" property="fMemberId"/>
  			<result column="f_member_name" property="fMemberName"/>
  		</collection>
- 		<collection ofType="com.spam.sfplanner.plan.TitlePlanDb" property="titlePlanDb">
+ 		<collection ofType="com.spam.sfplanner.plan.TitlePlan" property="titlePlanDb">
  			<id column="pp_name_number" property="ppNameNumber"/>
  			<result column="pp_name_planname" property="ppNamePlanname"/>
  		</collection>
