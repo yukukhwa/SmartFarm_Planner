@@ -94,10 +94,13 @@
 										+'관리기관연락처 : <input type="text" name="aPhone" id="aPhone">'
 									+'</div>'
 									+'<div>'
-										+'도로명주소 : <input type="text" name="aDoroaddress" id="aDoroaddress">'
+										+'<input type="button" id="agencyJusoCheck" value="주소검색" />'
 									+'</div>'
 									+'<div>'
-										+'지번주소 : <input type="text" name="aJibunaddress" id="aJibunaddress">'
+										+'도로명주소 : <input type="text" name="aDoroaddress" id="corporationDoroaddress" readonly="readonly">'
+									+'</div>'
+									+'<div>'
+										+'지번주소 : <input type="text" name="aJibunaddress" id="corporationJibunaddress" readonly="readonly">'
 									+'</div>');
 				return;
 			}
@@ -106,24 +109,24 @@
 		
 		// opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다. ("팝업API 호출 소스"도 동일하게 적용시켜야 합니다.)
 		// document.domain = "abc.go.kr";
-
-		$('input#jusoCheck').click(function(){
+		
+		$(document).on('click','input#agencyJusoCheck',function(){
 			// 주소검색을 수행할 팝업 페이지를 호출합니다.
 			// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
 			var pop = window.open("${pageContext.request.contextPath}/jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
-			
+			whoJuso = 0;
 			// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
 		    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
 		});
-
-		function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
-				// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
-				$('input#ROADADDRPART1').val(roadAddrPart1);
-				$('input#jibunAddr').val(addrDetail);
-				$('input#addrDetail').val(jibunAddr);
-				/** 2017년 2월 추가제공 **/
-				/** 2017년 3월 추가제공 **/
-		}
+		
+		$('input#memberJusoCheck').click(function(){
+			// 주소검색을 수행할 팝업 페이지를 호출합니다.
+			// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+			var pop = window.open("${pageContext.request.contextPath}/jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+			whoJuso = 1;
+			// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+		    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+		});
 		
 		/* 비밀번호확인부분 유효성검사를 해준다 */
 		$('input#aMemberPwCheck').change(function(){
@@ -162,14 +165,14 @@
 				$('input#aPhone').focus();
 				return;
 			}
-			if($('input#aDoroaddress').val() == ''){
+			if($('input#corporationDoroaddress').val() == ''){
 				alert('관리기관 도로명주소를 입력해주세요.');
-				$('input#aDoroaddress').focus();
+				$('input#agencyJusoCheck').click();
 				return;
 			}
-			if($('input#aJibunaddress').val() == ''){
+			if($('input#corporationJibunaddress').val() == ''){
 				alert('관리기관 지번주소를 입력해주세요.');
-				$('input#aJibunaddress').focus();
+				$('input#agencyJusoCheck').click();
 				return;
 			}
 			if($('input#aMemberName').val() == ''){
@@ -205,19 +208,19 @@
 				$('input#aMemberEmail').focus();
 				return;
 			}
-			if($('input#aMemberDoroaddress').val() == ''){
+			if($('input#memberDoroaddress').val() == ''){
 				alert('도로명주소를 입력해주세요.');
-				$('input#aMemberDoroaddress').focus();
+				$('input#memberJusoCheck').click();
 				return;
 			}
-			if($('input#aMemberJibunaddress').val() == ''){
+			if($('input#memberJibunaddress').val() == ''){
 				alert('지번주소를 입력해주세요.');
-				$('input#aMemberJibunaddress').focus();
+				$('input#memberJusoCheck').click();
 				return;
 			}
-			if($('input#aMemberDetailaddress').val() == ''){
+			if($('input#memberDetailaddress').val() == ''){
 				alert('상세주소를 입력해주세요.');
-				$('input#aMemberDetailaddress').focus();
+				$('input#addrDetail').focus();
 				return;
 			}
 			$('form#agencyMember').submit();
@@ -266,10 +269,13 @@
 								관리기관연락처 : <input type="text" name="aPhone" id="aPhone">
 							</div>
 							<div>
-								도로명주소 : <input type="text" name="aDoroaddress" id="aDoroaddress">
+								<input type="button" id="agencyJusoCheck" value="주소검색" />
 							</div>
 							<div>
-								지번주소 : <input type="text" name="aJibunaddress" id="aJibunaddress">
+								도로명주소 : <input type="text" name="aDoroaddress" id="corporationDoroaddress" readonly="readonly" >
+							</div>
+							<div>
+								지번주소 : <input type="text" name="aJibunaddress" id="corporationJibunaddress" readonly="readonly" >
 							</div>
 						</div>
 					</div>
@@ -304,16 +310,16 @@
 							이메일 : <input type="email" name="aMemberEmail" id="aMemberEmail">
 						</div>
 						<div>
-							<input type="button" id="jusoCheck" value="팝업_domainChk" />
+							<input type="button" id="memberJusoCheck" value="주소검색" />
 						</div>
 						<div>
-							도로명주소 : <INPUT TYPE="TEXT" STYLE="WIDTH: 500PX;" ID="ROADADDRPART1" NAME="ROADADDRPART1" DISABLED />
+							도로명주소 : <input type="text" style="width: 500px;" id="memberDoroaddress" name="aMemberDoroaddress" readonly="readonly" />
 						</div>
 						<div>
-							지번 : <input type="text" style="width: 500px;" id="jibunAddr" name="jibunAddr" disabled />
+							지번 : <input type="text" style="width: 500px;" id="memberJibunaddress" name="aMemberJibunaddress" readonly="readonly" />
 						</div>
 						<div>
-							상세주소 : <input type="text" style="width: 500px;" id="addrDetail" name="addrDetail" />
+							상세주소 : <input type="text" style="width: 500px;" id="memberDetailaddress" name="aMemberDetailaddress"/>
 						</div>
 					</div>
 				</div>

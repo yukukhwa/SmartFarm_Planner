@@ -56,7 +56,16 @@ function init(){
 		//document.form.action="http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do"; //모바일 웹인 경우, 인터넷망
 		document.form.submit();
 	}else{
-		opener.jusoCallBack("<%=roadFullAddr%>","<%=roadAddrPart1%>","<%=addrDetail%>","<%=roadAddrPart2%>","<%=engAddr%>","<%=jibunAddr%>","<%=zipNo%>", "<%=admCd%>", "<%=rnMgtSn%>", "<%=bdMgtSn%>", "<%=detBdNmList%>", "<%=bdNm%>", "<%=bdKdcd%>", "<%=siNm%>", "<%=sggNm%>", "<%=emdNm%>", "<%=liNm%>", "<%=rn%>", "<%=udrtYn%>", "<%=buldMnnm%>", "<%=buldSlno%>", "<%=mtYn%>", "<%=lnbrMnnm%>", "<%=lnbrSlno%>", "<%=emdNo%>");
+		// 자식페이지에서 주소입력한 정보를 받아서, 부모페이지에 정보를 등록합니다.
+		var whoJuso = window.opener.whoJuso;
+		if(whoJuso == 0){
+			window.opener.document.getElementById("corporationDoroaddress").value = "<%=roadAddrPart1%>";
+			window.opener.document.getElementById("corporationJibunaddress").value = "<%=jibunAddr%>";
+		}else if(whoJuso == 1){
+			window.opener.document.getElementById("memberDoroaddress").value = "<%=roadAddrPart1%>";
+			window.opener.document.getElementById("memberJibunaddress").value = "<%=jibunAddr%>";
+			window.opener.document.getElementById("memberDetailaddress").value = "<%=addrDetail%>";
+		}
 		window.close();
 		}
 }

@@ -12,20 +12,20 @@
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
 	<!-- commons dbcp : 외부 IP(유국화) -->
-    <!-- <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/cjsghka?useUnicode=true&amp;characterEncoding=utf8"/>
         <property name="username" value="root"/>
         <property name="password" value="java0000"/>
-    </bean> -->
+    </bean>
     
    	<!-- commons dbcp : 공유 IP(한국스마트정보교육원) -->
-    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+    <!-- <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
         <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://umj64-008.cafe24.com:3306/cjsghka?useUnicode=true&amp;characterEncoding=utf8"/>
         <property name="username" value="cjsghka"/>
         <property name="password" value="gugu1006@"/>
-    </bean>   
+    </bean> -->   
    
     <!-- connection가진 tx기능을 spring에게 위임 -->
 	<bean id="transactionManager"

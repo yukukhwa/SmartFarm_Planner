@@ -3,5 +3,25 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
+<!-- 나성수 -->
  <mapper namespace="com.spam.sfplanner.plan.WoInsurancePayMapper">
+ 	<resultMap type="com.spam.sfplanner.plan.WoInsurancePay" id="woInsurancePay">
+ 		<id column="e_insurancepay_number" property="eInsurancepayNumber"/>
+ 		<result column="e_insurancepay_name" property="eInsurancepayMame"/>
+ 		<result column="e_insurancepay_content" property="eInsurancepayContent"/>
+ 		<result column="e_insurancepay_startday" property="eInsurancepayStartday"/>
+ 		<result column="e_insurancepay_endday" property="eInsurancepayEndday"/>
+ 		<result column="e_insurancepay_term" property="eInsurancepayTerm"/>
+ 		<result column="e_insurancepay_totalcost" property="eInsurancepayTotalcost"/>
+ 		<result column="e_insurancepay_expectcost" property="eInsurancepayExpectcost"/>
+ 		<collection ofType="com.spam.sfplanner.category.CategoryTheme" property="categoryTheme">
+ 			<id column="theme_number" property="themeNumber"/>
+ 			<result column="theme_name" property="themeName"/>
+ 		</collection>
+ 		<collection ofType="com.spam.sfplanner.plan.PpWork" property="ppWork">
+	 		<id column="pp_work_number" property="ppWorkNumber"/>
+	 		<result column="pp_work_name" property="ppWorkName"/>
+ 		</collection>
+ 	</resultMap>
+ 	
  </mapper>
