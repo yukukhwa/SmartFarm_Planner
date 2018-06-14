@@ -2,27 +2,30 @@
 package com.spam.sfplanner.actresult;
 import java.util.Date;
 
-/*
- * 필요장비 결과별 대여비 결과 db
- */
+//필요장비 결과별 대여비 결과 db
 public class WrNeRentPay {
 	private int neRentpayNumber; //대여비 결과 넘버
-	private int wrNeedequipNumber; //필요장비 결과 넘버
+	private WrNeedEquip wrNeedEquip; //필요장비 결과 넘버 외래키 기능 위한 객체
+	private int neERentpayNumber; //예상 대여비 넘버 외래키 기능 위한 객체(클래스 없어서 수정전)
 	private double neRentpayCost; //대여비
 	private Date neRentpayDate; //대여비지불일
-	private int neERentpayNumber; //예상 대여비 넘버
-	
 	public int getNeRentpayNumber() {
 		return neRentpayNumber;
 	}
 	public void setNeRentpayNumber(int neRentpayNumber) {
 		this.neRentpayNumber = neRentpayNumber;
 	}
-	public int getWrNeedequipNumber() {
-		return wrNeedequipNumber;
+	public WrNeedEquip getWrNeedEquip() {
+		return wrNeedEquip;
 	}
-	public void setWrNeedequipNumber(int wrNeedequipNumber) {
-		this.wrNeedequipNumber = wrNeedequipNumber;
+	public void setWrNeedEquip(WrNeedEquip wrNeedEquip) {
+		this.wrNeedEquip = wrNeedEquip;
+	}
+	public int getNeERentpayNumber() {
+		return neERentpayNumber;
+	}
+	public void setNeERentpayNumber(int neERentpayNumber) {
+		this.neERentpayNumber = neERentpayNumber;
 	}
 	public double getNeRentpayCost() {
 		return neRentpayCost;
@@ -36,16 +39,11 @@ public class WrNeRentPay {
 	public void setNeRentpayDate(Date neRentpayDate) {
 		this.neRentpayDate = neRentpayDate;
 	}
-	public int getNeERentpayNumber() {
-		return neERentpayNumber;
-	}
-	public void setNeERentpayNumber(int neERentpayNumber) {
-		this.neERentpayNumber = neERentpayNumber;
-	}
 	@Override
 	public String toString() {
-		return "WrNeRentPay [neRentpayNumber=" + neRentpayNumber + ", wrNeedequipNumber=" + wrNeedequipNumber
-				+ ", neRentpayCost=" + neRentpayCost + ", neRentpayDate=" + neRentpayDate + ", neERentpayNumber="
-				+ neERentpayNumber + "]";
-	}	
+		return "WrNeRentPay [neRentpayNumber=" + neRentpayNumber + ", wrNeedEquip=" + wrNeedEquip
+				+ ", neERentpayNumber=" + neERentpayNumber + ", neRentpayCost=" + neRentpayCost + ", neRentpayDate="
+				+ neRentpayDate + "]";
+	}
+	
 }

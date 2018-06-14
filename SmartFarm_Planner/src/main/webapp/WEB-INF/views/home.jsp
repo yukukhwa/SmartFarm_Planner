@@ -98,36 +98,48 @@
                   		</a>
                   	</span>
                   	<span>
-                  		<img src="img/slide3.jpg" style="width: 33%; height: 100%;">
+                  		<a href="#">
+                  			<img src="img/slide3.jpg" style="width: 33%; height: 100%;">
+                  		</a>
                   	</span>
                   	<span>
-                  		<img src="img/slide2.jpg" style="width: 33%; height: 100%;">
+                  		<a href="#">
+                  			<img src="img/slide2.jpg" style="width: 33%; height: 100%;">
+                  		</a>
                   	</span>
                   </div>
                   <div class="item text-center">
                     <span>
                   		<a href="#">
-                  			<img src="img/slide1.jpg" style="width: 33%; height: 100%;">
+                  			<img src="img/comp1.jpg" style="width: 33%; height: 100%;">
                   		</a>
                   	</span>
                   	<span>
-                  		<img src="img/slide3.jpg" style="width: 33%; height: 100%;">
+                  		<a href="#">
+                  			<img src="img/comp2.jpg" style="width: 33%; height: 100%;">
+                  		</a>
                   	</span>
                   	<span>
-                  		<img src="img/slide2.jpg" style="width: 33%; height: 100%;">
+                  		<a href="#">
+                  			<img src="img/comp3.jpg" style="width: 33%; height: 100%;">
+                  		</a>
                   	</span>
                   </div>
                   <div class="item text-center">
                     <span>
                   		<a href="#">
-                  			<img src="img/slide1.jpg" style="width: 33%; height: 100%;">
+                  			<img src="img/ag1.jpg" style="width: 33%; height: 100%;">
                   		</a>
                   	</span>
                   	<span>
-                  		<img src="img/slide3.jpg" style="width: 33%; height: 100%;">
+                  		<a href="#">
+                  			<img src="img/ag2.jpg" style="width: 33%; height: 100%;">
+                  		</a>
                   	</span>
                   	<span>
-                  		<img src="img/slide2.jpg" style="width: 33%; height: 100%;">
+                  		<a href="#">
+                  			<img src="img/ag3.jpg" style="width: 33%; height: 100%;">
+                  		</a>
                   	</span>
                   </div>
                 </div>

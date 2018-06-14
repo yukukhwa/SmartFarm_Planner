@@ -2,11 +2,13 @@
 package com.spam.sfplanner.actresult;
 import java.util.List;
 
+import com.spam.sfplanner.plan.PpWork;
+
 //실행결과리스트별 작업단계 결과 db
 public class PpWoResult {
 	private int wrNumber; //실행결과리스트별 작업단계 결과 넘버
-	private int ppResultlistNumber; //실행결과리스트 넘버
-	private int ppWorkNumber; //실행결과리스트별 작업단계넘버
+	private ActResult actResult; //실행결과리스트 넘버 외래키 기능 위한 객체
+	private PpWork ppWork; //실행결과리스트별 작업단계넘버 외래키 기능 위한 객체
 	private double wrTotalarea; //실행결과 작업 총 면적
 	private double wrReworkarea; //실행결과 다시 작업한 면적
 	private List<WrInsurancePay> wrInsurancePay; //작업단계별 보험비
@@ -21,17 +23,17 @@ public class PpWoResult {
 	public void setWrNumber(int wrNumber) {
 		this.wrNumber = wrNumber;
 	}
-	public int getPpResultlistNumber() {
-		return ppResultlistNumber;
+	public ActResult getActResult() {
+		return actResult;
 	}
-	public void setPpResultlistNumber(int ppResultlistNumber) {
-		this.ppResultlistNumber = ppResultlistNumber;
+	public void setActResult(ActResult actResult) {
+		this.actResult = actResult;
 	}
-	public int getPpWorkNumber() {
-		return ppWorkNumber;
+	public PpWork getPpWork() {
+		return ppWork;
 	}
-	public void setPpWorkNumber(int ppWorkNumber) {
-		this.ppWorkNumber = ppWorkNumber;
+	public void setPpWork(PpWork ppWork) {
+		this.ppWork = ppWork;
 	}
 	public double getWrTotalarea() {
 		return wrTotalarea;
@@ -45,48 +47,48 @@ public class PpWoResult {
 	public void setWrReworkarea(double wrReworkarea) {
 		this.wrReworkarea = wrReworkarea;
 	}
-	public List<WrInsurancePay> getWrInsurancePayDb() {
+	public List<WrInsurancePay> getWrInsurancePay() {
 		return wrInsurancePay;
 	}
-	public void setWrInsurancePayDb(List<WrInsurancePay> wrInsurancePay) {
+	public void setWrInsurancePay(List<WrInsurancePay> wrInsurancePay) {
 		this.wrInsurancePay = wrInsurancePay;
 	}
-	public List<WrEtcSpendPay> getWrEtcSpendPayDb() {
+	public List<WrEtcSpendPay> getWrEtcSpendPay() {
 		return wrEtcSpendPay;
 	}
-	public void setWrEtcSpendPayDb(List<WrEtcSpendPay> wrEtcSpendPay) {
+	public void setWrEtcSpendPay(List<WrEtcSpendPay> wrEtcSpendPay) {
 		this.wrEtcSpendPay = wrEtcSpendPay;
 	}
-	public List<WrMaterialsPay> getWrMaterialsPayDb() {
+	public List<WrMaterialsPay> getWrMaterialsPay() {
 		return wrMaterialsPay;
 	}
-	public void setWrMaterialsPayDb(List<WrMaterialsPay> wrMaterialsPay) {
+	public void setWrMaterialsPay(List<WrMaterialsPay> wrMaterialsPay) {
 		this.wrMaterialsPay = wrMaterialsPay;
 	}
-	public List<WrNeedEquip> getWrNeedEquipDb() {
+	public List<WrNeedEquip> getWrNeedEquip() {
 		return wrNeedEquip;
 	}
-	public void setWrNeedEquipDb(List<WrNeedEquip> wrNeedEquip) {
+	public void setWrNeedEquip(List<WrNeedEquip> wrNeedEquip) {
 		this.wrNeedEquip = wrNeedEquip;
 	}
-	public List<WrHumanPay> getWrHumanPayDb() {
+	public List<WrHumanPay> getWrHumanPay() {
 		return wrHumanPay;
 	}
-	public void setWrHumanPayDb(List<WrHumanPay> wrHumanPay) {
+	public void setWrHumanPay(List<WrHumanPay> wrHumanPay) {
 		this.wrHumanPay = wrHumanPay;
 	}
-	public List<Memo> getMemoDb() {
+	public List<Memo> getMemo() {
 		return memo;
 	}
-	public void setMemoDb(List<Memo> memo) {
+	public void setMemo(List<Memo> memo) {
 		this.memo = memo;
 	}
 	@Override
 	public String toString() {
-		return "PpWoResult [wrNumber=" + wrNumber + ", ppResultlistNumber=" + ppResultlistNumber + ", ppWorkNumber="
-				+ ppWorkNumber + ", wrTotalarea=" + wrTotalarea + ", wrReworkarea=" + wrReworkarea
-				+ ", wrInsurancePay=" + wrInsurancePay + ", wrEtcSpendPay=" + wrEtcSpendPay
-				+ ", wrMaterialsPay=" + wrMaterialsPay + ", wrNeedEquip=" + wrNeedEquip + ", wrHumanPay="
-				+ wrHumanPay + ", memo=" + memo + "]";
-	}	
+		return "PpWoResult [wrNumber=" + wrNumber + ", actResult=" + actResult + ", ppWork=" + ppWork + ", wrTotalarea="
+				+ wrTotalarea + ", wrReworkarea=" + wrReworkarea + ", wrInsurancePay=" + wrInsurancePay
+				+ ", wrEtcSpendPay=" + wrEtcSpendPay + ", wrMaterialsPay=" + wrMaterialsPay + ", wrNeedEquip="
+				+ wrNeedEquip + ", wrHumanPay=" + wrHumanPay + ", memo=" + memo + "]";
+	}
+	
 }
