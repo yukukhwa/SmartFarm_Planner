@@ -82,6 +82,21 @@
 			</collection>
 		</collection>
 	</resultMap>
+	<select id="listSelectActResult"
+			parameterType="Map"
+			resultType="com.spam.sfplanner.actresult.ActResultRequestDb">
+		SELECT
+			sp_pp_name_cate.pp_name_planname AS ppNamePlanname,
+			sp_pp_resultlist.pp_resultlist_number AS ppResultlistNumber,
+			sp_pp_resultlist.f_number AS fNumber,
+			sp_pp_resultlist.pp_resultlist_date AS ppResultlistDate
+		FROM sp_pp_resultlist
+		JOIN sp_pp ON sp_pp.pp_number = sp_pp_resultlist.pp_number
+		JOIN sp_pp_name_cate ON sp_pp_name_cate.pp_name_number = sp_pp.pp_name_number
+		<if test="search == 'yes'">
+			WHERE sp_pp_resultlist.f_number = #{fNumber}
+		</if>
+	</select>
 	<insert id="insertActResult" parameterType="com.spam.sfplanner.actresult.ActResultDb">
 		INSERT INTO sp_wr_humanpay (
 			e_humanpay_number

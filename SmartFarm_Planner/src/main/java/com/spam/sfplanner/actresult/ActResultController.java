@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spam.sfplanner.login.LoginDb;
 
@@ -24,6 +25,15 @@ public class ActResultController {
 	/*
 	 * 자신의 농가 실행결과 리스트를 보여주는 화면 매핑
 	 */
+	@RequestMapping(value="/listSelectMyActResult", method = RequestMethod.GET)
+	public String listSelectMyActResult (Model model, HttpSession session) {
+		LoginDb loginDb = (LoginDb) session.getAttribute("loginMember");
+		model.addAttribute("actResultList", actResultService.listSelectActResult(loginDb.getCorpNumber()));
+		return "actresult/askActResultList";
+	}
+	/*
+	 * 실행결과리스트 상세보기 보여주는 화면 매핑
+	 */
 	@RequestMapping(value="/oneSelectActResult", method = RequestMethod.GET)
 	public String oneSelectActResult () {
 		return "actresult/oneActResultList";
@@ -32,7 +42,8 @@ public class ActResultController {
 	 * 실행결과리스트 전체 보여주는 화면 매핑
 	 */
 	@RequestMapping(value="/listSelectActResult", method = RequestMethod.GET)
-	public String listSelectActResult () {
+	public String listSelectActResult (Model model) {
+		model.addAttribute("actResultList", actResultService.listSelectActResult(0));
 		return "actresult/askActResultList";
 	}
 	/*
@@ -41,7 +52,7 @@ public class ActResultController {
 	@RequestMapping(value="/choicePlanner", method = RequestMethod.GET)
 	public String choicePlanner (HttpSession session, Model model) {
 		LoginDb loginDb = (LoginDb) session.getAttribute("loginMember");
-		model.addAttribute("plannerList", loginDb.getCorpNumber());
+		model.addAttribute("plannerList", actResultService.listSelectPlan(loginDb.getCorpNumber()));
 		return "actresult/choicePlanner";
 	}
 	

@@ -18,7 +18,22 @@
 		<div class="col">
 			<div class="col-lg-10">
 				<h3 class="page-header"><i class="icon_desktop"></i> 실행결과 리스트</h3>
-				실행결과 전체 리스트를 보여주는 화면입니다.
+				<table class="table table-striped table-advance table-hover">
+					<thead>
+						<tr>
+							<th>계획명</th>
+							<th>실행결과리스트 작성일</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach var="actResultList" items="${actResultList}">
+							<tr>
+								<td>${actResultList.ppNamePlanname}</td>
+								<td>${actResultList.ppResultlistDate}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</section>

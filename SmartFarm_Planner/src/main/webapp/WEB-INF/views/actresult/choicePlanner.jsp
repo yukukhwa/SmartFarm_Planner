@@ -32,16 +32,16 @@
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach begin="0" end="1">
+						<c:forEach var="plannerList" items="${plannerList}">
 							<tr>
-								<%-- <td>${plannerList.ppNamePlanname}</td>
+								<td>${plannerList.titlePlanDb.ppNamePlanname}</td>
 								<td>${plannerList.ppStartday}</td>
 								<td>${plannerList.ppEndday}</td>
 								<td>${plannerList.ppOwnarea}</td>
 								<td>${plannerList.ppRentarea}</td>
 								<td>${plannerList.ppRecordday}</td>
-								<td>${plannerList.fMemberId}</td> --%>
-								<td><a href="${pageContext.request.contextPath}/insertActResult?ppResultlistNumber=${plannerList}">등록</a></td>
+								<td>${plannerList.farmMemberDb.fMemberId}</td>
+								<td><a href="${pageContext.request.contextPath}/insertActResult?ppResultlistNumber=${plannerList.ppNumber}">등록</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
