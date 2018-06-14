@@ -20,6 +20,16 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
+	@RequestMapping(value = "/jusoPopup", method = RequestMethod.GET)
+	public String jusoPopup() {
+		return "jusoAPI/jusoPopup";
+	}
+	
+	@RequestMapping(value = "/jusoPopup", method = RequestMethod.POST)
+	public String jusoPopup(Model model) {
+		return "jusoAPI/jusoPopup";
+	}
+	
 	@RequestMapping(value = "/nongsaroApi", method = RequestMethod.GET)
 	public String nongsaroApi(@RequestParam(value="number") int number) {
 		if(number == 1) {

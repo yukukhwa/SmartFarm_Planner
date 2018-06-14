@@ -9,6 +9,7 @@
 <jsp:include page="/WEB-INF/views/css.jsp"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
+
 	$(document).ready(function(){
 		/* 관리기관 확인버튼을 클릭시 ajax처리로 관리기관 존재여부를 파악해준다 */
 		$(document).on('click','input:button[id="aNumberCheck"]',function(){
@@ -102,6 +103,27 @@
 			}
 			return;
 		});
+		
+		// opener관련 오류가 발생하는 경우 아래 주석을 해지하고, 사용자의 도메인정보를 입력합니다. ("팝업API 호출 소스"도 동일하게 적용시켜야 합니다.)
+		// document.domain = "abc.go.kr";
+
+		$('input#jusoCheck').click(function(){
+			// 주소검색을 수행할 팝업 페이지를 호출합니다.
+			// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+			var pop = window.open("${pageContext.request.contextPath}/jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+			
+			// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+		    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+		});
+
+		function jusoCallBack(roadFullAddr,roadAddrPart1,addrDetail,roadAddrPart2,engAddr, jibunAddr, zipNo, admCd, rnMgtSn, bdMgtSn,detBdNmList,bdNm,bdKdcd,siNm,sggNm,emdNm,liNm,rn,udrtYn,buldMnnm,buldSlno,mtYn,lnbrMnnm,lnbrSlno,emdNo){
+				// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+				$('input#ROADADDRPART1').val(roadAddrPart1);
+				$('input#jibunAddr').val(addrDetail);
+				$('input#addrDetail').val(jibunAddr);
+				/** 2017년 2월 추가제공 **/
+				/** 2017년 3월 추가제공 **/
+		}
 		
 		/* 비밀번호확인부분 유효성검사를 해준다 */
 		$('input#aMemberPwCheck').change(function(){
@@ -282,13 +304,16 @@
 							이메일 : <input type="email" name="aMemberEmail" id="aMemberEmail">
 						</div>
 						<div>
-							도로명주소 : <input type="text" name="aMemberDoroaddress" id="aMemberDoroaddress">
+							<input type="button" id="jusoCheck" value="팝업_domainChk" />
 						</div>
 						<div>
-							지번주소 : <input type="text" name="aMemberJibunaddress" id="aMemberJibunaddress">
+							도로명주소 : <INPUT TYPE="TEXT" STYLE="WIDTH: 500PX;" ID="ROADADDRPART1" NAME="ROADADDRPART1" DISABLED />
 						</div>
 						<div>
-							상세주소 : <input type="text" name="aMemberDetailaddress" id="aMemberDetailaddress">
+							지번 : <input type="text" style="width: 500px;" id="jibunAddr" name="jibunAddr" disabled />
+						</div>
+						<div>
+							상세주소 : <input type="text" style="width: 500px;" id="addrDetail" name="addrDetail" />
 						</div>
 					</div>
 				</div>
