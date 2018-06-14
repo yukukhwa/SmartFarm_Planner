@@ -49,7 +49,7 @@ public class CategoryDealController {
 	@RequestMapping(value="/addCategoryDeal", method=RequestMethod.POST)
 	public String insertCategoryDeal(CategoryDealDb categoryDealDb, HttpSession session) {
 		categoryDealService.insertCategoryDeal(categoryDealDb, session);
-		return "redirect:/home";
+		return "redirect:/listCategoryDeal";
 	}
 	
 	/*거래처카테고리 등록 화면 호출 Controller*/

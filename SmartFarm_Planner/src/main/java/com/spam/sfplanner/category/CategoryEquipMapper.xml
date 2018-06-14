@@ -36,8 +36,8 @@
  			resultMap="categoryEquipDb">
 	SELECT
 		sp_equip_cate.equip_number
-		,sp_agency.a_name
 		,sp_equip_cate.equip_name
+		,sp_agency.a_name
 	FROM
 		sp_equip_cate join sp_agency
 	on
@@ -50,8 +50,8 @@
 			resultMap="categoryEquipDb">
 	SELECT
 		sp_equip_cate.equip_number
-		,sp_agency.a_number
 		,sp_equip_cate.equip_name
+		,sp_agency.a_name
 	FROM
 		sp_equip_cate join sp_agency
 	on

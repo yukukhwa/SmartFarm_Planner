@@ -46,7 +46,7 @@ public class CategoryEquipController {
 	@RequestMapping(value="/addCategoryEquip", method=RequestMethod.POST)
 	public String insertCategoryEquip(CategoryEquipDb categoryEquipDb, HttpSession session) {
 		categoryEquipService.insertCategoryEquip(categoryEquipDb, session);
-		return "redirect:/";
+		return "redirect:/listCategoryEquip";
 	}
 		
 	/*장비종류카테고리 등록 화면 호출 Controller*/

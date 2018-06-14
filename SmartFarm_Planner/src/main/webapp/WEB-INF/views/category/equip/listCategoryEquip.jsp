@@ -18,48 +18,45 @@
     <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
-    	해당 페이지에 접근할 수 없는 권한입니다.
-    		<c:if test="${loginMember.level == 'agency'}">
-    			<table>
-    				<thead>
-    					<tr>
-    						<td>
-    							장비종류넘버
-    						</td>
-    						<td>
-    							장비명
-    						</td>
-    						<td>
-    							등록기관
-    						</td>
-    					</tr>
-    				</thead>
-    				<tbody>
-    					<c:forEach var="categoryEquipDb" items="${list}">
-    						<tr>
+   			<table>
+   				<thead>
+   					<tr>
+   						<th>
+   							장비종류넘버
+   						</th>
+   						<th>
+   							장비명
+   						</th>
+   						<th>
+   							등록기관
+   						</th>
+   					</tr>
+   				</thead>
+   				<tbody>
+   					<c:forEach var="categoryEquipDb" items="${list}">
+   						<tr>
+   							<td>
+   								${categoryEquipDb.equipNumber}
+   							</td>
+   							<td>
+   								${categoryEquipDb.equipName}
+   							</td>
+   							<td>
+   								${categoryEquipDb.agencyDb.aName}
+   							</td>
+   							<c:if test="${loginMember.corpName == categoryEquipDb.agencyDb.aName}">
     							<td>
-    								${categoryEquipDb.equipNumber}
+    								<a href="${pageContext.request.contextPath}/updateCategoryEquip?equipNumber=${categoryEquipDb.equipNumber}">수정</a>
     							</td>
     							<td>
-    								${categoryEquipDb.equipName}
+    								<a href="${pageContext.request.contextPath}/deleteCategoryEquip?equipNumber=${categoryEquipDb.equipNumber}">삭제</a>
     							</td>
-    							<td>
-    								<a href="${pageContext.request.contextPath}/oneAgency?aName=${categoryEquipDb.agencyDb.aName}">${categoryEquipDb.agencyDb.aName}</a>
-    							</td>
-    							<c:if test="${loginMember.corpName == categoryEquipDb.agencyDb.aName}">
-	    							<td>
-	    								<a href="${pageContext.request.contextPath}/updateCategoryEquip?equipNumber=${categoryEquipDb.equipNumber}">수정</a>
-	    							</td>
-	    							<td>
-	    								<a href="${pageContext.request.contextPath}/deleteCategoryEquip?equipNumber=${categoryEquipDb.equipNumber}">삭제</a>
-	    							</td>
-	    						</c:if>	
-    						</tr>
-    					</c:forEach>
-    				</tbody>
-    			</table>
-    		</c:if>
+    						</c:if>	
+   						</tr>
+   					</c:forEach>
+   				</tbody>
+   			</table>
     	</section>
     </section>	
 </body>
-</html>
+</html>s

@@ -3,5 +3,59 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
- <mapper namespace="com.spam.sfplanner.category.CategoryEquipMapper">
+ <mapper namespace="com.spam.sfplanner.category.CategoryEtcSpendPayMapper">
+ 	<resultMap type="com.spam.sfplanner.category.CategoryEtcSpendPayDb" id="categoryEtcSpendPayDb">
+	 	<id column="etcspendpay_number" property="etcspendpayNumber"/>
+	 	<result column="etcspendpay_name" property="etcspendpayName"/>
+	 	<collection property="categoryThemeDb" ofType="com.spam.sfplanner.category.CategoryThemeDb">
+	 			<id column="theme_number" property="themeNumber"/>
+	 			<result column="theme_name" property="themeName"/>
+	 	</collection>
+	 	<collection property="farmDb" ofType="com.spam.sfplanner.corporation.FarmDb">
+	 		<id column="f_number" property="fNumber"/>
+	 		<result column="f_name" property="fName"/>
+	 		<result column="f_member_id" property="fMemberId"/>
+	 		<result column="f_phone" property="fPhone"/>
+	 		<result column="f_doroaddress" property="fDoroaddress"/>
+	 		<result column="f_jibunaddress" property="fJibunaddress"/>
+	 		<result column="f_party" property="fParty"/>
+	 		<result column="f_registdate" property="fRegistdate"/>
+	 	</collection>
+ 	</resultMap>
+ 
+ <select id="listSelectCategoryEtcSpendPay"
+ 		resultMap="categoryEtcSpendPayDb">
+	select
+		sp_etcspendpay_cate.etcspendpay_number
+		,sp_etcspendpay_cate.theme_number
+		,sp_theme_cate.theme_name
+		,sp_etcspendpay_cate.etcspendpay_name
+		,sp_etcspendpay_cate.f_number
+		,sp_etcspendpay_cate.f_member_id
+		,Sp_farm.f_name
+	from
+		sp_etcspendpay_cate join sp_theme_cate join sp_farm
+	on
+		sp_etcspendpay_cate.theme_number = sp_theme_cate.theme_number
+	and
+		sp_etcspendpay_cate.f_number = sp_farm.f_number
+	and
+		sp_etcspendpay_cate.f_member_id = sp_farm.f_member_id  
+ </select>
+ 
+<!-- 기타지출비 카테고리 등록 쿼리문장 -->
+ <insert id="insertCategoryEtcSpendPay"
+ 		parameterType="java.util.Map">
+ 	INSERT INTO sp_etcspendpay_cate
+	(theme_number
+	,etcspendpay_name
+	,f_number
+	,f_member_id)
+	VALUES 
+	(#{themeNumber}
+	,#{etcspendpayName}
+	,#{fNumber}
+	,#{fMemberId})
+ </insert>
+ 
  </mapper>

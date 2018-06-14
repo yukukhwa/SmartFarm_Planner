@@ -43,7 +43,7 @@
     						<label>
     							장비명
     							<input type="text" id="equipName" name="equipName" value="${listCategoryEquip.equipName}">
-    							<input type="text" id="equipNumber" name="equipNumber" value="${listCategoryEquip.equipNumber}">
+    							<input type="hidden" id="equipNumber" name="equipNumber" value="${listCategoryEquip.equipNumber}">
     						</label>
     					</div>
     					<div>

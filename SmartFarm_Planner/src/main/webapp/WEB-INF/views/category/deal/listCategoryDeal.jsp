@@ -18,47 +18,44 @@
     <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
-    	해당 페이지에 접근할 수 없는 권한입니다.
-    		<c:if test="${loginMember.level == 'agency'}">
-	    		<table>
-	    			<thead>
-	    				<tr>
-	    					<th>
-	    						거래처 넘버	
-	    					</th>
-	    					<th>
-	    						거래처분류
-	    					</th>
-	    					<th>
-	    						등록기관
-	    					</th>
-	    				</tr>
-	    			</thead>
-	    			<tbody>
-	    				<c:forEach items="${list}" var="categoryDealDb">
-	    					<tr>
-	    						<td>
-	    							${categoryDealDb.dealNumber}
-	    						</td>
-	    						<td>
-	    							${categoryDealDb.dealClassification}
-	    						</td>
-	    						<td>
-	    							<a href="${pageContext.request.contextPath}/oneAgency?aName=${categoryDealDb.agencyDb.aName}">${categoryDealDb.agencyDb.aName}</a>
-	    						</td>	
-	    						<c:if test="${loginMember.corpName == categoryDealDb.agencyDb.aName}">
-	    							<td>
-	    								<a href="${pageContext.request.contextPath}/updateCategoryDeal?dealNumber=${categoryDealDb.dealNumber}">수정</a>
-	    							</td>
-	    							<td>
-	    								<a href="${pageContext.request.contextPath}/deleteCategoryDeal?dealNumber=${categoryDealDb.dealNumber}">삭제</a>
-	    							</td>
-	    						</c:if>		
-	    					</tr>
-	    				</c:forEach>
-	    			</tbody>
-	    		</table>
-    		</c:if>
+    		<table>
+    			<thead>
+    				<tr>
+    					<th>
+    						거래처 넘버	
+    					</th>
+    					<th>
+    						거래처분류
+    					</th>
+    					<th>
+    						등록기관
+    					</th>
+    				</tr>
+    			</thead>
+    			<tbody>
+    				<c:forEach items="${list}" var="categoryDealDb">
+    					<tr>
+    						<td>
+    							${categoryDealDb.dealNumber}
+    						</td>
+    						<td>
+    							${categoryDealDb.dealClassification}
+    						</td>
+    						<td>
+    							<a href="${pageContext.request.contextPath}/oneAgency?aName=${categoryDealDb.agencyDb.aName}">${categoryDealDb.agencyDb.aName}</a>
+    						</td>	
+    						<c:if test="${loginMember.corpName == categoryDealDb.agencyDb.aName}">
+    							<td>
+    								<a href="${pageContext.request.contextPath}/updateCategoryDeal?dealNumber=${categoryDealDb.dealNumber}">수정</a>
+    							</td>
+    							<td>
+    								<a href="${pageContext.request.contextPath}/deleteCategoryDeal?dealNumber=${categoryDealDb.dealNumber}">삭제</a>
+    							</td>
+    						</c:if>		
+    					</tr>
+    				</c:forEach>
+    			</tbody>
+    		</table>
     	</section>
     </section>
 </body>
