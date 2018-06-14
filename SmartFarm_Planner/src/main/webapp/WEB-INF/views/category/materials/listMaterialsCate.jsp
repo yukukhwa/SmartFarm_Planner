@@ -28,12 +28,12 @@
      <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
-    		<c:if test="${loginMember.level != 'agency'}">
+    		<%-- <c:if test="${loginMember.level != 'agency'}">
     			<div>
     				해당 페이지에 접근할 수 없는 권한입니다.
     			</div>
     		</c:if>
-    		<c:if test="${loginMember.level == 'agency'}">
+    		<c:if test="${loginMember.level == 'agency'}"> --%>
 			<div>
 				<h3>원자재 카테고리 리스트</h3>
 				<div>
@@ -83,7 +83,7 @@
 				<button id="goHome">메인으로</button>
 				<a href="${pageContext.request.contextPath}/addMaterialsCate">원자재 카테고리 등록하기</a>
 			</div>
-			</c:if>
+			<%-- </c:if> --%>
 		</section>
 	</section>
 </body>

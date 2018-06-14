@@ -29,10 +29,10 @@
      <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
-    		<c:if test="${loginMember.level != 'agency'}">
+    		<%-- <c:if test="${loginMember.level != 'agency'}">
     			해당 페이지에 접근할 수 없는 권한입니다.
     		</c:if>
-    		<c:if test="${loginMember.level == 'agency'}">
+    		<c:if test="${loginMember.level == 'agency'}"> --%>
     			<div>
 	    			<form id="themeCateSearchForm" method="post" action="${pageContext.request.contextPath}/listTheme">
 	    				<select name="themeCateSearchOption">
@@ -73,7 +73,7 @@
 	    		<button id="goHome">메인화면으로</button>
 	    		<a href="${pageContext.request.contextPath}/addTheme">테마 등록하기</a>
 	    		<a href="${pageContext.request.contextPath}/listMaterialsCate">원자재비 리스트로 가기</a>
-    		</c:if>
+    		<%-- </c:if> --%>
     	</section>
     </section>
 </body>
