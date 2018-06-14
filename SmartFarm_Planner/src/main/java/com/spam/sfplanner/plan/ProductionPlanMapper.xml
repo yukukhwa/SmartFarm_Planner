@@ -5,26 +5,52 @@
  
  <!-- 나성수 -->
  <mapper namespace="com.spam.sfplanner.plan.ProductionPlanMapper">
- 	<!-- <select id="">
- 	select
-		sp_pp.pp_number
-		,sp_pp.pp_name_number
-		,sp_pp_name_cate.pp_name_planname
-		,sp_pp.pp_startday
-		,sp_pp.pp_endday
-		,sp_pp.pp_ownarea
-		,sp_pp.pp_rentarea
-		,sp_pp.pp_recordday
-		,sp_pp.f_member_id
-		,sp_pp.pp_secret
-	from
-		sp_pp join sp_pp_name_cate
-	on
-		sp_pp.pp_name_number = sp_pp_name_cate.pp_name_number
-	WHERE
-		sp_pp_name_cate.f_number = 9
-	ORDER BY sp_pp.pp_number DESC
-	LIMIT #{} ,#{}
- 	</select> -->
+ 	<resultMap type="com.spam.sfplanner.plan.ProductionPlanDb" id="productionPlanDb">
+ 		<id column="pp_number" property="ppNumber"/>
+ 		<result column="pp_startday" property="ppStartday"/>
+ 		<result column="pp_endday" property="ppEndday"/>
+ 		<result column="pp_ownarea" property="ppOwnarea"/>
+ 		<result column="pp_rentarea" property="ppRentarea"/>
+ 		<result column="pp_recordday" property="ppRecordday"/>
+ 		<result column="pp_secret" property="ppSecret"/>
+ 		<collection ofType="com.spam.sfplanner.user.FarmMemberDb" property="farmMemberDb">
+ 			<id column="f_member_id" property="fMemberId"/>
+ 			<result column="f_member_name" property="fMemberName"/>
+ 		</collection>
+ 		<collection ofType="com.spam.sfplanner.plan.TitlePlanDb" property="titlePlanDb">
+ 			<id column="pp_name_number" property="ppNameNumber"/>
+ 			<result column="pp_name_planname" property="ppNamePlanname"/>
+ 		</collection>
+ 	</resultMap>
+ 	<select id="listSelectProductionPlan"
+ 			parameterType="java.util.Map"
+ 			resultMap="productionPlanDb">
+	 	select
+			sp_pp.pp_number
+			,sp_pp.pp_name_number
+			,sp_pp_name_cate.pp_name_planname
+			,sp_pp.pp_startday
+			,sp_pp.pp_endday
+			,sp_pp.pp_ownarea
+			,sp_pp.pp_rentarea
+			,sp_pp.pp_recordday
+			,sp_pp.f_member_id
+			,sp_farm_member.f_member_name
+			,sp_pp.pp_secret
+		from
+			sp_pp join sp_pp_name_cate join sp_farm_member
+		on
+			sp_pp.pp_name_number = sp_pp_name_cate.pp_name_number
+		and
+			sp_pp.f_member_id = sp_farm_member.f_member_id
+		<if test="search == 'yes'">
+			WHERE
+			<if test="column == '농가넘버'">
+				sp_pp_name_cate.f_number = #{fNumber}
+			</if>
+		</if>
+		ORDER BY sp_pp.pp_number DESC
+		<!-- LIMIT #{} ,#{} -->
+ 	</select>
  
  </mapper>

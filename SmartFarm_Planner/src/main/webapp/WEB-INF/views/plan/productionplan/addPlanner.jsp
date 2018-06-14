@@ -35,7 +35,25 @@
     		<c:if test="${loginMember.level == 'farm'}">
 	    		<h1>계획서를 작성해주세요.</h1>
 	    		<form action="${pageContext.request.contextPath}/addPlanner" method="post">
-	    			<button type="submit">계획서 등록 완료</button>
+    				계획명 : 
+    				<select name="ppNumber" id="ppNumber">
+    					<c:forEach items="${titleList}" var="title">
+    						<option value="${title.ppNameNumber}">${title.ppNamePlanname}</option>
+    					</c:forEach>
+    				</select>
+	    			<!-- <div>
+	    				계획 기간 : <input type="datetime-local" name="ppStartday" id="ppStartday"> ~ <input type="datetime-local" name="ppEndday" id="ppEndday">
+	    			</div> -->
+	    			<div>
+	    				소유면적 : <input type="number" name="ppOwnarea" id="ppOwnarea">
+	    			</div>
+	    			<div>
+	    				임대면적 : <input type="number" name="ppRentarea" id="ppRentarea">
+	    			</div>
+	    			<div>
+	    				공개여부 : <input type="radio" value="true" name="ppSecret" checked="checked">공개 <input type="radio" value="false" name="ppSecret">비공개
+	    			</div>
+	    			<button type="submit">계획서 등록</button>
 	    		</form>
 	    		
     		</c:if>

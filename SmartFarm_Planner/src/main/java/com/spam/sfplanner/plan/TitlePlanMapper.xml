@@ -79,6 +79,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			<if test="column == '등록농가명'">
 				sp_farm.f_name like concat('%',#{property},'%')
 			</if>
+			<if test="column == '농가넘버'">
+				sp_farm.f_number = #{property}
+			</if>
 		</if>
 	</select>
 	

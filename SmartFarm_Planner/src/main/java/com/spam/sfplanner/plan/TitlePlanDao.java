@@ -46,7 +46,7 @@ public class TitlePlanDao {
 	 * @param 검색 조건(search,column,property)
 	 * @return 계획명 리스트
 	 */
-	public List<TitlePlanDb> listSelectTitlePlan(Map<String,String> map) {
+	public List<TitlePlanDb> listSelectTitlePlan(Map<String,Object> map) {
 		return sqlSessionTemplate.selectList(NAMESPACE+"listSelectTitlePlan",map);
 	}
 	

@@ -60,7 +60,7 @@ public class TitlePlanService {
 	 * @return 계획명 리스트
 	 */
 	public List<TitlePlanDb> listSelectTitlePlan(String column,String property) {
-		Map<String, String> map = new HashMap<String, String>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("search", "yes");
 		map.put("column", column);
 		map.put("property", property);
@@ -72,8 +72,7 @@ public class TitlePlanService {
 	 * @return 계획명 리스트
 	 */
 	public List<TitlePlanDb> listSelectTitlePlan() {
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("search", "no");
+		Map<String, Object> map = null;
 		return titlePlanDao.listSelectTitlePlan(map);
 	}
 	

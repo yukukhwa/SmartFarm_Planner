@@ -60,7 +60,6 @@
 				<value>classpath:com/spam/sfplanner/category/CategoryThemeMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/category/CategoryMaterialsMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/category/CategoryEtcSpendPayMapper.xml</value>
-				<value>classpath:com/spam/sfplanner/plan/PlanMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/plan/PpWorkMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/plan/ProductionPlanMapper.xml</value>				
 				<value>classpath:com/spam/sfplanner/plan/TitlePlanMapper.xml</value>

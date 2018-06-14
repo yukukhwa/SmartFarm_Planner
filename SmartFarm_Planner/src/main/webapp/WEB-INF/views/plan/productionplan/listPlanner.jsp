@@ -1,5 +1,6 @@
 <!-- 나성수 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,7 +18,39 @@
     <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
-    		계획서 리스트 화면
+    		<form action="">
+    			
+    		</form>
+    		<table>
+    			<thead>
+    				<tr>
+    					<th>계획서넘버</th>
+    					<th>계획명</th>
+    					<th>계획시작일</th>
+    					<th>계획종료일</th>
+    					<th>소유한면적</th>
+    					<th>임대한면적</th>
+    					<th>계획서등록일</th>
+    					<th>작성자</th>
+    				</tr>
+    			</thead>
+    			<tbody>
+    				<c:forEach items="${list}" var="pp">
+    					<c:if test="${pp.ppSecret != 'false'}">
+    						<tr>
+    							<td>${pp.ppNumber}</td>
+    							<td>${pp.titlePlanDb.ppNamePlanname}</td>
+    							<td>${pp.ppStartday}</td>
+    							<td>${pp.ppEndday}</td>
+    							<td>${pp.ppOwnarea}</td>
+    							<td>${pp.ppRentarea}</td>
+    							<td>${pp.ppRecordday}</td>
+    							<td>${pp.farmMemberDb.fMemberName}</td>
+    						</tr>
+    					</c:if>
+    				</c:forEach>
+    			</tbody>
+    		</table>
     	</section>
    	</section>
 </body>
