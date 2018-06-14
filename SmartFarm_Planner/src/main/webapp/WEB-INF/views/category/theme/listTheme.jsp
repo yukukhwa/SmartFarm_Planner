@@ -44,14 +44,14 @@
 	    			</form>
     			</div>
 	    		<h3>테마카테고리 전체 리스트</h3>
-	    		<table border="1">
+	    		<table class="table">
 	    			<thead>
 	    				<tr>
 	    					<th>테마 카테고리 넘버</th>
 	    					<th>테마 카테고리 이름</th>
 	    					<th>테마 등록기관 이름</th>
-	    					<th>테마 수정</th>
-	    					<th>테마 삭제</th>
+	    					<!-- <th>테마 수정</th>
+	    					<th>테마 삭제</th> -->
 	    				</tr>
 	    			</thead>
 	    			<c:forEach var="themeCateList" items="${list}">

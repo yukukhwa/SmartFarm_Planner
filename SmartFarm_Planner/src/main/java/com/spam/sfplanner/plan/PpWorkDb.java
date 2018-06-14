@@ -3,6 +3,8 @@ package com.spam.sfplanner.plan;
 
 import java.util.Date;
 
+import com.spam.sfplanner.corporation.FarmDb;
+
 public class PpWorkDb {
 	private int ppWorkNumber; // 작업단계넘버
 	private int ppNumber; // 작업단계넘버
@@ -12,6 +14,8 @@ public class PpWorkDb {
 	private Date ppWorkEndday; // 작업완료일
 	private double ppWorkArea; // 작업면적
 	private String ppWorkContent; // 작업내용상세
+	private FarmDb farmDb;
+	private ProductionPlanDb productionPlanDb;
 	public int getPpWorkNumber() {
 		return ppWorkNumber;
 	}
@@ -60,12 +64,24 @@ public class PpWorkDb {
 	public void setPpWorkContent(String ppWorkContent) {
 		this.ppWorkContent = ppWorkContent;
 	}
-	
+	public FarmDb getFarmDb() {
+		return farmDb;
+	}
+	public void setFarmDb(FarmDb farmDb) {
+		this.farmDb = farmDb;
+	}
+	public ProductionPlanDb getProductionPlanDb() {
+		return productionPlanDb;
+	}
+	public void setProductionPlanDb(ProductionPlanDb productionPlanDb) {
+		this.productionPlanDb = productionPlanDb;
+	}
 	@Override
 	public String toString() {
 		return "PpWorkDb [ppWorkNumber=" + ppWorkNumber + ", ppNumber=" + ppNumber + ", fNumber=" + fNumber
 				+ ", ppWorkName=" + ppWorkName + ", ppWorkStartday=" + ppWorkStartday + ", ppWorkEndday=" + ppWorkEndday
-				+ ", ppWorkArea=" + ppWorkArea + ", ppWorkContent=" + ppWorkContent + "]";
+				+ ", ppWorkArea=" + ppWorkArea + ", ppWorkContent=" + ppWorkContent + ", farmDb=" + farmDb
+				+ ", productionPlanDb=" + productionPlanDb + "]";
 	}
-
+	
 }

@@ -27,9 +27,9 @@
 		<section class="wrapper">
 			<div>
 				<div>
-					<h3>${fNumber}의 회원 리스트</h3>
+					<h3>${fName}의 회원 리스트</h3>
 				</div>
-				<table border="1">
+				<table class="table">
 					<thead>
 						<tr>
 							<th>농가 회원 이름</th>

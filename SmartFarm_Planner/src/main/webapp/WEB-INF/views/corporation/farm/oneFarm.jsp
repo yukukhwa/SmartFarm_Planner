@@ -39,7 +39,7 @@
 			<div>
 				<h3>농가 상세보기</h3>
 				<input type="hidden" value="${farmDb.fNumber}">
-				<table border="1">
+				<table class="table">
 					<thead>
 						<tr>
 							<th>농가 이름</th>

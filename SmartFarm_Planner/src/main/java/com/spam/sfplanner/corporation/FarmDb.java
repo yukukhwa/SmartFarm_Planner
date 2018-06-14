@@ -15,6 +15,7 @@ public class FarmDb {
 	private String fJibunaddress; // f_jibunaddress
 	private double fParty; // f_party
 	private Date fRegistdate; // f_registdate
+	
 	public int getfNumber() {
 		return fNumber;
 	}

@@ -43,7 +43,7 @@
 						<button id="searchFarm">농가 검색</button>
 					</form>
 				</div>
-				<table border="1">
+				<table class="table">
 					<thead>
 						<tr>
 							<th>농가 이름</th>

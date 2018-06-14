@@ -1,6 +1,9 @@
 /*[김재희]*/
 package com.spam.sfplanner.plan;
 
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,4 +14,14 @@ import org.springframework.stereotype.Repository;
 public class PpWorkDao {
 	@Autowired SqlSessionTemplate sqlSession;
 	private final static Logger LOGGER = LoggerFactory.getLogger(PpWorkDao.class);
+	private final static String NAMESPACE = "com.spam.sfplanner.plan.PpWorkMapper.";
+	
+	public List<PpWorkDb> searchListSelectPpWork(Map<String, Object> map){
+		System.out.println("ppWork map : "+map);
+		return sqlSession.selectList(NAMESPACE+"listSelectPpWork", map);
+	}
+	
+	public List<PpWorkDb> listSelectPpWork(Map<String, Integer> map){
+		return sqlSession.selectList(NAMESPACE+"listSelectPpWork", map);
+	}
 }

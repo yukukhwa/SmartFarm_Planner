@@ -68,7 +68,7 @@ public class FarmMemberController {
 			LOGGER.info("FarmMemberController listFarmMember 호출");
 			farmMemberService.listFarmMember(fName);
 			model.addAttribute("farmMemberList",farmMemberService.listFarmMember(fName));
-			model.addAttribute("fNumber", fName);
+			model.addAttribute("fName", fName);
 			System.out.println("farmMemberList====> "+farmMemberService.listFarmMember(fName));
 			return "user/farm_member/listFarmMember";
 		}

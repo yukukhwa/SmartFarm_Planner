@@ -46,7 +46,7 @@
 	    				<button id="materialsCateSearch">테마 검색하기</button>
 	    			</form>
     			</div>
-				<table border="1">
+				<table class="table">
 					<thead>
 						<tr>
 							<th>원자재 넘버</th>
@@ -54,8 +54,8 @@
 							<th>원자재 이름</th>
 							<th>원자재 단위</th>
 							<th>등록기관명</th>
-							<th>수정</th>
-							<th>삭제</th>
+							<!-- <th>수정</th>
+							<th>삭제</th> -->
 						</tr>
 					</thead>
 					<c:forEach var="categoryMaterialsDb" items="${list}">
@@ -70,12 +70,14 @@
 							<td>${categoryMaterialsDb.materialsName}</td>
 							<td>${categoryMaterialsDb.materialsUnit}</td>
 							<td>${categoryMaterialsDb.agencyDb.aName}</td>
+							<c:if test="${loginMember.corpName == categoryMaterialsDb.agencyDb.aName}">
 							<td>
 								<a href="${pageContext.request.contextPath}/updateMaterialsCate?materialsName=${categoryMaterialsDb.materialsName}">수정</a>
 							</td>
 							<td>
 								<a href="${pageContext.request.contextPath}/deleteMaterialsCate?materialsNumber=${categoryMaterialsDb.materialsNumber}">삭제</a>
 							</td>
+							</c:if>
 						</tr>
 					</tbody>
 					</c:forEach>

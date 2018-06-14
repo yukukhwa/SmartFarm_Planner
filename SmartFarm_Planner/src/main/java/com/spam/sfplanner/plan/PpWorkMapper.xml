@@ -7,7 +7,7 @@
  	<resultMap type="com.spam.sfplanner.plan.PpWorkDb" id="ppWorkDb">
  		<id column="pp_work_number" property="ppWorkNumber"/>
  		<result column="pp_work_name" property="ppWorkName"/>
- 		<result column="pp_work_startday" property="ppWorkStartDay"/>
+ 		<result column="pp_work_startday" property="ppWorkStartday"/>
  		<result column="pp_work_endday" property="ppWorkEndday"/>
  		<result column="pp_work_content" property="ppWorkContent"/>
  		<result column="pp_work_area" property="ppWorkArea"/>
@@ -33,22 +33,32 @@
  	</resultMap>
  	
  	<select id="listSelectPpWork"
+ 		parameterType="java.util.Map"
  		resultMap="ppWorkDb">
- 		SELECT sp_pp_work.pp_work_number
-		   , sp_pp_work.pp_work_name
-		   , sp_pp_work.pp_work_startday
-		   , sp_pp_work.pp_work_endday
-		   , sp_pp_work.pp_work_content
-		   , sp_pp_work.pp_work_area
-		   , sp_pp.pp_number
-		   , sp_pp.pp_ownarea
-		   , sp_pp.pp_rentarea
-		   , sp_farm.f_number
-		   , sp_farm.f_name
-		FROM sp_pp_work
-		JOIN sp_pp
-		ON sp_pp_work.pp_number = sp_pp.pp_number
-		JOIN sp_farm
-		ON sp_pp_work.f_number = sp_farm.f_number
+	 		SELECT sp_pp_work.pp_work_number
+			   , sp_pp_work.pp_work_name
+			   , sp_pp_work.pp_work_startday
+			   , sp_pp_work.pp_work_endday
+			   , sp_pp_work.pp_work_content
+			   , sp_pp_work.pp_work_area
+			   , sp_pp.pp_number
+			   , sp_pp.pp_ownarea
+			   , sp_pp.pp_rentarea
+			   , sp_farm.f_number
+			   , sp_farm.f_name
+			FROM sp_pp_work
+			JOIN sp_pp
+			ON sp_pp_work.pp_number = sp_pp.pp_number
+			JOIN sp_farm
+			ON sp_pp_work.f_number = sp_farm.f_number
+			WHERE sp_pp.pp_number=#{ppNumber}
+			<if test="searchWorkPlanOption != null">
+				<if test="searchWorkPlanOption == 'ppWorkName'">
+					AND sp_pp_work.pp_work_name LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+				<if test="searchWorkPlanOption == 'ppWorkContent'">
+					AND sp_pp_work.pp_work_content LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>
  	</select>
  </mapper>
