@@ -18,8 +18,13 @@
     <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
-    		<form action="">
-    			
+    		<form action="${pageContext.request.contextPath}/listPlanner" method="post">
+    			<select name="column">
+    				<option>계획명</option>
+    				<option>작성자</option>
+    			</select>
+    			<input type="text" name="property">
+    			<button type="submit">검색</button>
     		</form>
     		<table>
     			<thead>

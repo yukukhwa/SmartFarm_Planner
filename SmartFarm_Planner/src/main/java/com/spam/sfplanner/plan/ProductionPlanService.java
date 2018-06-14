@@ -23,6 +23,14 @@ public class ProductionPlanService {
 	@Autowired
 	private TitlePlanDao titlePlanDao;
 	
+	public List<ProductionPlanDb> listSelectProductionPlan(String column,Object property) {
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("search", "yes");
+		map.put("column", column);
+		map.put("property", property);
+		return productionPlanDao.listSelectProductionPlan(map);
+	}
+	
 	public List<ProductionPlanDb> listSelectProductionPlan() {
 		Map<String,Object> map = null;
 		return productionPlanDao.listSelectProductionPlan(map);

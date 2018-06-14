@@ -22,6 +22,7 @@
  			<result column="pp_name_planname" property="ppNamePlanname"/>
  		</collection>
  	</resultMap>
+ 	
  	<select id="listSelectProductionPlan"
  			parameterType="java.util.Map"
  			resultMap="productionPlanDb">
@@ -47,6 +48,12 @@
 			WHERE
 			<if test="column == '농가넘버'">
 				sp_pp_name_cate.f_number = #{fNumber}
+			</if>
+			<if test="column == '계획명'">
+				sp_pp_name_cate.pp_name_planname like concat('%',#{property},'%')
+			</if>
+			<if test="column == '작성자'">
+				sp_farm_member.f_member_name like concat('%',#{property},'%')
 			</if>
 		</if>
 		ORDER BY sp_pp.pp_number DESC
