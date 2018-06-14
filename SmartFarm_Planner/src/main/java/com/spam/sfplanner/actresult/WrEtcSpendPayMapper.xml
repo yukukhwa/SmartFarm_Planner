@@ -15,7 +15,7 @@
 </update>
  
 <!-- 기타지출비용 결과 레코드 하나 선택 쿼리문 -->
-<select id="selectOneWrEtcSpendPay"
+<select id="oneSelectWrEtcSpendPay"
 		parameterType="int"
 		resultType="com.spam.sfplanner.actresult.WrEtcSpendPayDb">
 	SELECT wr_etcspendpay_number AS wrEtcspendpayNumber
@@ -28,7 +28,7 @@
 </select>
  
 <!-- 기타지출비용 결과 리스트 선택 쿼리문 -->
-<select id="selectListWrEtcSpendPay"
+<select id="listSelectWrEtcSpendPay"
 		parameterType="int"
 		resultType="com.spam.sfplanner.actresult.WrEtcSpendPayDb">
 	SELECT wr_etcspendpay_number AS wrEtcspendpayNumber

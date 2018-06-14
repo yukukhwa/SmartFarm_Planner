@@ -20,18 +20,20 @@
         <!--overview start-->
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="${pageContext.request.contextPath}/home">Home</a></li>
-              <li><i class="fa fa-laptop"></i><a href="${pageContext.request.contextPath}/home">회원가입</a></li>
-            </ol>
+              <li><i class="fa fa-laptop"></i><a href="${pageContext.request.contextPath}/listCategoryDeal">거래처</a></li>
+              <li><i class="fa fa-laptop"></i><a href="${pageContext.request.contextPath}/listCategoryEquip">농기계·장비</a></li>
+              <li><i class="fa fa-laptop"></i><a href="${pageContext.request.contextPath}/listIndustry">산업별</a></li>
+              <li><i class="fa fa-laptop"></i><a href="${pageContext.request.contextPath}/listTheme">테마별</a></li>
+             </ol>
           </div>
         </div>
 
         <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="height: 100%">
            <a href="${pageContext.request.contextPath}/nongsaroApi?number=1"> 
-           	<div class="info-box blue-bg">
+           	<div class="info-box blue-bg" style="margin: 0 0 0 0; padding: 0 20 0 0 " >
               <i class="fa fa-cloud-download"></i>
               <div class="count" style="font-size: 20px;">과수</div>
               <div class="title">표준 데이터</div>
@@ -41,9 +43,9 @@
           </div>
           <!--/.col-->
 
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="height: 100%">
            <a href="${pageContext.request.contextPath}/nongsaroApi?number=2"> 
-            <div class="info-box brown-bg">
+            <div class="info-box brown-bg" style="margin: 0 0 0 0; padding: 0 20 0 0 ">
               <i class="fa fa-shopping-cart"></i>
               <div class="count" style="font-size: 20px;">축산</div>
               <div class="title">표준 데이터</div>
@@ -53,9 +55,9 @@
           </div>
           <!--/.col-->
 
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="height: 100%">
            <a href="${pageContext.request.contextPath}/nongsaroApi?number=3"> 
-            <div class="info-box dark-bg">
+            <div class="info-box dark-bg" style="margin: 0 0 0 0; padding: 0 20 0 0 ">
               <i class="fa fa-thumbs-o-up"></i>
               <div class="count" style="font-size: 20px;">식량작물</div>
               <div class="title">표준 데이터</div>
@@ -65,9 +67,9 @@
           </div>
           <!--/.col-->
 
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="height: 100%">
            <a href="${pageContext.request.contextPath}/nongsaroApi?number=4"> 
-            <div class="info-box green-bg">
+            <div class="info-box green-bg" style="margin: 0 0 0 0; padding: 0 20 0 0 ">
               <i class="fa fa-cubes"></i>
               <div class="count" style="font-size: 20px;">특용작물</div>
               <div class="title">표준 데이터</div>
@@ -80,63 +82,70 @@
         </div>
         <!--/.row-->
         <div class="row">
-          <div class="col-lg-9 col-md-12">
-
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h2><i class="fa fa-map-marker red"></i><strong>Countries</strong></h2>
-                <div class="panel-actions">
-                  <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
-                  <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                  <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
+          <div class="col-lg-12 col-md-12">
+				<!-- 여기에 슬라이드 -->
+            	<div id="c-slide" class="carousel slide auto panel-body" style="height: 100%;">
+                <ol class="carousel-indicators out">
+                  <li class="active" data-slide-to="0" data-target="#c-slide"></li>
+                  <li class="" data-slide-to="1" data-target="#c-slide"></li>
+                  <li class="" data-slide-to="2" data-target="#c-slide"></li>
+                </ol>
+                <div class="carousel-inner" style="width: 100%; height: auto;">
+                  <div class="item text-center active">
+                  	<span>
+                  		<a href="#">
+                  			<img src="img/slide1.jpg" style="width: 33%; height: 100%;">
+                  		</a>
+                  	</span>
+                  	<span>
+                  		<img src="img/slide3.jpg" style="width: 33%; height: 100%;">
+                  	</span>
+                  	<span>
+                  		<img src="img/slide2.jpg" style="width: 33%; height: 100%;">
+                  	</span>
+                  </div>
+                  <div class="item text-center">
+                    <span>
+                  		<a href="#">
+                  			<img src="img/slide1.jpg" style="width: 33%; height: 100%;">
+                  		</a>
+                  	</span>
+                  	<span>
+                  		<img src="img/slide3.jpg" style="width: 33%; height: 100%;">
+                  	</span>
+                  	<span>
+                  		<img src="img/slide2.jpg" style="width: 33%; height: 100%;">
+                  	</span>
+                  </div>
+                  <div class="item text-center">
+                    <span>
+                  		<a href="#">
+                  			<img src="img/slide1.jpg" style="width: 33%; height: 100%;">
+                  		</a>
+                  	</span>
+                  	<span>
+                  		<img src="img/slide3.jpg" style="width: 33%; height: 100%;">
+                  	</span>
+                  	<span>
+                  		<img src="img/slide2.jpg" style="width: 33%; height: 100%;">
+                  	</span>
+                  </div>
                 </div>
+                <a data-slide="prev" href="#c-slide" class="left carousel-control">
+                                  <i class="arrow_carrot-left_alt2"></i>
+                              </a>
+                <a data-slide="next" href="#c-slide" class="right carousel-control">
+                                  <i class="arrow_carrot-right_alt2"></i>
+                              </a>
               </div>
-              <div class="panel-body-map">
-                <div id="map" style="height:380px;"></div>
-              </div>
-
-            </div>
           </div>
-          <div class="col-md-3">
-            <!-- List starts -->
-            <ul class="today-datas">
-              <!-- List #1 -->
-              <li>
-                <!-- Graph -->
-                <div><span id="todayspark1" class="spark"></span></div>
-                <!-- Text -->
-                <div class="datas-text">11,500 visitors/day</div>
-              </li>
-              <li>
-                <div><span id="todayspark2" class="spark"></span></div>
-                <div class="datas-text">15,000 Pageviews</div>
-              </li>
-              <li>
-                <div><span id="todayspark3" class="spark"></span></div>
-                <div class="datas-text">30.55% Bounce Rate</div>
-              </li>
-              <li>
-                <div><span id="todayspark4" class="spark"></span></div>
-                <div class="datas-text">$16,00 Revenue/Day</div>
-              </li>
-              <li>
-                <div><span id="todayspark5" class="spark"></span></div>
-                <div class="datas-text">12,000000 visitors every Month</div>
-              </li>
-            </ul>
-          </div>
-
-
         </div>
 
 
         <!-- Today status end -->
-
-
-
         <div class="row">
 
-          <div class="col-lg-9 col-md-12">
+          <div class="col-lg-9 col-md-12" style="height: 420px; margin-bottom: 20px">
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h2><i class="fa fa-flag-o red"></i><strong>대여장비 현황</strong></h2>
@@ -146,7 +155,7 @@
                   <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
                 </div>
               </div>
-              <div class="panel-body">
+              <div class="panel-body" style="height: 385px; padding-top: 0">
                 <table class="table bootstrap-datatable countries">
                   <thead>
                     <tr>
@@ -248,36 +257,8 @@
                         <span class="sr-only">20%</span>
                       </td>
                     </tr>
-                    <tr>
-                      <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
-                      <td>Coloumbia</td>
-                      <td>265</td>
-                      <td>102</td>
-                      <td>
-                        <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                          </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                          </div>
-                        </div>
-                        <span class="sr-only">20%</span>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
-                      <td>France</td>
-                      <td>265</td>
-                      <td>102</td>
-                      <td>
-                        <div class="progress thin">
-                          <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                          </div>
-                          <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                          </div>
-                        </div>
-                        <span class="sr-only">20%</span>
-                      </td>
-                    </tr>
+                    
+                    
                   </tbody>
                 </table>
               </div>
@@ -285,62 +266,34 @@
             </div>
 
           </div>
-          <!--/col-->
           <div class="col-md-3">
-
-            <div class="social-box facebook">
-              <i class="fa fa-facebook"></i>
-              <ul>
-                <li>
-                  <strong>256k</strong>
-                  <span>friends</span>
-                </li>
-                <li>
-                  <strong>359</strong>
-                  <span>feeds</span>
-                </li>
-              </ul>
-            </div>
-            <!--/social-box-->
+            <!-- List starts -->
+            <ul class="today-datas">
+              <!-- List #1 -->
+              <li>
+                <!-- Graph -->
+                <div><span id="todayspark1" class="spark"></span></div>
+                <!-- Text -->
+                <div class="datas-text">11,500 visitors/day</div>
+              </li>
+              <li>
+                <div><span id="todayspark2" class="spark"></span></div>
+                <div class="datas-text">15,000 Pageviews</div>
+              </li>
+              <li>
+                <div><span id="todayspark3" class="spark"></span></div>
+                <div class="datas-text">30.55% Bounce Rate</div>
+              </li>
+              <li>
+                <div><span id="todayspark4" class="spark"></span></div>
+                <div class="datas-text">$16,00 Revenue/Day</div>
+              </li>
+              <li>
+                <div><span id="todayspark5" class="spark"></span></div>
+                <div class="datas-text">12,000000 visitors every Month</div>
+              </li>
+            </ul>
           </div>
-          <div class="col-md-3">
-
-            <div class="social-box google-plus">
-              <i class="fa fa-google-plus"></i>
-              <ul>
-                <li>
-                  <strong>962</strong>
-                  <span>followers</span>
-                </li>
-                <li>
-                  <strong>256</strong>
-                  <span>circles</span>
-                </li>
-              </ul>
-            </div>
-            <!--/social-box-->
-
-          </div>
-          <!--/col-->
-          <div class="col-md-3">
-
-            <div class="social-box twitter">
-              <i class="fa fa-twitter"></i>
-              <ul>
-                <li>
-                  <strong>1562k</strong>
-                  <span>followers</span>
-                </li>
-                <li>
-                  <strong>2562</strong>
-                  <span>tweets</span>
-                </li>
-              </ul>
-            </div>
-            <!--/social-box-->
-
-          </div>
-          <!--/col-->
 
         </div>
 

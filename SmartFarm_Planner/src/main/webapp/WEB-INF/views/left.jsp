@@ -6,10 +6,50 @@
 		<!-- sidebar menu start-->
 		<ul class="sidebar-menu">
 			<li class="active">
-				<a class="" href="${pageContext.request.contextPath}/"><i class="icon_house_alt"></i><span>홈</span></a>
+				<a class="" href="${pageContext.request.contextPath}/home"><i class="icon_house_alt"></i><span>홈</span></a>
+			</li>
+			<li class="active">
+				<a class="" href="${pageContext.request.contextPath}/"><i class="icon_document_alt"></i><span>포트폴리오 가기</span></a>
+			</li>			
+			<li class="sub-menu">
+				<a href="javascript:;" class=""><i class="icon_document_alt"></i><span>회원가입</span><span class="menu-arrow arrow_carrot-right"></span></a>
+				<ul class="sub">					
+						<li><a class="" href="${pageContext.request.contextPath}/addFarmMember">농가</a></li>
+						<li><a class="" href="${pageContext.request.contextPath}/addCompanyMember">업체</a></li>
+						<li><a class="" href="${pageContext.request.contextPath}/addAgencyMember">관리기관</a></li>					
+				</ul>
 			</li>
 			<li class="sub-menu">
-				<a href="javascript:;" class=""><i class="icon_document_alt"></i><span>계획서</span><span class="menu-arrow arrow_carrot-right"></span></a>
+				<a href="javascript:;" class=""><i class="icon_document_alt"></i><span>로그인</span><span class="menu-arrow arrow_carrot-right"></span></a>
+				<ul class="sub">					
+						<li><a class="" href="${pageContext.request.contextPath}/loginFarm">농가 로그인</a></li>
+						<li><a class="" href="${pageContext.request.contextPath}/loginCompany">업체 로그인</a></li>
+						<li><a class="" href="${pageContext.request.contextPath}/loginAgency">관리기관 로그인</a></li>					
+				</ul>
+			</li>
+			<li class="sub-menu">
+				<a href="javascript:;" class=""><i class="icon_document_alt"></i><span>표준 데이터</span><span class="menu-arrow arrow_carrot-right"></span></a>
+				<ul class="sub">					
+						<li><a class="" href="${pageContext.request.contextPath}/nongsaroApi?number=1">과수</a></li>
+						<li><a class="" href="${pageContext.request.contextPath}/nongsaroApi?number=2">축산</a></li>
+						<li><a class="" href="${pageContext.request.contextPath}/nongsaroApi?number=3">식량작물</a></li>
+						<li><a class="" href="${pageContext.request.contextPath}/nongsaroApi?number=4">특용작물</a></li>					
+				</ul>
+			</li>
+			<li class="sub-menu">
+				<a href="javascript:;" class=""><i class="icon_document_alt"></i><span>기업별 검색</span><span class="menu-arrow arrow_carrot-right"></span></a>
+				<ul class="sub">					
+						<li><a class="" href="${pageContext.request.contextPath}/listFarm">농가 리스트</a></li>
+							<ul>
+								<li><a class="" href="${pageContext.request.contextPath}/listIndustry">산업분류별</a></li>
+								<li><a class="" href="${pageContext.request.contextPath}/listTheme">테마별</a></li>
+							</ul>
+						<li><a class="" href="${pageContext.request.contextPath}/listCompany">업체 리스트</a></li>						
+						<li><a class="" href="${pageContext.request.contextPath}/listAgency">관리기관 리스트</a></li>
+				</ul>
+			</li>
+			<li class="sub-menu">
+				<a href="javascript:;" class=""><i class="icon_document_alt"></i><span>계획서</span><span class="menu-arrow arrow_carrot-bottom"></span></a>
 				<ul class="sub">
 					<c:if test="${loginMember.level eq 'farm'}">
 						<li><a class="" href="${pageContext.request.contextPath}/addPlanner">My 계획서 등록</a></li>
@@ -30,21 +70,9 @@
 					</ul>
 				</li>
 				<li>
-					<a class="" href="#"><i class="icon_piechart"></i><span>비교분석</span></a>
+					<a class="" href="#"><i class="icon_piechart"></i><span>비교·분석</span></a>
 				</li>
-			</c:if>
-			<li>
-				<a class="" href="#"><i class="icon_genius"></i><span>대여물품</span></a>
-			</li>
-			<li class="sub-menu">
-				<a href="javascript:;" class=""><i class="icon_table"></i><span>카테고리</span><span class="menu-arrow arrow_carrot-right"></span></a>
-				<ul class="sub">
-					<li><a class="" href="${pageContext.request.contextPath}/listCategoryDeal">거래처</a></li>
-					<li><a class="" href="${pageContext.request.contextPath}/listCategoryEquip">장비종류</a></li>
-					<li><a class="" href="${pageContext.request.contextPath}/listIndustry">산업분류</a></li>
-					<li><a class="" href="${pageContext.request.contextPath}/listTheme">테마</a></li>
-				</ul>
-			</li>
+			</c:if>			
 			<li>
 				<a class="" href="https://bootstrapmade.com/demo/NiceAdmin/"><i class="icon_documents_alt"></i><span>데모 링크</span></a>
 			</li>

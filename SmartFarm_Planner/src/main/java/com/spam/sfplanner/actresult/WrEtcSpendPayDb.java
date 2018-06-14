@@ -1,12 +1,7 @@
-// [유국화]
+//[유국화]
 package com.spam.sfplanner.actresult;
 
-import java.text.ParseException;
-import java.util.Date;
-
-/*
- * 작업단계 결과별 기타지출비용 결과 db
- */
+//작업단계 결과별 기타지출비용 결과 db
 public class WrEtcSpendPayDb {	
 	private int wrEtcspendpayNumber; //기타지출비용 결과 넘버
 	private int wrNumber; //작업단계결과 넘버
@@ -38,14 +33,11 @@ public class WrEtcSpendPayDb {
 	public void setWrEtcspendpayRealcost(double wrEtcspendpayRealcost) {
 		this.wrEtcspendpayRealcost = wrEtcspendpayRealcost;
 	}
-	public String getWrEtcspendpayDate() {
+	public String getWrEtcspendpayDate() {		
 		return wrEtcspendpayDate;
 	}
 	public void setWrEtcspendpayDate(String wrEtcspendpayDate) {
-		java.util.Date date = new java.util.Date(); 
-		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 	
-		
-		this.wrEtcspendpayDate = sdf.format(date);
+		this.wrEtcspendpayDate = wrEtcspendpayDate;
 	}
 	@Override
 	public String toString() {

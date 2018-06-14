@@ -1,9 +1,8 @@
-// [유국화]
+//[유국화]
 package com.spam.sfplanner.actresult;
 import java.util.List;
-/*
- * 실행결과리스트별 작업단계 결과 db
- */
+
+//실행결과리스트별 작업단계 결과 db
 public class PpWoResultDb {
 	private int wrNumber; //실행결과리스트별 작업단계 결과 넘버
 	private int ppResultlistNumber; //실행결과리스트 넘버

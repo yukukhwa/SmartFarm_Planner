@@ -1,9 +1,8 @@
 // [유국화]
 package com.spam.sfplanner.actresult;
 import java.util.Date;
-/*
- * 작업단계 결과별 보험비 결과 db
- */
+
+//작업단계 결과별 보험비 결과 db
 public class WrInsurancePayDb {	
 	private int wrInsurancepayNumber; //보험비 결과 넘버
 	private int wrNumber; //작업단계결과 넘버
