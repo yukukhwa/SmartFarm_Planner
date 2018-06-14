@@ -114,7 +114,6 @@ public class FarmMemberRequest {
 	public void setfMemberDetailaddress(String fMemberDetailaddress) {
 		this.fMemberDetailaddress = fMemberDetailaddress;
 	}
-	
 	@Override
 	public String toString() {
 		return "FarmMemberRequest [fName=" + fName + ", fPhone=" + fPhone + ", fDoroaddress=" + fDoroaddress
@@ -125,5 +124,6 @@ public class FarmMemberRequest {
 				+ ", fMemberJibunaddress=" + fMemberJibunaddress + ", fMemberDetailaddress=" + fMemberDetailaddress
 				+ "]";
 	}
+	
 	
 }

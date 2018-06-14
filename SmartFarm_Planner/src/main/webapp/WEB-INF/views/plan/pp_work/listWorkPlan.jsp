@@ -39,7 +39,7 @@
     			<table class="table">
     				<thead>
     					<tr>
-    						<th>계획서코드</th>
+    						<th>계획서넘버</th>
     						<th>농가명</th>
     						<th>작업명</th>
     						<th>작업시작일</th>
@@ -48,16 +48,16 @@
     						<th>작업면적</th>
     					</tr>
     				</thead>
-    				<c:forEach items="${list}" var="ppWorkDb">
+    				<c:forEach items="${list}" var="ppWork">
     				<tbody>
     					<tr>
-    						<td>${ppWorkDb.productionPlanDb.ppNumber}</td>
-    						<td>${ppWorkDb.farmDb.fName}</td>
-    						<td>${ppWorkDb.ppWorkName}</td>
-    						<td>${ppWorkDb.ppWorkStartday}</td>
-    						<td>${ppWorkDb.ppWorkEndday}</td>
-    						<td>${ppWorkDb.ppWorkContent}</td>
-    						<td>${ppWorkDb.ppWorkArea}</td>
+    						<td>${ppWork.productionPlan.ppNumber}</td>
+    						<td>${ppWork.farm.fName}</td>
+    						<td>${ppWork.ppWorkName}</td>
+    						<td>${ppWork.ppWorkStartday}</td>
+    						<td>${ppWork.ppWorkEndday}</td>
+    						<td>${ppWork.ppWorkContent}</td>
+    						<td>${ppWork.ppWorkArea}</td>
     					</tr>
     				</tbody>
     				</c:forEach>

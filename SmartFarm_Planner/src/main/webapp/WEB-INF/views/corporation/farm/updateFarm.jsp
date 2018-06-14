@@ -27,43 +27,43 @@
 			<form id="updateFarmForm" method="post" action="${pageContext.request.contextPath}/updateFarm">
 				<div>
 					<label>
-						<input type="hidden" value="${farmDb.fNumber}" name="fNumber">
+						<input type="hidden" value="${farm.fNumber}" name="fNumber">
 					</label>
 				</div>
 				<div>
 					<label>
 						농가이름 :
-						<input type="text" value="${farmDb.fName}" name="fName">
+						<input type="text" value="${farm.fName}" name="fName">
 					</label>
 				</div>
 				<div>
 					<label>
 						농가 대표번호 : 
-						<input type="text" value="${farmDb.fPhone}" name="fPhone">
+						<input type="text" value="${farm.fPhone}" name="fPhone">
 					</label>
 				</div>
 				<div>
 					<label>
 						농가 도로명주소 : 
-						<input type="text" value="${farmDb.fDoroaddress}" name="fDoroaddress">
+						<input type="text" value="${farm.fDoroaddress}" name="fDoroaddress">
 					</label>
 				</div>
 				<div>
 					<label>
 						농가 지번주소 : 
-						<input type="text" value="${farmDb.fJibunaddress}" name="fJibunaddress">
+						<input type="text" value="${farm.fJibunaddress}" name="fJibunaddress">
 					</label>
 				</div>
 				<div>
 					<label>
 						농가 인원 수 : 
-						<input type="number" value="${farmDb.fParty}" name="fParty">
+						<input type="number" value="${farm.fParty}" name="fParty">
 					</label>
 				</div>
 				<div>
 					<label>
 						농가 등록시간 : 
-						<input type="text" disabled="disabled" value="${farmDb.fRegistdate}" name="fRegistdate">
+						<input type="text" disabled="disabled" value="${farm.fRegistdate}" name="fRegistdate">
 					</label>
 				</div>
 				<button id="updateFarmBtn">농가정보 수정하기</button>

@@ -58,24 +58,24 @@
 							<th>삭제</th> -->
 						</tr>
 					</thead>
-					<c:forEach var="categoryMaterialsDb" items="${list}">
+					<c:forEach var="categoryMaterials" items="${list}">
 					<div>
-						<input type="hidden" name="themeNumber" value="${categoryMaterialsDb.categoryThemeDb.themeNumber}">
-						<input type="hidden" name="aNumber" value="${categoryMaterialsDb.agencyDb.aNumber}">	
+						<input type="hidden" name="themeNumber" value="${categoryMaterials.categoryTheme.themeNumber}">
+						<input type="hidden" name="aNumber" value="${categoryMaterials.agency.aNumber}">	
 					</div>
 					<tbody>
 						<tr>
-							<td>${categoryMaterialsDb.materialsNumber}</td>
-							<td>${categoryMaterialsDb.categoryThemeDb.themeName}</td>
-							<td>${categoryMaterialsDb.materialsName}</td>
-							<td>${categoryMaterialsDb.materialsUnit}</td>
-							<td>${categoryMaterialsDb.agencyDb.aName}</td>
-							<c:if test="${loginMember.corpName == categoryMaterialsDb.agencyDb.aName}">
+							<td>${categoryMaterials.materialsNumber}</td>
+							<td>${categoryMaterials.categoryTheme.themeName}</td>
+							<td>${categoryMaterials.materialsName}</td>
+							<td>${categoryMaterials.materialsUnit}</td>
+							<td>${categoryMaterials.agency.aName}</td>
+							<c:if test="${loginMember.corpName == categoryMaterials.agency.aName}">
 							<td>
-								<a href="${pageContext.request.contextPath}/updateMaterialsCate?materialsName=${categoryMaterialsDb.materialsName}">수정</a>
+								<a href="${pageContext.request.contextPath}/updateMaterialsCate?materialsName=${categoryMaterials.materialsName}">수정</a>
 							</td>
 							<td>
-								<a href="${pageContext.request.contextPath}/deleteMaterialsCate?materialsNumber=${categoryMaterialsDb.materialsNumber}">삭제</a>
+								<a href="${pageContext.request.contextPath}/deleteMaterialsCate?materialsNumber=${categoryMaterials.materialsNumber}">삭제</a>
 							</td>
 							</c:if>
 						</tr>

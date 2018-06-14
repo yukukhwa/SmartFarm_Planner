@@ -35,27 +35,27 @@
 	    			<form id="updateMaterialsForm" action="${pageContext.request.contextPath}/updateMaterialsCate" method="post">
 	    				<div>
 	    					<label>
-	    						<input type="hidden" name="themeNumber" readonly="readonly" value="${categoryMaterialsDb.categoryThemeDb.themeNumber}">
-	    						테마 이름 : <input type="text" disabled="disabled" value="${categoryMaterialsDb.categoryThemeDb.themeName}">
-	    						<input type="hidden" name="themeName" value="${categoryMaterialsDb.categoryThemeDb.themeName}">
+	    						<input type="hidden" name="themeNumber" readonly="readonly" value="${categoryMaterials.categoryTheme.themeNumber}">
+	    						테마 이름 : <input type="text" disabled="disabled" value="${categoryMaterials.categoryTheme.themeName}">
+	    						<input type="hidden" name="themeName" value="${categoryMaterials.categoryTheme.themeName}">
 	    					</label>
 	    				</div> 
 	    				<div>
 	    					<label>
-	    						<input type="hidden" name="materialsNumber" readonly="readonly" value="${categoryMaterialsDb.materialsNumber}">
-	    						원자재 이름 : <input type="text" name="materialsName" value="${categoryMaterialsDb.materialsName}">
+	    						<input type="hidden" name="materialsNumber" readonly="readonly" value="${categoryMaterials.materialsNumber}">
+	    						원자재 이름 : <input type="text" name="materialsName" value="${categoryMaterials.materialsName}">
 	    					</label>
 	    				</div>
 	    				<div>
 	    					<label>
-	    						 원자재 단위 : <input type="text" name="materialsUnit" value="${categoryMaterialsDb.materialsUnit}">
+	    						 원자재 단위 : <input type="text" name="materialsUnit" value="${categoryMaterials.materialsUnit}">
 	    					</label>
 	    				</div> 
 	    				<div>
 	    					<label>
-	    						<input type="hidden" name="aNumber" readonly="readonly" value="${categoryMaterialsDb.agencyDb.aNumber}">
-	    						등록기관 명 : <input type="text" disabled="disabled" value="${categoryMaterialsDb.agencyDb.aName}">
-	    						<input type="hidden" name="aName" value="${categoryMaterialsDb.agencyDb.aName}">
+	    						<input type="hidden" name="aNumber" readonly="readonly" value="${categoryMaterials.agency.aNumber}">
+	    						등록기관 명 : <input type="text" disabled="disabled" value="${categoryMaterials.agency.aName}">
+	    						<input type="hidden" name="aName" value="${categoryMaterials.agency.aName}">
 	    					</label> 
 	    				</div> <br>
 	    				<button id="updateMaterials">원자재 카테고리 수정하기</button>

@@ -4,14 +4,14 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.spam.sfplanner.plan.PpWorkMapper">
- 	<resultMap type="com.spam.sfplanner.plan.PpWork" id="ppWorkDb">
+ 	<resultMap type="com.spam.sfplanner.plan.PpWork" id="ppWork">
  		<id column="pp_work_number" property="ppWorkNumber"/>
  		<result column="pp_work_name" property="ppWorkName"/>
  		<result column="pp_work_startday" property="ppWorkStartday"/>
  		<result column="pp_work_endday" property="ppWorkEndday"/>
  		<result column="pp_work_content" property="ppWorkContent"/>
  		<result column="pp_work_area" property="ppWorkArea"/>
- 		<collection property="farmDb" ofType="com.spam.sfplanner.corporation.Farm">
+ 		<collection property="farm" ofType="com.spam.sfplanner.corporation.Farm">
  			<id column="f_number" property="fNumber"/>
  			<result column="f_name" property="fName"/>
  			<result column="f_member_id" property="fMemberId"/>
@@ -21,7 +21,7 @@
  			<result column="f_party" property="fParty"/>
  			<result column="f_registdate" property="fRegistdate"/>
  		</collection>
- 		<collection property="productionPlanDb" ofType="com.spam.sfplanner.plan.ProductionPlan">
+ 		<collection property="productionPlan" ofType="com.spam.sfplanner.plan.ProductionPlan">
  			<id column="pp_number" property="ppNumber"/>
  			<result column="pp_startday" property="ppStartday"/>
  			<result column="pp_endday" property="ppEndday"/>
@@ -34,7 +34,7 @@
  	
  	<select id="listSelectPpWork"
  		parameterType="java.util.Map"
- 		resultMap="ppWorkDb">
+ 		resultMap="ppWork">
 	 		SELECT sp_pp_work.pp_work_number
 			   , sp_pp_work.pp_work_name
 			   , sp_pp_work.pp_work_startday

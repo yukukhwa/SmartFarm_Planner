@@ -27,16 +27,16 @@ public class CategoryTheme {
 	public void setThemeName(String themeName) {
 		this.themeName = themeName;
 	}
-	public Agency getAgencyDb() {
+	public Agency getAgency() {
 		return agency;
 	}
-	public void setAgencyDb(Agency agency) {
+	public void setAgency(Agency agency) {
 		this.agency = agency;
 	}
-	public CategoryMaterials getCategoryMaterialsDb() {
+	public CategoryMaterials getCategoryMaterials() {
 		return categoryMaterials;
 	}
-	public void setCategoryMaterialsDb(CategoryMaterials categoryMaterials) {
+	public void setCategoryMaterials(CategoryMaterials categoryMaterials) {
 		this.categoryMaterials = categoryMaterials;
 	}
 	
@@ -45,4 +45,5 @@ public class CategoryTheme {
 		return "CategoryTheme [themeNumber=" + themeNumber + ", aNumber=" + aNumber + ", themeName=" + themeName
 				+ ", agency=" + agency + ", categoryMaterials=" + categoryMaterials + "]";
 	}
+	
 }

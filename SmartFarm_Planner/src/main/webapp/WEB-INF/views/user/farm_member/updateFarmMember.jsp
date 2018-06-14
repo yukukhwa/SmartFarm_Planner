@@ -24,83 +24,83 @@
     <!--sidebar end-->
     <section id="main-content">
 		<section class="wrapper">
-			<c:if test="${loginMember.level != 'farm' || loginMember.id != farmMemberDb.fMemberId}">
+			<c:if test="${loginMember.level != 'farm' || loginMember.id != farmMember.fMemberId}">
 				<div>
 					해당페이지에 접근할 수 없는 권한입니다.
 				</div>
 			</c:if>
-			<c:if test="${loginMember.level == 'farm' && loginMember.id == farmMemberDb.fMemberId}">
+			<c:if test="${loginMember.level == 'farm' && loginMember.id == farmMember.fMemberId}">
 				<div>
 					<h3>농가회원 수정화면</h3>
 					<form id="updateFMember" action="${pageContext.request.contextPath}/updateFarmMember" method="post">
 						<div>
 						<label>
 							<b>소속 농가 : </b><br>
-							<input type="text" disabled="disabled" value="${farmMemberDb.farmDb.fName}">
-							<input type="hidden" name="fName" value="${farmMemberDb.farmDb.fName}">
+							<input type="text" disabled="disabled" value="${farmMember.farm.fName}">
+							<input type="hidden" name="fName" value="${farmMember.farm.fName}">
 						</label>
 						</div>
 						<div>
 							<label>
 								<b>아이디 : </b><br>
-								<input type="text" disabled="disabled"  value="${farmMemberDb.fMemberId}">
-								<input type="hidden" name="fMemberId" value="${farmMemberDb.fMemberId}">					
+								<input type="text" disabled="disabled"  value="${farmMember.fMemberId}">
+								<input type="hidden" name="fMemberId" value="${farmMember.fMemberId}">					
 							</label>
 						</div>
 						<div>
 							<label>
 								<b>패스워드 : </b><br>
-								<input type="text" name="fMemberPw" value="${farmMemberDb.fMemberPw}">
+								<input type="text" name="fMemberPw" value="${farmMember.fMemberPw}">
 							</label>
 						</div>
 						<div>
 							<label>
 								<b>이름 : </b><br>
-								<input type="text" name="fMemberName" value="${farmMemberDb.fMemberName}">
+								<input type="text" name="fMemberName" value="${farmMember.fMemberName}">
 							</label>
 						</div>
 						<div>
 							<label>
 								<b>연락처 : </b><br>
-								<input type="text" name="fMemberPhone" value="${farmMemberDb.fMemberPhone}">
+								<input type="text" name="fMemberPhone" value="${farmMember.fMemberPhone}">
 							</label>
 						</div>
 						<div>
 							<label>
 								<b>성별 : </b><br>
-								<input type="text" disabled="disabled" value="${farmMemberDb.fMemberGender}">
-								<input type="hidden" name="fMemberGender" value="${farmMemberDb.fMemberGender}">						
+								<input type="text" disabled="disabled" value="${farmMember.fMemberGender}">
+								<input type="hidden" name="fMemberGender" value="${farmMember.fMemberGender}">						
 							</label>
 						</div>
 						<div>
 							<label>
 								<b>이메일 : </b><br>
-								<input type="text" name="fMemberEmail" value="${farmMemberDb.fMemberEmail}">
+								<input type="text" name="fMemberEmail" value="${farmMember.fMemberEmail}">
 							</label>
 						</div>
 						<div>
 							<label>
 								<b>도로명주소 : </b><br>
-								<input type="text" name="fMemberDoroaddress" value="${farmMemberDb.fMemberDoroaddress}">
+								<input type="text" name="fMemberDoroaddress" value="${farmMember.fMemberDoroaddress}">
 							</label>
 						</div>
 						<div>
 							<label>
 								<b>지번주소 : </b><br>
-								<input type="text" name="fMemberJibunaddress" value="${farmMemberDb.fMemberJibunaddress}">
+								<input type="text" name="fMemberJibunaddress" value="${farmMember.fMemberJibunaddress}">
 							</label>
 						</div>
 						<div>
 							<label>
 								<b>상세주소 : </b><br>
-								<input type="text" name="fMemberDetailaddress" value="${farmMemberDb.fMemberDetailaddress}">
+								<input type="text" name="fMemberDetailaddress" value="${farmMember.fMemberDetailaddress}">
 							</label>
 						</div>
 						<div>
 							<label>
 								<b>등록일자 : </b><br>
-								<input type="text" disabled="disabled" value="${farmMemberDb.fMemberRegistdate}">
-								<input type="hidden" name="fMemberRegistdate" value="${farmMemberDb.fMemberRegistdate}">						
+								<input type="text" disabled="disabled" value="${farmMember.fMemberRegistdate}">
+								<input type="hidden" name="fMemberRegistdate" value="${farmMember.fMemberRegistdate}">						
 							</label>
 						</div>
 						<button id="updateMember">내 정보 업데이트하기</button>

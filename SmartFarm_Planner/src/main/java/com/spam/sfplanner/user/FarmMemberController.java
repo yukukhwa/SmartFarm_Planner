@@ -25,7 +25,6 @@ public class FarmMemberController {
 	@Autowired FarmService farmService;
 		private final static Logger LOGGER = LoggerFactory.getLogger(FarmMemberController.class);
 		
-		
 		/*삭제요청이 겟방식으로 넘어올때 삭제처리*/
 		@RequestMapping(value="deleteFarmMember", method=RequestMethod.GET)
 		public String deleteFarmMember(String fMemberId) {
@@ -46,7 +45,7 @@ public class FarmMemberController {
 		@RequestMapping(value="updateFarmMember", method=RequestMethod.GET)
 		public String updateFarmMember(Model model, String fMemberId) {
 			LOGGER.info("FarmMemberController updateFarmMember 호출");
-			model.addAttribute("farmMemberDb", farmMemberService.oneSelectFarmMember(fMemberId));
+			model.addAttribute("farmMember", farmMemberService.oneSelectFarmMember(fMemberId));
 			return "user/farm_member/updateFarmMember";
 		}
 		
@@ -56,7 +55,7 @@ public class FarmMemberController {
 										,  String fMemberId) {
 			LOGGER.info("FarmMemberController oneFarmMember 호출");
 			System.out.println("fMemberId===>"+fMemberId);
-			model.addAttribute("farmMemberInfo", farmMemberService.oneSelectFarmMember(fMemberId));
+			model.addAttribute("farmMember", farmMemberService.oneSelectFarmMember(fMemberId));
 			System.out.println("farmMemberInfo =========> : "+farmMemberService.oneSelectFarmMember(fMemberId));
 			return "user/farm_member/oneFarmMember";
 		}
@@ -67,7 +66,7 @@ public class FarmMemberController {
 										, Model model) {
 			LOGGER.info("FarmMemberController listFarmMember 호출");
 			farmMemberService.listFarmMember(fName);
-			model.addAttribute("farmMemberList",farmMemberService.listFarmMember(fName));
+			model.addAttribute("list",farmMemberService.listFarmMember(fName));
 			model.addAttribute("fName", fName);
 			System.out.println("farmMemberList====> "+farmMemberService.listFarmMember(fName));
 			return "user/farm_member/listFarmMember";

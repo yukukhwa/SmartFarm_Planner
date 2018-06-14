@@ -28,7 +28,7 @@ public class CategoryThemeController {
 	@RequestMapping(value="/updateTheme", method=RequestMethod.POST)
 	public String updateCategoryTheme(CategoryTheme categoryTheme) {
 		LOGGER.info("CategoryTheme updateTheme post 호출");
-		System.out.println("categoryThemeDb===> "+categoryTheme);
+		System.out.println("categoryTheme===> "+categoryTheme);
 		categoryThemeService.updateCategoryTheme(categoryTheme);
 		return "redirect:/listTheme";
 	}
@@ -36,7 +36,7 @@ public class CategoryThemeController {
 	/*updateTheme에서 get방식으로 요청들어오면 수정화면이 출력되어 updateThemeForm으로 포워드한다*/
 	@RequestMapping(value="/updateTheme", method=RequestMethod.GET)
 	public String updateCategoryTheme(String themeName, Model model) {
-		model.addAttribute("themeCateList", categoryThemeService.oneSelectCategoryTheme(themeName));
+		model.addAttribute("categoryTheme", categoryThemeService.oneSelectCategoryTheme(themeName));
 		return "category/theme/updateTheme";
 	}
 	

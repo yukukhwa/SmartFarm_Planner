@@ -28,7 +28,7 @@ public class FarmController {
 		@RequestMapping(value="oneFarm", method=RequestMethod.GET)
 		public String oneSelectFarm(Model model, String fName) {
 			LOGGER.info("FarmController oneSelectFarm 호출");
-			model.addAttribute("farmDb", farmService.oneSelectFarm(fName));
+			model.addAttribute("farm", farmService.oneSelectFarm(fName));
 			System.out.println(farmService.oneSelectFarm(fName));
 			return "corporation/farm/oneFarm";
 		}

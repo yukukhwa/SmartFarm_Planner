@@ -22,10 +22,10 @@ public class Farm {
 	public void setfNumber(int fNumber) {
 		this.fNumber = fNumber;
 	}
-	public FarmMember getFarmMemberDb() {
+	public FarmMember getFarmMember() {
 		return farmMember;
 	}
-	public void setFarmMemberDb(FarmMember farmMember) {
+	public void setFarmMember(FarmMember farmMember) {
 		this.farmMember = farmMember;
 	}
 	public String getfName() {
@@ -70,13 +70,12 @@ public class Farm {
 	public void setfRegistdate(Date fRegistdate) {
 		this.fRegistdate = fRegistdate;
 	}
+	
 	@Override
 	public String toString() {
 		return "Farm [fNumber=" + fNumber + ", farmMember=" + farmMember + ", fName=" + fName + ", fMemberId="
 				+ fMemberId + ", fPhone=" + fPhone + ", fDoroaddress=" + fDoroaddress + ", fJibunaddress="
 				+ fJibunaddress + ", fParty=" + fParty + ", fRegistdate=" + fRegistdate + "]";
 	}
-	
-	
 	
 }

@@ -19,16 +19,17 @@ public class FarmMember {
 	private String fMemberJibunaddress; // f_member_jibunaddress
 	private String fMemberDetailaddress; // f_member_detailaddress
 	private Date fMemberRegistdate; // f_member_registdate;
+	
 	public String getfMemberId() {
 		return fMemberId;
 	}
 	public void setfMemberId(String fMemberId) {
 		this.fMemberId = fMemberId;
 	}
-	public Farm getFarmDb() {
+	public Farm getFarm() {
 		return farm;
 	}
-	public void setFarmDb(Farm farm) {
+	public void setFarm(Farm farm) {
 		this.farm = farm;
 	}
 	public int getfNumber() {
@@ -97,6 +98,7 @@ public class FarmMember {
 	public void setfMemberRegistdate(Date fMemberRegistdate) {
 		this.fMemberRegistdate = fMemberRegistdate;
 	}
+	
 	@Override
 	public String toString() {
 		return "FarmMember [fMemberId=" + fMemberId + ", farm=" + farm + ", fNumber=" + fNumber + ", fMemberPw="

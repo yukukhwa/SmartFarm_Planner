@@ -33,22 +33,22 @@
 				<form id="updateThemeForm" action="${pageContext.request.contextPath}/updateTheme" method="post">
 					<div>
 						<label>
-							등록기관 넘버 : <input type="text" name="aNumber" value="${themeCateList.agencyDb.aNumber}">
+							등록기관 넘버 : <input type="text" name="aNumber" value="${categoryTheme.agency.aNumber}">
 						</label>
 					</div>
 					<div>
 						<label>
-							등록기관 명 : <input type="text" name="aName" value="${themeCateList.agencyDb.aName}">
+							등록기관 명 : <input type="text" name="aName" value="${categoryTheme.agency.aName}">
 						</label>
 					</div>
 					<div>
 						<label>
-							테마 카테고리넘버 : <input type="text" name="themeNumber" value="${themeCateList.themeNumber}">
+							테마 카테고리넘버 : <input type="text" name="themeNumber" value="${categoryTheme.themeNumber}">
 						</label>
 					</div>
 					<div>
 						<label>
-							테마 카테고리이름 : <input type="text" name="themeName" value="${themeCateList.themeName}">
+							테마 카테고리이름 : <input type="text" name="themeName" value="${categoryTheme.themeName}">
 						</label>
 					</div>
 					<button id="updateTheme">테마 카테고리 수정하기</button>

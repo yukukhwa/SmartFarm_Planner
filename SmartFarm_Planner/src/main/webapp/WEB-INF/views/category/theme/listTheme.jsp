@@ -54,17 +54,17 @@
 	    					<th>테마 삭제</th> -->
 	    				</tr>
 	    			</thead>
-	    			<c:forEach var="themeCateList" items="${list}">
+	    			<c:forEach var="categoryTheme" items="${list}">
 	    			<tbody>
 	    				<tr>
-	    					<td>${themeCateList.themeNumber}</td>
-	    					<td>${themeCateList.themeName}</td>
-	    					<td>${themeCateList.agencyDb.aName}</td>
+	    					<td>${categoryTheme.themeNumber}</td>
+	    					<td>${categoryTheme.themeName}</td>
+	    					<td>${categoryTheme.agency.aName}</td>
 	    					<!-- 수정,삭제는 자기가 등록한 등록기관만 수정하거나 삭제할 수 있다. -->
-	    					<c:if test="${loginMember.corpName == themeCateList.agencyDb.aName}">
+	    					<c:if test="${loginMember.corpName == categoryTheme.agency.aName}">
 	    						<!-- 수정삭제할때 테마의 넘버로 해야할지 이름으로 해야할지..상의해봐야함 일단 테마의 이름으로-->
-		    					<td><a href="${pageContext.request.contextPath}/updateTheme?themeName=${themeCateList.themeName}">수정</a></td>
-		    					<td><a href="${pageContext.request.contextPath}/deleteTheme?themeNumber=${themeCateList.themeNumber}">삭제</a></td>
+		    					<td><a href="${pageContext.request.contextPath}/updateTheme?themeName=${categoryTheme.themeName}">수정</a></td>
+		    					<td><a href="${pageContext.request.contextPath}/deleteTheme?themeNumber=${categoryTheme.themeNumber}">삭제</a></td>
 	    					</c:if>
 	    				</tr>
 	    			</tbody>

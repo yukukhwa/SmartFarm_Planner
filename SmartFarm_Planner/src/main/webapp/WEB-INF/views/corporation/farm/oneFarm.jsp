@@ -11,11 +11,11 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#selectFarmMemberList').click(function(){
-			location.href = "listFarmMember?fName=${farmDb.fName}";
+			location.href = "listFarmMember?fName=${farm.fName}";
 		})
 		
 		$('#updateFarm').click(function(){
-			location.href = "updateFarm?fName=${farmDb.fName}";
+			location.href = "updateFarm?fName=${farm.fName}";
 		})
 		
 		$('#goList').click(function(){
@@ -23,7 +23,7 @@
 		})
 		
 		$('#deleteFarm').click(function(){
-			location.href = "deleteFarm?fNumber=${farmDb.fNumber}";
+			location.href = "deleteFarm?fNumber=${farm.fNumber}";
 		})
 	})
 </script>
@@ -38,7 +38,7 @@
 		<section class="wrapper">
 			<div>
 				<h3>농가 상세보기</h3>
-				<input type="hidden" value="${farmDb.fNumber}">
+				<input type="hidden" value="${farm.fNumber}">
 				<table class="table">
 					<thead>
 						<tr>
@@ -52,18 +52,18 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>${farmDb.fName}</td>
-							<td>${farmDb.fPhone}</td>
-							<td>${farmDb.fDoroaddress}</td>
-							<td>${farmDb.fJibunaddress}</td>
-							<td>${farmDb.fParty}</td>
-							<td>${farmDb.fRegistdate}</td>
+							<td>${farm.fName}</td>
+							<td>${farm.fPhone}</td>
+							<td>${farm.fDoroaddress}</td>
+							<td>${farm.fJibunaddress}</td>
+							<td>${farm.fParty}</td>
+							<td>${farm.fRegistdate}</td>
 						</tr>
 					</tbody>
 				</table>
 				<button type="button" id="selectFarmMemberList">이 농가의 농가회원보기</button>
 				<button id="goList">리스트로 돌아가기</button>
-				<c:if test="${loginMember.level == 'farm' && loginMember.corpName == farmDb.fName && loginMember.boss == 'boss'}">
+				<c:if test="${loginMember.level == 'farm' && loginMember.corpName == farm.fName && loginMember.boss == 'boss'}">
 					<button id="updateFarm">농가정보 수정하기</button>
 					<button id="deleteFarm">농가정보 삭제하기</button>
 				</c:if>

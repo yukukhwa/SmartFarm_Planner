@@ -64,16 +64,16 @@ public class PpWork {
 	public void setPpWorkContent(String ppWorkContent) {
 		this.ppWorkContent = ppWorkContent;
 	}
-	public Farm getFarmDb() {
+	public Farm getFarm() {
 		return farm;
 	}
-	public void setFarmDb(Farm farm) {
+	public void setFarm(Farm farm) {
 		this.farm = farm;
 	}
-	public ProductionPlan getProductionPlanDb() {
+	public ProductionPlan getProductionPlan() {
 		return productionPlan;
 	}
-	public void setProductionPlanDb(ProductionPlan productionPlan) {
+	public void setProductionPlan(ProductionPlan productionPlan) {
 		this.productionPlan = productionPlan;
 	}
 	@Override

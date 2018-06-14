@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.spam.sfplanner.user.FarmMemberMapper">
-	 <resultMap type="com.spam.sfplanner.user.FarmMember" id="farmMemberDb">
+	 <resultMap type="com.spam.sfplanner.user.FarmMember" id="farmMember">
 			<id column="f_member_id" property="fMemberId"/>
 			<!-- property : 대상객체의 setter메소드명 지정 -->
 	        <result column="f_member_pw" property="fMemberPw"/>
@@ -18,7 +18,7 @@
 			<result column="f_member_detailaddress" property="fMemberDetailaddress"/>
 			<result column="f_member_registdate" property="fMemberRegistdate"/>
 	        <!-- ofType : 목록을 구성하는 객체의 타입을 지정.실제 반환타입은 List<>가 된다   -->
-	        <collection property="farmDb" ofType="com.spam.sfplanner.corporation.Farm">
+	        <collection property="farm" ofType="com.spam.sfplanner.corporation.Farm">
 	            <id column="f_number" property="fNumber"/>
 	            <result column="f_name" property="fName"/>
 	            <result column="f_doroaddress" property="fDoroaddress"/>
@@ -53,7 +53,7 @@
  	<!-- 해당 회원의 상세정보(내정보) 보기, 수정화면 조회 쿼리문 -->
  	<select id="selectOneFarmMember"
  		parameterType="String"
- 		resultMap="farmMemberDb">
+ 		resultMap="farmMember">
 	 		SELECT sp_farm_member.f_member_id
 	 			, sp_farm.f_number
 				, sp_farm_member.f_member_pw
@@ -75,7 +75,7 @@
  	<!-- 해당 농가의 회원리스트를 보기 -->
  	<select id="selectFarmMemberList"
  		parameterType="String"
- 		resultMap="farmMemberDb">
+ 		resultMap="farmMember">
 	 		SELECT sp_farm_member.f_number
 	 			, sp_farm_member.f_member_id
 				, sp_farm_member.f_member_name

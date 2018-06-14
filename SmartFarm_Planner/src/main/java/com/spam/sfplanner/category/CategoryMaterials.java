@@ -10,7 +10,6 @@ public class CategoryMaterials {
 	private String materialsUnit; // 원자재의 단위
 	private CategoryTheme categoryTheme;
 	private Agency agency;
-	
 	public int getMaterialsNumber() {
 		return materialsNumber;
 	}
@@ -41,23 +40,23 @@ public class CategoryMaterials {
 	public void setMaterialsUnit(String materialsUnit) {
 		this.materialsUnit = materialsUnit;
 	}
-	public CategoryTheme getCategoryThemeDb() {
+	public CategoryTheme getCategoryTheme() {
 		return categoryTheme;
 	}
-	public void setCategoryThemeDb(CategoryTheme categoryTheme) {
+	public void setCategoryTheme(CategoryTheme categoryTheme) {
 		this.categoryTheme = categoryTheme;
 	}
-	public Agency getAgencyDb() {
+	public Agency getAgency() {
 		return agency;
 	}
-	public void setAgencyDb(Agency agency) {
+	public void setAgency(Agency agency) {
 		this.agency = agency;
 	}
 	@Override
 	public String toString() {
 		return "CategoryMaterials [materialsNumber=" + materialsNumber + ", themeNumber=" + themeNumber + ", aNumber="
-				+ aNumber + ", materialsName=" + materialsName + ", materialsUnit=" + materialsUnit
-				+ ", categoryTheme=" + categoryTheme + ", agency=" + agency + "]";
+				+ aNumber + ", materialsName=" + materialsName + ", materialsUnit=" + materialsUnit + ", categoryTheme="
+				+ categoryTheme + ", agency=" + agency + "]";
 	}
 	
 	

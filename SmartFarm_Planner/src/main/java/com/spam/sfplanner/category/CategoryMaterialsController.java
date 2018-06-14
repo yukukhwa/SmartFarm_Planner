@@ -37,7 +37,7 @@ public class CategoryMaterialsController {
 	@RequestMapping(value="/updateMaterialsCate", method=RequestMethod.GET)
 	public String updateCategoryMaterials(Model model, String materialsName) {
 		//System.out.println("materialsName===> "+materialsName);
-		model.addAttribute("categoryMaterialsDb",categoryMaterialsService.oneSelectCategoryMaterials(materialsName));
+		model.addAttribute("categoryMaterials",categoryMaterialsService.oneSelectCategoryMaterials(materialsName));
 		return "category/materials/updateMaterialsCate";
 	}
 	

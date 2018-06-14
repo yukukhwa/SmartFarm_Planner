@@ -39,8 +39,8 @@
 	    						테마 카테고리 선택하기
 	    						<select name="themeNumber" id="cateThemeOption">
 	    							<option value="" selected="selected" disabled="disabled">테마선택하기</option>
-	    							<c:forEach var="cateThemeDb" items="${categoryThemeDb}">
-	    								<option value="${cateThemeDb.themeNumber}">${cateThemeDb.themeName}</option>
+	    							<c:forEach var="cateTheme" items="${categoryTheme}">
+	    								<option value="${cateTheme.themeNumber}">${cateTheme.themeName}</option>
 	    							</c:forEach>
 	    						</select>
 	    					</label>

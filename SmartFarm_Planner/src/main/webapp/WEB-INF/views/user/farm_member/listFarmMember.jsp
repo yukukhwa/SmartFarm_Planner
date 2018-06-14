@@ -37,12 +37,12 @@
 							<th>농가 회원 연락처 </th>
 						</tr>
 					</thead>
-					<c:forEach var="onefarmMemberList" items="${farmMemberList}">
+					<c:forEach var="farmMember" items="${list}">
 					<tbody>
 						<tr>
-							<td>${onefarmMemberList.fMemberName}</td>
-							<td>${onefarmMemberList.fMemberEmail}</td>
-							<td>${onefarmMemberList.fMemberPhone}</td>
+							<td>${farmMember.fMemberName}</td>
+							<td>${farmMember.fMemberEmail}</td>
+							<td>${farmMember.fMemberPhone}</td>
 						</tr>
 					</tbody>
 					</c:forEach>
