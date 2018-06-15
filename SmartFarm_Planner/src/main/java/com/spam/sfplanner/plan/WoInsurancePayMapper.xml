@@ -14,6 +14,7 @@
  		<result column="e_insurancepay_term" property="eInsurancepayTerm"/>
  		<result column="e_insurancepay_totalcost" property="eInsurancepayTotalcost"/>
  		<result column="e_insurancepay_expectcost" property="eInsurancepayExpectcost"/>
+ 		<result column="e_insurancepay_secret" property="eInsurancepaySecret"/>
  		<collection ofType="com.spam.sfplanner.category.CategoryTheme" property="categoryTheme">
  			<id column="theme_number" property="themeNumber"/>
  			<result column="theme_name" property="themeName"/>
@@ -24,4 +25,44 @@
  		</collection>
  	</resultMap>
  	
+ 	<select id="listSelectWoInsurancePay"
+ 			parameterType="java.util.Map"
+ 			resultMap="woInsurancePay">
+ 		select
+			sp_e_insurancepay.e_insurancepay_number
+			,sp_e_insurancepay.theme_number
+			,sp_theme_cate.theme_name
+			,sp_e_insurancepay.pp_work_number
+			,sp_pp_work.pp_work_name
+			,sp_e_insurancepay.e_insurancepay_name
+			,sp_e_insurancepay.e_insurancepay_content
+			,sp_e_insurancepay.e_insurancepay_startday
+			,sp_e_insurancepay.e_insurancepay_endday
+			,sp_e_insurancepay.e_insurancepay_term
+			,sp_e_insurancepay.e_insurancepay_totalcost
+			,sp_e_insurancepay.e_insurancepay_expectcost
+			,sp_e_insurancepay.e_insurancepay_secret
+		from
+			sp_e_insurancepay join sp_theme_cate join sp_pp_work
+		on
+			sp_e_insurancepay.theme_number = sp_theme_cate.theme_number
+		and
+			sp_e_insurancepay.pp_work_number = sp_pp_work.pp_work_number
+		<if test="search == 'yes'">
+			where
+			<if test="column == '작업단계넘버'">
+				sp_e_insurancepay.pp_work_number = #{property}
+			</if>
+			<if test="column == '작업명'">
+					sp_pp_work.pp_work_name like concat('%',#{property},'%')
+				and
+					sp_e_insurancepay.pp_work_number = #{ppWorkNumber}
+			</if>
+			<if test="column == '테마명'">
+					sp_theme_cate.theme_name like concat('%',#{property},'%')
+				and
+					sp_e_insurancepay.pp_work_number = #{ppWorkNumber}
+			</if>
+		</if>
+ 	</select>
  </mapper>

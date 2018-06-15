@@ -23,6 +23,18 @@ public class ProductionPlanService {
 	@Autowired
 	private TitlePlanDao titlePlanDao;
 	
+	@Autowired
+	private PpWorkDao ppWorkDao;
+	
+	public ProductionPlan oneSelectProductionPlan(int ppNumber) {
+		ProductionPlan productionPlan = productionPlanDao.oneSelectProductionPlan(ppNumber);
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("ppNumber", ppNumber);
+		productionPlan.setPpWorkList(ppWorkDao.listSelectPpWork(map));
+		System.out.println(productionPlan.toString());
+		return productionPlan;
+	}
+	
 	public List<ProductionPlan> listSelectProductionPlan(String column,Object property) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("search", "yes");

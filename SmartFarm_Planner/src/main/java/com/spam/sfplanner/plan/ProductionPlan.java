@@ -2,6 +2,7 @@
 package com.spam.sfplanner.plan;
 
 import java.util.Date;
+import java.util.List;
 
 import com.spam.sfplanner.user.FarmMember;
 
@@ -19,6 +20,7 @@ public class ProductionPlan {
 	private String ppSecret; // 공개&비공개 여부
 	private FarmMember farmMember; // 농가 회원 테이블
 	private TitlePlan titlePlan; // 계획명 테이블
+	private List<PpWork> ppWorkList; // 해당 계획서내 작업단계리스트
 	public int getPpNumber() {
 		return ppNumber;
 	}
@@ -61,22 +63,29 @@ public class ProductionPlan {
 	public void setPpSecret(String ppSecret) {
 		this.ppSecret = ppSecret;
 	}
-	public FarmMember getFarmMemberDb() {
+	public FarmMember getFarmMember() {
 		return farmMember;
 	}
-	public void setFarmMemberDb(FarmMember farmMember) {
+	public void setFarmMember(FarmMember farmMember) {
 		this.farmMember = farmMember;
 	}
-	public TitlePlan getTitlePlanDb() {
+	public TitlePlan getTitlePlan() {
 		return titlePlan;
 	}
-	public void setTitlePlanDb(TitlePlan titlePlan) {
+	public void setTitlePlan(TitlePlan titlePlan) {
 		this.titlePlan = titlePlan;
+	}
+	public List<PpWork> getPpWorkList() {
+		return ppWorkList;
+	}
+	public void setPpWorkList(List<PpWork> ppWorkList) {
+		this.ppWorkList = ppWorkList;
 	}
 	@Override
 	public String toString() {
 		return "ProductionPlan [ppNumber=" + ppNumber + ", ppStartday=" + ppStartday + ", ppEndday=" + ppEndday
 				+ ", ppOwnarea=" + ppOwnarea + ", ppRentarea=" + ppRentarea + ", ppRecordday=" + ppRecordday
-				+ ", ppSecret=" + ppSecret + ", farmMember=" + farmMember + ", titlePlan=" + titlePlan + "]";
+				+ ", ppSecret=" + ppSecret + ", farmMember=" + farmMember + ", titlePlan=" + titlePlan + ", ppWorkList="
+				+ ppWorkList + "]";
 	}
 }

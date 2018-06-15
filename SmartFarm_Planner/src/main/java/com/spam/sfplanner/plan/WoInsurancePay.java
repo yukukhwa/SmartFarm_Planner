@@ -15,10 +15,11 @@ public class WoInsurancePay {
 	private String eInsurancepayMame; //보험명
 	private String eInsurancepayContent;//보험내용(텍스트타입-100자이상)
 	private Date eInsurancepayStartday;//보험가입일
-	private Date eInsurancepayEndday;//보험가입기간
-	private double eInsurancepayTerm;//총보험비
-	private double eInsurancepayTotalcost;//예상보험비(월)
-	private double eInsurancepayExpectcost;//공개/비공개 여부
+	private Date eInsurancepayEndday;//보험만료일
+	private double eInsurancepayTerm;//보험가입기간
+	private double eInsurancepayTotalcost;//총보험비
+	private double eInsurancepayExpectcost;//예상보험비(월)
+	private String eInsurancepaySecret;//공개/비공개 여부
 	private CategoryTheme categoryTheme;//테마테이블
 	private PpWork ppWork;//작업단계테이블
 	public int geteInsurancepayNumber() {
@@ -69,6 +70,12 @@ public class WoInsurancePay {
 	public void seteInsurancepayExpectcost(double eInsurancepayExpectcost) {
 		this.eInsurancepayExpectcost = eInsurancepayExpectcost;
 	}
+	public String geteInsurancepaySecret() {
+		return eInsurancepaySecret;
+	}
+	public void seteInsurancepaySecret(String eInsurancepaySecret) {
+		this.eInsurancepaySecret = eInsurancepaySecret;
+	}
 	public CategoryTheme getCategoryTheme() {
 		return categoryTheme;
 	}
@@ -87,6 +94,7 @@ public class WoInsurancePay {
 				+ ", eInsurancepayContent=" + eInsurancepayContent + ", eInsurancepayStartday=" + eInsurancepayStartday
 				+ ", eInsurancepayEndday=" + eInsurancepayEndday + ", eInsurancepayTerm=" + eInsurancepayTerm
 				+ ", eInsurancepayTotalcost=" + eInsurancepayTotalcost + ", eInsurancepayExpectcost="
-				+ eInsurancepayExpectcost + ", categoryTheme=" + categoryTheme + ", ppWork=" + ppWork + "]";
+				+ eInsurancepayExpectcost + ", eInsurancepaySecret=" + eInsurancepaySecret + ", categoryTheme="
+				+ categoryTheme + ", ppWork=" + ppWork + "]";
 	}
 }
