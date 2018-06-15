@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class RentEquipController {
+public class CompanyRentEquipController {
 	@RequestMapping(value="/updateRentEquip", method=RequestMethod.GET)
 	public String updateRentEquip() {
 		return "plan/company_rentequip/updateRentEquip";

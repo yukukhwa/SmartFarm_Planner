@@ -35,8 +35,8 @@
             <div class="profile-widget profile-widget-info">
               <div class="panel-body">
                 <div class="col-lg-2 col-sm-2" style="height: 153px">
-                  <div class="follow-ava">
-                    <img src="img/yukukhwa-profile.jpg" alt="" style="height: 100px; width: 80px">
+                  <div class="follow-ava" style="height: 100%; width: 120px">
+                    <img src="img/yukukhwa-profile.jpg" alt="" style="height: 100%; width: 120px">
                   </div>
                 </div>
                 <div class="col-lg-4 col-sm-4 follow-info">
@@ -133,8 +133,8 @@
                           <div class="text">
                             <a href="#" class="activity-img"><img class="avatar" src="img/chat-avatar.jpg" alt=""></a>
                             <p class="attribution"><a href="#">Jonatanh Doe</a> at 4:25pm, 30th Octmber 2014</p>
-                            <p>팀원소개1</p>
-                          </div>
+                            <p>팀원소개1</p>                                                        
+                          </div>                          
                         </div>
                       </div> 
                       <div class="act-time">
@@ -192,38 +192,30 @@
 				              <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum.</p>
 				              <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum.</p>
 				
-				              <h4>Address:</h4>Little Lonsdale St, New York<br>
-				              <h4>Telephone:</h4>345 578 59 45 416</br>
-				              <h4>Fax:</h4>123 456 789
+				              <h4>Address:</h4>대한민국 전라북도 전주시 덕진구<br>
+				              <h4>Email:</h4>cjsghkz@naver.com</br>
+				              <h4>Kakao ID:</h4>cjsghka
 				            </div>
 				          </div>                    
                       <div class="panel-body bio-graph-info">
-                       
+                       <br><br>
                         <div class="row">
                           <div class="bio-row">
-                            <p><span>First Name </span>: Jenifer </p>
+                          	
+                            <p><span>First Name </span>: 유, Yu </p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Last Name </span>: Smith</p>
+                            <p><span>Last Name </span>: 국화, kukhwa</p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Birthday</span>: 27 August 1987</p>
+                            <p><span>Birthday</span>: 6 October 1991</p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Country </span>: United</p>
+                            <p><span>Country </span>: North of Korea</p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Occupation </span>: UI Designer</p>
-                          </div>
-                          <div class="bio-row">
-                            <p><span>Email </span>:jenifer@mailname.com</p>
-                          </div>
-                          <div class="bio-row">
-                            <p><span>Mobile </span>: (+6283) 456 789</p>
-                          </div>
-                          <div class="bio-row">
-                            <p><span>Phone </span>: (+021) 956 789123</p>
-                          </div>
+                            <p><span>Occupation </span>: Web developer</p>
+                          </div>                          
                         </div>
                       </div>
                     </section>

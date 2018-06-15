@@ -22,10 +22,10 @@
           <div class="col-lg-12">
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="${pageContext.request.contextPath}/home">Home</a></li>
-              <li><i class="fa fa-laptop"></i><a href="${pageContext.request.contextPath}/listCategoryDeal">거래처</a></li>
-              <li><i class="fa fa-laptop"></i><a href="${pageContext.request.contextPath}/listCategoryEquip">농기계·장비</a></li>
-              <li><i class="fa fa-laptop"></i><a href="${pageContext.request.contextPath}/listIndustry">산업별</a></li>
-              <li><i class="fa fa-laptop"></i><a href="${pageContext.request.contextPath}/listTheme">테마별</a></li>
+              <li><i class="fa fa-cubes"></i><a href="${pageContext.request.contextPath}/listCategoryDeal">거래처</a></li>
+              <li><i class="icon_genius"></i><a href="${pageContext.request.contextPath}/listCategoryEquip">농기계·장비</a></li>
+              <li><i class="icon_table"></i><a href="${pageContext.request.contextPath}/listIndustry">산업별</a></li>
+              <li><i class="fa fa-flag-o red"></i><a href="${pageContext.request.contextPath}/listTheme">테마별</a></li>
              </ol>
           </div>
         </div>
@@ -34,7 +34,7 @@
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="height: 100%">
            <a href="${pageContext.request.contextPath}/nongsaroApi?number=1"> 
            	<div class="info-box blue-bg" style="margin: 0 0 0 0; padding: 0 20 0 0 " >
-              <i class="fa fa-cloud-download"></i>
+              <i class="fa fa-tachometer fa-2x"></i>
               <div class="count" style="font-size: 20px;">과수</div>
               <div class="title">표준 데이터</div>
             </div>
@@ -46,7 +46,7 @@
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="height: 100%">
            <a href="${pageContext.request.contextPath}/nongsaroApi?number=2"> 
             <div class="info-box brown-bg" style="margin: 0 0 0 0; padding: 0 20 0 0 ">
-              <i class="fa fa-shopping-cart"></i>
+              <i class="fa fa-bell fa-2x"></i>
               <div class="count" style="font-size: 20px;">축산</div>
               <div class="title">표준 데이터</div>
             </div>
@@ -58,7 +58,7 @@
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="height: 100%">
            <a href="${pageContext.request.contextPath}/nongsaroApi?number=3"> 
             <div class="info-box dark-bg" style="margin: 0 0 0 0; padding: 0 20 0 0 ">
-              <i class="fa fa-thumbs-o-up"></i>
+              <i class="fa fa-th"></i>
               <div class="count" style="font-size: 20px;">식량작물</div>
               <div class="title">표준 데이터</div>
             </div>
@@ -70,7 +70,7 @@
           <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="height: 100%">
            <a href="${pageContext.request.contextPath}/nongsaroApi?number=4"> 
             <div class="info-box green-bg" style="margin: 0 0 0 0; padding: 0 20 0 0 ">
-              <i class="fa fa-cubes"></i>
+              <i class="fa fa-bars"></i>
               <div class="count" style="font-size: 20px;">특용작물</div>
               <div class="title">표준 데이터</div>
             </div>
@@ -111,34 +111,34 @@
                   <div class="item text-center">
                     <span>
                   		<a href="#">
-                  			<img src="img/comp1.jpg" style="width: 33%; height: 100%;">
+                  			<img src="img/compa1.jpg" style="width: 33%; height: 100%;">
                   		</a>
                   	</span>
                   	<span>
                   		<a href="#">
-                  			<img src="img/comp2.jpg" style="width: 33%; height: 100%;">
+                  			<img src="img/compa2.jpg" style="width: 33%; height: 100%;">
                   		</a>
                   	</span>
                   	<span>
                   		<a href="#">
-                  			<img src="img/comp3.jpg" style="width: 33%; height: 100%;">
+                  			<img src="img/compa3.jpg" style="width: 33%; height: 100%;">
                   		</a>
                   	</span>
                   </div>
                   <div class="item text-center">
                     <span>
                   		<a href="#">
-                  			<img src="img/ag1.jpg" style="width: 33%; height: 100%;">
+                  			<img src="img/agen1.jpg" style="width: 33%; height: 100%;">
                   		</a>
                   	</span>
                   	<span>
                   		<a href="#">
-                  			<img src="img/ag2.jpg" style="width: 33%; height: 100%;">
+                  			<img src="img/agen2.jpg" style="width: 33%; height: 100%;">
                   		</a>
                   	</span>
                   	<span>
                   		<a href="#">
-                  			<img src="img/ag3.jpg" style="width: 33%; height: 100%;">
+                  			<img src="img/agen3.jpg" style="width: 33%; height: 100%;">
                   		</a>
                   	</span>
                   </div>
