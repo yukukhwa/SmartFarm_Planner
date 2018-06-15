@@ -14,10 +14,10 @@ public class CategoryEquip {
 	public void setEquipNumber(int equipNumber) {
 		this.equipNumber = equipNumber;
 	}
-	public Agency getAgencyDb() {
+	public Agency getAgency() {
 		return agency;
 	}
-	public void setAgencyDb(Agency agency) {
+	public void setAgency(Agency agency) {
 		this.agency = agency;
 	}
 	public String getEquipName() {
@@ -28,8 +28,7 @@ public class CategoryEquip {
 	}
 	@Override
 	public String toString() {
-		return "CategoryEquip [equipNumber=" + equipNumber + ", agency=" + agency + ", equipName=" + equipName
-				+ "]";
+		return "CategoryEquip [equipNumber=" + equipNumber + ", agency=" + agency + ", equipName=" + equipName + "]";
 	}
 	
 	

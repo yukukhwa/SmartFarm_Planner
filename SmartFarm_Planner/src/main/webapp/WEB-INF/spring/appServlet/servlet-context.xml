@@ -54,7 +54,6 @@
 				<value>classpath:com/spam/sfplanner/category/CategoryMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/category/CategoryDealMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/category/CategoryEquipMapper.xml</value>
-				<value>classpath:com/spam/sfplanner/category/CompanyRentEquipMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/category/CategoryIndustryMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/category/CategoryItemMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/category/CategoryThemeMapper.xml</value>
@@ -68,7 +67,8 @@
 				<value>classpath:com/spam/sfplanner/plan/WoInsurancePayMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/plan/WoMaterialsPayMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/plan/WoNeRentPayMapper.xml</value>
-				<value>classpath:com/spam/sfplanner/plan/WoNeedEquipMapper.xml</value>				
+				<value>classpath:com/spam/sfplanner/plan/WoNeedEquipMapper.xml</value>
+				<value>classpath:com/spam/sfplanner/plan/CompanyRentEquipMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/actresult/WrEtcSpendPayMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/actresult/WrNeRentPayMapper.xml</value>
 				<value>classpath:com/spam/sfplanner/actresult/WrNeedEquipMapper.xml</value>

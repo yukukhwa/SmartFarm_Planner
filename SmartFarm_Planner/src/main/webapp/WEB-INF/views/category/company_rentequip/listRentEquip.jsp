@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>addEtcSpendPay</title>
+<title>listRentEquip</title>
 <jsp:include page="/WEB-INF/views/css.jsp"/>
 </head>
 <body>
@@ -16,9 +16,8 @@
      <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
-    		<a href="${pageContext.request.contextPath}/listEtcSpendPay">예상 기타지출비 리스트로 가기</a>
-    	
+    	<a href="${pageContext.request.contextPath}/listCategoryEtcSpendpay">기타지출비카테고리 리스트가기</a>
     	</section>
-    </section>	
+    </section>
 </body>
 </html>

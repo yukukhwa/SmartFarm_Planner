@@ -33,23 +33,23 @@
    					</tr>
    				</thead>
    				<tbody>
-   					<c:forEach var="categoryEquipDb" items="${list}">
+   					<c:forEach var="categoryEquip" items="${list}">
    						<tr>
    							<td>
-   								${categoryEquipDb.equipNumber}
+   								${categoryEquip.equipNumber}
    							</td>
    							<td>
-   								${categoryEquipDb.equipName}
+   								${categoryEquip.equipName}
    							</td>
    							<td>
-   								${categoryEquipDb.agencyDb.aName}
+   								${categoryEquip.agency.aName}
    							</td>
-   							<c:if test="${loginMember.corpName == categoryEquipDb.agencyDb.aName}">
+   							<c:if test="${loginMember.corpName == categoryEquip.agency.aName}">
     							<td>
-    								<a href="${pageContext.request.contextPath}/updateCategoryEquip?equipNumber=${categoryEquipDb.equipNumber}">수정</a>
+    								<a href="${pageContext.request.contextPath}/updateCategoryEquip?equipNumber=${categoryEquip.equipNumber}">수정</a>
     							</td>
     							<td>
-    								<a href="${pageContext.request.contextPath}/deleteCategoryEquip?equipNumber=${categoryEquipDb.equipNumber}">삭제</a>
+    								<a href="${pageContext.request.contextPath}/deleteCategoryEquip?equipNumber=${categoryEquip.equipNumber}">삭제</a>
     							</td>
     						</c:if>	
    						</tr>

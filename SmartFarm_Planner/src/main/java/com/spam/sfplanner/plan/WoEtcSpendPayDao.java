@@ -1,6 +1,6 @@
 /*배건혜*/
 package com.spam.sfplanner.plan;
 
-public class WoEtcSpendPayService {
+public class WoEtcSpendPayDao {
 
 }

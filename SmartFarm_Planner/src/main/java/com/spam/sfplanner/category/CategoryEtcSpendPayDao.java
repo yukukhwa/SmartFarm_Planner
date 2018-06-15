@@ -11,17 +11,28 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class CategoryEtcSpendPayDao {
 	private static final Logger logger = LoggerFactory.getLogger(CategoryEtcSpendPayDao.class);
-	final private String NAMESPACE = "com.spam.sfplanner.category.CategoryEtcSpendPayMapper.";
 	
 	@Autowired 
 	private SqlSessionTemplate sqlSession;
-
-	/*기타지출비 카테고리 리스트 Dao*/
-	public List<CategoryEtcSpendPay> listSelectCategoryEtcSpendPay(){
-		return sqlSession.selectList(NAMESPACE+"listSelectEtcSpendPay");
+	
+	final private String NAMESPACE = "com.spam.sfplanner.category.CategoryEtcSpendPayMapper.";
+	
+	/*기타지출비카테고리 수정처리 Dao*/
+	public void updateCategoryEtcSpendPay(CategoryEtcSpendPay categoryEtcSpendPay) {
+		sqlSession.update(NAMESPACE+"updateCategoryEtcSpendPay", categoryEtcSpendPay);
 	}
 	
-	/*기타지출비용카테고리 등록 Dao*/
+	/*기타지출비카테고리 하나의 리스트 조회화면 출력 Dao*/
+	public CategoryEtcSpendPay oneSelectCategoryEtcSpendPay(int etcspendpayNumber) {
+		return sqlSession.selectOne(NAMESPACE+"oneSelectCategoryEtcSpendPay", etcspendpayNumber);
+	}
+	
+	/*기타지출비카테고리 리스트 Dao*/
+	public List<CategoryEtcSpendPay> listSelectCategoryEtcSpendPay(){
+		return sqlSession.selectList(NAMESPACE+"listSelectCategoryEtcSpendPay");
+	}
+	
+	/*기타지출비카테고리 등록 Dao*/
 	public void insertCategoryEtcSpendPay(Map<String, Object> map) {
 		sqlSession.insert(NAMESPACE+"insertCategoryEtcSpendPay", map);
 	}
