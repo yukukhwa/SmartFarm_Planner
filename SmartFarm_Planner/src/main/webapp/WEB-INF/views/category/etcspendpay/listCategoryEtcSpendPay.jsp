@@ -37,29 +37,29 @@
 	    			</tr>
 	    		</thead>
 	    		<tbody>
-	    			<c:forEach var="categoryEtcSpendPayDb" items="${list}">
+	    			<c:forEach var="categoryEtcSpendPay" items="${list}">
 		    			<tr>
 		    				<td>
-		    				   ${categoryEtcSpendPayDb.etcspendpayNumber} 				
+		    				   ${categoryEtcSpendPay.etcspendpayNumber} 				
 		    				</td>
 		    				<td>
-		    				    ${categoryEtcSpendPayDb.categoryThemeDb.themeName}				
+		    				    ${categoryEtcSpendPay.categoryTheme.themeName}				
 		    				</td>
 		    				<td>
-		    				    ${categoryEtcSpendPayDb.etcspendpayName}				
+		    				    ${categoryEtcSpendPay.etcspendpayName}				
 		    				</td>
 		    				<td>
-		    				   ${categoryEtcSpendPayDb.farmDb.fName} 				
+		    				   ${categoryEtcSpendPay.farm.fName} 				
 		    				</td>
 		    				<td>
-		    				    ${categoryEtcSpendPayDb.farmDb.fMemberId}				
+		    				    ${categoryEtcSpendPay.farm.fMemberId}				
 		    				</td>
-		    				<c:if test="${loginMember.corpName == categoryEtcSpendPayDb.farmDb.fName}">
+		    				<c:if test="${loginMember.corpName == categoryEtcSpendPay.farm.fName}">
 		    					<td>
-		    						<a href="${pageContext.request.contextPath}/updateCategoryEtcSpendPay?etcspendPayNumber=${categoryEtcSpendPayDb.etcspendpayNumber}">수정</a>
+		    						<a href="${pageContext.request.contextPath}/updateCategoryEtcSpendPay?etcspendpayNumber=${categoryEtcSpendPay.etcspendpayNumber}">수정</a>
 		    					</td>
 		    					<td>
-		    						<a href="${pageContext.request.contextPath}/deleteCategoryEtcSpendPay?etcspendPayNumber=${categoryEtcSpendPayDb.etcspendpayNumber}">삭제</a>
+		    						<a href="${pageContext.request.contextPath}/deleteCategoryEtcSpendPay?etcspendpayNumber=${categoryEtcSpendPay.etcspendpayNumber}">삭제</a>
 		    					</td>
 		    				</c:if>
 		    			</tr>

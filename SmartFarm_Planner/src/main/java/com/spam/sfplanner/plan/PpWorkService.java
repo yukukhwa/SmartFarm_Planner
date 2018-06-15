@@ -15,7 +15,23 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class PpWorkService {
 	@Autowired PpWorkDao ppWorkDao;
+	@Autowired WoMaterialsPayDao woMaterialsPayDao;
+	@Autowired WoInsurancePayDao woInsurancePayDao;
+	
 	private final static Logger LOGGER = LoggerFactory.getLogger(PpWorkService.class);
+	
+	public PpWork oneSelectPpWork(int ppWorkNumber) {
+		LOGGER.info("PpWorkService oneSelectPpWork 호출");
+		PpWork ppWork = new PpWork();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ppWorkNumber", ppWorkNumber);
+		ppWork.setWoMaterialsPayList(woMaterialsPayDao.listSelectWoMaterialsPay(ppWorkNumber));
+		ppWork.setWoInsurancePayList(woInsurancePayDao.listSelectWoInsurancePay(map));
+		System.out.println("ppWork"+ppWork);
+		System.out.println("materialsPayList====> "+ppWork.getWoMaterialsPayList());
+		System.out.println("ppWork.to==> "+ppWork.toString());
+		return ppWork;
+	}
 	
 	public List<PpWork> searchListSelectPpWork(String searchWorkPlanOption, String searchKeyword, int ppNumber){
 		LOGGER.info("PpWorkService searchList 호출");

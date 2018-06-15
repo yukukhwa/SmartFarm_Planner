@@ -16,6 +16,7 @@ public class WoMaterialsPayDao {
 	private final static String NAMESPACE = "com.spam.sfplanner.plan.WoMaterialsPayMapper.";
 	
 	public List<WoMaterialsPay> listSelectWoMaterialsPay(int ppWorkNumber){
+		LOGGER.info(NAMESPACE);
 		return sqlSession.selectList(NAMESPACE+"listSelectWoMaterialsPay", ppWorkNumber);
 	}
 }

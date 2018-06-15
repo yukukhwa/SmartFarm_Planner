@@ -4,7 +4,26 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spam.sfplanner.actresult.WrEtcSpendPayMapper">
 
-<!-- 기타지출비용 결과 레코드 하나 선택 후 수정 쿼리문 -->
+<!-- 리절트맵(조회결과매핑) -->
+<resultMap type="com.spam.sfplanner.actresult.WrEtcSpendPay" id="resultWrEtcSpendPay">
+	<id column="wr_etcspendpay_number" property="wrEtcspendpayNumber"/>
+	<result column="wr_etcspendpay_realcost" property="wrEtcspendpayRealcost"/>
+	<result column="wr_etcspendpay_date" property="wrEtcspendpayDate"/>
+	<collection ofType="com.spam.sfplanner.actresult.PpWoResult" property="ppWoResult">
+		<id column="wr_number" property="wr_number"/>
+		<result column="wr_totalarea" property="wr_totalarea"/>
+		<result column="wr_reworkarea" property="wr_reworkarea"/>
+	</collection>
+	<collection ofType="com.spam.sfplanner.plan.WoEtcSpendPay" property="woEtcSpendPay">
+		<id column="e_etcspendpay_number" property="eEtcspendpayNumber"/>
+		<result column="e_etcspendpay_content" property="eEtcspendpayContent"/>
+		<result column="e_etcspendpay_day" property="eEtcspendpayDay"/>
+		<result column="e_etcspendpay_cost" property="eEtcspendpayCost"/>
+		<result column="e_etcspendpay_secret" property="eEtcspendpaySecret"/>
+	</collection>
+</resultMap>
+
+<!-- 기타지출비용 결과 레코드 하나 선택 후 수정 -->
 <update id="updateWrEtcSpendPay"
 		parameterType="com.spam.sfplanner.actresult.WrEtcSpendPay">
 	UPDATE sp_wr_etcspendpay
@@ -14,7 +33,7 @@
 	WHERE wr_etcspendpay_number=#{wrEtcspendpayNumber}
 </update>
  
-<!-- 기타지출비용 결과 레코드 하나 선택 쿼리문 -->
+<!-- 기타지출비용 결과 레코드 하나 선택 -->
 <select id="oneSelectWrEtcSpendPay"
 		parameterType="int"
 		resultType="com.spam.sfplanner.actresult.WrEtcSpendPay">
@@ -27,20 +46,14 @@
 	WHERE wr_etcspendpay_number=#{wrEtcspendpayNumber}
 </select>
  
-<!-- 기타지출비용 결과 리스트 선택 쿼리문 -->
+<!-- 기타지출비용 결과 리스트 -->
 <select id="listSelectWrEtcSpendPay"
 		parameterType="int"
-		resultType="com.spam.sfplanner.actresult.WrEtcSpendPay">
-	SELECT wr_etcspendpay_number AS wrEtcspendpayNumber
-		, wr_number AS wrNumber
-		, e_etcspendpay_number AS eEtcspendpayNumber
-		, wr_etcspendpay_realcost AS wrEtcspendpayRealcost
-		, wr_etcspendpay_date AS wrEtcspendpayDate
-	FROM sp_wr_etcspendpay
-	WHERE wr_number=#{wrNumber}	
+		resultMap="resultWrEtcSpendPay">
+	
 </select>
  
-<!-- 기타지출비용 결과 입력 쿼리문 -->
+<!-- 기타지출비용 결과 입력 -->
 <insert id="insertWrEtcSpendPay"
 		parameterType="com.spam.sfplanner.actresult.WrEtcSpendPay">
 	INSERT INTO sp_wr_etcspendpay(
@@ -48,7 +61,7 @@
 		, e_etcspendpay_number
 		, wr_etcspendpay_realcost
 		, wr_etcspendpay_date)
-	VALUES (#{wrNumber}, #{eEtcspendpayNumber}, #{wrEtcspendpayRealcost}, #{wrEtcspendpayDate}); 
+	VALUES (#{ppWoResult.wrNumber}, #{woEtcSpendPay.eEtcspendpayNumber}, #{wrEtcspendpayRealcost}, #{wrEtcspendpayDate}); 
 </insert>
 
 </mapper>

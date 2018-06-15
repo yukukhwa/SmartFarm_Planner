@@ -36,7 +36,6 @@
     							<th>공개/비공개 여부</th>
     						</tr>
     					</thead>
-    					<c:forEach var="woMaterialsPay" items="${list}">
 						<tbody>
 							<tr>
 								<td>${woMaterialsPay.eMaterialspayNumber}</td>
@@ -47,7 +46,7 @@
 								<td>${woMaterialsPay.eMaterialspaySecret}</td>
 							</tr>
 						</tbody>
-						</c:forEach>
+						
     				</table>
     				
     			</div>

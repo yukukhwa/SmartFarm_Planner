@@ -28,8 +28,8 @@
 					<tbody>
 						<c:forEach var="actResultList" items="${actResultList}">
 							<tr>
-								<td>${actResultList.ppNamePlanname}</td>
-								<td>${actResultList.ppResultlistDate}</td>
+								<td>${actResultList.productionPlan.titlePlan.ppNamePlanname}</td>
+								<td><a href="${pageContext.request.contextPath}/oneSelectActResult?ppResultlistNumber=${actResultList.ppResultlistNumber}">${actResultList.ppResultlistDate}</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

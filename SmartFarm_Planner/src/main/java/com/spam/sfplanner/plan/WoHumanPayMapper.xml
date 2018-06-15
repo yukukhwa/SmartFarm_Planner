@@ -4,16 +4,47 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.spam.sfplanner.plan.WoHumanPayMapper">
+ 	<resultMap type="com.spam.sfplanner.plan.WoHumanPay" id="woHumanPay">
+ 		<id column="e_humanpay_number" property="eHumanpayNumber"/>
+ 		<result column="e_humanpay_name" property="eHumanpayName"/>
+ 		<result column="e_humanpay_residentnumber" property="eHumanpayResidentnumber"/>
+ 		<result column="e_humanpay_expectpay" property="eHumanpayExpectpay"/>
+ 		<result column="e_humanpay_expectday" property="eHumanpayExpectday"/>
+ 		<result column="e_humanpay_secret" property="eHumanpaySecret"/>
+ 		<collection property="categoryTheme" ofType="com.spam.sfplanner.category.CategoryTheme">
+ 			<id column="theme_number" property="themeNumber"/>
+ 			<result column="theme_name" property="themeName"/>
+ 		</collection>
+ 		<collection property="ppWork" ofType="com.spam.sfplanner.plan.PpWork">
+ 			<id column="pp_work_number" property="ppWorkNumber"/>
+ 			<result column="pp_work_name" property="ppWorkName"/>
+ 			<result column="pp_work_startday" property="ppWorkStartday"/>
+ 			<result column="pp_work_endday" property="ppWorkEndday"/>
+ 			<result column="pp_work_area" property="ppWorkArea"/>
+ 			<result column="pp_work_content" property="ppWorkContent"/>
+ 		</collection>
+ 	</resultMap>
+ 	
  	<select id="listSelectWoHumanPay"
- 		resultType="com.spam.sfplanner.plan.WoHumanPay">
- 		SELECT e_humanpay_number AS eHumanpayNumber
- 			, theme_number AS themeNumber
- 			, pp_work_number AS ppWorkNumber
- 			, e_humanpay_name AS eHumanpayName
- 			, e_humanpay_residentnumber AS eHumanpayResidentnumber
- 			, e_humanpay_expectpay AS eHumanpayExpectpay
- 			, e_humanpay_expectday AS eHumanpayExpectday
- 			, e_humanpay_secret AS eHumanpaySecret
-		FROM sp_e_humanpay
+ 		parameterType="java.util.Map"
+ 		resultMap="woHumanPay">
+	 		SELECT sp_e_humanpay.e_humanpay_number
+				, sp_e_humanpay.e_humanpay_name
+				, sp_e_humanpay.e_humanpay_residentnumber
+				, sp_e_humanpay.e_humanpay_expectpay
+				, sp_e_humanpay.e_humanpay_expectday
+				, sp_e_humanpay.e_humanpay_secret
+				, sp_theme_cate.theme_number
+				, sp_theme_cate.theme_name
+				, sp_pp_work.pp_work_number
+				, sp_pp_work.pp_work_name
+			FROM 
+				sp_e_humanpay JOIN sp_theme_cate JOIN sp_pp_work
+			ON
+				sp_e_humanpay.theme_number = sp_theme_cate.theme_number
+			AND
+				sp_e_humanpay.pp_work_number = sp_pp_work.pp_work_number
+			WHERE
+				sp_e_humanpay.pp_work_number=#{ppWorkNumber}
  	</select>
  </mapper>

@@ -12,8 +12,6 @@ import org.springframework.stereotype.Service;
 public class WrEtcSpendPayService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(WrEtcSpendPayService.class);
 	@Autowired private WrEtcSpendPayDao wrEtcSpendPayDao;
-	java.util.Date date = new java.util.Date(); 
-	java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	
 	/**
 	 * 기타지출비 결과 리스트 중 한 줄의 레코드 선택해서 수정하는 서비스
@@ -56,8 +54,6 @@ public class WrEtcSpendPayService {
 	 */
 	public void insertWrEtcSpendPay(WrEtcSpendPay wrEtcSpendPay) {
 		LOGGER.debug("input : "+wrEtcSpendPay);
-		
-		wrEtcSpendPay.setWrEtcspendpayDate(sdf.format(date));
 		wrEtcSpendPayDao.insertWrEtcSpendPay(wrEtcSpendPay);
 	}	
 }

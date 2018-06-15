@@ -1,5 +1,7 @@
 package com.spam.sfplanner.category;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -19,9 +21,40 @@ public class CategoryEtcSpendPayController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CategoryEtcSpendPayController.class);
 	
+	
+	/**
+	 * 기타지출비카테고리 삭제처리 Controller
+	 * @param etcspendpayNumber
+	 * @return
+	 */
+	@RequestMapping(value="/deleteCategoryEtcSpendPay", method=RequestMethod.GET)
+	public String deleteCategoryEtcSpendPay(int etcspendpayNumber) {
+		categoryEtcSpendPayService.deleteCategoryEtcSpendPay(etcspendpayNumber);
+		return "redirect:/listCategoryEtcSpendPay";
+	}
+	
+	/**
+	 * 기타지출비카테고리 수정처리 Controller
+	 * @param categoryEtcSpendPay
+	 * @return
+	 */
+	@RequestMapping(value="/updateCategoryEtcSpendPay", method=RequestMethod.POST)
+	public String updateCategoryEtcSpendPay(CategoryEtcSpendPay categoryEtcSpendPay) {
+		categoryEtcSpendPayService.updateCategoryEtcSpendPay(categoryEtcSpendPay);
+		return "redirect:/listCategoryEtcSpendPay";
+	}
+	/**
+	 * 하나의 리스트를 수정화면에 조회 하기 위한 Controller
+	 * @param etcspendpayNumber
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/updateCategoryEtcSpendPay", method=RequestMethod.GET)
-	public String updateCategoryEtcSpendPay() {
-		return "category/etcspendpay/addCategoryEtcSpendPay";
+	public String oneSelectCategoryEtcSpendPay(int etcspendpayNumber, Model model) {
+		Map<String, Object> map = categoryEtcSpendPayService.oneSelectCategoryEtcSpendPay(etcspendpayNumber);
+		model.addAttribute("categoryEtcSpendPay", map.get("categoryEtcSpendPay"));
+		model.addAttribute("categoryTheme", map.get("categoryTheme"));
+		return "category/etcspendpay/updateCategoryEtcSpendPay";
 	}
 	/**
 	 * 기타지출비카테고리 리스트 출력 Controller
@@ -41,7 +74,7 @@ public class CategoryEtcSpendPayController {
 	public String insertCategoryEtcSpendPay(CategoryEtcSpendPay categoryEtcSpendPay, HttpSession session) {
 		System.out.println("insertCategoryEtcSpendPay categoryEtcSpendPayDb====> "+categoryEtcSpendPay);
 		categoryEtcSpendPayService.insertCategoryEtcSpendPay(categoryEtcSpendPay, session);
-		return "category/etcspendpay/listCategoryEtcSpendPay";
+		return "redirect:/listCategoryEtcSpendPays";
 	}
 	
 	/**

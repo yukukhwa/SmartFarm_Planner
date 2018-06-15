@@ -49,12 +49,14 @@
 				, sp_theme_cate.theme_name
 				, sp_agency.a_number
 				, sp_agency.a_name
-			FROM sp_materials_cate
-			JOIN sp_theme_cate
-			ON sp_materials_cate.theme_number = sp_theme_cate.theme_number
-			JOIN sp_agency
-			ON sp_materials_cate.a_number = sp_agency.a_number
-			WHERE sp_materials_cate.materials_name=#{materialsName}
+			FROM 
+				sp_materials_cate JOIN sp_theme_cate JOIN sp_agency
+			ON 
+				sp_materials_cate.theme_number = sp_theme_cate.theme_number
+			AND 
+				sp_materials_cate.a_number = sp_agency.a_number
+			WHERE 
+				sp_materials_cate.materials_name=#{materialsName}
  	</select>
  
  	<!-- 검색키워드에 해당하는 원자재카테고리의 전체 리스트를 출력하고 조회하는 쿼리문 -->

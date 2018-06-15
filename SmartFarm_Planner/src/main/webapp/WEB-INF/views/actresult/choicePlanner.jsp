@@ -34,14 +34,14 @@
 					<tbody>
 						<c:forEach var="plannerList" items="${plannerList}">
 							<tr>
-								<td>${plannerList.titlePlanDb.ppNamePlanname}</td>
+								<td>${plannerList.titlePlan.ppNamePlanname}</td>
 								<td>${plannerList.ppStartday}</td>
 								<td>${plannerList.ppEndday}</td>
 								<td>${plannerList.ppOwnarea}</td>
 								<td>${plannerList.ppRentarea}</td>
 								<td>${plannerList.ppRecordday}</td>
-								<td>${plannerList.farmMemberDb.fMemberId}</td>
-								<td><a href="${pageContext.request.contextPath}/insertActResult?ppResultlistNumber=${plannerList.ppNumber}">등록</a></td>
+								<td>${plannerList.farmMember.fMemberId}</td>
+								<td><a href="${pageContext.request.contextPath}/insertActResult?ppNumber=${plannerList.ppNumber}">등록</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>

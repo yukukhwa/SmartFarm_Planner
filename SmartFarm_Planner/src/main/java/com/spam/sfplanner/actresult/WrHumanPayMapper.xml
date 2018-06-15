@@ -57,8 +57,8 @@
 			wr_humanpay_date
 		)
 		VALUES (
-			#{wrNumber},
-			#{eHumanpayNumber},
+			#{ppWoResult.wrNumber},
+			#{woHumanPay.eHumanpayNumber},
 			#{wrHumanpayRealcost},
 			#{wrHumanpayDate}
 		)

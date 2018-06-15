@@ -54,7 +54,7 @@
     						<td>${ppWork.productionPlan.ppNumber}</td>
     						<td>${ppWork.farm.fName}</td>
     						<td>
-    							<a href="${pageContext.request.contextPath}/oneWorkPlan?ppNumber=${ppWork.productionPlan.ppNumber}&ppWorkNumber=${ppWork.ppWorkNumber}">${ppWork.ppWorkName}</a>
+    							<a href="${pageContext.request.contextPath}/oneWorkPlan?ppWorkNumber=${ppWork.ppWorkNumber}">${ppWork.ppWorkName}</a>
     						</td>
     						<td>${ppWork.ppWorkStartday}</td>
     						<td>${ppWork.ppWorkEndday}</td>

@@ -49,7 +49,7 @@
 	    			<div>
 	    				<label>
 		    				관리기관
-		    				<input type="text" id="aName" name="aName" value="${listCategoryDeal.agencyDb.aName}" disabled="disabled">
+		    				<input type="text" id="aName" name="aName" value="${listCategoryDeal.agency.aName}" disabled="disabled">
 	    				</label>
 	    			</div>
 	    			<button id="updateSubmit">수정</button>

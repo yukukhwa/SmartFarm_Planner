@@ -1,11 +1,17 @@
 package com.spam.sfplanner.plan;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class WoHumanPayController {
+	@Autowired WoHumanPayService woHumanPayService;
+	private final static Logger LOGGER = LoggerFactory.getLogger(WoHumanPayController.class);
 	
 	@RequestMapping(value="/updateHumanPay", method=RequestMethod.GET)
 	public String updateWoHumanPay() {
@@ -13,7 +19,9 @@ public class WoHumanPayController {
 	}
 	
 	@RequestMapping(value="/listHumanPay", method=RequestMethod.GET)
-	public String listSelectWoHumanPay() {
+	public String listSelectWoHumanPay(Model model, int ppWorkNumber) {
+		model.addAttribute("ppWorkNumber", ppWorkNumber);
+		model.addAttribute("list", woHumanPayService.listSelectWoHumanPay(ppWorkNumber));
 		return "plan/wo_humanpay/listHumanPay";
 	}
 	

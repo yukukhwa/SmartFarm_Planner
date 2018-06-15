@@ -5,4 +5,38 @@
   
 <mapper namespace="com.spam.sfplanner.actresult.WrNeRentPayMapper">
 
+<!-- 리절트맵(조회결과매핑) -->
+<resultMap type="com.spam.sfplanner.actresult.WrNeRentPay" id="wrNeedEquipRentPay">
+	<id column="ne_rentpay_number" property="neRentpayNumber"/>
+	<result column="ne_rentpay_cost" property="neRentpayCost"/>
+	<result column="ne_rentpay_date" property="neRentpayDate"/>
+	<collection ofType="com.spam.sfplanner.actresult.WrNeedEquip" property="wrNeedEquip">
+		<id column="wr_needequip_number" property="wrNeedequipNumber"/>
+		<result column="wr_needequip_state" property="wrNeedequipState"/>		
+	</collection>
+	<collection ofType="com.spam.sfplanner.plan.WoNeRentPay" property="woNeRentPay">
+		<id column="ne_e_rentpay_number" property="neERentpayNumber"/>
+		<result column="ne_rentpay_cost" property="neRentpayCost"/>	
+		<result column="ne_rentpay_date" property="nerentpayDate"/>	
+	</collection>
+</resultMap>
+<!-- 업데이트 -->
+<!-- 수정화면출력 셀렉트 -->
+<!-- 삭제 -->
+<!-- 리스트 -->
+<select id="listselectWrNeRentPay"
+		resultMap="wrNeedEquipRentPay">
+	SELECT sp_ne_rentpay.ne_rentpay_number
+	, sp_ne_rentpay.ne_e_rentpay_number
+	, sp_ne_rentpay.wr_needequip_number
+	, sp_ne_rentpay.ne_rentpay_cost
+	, sp_ne_rentpay.ne_rentpay_date
+	, sp_wr_needequip.wr_needequip_state
+	FROM sp_ne_rentpay
+	JOIN sp_ne_e_rentpay
+	JOIN sp_wr_needequip
+	ON sp_ne_rentpay.ne_e_rentpay_number=sp_ne_e_rentpay.ne_e_rentpay_number and 
+	sp_ne_rentpay.wr_needequip_number=sp_wr_needequip.wr_needequip_number
+</select>
+<!-- 등록 -->
 </mapper>

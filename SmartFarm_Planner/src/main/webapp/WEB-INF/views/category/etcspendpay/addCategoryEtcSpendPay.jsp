@@ -33,10 +33,10 @@
 	    			<div>
 	    				<label>
 	    				테마카테고리 선택
-		    				<select name="categoryThemeDb.themeNumber" id="categoryThemeDb.themeNumber">
+		    				<select name="categoryTheme.themeNumber" id="categoryTheme.themeNumber">
 		    					<option selected="selected">테마선택</option>
-		    					<c:forEach var="categoryThemeDb" items="${categoryThemeDb}">
-		    						<option value="${categoryThemeDb.themeNumber}">${categoryThemeDb.themeName}</option>
+		    					<c:forEach var="categoryTheme" items="${categoryTheme}">
+		    						<option value="${categoryTheme.themeNumber}">${categoryTheme.themeName}</option>
 		    					</c:forEach>
 		    				</select>
 	    				</label>
@@ -47,9 +47,6 @@
 	    				<button type="submit">등록하기</button>
 	    			</div>
 	    		</form>
-			    
-			 <%--    <a href="${pageContext.request.contextPath}/listCategoryEtcSpendPay">기타지출비카테고리 리스트로 가기</a> --%>
-		    	
     		</c:if>
     	</section>
     </section>

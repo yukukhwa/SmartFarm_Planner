@@ -1,14 +1,16 @@
-// [유국화]
+//[유국화]
 package com.spam.sfplanner.actresult;
-import java.util.Date;
+import java.sql.Date;
+import com.spam.sfplanner.plan.WoNeRentPay;
 
 //필요장비 결과별 대여비 결과 db
 public class WrNeRentPay {
 	private int neRentpayNumber; //대여비 결과 넘버
 	private WrNeedEquip wrNeedEquip; //필요장비 결과 넘버 외래키 기능 위한 객체
-	private int neERentpayNumber; //예상 대여비 넘버 외래키 기능 위한 객체(클래스 없어서 수정전)
+	private WoNeRentPay woNeRentPay; //예상 대여비 넘버 외래키 기능 위한 객체
 	private double neRentpayCost; //대여비
 	private Date neRentpayDate; //대여비지불일
+	
 	public int getNeRentpayNumber() {
 		return neRentpayNumber;
 	}
@@ -21,11 +23,11 @@ public class WrNeRentPay {
 	public void setWrNeedEquip(WrNeedEquip wrNeedEquip) {
 		this.wrNeedEquip = wrNeedEquip;
 	}
-	public int getNeERentpayNumber() {
-		return neERentpayNumber;
+	public WoNeRentPay getWoNeRentPay() {
+		return woNeRentPay;
 	}
-	public void setNeERentpayNumber(int neERentpayNumber) {
-		this.neERentpayNumber = neERentpayNumber;
+	public void setWoNeRentPay(WoNeRentPay woNeRentPay) {
+		this.woNeRentPay = woNeRentPay;
 	}
 	public double getNeRentpayCost() {
 		return neRentpayCost;
@@ -41,9 +43,7 @@ public class WrNeRentPay {
 	}
 	@Override
 	public String toString() {
-		return "WrNeRentPay [neRentpayNumber=" + neRentpayNumber + ", wrNeedEquip=" + wrNeedEquip
-				+ ", neERentpayNumber=" + neERentpayNumber + ", neRentpayCost=" + neRentpayCost + ", neRentpayDate="
-				+ neRentpayDate + "]";
-	}
-	
+		return "WrNeRentPay [neRentpayNumber=" + neRentpayNumber + ", wrNeedEquip=" + wrNeedEquip + ", woNeRentPay="
+				+ woNeRentPay + ", neRentpayCost=" + neRentpayCost + ", neRentpayDate=" + neRentpayDate + "]";
+	}	
 }

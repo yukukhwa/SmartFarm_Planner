@@ -12,84 +12,68 @@
 	외래키로 되어있는 컬럼이 상위와 하위에 중복되더라도 테이블에 컬림이 되어있으므로 추가해두었다. -->
 	<resultMap type="com.spam.sfplanner.actresult.ActResult" id="actResult">
 		<id column="pp_resultlist_number" property="ppResultlistNumber"/>
-		<result column="pp_number" property="ppNumber"/>
-		<result column="f_number" property="fNumber"/>
 		<result column="pp_resultlist_date" property="ppResultlistDate"/>
-		<result column="f_member_id" property="fMemberId"/>
-		<collection property="ppWoResultDb" ofType="com.spam.sfplanner.actresult.PpWoResult">
-			<id column="wr_number" property="wrNumber"/>
-			<result column="pp_resultlist_number" property="ppResultlistNumber"/>
-			<result column="pp_work_number" property="ppWorkNumber"/>
-			<result column="wr_totalarea" property="wrTotalarea"/>
-			<result column="wr_reworkarea" property="wrReworkarea"/>
-			<collection property="wrInsurancePayDb" ofType="com.spam.sfplanner.actresult.WrInsurancePay">
-				<id column="wr_insurancepay_number" property="wrInsurancepayNumber"/>
-				<result column="wr_number" property="wrNumber"/>
-				<result column="e_insurancepay_number" property="eInsurancepayNumber"/>
-				<result column="wr_insurancepay_monthcost" property="wrInsurancepayMonthcost"/>
-				<result column="wr_insurancepay_date" property="wrInsurancepayDate"/>
-			</collection>
-			<collection property="wrEtcSpendPayDb" ofType="com.spam.sfplanner.actresult.WrEtcSpendPay">
-				<id column="wr_etcspendpay_number" property="wrEtcspendpayNumber"/>
-				<result column="wr_number" property="wrNumber"/>
-				<result column="e_etcspendpay_number" property="eEtcspendpayNumber"/>
-				<result column="wr_etcspendpay_realcost" property="wrEtcspendpayRealcost"/>
-				<result column="wr_etcspendpay_date" property="wrEtcspendpayDate"/>
-			</collection>
-			<collection property="wrMaterialsPayDb" ofType="com.spam.sfplanner.actresult.WrMaterialsPay">
-				<id column="wr_materialspay_number" property="wrMaterialspayNumber"/>
-				<result column="wr_number" property="wrNumber"/>
-				<result column="e_materialspay_number" property="eMaterialspayNumber"/>
-				<result column="wr_materialspay_quantity" property="wrMaterialspayQuantity"/>
-				<result column="wr_materialspay_unitcost" property="wrMaterialspayUnitcost"/>
-			</collection>
-			<collection property="wrNeedEquipDb" ofType="com.spam.sfplanner.actresult.WrNeedEquip">
-				<id column="wr_needequip_number" property="wrNeedequipNumber"/>
-				<result column="wr_number" property="wrNumber"/>
-				<result column="e_needequip_number" property="eNeedequipNumber"/>
-				<result column="wr_needequip_state" property="wrNeedequipState"/>
-				<collection property="wrNeRentPayDb" ofType="com.spam.sfplanner.actresult.WrNeRentPay">
-					<id column="ne_rentpay_number" property="neRentpayNumber"/>
-					<result column="wr_needequip_number" property="wrNeedequipNumber"/>
-					<result column="ne_rentpay_cost" property="neRentpayCost"/>
-					<result column="ne_rentpay_date" property="neRentpayDate"/>
-					<result column="ne_e_rentpay_number" property="neERentpayNumber"/>
-				</collection>
-			</collection>
-			<collection property="wrHumanPayDb" ofType="com.spam.sfplanner.actresult.WrHumanPay">
-				<id column="wr_humanpay_number" property="wrHumanpayNumber"/>
-				<result column="wr_number" property="wrNumber"/>
-				<result column="e_humanpay_number" property="eHumanpayNumber"/>
-				<result column="wr_humanpay_realcost" property="wrHumanpayRealcost"/>
-				<result column="wr_humanpay_date" property="wrHumanpayDate"/>
-			</collection>
-			<collection property="memoDb" ofType="com.spam.sfplanner.actresult.Memo">
-				<id column="wr_memo_number" property="wrHumanpayNumber"/>
-				<result column="theme_number" property="wrNumber"/>
-				<result column="wr_number" property="wrNumber"/>
-				<result column="wr_memo_subject" property="wrNumber"/>
-				<result column="wr_memo_content" property="wrNumber"/>
-				<collection property="memoFileDb" ofType="com.spam.sfplanner.actresult.MemoFile">
-					<id column="memo_file_number" property="memoFileNumber"/>
-					<result column="wr_memo_number" property="wrMemoNumber"/>
-					<result column="memo_file_realname" property="memoFileFealname"/>
-					<result column="memo_file_randomname" property="memoFileRandomname"/>
-					<result column="memo_file_ext" property="memoFileExt"/>
-					<result column="memo_file_type" property="memoFileType"/>
-					<result column="memo_file_size" property="memoFileSize"/>
-					<result column="memo_file_date" property="memoFileDate"/>
-				</collection>
+		<collection property="farmMember" ofType="com.spam.sfplanner.user.FarmMember">
+			<id column="f_member_id" property="fMemberId"/>
+			<result column="f_member_pw" property="fMemberPw"/>
+			<result column="f_member_name" property="fMemberName"/>
+			<result column="f_member_phone" property="fMemberPhone"/>
+			<result column="f_member_gender" property="fMemberGender"/>
+			<result column="f_member_email" property="fMemberEmail"/>
+			<result column="f_member_privacy" property="fMemberPrivacy"/>
+			<result column="f_member_doroaddress" property="fMemberDoroaddress"/>
+			<result column="f_member_jibunaddress" property="fMemberJibunaddress"/>
+			<result column="f_member_detailaddress" property="fMemberDetailaddress"/>
+			<result column="f_member_registdate" property="fMemberRegistdate"/>
+		</collection>
+		<collection property="productionPlan" ofType="com.spam.sfplanner.plan.ProductionPlan">
+			<id column="pp_number" property="ppNumber"/>
+			<result column="pp_startday" property="ppStartday"/>
+			<result column="pp_endday" property="ppEndday"/>
+			<result column="pp_ownarea" property="ppOwnarea"/>
+			<result column="pp_rentarea" property="ppRentarea"/>
+			<result column="pp_recordday" property="ppRecordday"/>
+			<result column="pp_secret" property="ppSecret"/>
+			<collection property="titlePlan" ofType="com.spam.sfplanner.plan.TitlePlan">
+				<id column="pp_name_number" property="ppNameNumber"/>
+				<result column="pp_name_planname" property="ppNamePlanname"/>
 			</collection>
 		</collection>
+		<collection property="farm" ofType="com.spam.sfplanner.corporation.Farm">
+			<id column="f_number" property="fNumber"/>
+			<result column="f_name" property="fName"/>
+			<result column="f_member_id" property="fMemberId"/>
+			<result column="f_phone" property="fPhone"/>
+			<result column="f_doroaddress" property="fDoroaddress"/>
+			<result column="f_jibunaddress" property="fJibunaddress"/>
+			<result column="f_party" property="fParty"/>
+			<result column="f_registdate" property="fRegistdate"/>
+		</collection>
 	</resultMap>
+	<select id="oneSelectActResult"
+			parameterType="Map"
+			resultMap="actResult">
+		SELECT
+			sp_pp_resultlist.pp_resultlist_number,
+			sp_pp_name_cate.pp_name_planname,
+			sp_pp_resultlist.f_number,
+			sp_pp_resultlist.pp_resultlist_date,
+			sp_pp_resultlist.f_member_id
+		FROM sp_pp_resultlist
+		JOIN sp_pp ON sp_pp.pp_number = sp_pp_resultlist.pp_number
+		JOIN sp_pp_name_cate ON sp_pp_name_cate.pp_name_number = sp_pp.pp_name_number
+		<if test="search == 'yes'">
+			WHERE sp_pp_resultlist.pp_resultlist_number = #{ppResultlistNumber}
+		</if>
+	</select>
 	<select id="listSelectActResult"
 			parameterType="Map"
-			resultType="com.spam.sfplanner.actresult.ActResultRequest">
+			resultMap="actResult">
 		SELECT
-			sp_pp_name_cate.pp_name_planname AS ppNamePlanname,
-			sp_pp_resultlist.pp_resultlist_number AS ppResultlistNumber,
-			sp_pp_resultlist.f_number AS fNumber,
-			sp_pp_resultlist.pp_resultlist_date AS ppResultlistDate
+			sp_pp_name_cate.pp_name_planname,
+			sp_pp_resultlist.pp_resultlist_number,
+			sp_pp_resultlist.f_number,
+			sp_pp_resultlist.pp_resultlist_date
 		FROM sp_pp_resultlist
 		JOIN sp_pp ON sp_pp.pp_number = sp_pp_resultlist.pp_number
 		JOIN sp_pp_name_cate ON sp_pp_name_cate.pp_name_number = sp_pp.pp_name_number
@@ -98,11 +82,17 @@
 		</if>
 	</select>
 	<insert id="insertActResult" parameterType="com.spam.sfplanner.actresult.ActResult">
-		INSERT INTO sp_wr_humanpay (
-			e_humanpay_number
+		INSERT INTO sp_pp_resultlist (
+			pp_number,
+			f_number,
+			pp_resultlist_date,
+			f_member_id
 		)
 		VALUES (
-			#{wrHumanpayRealcost}
+			#{productionPlan.ppNumber},
+			#{farm.fNumber},
+			NOW(),
+			#{farmMember.fMemberId}
 		)
 	</insert>
 </mapper>

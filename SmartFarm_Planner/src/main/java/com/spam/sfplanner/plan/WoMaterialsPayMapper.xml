@@ -31,10 +31,10 @@
 			, sp_e_materialspay.e_materialspay_unitcost
 			, sp_e_materialspay.e_materialspay_use
 			, sp_e_materialspay.e_materialspay_secret
-			, sp_pp_work.pp_work_number
+			, sp_e_materialspay.pp_work_number
 			, sp_pp_work.pp_work_name
 			, sp_pp_work.pp_work_content
-			, sp_materials_cate.materials_number
+			, sp_e_materialspay.materials_number
 			, sp_materials_cate.materials_name
 			, sp_materials_cate.materials_unit
 		FROM sp_e_materialspay

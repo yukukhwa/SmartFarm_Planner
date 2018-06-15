@@ -16,9 +16,10 @@ public class PpWorkController {
 	private final static Logger LOGGER = LoggerFactory.getLogger(PpWorkController.class);
 	
 	@RequestMapping(value="/oneWorkPlan", method=RequestMethod.GET)
-	public String oneSelectPpWork(Model model, int ppWorkNumber, int ppNumber) {
+	public String oneSelectPpWork(Model model, int ppWorkNumber) {
+		LOGGER.info("PpWorkController 호출");
 		model.addAttribute("ppWorkNumber", ppWorkNumber);
-		model.addAttribute("ppNumber",ppNumber);
+		model.addAttribute("ppWork", ppWorkService.oneSelectPpWork(ppWorkNumber));
 		return "plan/pp_work/oneWorkPlan";
 	}
 	
