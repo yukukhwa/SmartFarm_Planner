@@ -15,10 +15,10 @@ public class CategoryEtcSpendPay {
 	public void setEtcspendpayNumber(int etcspendpayNumber) {
 		this.etcspendpayNumber = etcspendpayNumber;
 	}
-	public CategoryTheme getCategoryThemeDb() {
+	public CategoryTheme getCategoryTheme() {
 		return categoryTheme;
 	}
-	public void setCategoryThemeDb(CategoryTheme categoryTheme) {
+	public void setCategoryTheme(CategoryTheme categoryTheme) {
 		this.categoryTheme = categoryTheme;
 	}
 	public String getEtcspendpayName() {
@@ -27,10 +27,10 @@ public class CategoryEtcSpendPay {
 	public void setEtcspendpayName(String etcspendpayName) {
 		this.etcspendpayName = etcspendpayName;
 	}
-	public Farm getFarmDb() {
+	public Farm getFarm() {
 		return farm;
 	}
-	public void setFarmDb(Farm farm) {
+	public void setFarm(Farm farm) {
 		this.farm = farm;
 	}
 	@Override
@@ -38,5 +38,4 @@ public class CategoryEtcSpendPay {
 		return "CategoryEtcSpendPay [etcspendpayNumber=" + etcspendpayNumber + ", categoryTheme=" + categoryTheme
 				+ ", etcspendpayName=" + etcspendpayName + ", farm=" + farm + "]";
 	}
-	
 }

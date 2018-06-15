@@ -33,23 +33,23 @@
     				</tr>
     			</thead>
     			<tbody>
-    				<c:forEach items="${list}" var="categoryDealDb">
+    				<c:forEach items="${list}" var="categoryDeal">
     					<tr>
     						<td>
-    							${categoryDealDb.dealNumber}
+    							${categoryDeal.dealNumber}
     						</td>
     						<td>
-    							${categoryDealDb.dealClassification}
+    							${categoryDeal.dealClassification}
     						</td>
     						<td>
-    							<a href="${pageContext.request.contextPath}/oneAgency?aName=${categoryDealDb.agencyDb.aName}">${categoryDealDb.agencyDb.aName}</a>
+    							<a href="${pageContext.request.contextPath}/oneAgency?aName=${categoryDeal.agency.aName}">${categoryDeal.agency.aName}</a>
     						</td>	
-    						<c:if test="${loginMember.corpName == categoryDealDb.agencyDb.aName}">
+    						<c:if test="${loginMember.corpName == categoryDeal.agency.aName}">
     							<td>
-    								<a href="${pageContext.request.contextPath}/updateCategoryDeal?dealNumber=${categoryDealDb.dealNumber}">수정</a>
+    								<a href="${pageContext.request.contextPath}/updateCategoryDeal?dealNumber=${categoryDeal.dealNumber}">수정</a>
     							</td>
     							<td>
-    								<a href="${pageContext.request.contextPath}/deleteCategoryDeal?dealNumber=${categoryDealDb.dealNumber}">삭제</a>
+    								<a href="${pageContext.request.contextPath}/deleteCategoryDeal?dealNumber=${categoryDeal.dealNumber}">삭제</a>
     							</td>
     						</c:if>		
     					</tr>
