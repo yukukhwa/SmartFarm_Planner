@@ -10,5 +10,5 @@ import org.springframework.transaction.annotation.Transactional;
 public class WoInsurancePayService {
 
 	@Autowired
-	private WoInsurancePay woInsurancePay;
+	private WoInsurancePayDao woInsurancePayDao;
 }

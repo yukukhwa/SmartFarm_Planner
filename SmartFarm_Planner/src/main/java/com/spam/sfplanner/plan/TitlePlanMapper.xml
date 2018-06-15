@@ -5,14 +5,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 나성수 -->
 <mapper namespace="com.spam.sfplanner.plan.TitlePlanMapper">
-	<resultMap type="com.spam.sfplanner.plan.TitlePlan" id="titlePlanDb">
+	<resultMap type="com.spam.sfplanner.plan.TitlePlan" id="titlePlan">
 		<id column="pp_name_number" property="ppNameNumber"/>
 		<result column="pp_name_planname" property="ppNamePlanname"/>
-		<collection ofType="com.spam.sfplanner.category.CategoryItem" property="categoryItemDb">
+		<collection ofType="com.spam.sfplanner.category.CategoryItem" property="categoryItem">
 			<id column="i_item_number" property="iItemNumber"/>
 			<result column="i_item_name" property="iItemName"/>
 		</collection>
-		<collection ofType="com.spam.sfplanner.corporation.Farm" property="farmDb">
+		<collection ofType="com.spam.sfplanner.corporation.Farm" property="farm">
 			<id column="f_number" property="fNumber"/>
 			<result column="f_name" property="fName"/>
 		</collection>
@@ -31,7 +31,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 계획명 수정 화면 출력 처리 select 쿼리문장 -->
 	<select id="oneSelectTitlePlan"
 			parameterType="int"
-			resultMap="titlePlanDb">
+			resultMap="titlePlan">
 		select
 			sp_pp_name_cate.pp_name_number
 			,sp_pp_name_cate.i_item_number
@@ -54,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 계획명 리스트 출력 처리 select 쿼리문장 -->
 	<select id="listSelectTitlePlan"
 			parameterType="java.util.Map"
-			resultMap="titlePlanDb">
+			resultMap="titlePlan">
 		select
 			sp_pp_name_cate.pp_name_number
 			,sp_pp_name_cate.i_item_number
