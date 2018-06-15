@@ -23,7 +23,7 @@ public class PpWoResultController {
 	public String listSelectWorkResult(Model model) {
 		LOGGER.info("작업단계결과 전체리스트 화면으로 포워드");
 		model.addAttribute("list",ppWoResultService.listSelectWorkResult());
-		return "actresult/pp_work_result/askWorkResult";
+		return "actresult/pp_work_result/listWorkResult";
 	}
 	
 	/**
@@ -35,7 +35,7 @@ public class PpWoResultController {
 	public String insertWorkResult(PpWoResult ppWoResult) {
 		LOGGER.info("작업단계결과 등록 화면에서 포스트 보냄");
 		ppWoResultService.insertWorkResult(ppWoResult);
-		return "redirect:/home";
+		return "redirect:/listWorkResult";
 	}
 	
 	/**

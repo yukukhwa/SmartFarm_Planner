@@ -34,16 +34,12 @@
 			<li class="sub-menu">
 				<a href="javascript:;" class=""><i class="fa fa-cubes"></i><span>기업별 검색</span><span class="menu-arrow arrow_carrot-right"></span></a>
 				<ul class="sub">					
-					<li><a class="" href="${pageContext.request.contextPath}/listFarm">농가 리스트</a></li>
-						<ul>
-							<li><a class="" href="${pageContext.request.contextPath}/listIndustry">산업분류별</a></li>
-							<li><a class="" href="${pageContext.request.contextPath}/listTheme">테마별</a></li>
-						</ul>
+					<li><a class="" href="${pageContext.request.contextPath}/listFarm">농가 리스트</a></li>					
 					<li><a class="" href="${pageContext.request.contextPath}/listCompany">업체 리스트</a></li>						
 					<li><a class="" href="${pageContext.request.contextPath}/listAgency">관리기관 리스트</a></li>
 				</ul>
 			</li>
-		<c:if test="${loginMember.level eq 'farm' || 'agency'}">		
+		<c:if test="${loginMember.level eq 'farm'|| loginMember.level eq 'agency'}">		
 			<li class="sub-menu">
 				<a href="javascript:;" class=""><i class="icon_genius"></i><span>카테고리 관리</span><span class="menu-arrow arrow_carrot-right"></span></a>
 				<ul class="sub">	
@@ -78,7 +74,7 @@
 					<li><a class="" href="${pageContext.request.contextPath}/listPlanner">전체 농가 계획서</a></li>
 				</ul>
 			</li>
-		<c:if test="${loginMember.level eq 'farm'||loginMember.level eq 'agency'}">
+		<c:if test="${loginMember.level eq 'farm' || loginMember.level eq 'agency'}">
 			<li class="sub-menu">
 				<a href="javascript:;" class=""><i class="icon_desktop"></i><span>실행결과</span><span class="menu-arrow arrow_carrot-right"></span></a>
 				<ul class="sub">
