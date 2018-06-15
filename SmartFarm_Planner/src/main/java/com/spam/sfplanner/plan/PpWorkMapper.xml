@@ -32,6 +32,13 @@
  		</collection>
  	</resultMap>
  	
+ 	
+ <!-- 	<select id="oneSelectPpWork"
+ 		parameterType="java.util.Map"
+ 		resultMap="ppWork">
+ 		
+ 	</select> -->
+ 	
  	<select id="listSelectPpWork"
  		parameterType="java.util.Map"
  		resultMap="ppWork">

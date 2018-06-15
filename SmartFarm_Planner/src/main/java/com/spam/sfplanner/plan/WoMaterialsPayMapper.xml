@@ -4,4 +4,44 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.spam.sfplanner.plan.WoMaterialsPayMapper">
+ 	<resultMap type="com.spam.sfplanner.plan.WoMaterialsPay" id="woMaterialsPay">
+ 		<id column="e_materialspay_number" property="eMaterialspayNumber"/>	
+ 		<result column="e_materialspay_unitcost" property="eMaterialspayUnitcost"/>
+ 		<result column="e_materialspay_use" property="eMaterialspayUse"/>
+ 		<result column="e_materialspay_secret" property="eMaterialspaySecret"/>
+ 		<collection property="ppWork" ofType="com.spam.sfplanner.plan.PpWork">
+ 			<id column="pp_work_number" property="ppWorkNumber"/>
+ 			<result column="pp_work_name" property="ppWorkName"/>
+ 			<result column="pp_work_startday" property="ppWorkStartday"/>
+ 			<result column="pp_work_endday" property="ppWorkEndday"/>
+ 			<result column="pp_work_area" property="ppWorkArea"/>
+ 			<result column="pp_work_content" property="ppWorkContent"/>
+ 		</collection>
+ 		<collection property="categoryMaterials" ofType="com.spam.sfplanner.category.CategoryMaterials">
+ 			<id column="materials_number" property="materialsNumber"/>
+ 			<result column="materials_name" property="materialsName"/>
+ 			<result column="materials_unit" property="materialsUnit"/>
+ 		</collection>
+ 	</resultMap>
+ 
+ 	<select id="listSelectWoMaterialsPay"
+ 		parameterType="java.util.Map"
+ 		resultMap="woMaterialsPay">
+ 		SELECT sp_e_materialspay.e_materialspay_number
+			, sp_e_materialspay.e_materialspay_unitcost
+			, sp_e_materialspay.e_materialspay_use
+			, sp_e_materialspay.e_materialspay_secret
+			, sp_pp_work.pp_work_number
+			, sp_pp_work.pp_work_name
+			, sp_pp_work.pp_work_content
+			, sp_materials_cate.materials_number
+			, sp_materials_cate.materials_name
+			, sp_materials_cate.materials_unit
+		FROM sp_e_materialspay
+		JOIN sp_pp_work
+		ON sp_e_materialspay.pp_work_number = sp_pp_work.pp_work_number
+		JOIN sp_materials_cate
+		ON sp_e_materialspay.materials_number = sp_materials_cate.materials_number
+		WHERE sp_pp_work.pp_work_number=#{ppWorkNumber}
+ 	</select>
  </mapper>

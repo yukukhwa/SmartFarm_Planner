@@ -15,6 +15,13 @@ public class PpWorkController {
 	@Autowired PpWorkService ppWorkService;
 	private final static Logger LOGGER = LoggerFactory.getLogger(PpWorkController.class);
 	
+	@RequestMapping(value="/oneWorkPlan", method=RequestMethod.GET)
+	public String oneSelectPpWork(Model model, int ppWorkNumber, int ppNumber) {
+		model.addAttribute("ppWorkNumber", ppWorkNumber);
+		model.addAttribute("ppNumber",ppNumber);
+		return "plan/pp_work/oneWorkPlan";
+	}
+	
 	@RequestMapping(value="/updateWorkPlan", method=RequestMethod.GET)
 	public String updatePpWork() {
 		return "plan/pp_work/updateWorkPlan";
