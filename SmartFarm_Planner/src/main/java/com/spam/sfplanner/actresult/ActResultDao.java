@@ -20,6 +20,13 @@ public class ActResultDao {
 	
 	final String NS = "com.spam.sfplanner.actresult.ActResultMapper.";
 	
+	public List<ActResult> oneSelectActResult(Map<String, Object> map) {
+		return sqlSession.selectList(NS+"oneSelectActResult", map);
+	}
+	/*
+	 * map을 매개변수로 받아 해당하는 실행결과를 호출하는 쿼리문을 실행한 후
+	 * 나온 결과 리스트를 리턴하는 매서드
+	 */
 	public List<ActResult> listSelectActResult(Map<String, Object> map) {
 		return sqlSession.selectList(NS+"listSelectActResult", map);
 	}

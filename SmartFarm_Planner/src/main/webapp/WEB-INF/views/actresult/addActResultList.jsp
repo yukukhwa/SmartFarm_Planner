@@ -47,14 +47,21 @@
 					<form action="${pageContext.request.contextPath}/insertActResult" method="post">
 						<header class="panel-heading">
 							{계획서명}
+							<input type="text" name="productionPlan.ppNumber" value="${ppNumber}">
+							<input type="text" name="farmMember.fMemberId" value="${loginMember.id}">
+							<input type="text" name="farm.fNumber" value="${loginMember.corpNumber}">
 						</header>
 						<div class="panel-body">
-							<c:forEach var="i" begin="0" end="1">
+							<c:forEach var="i" begin="0" end="0">
 								<div class="color">
 									<div class="panel-heading col-lg-12">{작업단계명}</div>
 									<div class="panel-content" style="display:none">
 										인건비
-										<table class="table table-striped table-advance table-hover">
+										<input type="text" name="ppWoResult.wrNumber">
+										<input type="text" name="woHumanPay.eHumanpayNumber">
+										<input type="text" name="wrHumanpayRealcost">
+										<input type="date" name="wrHumanpayDate">
+										<%-- <table class="table table-striped table-advance table-hover">
 											<thead>
 												<tr>
 													<th>인부이름</th>
@@ -74,8 +81,8 @@
 														<td>${humanPay.eHumanpayExpectpay}</td>
 														<td>${humanPay.eHumanpayExpectday}</td>
 														<td><input type="checkbox" name="agreement"></td>
-														<td><input type="text" name="wrHumanPayDb[${i.index}].wrHumanpayRealcost"></td>
-														<td><input type="Datetime-local" name="wrHumanPayDb[${i.index}].wrHumanpayDate"></td>
+														<td><input type="text" name="wrHumanPay[${i.index}].wrHumanpayRealcost"></td>
+														<td><input type="Datetime-local" name="wrHumanPay[${i.index}].wrHumanpayDate"></td>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -93,7 +100,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												<%-- <c:forEach var="" items=""> --%>
+												<c:forEach var="" items="">
 													<tr>
 														<td>원자재명</td>
 														<td>원자재명</td>
@@ -102,7 +109,7 @@
 														<td>원자재명</td>
 														<td>원자재명</td>
 													</tr>
-												<%-- </c:forEach> --%>
+												</c:forEach>
 											</tbody>
 										</table>
 										보험비
@@ -122,7 +129,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												<%-- <c:forEach var="" items=""> --%>
+												<c:forEach var="" items="">
 													<tr>
 														<td>보험명</td>
 														<td>보험내용</td>
@@ -135,9 +142,9 @@
 														<td>납부한보험비</td>
 														<td><input type="datetime-local"></td>
 													</tr>
-												<%-- </c:forEach> --%>
+												</c:forEach>
 											</tbody>
-										</table>
+										</table> --%>
 									</div>
 								</div>
 							</c:forEach>

@@ -1,20 +1,19 @@
 /*[김기성]*/
 package com.spam.sfplanner.actresult;
 
-import java.util.Date;
-import java.util.List;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import java.sql.Date;
 
+import com.spam.sfplanner.plan.ProductionPlan;
+import com.spam.sfplanner.user.FarmMember;
+import com.spam.sfplanner.corporation.Farm;
 
 public class ActResult {
 	private int ppResultlistNumber; // 실행결과 리스트 기본키
-	private int ppNumber; // 계획서넘버 외래키
-	private int fNumber; // 농가통합넘버 외래키
-	@DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
+	private ProductionPlan productionPlan; // 계획서넘버 외래키 대신 계획서 객체를 놓았다.
+	private Farm farm; // 농가통합넘버 외래키 대신 농가 객체를 놓았다.
 	private Date ppResultlistDate; // 실행결과리스트 작성일
-	private String fMemberId; // 농가회원아이디 외래키
-	private List<PpWoResult> ppWoResult; // 1:N를 위한 실행결과리스트별 작업단계 리스트
+	private FarmMember farmMember; // 농가회원아이디 외래키 대신 농가회원 객체를 놓았다.
 	
 	public int getPpResultlistNumber() {
 		return ppResultlistNumber;
@@ -22,17 +21,17 @@ public class ActResult {
 	public void setPpResultlistNumber(int ppResultlistNumber) {
 		this.ppResultlistNumber = ppResultlistNumber;
 	}
-	public int getPpNumber() {
-		return ppNumber;
+	public ProductionPlan getProductionPlan() {
+		return productionPlan;
 	}
-	public void setPpNumber(int ppNumber) {
-		this.ppNumber = ppNumber;
+	public void setProductionPlan(ProductionPlan productionPlan) {
+		this.productionPlan = productionPlan;
 	}
-	public int getfNumber() {
-		return fNumber;
+	public Farm getFarm() {
+		return farm;
 	}
-	public void setfNumber(int fNumber) {
-		this.fNumber = fNumber;
+	public void setFarm(Farm farm) {
+		this.farm = farm;
 	}
 	public Date getPpResultlistDate() {
 		return ppResultlistDate;
@@ -40,24 +39,17 @@ public class ActResult {
 	public void setPpResultlistDate(Date ppResultlistDate) {
 		this.ppResultlistDate = ppResultlistDate;
 	}
-	public String getfMemberId() {
-		return fMemberId;
+	public FarmMember getFarmMember() {
+		return farmMember;
 	}
-	public void setfMemberId(String fMemberId) {
-		this.fMemberId = fMemberId;
-	}
-	public List<PpWoResult> getPpWoResultDb() {
-		return ppWoResult;
-	}
-	public void setPpWoResultDb(List<PpWoResult> ppWoResult) {
-		this.ppWoResult = ppWoResult;
+	public void setFarmMember(FarmMember farmMember) {
+		this.farmMember = farmMember;
 	}
 	
 	@Override
 	public String toString() {
-		return "ActResult [ppResultlistNumber=" + ppResultlistNumber + ", ppNumber=" + ppNumber + ", fNumber="
-				+ fNumber + ", ppResultlistDate=" + ppResultlistDate + ", fMemberId=" + fMemberId + ", ppWoResult="
-				+ ppWoResult + "]";
+		return "ActResult [ppResultlistNumber=" + ppResultlistNumber + ", productionPlan=" + productionPlan + ", Farm="
+				+ farm + ", ppResultlistDate=" + ppResultlistDate + ", farmMember=" + farmMember + "]";
 	}
 }
 
