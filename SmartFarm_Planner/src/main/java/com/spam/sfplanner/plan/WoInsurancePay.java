@@ -1,7 +1,7 @@
 /*나성수*/
 package com.spam.sfplanner.plan;
 
-import java.util.Date;
+import java.sql.Date;
 
 import com.spam.sfplanner.category.CategoryTheme;
 

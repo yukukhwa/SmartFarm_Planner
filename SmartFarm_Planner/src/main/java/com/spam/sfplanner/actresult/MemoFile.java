@@ -1,71 +1,73 @@
+/*나성수*/
 package com.spam.sfplanner.actresult;
 
-import java.util.Date;
-
+/**
+ * @데이터베이스 cjsghka
+ * @테이블 sp_memo_file(메모파일)
+ * @담당자 나성수
+ */
 public class MemoFile {
-	private int memo_file_number;
-	private int wr_memo_number;
-	private String memo_file_realname;
-	private String memo_file_randomname;
-	private String memo_file_ext;
-	private String memo_file_type;
-	private double memo_file_size;
-	private Date memo_file_date;
-	
-	public int getMemo_file_number() {
-		return memo_file_number;
+	private int memoFileNumber; //메모파일넘버
+	private String memoFileRealname; //원래파일명
+	private String memoFileRandomname; //랜덤파일명
+	private String memoFileExt; //파일확장자
+	private String memoFileType; //파일타입
+	private String memoFileSize; //파일사이즈
+	private String memoFileDate; //등록일자
+	private Memo memo; //메모테이블
+	public int getMemoFileNumber() {
+		return memoFileNumber;
 	}
-	public void setMemo_file_number(int memo_file_number) {
-		this.memo_file_number = memo_file_number;
+	public void setMemoFileNumber(int memoFileNumber) {
+		this.memoFileNumber = memoFileNumber;
 	}
-	public int getWr_memo_number() {
-		return wr_memo_number;
+	public String getMemoFileRealname() {
+		return memoFileRealname;
 	}
-	public void setWr_memo_number(int wr_memo_number) {
-		this.wr_memo_number = wr_memo_number;
+	public void setMemoFileRealname(String memoFileRealname) {
+		this.memoFileRealname = memoFileRealname;
 	}
-	public String getMemo_file_realname() {
-		return memo_file_realname;
+	public String getMemoFileRandomname() {
+		return memoFileRandomname;
 	}
-	public void setMemo_file_realname(String memo_file_realname) {
-		this.memo_file_realname = memo_file_realname;
+	public void setMemoFileRandomname(String memoFileRandomname) {
+		this.memoFileRandomname = memoFileRandomname;
 	}
-	public String getMemo_file_randomname() {
-		return memo_file_randomname;
+	public String getMemoFileExt() {
+		return memoFileExt;
 	}
-	public void setMemo_file_randomname(String memo_file_randomname) {
-		this.memo_file_randomname = memo_file_randomname;
+	public void setMemoFileExt(String memoFileExt) {
+		this.memoFileExt = memoFileExt;
 	}
-	public String getMemo_file_ext() {
-		return memo_file_ext;
+	public String getMemoFileType() {
+		return memoFileType;
 	}
-	public void setMemo_file_ext(String memo_file_ext) {
-		this.memo_file_ext = memo_file_ext;
+	public void setMemoFileType(String memoFileType) {
+		this.memoFileType = memoFileType;
 	}
-	public String getMemo_file_type() {
-		return memo_file_type;
+	public String getMemoFileSize() {
+		return memoFileSize;
 	}
-	public void setMemo_file_type(String memo_file_type) {
-		this.memo_file_type = memo_file_type;
+	public void setMemoFileSize(String memoFileSize) {
+		this.memoFileSize = memoFileSize;
 	}
-	public double getMemo_file_size() {
-		return memo_file_size;
+	public String getMemoFileDate() {
+		return memoFileDate;
 	}
-	public void setMemo_file_size(double memo_file_size) {
-		this.memo_file_size = memo_file_size;
+	public void setMemoFileDate(String memoFileDate) {
+		this.memoFileDate = memoFileDate;
 	}
-	public Date getMemo_file_date() {
-		return memo_file_date;
+	public Memo getMemo() {
+		return memo;
 	}
-	public void setMemo_file_date(Date memo_file_date) {
-		this.memo_file_date = memo_file_date;
+	public void setMemo(Memo memo) {
+		this.memo = memo;
 	}
-	
 	@Override
 	public String toString() {
-		return "MemoFile [memo_file_number=" + memo_file_number + ", wr_memo_number=" + wr_memo_number
-				+ ", memo_file_realname=" + memo_file_realname + ", memo_file_randomname=" + memo_file_randomname
-				+ ", memo_file_ext=" + memo_file_ext + ", memo_file_type=" + memo_file_type + ", memo_file_size="
-				+ memo_file_size + ", memo_file_date=" + memo_file_date + "]";
+		return "MemoFile [memoFileNumber=" + memoFileNumber + ", memoFileRealname=" + memoFileRealname
+				+ ", memoFileRandomname=" + memoFileRandomname + ", memoFileExt=" + memoFileExt + ", memoFileType="
+				+ memoFileType + ", memoFileSize=" + memoFileSize + ", memoFileDate=" + memoFileDate + ", memo=" + memo
+				+ "]";
 	}
 }

@@ -1,7 +1,7 @@
 /*나성수*/
 package com.spam.sfplanner.corporation;
 
-import java.util.Date;
+import java.sql.Date;
 
 import com.spam.sfplanner.user.AgencyMember;
 

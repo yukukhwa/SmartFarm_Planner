@@ -4,4 +4,38 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.spam.sfplanner.actresult.MemoMapper">
+ 	<resultMap type="com.spam.sfplanner.actresult.Memo" id="memo">
+ 		<id column="wr_memo_number" property="wrMemoNumber"/>
+ 		<result column="wr_memo_subject" property="wrMemoSubject"/>
+ 		<result column="wr_memo_content" property="wrMemoContent"/>
+ 		<collection ofType="com.spam.sfplanner.category.CategoryTheme" property="categoryTheme">
+ 			<id column="theme_number" property="themeNumber"/>
+ 			<result column="theme_name" property="themeName"/>
+ 		</collection>
+ 		<collection ofType="com.spam.sfplanner.actresult.PpWoResult" property="ppWoResult">
+ 			<id column="wr_number" property="wrNumber"/>
+ 		</collection>
+ 	</resultMap>
+ 	
+ 	<select id="listSelectMemo"
+ 			parameterType="java.util.Map"
+ 			resultMap="memo">
+	 	select
+			sp_wr_memo.wr_memo_number
+			,sp_wr_memo.theme_number
+			,sp_theme_cate.theme_name
+			,sp_wr_memo.wr_number
+			,sp_wr_memo.wr_memo_subject
+			,sp_wr_memo.wr_memo_content
+		from
+			sp_wr_memo join sp_theme_cate
+		on
+			sp_wr_memo.theme_number = sp_theme_cate.theme_number
+		<if test="search == 'yes'">
+			where
+			<if test="column == '실행결과작업단계넘버'">
+				sp_wr_memo.wr_number = #{property}
+			</if>
+		</if>
+ 	</select>
  </mapper>

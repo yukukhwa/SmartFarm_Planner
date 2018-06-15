@@ -14,6 +14,11 @@ public class WoInsurancePayController {
 	@Autowired
 	private WoInsurancePayService woInsurancePayService;
 	
+	@RequestMapping(value="/addInsurancepay",method = RequestMethod.GET)
+	public String addInsurancepay() {
+		return "";
+	}
+	
 	@RequestMapping(value="/listInsurancepay",method = RequestMethod.POST)
 	public String listSelectWoInsurancePay(@RequestParam(value="ppWorkNumber",required=true)int ppWorkNumber
 										,@RequestParam(value="column",required=true)String column
@@ -25,6 +30,7 @@ public class WoInsurancePayController {
 	
 	@RequestMapping(value="/listInsurancepay",method = RequestMethod.GET)
 	public String listSelectWoInsurancePay(@RequestParam(value="ppWorkNumber",required=true)int ppWorkNumber,Model model) {
+		System.out.println(woInsurancePayService.listSelectWoInsurancePay(ppWorkNumber));
 		model.addAttribute("list", woInsurancePayService.listSelectWoInsurancePay(ppWorkNumber));
 		model.addAttribute("ppWorkNumber", ppWorkNumber);
 		return "plan/wo_insurancepay/listInsurancepay";

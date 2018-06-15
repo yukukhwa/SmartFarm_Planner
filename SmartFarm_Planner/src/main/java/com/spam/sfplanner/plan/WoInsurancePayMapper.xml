@@ -25,6 +25,32 @@
  		</collection>
  	</resultMap>
  	
+ 	<!-- <insert id=""
+ 			parameterType="">
+	 	INSERT INTO sp_e_insurancepay
+			(theme_number
+			,pp_work_number
+			,e_insurancepay_name
+			,e_insurancepay_content
+			,e_insurancepay_startday
+			,e_insurancepay_endday
+			,e_insurancepay_term
+			,e_insurancepay_totalcost
+			,e_insurancepay_expectcost
+			,e_insurancepay_secret)
+		VALUES 
+			(0
+			,0
+			,''
+			,''
+			,NOW()
+			,NOW()
+			,0
+			,0
+			,0
+			,'')
+ 	</insert> -->
+ 	
  	<select id="listSelectWoInsurancePay"
  			parameterType="java.util.Map"
  			resultMap="woInsurancePay">

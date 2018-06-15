@@ -97,10 +97,10 @@
 										+'<input type="button" id="agencyJusoCheck" value="주소검색" />'
 									+'</div>'
 									+'<div>'
-										+'도로명주소 : <input type="text" name="aDoroaddress" id="corporationDoroaddress" readonly="readonly">'
+										+'도로명주소 : <input type="text" style="width: 500px;" name="aDoroaddress" id="corporationDoroaddress" readonly="readonly">'
 									+'</div>'
 									+'<div>'
-										+'지번주소 : <input type="text" name="aJibunaddress" id="corporationJibunaddress" readonly="readonly">'
+										+'지번주소 : <input type="text" style="width: 500px;" name="aJibunaddress" id="corporationJibunaddress" readonly="readonly">'
 									+'</div>');
 				return;
 			}
@@ -272,10 +272,10 @@
 								<input type="button" id="agencyJusoCheck" value="주소검색" />
 							</div>
 							<div>
-								도로명주소 : <input type="text" name="aDoroaddress" id="corporationDoroaddress" readonly="readonly" >
+								도로명주소 : <input type="text" style="width: 500px;" name="aDoroaddress" id="corporationDoroaddress" readonly="readonly" >
 							</div>
 							<div>
-								지번주소 : <input type="text" name="aJibunaddress" id="corporationJibunaddress" readonly="readonly" >
+								지번주소 : <input type="text" style="width: 500px;" name="aJibunaddress" id="corporationJibunaddress" readonly="readonly" >
 							</div>
 						</div>
 					</div>
