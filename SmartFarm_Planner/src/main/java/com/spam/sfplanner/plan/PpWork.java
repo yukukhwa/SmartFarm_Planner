@@ -2,6 +2,7 @@
 package com.spam.sfplanner.plan;
 
 import java.util.Date;
+import java.util.List;
 
 import com.spam.sfplanner.corporation.Farm;
 
@@ -16,6 +17,10 @@ public class PpWork {
 	private String ppWorkContent; // 작업내용상세
 	private Farm farm;
 	private ProductionPlan productionPlan;
+	private List<WoMaterialsPay> woMaterialsPayList; // 작엄단계 내의 예상 원자재비 리스트
+	private List<WoHumanPay> woHumanPayList; // 작엄단계 내의 예상 인건비 리스트
+	private List<WoInsurancePay> woInsurancePayList; // 작업단계 내의 예상 보험비 리스트
+	
 	public int getPpWorkNumber() {
 		return ppWorkNumber;
 	}
@@ -76,12 +81,31 @@ public class PpWork {
 	public void setProductionPlan(ProductionPlan productionPlan) {
 		this.productionPlan = productionPlan;
 	}
+	public List<WoMaterialsPay> getWoMaterialsPayList() {
+		return woMaterialsPayList;
+	}
+	public void setWoMaterialsPayList(List<WoMaterialsPay> woMaterialsPayList) {
+		this.woMaterialsPayList = woMaterialsPayList;
+	}
+	public List<WoHumanPay> getWoHumanPayList() {
+		return woHumanPayList;
+	}
+	public void setWoHumanPayList(List<WoHumanPay> woHumanPayList) {
+		this.woHumanPayList = woHumanPayList;
+	}
+	public List<WoInsurancePay> getWoInsurancePayList() {
+		return woInsurancePayList;
+	}
+	public void setWoInsurancePayList(List<WoInsurancePay> woInsurancePayList) {
+		this.woInsurancePayList = woInsurancePayList;
+	}
 	@Override
 	public String toString() {
 		return "PpWork [ppWorkNumber=" + ppWorkNumber + ", ppNumber=" + ppNumber + ", fNumber=" + fNumber
 				+ ", ppWorkName=" + ppWorkName + ", ppWorkStartday=" + ppWorkStartday + ", ppWorkEndday=" + ppWorkEndday
 				+ ", ppWorkArea=" + ppWorkArea + ", ppWorkContent=" + ppWorkContent + ", farm=" + farm
-				+ ", productionPlan=" + productionPlan + "]";
+				+ ", productionPlan=" + productionPlan + ", woMaterialsPayList=" + woMaterialsPayList
+				+ ", woHumanPayList=" + woHumanPayList + ", woInsurancePayList=" + woInsurancePayList + "]";
 	}
 	
 }

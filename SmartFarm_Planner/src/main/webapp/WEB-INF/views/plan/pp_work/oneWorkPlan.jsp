@@ -24,13 +24,82 @@
     		<div>
     			<h3>작업단계별 상세리스트</h3>
     			<div>
-    				계획서 넘버 : <input type="text" value="${ppNumber}"> <br>
-    				작업단계 넘버 : <input type="text" value="${ppWorkNumber}"> <br>
-    				<a href="${pageContext.request.contextPath}/listMaterialsPay?ppWorkNumber=${ppWorkNumber}">예상원자재비 리스트</a>
-    			</div>
-    			<div>
+    				<label>예상 원자재비 리스트</label>
     				<table class="table">
-    					
+    					<thead>
+    						<tr>
+    							<th>예상원자재넘버</th>
+    							<th>작업단계명</th>
+    							<th>원자재카테_원자재명</th>
+    							<th>원자재단가</th>
+    							<th>사용예정(단위랑 같이)</th>
+    						</tr>
+    					</thead>
+    					<c:forEach var="woMaterialsPay" items="${ppWork.woMaterialsPayList}">
+    						<c:if test="${woMaterialsPay.eMaterialspaySecret != 'false'}">
+		    					<tbody>
+		    						<tr>
+		    							<td>${woMaterialsPay.eMaterialspayNumber}</td>
+		    							<td>${woMaterialsPay.ppWork.ppWorkName}</td>
+		    							<td>${woMaterialsPay.categoryMaterials.materialsName}</td>
+		    							<td>${woMaterialsPay.eMaterialspayUnitcost}</td>
+										<td>${woMaterialsPay.eMaterialspayUse} ${woMaterialsPay.categoryMaterials.materialsUnit}</td>
+		    						</tr>
+		    					</tbody>
+    					</c:if>
+    					</c:forEach>
+    				</table>
+    			</div> <br> <br>
+    			<div>
+    				<label>예상 보험비 리스트</label>
+    				<table class="table">
+    					<thead>
+    						<tr>
+    							<th>예상보험비넘버</th>
+	    						<th>작업명</th>
+	    						<th>테마명</th>
+	    						<th>보험명</th>
+	    						<th>보험내용</th>
+	    						<th>보험가입일</th>
+	    						<th>보험만료일</th>
+	    						<th>보험가입기간</th>
+	    						<th>총보험비</th>
+	    						<th>예상보험비(월)</th>
+    						</tr>
+    					</thead>
+    					<tbody>
+    					<c:forEach var="woInsurancePay" items="${ppWork.woInsurancePayList}">
+	    					<c:if test="${woInsurancePay.eInsurancepaySecret != 'false'}">
+	    						<tr>
+	    							<td>${woInsurancePay.eInsurancepayNumber}</td>
+	    							<td>${woInsurancePay.ppWork.ppWorkName}</td>
+	    							<td>${woInsurancePay.categoryTheme.themeName}</td>
+	    							<td>${woInsurancePay.eInsurancepayMame}</td>
+			    					<td>${woInsurancePay.eInsurancepayContent}</td>
+			    					<td>${woInsurancePay.eInsurancepayStartday}</td>
+			    					<td>${woInsurancePay.eInsurancepayEndday}</td>
+			    					<td>${woInsurancePay.eInsurancepayTerm}</td>
+			    					<td>${woInsurancePay.eInsurancepayTotalcost}</td>
+			    					<td>${woInsurancePay.eInsurancepayExpectcost}</td>
+	    						</tr>
+	    					</c:if>
+    					</c:forEach>
+    					</tbody>
+    				</table>
+    			</div> <br><br>
+    			<div>
+    				<label>예상 인건비 리스트</label>
+    				<table class="table">
+    					<thead>
+    						<tr>
+    							<th>예상 인건비 넘버</th>
+    						</tr>
+    					</thead>
+    					<tbody>
+    						<tr>
+    							<td></td>
+    						</tr>
+    					</tbody>
     				</table>
     			</div>
     		</div>

@@ -1,16 +1,20 @@
 package com.spam.sfplanner.plan;
 
-import java.util.Date;
+import java.sql.Date;
+
+import com.spam.sfplanner.category.CategoryTheme;
 
 public class WoHumanPay {
-	private int eHumanpayNumber;
-	private int themeNumber;
-	private int ppWorkNumber;
-	private String eHumanpayName;
-	private String eHumanpayResidentnumber;
-	private double eHumanpayExpectpay;
-	private Date eHumanpayExpectday;
-	private String eHumanpaySecret;
+	private int eHumanpayNumber; // 예상인건비넘버
+	private int themeNumber; // 테마 카테고리 넘버
+	private int ppWorkNumber; // 작업단계넘버
+	private String eHumanpayName; // 인부이름
+	private String eHumanpayResidentnumber; // 주민번호
+	private double eHumanpayExpectpay; // 예상인건비(일)
+	private Date eHumanpayExpectday; // 예상작업일
+	private String eHumanpaySecret; // 공개/비공개 여부
+	private CategoryTheme categoryTheme;
+	private PpWork ppWork;
 	public int geteHumanpayNumber() {
 		return eHumanpayNumber;
 	}
@@ -59,12 +63,25 @@ public class WoHumanPay {
 	public void seteHumanpaySecret(String eHumanpaySecret) {
 		this.eHumanpaySecret = eHumanpaySecret;
 	}
+	public CategoryTheme getCategoryTheme() {
+		return categoryTheme;
+	}
+	public void setCategoryTheme(CategoryTheme categoryTheme) {
+		this.categoryTheme = categoryTheme;
+	}
+	public PpWork getPpWork() {
+		return ppWork;
+	}
+	public void setPpWork(PpWork ppWork) {
+		this.ppWork = ppWork;
+	}
 	@Override
 	public String toString() {
 		return "WoHumanPay [eHumanpayNumber=" + eHumanpayNumber + ", themeNumber=" + themeNumber + ", ppWorkNumber="
 				+ ppWorkNumber + ", eHumanpayName=" + eHumanpayName + ", eHumanpayResidentnumber="
 				+ eHumanpayResidentnumber + ", eHumanpayExpectpay=" + eHumanpayExpectpay + ", eHumanpayExpectday="
-				+ eHumanpayExpectday + ", eHumanpaySecret=" + eHumanpaySecret + "]";
+				+ eHumanpayExpectday + ", eHumanpaySecret=" + eHumanpaySecret + ", categoryTheme=" + categoryTheme
+				+ ", ppWork=" + ppWork + "]";
 	}
 	
 	
