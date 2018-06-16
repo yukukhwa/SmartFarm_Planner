@@ -43,7 +43,7 @@ public class PpWorkService {
 	}
 	
 	public List<PpWork> listSelectPpWork(int ppNumber){
-		Map<String, Integer> map = new HashMap<String, Integer>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ppNumber", ppNumber);
 		return ppWorkDao.listSelectPpWork(map);
 	}

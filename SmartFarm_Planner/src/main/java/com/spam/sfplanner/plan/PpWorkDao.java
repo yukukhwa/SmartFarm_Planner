@@ -21,7 +21,7 @@ public class PpWorkDao {
 		return sqlSession.selectList(NAMESPACE+"listSelectPpWork", map);
 	}
 	
-	public List<PpWork> listSelectPpWork(Map<String, Integer> map){
+	public List<PpWork> listSelectPpWork(Map<String, Object> map){
 		return sqlSession.selectList(NAMESPACE+"listSelectPpWork", map);
 	}
 }

@@ -41,9 +41,9 @@
     						<option value="${title.ppNameNumber}">${title.ppNamePlanname}</option>
     					</c:forEach>
     				</select>
-	    			<!-- <div>
-	    				계획 기간 : <input type="datetime-local" name="ppStartday" id="ppStartday"> ~ <input type="datetime-local" name="ppEndday" id="ppEndday">
-	    			</div> -->
+	    			<div>
+	    				계획 기간 : <input type="date" name="ppStartday" id="ppStartday"> ~ <input type="date" name="ppEndday" id="ppEndday">
+	    			</div>
 	    			<div>
 	    				소유면적 : <input type="number" name="ppOwnarea" id="ppOwnarea">
 	    			</div>

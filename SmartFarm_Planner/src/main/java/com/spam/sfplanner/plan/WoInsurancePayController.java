@@ -1,6 +1,8 @@
 /*나성수*/
 package com.spam.sfplanner.plan;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +16,18 @@ public class WoInsurancePayController {
 	@Autowired
 	private WoInsurancePayService woInsurancePayService;
 	
+	@RequestMapping(value="/addInsurancepay",method = RequestMethod.POST)
+	public String addInsurancepay(WoInsurancePay woInsurancePay) {
+		woInsurancePayService.addInsurancepay(woInsurancePay);
+		return "redirect:/listPlanner";
+	}
+	
 	@RequestMapping(value="/addInsurancepay",method = RequestMethod.GET)
-	public String addInsurancepay() {
-		return "";
+	public String addInsurancepay(@RequestParam(value="ppNumber",required=true)int ppNumber,Model model) {
+		Map<String, Object> map = woInsurancePayService.addInsurancepay(ppNumber);
+		model.addAttribute("ppWorkList", map.get("ppWorkList"));
+		model.addAttribute("themeList", map.get("themeList"));
+		return "plan/wo_insurancepay/addInsurancepay";
 	}
 	
 	@RequestMapping(value="/listInsurancepay",method = RequestMethod.POST)

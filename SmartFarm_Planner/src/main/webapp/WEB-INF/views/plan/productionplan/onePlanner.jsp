@@ -57,6 +57,16 @@
 										<a href="${pageContext.request.contextPath}/listWorkPlan?ppNumber=${productionPlan.ppNumber}">${ppWork.ppWorkName}</a>
 									</div>
 									<div class="panel-content" style="display:none">
+										<div>
+											작업기간 : ${ppWork.ppWorkStartday} ~ ${ppWork.ppWorkEndday}
+										</div>
+										<div>
+											작업면적 : ${ppWork.ppWorkArea}
+										</div>
+										<div>
+											작업상세내용 : ${ppWork.ppWorkContent}
+										</div>
+										<hr/>
 										인건비
 										<table class="table table-striped table-advance table-hover">
 											<thead>
@@ -91,23 +101,19 @@
 													<th>원자재명</th>
 													<th>예상단가</th>
 													<th>예상사용량</th>
-													<th>불일치</th>
-													<th>실제단가</th>
-													<th>실제사용량</th>
 												</tr>
 											</thead>
-											<%-- <tbody>
-												<c:forEach var="" items="">
-													<tr>
-														<td>원자재명</td>
-														<td>원자재명</td>
-														<td>원자재명</td>
-														<td><input type="radio" name="agreement"></td>
-														<td>원자재명</td>
-														<td>원자재명</td>
-													</tr>
+											<tbody>
+												<c:forEach var="woMaterialsPay" items="${ppWork.woMaterialsPayList}">
+													<c:if test="${woMaterialsPay.eMaterialspaySecret != 'false'}">
+														<tr>
+															<td>${woMaterialsPay.categoryMaterials.materialsName}</td>
+															<td>${woMaterialsPay.eMaterialspayUnitcost}</td>
+															<td>${woMaterialsPay.eMaterialspayUse}${woMaterialsPay.categoryMaterials.materialsUnit}</td>
+														</tr>
+													</c:if>
 												</c:forEach>
-											</tbody> --%>
+											</tbody>
 										</table>
 										보험비
 										<table class="table table-striped table-advance table-hover">
@@ -120,27 +126,23 @@
 													<th>보험가입기간</th>
 													<th>총보험비</th>
 													<th>예상보험비</th>
-													<th>불일치</th>
-													<th>납부한보험비</th>
-													<th>납부일</th>
 												</tr>
 											</thead>
-											<%-- <tbody>
-												<c:forEach var="" items="">
-													<tr>
-														<td>보험명</td>
-														<td>보험내용</td>
-														<td>보험가입일</td>
-														<td>보험만료일</td>
-														<td>보험가입기간</td>
-														<td>총보험비</td>
-														<td>예상보험비</td>
-														<td><input type="radio" name="agreement"></td>
-														<td>납부한보험비</td>
-														<td><input type="datetime-local"></td>
-													</tr>
+											<tbody>
+												<c:forEach var="woInsurancePay" items="${ppWork.woInsurancePayList}">
+													<c:if test="${woInsurancePay.eInsurancepaySecret != 'false'}">
+														<tr>
+															<td>${woInsurancePay.eInsurancepayMame}</td>
+															<td>${woInsurancePay.eInsurancepayContent}</td>
+															<td>${woInsurancePay.eInsurancepayStartday}</td>
+															<td>${woInsurancePay.eInsurancepayEndday}</td>
+															<td>${woInsurancePay.eInsurancepayTerm}</td>
+															<td>${woInsurancePay.eInsurancepayTotalcost}</td>
+															<td>${woInsurancePay.eInsurancepayExpectcost}</td>
+														</tr>
+													</c:if>
 												</c:forEach>
-											</tbody> --%>
+											</tbody>
 										</table>
 									</div>
 								</div>

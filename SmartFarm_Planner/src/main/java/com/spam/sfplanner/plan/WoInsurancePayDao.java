@@ -16,6 +16,10 @@ public class WoInsurancePayDao {
 	
 	private static final String NAMESPACE = "com.spam.sfplanner.plan.WoInsurancePayMapper.";
 	
+	public void addInsurancepay(WoInsurancePay woInsurancePay) {
+		sqlSessionTemplate.insert(NAMESPACE+"addInsurancepay",woInsurancePay);
+	}
+	
 	public List<WoInsurancePay> listSelectWoInsurancePay(Map<String,Object> map) {
 		return sqlSessionTemplate.selectList(NAMESPACE+"listSelectWoInsurancePay", map);
 	}

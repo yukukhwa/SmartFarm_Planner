@@ -26,12 +26,27 @@ public class ProductionPlanService {
 	@Autowired
 	private PpWorkDao ppWorkDao;
 	
+	@Autowired 
+	private WoMaterialsPayDao woMaterialsPayDao;
+	
+	@Autowired 
+	private WoInsurancePayDao woInsurancePayDao;
+	
 	public ProductionPlan oneSelectProductionPlan(int ppNumber) {
 		ProductionPlan productionPlan = productionPlanDao.oneSelectProductionPlan(ppNumber);
-		Map<String, Integer> map = new HashMap<String, Integer>();
+		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ppNumber", ppNumber);
-		productionPlan.setPpWorkList(ppWorkDao.listSelectPpWork(map));
-		System.out.println(productionPlan.toString());
+		List<PpWork> ppWorkList = ppWorkDao.listSelectPpWork(map);
+		productionPlan.setPpWorkList(ppWorkList);
+		map.clear();
+		for(PpWork ppWork : ppWorkList) {
+			map.put("search", "yes");
+			map.put("column", "작업단계넘버");
+			map.put("ppWorkNumber", ppWork.getPpWorkNumber());
+			ppWork.setWoMaterialsPayList(woMaterialsPayDao.listSelectWoMaterialsPay(ppWork.getPpWorkNumber()));
+			ppWork.setWoInsurancePayList(woInsurancePayDao.listSelectWoInsurancePay(map));
+			map.clear();
+		}
 		return productionPlan;
 	}
 	

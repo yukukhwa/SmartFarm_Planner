@@ -25,8 +25,8 @@
  		</collection>
  	</resultMap>
  	
- 	<!-- <insert id=""
- 			parameterType="">
+ 	<insert id="addInsurancepay"
+ 			parameterType="com.spam.sfplanner.plan.WoInsurancePay">
 	 	INSERT INTO sp_e_insurancepay
 			(theme_number
 			,pp_work_number
@@ -39,17 +39,17 @@
 			,e_insurancepay_expectcost
 			,e_insurancepay_secret)
 		VALUES 
-			(0
-			,0
-			,''
-			,''
-			,NOW()
-			,NOW()
-			,0
-			,0
-			,0
-			,'')
- 	</insert> -->
+			(#{categoryTheme.themeNumber}
+			,#{ppWork.ppWorkNumber}
+			,#{eInsurancepayMame}
+			,#{eInsurancepayContent}
+			,#{eInsurancepayStartday}
+			,#{eInsurancepayEndday}
+			,#{eInsurancepayTerm}
+			,#{eInsurancepayTotalcost}
+			,#{eInsurancepayExpectcost}
+			,#{eInsurancepaySecret})
+ 	</insert>
  	
  	<select id="listSelectWoInsurancePay"
  			parameterType="java.util.Map"
@@ -77,7 +77,7 @@
 		<if test="search == 'yes'">
 			where
 			<if test="column == '작업단계넘버'">
-				sp_e_insurancepay.pp_work_number = #{property}
+				sp_e_insurancepay.pp_work_number = #{ppWorkNumber}
 			</if>
 			<if test="column == '작업명'">
 					sp_pp_work.pp_work_name like concat('%',#{property},'%')

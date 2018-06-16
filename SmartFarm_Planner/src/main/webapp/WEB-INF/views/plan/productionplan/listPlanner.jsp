@@ -40,17 +40,19 @@
     				</tr>
     			</thead>
     			<tbody>
-    				<c:forEach items="${list}" var="pp">
-    					<c:if test="${pp.ppSecret != 'false'}">
+    				<c:forEach items="${list}" var="productionPlan">
+    					<c:if test="${productionPlan.ppSecret != 'false'}">
     						<tr>
-    							<td>${pp.ppNumber}</td>
-    							<td>${pp.titlePlanDb.ppNamePlanname}</td>
-    							<td>${pp.ppStartday}</td>
-    							<td>${pp.ppEndday}</td>
-    							<td>${pp.ppOwnarea}</td>
-    							<td>${pp.ppRentarea}</td>
-    							<td>${pp.ppRecordday}</td>
-    							<td>${pp.farmMemberDb.fMemberName}</td>
+    							<td>${productionPlan.ppNumber}</td>
+    							<td>
+    								<a href="${pageContext.request.contextPath}/onePlanner?ppNumber=${productionPlan.ppNumber}">${productionPlan.titlePlan.ppNamePlanname}</a>
+    							</td>
+    							<td>${productionPlan.ppStartday}</td>
+    							<td>${productionPlan.ppEndday}</td>
+    							<td>${productionPlan.ppOwnarea}</td>
+    							<td>${productionPlan.ppRentarea}</td>
+    							<td>${productionPlan.ppRecordday}</td>
+    							<td>${productionPlan.farmMember.fMemberName}</td>
     						</tr>
     					</c:if>
     				</c:forEach>

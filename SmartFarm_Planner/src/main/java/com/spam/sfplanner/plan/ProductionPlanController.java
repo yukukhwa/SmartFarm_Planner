@@ -25,7 +25,6 @@ public class ProductionPlanController {
 	 */
 	@RequestMapping(value="/onePlanner",method = RequestMethod.GET)
 	public String oneSelectProductionPlan(@RequestParam(value="ppNumber",required=false)int ppNumber,Model model) {
-		System.out.println(ppNumber);
 		model.addAttribute("productionPlan", productionPlanService.oneSelectProductionPlan(ppNumber));
 		return "plan/productionplan/onePlanner";
 	}
