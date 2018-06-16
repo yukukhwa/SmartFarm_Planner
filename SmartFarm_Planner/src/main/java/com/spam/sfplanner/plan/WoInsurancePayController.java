@@ -16,15 +16,37 @@ public class WoInsurancePayController {
 	@Autowired
 	private WoInsurancePayService woInsurancePayService;
 	
+	@RequestMapping(value="/updateInsurancepay",method = RequestMethod.POST)
+	public String updateWoInsurancePay(WoInsurancePay woInsurancePay) {
+		woInsurancePayService.updateInsurancepay(woInsurancePay);
+		return "redirect:/listPlanner";
+	}
+	
+	@RequestMapping(value="/updateInsurancepay",method = RequestMethod.GET)
+	public String updateWoInsurancePay(@RequestParam(value="ppNumber",required=true)int ppNumber
+									,@RequestParam(value="eInsurancepayNumber",required=true)int eInsurancepayNumber,Model model) {
+		Map<String, Object> map = woInsurancePayService.updateInsurancepay(ppNumber, eInsurancepayNumber);
+		model.addAttribute("ppWorkList", map.get("ppWorkList"));
+		model.addAttribute("themeList", map.get("themeList"));
+		model.addAttribute("woInsurancePay", map.get("woInsurancePay"));
+		return "plan/wo_insurancepay/updateInsurancepay";
+	}
+	
+	@RequestMapping(value="/deleteInsurancepay",method = RequestMethod.GET)
+	public String deleteWoInsurancePay(@RequestParam(value="eInsurancepayNumber",required=true)int eInsurancepayNumber) {
+		woInsurancePayService.deleteWoInsurancePay(eInsurancepayNumber);
+		return "redirect:/listPlanner";
+	}
+	
 	@RequestMapping(value="/addInsurancepay",method = RequestMethod.POST)
-	public String addInsurancepay(WoInsurancePay woInsurancePay) {
-		woInsurancePayService.addInsurancepay(woInsurancePay);
+	public String insertWoInsurancePay(WoInsurancePay woInsurancePay) {
+		woInsurancePayService.insertWoInsurancePay(woInsurancePay);
 		return "redirect:/listPlanner";
 	}
 	
 	@RequestMapping(value="/addInsurancepay",method = RequestMethod.GET)
-	public String addInsurancepay(@RequestParam(value="ppNumber",required=true)int ppNumber,Model model) {
-		Map<String, Object> map = woInsurancePayService.addInsurancepay(ppNumber);
+	public String insertWoInsurancePay(@RequestParam(value="ppNumber",required=true)int ppNumber,Model model) {
+		Map<String, Object> map = woInsurancePayService.insertWoInsurancePay(ppNumber);
 		model.addAttribute("ppWorkList", map.get("ppWorkList"));
 		model.addAttribute("themeList", map.get("themeList"));
 		return "plan/wo_insurancepay/addInsurancepay";

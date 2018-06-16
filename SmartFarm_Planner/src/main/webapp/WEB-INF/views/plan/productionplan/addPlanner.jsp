@@ -53,6 +53,11 @@
 	    			<div>
 	    				공개여부 : <input type="radio" value="true" name="ppSecret" checked="checked">공개 <input type="radio" value="false" name="ppSecret">비공개
 	    			</div>
+	    			<div>
+	    				<div>
+	    					+ 작업단계 등록 화면
+	    				</div>
+	    			</div>
 	    			<button type="submit">계획서 등록</button>
 	    		</form>
 	    		

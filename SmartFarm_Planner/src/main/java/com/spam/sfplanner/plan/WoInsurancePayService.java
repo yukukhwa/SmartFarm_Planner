@@ -25,15 +25,40 @@ public class WoInsurancePayService {
 	@Autowired
 	private CategoryThemeDao categoryThemeDao;
 	
-	public void addInsurancepay(WoInsurancePay woInsurancePay) {
-		woInsurancePayDao.addInsurancepay(woInsurancePay);
+	public void updateInsurancepay(WoInsurancePay woInsurancePay) {
+		woInsurancePayDao.updateInsurancepay(woInsurancePay);
 	}
 	
-	public Map<String, Object> addInsurancepay(int ppNumber) {
+	public Map<String, Object> updateInsurancepay(int ppNumber,int eInsurancepayNumber) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ppNumber", ppNumber);
+		map.put("search", "yes");
+		map.put("column", "예상보험비넘버");
+		map.put("property", eInsurancepayNumber);
+		List<PpWork> ppWorkList = ppWorkDao.listSelectPpWork(map);
+		List<CategoryTheme> themeList = categoryThemeDao.listSelectCategoryTheme();
+		WoInsurancePay woInsurancePay = woInsurancePayDao.updateInsurancepay(map);
+		map.clear();
+		map.put("ppWorkList", ppWorkList);
+		map.put("themeList", themeList);
+		map.put("woInsurancePay", woInsurancePay);
+		return map;
+	}
+	
+	public void deleteWoInsurancePay(int eInsurancepayNumber) {
+		woInsurancePayDao.deleteWoInsurancePay(eInsurancepayNumber);
+	}
+	
+	public void insertWoInsurancePay(WoInsurancePay woInsurancePay) {
+		woInsurancePayDao.insertWoInsurancePay(woInsurancePay);
+	}
+	
+	public Map<String, Object> insertWoInsurancePay(int ppNumber) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ppNumber", ppNumber);
 		List<PpWork> ppWorkList = ppWorkDao.listSelectPpWork(map);
 		List<CategoryTheme> themeList = categoryThemeDao.listSelectCategoryTheme();
+		map.clear();
 		map.put("ppWorkList", ppWorkList);
 		map.put("themeList", themeList);
 		return map;

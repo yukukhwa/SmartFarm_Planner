@@ -10,11 +10,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){
-		$('input#eInsurancepayStartday').change(function(){
+		/* $('input#eInsurancepayStartday').change(function(){
 			$('input#eInsurancepayTerm').val($('input#eInsurancepayEndday').val()-$('input#eInsurancepayStartday').val());
-		});
+		}); */
 		$('input#eInsurancepayTotalcost').keydown(function(){
 			$('input#eInsurancepayExpectcost').val(($(this).val()/$('input#eInsurancepayTerm').val()).toFixed(2));
+		});
+		$('input#eInsurancepayTerm').change(function(){
+			$('input#eInsurancepayExpectcost').val(($('input#eInsurancepayTotalcost').val()/$(this).val()).toFixed(2));
 		});
 	});
 </script>
@@ -44,7 +47,7 @@
     		</c:if>
     		<c:if test="${loginMember.level == 'farm'}">
 				<h1>예상보험비를 등록해주세요</h1>
-				<form action="#" method="post">
+				<form action="${pageContext.request.contextPath}/addInsurancepay" method="post">
     				작업단계 : 
     				<select name="ppWork.ppWorkNumber" id="ppWorkNumber">
     					<c:forEach items="${ppWorkList}" var="ppWork">

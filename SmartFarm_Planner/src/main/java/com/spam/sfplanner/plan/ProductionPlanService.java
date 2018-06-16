@@ -32,6 +32,9 @@ public class ProductionPlanService {
 	@Autowired 
 	private WoInsurancePayDao woInsurancePayDao;
 	
+	@Autowired
+	private WoHumanPayDao woHumanPayDao;
+	
 	public ProductionPlan oneSelectProductionPlan(int ppNumber) {
 		ProductionPlan productionPlan = productionPlanDao.oneSelectProductionPlan(ppNumber);
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -45,6 +48,7 @@ public class ProductionPlanService {
 			map.put("ppWorkNumber", ppWork.getPpWorkNumber());
 			ppWork.setWoMaterialsPayList(woMaterialsPayDao.listSelectWoMaterialsPay(ppWork.getPpWorkNumber()));
 			ppWork.setWoInsurancePayList(woInsurancePayDao.listSelectWoInsurancePay(map));
+			ppWork.setWoHumanPayList(woHumanPayDao.listSelectWoHumanPay(map));
 			map.clear();
 		}
 		return productionPlan;

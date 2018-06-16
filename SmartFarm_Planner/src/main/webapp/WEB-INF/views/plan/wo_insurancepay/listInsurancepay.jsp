@@ -50,6 +50,8 @@
     						<th>보험가입기간</th>
     						<th>총보험비</th>
     						<th>예상보험비(월)</th>
+    						<th>수정</th>
+    						<th>삭제</th>
     					</tr>
     				</thead>
     				<tbody>
@@ -66,6 +68,8 @@
 		    						<td>${woInsurancePay.eInsurancepayTerm}</td>
 		    						<td>${woInsurancePay.eInsurancepayTotalcost}</td>
 		    						<td>${woInsurancePay.eInsurancepayExpectcost}</td>
+		    						<td><a href="${pageContext.request.contextPath}/updateInsurancepay?eInsurancepayNumber=${woInsurancePay.eInsurancepayNumber}&ppNumber=${woInsurancePay.ppWork.productionPlan.ppNumber}">수정하기</a></td>
+		    						<td><a href="${pageContext.request.contextPath}/deleteInsurancepay?eInsurancepayNumber=${woInsurancePay.eInsurancepayNumber}">삭제하기</a></td>
 		    					</tr>
 	    					</c:if>
 	    				</c:forEach>

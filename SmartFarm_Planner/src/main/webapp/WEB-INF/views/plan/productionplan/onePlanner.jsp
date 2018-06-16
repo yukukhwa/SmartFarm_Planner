@@ -1,6 +1,7 @@
 <!-- 나성수 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,17 +11,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){
-		var num = Math.random()*4;
-		if(Math.ceil(num) == 0) {
-			$('.color').attr('class', 'panel panel-success');
-		} else if(Math.ceil(num) == 1) {
-			$('.color').attr('class', 'panel panel-primary');
-		} else if(Math.ceil(num) == 2) {
-			$('.color').attr('class', 'panel panel-warning');
-		} else if(Math.ceil(num) == 3) {
-			$('.color').attr('class', 'panel panel-danger');
-		} else if(Math.ceil(num) == 4) {
-			$('.color').attr('class', 'panel panel-info');
+		var listSize = ${fn:length(productionPlan.ppWorkList)};
+		for(i = 1; i<=listSize; i++){
+			R = Math.round(Math.random()*255);
+			G = Math.round(Math.random()*255);
+			B = Math.round(Math.random()*255);
+			$('#color'+i).find('.panel-heading').css('background-color','rgba('+R+','+G+','+B+',.25)');
 		}
 		$('.panel-heading').click(function(){
 			if($(this).parent('div').find('.panel-content').css("display") == "none"){
@@ -51,10 +47,11 @@
 							${productionPlan.titlePlan.ppNamePlanname}
 						</header>
 						<div class="panel-body">
+							<c:set var="i" value="1"/>
 							<c:forEach items="${productionPlan.ppWorkList}" var="ppWork">
-								<div class="color">
+								<div id="color${i}">
 									<div class="panel-heading col-lg-12">
-										<a href="${pageContext.request.contextPath}/listWorkPlan?ppNumber=${productionPlan.ppNumber}">${ppWork.ppWorkName}</a>
+										<strong>${ppWork.ppWorkName}</strong>
 									</div>
 									<div class="panel-content" style="display:none">
 										<div>
@@ -73,26 +70,22 @@
 												<tr>
 													<th>인부이름</th>
 													<th>인부주민번호</th>
-													<th>예상일당</th>
-													<th>예상작업날짜</th>
-													<th>불일치</th>
-													<th>실제일당</th>
-													<th>실제작업날짜</th>
+													<th>예상인건비(일)</th>
+													<th>예상작업일</th>
 												</tr>
 											</thead>
-											<%-- <tbody>
-												<c:forEach var="humanPay" items="${humanPayList}" varStatus="i">
-													<tr>
-														<td>${humanPay.eHumanpayName}</td>
-														<td>${humanPay.eHumanpayResidentnumber}</td>
-														<td>${humanPay.eHumanpayExpectpay}</td>
-														<td>${humanPay.eHumanpayExpectday}</td>
-														<td><input type="checkbox" name="agreement"></td>
-														<td><input type="text" name="wrHumanPayDb[${i.index}].wrHumanpayRealcost"></td>
-														<td><input type="Datetime-local" name="wrHumanPayDb[${i.index}].wrHumanpayDate"></td>
-													</tr>
+											<tbody>
+												<c:forEach var="woHumanPay" items="${ppWork.woHumanPayList}">
+													<c:if test="${woHumanPay.eHumanpaySecret != 'false'}">
+														<tr>
+															<td>${woHumanPay.eHumanpayName}</td>
+															<td>${woHumanPay.eHumanpayResidentnumber}</td>
+															<td>${woHumanPay.eHumanpayExpectpay}</td>
+															<td>${woHumanPay.eHumanpayExpectday}</td>
+														</tr>
+													</c:if>
 												</c:forEach>
-											</tbody> --%>
+											</tbody>
 										</table>
 										원자재
 										<table class="table table-striped table-advance table-hover">
@@ -146,6 +139,7 @@
 										</table>
 									</div>
 								</div>
+								<c:set var="i" value="${i+1}"/>
 							</c:forEach>	
 						</div>
 						</section>

@@ -16,8 +16,20 @@ public class WoInsurancePayDao {
 	
 	private static final String NAMESPACE = "com.spam.sfplanner.plan.WoInsurancePayMapper.";
 	
-	public void addInsurancepay(WoInsurancePay woInsurancePay) {
-		sqlSessionTemplate.insert(NAMESPACE+"addInsurancepay",woInsurancePay);
+	public void updateInsurancepay(WoInsurancePay woInsurancePay) {
+		sqlSessionTemplate.update(NAMESPACE+"updateWoInsurancePay", woInsurancePay);
+	}
+	
+	public WoInsurancePay updateInsurancepay(Map<String,Object> map) {
+		return sqlSessionTemplate.selectOne(NAMESPACE+"listSelectWoInsurancePay", map);
+	}
+	
+	public void deleteWoInsurancePay(int eInsurancepayNumber) {
+		sqlSessionTemplate.delete(NAMESPACE+"deleteWoInsurancePay", eInsurancepayNumber);
+	}
+	
+	public void insertWoInsurancePay(WoInsurancePay woInsurancePay) {
+		sqlSessionTemplate.insert(NAMESPACE+"insertWoInsurancePay",woInsurancePay);
 	}
 	
 	public List<WoInsurancePay> listSelectWoInsurancePay(Map<String,Object> map) {

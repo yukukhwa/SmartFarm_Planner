@@ -22,10 +22,36 @@
  		<collection ofType="com.spam.sfplanner.plan.PpWork" property="ppWork">
 	 		<id column="pp_work_number" property="ppWorkNumber"/>
 	 		<result column="pp_work_name" property="ppWorkName"/>
+	 		<collection ofType="com.spam.sfplanner.plan.ProductionPlan" property="productionPlan">
+	 			<id column="pp_number" property="ppNumber"/>
+	 		</collection>
  		</collection>
  	</resultMap>
  	
- 	<insert id="addInsurancepay"
+ 	<update id="updateWoInsurancePay"
+ 			parameterType="com.spam.sfplanner.plan.WoInsurancePay">
+	 	UPDATE sp_e_insurancepay
+		SET
+			sp_e_insurancepay.theme_number = #{categoryTheme.themeNumber}
+			,sp_e_insurancepay.pp_work_number = #{ppWork.ppWorkNumber}
+			,sp_e_insurancepay.e_insurancepay_name = #{eInsurancepayMame}
+			,sp_e_insurancepay.e_insurancepay_content = #{eInsurancepayContent}
+			,sp_e_insurancepay.e_insurancepay_startday = #{eInsurancepayStartday}
+			,sp_e_insurancepay.e_insurancepay_endday = #{eInsurancepayEndday}
+			,sp_e_insurancepay.e_insurancepay_term = #{eInsurancepayTerm}
+			,sp_e_insurancepay.e_insurancepay_totalcost = #{eInsurancepayTotalcost}
+			,sp_e_insurancepay.e_insurancepay_expectcost = #{eInsurancepayExpectcost}
+			,sp_e_insurancepay.e_insurancepay_secret = #{eInsurancepaySecret}
+		WHERE
+			sp_e_insurancepay.e_insurancepay_number = #{eInsurancepayNumber}
+ 	</update>
+ 	
+ 	<delete id="deleteWoInsurancePay"
+ 			parameterType="int">
+ 		DELETE FROM sp_e_insurancepay WHERE e_insurancepay_number=#{eInsurancepayNumber}
+ 	</delete>
+ 	
+ 	<insert id="insertWoInsurancePay"
  			parameterType="com.spam.sfplanner.plan.WoInsurancePay">
 	 	INSERT INTO sp_e_insurancepay
 			(theme_number
@@ -58,6 +84,7 @@
 			sp_e_insurancepay.e_insurancepay_number
 			,sp_e_insurancepay.theme_number
 			,sp_theme_cate.theme_name
+			,sp_pp.pp_number
 			,sp_e_insurancepay.pp_work_number
 			,sp_pp_work.pp_work_name
 			,sp_e_insurancepay.e_insurancepay_name
@@ -69,11 +96,13 @@
 			,sp_e_insurancepay.e_insurancepay_expectcost
 			,sp_e_insurancepay.e_insurancepay_secret
 		from
-			sp_e_insurancepay join sp_theme_cate join sp_pp_work
+			sp_e_insurancepay join sp_theme_cate join sp_pp_work join sp_pp
 		on
 			sp_e_insurancepay.theme_number = sp_theme_cate.theme_number
 		and
 			sp_e_insurancepay.pp_work_number = sp_pp_work.pp_work_number
+		and
+			sp_pp_work.pp_number = sp_pp.pp_number
 		<if test="search == 'yes'">
 			where
 			<if test="column == '작업단계넘버'">
@@ -88,6 +117,9 @@
 					sp_theme_cate.theme_name like concat('%',#{property},'%')
 				and
 					sp_e_insurancepay.pp_work_number = #{ppWorkNumber}
+			</if>
+			<if test="column == '예상보험비넘버'">
+				sp_e_insurancepay.e_insurancepay_number = #{property}
 			</if>
 		</if>
  	</select>
