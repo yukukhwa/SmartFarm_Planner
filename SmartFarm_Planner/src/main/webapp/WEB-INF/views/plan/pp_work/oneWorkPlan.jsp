@@ -67,24 +67,24 @@
 	    						<th>예상보험비(월)</th>
     						</tr>
     					</thead>
-    					<tbody>
     					<c:forEach var="woInsurancePay" items="${ppWork.woInsurancePayList}">
 	    					<c:if test="${woInsurancePay.eInsurancepaySecret != 'false'}">
-	    						<tr>
-	    							<td>${woInsurancePay.eInsurancepayNumber}</td>
-	    							<td>${woInsurancePay.ppWork.ppWorkName}</td>
-	    							<td>${woInsurancePay.categoryTheme.themeName}</td>
-	    							<td>${woInsurancePay.eInsurancepayMame}</td>
-			    					<td>${woInsurancePay.eInsurancepayContent}</td>
-			    					<td>${woInsurancePay.eInsurancepayStartday}</td>
-			    					<td>${woInsurancePay.eInsurancepayEndday}</td>
-			    					<td>${woInsurancePay.eInsurancepayTerm}</td>
-			    					<td>${woInsurancePay.eInsurancepayTotalcost}</td>
-			    					<td>${woInsurancePay.eInsurancepayExpectcost}</td>
-	    						</tr>
-	    					</c:if>
+    							<tbody>
+		    						<tr>
+		    							<td>${woInsurancePay.eInsurancepayNumber}</td>
+		    							<td>${woInsurancePay.ppWork.ppWorkName}</td>
+		    							<td>${woInsurancePay.categoryTheme.themeName}</td>
+		    							<td>${woInsurancePay.eInsurancepayMame}</td>
+				    					<td>${woInsurancePay.eInsurancepayContent}</td>
+				    					<td>${woInsurancePay.eInsurancepayStartday}</td>
+				    					<td>${woInsurancePay.eInsurancepayEndday}</td>
+				    					<td>${woInsurancePay.eInsurancepayTerm}</td>
+				    					<td>${woInsurancePay.eInsurancepayTotalcost}</td>
+				    					<td>${woInsurancePay.eInsurancepayExpectcost}</td>
+		    						</tr>	
+    							</tbody>
+    						</c:if>
     					</c:forEach>
-    					</tbody>
     				</table>
     			</div> <br><br>
     			<div>
@@ -92,14 +92,30 @@
     				<table class="table">
     					<thead>
     						<tr>
-    							<th>예상 인건비 넘버</th>
+    							<th>예상인건비넘버</th>
+	    						<th>작업단계명</th>
+	    						<th>테마 카테고리명</th>
+	    						<th>인부이름</th>
+	    						<th>주민번호</th>
+	    						<th>예상인건비</th>
+	    						<th>예상작업일</th>
     						</tr>
     					</thead>
-    					<tbody>
-    						<tr>
-    							<td></td>
-    						</tr>
-    					</tbody>
+    					<c:forEach var="woHumanPay" items="${ppWork.woHumanPayList}">
+    						<c:if test="${woHumanPayList.eHumanpaySecret != 'false'}">
+		    					<tbody>
+		    						<tr>
+			    						<td>${woHumanPay.eHumanpayNumber}</td>
+			    						<td>${woHumanPay.ppWork.ppWorkName}</td>
+			    						<td>${woHumanPay.categoryTheme.themeName}</td>
+			    						<td>${woHumanPay.eHumanpayName}</td>
+			    						<td>${woHumanPay.eHumanpayResidentnumber}</td>
+			    						<td>${woHumanPay.eHumanpayExpectpay}</td>
+			    						<td>${woHumanPay.eHumanpayExpectday}</td>
+		    						</tr>
+		    					</tbody>
+	    					</c:if>
+    					</c:forEach>
     				</table>
     			</div>
     		</div>

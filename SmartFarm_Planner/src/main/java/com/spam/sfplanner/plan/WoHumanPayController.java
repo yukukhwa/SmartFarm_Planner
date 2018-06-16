@@ -18,6 +18,16 @@ public class WoHumanPayController {
 		return "plan/wo_humanpay/updateHumanPay";
 	}
 	
+	@RequestMapping(value="/listHumanPay", method=RequestMethod.POST)
+	public String listSelectWoHumanPay(Model model
+									, int ppWorkNumber
+									, String searchHumanPayOption
+									, String searchKeyword) {
+		model.addAttribute("ppWorkNumber", ppWorkNumber);
+		model.addAttribute("list", woHumanPayService.listSelectWoHumanPay(searchKeyword, searchHumanPayOption, ppWorkNumber));
+		return "plan/wo_humanpay/listHumanPay";
+	}
+	
 	@RequestMapping(value="/listHumanPay", method=RequestMethod.GET)
 	public String listSelectWoHumanPay(Model model, int ppWorkNumber) {
 		model.addAttribute("ppWorkNumber", ppWorkNumber);

@@ -9,6 +9,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('#searchHumanPay').click(function(){
+			$('#searchHumanPayForm').submit();
+		})
 	})
 </script>
 </head>
@@ -23,11 +26,15 @@
     	<section class="wrapper">
     		<div>
     			<h3>예상 인건비 리스트</h3>
-    			<!-- <form id="searchHumanPayForm">
-    				<select id="searchHumanPayOption">
-    					<option value=""></option>
+    			<form id="searchHumanPayForm" method="post" action="${pageContext.request.contextPath}/listHumanPay">
+    				<select name="searchHumanPayOption" id="searchHumanPayOption">
+    					<option value="eHumanpayName">작업인부이름</option>
+    					<option value="eHumanpayResidentnumber">주민번호</option>
     				</select>
-    			</form> -->
+    				<input type="hidden" name=ppWorkNumber value="${ppWorkNumber}">
+    				<input type="text" name="searchKeyword">
+    				<button id="searchHumanPay">인건비 검색</button>
+    			</form>
     			<table class="table">
     				<thead>
     					<tr>

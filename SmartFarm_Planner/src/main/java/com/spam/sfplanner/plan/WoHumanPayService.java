@@ -15,7 +15,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class WoHumanPayService {
 	@Autowired WoHumanPayDao woHumanPayDao;
 	private final static Logger LOGGER = LoggerFactory.getLogger(WoHumanPayService.class);
-
+	
+	public List<WoHumanPay> listSelectWoHumanPay(String searchKeyword, String searchHumanPayOption, int ppWorkNumber){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("searchKeyword", searchKeyword);
+		map.put("searchHumanPayOption", searchHumanPayOption);
+		map.put("ppWorkNumber", ppWorkNumber);
+		return woHumanPayDao.listSelectWoHumanPay(map);
+	}
+	
 	public List<WoHumanPay> listSelectWoHumanPay(int ppWorkNumber){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ppWorkNumber", ppWorkNumber);

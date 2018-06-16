@@ -46,5 +46,14 @@
 				sp_e_humanpay.pp_work_number = sp_pp_work.pp_work_number
 			WHERE
 				sp_e_humanpay.pp_work_number=#{ppWorkNumber}
+			<if test="searchHumanPayOption != null">
+				<if test="searchHumanPayOption == 'eHumanpayName'">
+					AND sp_e_humanpay.e_humanpay_name LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+				<if test="searchHumanPayOption == 'eHumanpayResidentnumber'">
+					AND sp_e_humanpay.e_humanpay_residentnumber LIKE CONCAT('%',#{searchKeyword},'%')
+				</if>
+			</if>
+			
  	</select>
  </mapper>
