@@ -37,7 +37,7 @@ public class ActResultController {
 	@RequestMapping(value="/oneSelectActResult", method = RequestMethod.GET)
 	public String oneSelectActResult (Model model
 			, @RequestParam(value="ppResultlistNumber") int ppResultlistNumber) {
-		model.addAttribute("actResultList", actResultService.oneSelectActResult(ppResultlistNumber));
+		model.addAttribute("map", actResultService.oneSelectActResult(ppResultlistNumber));
 		return "actresult/oneActResultList";
 	}
 	/*

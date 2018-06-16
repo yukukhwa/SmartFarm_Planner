@@ -28,14 +28,18 @@ public class ActResultService {
 	private WoHumanPayDao woHumanPayDao;
 	@Autowired
 	private ProductionPlanDao productionPlanDao;
+	@Autowired
+	private PpWoResultDao ppWoResultDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ActResultService.class);
 	
-	public List<ActResult> oneSelectActResult(int ppResultlistNumber) {
+	public Map<String, Object> oneSelectActResult(int ppResultlistNumber) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("search", "yes");
 		map.put("ppResultlistNumber", ppResultlistNumber);
-		return actResultDao.oneSelectActResult(map);
+		map.put("actResultList", actResultDao.oneSelectActResult(map));
+		map.put("woResultList", ppWoResultDao.listSelectWorkResult());
+		return map;
 	}
 	
 	public int insertActResult(ActResult actResult, WrHumanPay wrHumanPay) {

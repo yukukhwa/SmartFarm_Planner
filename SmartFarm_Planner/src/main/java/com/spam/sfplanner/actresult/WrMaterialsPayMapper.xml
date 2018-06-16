@@ -4,7 +4,23 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.spam.sfplanner.actresult.WrMaterialsPayMapper">
-	<!-- 작업단계넘버를 매개변수로 받아 해당하는 원자재비결괄르 삭제하는 쿼리문 -->
+	<resultMap type="com.spam.sfplanner.actresult.WrMaterialsPay" id="wrMaterialsPay">
+		<id column="wr_materialspay" property="wrMaterialspayNumber"/>
+		<result column="wr_materialspay_quantity" property="wrMaterialspayQuantity"/>
+		<result column="wr_materialspay_unitcost" property="wrMaterialspayUnitcost"/>
+		<collection property="ppWoResult" ofType="com.spam.sfplanner.actresult.PpWoResult">
+			<id column="wr_number" property="wrNumber"/>
+			<result column="wr_totalarea" property="wrTotalarea"/>
+			<result column="wr_reworkarea" property="wrReworkarea"/>
+		</collection>
+		<collection property="woMaterialsPay" ofType="com.spam.sfplanner.plan.WoMaterialsPay">
+			<id column="e_materialspay_number" property="eMaterialspayNumber"/>
+			<result column="e_materialspay_unitcost" property="eMaterialspayUnitcost"/>
+			<result column="e_materialspay_use" property="eMaterialspayUse"/>
+			<result column="e_materialspay_secret" property="eMaterialspaySecret"/>
+		</collection>
+	</resultMap>
+	<!-- 작업단계넘버를 매개변수로 받아 해당하는 원자재비결과를 삭제하는 쿼리문 -->
 	<delete id="deleteWrMaterialsPay"
 			parameterType="Integer">
 		DELETE FROM

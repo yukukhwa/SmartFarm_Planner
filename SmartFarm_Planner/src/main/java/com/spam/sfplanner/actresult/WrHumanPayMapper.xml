@@ -4,6 +4,24 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.spam.sfplanner.actresult.WrHumanPayMapper">
+	<resultMap type="com.spam.sfplanner.actresult.WrHumanPay" id="wrHumanPay">
+		<id column="wr_humanpay_number" property="wrHumanpayNumber"/>
+		<result column="wr_humanpay_realcost" property="wrHumanpayRealcost"/>
+		<result column="wr_humanpay_date" property="wrHumanpayDate"/>
+		<collection property="ppWoResult" ofType="com.spam.sfplanner.actresult.PpWoResult">
+			<id column="wr_number" property="wrNumber"/>
+			<result column="wr_totalarea" property="wrTotalarea"/>
+			<result column="wr_reworkarea" property="wrReworkarea"/>
+		</collection>
+		<collection property="woHumanPay" ofType="com.spam.sfplanner.plan.WoHumanPay">
+			<id column="e_humanpay_number" property="eHumanpayNumber"/>
+			<result column="e_humanpay_name" property="eHumanpayName"/>
+			<result column="e_humanpay_residentnumber" property="eHumanpayResidentnumber"/>
+			<result column="e_humanpay_expectpay" property="eHumanpayExpectpay"/>
+			<result column="e_humanpay_expectday" property="eHumanpayExpectday"/>
+			<result column="e_humanpay_secret" property="eHumanpaySecret"/>
+		</collection>
+	</resultMap>
 	<!-- 작업단계넘버를 매개변수로 받아 해당하는 인건비를 삭제하는 쿼리문 -->
 	<delete id="deleteWrHumanPay"
 			parameterType="Integer">

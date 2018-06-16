@@ -1,10 +1,12 @@
 /*[김기성]*/
 package com.spam.sfplanner.actresult;
 
+import com.spam.sfplanner.plan.WoMaterialsPay;
+
 public class WrMaterialsPay {
 	private int wrMaterialspayNumber; // 원자재비 결과 기본기
-	private int wrNumber; // 작업단계결과 외래키
-	private int eMaterialspayNumber; // 예상원자재비 외래키
+	private PpWoResult ppWoResult; // 작업단계결과 외래키를 가지고 있는 작업단계결과 객체
+	private WoMaterialsPay woMaterialsPay; // 예상원자재비 외래키를 가지고 있는 예상원자재비 객체
 	private double wrMaterialspayQuantity; // 실제 사용량
 	private String wrMaterialspayUnitcost; // 현재 원자재 단가
 	
@@ -14,17 +16,17 @@ public class WrMaterialsPay {
 	public void setWrMaterialspayNumber(int wrMaterialspayNumber) {
 		this.wrMaterialspayNumber = wrMaterialspayNumber;
 	}
-	public int getWrNumber() {
-		return wrNumber;
+	public PpWoResult getPpWoResult() {
+		return ppWoResult;
 	}
-	public void setWrNumber(int wrNumber) {
-		this.wrNumber = wrNumber;
+	public void setPpWoResult(PpWoResult ppWoResult) {
+		this.ppWoResult = ppWoResult;
 	}
-	public int geteMaterialspayNumber() {
-		return eMaterialspayNumber;
+	public WoMaterialsPay getWoMaterialsPay() {
+		return woMaterialsPay;
 	}
-	public void seteMaterialspayNumber(int eMaterialspayNumber) {
-		this.eMaterialspayNumber = eMaterialspayNumber;
+	public void setWoMaterialsPay(WoMaterialsPay woMaterialsPay) {
+		this.woMaterialsPay = woMaterialsPay;
 	}
 	public double getWrMaterialspayQuantity() {
 		return wrMaterialspayQuantity;
@@ -41,8 +43,8 @@ public class WrMaterialsPay {
 	
 	@Override
 	public String toString() {
-		return "WrMaterialsPay [wrMaterialspayNumber=" + wrMaterialspayNumber + ", wrNumber=" + wrNumber
-				+ ", eMaterialspayNumber=" + eMaterialspayNumber + ", wrMaterialspayQuantity=" + wrMaterialspayQuantity
+		return "WrMaterialsPay [wrMaterialspayNumber=" + wrMaterialspayNumber + ", ppWoResult=" + ppWoResult
+				+ ", woMaterialsPay=" + woMaterialsPay + ", wrMaterialspayQuantity=" + wrMaterialspayQuantity
 				+ ", wrMaterialspayUnitcost=" + wrMaterialspayUnitcost + "]";
 	}
 }
