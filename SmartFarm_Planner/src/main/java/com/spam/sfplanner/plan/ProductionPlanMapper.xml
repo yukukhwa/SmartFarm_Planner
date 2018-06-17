@@ -16,12 +16,55 @@
  		<collection ofType="com.spam.sfplanner.user.FarmMember" property="farmMember">
  			<id column="f_member_id" property="fMemberId"/>
  			<result column="f_member_name" property="fMemberName"/>
+ 			 <collection property="farm" ofType="com.spam.sfplanner.corporation.Farm">
+	            <id column="f_number" property="fNumber"/>
+	        </collection>
  		</collection>
  		<collection ofType="com.spam.sfplanner.plan.TitlePlan" property="titlePlan">
  			<id column="pp_name_number" property="ppNameNumber"/>
  			<result column="pp_name_planname" property="ppNamePlanname"/>
  		</collection>
  	</resultMap>
+ 	
+ 	<update id="updateProductionPlan"
+ 			parameterType="com.spam.sfplanner.plan.ProductionPlan">
+ 		UPDATE sp_pp
+		SET
+			pp_name_number=#{titlePlan.ppNameNumber}
+			,pp_startday=#{ppStartday}
+			,pp_endday=#{ppEndday}
+			,pp_ownarea=#{ppOwnarea}
+			,pp_rentarea=#{ppRentarea}
+			,pp_secret=#{ppSecret}
+		WHERE 
+			pp_number=#{ppNumber}
+ 	</update>
+ 	
+ 	<delete id="deleteProductionPlan"
+ 			parameterType="int">
+ 		DELETE FROM sp_pp WHERE pp_number=#{ppNumber}
+ 	</delete>
+ 	
+ 	<insert id="insertProductionPlan"
+ 			parameterType="com.spam.sfplanner.plan.ProductionPlan">
+ 		INSERT INTO sp_pp
+			(pp_name_number
+			,pp_startday
+			,pp_endday
+			,pp_ownarea
+			,pp_rentarea
+			,pp_recordday
+			,f_member_id
+			,pp_secret)
+			VALUES (#{titlePlan.ppNameNumber}
+			,#{ppStartday}
+			,#{ppEndday}
+			,#{ppOwnarea}
+			,#{ppRentarea}
+			,NOW()
+			,#{farmMember.fMemberId}
+			,#{ppSecret})
+ 	</insert>
  	
  	<select id="oneSelectProductionPlan"
  			parameterType="int"
@@ -62,6 +105,7 @@
 			,sp_pp.pp_recordday
 			,sp_pp.f_member_id
 			,sp_farm_member.f_member_name
+			,sp_farm_member.f_number
 			,sp_pp.pp_secret
 		from
 			sp_pp join sp_pp_name_cate join sp_farm_member

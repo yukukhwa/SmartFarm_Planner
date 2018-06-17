@@ -13,6 +13,10 @@ public class TitlePlan {
 	private String ppNamePlanname; //계획명
 	private Farm farm; //농가 테이블
 	private CategoryItem categoryItem; //품목카테고리 테이블
+	public TitlePlan() {
+		this.farm = new Farm();
+		this.categoryItem = new CategoryItem();
+	}
 	public int getPpNameNumber() {
 		return ppNameNumber;
 	}

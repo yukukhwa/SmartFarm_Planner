@@ -36,7 +36,7 @@
 	    		<h1>계획서를 작성해주세요.</h1>
 	    		<form action="${pageContext.request.contextPath}/addPlanner" method="post">
     				계획명 : 
-    				<select name="ppNumber" id="ppNumber">
+    				<select name="titlePlan.ppNameNumber" id="ppNameNumber">
     					<c:forEach items="${titleList}" var="title">
     						<option value="${title.ppNameNumber}">${title.ppNamePlanname}</option>
     					</c:forEach>
@@ -60,7 +60,6 @@
 	    			</div>
 	    			<button type="submit">계획서 등록</button>
 	    		</form>
-	    		
     		</c:if>
     	</section>
    	</section>

@@ -21,6 +21,10 @@ public class ProductionPlan {
 	private FarmMember farmMember; // 농가 회원 테이블
 	private TitlePlan titlePlan; // 계획명 테이블
 	private List<PpWork> ppWorkList; // 해당 계획서내 작업단계리스트
+	public ProductionPlan() {
+		this.farmMember = new FarmMember();
+		this.titlePlan = new TitlePlan();
+	}
 	public int getPpNumber() {
 		return ppNumber;
 	}

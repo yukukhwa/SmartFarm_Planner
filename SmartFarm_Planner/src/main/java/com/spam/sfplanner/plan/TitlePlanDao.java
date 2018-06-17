@@ -54,7 +54,7 @@ public class TitlePlanDao {
 	 * 계획명 등록 처리 Dao
 	 * @param 등록농가넘버,품목넘버,계획명
 	 */
-	public void insertTitlePlan(Map<String,Object> map) {
-		sqlSessionTemplate.insert(NAMESPACE+"insertTitlePlan", map);
+	public void insertTitlePlan(TitlePlan titlePlan) {
+		sqlSessionTemplate.insert(NAMESPACE+"insertTitlePlan", titlePlan);
 	}
 }

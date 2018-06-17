@@ -87,9 +87,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 계획명 등록 처리 insert 쿼리문장 -->
 	<insert id="insertTitlePlan"
-			parameterType="java.util.Map">
+			parameterType="com.spam.sfplanner.plan.TitlePlan">
 		INSERT INTO sp_pp_name_cate
 		(f_number, i_item_number, pp_name_planname)
-		VALUES (#{fNumber}, #{iItemNumber}, #{ppNamePlanname})
+		VALUES (#{farm.fNumber}, #{categoryItem.iItemNumber}, #{ppNamePlanname})
 	</insert>
 </mapper>

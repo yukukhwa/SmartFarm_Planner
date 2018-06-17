@@ -35,6 +35,33 @@ public class ProductionPlanService {
 	@Autowired
 	private WoHumanPayDao woHumanPayDao;
 	
+	public void updateProductionPlan(ProductionPlan productionPlan) {
+		productionPlanDao.updateProductionPlan(productionPlan);
+	}
+	
+	public Map<String,Object> updateProductionPlan(int ppNumber,HttpSession session) {
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("search", "yes");
+		map.put("column", "농가넘버");
+		map.put("property", ((Login)session.getAttribute("loginMember")).getCorpNumber());
+		List<TitlePlan> titleList = titlePlanDao.listSelectTitlePlan(map);
+		ProductionPlan productionPlan = productionPlanDao.oneSelectProductionPlan(ppNumber);
+		map.clear();
+		map.put("titleList", titleList);
+		map.put("productionPlan", productionPlan);
+		return map;
+	}
+	
+	public void deleteProductionPlan(int ppNumber) {
+		productionPlanDao.deleteProductionPlan(ppNumber);
+	}
+	
+	public void insertProductionPlan(ProductionPlan productionPlan,HttpSession session) {
+		productionPlan.getFarmMember().setfMemberId(((Login)session.getAttribute("loginMember")).getId());
+		System.out.println(productionPlan.toString());
+		productionPlanDao.insertProductionPlan(productionPlan);
+	}
+	
 	public ProductionPlan oneSelectProductionPlan(int ppNumber) {
 		ProductionPlan productionPlan = productionPlanDao.oneSelectProductionPlan(ppNumber);
 		Map<String, Object> map = new HashMap<String, Object>();

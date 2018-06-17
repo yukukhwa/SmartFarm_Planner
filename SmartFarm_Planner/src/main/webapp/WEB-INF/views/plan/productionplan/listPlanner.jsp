@@ -53,6 +53,14 @@
     							<td>${productionPlan.ppRentarea}</td>
     							<td>${productionPlan.ppRecordday}</td>
     							<td>${productionPlan.farmMember.fMemberName}</td>
+    							<c:if test="${loginMember.corpNumber == productionPlan.farmMember.farm.fNumber}">
+	    							<td>
+	    								<a href="${pageContext.request.contextPath}/updatePlanner?ppNumber=${productionPlan.ppNumber}">수정하기</a>
+	    							</td>
+	    							<td>
+	    								<a href="${pageContext.request.contextPath}/deletePlanner?ppNumber=${productionPlan.ppNumber}">삭제하기</a>
+	    							</td>
+    							</c:if>
     						</tr>
     					</c:if>
     				</c:forEach>
