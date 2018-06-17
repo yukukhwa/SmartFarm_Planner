@@ -82,11 +82,8 @@ public class TitlePlanService {
 	 * @param 농가 넘버
 	 */
 	public void insertTitlePlan(TitlePlan titlePlan,HttpSession session) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("fNumber", ((Login)session.getAttribute("loginMember")).getCorpNumber());
-		map.put("iItemNumber", titlePlan.getCategoryItemDb().getiItemNumber());
-		map.put("ppNamePlanname", titlePlan.getPpNamePlanname());
-		titlePlanDao.insertTitlePlan(map);
+		titlePlan.getFarmDb().setfNumber(((Login)session.getAttribute("loginMember")).getCorpNumber());
+		titlePlanDao.insertTitlePlan(titlePlan);
 	}
 	
 	/**

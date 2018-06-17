@@ -1,6 +1,8 @@
 /*나성수*/
 package com.spam.sfplanner.plan;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,25 @@ public class ProductionPlanController {
 	@Autowired
 	private ProductionPlanService productionPlanService;
 	
+	@RequestMapping(value="/updatePlanner",method = RequestMethod.POST)
+	public String updateProductionPlan(ProductionPlan productionPlan) {
+		productionPlanService.updateProductionPlan(productionPlan);
+		return "redirect:/listPlanner";
+	}
+	
+	@RequestMapping(value="/updatePlanner",method = RequestMethod.GET)
+	public String updateProductionPlan(@RequestParam(value="ppNumber",required=true)int ppNumber,HttpSession session,Model model) {
+		Map<String, Object> map = productionPlanService.updateProductionPlan(ppNumber, session);
+		model.addAttribute("titleList", map.get("titleList"));
+		model.addAttribute("productionPlan", map.get("productionPlan"));
+		return "plan/productionplan/updatePlanner";
+	}
+	
+	@RequestMapping(value="/deletePlanner",method = RequestMethod.GET)
+	public String deleteProductionPlan(@RequestParam(value="ppNumber",required=true)int ppNumber) {
+		productionPlanService.deleteProductionPlan(ppNumber);
+		return "redirect:/listPlanner";
+	}
 	
 	/**
 	 * 계획서 상세화면 매핑
@@ -62,8 +83,8 @@ public class ProductionPlanController {
 	 */
 	@RequestMapping(value="/addPlanner",method = RequestMethod.POST)
 	public String insertProductionPlan(ProductionPlan productionPlan,HttpSession session) {
-		System.out.println(productionPlan.toString());
-		return "plan/productionplan/listPlanner";
+		productionPlanService.insertProductionPlan(productionPlan, session);;
+		return "redirect:/listPlanner";
 	}
 	
 	/**
