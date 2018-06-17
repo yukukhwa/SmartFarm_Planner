@@ -9,6 +9,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		// 주소 api쓰기
+		
 		$("input:radio[name=formCheck]").click(function(){
 			// 농가직원이면 addFarmForm이 농합코드 입력폼이 오게 
 			if($(this).val() == 'staff'){
@@ -191,11 +193,18 @@
 					<b>이메일 : </b>
 					<input type="text" name="fMemberEmail" placeholder="이메일을 입력해주세요">
 				</div>
+				<div>
+					<input type="button" id="searchAddress" value="searchAddress">
+				</div>
 				<div>	
 					<b>도로명 주소 : </b>
-					<input type="text" name="fMemberDoroaddress" placeholder="도로명주소를 입력해주세요"><br>
+					<input type="text" id="fMemberDoroaddress" name="fMemberDoroaddress" placeholder="도로명주소를 입력해주세요"><br>
+				</div>
+				<div>
 					<b>지번 주소 : </b>
-					<input type="text" name="fMemberJibunaddress" placeholder="지번주소를 입력해주세요"><br>
+					<input type="text" id="fMemberJibunaddress" name="fMemberJibunaddress" placeholder="지번주소를 입력해주세요"><br>
+				</div>
+				<div>
 					<b>상세 주소 : </b>
 					<input type="text" name="fMemberDetailaddress" placeholder="나머지 상세주소를 입력해주세요"><br>
 				</div>

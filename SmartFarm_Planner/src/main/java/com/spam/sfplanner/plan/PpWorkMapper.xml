@@ -32,6 +32,26 @@
  		</collection>
  	</resultMap>
  	
+ 	<insert id="insertPpWork"
+ 		parameterType="com.spam.sfplanner.plan.PpWork">
+ 			INSERT INTO sp_pp_work(
+				pp_number
+				, f_number
+				, pp_work_name
+				, pp_work_startday
+				, pp_work_endday
+				, pp_work_area
+				, pp_work_content)
+			VALUES (
+				#{ppNumber}
+				, #{fNumber}
+				, #{ppWorkName}
+				, #{ppWorkStartday}
+				, #{ppWorkEndday}
+				, #{ppWorkArea}
+				, #{ppWorkContent})
+ 	</insert>
+ 	
  	<select id="listSelectPpWork"
  		parameterType="java.util.Map"
  		resultMap="ppWork">

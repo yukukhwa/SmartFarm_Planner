@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class PpWorkController {
 	@Autowired PpWorkService ppWorkService;
+	@Autowired ProductionPlanService productionPlanService;
+	
 	private final static Logger LOGGER = LoggerFactory.getLogger(PpWorkController.class);
 	
 	@RequestMapping(value="/oneWorkPlan", method=RequestMethod.GET)
@@ -47,8 +49,16 @@ public class PpWorkController {
 		return "plan/pp_work/listWorkPlan";
 	}
 	
+	@RequestMapping(value="/addWorkPlan", method=RequestMethod.POST)
+	public String insertPpWork(PpWork ppWork, int ppNumber) {
+		System.out.println("add ppWork ---> "+ppWork);
+		ppWorkService.insertPpWork(ppWork);
+		return "plan/pp_work/listWorkPlan";
+	}
+	
 	@RequestMapping(value="/addWorkPlan", method=RequestMethod.GET)
-	public String insertPpWork() {
+	public String insertPpWork(Model model) {
+		model.addAttribute("productionPlanList", productionPlanService.listSelectProductionPlan());
 		return "plan/pp_work/addWorkPlan";
 	}
 }

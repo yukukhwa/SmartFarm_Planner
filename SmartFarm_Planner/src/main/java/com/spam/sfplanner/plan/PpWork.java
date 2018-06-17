@@ -1,7 +1,7 @@
 /*[김재희]*/
 package com.spam.sfplanner.plan;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import com.spam.sfplanner.corporation.Farm;
@@ -20,7 +20,6 @@ public class PpWork {
 	private List<WoMaterialsPay> woMaterialsPayList; // 작엄단계 내의 예상 원자재비 리스트
 	private List<WoHumanPay> woHumanPayList; // 작엄단계 내의 예상 인건비 리스트
 	private List<WoInsurancePay> woInsurancePayList; // 작업단계 내의 예상 보험비 리스트
-	
 	public int getPpWorkNumber() {
 		return ppWorkNumber;
 	}
@@ -107,5 +106,6 @@ public class PpWork {
 				+ ", productionPlan=" + productionPlan + ", woMaterialsPayList=" + woMaterialsPayList
 				+ ", woHumanPayList=" + woHumanPayList + ", woInsurancePayList=" + woInsurancePayList + "]";
 	}
+	
 	
 }

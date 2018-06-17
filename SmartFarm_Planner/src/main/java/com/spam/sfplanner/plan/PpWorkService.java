@@ -21,6 +21,10 @@ public class PpWorkService {
 	
 	private final static Logger LOGGER = LoggerFactory.getLogger(PpWorkService.class);
 	
+	public void insertPpWork(PpWork ppWork) {
+		ppWorkDao.insertPpWork(ppWork); 
+	}
+	
 	public PpWork oneSelectPpWork(int ppWorkNumber) {
 		LOGGER.info("PpWorkService oneSelectPpWork 호출");
 		PpWork ppWork = new PpWork();

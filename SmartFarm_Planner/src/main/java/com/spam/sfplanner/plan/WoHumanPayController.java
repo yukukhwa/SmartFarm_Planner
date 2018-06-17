@@ -35,6 +35,11 @@ public class WoHumanPayController {
 		return "plan/wo_humanpay/listHumanPay";
 	}
 	
+	/*@RequestMapping(value="/addHumanPay", method=RequestMethod.POST)
+	public String insertWoHumanPay() {
+		return "plan/wo_humanpay/addHumanPay";
+	}*/
+	
 	@RequestMapping(value="/addHumanPay", method=RequestMethod.GET)
 	public String insertWoHumanPay() {
 		return "plan/wo_humanpay/addHumanPay";
