@@ -1,5 +1,7 @@
 //[유국화]
 package com.spam.sfplanner.actresult;
+import java.util.List;
+
 import com.spam.sfplanner.plan.WoNeedEquip;
 
 //작업단계 결과별 필요장비결과 db
@@ -8,6 +10,7 @@ public class WrNeedEquip {
 	private PpWoResult ppWoResult; //작업단계결과 넘버 외래키 기능 위한 객체
 	private WoNeedEquip woNeedEquip; //예상필요장비 넘버 외래키 기능 위한 객체
 	private String wrNeedequipState; //실행할때 보유상태
+	private List<WrNeRentPay> wrNeRentPay; //필요장비결과별 대여비결과 리스트객체
 	
 	public int getWrNeedequipNumber() {
 		return wrNeedequipNumber;
@@ -33,9 +36,15 @@ public class WrNeedEquip {
 	public void setWrNeedequipState(String wrNeedequipState) {
 		this.wrNeedequipState = wrNeedequipState;
 	}
+	public List<WrNeRentPay> getWrNeRentPay() {
+		return wrNeRentPay;
+	}
+	public void setWrNeRentPay(List<WrNeRentPay> wrNeRentPay) {
+		this.wrNeRentPay = wrNeRentPay;
+	}
 	@Override
 	public String toString() {
 		return "WrNeedEquip [wrNeedequipNumber=" + wrNeedequipNumber + ", ppWoResult=" + ppWoResult + ", woNeedEquip="
-				+ woNeedEquip + ", wrNeedequipState=" + wrNeedequipState + "]";
+				+ woNeedEquip + ", wrNeedequipState=" + wrNeedequipState + ", wrNeRentPay=" + wrNeRentPay + "]";
 	}	
 }

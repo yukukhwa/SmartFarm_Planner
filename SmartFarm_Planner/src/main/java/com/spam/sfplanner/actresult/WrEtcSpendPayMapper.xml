@@ -48,9 +48,24 @@
  
 <!-- 기타지출비용 결과 리스트 -->
 <select id="listSelectWrEtcSpendPay"
-		parameterType="int"
+		parameterType="Map"
 		resultMap="resultWrEtcSpendPay">
-	
+	SELECT sp_wr_etcspendpay.wr_etcspendpay_number
+		, sp_wr_etcspendpay.wr_etcspendpay_realcost
+		, sp_wr_etcspendpay.wr_etcspendpay_date
+		, sp_wr.wr_number, sp_wr.wr_totalarea
+		, sp_wr.wr_reworkarea
+		, sp_e_etcspendpay.e_etcspendpay_number
+		, sp_e_etcspendpay.e_etcspendpay_content
+		, sp_e_etcspendpay.e_etcspendpay_day
+		, sp_e_etcspendpay.e_etcspendpay_cost
+		, sp_e_etcspendpay.e_etcspendpay_secret
+	FROM sp_wr_etcspendpay
+	JOIN sp_wr
+	JOIN sp_e_etcspendpay
+	ON sp_wr_etcspendpay.wr_number = sp_wr.wr_number
+	AND sp_wr_etcspendpay.e_etcspendpay_number = sp_e_etcspendpay.e_etcspendpay_number
+	WHERE sp_wr_etcspendpay.wr_number = #{wrNumber}
 </select>
  
 <!-- 기타지출비용 결과 입력 -->
