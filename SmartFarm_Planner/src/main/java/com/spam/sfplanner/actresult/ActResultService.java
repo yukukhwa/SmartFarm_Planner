@@ -34,6 +34,8 @@ public class ActResultService {
 	private WrMaterialsPayDao wrMaterialsPayDao;
 	@Autowired
 	private WrEtcSpendPayDao wrEtcSpendPayDao;
+	@Autowired
+	private WrInsurancePayDao wrInsurancePayDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ActResultService.class);
 	
@@ -44,9 +46,10 @@ public class ActResultService {
 		List<PpWoResult> list = ppWoResultDao.listSelectWorkResult(map);
 		for(PpWoResult ppWoResult : list) {
 			map.put("wrNumber", ppWoResult.getWrNumber());
-			ppWoResult.setWrHumanPay(wrHumanPayDao.listSelectWrHumanPay(map));
-			ppWoResult.setWrMaterialsPay(wrMaterialsPayDao.listSelectWrMaterialsPay(map));
-			/*ppWoResult.setWrEtcSpendPay(wrEtcSpendPayDao.listSelectWrEtcSpendPay(map));*/
+			ppWoResult.setWrHumanPayList(wrHumanPayDao.listSelectWrHumanPay(map));
+			ppWoResult.setWrMaterialsPayList(wrMaterialsPayDao.listSelectWrMaterialsPay(map));
+			ppWoResult.setWrEtcSpendPayList(wrEtcSpendPayDao.listSelectWrEtcSpendPay(map));
+			ppWoResult.setWrInsurancePayList(wrInsurancePayDao.listSelectWrInsurancePay(map));
 		}
 		actResult.setPpWoResultList(list);
 		return actResult;

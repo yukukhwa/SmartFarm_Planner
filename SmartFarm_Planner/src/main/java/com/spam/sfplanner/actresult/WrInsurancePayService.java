@@ -18,8 +18,8 @@ public class WrInsurancePayService {
 	 * @param map
 	 * @return
 	 */
-	public List<WrEtcSpendPay> WrInsurancePayService(Map<String, Object> map) {
+	public List<WrInsurancePay> WrInsurancePayService(Map<String, Object> map) {
 		LOGGER.info("WrInsurancePayService 호출");
-		return wrInsurancePayDao.listSelectWrEtcSpendPay(map);
+		return wrInsurancePayDao.listSelectWrInsurancePay(map);
 	}
 }

@@ -81,6 +81,30 @@
 									</tbody>
 								</table>
 								원자재비
+								<table class="table table-striped table-advance table-hover">
+									<thead>
+										<tr>
+											<th>인부이름</th>
+											<th>인부주민번호</th>
+											<th>예상일당</th>
+											<th>예상작업날짜</th>
+											<th>실제일당</th>
+											<th>실제작업날짜</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach var="wrHumanPayList" items="${woResultList.wrHumanPayList}">
+											<tr>
+												<td>${wrHumanPayList.woHumanPay.eHumanpayName}</td>
+												<td>${wrHumanPayList.woHumanPay.eHumanpayResidentnumber}</td>
+												<td>${wrHumanPayList.woHumanPay.eHumanpayExpectpay}</td>
+												<td>${wrHumanPayList.woHumanPay.eHumanpayExpectday}</td>
+												<td>${wrHumanPayList.wrHumanpayRealcost}</td>
+												<td>${wrHumanPayList.wrHumanpayDate}</td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
 								보험비
 								기타지출비
 								필요장비

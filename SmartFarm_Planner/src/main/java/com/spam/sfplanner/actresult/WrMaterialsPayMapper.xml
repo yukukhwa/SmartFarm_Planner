@@ -18,6 +18,11 @@
 			<result column="e_materialspay_unitcost" property="eMaterialspayUnitcost"/>
 			<result column="e_materialspay_use" property="eMaterialspayUse"/>
 			<result column="e_materialspay_secret" property="eMaterialspaySecret"/>
+			<collection property="categoryMaterials" ofType="com.spam.sfplanner.category.CategoryMaterials">
+	 			<id column="materials_number" property="materialsNumber"/>
+	 			<result column="materials_name" property="materialsName"/>
+	 			<result column="materials_unit" property="materialsUnit"/>
+ 			</collection>
 		</collection>
 	</resultMap>
 	<!-- 작업단계넘버를 매개변수로 받아 해당하는 원자재비결과를 삭제하는 쿼리문 -->
@@ -64,10 +69,13 @@
 			sp_e_materialspay.e_materialspay_use,
 			sp_e_materialspay.e_materialspay_secret,
 			sp_wr_materialspay.wr_materialspay_quantity,
-			sp_wr_materialspay.wr_materialspay_unitcost
+			sp_wr_materialspay.wr_materialspay_unitcost,
+			sp_materials_cate.materials_name,
+			sp_materials_cate.materials_unit
 		FROM sp_wr_materialspay
 		JOIN sp_wr ON sp_wr.wr_number = sp_wr_materialspay.wr_number
 		JOIN sp_e_materialspay ON sp_e_materialspay.e_materialspay_number = sp_wr_materialspay.e_materialspay_number
+		JOIN sp_materials_cate ON sp_e_materialspay.materials_number = sp_materials_cate.materials_number
 		WHERE sp_wr.wr_number = #{wrNumber}
 	</select>
 	<!-- 매개변수를 원자재비결과 db로 받아 insert하는 쿼리문 -->

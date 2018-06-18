@@ -20,7 +20,7 @@ public class WrInsurancePayDao {
 	 * @param map
 	 * @return
 	 */
-	public List<WrEtcSpendPay> listSelectWrEtcSpendPay(Map<String, Object> map) {
+	public List<WrInsurancePay> listSelectWrInsurancePay(Map<String, Object> map) {
 		LOGGER.info("WrInsurancePayDao 호출");
 		return session.selectList(nameSpace+"listSelectWrInsurancePay", map);
 	}
