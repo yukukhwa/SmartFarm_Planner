@@ -30,16 +30,26 @@ public class ActResultService {
 	private ProductionPlanDao productionPlanDao;
 	@Autowired
 	private PpWoResultDao ppWoResultDao;
+	@Autowired
+	private WrMaterialsPayDao wrMaterialsPayDao;
+	@Autowired
+	private WrEtcSpendPayDao wrEtcSpendPayDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ActResultService.class);
 	
-	public Map<String, Object> oneSelectActResult(int ppResultlistNumber) {
+	public ActResult oneSelectActResult(int ppResultlistNumber) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("search", "yes");
 		map.put("ppResultlistNumber", ppResultlistNumber);
-		map.put("actResultList", actResultDao.oneSelectActResult(map));
-		map.put("woResultList", ppWoResultDao.listSelectWorkResult());
-		return map;
+		ActResult actResult = actResultDao.oneSelectActResult(map);
+		List<PpWoResult> list = ppWoResultDao.listSelectWorkResult(map);
+		for(PpWoResult ppWoResult : list) {
+			map.put("wrNumber", ppWoResult.getWrNumber());
+			ppWoResult.setWrHumanPay(wrHumanPayDao.listSelectWrHumanPay(map));
+			ppWoResult.setWrMaterialsPay(wrMaterialsPayDao.listSelectWrMaterialsPay(map));
+			/*ppWoResult.setWrEtcSpendPay(wrEtcSpendPayDao.listSelectWrEtcSpendPay(map));*/
+		}
+		actResult.setPpWoResultList(list);
+		return actResult;
 	}
 	
 	public int insertActResult(ActResult actResult, WrHumanPay wrHumanPay) {

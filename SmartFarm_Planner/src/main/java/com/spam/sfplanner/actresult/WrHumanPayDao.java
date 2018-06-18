@@ -2,6 +2,7 @@
 package com.spam.sfplanner.actresult;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -40,11 +41,11 @@ public class WrHumanPayDao {
 		return sqlSession.selectOne(NS+"oneSelectWrHumanPay", wrHumanpayNumber);
 	}
 	/*
-	 * wrNumber를 매개변수로 받아 작업단계별 인건비 목록을 출력하는 쿼리문을 실행하여
+	 * Map을 매개변수로 받아 실행결과리스트별 인건비 목록을 출력하는 쿼리문을 실행하여
 	 * 그 리스트를 리턴받는 매서드
 	 */
-	public List<WrHumanPay> listSelectWrHumanPay(int wrNumber) {
-		return sqlSession.selectList(NS+"listSelectWrHumanPay", wrNumber);
+	public List<WrHumanPay> listSelectWrHumanPay(Map<String, Object> map) {
+		return sqlSession.selectList(NS+"listSelectWrHumanPay", map);
 	}
 	/*
 	 * wrHumanPayDb를 매개변수로 받아 인건비를 등록하는 쿼리문을 실행한 후

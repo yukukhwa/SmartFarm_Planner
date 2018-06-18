@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>askActResultList.jsp</title>
+	<title>listActResultList.jsp</title>
 	<jsp:include page="/WEB-INF/views/css.jsp"></jsp:include>
 </head>
 <body>

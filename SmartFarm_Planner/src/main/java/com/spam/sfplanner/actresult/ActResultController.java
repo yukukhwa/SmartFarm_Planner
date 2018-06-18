@@ -29,7 +29,7 @@ public class ActResultController {
 	public String listSelectMyActResult (Model model, HttpSession session) {
 		Login login = (Login) session.getAttribute("loginMember");
 		model.addAttribute("actResultList", actResultService.listSelectActResult(login.getCorpNumber()));
-		return "actresult/askActResultList";
+		return "actresult/listActResultList";
 	}
 	/*
 	 * 실행결과리스트 상세보기 보여주는 화면 매핑
@@ -37,7 +37,7 @@ public class ActResultController {
 	@RequestMapping(value="/oneSelectActResult", method = RequestMethod.GET)
 	public String oneSelectActResult (Model model
 			, @RequestParam(value="ppResultlistNumber") int ppResultlistNumber) {
-		model.addAttribute("map", actResultService.oneSelectActResult(ppResultlistNumber));
+		model.addAttribute("actResult", actResultService.oneSelectActResult(ppResultlistNumber));
 		return "actresult/oneActResultList";
 	}
 	/*
@@ -48,7 +48,7 @@ public class ActResultController {
 	@RequestMapping(value="/listSelectActResult", method = RequestMethod.GET)
 	public String listSelectActResult (Model model) {
 		model.addAttribute("actResultList", actResultService.listSelectActResult(0));
-		return "actresult/askActResultList";
+		return "actresult/listActResultList";
 	}
 	/*
 	 * 실행결과 등록 전 계획서 선택 화면 매핑

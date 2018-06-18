@@ -56,15 +56,15 @@
 		SELECT
 			sp_pp_resultlist.pp_resultlist_number,
 			sp_pp_name_cate.pp_name_planname,
-			sp_pp_resultlist.f_number,
+			sp_farm.f_number,
 			sp_pp_resultlist.pp_resultlist_date,
-			sp_pp_resultlist.f_member_id
+			sp_farm_member.f_member_id
 		FROM sp_pp_resultlist
 		JOIN sp_pp ON sp_pp.pp_number = sp_pp_resultlist.pp_number
 		JOIN sp_pp_name_cate ON sp_pp_name_cate.pp_name_number = sp_pp.pp_name_number
-		<if test="search == 'yes'">
-			WHERE sp_pp_resultlist.pp_resultlist_number = #{ppResultlistNumber}
-		</if>
+		JOIN sp_farm ON sp_farm.f_number = sp_pp_resultlist.f_number
+		JOIN sp_farm_member ON sp_farm_member.f_member_id = sp_pp_resultlist.f_member_id
+		WHERE sp_pp_resultlist.pp_resultlist_number = #{ppResultlistNumber}
 	</select>
 	<select id="listSelectActResult"
 			parameterType="Map"

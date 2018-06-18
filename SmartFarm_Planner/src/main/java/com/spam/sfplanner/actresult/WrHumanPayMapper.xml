@@ -52,18 +52,24 @@
 		FROM sp_wr_humanpay
 		WHERE wr_humanpay_number = #{wrHumanpayNumber}
 	</select>
-	<!-- 작업단계넘버를 매개변수로 받아 WrHumanPayDb type으로 리턴하여 단계별 인건비를 select하는 쿼리문 -->
+	<!-- Map을 매개변수로 받아 wrHumanPay resultMap type으로 리턴하여 작업단계별 인건비를 select하는 쿼리문 -->
 	<select id="listSelectWrHumanPay"
-			parameterType="Integer"
-			resultType="com.spam.sfplanner.actresult.WrHumanPay">
+			parameterType="Map"
+			resultMap="wrHumanPay">
 		SELECT
-			wr_humanpay_number AS wrHumanpayNumber,
-			wr_number AS wrNumber,
-			e_humanpay_number AS eHumanpayNumber,
-			wr_humanpay_realcost AS wrHumanpayRealcost,
-			wr_humanpay_date AS wrHumanpayDate
+			sp_wr_humanpay.wr_humanpay_number,
+			sp_wr.wr_number,
+			sp_e_humanpay.e_humanpay_number,
+			sp_wr_humanpay.wr_humanpay_realcost,
+			sp_wr_humanpay.wr_humanpay_date,
+			sp_e_humanpay.e_humanpay_expectpay,
+			sp_e_humanpay.e_humanpay_expectday,
+			sp_e_humanpay.e_humanpay_name,
+			sp_e_humanpay.e_humanpay_residentnumber
 		FROM sp_wr_humanpay
-		WHERE wr_number = #{wrNumber}
+		JOIN sp_wr ON sp_wr.wr_number = sp_wr_humanpay.wr_number
+		JOIN sp_e_humanpay ON sp_e_humanpay.e_humanpay_number = sp_wr_humanpay.e_humanpay_number
+		WHERE sp_wr.wr_number = #{wrNumber}
 	</select>
 	<!-- 매개변수를 WrHumanPayDb로 받아 인건비 등록하는 쿼리문 -->
 	<insert id="insertWrHumanPay"

@@ -11,9 +11,7 @@
 	<result column="wr_reworkarea" property="wrReworkarea"/>
 	<collection ofType="com.spam.sfplanner.actresult.ActResult" property="actResult">
 		<id column="pp_resultlist_number" property="ppResultlistNumber"/>
-		<result column="f_number" property="fNumber"/>
 		<result column="pp_resultlist_date" property="ppResultlistDate"/>
-		<result column="f_member_id" property="fMemberId"/>
 	</collection>
 	<collection ofType="com.spam.sfplanner.plan.PpWork" property="ppWork">
 		<id column="pp_work_number" property="ppWorkNumber"/>
@@ -27,15 +25,14 @@
 
 <!-- 작업단계결과 전체리스트 -->
 <select id="listSelectWorkResult"
+		parameterType="Map"
 		resultMap="resultPpWoResult">
 	SELECT sp_wr.wr_number
 		,sp_wr.pp_resultlist_number
 		,sp_wr.pp_work_number
 		,sp_wr.wr_totalarea
 		,sp_wr.wr_reworkarea
-		,sp_pp_resultlist.f_number
 		,sp_pp_resultlist.pp_resultlist_date
-		,sp_pp_resultlist.f_member_id
 		,sp_pp_work.pp_work_name
 		,sp_pp_work.pp_work_startday
 		,sp_pp_work.pp_work_endday
@@ -45,7 +42,8 @@
 	JOIN sp_pp_resultlist
 	JOIN sp_pp_work
 	ON sp_wr.pp_resultlist_number = sp_pp_resultlist.pp_resultlist_number and
-		sp_wr.pp_work_number = sp_pp_work.pp_work_number	
+		sp_wr.pp_work_number = sp_pp_work.pp_work_number
+	WHERE sp_wr.pp_resultlist_number = #{ppResultlistNumber}
 </select>
 
 <!-- 작업단계결과 입력  -->

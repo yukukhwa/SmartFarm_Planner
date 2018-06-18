@@ -50,18 +50,25 @@
 		FROM sp_wr_materialspay
 		WHERE wr_number = #{wrMaterialspayNumber}
 	</select>
-	<!-- 작업단계넘버를 매개변수로 받아 해당하는 원자재비결과 리스트를 WrMaterialsPayDb type으로 받는 쿼리문 -->
+	<!-- Map을 매개변수로 받아 해당하는 원자재비결과 리스트를 wrMaterialsPay resultMap type으로 받는 쿼리문 -->
 	<select id="listSelectWrMaterialsPay"
-			parameterType="Integer"
-			resultType="com.spam.sfplanner.actresult.WrMaterialsPay">
+			parameterType="Map"
+			resultMap="wrMaterialsPay">
 		SELECT
-			wr_materialspay_number AS wrMaterialspayNumber,
-			wr_number AS wrNumber,
-			e_materialspay_number AS eMaterialspayNumber,
-			wr_materialspay_quantity AS wrMaterialspayQuantity,
-			wr_materialspay_unitcost AS wrMaterialspayUnitcost
+			sp_wr_materialspay.wr_materialspay_number,
+			sp_wr.wr_number,
+			sp_wr.wr_totalarea,
+			sp_wr.wr_reworkarea,
+			sp_e_materialspay.e_materialspay_number,
+			sp_e_materialspay.e_materialspay_unitcost,
+			sp_e_materialspay.e_materialspay_use,
+			sp_e_materialspay.e_materialspay_secret,
+			sp_wr_materialspay.wr_materialspay_quantity,
+			sp_wr_materialspay.wr_materialspay_unitcost
 		FROM sp_wr_materialspay
-		WHERE wr_number = #{wrNumber}
+		JOIN sp_wr ON sp_wr.wr_number = sp_wr_materialspay.wr_number
+		JOIN sp_e_materialspay ON sp_e_materialspay.e_materialspay_number = sp_wr_materialspay.e_materialspay_number
+		WHERE sp_wr.wr_number = #{wrNumber}
 	</select>
 	<!-- 매개변수를 원자재비결과 db로 받아 insert하는 쿼리문 -->
 	<insert id="insertWrMaterialsPay"
