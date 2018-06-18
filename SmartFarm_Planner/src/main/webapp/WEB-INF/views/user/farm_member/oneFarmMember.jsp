@@ -35,12 +35,12 @@
     <!--sidebar end-->
     <section id="main-content">
     	<section class="wrapper">
-			<c:if test="${loginMember.level != 'farm'}">
+			<c:if test="${loginMember.level != 'farm' || loginMember.id != farmMember.fMemberId}">
 				<div>
 					해당 페이지에 접근할 수 없는 권한입니다.
 				</div>
 			</c:if>
-			<c:if test="${loginMember.level == 'farm'}">
+			<c:if test="${loginMember.level == 'farm' && loginMember.id == farmMember.fMemberId}">
 				<div>
 					<h3>내정보 보기</h3>
 					<div>

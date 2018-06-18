@@ -31,11 +31,10 @@
     			</c:if>
 	    		<c:if test="${loginMember.level == 'agency'}">
 	    		<h3>테마 등록하기</h3>
-	    		현재 접속하신 ${loginMember.id}님의 권한은 ${loginMember.level}입니다.
 		    		<form id="insertThemeForm" action="${pageContext.request.contextPath}/addTheme" method="post">
 			    		<div>
 			  				<!-- 등록자 관리기관 아니면 등록 못하게 막아야함 -->
-				    		<input type="hidden" name="aNumber" id="aNumber" value="${loginMember.corpNumber}">
+				    		<input type="hidden" name="agency.aNumber" id="aNumber" value="${loginMember.corpNumber}">
 			    		</div>
 			    		<div>
 			    			<label>

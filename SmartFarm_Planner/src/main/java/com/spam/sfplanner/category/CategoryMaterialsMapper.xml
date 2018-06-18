@@ -111,9 +111,9 @@
 				, materials_unit
 				, a_number)
 				VALUES (
-				#{themeNumber}
+				#{categoryTheme.themeNumber}
 				, #{materialsName}
 				, #{materialsUnit}
-				, #{aNumber})
+				, #{agency.aNumber})
  	</insert>
  </mapper>

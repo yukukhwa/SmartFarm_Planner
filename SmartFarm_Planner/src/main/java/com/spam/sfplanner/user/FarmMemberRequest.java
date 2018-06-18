@@ -2,22 +2,22 @@
 package com.spam.sfplanner.user;
 // addFarmMember폼에서 받음
 public class FarmMemberRequest {
-	private String fName;
-	private String fPhone;
-	private String fDoroaddress;
-	private String fJibunaddress;
-	private double fParty;
-	private String fMemberPrivacy;
-	private String fMemberGender;
-	private int fNumber;
-	private String fMemberId;
-	private String fMemberPw;
-	private String fMemberName;
-	private String fMemberPhone;
-	private String fMemberEmail;
-	private String fMemberDoroaddress;
-	private String fMemberJibunaddress;
-	private String fMemberDetailaddress;
+	private String fName; // 농가 이름
+	private String fPhone; // 농가대표번호
+	private String fDoroaddress; // 농가 도로명주소
+	private String fJibunaddress; // 농가 지번주소
+	private double fParty; // 농가 인원
+	private String fMemberPrivacy; // 농가 회원 개인정보제공동의
+	private String fMemberGender; // 농가 회원 성별
+	private int fNumber; // 농가통합넘버
+	private String fMemberId; // 농가회원 아이디
+	private String fMemberPw; // 농가 회원 비번
+	private String fMemberName; // 농가회원 이름
+	private String fMemberPhone; // 농가 회원 전화번호
+	private String fMemberEmail; // 농가회원 이메일
+	private String fMemberDoroaddress; // 농가 회원 도로명주소
+	private String fMemberJibunaddress; // 농가회원 지번주소
+	private String fMemberDetailaddress; // 농가 회원 상세주소
 	public String getfName() {
 		return fName;
 	}

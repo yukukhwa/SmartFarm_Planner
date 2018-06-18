@@ -7,19 +7,18 @@ import java.sql.Date;
 import com.spam.sfplanner.corporation.Farm;
 
 public class FarmMember {
-	private String fMemberId; // f_member_id
-	private Farm farm;
-	private int fNumber; // f_number
-	private String fMemberPw; // f_member_pw
-	private String fMemberName; // f_member_name
-	private String fMemberPhone; // f_member_phone
-	private String fMemberGender; // f_member_gender
-	private String fMemberEmail; // f_member_email
-	private String fMemberPrivacy; // f_member_privacy
-	private String fMemberDoroaddress; // f_member_doroaddress
-	private String fMemberJibunaddress; // f_member_jibunaddress
-	private String fMemberDetailaddress; // f_member_detailaddress
-	private Date fMemberRegistdate; // f_member_registdate;
+	private String fMemberId; // 농가 회원 아이디
+	private Farm farm; // 농가
+	private String fMemberPw; // 농가 회원 비밀번호
+	private String fMemberName; // 농가 회원 이름
+	private String fMemberPhone; // 농가 회원 전화번호
+	private String fMemberGender; // 농가 회원 성별
+	private String fMemberEmail; // 농가 회원 이메일
+	private String fMemberPrivacy; // 농가 회원 정보 제공 동의
+	private String fMemberDoroaddress; // 농가 회원 도로명주소
+	private String fMemberJibunaddress; // 농가 회원 지번주소
+	private String fMemberDetailaddress; // 농가 회원 상세주소
+	private Date fMemberRegistdate; // 농가 회원 등록일
 	public String getfMemberId() {
 		return fMemberId;
 	}
@@ -31,12 +30,6 @@ public class FarmMember {
 	}
 	public void setFarm(Farm farm) {
 		this.farm = farm;
-	}
-	public int getfNumber() {
-		return fNumber;
-	}
-	public void setfNumber(int fNumber) {
-		this.fNumber = fNumber;
 	}
 	public String getfMemberPw() {
 		return fMemberPw;
@@ -98,15 +91,14 @@ public class FarmMember {
 	public void setfMemberRegistdate(Date fMemberRegistdate) {
 		this.fMemberRegistdate = fMemberRegistdate;
 	}
+	
 	@Override
 	public String toString() {
-		return "FarmMember [fMemberId=" + fMemberId + ", farm=" + farm + ", fNumber=" + fNumber + ", fMemberPw="
-				+ fMemberPw + ", fMemberName=" + fMemberName + ", fMemberPhone=" + fMemberPhone + ", fMemberGender="
-				+ fMemberGender + ", fMemberEmail=" + fMemberEmail + ", fMemberPrivacy=" + fMemberPrivacy
-				+ ", fMemberDoroaddress=" + fMemberDoroaddress + ", fMemberJibunaddress=" + fMemberJibunaddress
-				+ ", fMemberDetailaddress=" + fMemberDetailaddress + ", fMemberRegistdate=" + fMemberRegistdate + "]";
+		return "FarmMember [fMemberId=" + fMemberId + ", farm=" + farm + ", fMemberPw=" + fMemberPw + ", fMemberName="
+				+ fMemberName + ", fMemberPhone=" + fMemberPhone + ", fMemberGender=" + fMemberGender
+				+ ", fMemberEmail=" + fMemberEmail + ", fMemberPrivacy=" + fMemberPrivacy + ", fMemberDoroaddress="
+				+ fMemberDoroaddress + ", fMemberJibunaddress=" + fMemberJibunaddress + ", fMemberDetailaddress="
+				+ fMemberDetailaddress + ", fMemberRegistdate=" + fMemberRegistdate + "]";
 	}
-
-	
 	
 }

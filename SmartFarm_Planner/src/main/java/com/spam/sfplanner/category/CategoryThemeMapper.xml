@@ -83,7 +83,7 @@
  			a_number
  			, theme_name)
 		VALUES (
-			#{aNumber}
+			#{agency.aNumber}
 			, #{themeName})
  	</insert>
  </mapper>

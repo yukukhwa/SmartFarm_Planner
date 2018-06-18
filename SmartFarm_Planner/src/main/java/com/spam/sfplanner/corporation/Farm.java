@@ -6,15 +6,15 @@ import java.sql.Date;
 import com.spam.sfplanner.user.FarmMember;
 
 public class Farm {
-	private int fNumber; // f_number
-	private FarmMember farmMember;
-	private String fName; // f_name
-	private String fMemberId; // f_member_id
-	private String fPhone; // f_phone
-	private String fDoroaddress; // f_doroaddress
-	private String fJibunaddress; // f_jibunaddress
-	private double fParty; // f_party
-	private Date fRegistdate; // f_registdate
+	private int fNumber; // 농가통합넘버
+	private FarmMember farmMember; // 농가멤버
+	private String fName; // 농가 이름
+	private String fPhone; // 농가 대표번호
+	private String fDoroaddress; // 농가 도로명주소
+	private String fJibunaddress; // 농가 지번주소
+	private double fParty; // 농가 인원
+	private Date fRegistdate; // 농가 등록날짜
+	
 	public int getfNumber() {
 		return fNumber;
 	}
@@ -32,12 +32,6 @@ public class Farm {
 	}
 	public void setfName(String fName) {
 		this.fName = fName;
-	}
-	public String getfMemberId() {
-		return fMemberId;
-	}
-	public void setfMemberId(String fMemberId) {
-		this.fMemberId = fMemberId;
 	}
 	public String getfPhone() {
 		return fPhone;
@@ -69,12 +63,12 @@ public class Farm {
 	public void setfRegistdate(Date fRegistdate) {
 		this.fRegistdate = fRegistdate;
 	}
+	
 	@Override
 	public String toString() {
-		return "Farm [fNumber=" + fNumber + ", farmMember=" + farmMember + ", fName=" + fName + ", fMemberId="
-				+ fMemberId + ", fPhone=" + fPhone + ", fDoroaddress=" + fDoroaddress + ", fJibunaddress="
-				+ fJibunaddress + ", fParty=" + fParty + ", fRegistdate=" + fRegistdate + "]";
+		return "Farm [fNumber=" + fNumber + ", farmMember=" + farmMember + ", fName=" + fName + ", fPhone=" + fPhone
+				+ ", fDoroaddress=" + fDoroaddress + ", fJibunaddress=" + fJibunaddress + ", fParty=" + fParty
+				+ ", fRegistdate=" + fRegistdate + "]";
 	}
-	
 	
 }

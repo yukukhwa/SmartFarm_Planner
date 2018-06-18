@@ -32,15 +32,14 @@
 	    			<h3>원자재 카테고리 등록</h3>
 	    			<form id="insertMaterialsCateForm" method="post" action="${pageContext.request.contextPath}/addMaterialsCate">
 	    				<div>
-	    					등록기관넘버 : <input type="text" name="aNumber" value="${loginMember.corpNumber}">
+	    					등록기관넘버 : <input type="text" name="agency.aNumber" value="${loginMember.corpNumber}">
 	    				</div>
 	    				<div>
 	    					<label>
 	    						테마 카테고리 선택하기
-	    						<select name="themeNumber" id="cateThemeOption">
-	    							<option value="" selected="selected" disabled="disabled">테마선택하기</option>
-	    							<c:forEach var="cateTheme" items="${categoryTheme}">
-	    								<option value="${cateTheme.themeNumber}">${cateTheme.themeName}</option>
+	    						<select name="categoryTheme.themeNumber" id="cateThemeOption">
+	    							<c:forEach var="categoryTheme" items="${categoryThemeList}">
+	    								<option value="${categoryTheme.themeNumber}">${categoryTheme.themeName}</option>
 	    							</c:forEach>
 	    						</select>
 	    					</label>

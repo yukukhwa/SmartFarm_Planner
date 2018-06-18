@@ -50,10 +50,10 @@ public class PpWorkController {
 	}
 	
 	@RequestMapping(value="/addWorkPlan", method=RequestMethod.POST)
-	public String insertPpWork(PpWork ppWork, int ppNumber) {
+	public String insertPpWork(PpWork ppWork) {
 		System.out.println("add ppWork ---> "+ppWork);
 		ppWorkService.insertPpWork(ppWork);
-		return "plan/pp_work/listWorkPlan";
+		return "plan/pp_work/addWorkPlan";
 	}
 	
 	@RequestMapping(value="/addWorkPlan", method=RequestMethod.GET)

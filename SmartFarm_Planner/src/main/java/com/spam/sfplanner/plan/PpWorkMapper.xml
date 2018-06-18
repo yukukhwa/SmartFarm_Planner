@@ -43,8 +43,8 @@
 				, pp_work_area
 				, pp_work_content)
 			VALUES (
-				#{ppNumber}
-				, #{fNumber}
+				#{productionPlan.ppNumber}
+				, #{farm.fNumber}
 				, #{ppWorkName}
 				, #{ppWorkStartday}
 				, #{ppWorkEndday}

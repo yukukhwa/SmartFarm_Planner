@@ -70,7 +70,7 @@ public class CategoryMaterialsController {
 	/*addMaterialsCate로 겟방식으로 요철받을때 addMaterialsCate view로 포워드*/
 	@RequestMapping(value="/addMaterialsCate", method=RequestMethod.GET)
 	public String insertCategoryMaterials(Model model) {
-		model.addAttribute("categoryThemeDb", categoryThemeService.listSelectCategoryTheme());
+		model.addAttribute("categoryThemeList", categoryThemeService.listSelectCategoryTheme());
 		//System.out.println("categoryThemeDb===> "+categoryThemeService.listSelectCategoryTheme());
 		return "category/materials/addMaterialsCate";
 	}
