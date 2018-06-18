@@ -10,6 +10,12 @@ public class CategoryMaterials {
 	private String materialsUnit; // 원자재의 단위
 	private CategoryTheme categoryTheme;
 	private Agency agency;
+	
+	public CategoryMaterials() {
+		this.agency = new Agency();
+		this.categoryTheme = new CategoryTheme();
+	}
+	
 	public int getMaterialsNumber() {
 		return materialsNumber;
 	}
@@ -52,12 +58,12 @@ public class CategoryMaterials {
 	public void setAgency(Agency agency) {
 		this.agency = agency;
 	}
+	
 	@Override
 	public String toString() {
 		return "CategoryMaterials [materialsNumber=" + materialsNumber + ", themeNumber=" + themeNumber + ", aNumber="
 				+ aNumber + ", materialsName=" + materialsName + ", materialsUnit=" + materialsUnit + ", categoryTheme="
 				+ categoryTheme + ", agency=" + agency + "]";
 	}
-	
 	
 }

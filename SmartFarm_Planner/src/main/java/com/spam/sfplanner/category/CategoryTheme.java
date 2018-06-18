@@ -9,6 +9,11 @@ public class CategoryTheme {
 	private Agency agency;
 	private CategoryMaterials categoryMaterials;
 	
+	public CategoryTheme() {
+		this.agency = new Agency();
+		this.categoryMaterials = new CategoryMaterials();
+	}
+	
 	public int getThemeNumber() {
 		return themeNumber;
 	}

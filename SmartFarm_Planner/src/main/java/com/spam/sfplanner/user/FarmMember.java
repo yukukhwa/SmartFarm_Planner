@@ -1,7 +1,8 @@
 /* [김재희] */
 package com.spam.sfplanner.user;
 
-import java.util.Date;
+
+import java.sql.Date;
 
 import com.spam.sfplanner.corporation.Farm;
 
@@ -19,7 +20,6 @@ public class FarmMember {
 	private String fMemberJibunaddress; // f_member_jibunaddress
 	private String fMemberDetailaddress; // f_member_detailaddress
 	private Date fMemberRegistdate; // f_member_registdate;
-	
 	public String getfMemberId() {
 		return fMemberId;
 	}
@@ -98,7 +98,6 @@ public class FarmMember {
 	public void setfMemberRegistdate(Date fMemberRegistdate) {
 		this.fMemberRegistdate = fMemberRegistdate;
 	}
-	
 	@Override
 	public String toString() {
 		return "FarmMember [fMemberId=" + fMemberId + ", farm=" + farm + ", fNumber=" + fNumber + ", fMemberPw="
@@ -107,5 +106,7 @@ public class FarmMember {
 				+ ", fMemberDoroaddress=" + fMemberDoroaddress + ", fMemberJibunaddress=" + fMemberJibunaddress
 				+ ", fMemberDetailaddress=" + fMemberDetailaddress + ", fMemberRegistdate=" + fMemberRegistdate + "]";
 	}
+
+	
 	
 }

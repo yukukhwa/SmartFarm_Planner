@@ -24,6 +24,22 @@
  		</collection>
  	</resultMap>
  
+ 	<insert id="insertWoMaterialsPay"
+ 		parameterType="com.spam.sfplanner.plan.WoMaterialsPay">
+	 		INSERT INTO sp_e_materialspay(
+				materials_number
+				, pp_work_number
+				, e_materialspay_unitcost
+				, e_materialspay_use
+				, e_materialspay_secret)
+			VALUES (
+				#{categoryMaterials.materialsNumber}
+				, #{ppWork.ppWorkNumber}
+				, #{eMaterialspayUnitcost}	
+				, #{eMaterialspayUse}
+				, #{eMaterialspaySecret})
+ 	</insert>
+ 
  	<select id="listSelectWoMaterialsPay"
  		parameterType="java.util.Map"
  		resultMap="woMaterialsPay">

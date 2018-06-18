@@ -16,6 +16,10 @@ public class WoHumanPayService {
 	@Autowired WoHumanPayDao woHumanPayDao;
 	private final static Logger LOGGER = LoggerFactory.getLogger(WoHumanPayService.class);
 	
+	public void insertPpWork(WoHumanPay woHumanPay) {
+		woHumanPayDao.insertPpWork(woHumanPay);
+	}
+	
 	public List<WoHumanPay> listSelectWoHumanPay(String searchKeyword, String searchHumanPayOption, int ppWorkNumber){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("searchKeyword", searchKeyword);

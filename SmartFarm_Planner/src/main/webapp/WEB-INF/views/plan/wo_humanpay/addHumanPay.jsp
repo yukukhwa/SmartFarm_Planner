@@ -10,6 +10,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('#addHumanPay').click(function(){
+			$('#addHumanPayForm').submit();
+		})
 	})
 </script>
 </head>
@@ -29,11 +32,49 @@
     		</c:if>
     		<c:if test="${loginMember.level == 'farm'}">
 				<h3>예상 인건비 등록하기</h3>
-				<form method="post" action="${PageContext.request.contextPath}/addHumanPay">
-				
+				<form id="addHumanPayForm" method="post" action="${pageContext.request.contextPath}/addHumanPay">
+					<div>
+						<input type="radio" name="eHumanpaySecret" value="true" checked="checked">공개
+						<input type="radio" name="eHumanpaySecret" value="false">비공개
+					</div>
+					<div>
+						<label>테마입력 : </label>
+						<select name="categoryTheme.themeNumber">
+							<c:forEach var="categoryTheme" items="${cateTheme}">
+								<option value="${categoryTheme.themeNumber}">${categoryTheme.themeName}</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div>
+						<label>작업단계 등록 : </label>
+						<select name="ppWork.ppWorkNumber">
+							<c:forEach var="ppWork" items="${ppWorkList}">
+								<option value="${ppWork.ppWorkNumber}">${ppWork.ppWorkName}</option>
+							</c:forEach>
+						</select>
+					</div>
+					<div>
+						<label>
+							인부이름 : <input type="text" name="eHumanpayName">
+						</label>
+					</div>
+					<div>
+						<label>
+							주민번호 : <input type="text" name="eHumanpayResidentnumber">
+						</label>
+					</div>
+					<div>
+						<label>
+							예상인건비 : <input type="number" name="eHumanpayExpectpay">
+						</label>
+					</div>
+					<div>
+						<label>
+							예상작업일 : <input type="date" name="eHumanpayExpectday">
+						</label> 
+					</div>
+					<button id="addHumanPay">예상인건비등록</button>
 				</form>
-				
-				<a href="${pageContext.request.contextPath}/listHumanPay">예상 인건비 리스트로 가기</a>
 			</c:if>
 		</section>
 	</section>

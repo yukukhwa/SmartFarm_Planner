@@ -33,22 +33,22 @@
     							<th>원자재카테_원자재명</th>
     							<th>원자재단가</th>
     							<th>사용예정(단위랑 같이)</th>
-    							<th>공개/비공개 여부</th>
     						</tr>
     					</thead>
 						<tbody>
-							<tr>
-								<td>${woMaterialsPay.eMaterialspayNumber}</td>
-								<td>${woMaterialsPay.ppWork.ppWorkName}</td>
-								<td>${woMaterialsPay.categoryMaterials.materialsName}</td>
-								<td>${woMaterialsPay.eMaterialspayUnitcost}</td>
-								<td>${woMaterialsPay.eMaterialspayUse} ${woMaterialsPay.categoryMaterials.materialsUnit}</td>
-								<td>${woMaterialsPay.eMaterialspaySecret}</td>
-							</tr>
+							<c:forEach var="woMaterialsPay" items="${list}">
+								<c:if test="${woMaterialsPay.eMaterialspaySecret != 'false'}">
+									<tr>
+										<td>${woMaterialsPay.eMaterialspayNumber}</td>
+										<td>${woMaterialsPay.ppWork.ppWorkName}</td>
+										<td>${woMaterialsPay.categoryMaterials.materialsName}</td>
+										<td>${woMaterialsPay.eMaterialspayUnitcost}</td>
+										<td>${woMaterialsPay.eMaterialspayUse} ${woMaterialsPay.categoryMaterials.materialsUnit}</td>
+									</tr>
+								</c:if>
+							</c:forEach>
 						</tbody>
-						
     				</table>
-    				
     			</div>
 	    		<a href="${pageContext.request.contextPath}/updateMaterialsPay">예상 원자재비 수정하기</a> <br>
 	    		<a href="${pageContext.request.contextPath}/addMaterialsPay">예상 원자재비 등록하기</a> <br>

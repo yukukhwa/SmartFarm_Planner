@@ -15,6 +15,10 @@ public class WoMaterialsPayDao {
 	private final static Logger LOGGER = LoggerFactory.getLogger(WoMaterialsPayDao.class);
 	private final static String NAMESPACE = "com.spam.sfplanner.plan.WoMaterialsPayMapper.";
 	
+	public void insertWoMaterialsPay(WoMaterialsPay woMaterialsPay) {
+		sqlSession.insert(NAMESPACE+"insertWoMaterialsPay", woMaterialsPay);
+	}
+	
 	public List<WoMaterialsPay> listSelectWoMaterialsPay(int ppWorkNumber){
 		LOGGER.info(NAMESPACE);
 		return sqlSession.selectList(NAMESPACE+"listSelectWoMaterialsPay", ppWorkNumber);

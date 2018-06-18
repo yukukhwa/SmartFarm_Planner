@@ -14,6 +14,10 @@ public class WoMaterialsPayService {
 	@Autowired WoMaterialsPayDao woMaterialsPayDao;
 	private final static Logger LOGGER = LoggerFactory.getLogger(WoMaterialsPayService.class);
 	
+	public void insertWoMaterialsPay(WoMaterialsPay woMaterialsPay) {
+		woMaterialsPayDao.insertWoMaterialsPay(woMaterialsPay);
+	}
+	
 	public List<WoMaterialsPay> listSelectWoMaterialsPay(int ppWorkNumber){
 		return woMaterialsPayDao.listSelectWoMaterialsPay(ppWorkNumber);
 	}

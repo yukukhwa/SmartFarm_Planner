@@ -17,9 +17,15 @@ public class PpWork {
 	private String ppWorkContent; // 작업내용상세
 	private Farm farm;
 	private ProductionPlan productionPlan;
-	private List<WoMaterialsPay> woMaterialsPayList; // 작엄단계 내의 예상 원자재비 리스트
-	private List<WoHumanPay> woHumanPayList; // 작엄단계 내의 예상 인건비 리스트
+	private List<WoMaterialsPay> woMaterialsPayList; // 작업단계 내의 예상 원자재비 리스트
+	private List<WoHumanPay> woHumanPayList; // 작업단계 내의 예상 인건비 리스트
 	private List<WoInsurancePay> woInsurancePayList; // 작업단계 내의 예상 보험비 리스트
+	
+	public PpWork() {
+		this.farm = new Farm();
+		this.productionPlan = new ProductionPlan();
+	}
+	
 	public int getPpWorkNumber() {
 		return ppWorkNumber;
 	}

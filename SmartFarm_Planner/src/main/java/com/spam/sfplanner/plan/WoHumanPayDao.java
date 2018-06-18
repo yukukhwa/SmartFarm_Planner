@@ -15,6 +15,10 @@ public class WoHumanPayDao {
 	final static String NAMESPACE = "com.spam.sfplanner.plan.WoHumanPayMapper.";
 	final static Logger LOGGER = LoggerFactory.getLogger(WoHumanPayDao.class);
 	
+	public void insertPpWork(WoHumanPay woHumanPay) {
+		sqlSession.insert(NAMESPACE+"insertWoHumanPay", woHumanPay);
+	}
+	
 	public List<WoHumanPay> listSelectWoHumanPay(Map<String, Object> map){
 		return sqlSession.selectList(NAMESPACE+"listSelectWoHumanPay", map);
 	}

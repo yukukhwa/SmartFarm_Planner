@@ -6,32 +6,24 @@ import com.spam.sfplanner.category.CategoryTheme;
 
 public class WoHumanPay {
 	private int eHumanpayNumber; // 예상인건비넘버
-	private int themeNumber; // 테마 카테고리 넘버
-	private int ppWorkNumber; // 작업단계넘버
 	private String eHumanpayName; // 인부이름
 	private String eHumanpayResidentnumber; // 주민번호
 	private double eHumanpayExpectpay; // 예상인건비(일)
 	private Date eHumanpayExpectday; // 예상작업일
 	private String eHumanpaySecret; // 공개/비공개 여부
-	private CategoryTheme categoryTheme;
-	private PpWork ppWork;
+	private CategoryTheme categoryTheme; // 테마 카테고리
+	private PpWork ppWork; // 작업단계
+	
+	public WoHumanPay() {
+		this.categoryTheme = new CategoryTheme();
+		this.ppWork = new PpWork();
+	}
+	
 	public int geteHumanpayNumber() {
 		return eHumanpayNumber;
 	}
 	public void seteHumanpayNumber(int eHumanpayNumber) {
 		this.eHumanpayNumber = eHumanpayNumber;
-	}
-	public int getThemeNumber() {
-		return themeNumber;
-	}
-	public void setThemeNumber(int themeNumber) {
-		this.themeNumber = themeNumber;
-	}
-	public int getPpWorkNumber() {
-		return ppWorkNumber;
-	}
-	public void setPpWorkNumber(int ppWorkNumber) {
-		this.ppWorkNumber = ppWorkNumber;
 	}
 	public String geteHumanpayName() {
 		return eHumanpayName;
@@ -77,11 +69,10 @@ public class WoHumanPay {
 	}
 	@Override
 	public String toString() {
-		return "WoHumanPay [eHumanpayNumber=" + eHumanpayNumber + ", themeNumber=" + themeNumber + ", ppWorkNumber="
-				+ ppWorkNumber + ", eHumanpayName=" + eHumanpayName + ", eHumanpayResidentnumber="
-				+ eHumanpayResidentnumber + ", eHumanpayExpectpay=" + eHumanpayExpectpay + ", eHumanpayExpectday="
-				+ eHumanpayExpectday + ", eHumanpaySecret=" + eHumanpaySecret + ", categoryTheme=" + categoryTheme
-				+ ", ppWork=" + ppWork + "]";
+		return "WoHumanPay [eHumanpayNumber=" + eHumanpayNumber + ", eHumanpayName=" + eHumanpayName
+				+ ", eHumanpayResidentnumber=" + eHumanpayResidentnumber + ", eHumanpayExpectpay=" + eHumanpayExpectpay
+				+ ", eHumanpayExpectday=" + eHumanpayExpectday + ", eHumanpaySecret=" + eHumanpaySecret
+				+ ", categoryTheme=" + categoryTheme + ", ppWork=" + ppWork + "]";
 	}
 	
 	

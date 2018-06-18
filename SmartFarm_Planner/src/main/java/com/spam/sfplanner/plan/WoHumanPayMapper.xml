@@ -25,6 +25,26 @@
  		</collection>
  	</resultMap>
  	
+ 	<insert id="insertWoHumanPay"
+ 		parameterType="com.spam.sfplanner.plan.WoHumanPay">
+	 		INSERT INTO sp_e_humanpay(
+				theme_number
+				, pp_work_number
+				, e_humanpay_name
+				, e_humanpay_residentnumber
+				, e_humanpay_expectpay
+				, e_humanpay_expectday
+				, e_humanpay_secret)
+			VALUES (
+				#{categoryTheme.themeNumber}
+				, #{ppWork.ppWorkNumber}
+				, #{eHumanpayName}
+				, #{eHumanpayResidentnumber}
+				, #{eHumanpayExpectpay}
+				, #{eHumanpayExpectday}
+				, #{eHumanpaySecret})
+ 	</insert>
+ 	
  	<select id="listSelectWoHumanPay"
  		parameterType="java.util.Map"
  		resultMap="woHumanPay">
