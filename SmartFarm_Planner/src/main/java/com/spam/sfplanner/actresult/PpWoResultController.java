@@ -1,6 +1,9 @@
 //[유국화]
 package com.spam.sfplanner.actresult;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +25,9 @@ public class PpWoResultController {
 	@RequestMapping(value="/listWorkResult", method=RequestMethod.GET)
 	public String listSelectWorkResult(Model model) {
 		LOGGER.info("작업단계결과 전체리스트 화면으로 포워드");
-		model.addAttribute("list",ppWoResultService.listSelectWorkResult());
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ppWoResult.wrNumber", 1);
+		model.addAttribute("list",ppWoResultService.listSelectWorkResult(map));
 		return "actresult/pp_work_result/listWorkResult";
 	}
 	
