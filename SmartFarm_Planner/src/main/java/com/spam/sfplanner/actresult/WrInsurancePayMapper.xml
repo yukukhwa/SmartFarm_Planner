@@ -4,10 +4,49 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.spam.sfplanner.actresult.WrInsurancePayMapper">
-<!-- 리절트맵(조회결과매핑) -->
-<!-- 업데이트 -->
-<!-- 수정화면출력 셀렉트 -->
-<!-- 삭제 -->
-<!-- 리스트 -->
-<!-- 등록 -->
+
+<!-- 보험비 결과 리절트맵(조회결과매핑) -->
+<resultMap type="com.spam.sfplanner.actresult.WrInsurancePay" id="resultWrInsurancePay">
+	<id column="wr_insurancepay_number" property="wrInsurancepayNumber"/>
+	<result column="e_insurancepay_number" property="eInsurancepayNumber"/>
+	<result column="wr_insurancepay_monthcost" property="wrInsurancepayMonthcost"/>
+	<result column="wr_insurancepay_date" property="wrInsurancepayDate"/>
+	<collection ofType="com.spam.sfplanner.plan.WoInsurancePay" property="woInsurancePay">
+		<id column="e_insurancepay_number" property="eInsurancepayNumber"/>
+		<result column="e_insurancepay_name" property="eInsurancepayMame"/>
+		<result column="e_insurancepay_content" property="eInsurancepayContent"/>
+		<result column="e_insurancepay_startday" property="eInsurancepayStartday"/>
+		<result column="e_insurancepay_endday" property="eInsurancepayEndday"/>
+		<result column="e_insurancepay_term" property="eInsurancepayTerm"/>
+		<result column="e_insurancepay_totalcost" property="eInsurancepayTotalcost"/>
+		<result column="e_insurancepay_expectcost" property="eInsurancepayExpectcost"/>
+		<result column="e_insurancepay_secret" property="eInsurancepaySecret"/>
+	</collection>
+	<collection ofType="com.spam.sfplanner.actresult.PpWoResult" property="ppWoResult">
+		<id column="wr_number" property="wrNumber"/>
+		<result column="wr_totalarea" property="wrTotalarea"/>
+		<result column="wr_reworkarea" property="wrReworkarea"/>
+	</collection>
+</resultMap>
+
+<!-- 보험비 결과 업데이트 -->
+<!-- 보험비 결과 수정화면출력 셀렉트 -->
+<!-- 보험비 결과 삭제 -->
+
+<!-- 보험비 결과 리스트 -->
+<select id="listSelectWrInsurancePay"
+		parameterType="Map"
+		resultMap="resultWrInsurancePay">
+	SELECT sp_wr_insurancepay.wr_insurancepay_number
+		, sp_wr_insurancepay.wr_number
+		, sp_wr_insurancepay.e_insurancepay_number
+		, sp_wr_insurancepay.wr_insurancepay_monthcost
+		, sp_wr_insurancepay.wr_insurancepay_date
+	FROM sp_wr_insurancepay
+	JOIN sp_wr
+	ON sp_wr_insurancepay.wr_number = sp_wr.wr_number
+	WHERE sp_wr_insurancepay.wr_number = #{wrNumber}
+
+</select>
+<!-- 보험비 결과 등록 -->
 </mapper>

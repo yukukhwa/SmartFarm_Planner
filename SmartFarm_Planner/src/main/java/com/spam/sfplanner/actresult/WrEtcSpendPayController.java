@@ -1,6 +1,9 @@
 //[유국화]
 package com.spam.sfplanner.actresult;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,8 +50,10 @@ public class WrEtcSpendPayController {
 	@RequestMapping(value="/listWrEtcSpendPay", method=RequestMethod.GET)
 	public String listSelectWrEtcSpendPay(Model model) {			
 		LOGGER.info("리스트 기타지출비 화면에서 GET");
-		int wrNumber=1;		
-		model.addAttribute("list", wrEtcSpendPayService.listSelectWrEtcSpendPay(wrNumber));
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ppWoResult.wrNumber", 1);
+		model.addAttribute("list", wrEtcSpendPayService.listSelectWrEtcSpendPay(map));
 		return "actresult/wr_etcspendpay/listWrEtcSpendPay";
 	}		
 		

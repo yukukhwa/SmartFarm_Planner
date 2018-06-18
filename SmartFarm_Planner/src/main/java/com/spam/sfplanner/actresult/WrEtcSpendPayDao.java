@@ -1,6 +1,7 @@
 //[유국화]
 package com.spam.sfplanner.actresult;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -38,12 +39,13 @@ public class WrEtcSpendPayDao {
 	
 	/**
 	 * 기타지출비 결과 전체리스트 메서드
-	 * @param wrNumber
+	 * @param map
 	 * @return
 	 */
-	public List<WrEtcSpendPay> listSelectWrEtcSpendPay(int wrNumber) {
+	public List<WrEtcSpendPay> listSelectWrEtcSpendPay(Map<String, Object> map) {
 		LOGGER.info("WrEtcSpendPayDao 호출");
-		return session.selectList(NAMESPACE+"listSelectWrEtcSpendPay", wrNumber);
+		LOGGER.debug("리턴값 : "+session.selectList(NAMESPACE+"listSelectWrEtcSpendPay", map));
+		return session.selectList(NAMESPACE+"listSelectWrEtcSpendPay", map);
 	}
 	
 	/**

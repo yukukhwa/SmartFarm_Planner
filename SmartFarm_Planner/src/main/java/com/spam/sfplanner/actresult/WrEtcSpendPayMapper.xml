@@ -4,15 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spam.sfplanner.actresult.WrEtcSpendPayMapper">
 
-<!-- 리절트맵(조회결과매핑) -->
+<!-- 기타지출비용 결과 리절트맵(조회결과매핑) -->
 <resultMap type="com.spam.sfplanner.actresult.WrEtcSpendPay" id="resultWrEtcSpendPay">
 	<id column="wr_etcspendpay_number" property="wrEtcspendpayNumber"/>
 	<result column="wr_etcspendpay_realcost" property="wrEtcspendpayRealcost"/>
 	<result column="wr_etcspendpay_date" property="wrEtcspendpayDate"/>
 	<collection ofType="com.spam.sfplanner.actresult.PpWoResult" property="ppWoResult">
-		<id column="wr_number" property="wr_number"/>
-		<result column="wr_totalarea" property="wr_totalarea"/>
-		<result column="wr_reworkarea" property="wr_reworkarea"/>
+		<id column="wr_number" property="wrNumber"/>
+		<result column="wr_totalarea" property="wrTotalarea"/>
+		<result column="wr_reworkarea" property="wrReworkarea"/>
 	</collection>
 	<collection ofType="com.spam.sfplanner.plan.WoEtcSpendPay" property="woEtcSpendPay">
 		<id column="e_etcspendpay_number" property="eEtcspendpayNumber"/>

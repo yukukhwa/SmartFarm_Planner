@@ -45,7 +45,7 @@
                   <p><a href="mailto:cjsghkz@naver.com" style="text-decoration: none; color: white">cjsghkz@naver.com</a></p>
 				<h5>
                   <span><i class="icon_calendar"></i>13.06.18</span>
-                  <span><i class="icon_pin_alt"></i>North of Korea</span>
+                  <span><i class="icon_pin_alt"></i>Sorth Korea</span>
              	</h5>
                 </div>
                 <div class="col-lg-2 col-sm-6 follow-info weather-category">
@@ -131,19 +131,29 @@
                         <div class="activity-body act-in">
                           <span class="arrow"></span>
                           <div class="text">
-                            <a href="#" class="activity-img"><img class="avatar" src="img/chat-avatar.jpg" alt=""></a>
-                            <p class="attribution"><a href="#">Jonatanh Doe</a> at 4:25pm, 30th Octmber 2014</p>
-                            <p>팀원소개1</p>                                                        
+                            <a href="#" class="activity-img"><img class="avatar" src="img/bae.jpg" alt=""></a>
+                            <p class="attribution"><a href="http://cjsghka.cafe24.com/">배건혜</a> 15th June 1990</p>
+                            <p>기능구현, 팀원간 상세일정 조정, API 승인을 위한 활동,  UI 구성, 오픈API 활용</p>                                                        
                           </div>                          
                         </div>
-                      </div> 
+                      </div>
                       <div class="act-time">
                         <div class="activity-body act-in">
                           <span class="arrow"></span>
                           <div class="text">
-                            <a href="#" class="activity-img"><img class="avatar" src="img/chat-avatar.jpg" alt=""></a>
-                            <p class="attribution"><a href="#">Jonatanh Doe</a> at 4:25pm, 30th Octmber 2014</p>
-                            <p>팀원소개1</p>
+                            <a href="#" class="activity-img"><img class="avatar" src="img/naseongsu.jpg" alt=""></a>
+                            <p class="attribution"><a href="http://nss27.cafe24.com/">나성수</a> 14th Octmber 1997</p>
+                            <p>기능구현, 상세기능구현 디렉팅, UI 구성, 오픈API 활용</p>
+                          </div>
+                        </div>
+                      </div>  
+                      <div class="act-time">
+                        <div class="activity-body act-in">
+                          <span class="arrow"></span>
+                          <div class="text">
+                            <a href="#" class="activity-img"><img class="avatar" src="img/kimjaehee.jpg" alt=""></a>
+                            <p class="attribution"><a href="http://kjh121130.cafe24.com/">김재희</a> 30th Desember 1994</p>
+                            <p>기능구현, 자료조사 사전준비, 템플릿 조사 및 디자인 수정, UI 구성, 오픈API 활용</p>
                           </div>
                         </div>
                       </div> 
@@ -151,9 +161,9 @@
                         <div class="activity-body act-in">
                           <span class="arrow"></span>
                           <div class="text">
-                            <a href="#" class="activity-img"><img class="avatar" src="img/chat-avatar.jpg" alt=""></a>
-                            <p class="attribution"><a href="#">Jonatanh Doe</a> at 4:25pm, 30th Octmber 2014</p>
-                            <p>팀원소개3</p>
+                            <a href="#" class="activity-img"><img class="avatar" src="img/kks.jpg" alt=""></a>
+                            <p class="attribution"><a href="http://cjsghka.cafe24.com/">김기성</a> 23th Nomember 1990</p>
+                            <p>기능구현, 템플릿 조사 및 디자인 수정, 전체 문서 오타 수정,  UI 구성, 오픈API 활용</p>
                           </div>
                         </div>
                       </div> 
@@ -161,22 +171,14 @@
                         <div class="activity-body act-in">
                           <span class="arrow"></span>
                           <div class="text">
-                            <a href="#" class="activity-img"><img class="avatar" src="img/chat-avatar.jpg" alt=""></a>
-                            <p class="attribution"><a href="#">Jonatanh Doe</a> at 4:25pm, 30th Octmber 2014</p>
-                            <p>팀원소개4</p>
+                            <a href="#" class="activity-img"><img class="avatar" src="img/yukukhwa.jpg" alt=""></a>
+                            <p class="attribution"><a href="http://cjsghka.cafe24.com/">유국화</a> 6th Octmber 1991</p>
+                            <p>기능구현, 개발문서 업데이트 및 프로젝트 일정 관리, 의견수렴 및 진행방향 결정,  UI 구성, 오픈API 활용</p>
                           </div>
                         </div>
                       </div> 
-                      <div class="act-time">
-                        <div class="activity-body act-in">
-                          <span class="arrow"></span>
-                          <div class="text">
-                            <a href="#" class="activity-img"><img class="avatar" src="img/chat-avatar.jpg" alt=""></a>
-                            <p class="attribution"><a href="#">Jonatanh Doe</a> at 4:25pm, 30th Octmber 2014</p>
-                            <p>팀원소개5</p>
-                          </div>
-                        </div>
-                      </div> 
+                      
+                      
                       </div>
                       
                   </div>
@@ -189,17 +191,28 @@
 				              <h3>Get in touch with us</h3>
 				            </div>
 				            <div class="">
-				              <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum.</p>
-				              <p>Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi non habent claritatem insitam; est usus legentis in iis qui facit eorum.</p>
-				
-				              <h4>Address:</h4>대한민국 전라북도 전주시 덕진구<br>
-				              <h4>Email:</h4>cjsghkz@naver.com</br>
-				              <h4>Kakao ID:</h4>cjsghka
+								<p>웹, 어플 제품SW 개발자양성-응용SW 및 DB엔지니어링 융합- <br>훈련과정 수료 (2017.12.28 ~ 2018.07.09)</p>
+								<p>훈련기관 : 한국스마트정보교육원, <a href="http://ksmart.or.kr/">http://ksmart.or.kr/</a> </p>
+								<p>훈련목표 : NCS 직종 분류 중 정보통신-정보기술-정보기술개발 세분류 직종에서 응용SW엔지니어링을 중심으로 DB엔지니어링을 활용하여 웹, 어플 제품 SW개발자를 양성</p>
+								
+				             
 				            </div>
 				          </div>                    
                       <div class="panel-body bio-graph-info">
                        <br><br>
-                        <div class="row">
+                        <div class="row">                       		
+			              <div class="bio-row">
+                         	
+                           <p><span>Address </span>: 대한민국 전라북도 전주시 덕진구 </p>
+                          </div>
+                          <div class="bio-row">
+                          	
+                            <p><span>Email </span>: cjsghkz@naver.com</p>
+                          </div>
+                          <div class="bio-row">
+                          	
+                            <p><span>Kakao ID </span>: cjsghka</p>
+                          </div>
                           <div class="bio-row">
                           	
                             <p><span>First Name </span>: 유, Yu </p>
@@ -211,7 +224,7 @@
                             <p><span>Birthday</span>: 6 October 1991</p>
                           </div>
                           <div class="bio-row">
-                            <p><span>Country </span>: North of Korea</p>
+                            <p><span>Country </span>: Sorth Korea</p>
                           </div>
                           <div class="bio-row">
                             <p><span>Occupation </span>: Web developer</p>
@@ -229,7 +242,10 @@
                   <div id="Project1" class="tab-pane">
                     <section class="panel">
                       <div class="panel-body bio-graph-info">
-                        <p>프로젝트 JSP 설명</p>
+                        <h3>프로젝트 주제 : </h3>
+                        <p>프로젝트 목적 : </p>
+                        <p>프로젝트 기대효과 : </p>
+                      	<p>프로젝트 개발환경 : </p>
 
                       </div>
                     </section>
@@ -239,7 +255,10 @@
                   <div id="Project2" class="tab-pane">
                     <section class="panel">
                       <div class="panel-body bio-graph-info">
-                        <p>프로젝트 MVC1 설명</p>
+                        <h3>프로젝트 주제 : </h3>
+                        <p>프로젝트 목적 : </p>
+                        <p>프로젝트 기대효과 : </p>
+                      	<p>프로젝트 개발환경 : </p>
 
                       </div>
                     </section>
@@ -249,8 +268,10 @@
                   <div id="Project3" class="tab-pane">
                     <section class="panel">
                       <div class="panel-body bio-graph-info">
-                        <p>프로젝트 MVC2 설명</p>
-
+                      	<h3>프로젝트 주제 : </h3>
+                        <p>프로젝트 목적 : </p>
+                        <p>프로젝트 기대효과 : </p>
+                      	<p>프로젝트 개발환경 : </p>
                       </div>
                     </section>
                   </div>

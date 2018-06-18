@@ -2,6 +2,7 @@
 package com.spam.sfplanner.actresult;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -19,8 +20,8 @@ public class PpWoResultDao {
 	 * 작업단계 결과 전체리스트 메서드
 	 * @return
 	 */
-	public List<PpWoResult> listSelectWorkResult() {
-		return sqlsession.selectList(nameSpace+"listSelectWorkResult");
+	public List<PpWoResult> listSelectWorkResult(Map<String, Object> map) {
+		return sqlsession.selectList(nameSpace+"listSelectWorkResult", map);
 	}
 	
 	/**

@@ -10,7 +10,7 @@ public class WrNeedEquip {
 	private PpWoResult ppWoResult; //작업단계결과 넘버 외래키 기능 위한 객체
 	private WoNeedEquip woNeedEquip; //예상필요장비 넘버 외래키 기능 위한 객체
 	private String wrNeedequipState; //실행할때 보유상태
-	private List<WrNeRentPay> wrNeRentPay; //필요장비결과별 대여비결과 리스트객체
+	private List<WrNeRentPay> wrNeRentPayList; //필요장비결과별 대여비결과 리스트객체
 	
 	public int getWrNeedequipNumber() {
 		return wrNeedequipNumber;
@@ -36,15 +36,16 @@ public class WrNeedEquip {
 	public void setWrNeedequipState(String wrNeedequipState) {
 		this.wrNeedequipState = wrNeedequipState;
 	}
-	public List<WrNeRentPay> getWrNeRentPay() {
-		return wrNeRentPay;
+	public List<WrNeRentPay> getWrNeRentPayList() {
+		return wrNeRentPayList;
 	}
-	public void setWrNeRentPay(List<WrNeRentPay> wrNeRentPay) {
-		this.wrNeRentPay = wrNeRentPay;
+	public void setWrNeRentPayList(List<WrNeRentPay> wrNeRentPayList) {
+		this.wrNeRentPayList = wrNeRentPayList;
 	}
 	@Override
 	public String toString() {
 		return "WrNeedEquip [wrNeedequipNumber=" + wrNeedequipNumber + ", ppWoResult=" + ppWoResult + ", woNeedEquip="
-				+ woNeedEquip + ", wrNeedequipState=" + wrNeedequipState + ", wrNeRentPay=" + wrNeRentPay + "]";
-	}	
+				+ woNeedEquip + ", wrNeedequipState=" + wrNeedequipState + ", wrNeRentPayList=" + wrNeRentPayList + "]";
+	}
+	
 }
