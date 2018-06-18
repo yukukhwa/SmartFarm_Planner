@@ -88,7 +88,7 @@ public class TitlePlanController {
 	@RequestMapping(value="/addTitle",method = RequestMethod.POST)
 	public String insertTitlePlan(TitlePlan titlePlan,HttpSession session) {
 		titlePlanService.insertTitlePlan(titlePlan, session);
-		return "redirect:/listTitle";
+		return "redirect:/addPlanner";
 	}
 	
 	/**

@@ -69,7 +69,7 @@
 				<ul class="sub">
 					<c:if test="${loginMember.level eq 'farm'}">
 						<li><a class="" href="${pageContext.request.contextPath}/addPlanner">My 계획서 등록</a></li>
-						<li><a class="" href="${pageContext.request.contextPath}/onePlanner">My 계획서 리스트</a></li>
+						<li><a class="" href="${pageContext.request.contextPath}/myListPlanner?fNumber=${loginMember.corpNumber}">My 계획서 리스트</a></li>
 					</c:if>
 					<li><a class="" href="${pageContext.request.contextPath}/listPlanner">전체 농가 계획서</a></li>
 				</ul>

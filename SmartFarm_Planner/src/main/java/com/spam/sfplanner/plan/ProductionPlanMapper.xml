@@ -47,6 +47,9 @@
  	
  	<insert id="insertProductionPlan"
  			parameterType="com.spam.sfplanner.plan.ProductionPlan">
+ 		<selectKey resultType="int" keyProperty="ppNumber" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
  		INSERT INTO sp_pp
 			(pp_name_number
 			,pp_startday

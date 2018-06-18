@@ -18,6 +18,12 @@ public class ProductionPlanController {
 	@Autowired
 	private ProductionPlanService productionPlanService;
 	
+	@RequestMapping(value="/myListPlanner",method = RequestMethod.GET)
+	public String myListSelectProductionPlan(@RequestParam(value="fNumber",required=true)int fNumber,Model model) {
+		model.addAttribute("list", productionPlanService.myListSelectProductionPlan(fNumber));
+		return "plan/productionplan/myListPlanner";
+	}
+	
 	@RequestMapping(value="/updatePlanner",method = RequestMethod.POST)
 	public String updateProductionPlan(ProductionPlan productionPlan) {
 		productionPlanService.updateProductionPlan(productionPlan);
@@ -83,7 +89,7 @@ public class ProductionPlanController {
 	 */
 	@RequestMapping(value="/addPlanner",method = RequestMethod.POST)
 	public String insertProductionPlan(ProductionPlan productionPlan,HttpSession session) {
-		productionPlanService.insertProductionPlan(productionPlan, session);;
+		productionPlanService.insertProductionPlan(productionPlan, session);
 		return "redirect:/listPlanner";
 	}
 	
@@ -95,7 +101,9 @@ public class ProductionPlanController {
 	 */
 	@RequestMapping(value="/addPlanner",method = RequestMethod.GET)
 	public String insertProductionPlan(HttpSession session,Model model) {
-		model.addAttribute("titleList", productionPlanService.insertProductionPlan(session));
+		Map<String, Object> map = productionPlanService.insertProductionPlan(session);
+		model.addAttribute("titleList", map.get("titleList"));
+		model.addAttribute("themeList", map.get("themeList"));
 		return "plan/productionplan/addPlanner";
 	}
 }

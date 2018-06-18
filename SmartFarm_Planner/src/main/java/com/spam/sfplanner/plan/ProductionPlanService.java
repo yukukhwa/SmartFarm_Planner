@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spam.sfplanner.category.CategoryTheme;
+import com.spam.sfplanner.category.CategoryThemeDao;
 import com.spam.sfplanner.login.Login;
 
 @Transactional
@@ -35,6 +37,17 @@ public class ProductionPlanService {
 	@Autowired
 	private WoHumanPayDao woHumanPayDao;
 	
+	@Autowired
+	private CategoryThemeDao categoryThemeDao;
+	
+	public List<ProductionPlan> myListSelectProductionPlan(int fNumber) {
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("search", "yes");
+		map.put("column", "농가넘버");
+		map.put("fNumber", fNumber);
+		return productionPlanDao.listSelectProductionPlan(map);
+	}
+	
 	public void updateProductionPlan(ProductionPlan productionPlan) {
 		productionPlanDao.updateProductionPlan(productionPlan);
 	}
@@ -57,9 +70,15 @@ public class ProductionPlanService {
 	}
 	
 	public void insertProductionPlan(ProductionPlan productionPlan,HttpSession session) {
-		productionPlan.getFarmMember().setfMemberId(((Login)session.getAttribute("loginMember")).getId());
-		System.out.println(productionPlan.toString());
+		String fMemberId = ((Login)session.getAttribute("loginMember")).getId();
+		int fNumber = ((Login)session.getAttribute("loginMember")).getCorpNumber();
+		productionPlan.getFarmMember().setfMemberId(fMemberId);
 		productionPlanDao.insertProductionPlan(productionPlan);
+		for(PpWork ppWork : productionPlan.getPpWorkList()) {
+			ppWork.getProductionPlan().setPpNumber(productionPlan.getPpNumber());
+			ppWork.getFarm().setfNumber(fNumber);
+			ppWorkDao.insertPpWork(ppWork);
+		}
 	}
 	
 	public ProductionPlan oneSelectProductionPlan(int ppNumber) {
@@ -78,6 +97,7 @@ public class ProductionPlanService {
 			ppWork.setWoHumanPayList(woHumanPayDao.listSelectWoHumanPay(map));
 			map.clear();
 		}
+		System.out.println(productionPlan);
 		return productionPlan;
 	}
 	
@@ -94,11 +114,16 @@ public class ProductionPlanService {
 		return productionPlanDao.listSelectProductionPlan(map);
 	}
 	
-	public List<TitlePlan> insertProductionPlan(HttpSession session) {
+	public Map<String,Object> insertProductionPlan(HttpSession session) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("search", "yes");
 		map.put("column", "농가넘버");
 		map.put("property", ((Login)session.getAttribute("loginMember")).getCorpNumber());
-		return titlePlanDao.listSelectTitlePlan(map);
+		List<TitlePlan> titleList = titlePlanDao.listSelectTitlePlan(map);
+		List<CategoryTheme> themeList = categoryThemeDao.listSelectCategoryTheme();
+		map.clear();
+		map.put("titleList", titleList);
+		map.put("themeList", themeList);
+		return map;
 	}
 }
