@@ -49,7 +49,7 @@
 					${actResult.farmMember.fMemberId}
 				</header>
 				<div class="panel-body">
-					<c:forEach var="woResultList" items="${actResult.ppWoResult}">
+					<c:forEach var="woResultList" items="${actResult.ppWoResultList}">
 						<div class="color">
 							<div class="panel-heading col-lg-12">${woResultList.ppWork.ppWorkName}</div>
 							<div class="panel-content" style="display:none">
@@ -84,29 +84,49 @@
 								<table class="table table-striped table-advance table-hover">
 									<thead>
 										<tr>
-											<th>인부이름</th>
-											<th>인부주민번호</th>
-											<th>예상일당</th>
-											<th>예상작업날짜</th>
-											<th>실제일당</th>
-											<th>실제작업날짜</th>
+											<th>원자재명</th>
+											<th>원자재단가(원)</th>
+											<th>사용예정</th>
+											<th>실제단가(원)</th>
+											<th>실제사용량</th>
 										</tr>
 									</thead>
 									<tbody>
-										<c:forEach var="wrHumanPayList" items="${woResultList.wrHumanPayList}">
+										<c:forEach var="wrMaterialsPayList" items="${woResultList.wrMaterialsPayList}">
 											<tr>
-												<td>${wrHumanPayList.woHumanPay.eHumanpayName}</td>
-												<td>${wrHumanPayList.woHumanPay.eHumanpayResidentnumber}</td>
-												<td>${wrHumanPayList.woHumanPay.eHumanpayExpectpay}</td>
-												<td>${wrHumanPayList.woHumanPay.eHumanpayExpectday}</td>
-												<td>${wrHumanPayList.wrHumanpayRealcost}</td>
-												<td>${wrHumanPayList.wrHumanpayDate}</td>
+												<td>${wrMaterialsPayList.woMaterialsPay.categoryMaterials.materialsName}</td>
+												<td>${wrMaterialsPayList.woMaterialsPay.eMaterialspayUnitcost}</td>
+												<td>${wrMaterialsPayList.woMaterialsPay.eMaterialspayUse}${wrMaterialsPayList.woMaterialsPay.categoryMaterials.materialsUnit}</td>
+												<td>${wrMaterialsPayList.wrMaterialspayUnitcost}</td>
+												<td>${wrMaterialsPayList.wrMaterialspayQuantity}${wrMaterialsPayList.woMaterialsPay.categoryMaterials.materialsUnit}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
 								보험비
 								기타지출비
+								<table class="table table-striped table-advance table-hover">
+									<thead>
+									<tr>
+										<th>기타지출비결과넘버</th>
+										<th>작업단계결과 넘버</th>
+										<th>예상 기타지출비용 넘버</th>
+										<th>작업단계결과별 실제 기타지출비</th>
+										<th>작업단계별 기타지출비 등록일</th>	
+									</tr>					
+									</thead>
+									<tbody>
+										<c:forEach var="list" items="${list}">
+											<tr>
+											<td>${list.wrEtcspendpayNumber }</td>
+											<td>${list.wrNumber}</td>
+											<td>${list.eEtcspendpayNumber }</td>
+											<td>${list.wrEtcspendpayRealcost }</td>
+											<td>${list.wrEtcspendpayDate }</td>
+											</tr>
+										</c:forEach>
+									</tbody>				
+								</table>
 								필요장비
 								메모
 							</div>

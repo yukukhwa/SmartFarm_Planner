@@ -42,7 +42,6 @@
 		<collection property="farm" ofType="com.spam.sfplanner.corporation.Farm">
 			<id column="f_number" property="fNumber"/>
 			<result column="f_name" property="fName"/>
-			<result column="f_member_id" property="fMemberId"/>
 			<result column="f_phone" property="fPhone"/>
 			<result column="f_doroaddress" property="fDoroaddress"/>
 			<result column="f_jibunaddress" property="fJibunaddress"/>
@@ -66,6 +65,14 @@
 		JOIN sp_farm_member ON sp_farm_member.f_member_id = sp_pp_resultlist.f_member_id
 		WHERE sp_pp_resultlist.pp_resultlist_number = #{ppResultlistNumber}
 	</select>
+	<select id="countActResult"
+			parameterType="Map"
+			resultType="integer">
+		SELECT COUNT(*) AS totalRow FROM sp_pp_resultlist
+		<if test="fNumber != null">
+			WHERE sp_pp_resultlist.f_number = #{fNumber}
+		</if>
+	</select>
 	<select id="listSelectActResult"
 			parameterType="Map"
 			resultMap="actResult">
@@ -73,13 +80,29 @@
 			sp_pp_name_cate.pp_name_planname,
 			sp_pp_resultlist.pp_resultlist_number,
 			sp_pp_resultlist.f_number,
-			sp_pp_resultlist.pp_resultlist_date
+			sp_pp_resultlist.pp_resultlist_date,
+			sp_farm.f_name
 		FROM sp_pp_resultlist
 		JOIN sp_pp ON sp_pp.pp_number = sp_pp_resultlist.pp_number
 		JOIN sp_pp_name_cate ON sp_pp_name_cate.pp_name_number = sp_pp.pp_name_number
-		<if test="search == 'yes'">
-			WHERE sp_pp_resultlist.f_number = #{fNumber}
+		JOIN sp_farm ON sp_farm.f_number = sp_pp_resultlist.f_number
+		WHERE sp_pp_resultlist.pp_resultlist_number = sp_pp_resultlist.pp_resultlist_number
+		<if test="fNumber != null">
+			AND sp_pp_resultlist.f_number = #{fNumber}
 		</if>
+		<if test="searchOption != null">
+			<if test="searchOption eq 'planName'">
+				AND sp_pp_name_cate.pp_name_planname LIKE CONCAT('%',#{searchKeyword},'%')
+			</if>
+			<if test="searchOption eq 'date'">
+				AND sp_pp_resultlist.pp_resultlist_date BETWEEN #{startDate} AND #{endDate}
+			</if>
+			<if test="searchOption eq 'farmName'">
+				AND sp_farm.f_name LIKE CONCAT('%',#{searchKeyword},'%')
+			</if>
+		</if>
+		ORDER BY sp_pp_resultlist.pp_resultlist_number DESC 
+		LIMIT #{beginRow}, #{pagePerRow}
 	</select>
 	<insert id="insertActResult" parameterType="com.spam.sfplanner.actresult.ActResult">
 		INSERT INTO sp_pp_resultlist (

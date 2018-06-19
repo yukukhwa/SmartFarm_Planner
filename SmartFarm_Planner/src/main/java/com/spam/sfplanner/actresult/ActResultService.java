@@ -1,6 +1,7 @@
 /*[김기성]*/
 package com.spam.sfplanner.actresult;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spam.sfplanner.plan.ProductionPlanDao;
+import com.spam.sfplanner.Paging;
 import com.spam.sfplanner.plan.ProductionPlan;
 import com.spam.sfplanner.plan.WoHumanPayDao;
 import com.spam.sfplanner.plan.WoHumanPay;
@@ -48,8 +50,8 @@ public class ActResultService {
 			map.put("wrNumber", ppWoResult.getWrNumber());
 			ppWoResult.setWrHumanPayList(wrHumanPayDao.listSelectWrHumanPay(map));
 			ppWoResult.setWrMaterialsPayList(wrMaterialsPayDao.listSelectWrMaterialsPay(map));
-			ppWoResult.setWrEtcSpendPayList(wrEtcSpendPayDao.listSelectWrEtcSpendPay(map));
-			ppWoResult.setWrInsurancePayList(wrInsurancePayDao.listSelectWrInsurancePay(map));
+			/*ppWoResult.setWrEtcSpendPayList(wrEtcSpendPayDao.listSelectWrEtcSpendPay(map));
+			ppWoResult.setWrInsurancePayList(wrInsurancePayDao.listSelectWrInsurancePay(map));*/
 		}
 		actResult.setPpWoResultList(list);
 		return actResult;
@@ -69,13 +71,29 @@ public class ActResultService {
 	 * 농가넘버를 매개변수로 받아 map에 셋팅한후 해당하는 실행결과 리스트를 호출하는 dao를 호출하고
 	 * 그 결과를 리턴하는 매서드
 	 */
-	public List<ActResult> listSelectActResult(int fNumber) {
+	public Map<String, Object> listSelectActResult(int fNumber, int currentPage, int pagePerRow, String searchOption, String searchKeyword, String startDate, String endDate) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		if(fNumber != 0) {
-			map.put("search", "yes");
 			map.put("fNumber", fNumber);
 		}
-		return actResultDao.listSelectActResult(map);
+		int totalRow = actResultDao.countActResult(map);
+		Paging paging = new Paging(totalRow, pagePerRow, currentPage);
+		List<Integer> pageList = new ArrayList<Integer>();
+		for(int i=paging.getStartPage(); i<=paging.getEndPage(); i++) {
+			pageList.add(i);
+		}
+		map.put("beginRow", paging.getBeginRow());
+		map.put("pagePerRow", pagePerRow);
+		map.put("searchOption", searchOption);
+		map.put("searchKeyword", searchKeyword);
+		map.put("startDate", startDate);
+		map.put("endDate", endDate);
+		System.out.println(map);
+		map.put("actResultList", actResultDao.listSelectActResult(map));
+		map.put("currentPage", currentPage);
+		map.put("totalPage", paging.getTotalPage());
+		map.put("pageList", pageList);
+		return map;
 	}
 	/*
 	 * 농가넘버를 매개변수로 받아 map에 농가코드를 셋팅해준 후 생산계획 리스트를 출력하는 매서드를 호출하여

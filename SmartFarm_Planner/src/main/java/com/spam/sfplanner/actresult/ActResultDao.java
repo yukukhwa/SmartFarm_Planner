@@ -23,6 +23,9 @@ public class ActResultDao {
 	public ActResult oneSelectActResult(Map<String, Object> map) {
 		return sqlSession.selectOne(NS+"oneSelectActResult", map);
 	}
+	public int countActResult(Map<String, Object> map) {
+		return sqlSession.selectOne(NS+"countActResult", map);
+	}
 	/*
 	 * map을 매개변수로 받아 해당하는 실행결과를 호출하는 쿼리문을 실행한 후
 	 * 나온 결과 리스트를 리턴하는 매서드

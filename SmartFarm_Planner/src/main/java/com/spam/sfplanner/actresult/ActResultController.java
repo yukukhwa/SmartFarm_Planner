@@ -1,6 +1,8 @@
 /*[김기성]*/
 package com.spam.sfplanner.actresult;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -26,9 +28,20 @@ public class ActResultController {
 	 * 자신의 농가 실행결과 리스트를 보여주는 화면 매핑
 	 */
 	@RequestMapping(value="/listSelectMyActResult", method = RequestMethod.GET)
-	public String listSelectMyActResult (Model model, HttpSession session) {
+	public String listSelectMyActResult (Model model, HttpSession session
+			, @RequestParam(value="currentPage",defaultValue="1") int currentPage
+			, @RequestParam(value="pagePerRow",defaultValue="5") int pagePerRow
+			, @RequestParam(value="searchOption", required=false) String searchOption
+			, @RequestParam(value="searchKeyword", required=false) String searchKeyword
+			, @RequestParam(value="startDate", required=false) String startDate
+			, @RequestParam(value="endDate", required=false) String endDate) {
 		Login login = (Login) session.getAttribute("loginMember");
-		model.addAttribute("actResultList", actResultService.listSelectActResult(login.getCorpNumber()));
+		Map<String, Object> map = actResultService.listSelectActResult(login.getCorpNumber(), currentPage, pagePerRow, searchOption, searchKeyword, startDate, endDate);
+		model.addAttribute("actResultList", map.get("actResultList"));
+		model.addAttribute("currentPage", map.get("currentPage"));
+		model.addAttribute("totalPage", map.get("totalPage"));
+		model.addAttribute("pagePerRow", map.get("pagePerRow"));
+		model.addAttribute("pageList", map.get("pageList"));
 		return "actresult/listActResultList";
 	}
 	/*
@@ -46,8 +59,19 @@ public class ActResultController {
 	 * 그리고 askActResultList.jsp로 포워드하였다.
 	 */
 	@RequestMapping(value="/listSelectActResult", method = RequestMethod.GET)
-	public String listSelectActResult (Model model) {
-		model.addAttribute("actResultList", actResultService.listSelectActResult(0));
+	public String listSelectActResult (Model model
+			, @RequestParam(value="currentPage", defaultValue="1") int currentPage
+			, @RequestParam(value="pagePerRow", defaultValue="5") int pagePerRow
+			, @RequestParam(value="searchOption", required=false) String searchOption
+			, @RequestParam(value="searchKeyword", required=false) String searchKeyword
+			, @RequestParam(value="startDate", required=false) String startDate
+			, @RequestParam(value="endDate", required=false) String endDate) {
+		Map<String, Object> map = actResultService.listSelectActResult(0, currentPage, pagePerRow, searchOption, searchKeyword, startDate, endDate);
+		model.addAttribute("actResultList", map.get("actResultList"));
+		model.addAttribute("currentPage", map.get("currentPage"));
+		model.addAttribute("totalPage", map.get("totalPage"));
+		model.addAttribute("pagePerRow", map.get("pagePerRow"));
+		model.addAttribute("pageList", map.get("pageList"));
 		return "actresult/listActResultList";
 	}
 	/*
