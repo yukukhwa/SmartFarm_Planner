@@ -2,6 +2,7 @@
 package com.spam.sfplanner.plan;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.slf4j.Logger;
@@ -35,8 +36,8 @@ public class WoMaterialsPayDao {
 	}
 	
 	/*예상 원자재비 리스트를 전체 출력하는 메서드*/
-	public List<WoMaterialsPay> listSelectWoMaterialsPay(int ppWorkNumber){
-		LOGGER.info(NAMESPACE);
-		return sqlSession.selectList(NAMESPACE+"listSelectWoMaterialsPay", ppWorkNumber);
+	public List<WoMaterialsPay> listSelectWoMaterialsPay(Map<String, Object> map){
+		System.out.println("map===> "+map);
+		return sqlSession.selectList(NAMESPACE+"listSelectWoMaterialsPay", map);
 	}
 }

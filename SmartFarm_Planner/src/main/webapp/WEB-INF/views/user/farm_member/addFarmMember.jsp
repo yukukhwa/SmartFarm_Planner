@@ -155,65 +155,67 @@
 						<input type="text" placeholder="농가인원 숫자를 입력해주세요" name="fParty" id="fParty"> 명
 					</div>
 				</div>
-			<!-- 농가등록 폼 끝 -->
+				<!-- 농가등록 폼 끝 -->
 			<br>
 			<br>
-			<!-- 기본 회원가입 폼 -->
-			<div id="addFarmMemberForm">
-				<h3>회원가입 폼</h3>
-				<div>
-					<b>아이디 : </b>
-					<input type="text" name="fMemberId" id="fMemberId" placeholder="아이디를 입력해주세요">
-					<button type="button" id="idCheck">아이디 중복확인</button><br>
+				<!-- 기본 회원가입 폼 -->
+				<div id="addFarmMemberForm">
+					<h3>회원가입 폼</h3>
+					<div>
+						<b>아이디 : </b>
+						<input type="text" name="fMemberId" id="fMemberId" placeholder="아이디를 입력해주세요">
+						<button type="button" id="idCheck">아이디 중복확인</button><br>
+					</div>
+					<div>			
+						<b>비밀번호 입력 : </b>
+						<input type="password" name="fMemberPw" id="fMemberPw">
+						<input type="checkbox" id="pwOpen"> 비밀번호 보이기 <br>
+					</div>
+					<div>		
+						<b>비밀번호 확인  : </b>
+						<input type="password" id="fPwCheckFomr">
+						<button type="button" id="fPwCheck">비밀번호 일치확인</button><br>
+					</div>
+					<div>		
+						<b>이름 : </b>
+						<input type="text" name="fMemberName" id="fMemberName" placeholder="이름을 입력해주세요"> <br>
+					</div>
+					<div>
+						<b>연락처 : </b>
+						<input type="text" name="fMemberPhone" id="fMemberPhone" placeholder="-를 붙이고 연락처를 입력해주세요"> <br>
+					</div>
+					<div>
+						<b>성별 : </b>
+						<input type="radio" name="fMemberGender" value="여"> 여자
+						<input type="radio" name="fMemberGender" value="남"> 남자 <br>
+					</div>
+					<div>
+						<b>이메일 : </b>
+						<input type="text" name="fMemberEmail" placeholder="이메일을 입력해주세요">
+					</div>
+					<div>
+						<input type="button" id="searchAddress" value="searchAddress">
+					</div>
+					<div>	
+						<b>도로명 주소 : </b>
+						<input type="text" id="fMemberDoroaddress" name="fMemberDoroaddress" placeholder="도로명주소를 입력해주세요"><br>
+					</div>
+					<div>
+						<b>지번 주소 : </b>
+						<input type="text" id="fMemberJibunaddress" name="fMemberJibunaddress" placeholder="지번주소를 입력해주세요"><br>
+					</div>
+					<div>
+						<b>상세 주소 : </b>
+						<input type="text" name="fMemberDetailaddress" placeholder="나머지 상세주소를 입력해주세요"><br>
+					</div>
 				</div>
-				<div>			
-					<b>비밀번호 입력 : </b>
-					<input type="password" name="fMemberPw" id="fMemberPw">
-					<input type="checkbox" id="pwOpen"> 비밀번호 보이기 <br>
-				</div>
-				<div>		
-					<b>비밀번호 확인  : </b>
-					<input type="password" id="fPwCheckFomr">
-					<button type="button" id="fPwCheck">비밀번호 일치확인</button><br>
-				</div>
-				<div>		
-				<b>이름 : </b>
-				<input type="text" name="fMemberName" id="fMemberName" placeholder="이름을 입력해주세요"> <br>
-				</div>
-				<div>
-					<b>연락처 : </b>
-					<input type="text" name="fMemberPhone" id="fMemberPhone" placeholder="-를 붙이고 연락처를 입력해주세요"> <br>
-				</div>
-				<div>
-					<b>성별 : </b>
-					<input type="radio" name="fMemberGender" value="여"> 여자
-					<input type="radio" name="fMemberGender" value="남"> 남자 <br>
-				</div>
-				<div>
-					<b>이메일 : </b>
-					<input type="text" name="fMemberEmail" placeholder="이메일을 입력해주세요">
-				</div>
-				<div>
-					<input type="button" id="searchAddress" value="searchAddress">
-				</div>
-				<div>	
-					<b>도로명 주소 : </b>
-					<input type="text" id="fMemberDoroaddress" name="fMemberDoroaddress" placeholder="도로명주소를 입력해주세요"><br>
-				</div>
-				<div>
-					<b>지번 주소 : </b>
-					<input type="text" id="fMemberJibunaddress" name="fMemberJibunaddress" placeholder="지번주소를 입력해주세요"><br>
-				</div>
-				<div>
-					<b>상세 주소 : </b>
-					<input type="text" name="fMemberDetailaddress" placeholder="나머지 상세주소를 입력해주세요"><br>
-				</div>
-			</div>
 			<br>
 			<button id="insertFarmMember">회원가입</button>
 				<!-- 회원가입 폼 끝 -->
 			</form>
-			<a href="${pageContext.request.contextPath}/listFarm">농가 리스트로 가기</a>
+			<div>
+				<a class="btn btn-primary" id="goFarmList" href="${pageContext.request.contextPath}/listFarm" title="Bootstrap 3 themes generator">농가 리스트로 가기</a>
+			</div>
 		</section>
 	</section>
 </body>

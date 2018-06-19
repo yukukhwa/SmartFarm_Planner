@@ -109,5 +109,10 @@
 				sp_pp_work.pp_number = sp_pp.pp_number
 			WHERE 
 				sp_pp_work.pp_work_number=#{ppWorkNumber}
+			<if test="searchMaterialsPayOption != null">
+				<if test="searchMaterialsPayOption == 'materialsName'">
+					AND sp_materials_cate.materials_name LIKE CONCAT('%',#{searchKeyword},'%') 
+				</if>
+			</if>
  	</select>
  </mapper>

@@ -32,18 +32,13 @@
 			<div>
 				<form id="updateThemeForm" action="${pageContext.request.contextPath}/updateTheme" method="post">
 					<div>
-						<label>
-							등록기관 넘버 : <input type="text" name="aNumber" value="${categoryTheme.agency.aNumber}">
-						</label>
+						<input type="hidden" name="aNumber" value="${categoryTheme.agency.aNumber}">
+						<input type="hidden" name="themeNumber" value="${categoryTheme.themeNumber}">
 					</div>
 					<div>
 						<label>
-							등록기관 명 : <input type="text" name="aName" value="${categoryTheme.agency.aName}">
-						</label>
-					</div>
-					<div>
-						<label>
-							테마 카테고리넘버 : <input type="text" name="themeNumber" value="${categoryTheme.themeNumber}">
+							등록기관 명 : <input type="text" disabled="disabled" value="${categoryTheme.agency.aName}">
+							<input type="hidden" name="aName" value="${categoryTheme.agency.aName}">
 						</label>
 					</div>
 					<div>

@@ -1,3 +1,4 @@
+<!-- [김재희] -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -66,7 +67,7 @@
     			</table>
     			<a href="${pageContext.request.contextPath}/updateWorkPlan">작업단계 수정화면으로 가기</a> <br>
     			<a href="${pageContext.request.contextPath}/addWorkPlan">작업단계 등록으로 가기</a> <br>
-    			<a href="${pageContext.request.contextPath}/listHumanPay">예상 인건비 리스트로 가기</a> <br>
+    			<a href="${pageContext.request.contextPath}/listHumanPay?ppWorkNumber=${ppWorkNumber}">예상 인건비 리스트로 가기</a> <br>
     			<a href="${pageContext.request.contextPath}/listMaterialsPay">예상원자재비 리스트로 가기</a> 
     	</section>
     </section>

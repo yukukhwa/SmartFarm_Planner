@@ -20,7 +20,7 @@ public class FarmController {
 		/*updateFarm에서 get방식으로 들어올 때 수정화면 조회*/
 		@RequestMapping(value="updateFarm", method=RequestMethod.GET)
 		public String updateFarm(Model model, String fName) {
-			model.addAttribute("farmDb", farmService.oneSelectFarm(fName));
+			model.addAttribute("farm", farmService.oneSelectFarm(fName));
 			return "/corporation/farm/updateFarm";
 		}
 		

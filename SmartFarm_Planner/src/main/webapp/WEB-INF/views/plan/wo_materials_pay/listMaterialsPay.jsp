@@ -10,6 +10,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('#searchMaterialsPay').click(function(){
+			$('#searchMaterialsPayForm').submit();
+		})
 	})
 </script>
 </head>
@@ -24,6 +27,16 @@
     	<section class="wrapper">
     		<div>
 	    		<h3>예상 원자재비 리스트</h3>
+	    		<div>
+	    			<form id="searchMaterialsPayForm" method="post" action="${pageContext.request.contextPath}/listMaterialsPay">
+		    			<label>예상 원자재비 검색</label>
+				    		<select name="searchMaterialsPayOption">
+				    			<option value="materialsName">원자재명</option>
+				    		</select>
+			    			<input type="text" name="searchKeyword">
+		    			<button id="searchMaterialsPay">예상원자재비 검색하기</button>
+	    			</form>
+	    		</div>
     			<div>
     				<table class="table">
     					<thead>

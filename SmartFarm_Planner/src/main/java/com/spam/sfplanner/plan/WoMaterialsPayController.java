@@ -27,7 +27,6 @@ public class WoMaterialsPayController {
 		return "redirect:/home";
 	}
 	
-	
 	/*수정할 예상원자재비의 정보들을 수정처리*/
 	@RequestMapping(value="updateMaterialsPay", method=RequestMethod.POST)
 	public String updateWoMaterialsPay(WoMaterialsPay woMaterialsPay) {
@@ -47,6 +46,16 @@ public class WoMaterialsPayController {
 		model.addAttribute("categoryMaterialsList", categoryMaterialsService.listSelectCategoryMaterials());
 		model.addAttribute("ppWorkList", ppWorkService.listSelectPpWork(ppNumber));
 		return "plan/wo_materials_pay/updateMaterialsPay";
+	}
+	
+	@RequestMapping(value="listMaterialsPay", method=RequestMethod.POST)
+	public String listSelectWoMaterialsPay(int ppWorkNumber
+										, Model model
+										, String searchMaterialsPayOption
+										, String searchKeyword) {
+		model.addAttribute("ppWorkNumber",ppWorkNumber);
+		model.addAttribute("list", woMaterialsPayService.searchListSelectWoMaterialsPay(ppWorkNumber, searchMaterialsPayOption, searchKeyword));
+		return "plan/wo_materials_pay/listMaterialsPay";
 	}
 	
 	/*예상 원자재비 전체 리스트를 조회*/ 
