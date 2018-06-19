@@ -4,7 +4,28 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="com.spam.sfplanner.corporation.FarmMapper">
-	<!-- <resultMap type="" id=""></resultMap> -->
+	<resultMap type="com.spam.sfplanner.corporation.Farm" id="farm">
+		<id column="f_number" property="fNumber"/>
+		<result column="f_name" property="fName"/>
+		<result column="f_phone" property="fPhone"/>
+		<result column="f_doroaddress" property="fDoroaddress"/>
+		<result column="f_jibunaddress" property="fJibunaddress"/>
+		<result column="f_party" property="fParty"/>
+		<result column="f_registdate" property="fRegistdate"/>
+		<collection property="farmMember" ofType="com.spam.sfplanner.user.FarmMember">
+			<id column="f_member_id" property="fMemberId"/>
+			<result column="f_member_pw" property="fMemberPw"/>
+			<result column="f_member_name" property="fMemberName"/>
+			<result column="f_member_email" property="fMemberEmail"/>
+			<result column="f_member_phone" property="fMemberPhone"/>
+			<result column="f_member_gender" property="fMemberGender"/>
+			<result column="f_member_privacy" property="fMemberPrivacy"/>
+			<result column="f_member_doroaddress" property="fMemberDoroaddress"/>
+			<result column="f_member_jibunaddress" property="fMemberJibunaddress"/>
+			<result column="f_member_detailaddress" property="fMemberDetailaddress"/>
+			<result column="f_member_registdate" property="fMemberRegistdate"/>
+		</collection>
+	</resultMap>
   
   <!-- 농가정보를 수정처리하는 쿼리문 -->
   <!-- <update id="updateFarm"
@@ -15,16 +36,19 @@
   <!-- 한개의 농가에 대한 상세정보 -->
   <select id="oneSelectFarm"
        parameterType="String"
-       resultType="com.spam.sfplanner.corporation.Farm">
-       SELECT f_number AS fNumber
-          , f_name AS fName
-          , f_phone AS fPhone
-          , f_doroaddress AS fDoroaddress
-          , f_jibunaddress AS fJibunaddress
-          , f_party AS fParty
-          , f_registdate AS fRegistdate
-       FROM sp_farm
-       WHERE sp_farm.f_Name=#{fName}
+       resultMap="farm">
+	       SELECT sp_farm.f_number
+	 			, sp_farm.f_member_id
+		   		, sp_farm.f_name
+		   		, sp_farm.f_phone
+				, sp_farm.f_doroaddress
+		   		, sp_farm.f_jibunaddress
+		   		, sp_farm.f_party
+		   		, sp_farm.f_registdate
+		   		, sp_farm_member.f_member_name
+		   FROM sp_farm JOIN sp_farm_member
+		   ON sp_farm.f_member_id = sp_farm_member.f_member_id
+		   WHERE sp_farm.f_Name=#{fName}
     </select>
  	
  	<!-- 검색 키워드에 해당하는 농가의 전체 리스트를 조회 -->

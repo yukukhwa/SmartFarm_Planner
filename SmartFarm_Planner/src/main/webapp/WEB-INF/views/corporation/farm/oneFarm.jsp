@@ -43,6 +43,7 @@
 					<thead>
 						<tr>
 							<th>농가 이름</th>
+							<th>농장 대표자명</th>
 							<th>농가 대표번호</th>
 							<th>농가 도로명주소</th>
 							<th>농가 지번주소</th>
@@ -53,6 +54,7 @@
 					<tbody>
 						<tr>
 							<td>${farm.fName}</td>
+							<td>${farm.farmMember.fMemberName}</td>
 							<td>${farm.fPhone}</td>
 							<td>${farm.fDoroaddress}</td>
 							<td>${farm.fJibunaddress}</td>

@@ -44,6 +44,12 @@
 										<td>${woMaterialsPay.categoryMaterials.materialsName}</td>
 										<td>${woMaterialsPay.eMaterialspayUnitcost}</td>
 										<td>${woMaterialsPay.eMaterialspayUse} ${woMaterialsPay.categoryMaterials.materialsUnit}</td>
+										<td>
+											<a href="${pageContext.request.contextPath}/updateMaterialsPay?eMaterialspayNumber=${woMaterialsPay.eMaterialspayNumber}&ppNumber=${woMaterialsPay.ppWork.productionPlan.ppNumber}">수정</a>
+										</td>
+										<td>
+											<a href="${pageContext.request.contextPath}/deleteWoMaterialsPay?eMaterialspayNumber=${woMaterialsPay.eMaterialspayNumber}">삭제</a>
+										</td>
 									</tr>
 								</c:if>
 							</c:forEach>

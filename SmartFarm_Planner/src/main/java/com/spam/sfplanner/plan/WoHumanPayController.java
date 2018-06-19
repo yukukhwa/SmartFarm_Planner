@@ -1,6 +1,9 @@
 /*[김재희]*/
 package com.spam.sfplanner.plan;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.spam.sfplanner.category.CategoryTheme;
 import com.spam.sfplanner.category.CategoryThemeService;
 
 @Controller
@@ -19,11 +21,35 @@ public class WoHumanPayController {
 	@Autowired PpWorkService ppWorkService;
 	private final static Logger LOGGER = LoggerFactory.getLogger(WoHumanPayController.class);
 	
-	@RequestMapping(value="/updateHumanPay", method=RequestMethod.GET)
-	public String updateWoHumanPay() {
+	/*삭제처리 겟방식으로 요청시 삭제처리가 되어 home으로 리다이렉트*/ 
+	@RequestMapping(value="/deleteWoHumanPay", method=RequestMethod.GET)
+	public String deleteWoHumanPay(int eHumanpayNumber) {
+		woHumanPayService.deleteWoHumanPay(eHumanpayNumber);
+		return "redirect:/home";
+	}
+	
+	/*수정처리*/
+	@RequestMapping(value="/updateHumanPay", method=RequestMethod.POST)
+	public String updateWoHumanPay(WoHumanPay woHumanPay) {
+		System.out.println("woHumanPay update ==> "+woHumanPay);
+		LOGGER.info("WoHumanPayController UPDATE 호출");
+		woHumanPayService.updateWoHumanPay(woHumanPay);
 		return "plan/wo_humanpay/updateHumanPay";
 	}
 	
+	/*수정할 해당인건비 하나의 정보들을 출력*/ 
+	@RequestMapping(value="/updateHumanPay", method=RequestMethod.GET)
+	public String oneSelectWoHumanPay(int eHumanpayNumber
+								, int ppNumber
+								, Model model) {
+		System.out.println("ppNumber updateHumanPay ==> "+ppNumber);
+		model.addAttribute("categoryThemeList", categoryThemeService.listSelectCategoryTheme());
+		model.addAttribute("ppWorkList", ppWorkService.listSelectPpWork(ppNumber));
+		model.addAttribute("woHumanPay", woHumanPayService.oneSelectWoHumanPay(eHumanpayNumber));
+		return "plan/wo_humanpay/updateHumanPay";
+	}
+	
+	/*검색화면 폼에서 post방식으로 요청받을 시 검색조건에 따른 리스트를 출력해 예상인건비리스트로 포워드*/
 	@RequestMapping(value="/listHumanPay", method=RequestMethod.POST)
 	public String listSelectWoHumanPay(Model model
 									, int ppWorkNumber
@@ -34,6 +60,7 @@ public class WoHumanPayController {
 		return "plan/wo_humanpay/listHumanPay";
 	}
 	
+	/*예상 인건비 전체 리스트를 출력해 list로 포워드*/ 
 	@RequestMapping(value="/listHumanPay", method=RequestMethod.GET)
 	public String listSelectWoHumanPay(Model model, int ppWorkNumber) {
 		model.addAttribute("ppWorkNumber", ppWorkNumber);
@@ -41,7 +68,7 @@ public class WoHumanPayController {
 		return "plan/wo_humanpay/listHumanPay";
 	}
 	
-	/*예상 인건비 등록화면에서 post방식으로 요청*/
+	/*예상 인건비 등록화면으로 post로 요청시 예상인건비 정보들이 등록처리되어 등록화면폼으로 포워드*/
 	@RequestMapping(value="/addHumanPay", method=RequestMethod.POST)
 	public String insertWoHumanPay(WoHumanPay woHumanPay) {
 		System.out.println("add woHumanPay ==> "+woHumanPay);

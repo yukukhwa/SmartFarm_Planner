@@ -16,6 +16,9 @@
  			<result column="pp_work_endday" property="ppWorkEndday"/>
  			<result column="pp_work_area" property="ppWorkArea"/>
  			<result column="pp_work_content" property="ppWorkContent"/>
+ 			<collection property="productionPlan" ofType="com.spam.sfplanner.plan.ProductionPlan">
+ 				<id column="pp_number" property="ppNumber"/>
+ 			</collection>
  		</collection>
  		<collection property="categoryMaterials" ofType="com.spam.sfplanner.category.CategoryMaterials">
  			<id column="materials_number" property="materialsNumber"/>
@@ -23,7 +26,43 @@
  			<result column="materials_unit" property="materialsUnit"/>
  		</collection>
  	</resultMap>
- 
+ 	
+ 	<update id="updateWoMaterialsPay"
+ 		parameterType="com.spam.sfplanner.plan.WoMaterialsPay">
+ 		UPDATE sp_e_materialspay
+		SET sp_e_materialspay.e_materialspay_unitcost=#{eMaterialspayUnitcost}
+			, sp_e_materialspay.e_materialspay_use=#{eMaterialspayUse}
+			, sp_e_materialspay.e_materialspay_secret=#{eMaterialspaySecret}
+		WHERE 
+			sp_e_materialspay.e_materialspay_number=#{eMaterialspayNumber}
+ 	</update>
+ 	
+ 	<select id="oneSelectWoMaterialsPay"
+ 		parameterType="integer"
+ 		resultMap="woMaterialsPay">
+	 		SELECT sp_e_materialspay.e_materialspay_number
+				, sp_e_materialspay.e_materialspay_unitcost
+				, sp_e_materialspay.e_materialspay_use
+				, sp_e_materialspay.e_materialspay_secret
+				, sp_pp_work.pp_work_number
+				, sp_pp_work.pp_work_name
+				, sp_materials_cate.materials_number
+				, sp_materials_cate.materials_name
+			FROM 
+				sp_e_materialspay JOIN sp_pp_work JOIN sp_materials_cate
+			ON 
+				sp_e_materialspay.pp_work_number = sp_pp_work.pp_work_number
+			AND 
+				sp_e_materialspay.materials_number = sp_materials_cate.materials_number
+			WHERE 
+				sp_e_materialspay.e_materialspay_number=#{eMaterialspayNumber}
+ 	</select>
+ 	
+ 	<delete id="deleteWoMaterialsPay"
+ 		parameterType="integer">
+ 			DELETE FROM sp_e_materialspay WHERE e_materialspay_number=#{eMaterialspayNumber}
+ 	</delete>
+ 	
  	<insert id="insertWoMaterialsPay"
  		parameterType="com.spam.sfplanner.plan.WoMaterialsPay">
 	 		INSERT INTO sp_e_materialspay(
@@ -43,21 +82,32 @@
  	<select id="listSelectWoMaterialsPay"
  		parameterType="java.util.Map"
  		resultMap="woMaterialsPay">
- 		SELECT sp_e_materialspay.e_materialspay_number
-			, sp_e_materialspay.e_materialspay_unitcost
-			, sp_e_materialspay.e_materialspay_use
-			, sp_e_materialspay.e_materialspay_secret
-			, sp_e_materialspay.pp_work_number
-			, sp_pp_work.pp_work_name
-			, sp_pp_work.pp_work_content
-			, sp_e_materialspay.materials_number
-			, sp_materials_cate.materials_name
-			, sp_materials_cate.materials_unit
-		FROM sp_e_materialspay
-		JOIN sp_pp_work
-		ON sp_e_materialspay.pp_work_number = sp_pp_work.pp_work_number
-		JOIN sp_materials_cate
-		ON sp_e_materialspay.materials_number = sp_materials_cate.materials_number
-		WHERE sp_pp_work.pp_work_number=#{ppWorkNumber}
+	 		SELECT sp_e_materialspay.e_materialspay_number
+				, sp_e_materialspay.e_materialspay_unitcost
+				, sp_e_materialspay.e_materialspay_use
+				, sp_e_materialspay.e_materialspay_secret
+				, sp_e_materialspay.pp_work_number
+				, sp_pp_work.pp_work_name
+				, sp_pp_work.pp_work_content
+				, sp_e_materialspay.materials_number
+				, sp_materials_cate.materials_name
+				, sp_materials_cate.materials_unit
+				, sp_pp.pp_number
+			FROM 
+				sp_e_materialspay 
+			JOIN 
+				sp_pp_work
+			ON 
+				sp_e_materialspay.pp_work_number = sp_pp_work.pp_work_number
+			JOIN 
+				sp_materials_cate
+			ON 
+				sp_e_materialspay.materials_number = sp_materials_cate.materials_number
+			JOIN 
+				sp_pp
+			ON 
+				sp_pp_work.pp_number = sp_pp.pp_number
+			WHERE 
+				sp_pp_work.pp_work_number=#{ppWorkNumber}
  	</select>
  </mapper>

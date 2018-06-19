@@ -22,8 +22,53 @@
  			<result column="pp_work_endday" property="ppWorkEndday"/>
  			<result column="pp_work_area" property="ppWorkArea"/>
  			<result column="pp_work_content" property="ppWorkContent"/>
+ 			<collection property="productionPlan" ofType="com.spam.sfplanner.plan.ProductionPlan">
+ 				<id column="pp_number" property="ppNumber"/>
+ 			</collection>
  		</collection>
  	</resultMap>
+ 	
+ 	<update id="updateWoHumanPay" 
+ 		parameterType="com.spam.sfplanner.plan.WoHumanPay">
+ 			UPDATE 
+ 				sp_e_humanpay
+			SET 
+				sp_e_humanpay.e_humanpay_name=#{eHumanpayName}
+				, sp_e_humanpay.e_humanpay_residentnumber=#{eHumanpayResidentnumber}
+				, sp_e_humanpay.e_humanpay_expectpay=#{eHumanpayExpectpay}
+				, sp_e_humanpay.e_humanpay_expectday=#{eHumanpayExpectday}
+				, sp_e_humanpay.e_humanpay_secret=#{eHumanpaySecret}
+			WHERE 
+				sp_e_humanpay.e_humanpay_number=#{eHumanpayNumber}
+ 	</update>
+ 	
+ 	<select id="oneSelectWoHumanPay"
+ 		parameterType="integer"
+ 		resultMap="woHumanPay">
+	 		SELECT sp_e_humanpay.e_humanpay_number
+				, sp_e_humanpay.e_humanpay_name
+				, sp_e_humanpay.e_humanpay_residentnumber
+				, sp_e_humanpay.e_humanpay_expectpay
+				, sp_e_humanpay.e_humanpay_expectday
+				, sp_e_humanpay.e_humanpay_secret
+				, sp_theme_cate.theme_number
+				, sp_theme_cate.theme_name
+				, sp_pp_work.pp_work_number
+				, sp_pp_work.pp_work_name
+			FROM 
+				sp_e_humanpay JOIN sp_theme_cate JOIN sp_pp_work
+			ON 
+				sp_e_humanpay.theme_number = sp_theme_cate.theme_number
+			AND
+				sp_e_humanpay.pp_work_number = sp_pp_work.pp_work_number
+			WHERE
+				sp_e_humanpay.e_humanpay_number=#{eHumanpayNumber}
+ 	</select>
+ 	
+ 	<delete id="deleteWoHumanPay"
+ 		parameterType="integer">
+ 			DELETE FROM sp_e_humanpay WHERE e_humanpay_number=#{eHumanpayNumber}
+ 	</delete>
  	
  	<insert id="insertWoHumanPay"
  		parameterType="com.spam.sfplanner.plan.WoHumanPay">
@@ -58,12 +103,15 @@
 				, sp_theme_cate.theme_name
 				, sp_pp_work.pp_work_number
 				, sp_pp_work.pp_work_name
+				, sp_pp.pp_number
 			FROM 
-				sp_e_humanpay JOIN sp_theme_cate JOIN sp_pp_work
+				sp_e_humanpay JOIN sp_theme_cate JOIN sp_pp_work JOIN sp_pp
 			ON
 				sp_e_humanpay.theme_number = sp_theme_cate.theme_number
 			AND
 				sp_e_humanpay.pp_work_number = sp_pp_work.pp_work_number
+			AND 
+				sp_pp_work.pp_number = sp_pp.pp_number
 			WHERE
 				sp_e_humanpay.pp_work_number=#{ppWorkNumber}
 			<if test="searchHumanPayOption != null">

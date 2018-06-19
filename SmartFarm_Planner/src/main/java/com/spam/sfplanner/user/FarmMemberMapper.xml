@@ -25,6 +25,7 @@
 	            <result column="f_jibunaddress" property="fJibunaddress"/>
 	            <result column="f_phone" property="fPhone"/>
 	            <result column="f_registdate" property="fRegistdate"/>
+	            <result column="f_party" property="fParty"/>
 	        </collection>
 	  </resultMap>
 	
