@@ -18,10 +18,16 @@ public class ProductionPlanController {
 	@Autowired
 	private ProductionPlanService productionPlanService;
 	
-	@RequestMapping(value="/myListPlanner",method = RequestMethod.GET)
-	public String myListSelectProductionPlan(@RequestParam(value="fNumber",required=true)int fNumber,Model model) {
-		model.addAttribute("list", productionPlanService.myListSelectProductionPlan(fNumber));
-		return "plan/productionplan/myListPlanner";
+	@RequestMapping(value="/oneMyPlanner",method = RequestMethod.GET)
+	public String oneSelectMyProductionPlan(@RequestParam(value="ppNumber",required=false)int ppNumber,Model model) {
+		model.addAttribute("productionPlan", productionPlanService.oneSelectProductionPlan(ppNumber));
+		return "plan/productionplan/oneMyPlanner";
+	}
+	
+	@RequestMapping(value="/listMyPlanner",method = RequestMethod.GET)
+	public String listSelectMyProductionPlan(@RequestParam(value="fNumber",required=true)int fNumber,Model model) {
+		model.addAttribute("list", productionPlanService.listSelectMyProductionPlan(fNumber));
+		return "plan/productionplan/listMyPlanner";
 	}
 	
 	@RequestMapping(value="/updatePlanner",method = RequestMethod.POST)

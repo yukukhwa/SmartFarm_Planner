@@ -47,7 +47,7 @@
 						<li><a class="" href="${pageContext.request.contextPath}/listCategoryEtcSpendPay">기타비용 카테고리</a></li>
 					</c:if>									
 					<c:if test="${loginMember.level eq 'agency'}">
-						<li><a class="" href="${pageContext.request.contextPath}/listCompany">거래처</a></li>						
+						<li><a class="" href="${pageContext.request.contextPath}/listCategoryDeal">거래처</a></li>						
 						<li><a class="" href="${pageContext.request.contextPath}/listCategoryEquip">장비종류</a></li>
 						<li><a class="" href="#">대여장비</a></li>
 						<li><a class="" href="${pageContext.request.contextPath}/listIndustry">산업분류</a></li>
@@ -69,7 +69,7 @@
 				<ul class="sub">
 					<c:if test="${loginMember.level eq 'farm'}">
 						<li><a class="" href="${pageContext.request.contextPath}/addPlanner">My 계획서 등록</a></li>
-						<li><a class="" href="${pageContext.request.contextPath}/myListPlanner?fNumber=${loginMember.corpNumber}">My 계획서 리스트</a></li>
+						<li><a class="" href="${pageContext.request.contextPath}/listMyPlanner?fNumber=${loginMember.corpNumber}">My 계획서 리스트</a></li>
 					</c:if>
 					<li><a class="" href="${pageContext.request.contextPath}/listPlanner">전체 농가 계획서</a></li>
 				</ul>

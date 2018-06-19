@@ -30,7 +30,7 @@ public class PpWorkService {
 		PpWork ppWork = new PpWork();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ppWorkNumber", ppWorkNumber);
-		ppWork.setWoMaterialsPayList(woMaterialsPayDao.listSelectWoMaterialsPay(ppWorkNumber));
+		ppWork.setWoMaterialsPayList(woMaterialsPayDao.listSelectWoMaterialsPay(map));
 		ppWork.setWoInsurancePayList(woInsurancePayDao.listSelectWoInsurancePay(map));
 		ppWork.setWoHumanPayList(woHumanPayDao.listSelectWoHumanPay(map));
 		System.out.println("ppWork"+ppWork);

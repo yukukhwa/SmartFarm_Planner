@@ -34,6 +34,9 @@
  	
  	<insert id="insertPpWork"
  		parameterType="com.spam.sfplanner.plan.PpWork">
+ 		<selectKey resultType="int" keyProperty="ppWorkNumber" order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
  			INSERT INTO sp_pp_work(
 				pp_number
 				, f_number

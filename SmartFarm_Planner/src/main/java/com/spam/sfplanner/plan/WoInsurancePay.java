@@ -22,6 +22,9 @@ public class WoInsurancePay {
 	private String eInsurancepaySecret;//공개/비공개 여부
 	private CategoryTheme categoryTheme;//테마테이블
 	private PpWork ppWork;//작업단계테이블
+	public WoInsurancePay() {
+		this.ppWork = new PpWork();
+	}
 	public int geteInsurancepayNumber() {
 		return eInsurancepayNumber;
 	}

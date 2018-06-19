@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>onePlanner</title>
+<title>oneMyPlanner</title>
 <jsp:include page="/WEB-INF/views/css.jsp"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
@@ -89,14 +89,12 @@
 											</thead>
 											<tbody>
 												<c:forEach var="woHumanPay" items="${ppWork.woHumanPayList}">
-													<c:if test="${woHumanPay.eHumanpaySecret != 'false'}">
-														<tr>
-															<td>${woHumanPay.eHumanpayName}</td>
-															<td>${woHumanPay.eHumanpayResidentnumber}</td>
-															<td>${woHumanPay.eHumanpayExpectpay}</td>
-															<td>${woHumanPay.eHumanpayExpectday}</td>
-														</tr>
-													</c:if>
+													<tr>
+														<td>${woHumanPay.eHumanpayName}</td>
+														<td>${woHumanPay.eHumanpayResidentnumber}</td>
+														<td>${woHumanPay.eHumanpayExpectpay}</td>
+														<td>${woHumanPay.eHumanpayExpectday}</td>
+													</tr>
 												</c:forEach>
 											</tbody>
 										</table>
@@ -111,13 +109,11 @@
 											</thead>
 											<tbody>
 												<c:forEach var="woMaterialsPay" items="${ppWork.woMaterialsPayList}">
-													<c:if test="${woMaterialsPay.eMaterialspaySecret != 'false'}">
-														<tr>
-															<td>${woMaterialsPay.categoryMaterials.materialsName}</td>
-															<td>${woMaterialsPay.eMaterialspayUnitcost}</td>
-															<td>${woMaterialsPay.eMaterialspayUse}${woMaterialsPay.categoryMaterials.materialsUnit}</td>
-														</tr>
-													</c:if>
+													<tr>
+														<td>${woMaterialsPay.categoryMaterials.materialsName}</td>
+														<td>${woMaterialsPay.eMaterialspayUnitcost}</td>
+														<td>${woMaterialsPay.eMaterialspayUse}${woMaterialsPay.categoryMaterials.materialsUnit}</td>
+													</tr>
 												</c:forEach>
 											</tbody>
 										</table>
@@ -136,19 +132,17 @@
 											</thead>
 											<tbody>
 												<c:forEach var="woInsurancePay" items="${ppWork.woInsurancePayList}">
-													<c:if test="${woInsurancePay.eInsurancepaySecret != 'false'}">
-														<tr>
-															<td>${woInsurancePay.eInsurancepayMame}</td>
-															<td>${woInsurancePay.eInsurancepayContent}</td>
-															<td>${woInsurancePay.eInsurancepayStartday}</td>
-															<td>${woInsurancePay.eInsurancepayEndday}</td>
-															<td>${woInsurancePay.eInsurancepayTerm}</td>
-															<td>
-																<fmt:formatNumber type="number" value="${woInsurancePay.eInsurancepayTotalcost}" />
-															</td>
-															<td>${woInsurancePay.eInsurancepayExpectcost}</td>
-														</tr>
-													</c:if>
+													<tr>
+														<td>${woInsurancePay.eInsurancepayMame}</td>
+														<td>${woInsurancePay.eInsurancepayContent}</td>
+														<td>${woInsurancePay.eInsurancepayStartday}</td>
+														<td>${woInsurancePay.eInsurancepayEndday}</td>
+														<td>${woInsurancePay.eInsurancepayTerm}</td>
+														<td>
+															<fmt:formatNumber type="number" value="${woInsurancePay.eInsurancepayTotalcost}" />
+														</td>
+														<td>${woInsurancePay.eInsurancepayExpectcost}</td>
+													</tr>
 												</c:forEach>
 											</tbody>
 										</table>

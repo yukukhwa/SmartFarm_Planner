@@ -60,7 +60,7 @@
 		   						<tr>
 		   							<td>${productionPlan.ppNumber}</td>
 		   							<td>
-		   								<a href="${pageContext.request.contextPath}/onePlanner?ppNumber=${productionPlan.ppNumber}">${productionPlan.titlePlan.ppNamePlanname}</a>
+		   								<a href="${pageContext.request.contextPath}/oneMyPlanner?ppNumber=${productionPlan.ppNumber}">${productionPlan.titlePlan.ppNamePlanname}</a>
 		   							</td>
 		   							<td>${productionPlan.ppStartday}</td>
 		   							<td>${productionPlan.ppEndday}</td>

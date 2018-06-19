@@ -15,7 +15,7 @@
 			$('div#addPpWorkForm').append('<div class="ppWork">'
 											+'<div>'
 												+'<label>'
-													+'작업명 : <input type="text" name="ppWorkList['+ppWorkNum+'].ppWorkName">'
+													+'작업명 : <input type="text" name="ppWorkList['+ppWorkNum+'].ppWorkName" class="ppWorkName">'
 												+'</label>'
 											+'</div>'
 											+'<div>'
@@ -38,52 +38,67 @@
 													+'작업상세내용 : <textarea rows="10" cols="80" name="ppWorkList['+ppWorkNum+'].ppWorkContent"></textarea>'
 												+'</label>'
 											+'</div>'
-											+'<div>'
-												+'+예상인건비'
-											+'</div>'
-											+'<div>'
-												+'+예상기타지출비'
-											+'</div>'
-											+'<div>'
-												+'+예상보험비'
-											+'</div>'
-											+'<div>'
-												+'+필요장비계획'
-											+'</div>'
+											+'<div class="addPayForm">'
+					   						+'</div>'
+					   						+'<input type="button" class="addPay" value="예상 비용 작성란 추가">'
 											/* +'<input type="button" id="deletePpWork" value="작업단계 제거">' */
 			    						+'</div>');
 		});
+
+		$(document).on('click','.addPay',function(){
+			$(this).parent().find('.addPayForm').append('<div class="pay">'
+															+'<select class="themeNumber">'
+																+'<c:forEach items="${themeList}" var="categoryTheme">'
+																	+'<option value="${categoryTheme.themeNumber}">${categoryTheme.themeName}</option>'
+																+'</c:forEach>'
+															+'</select>'
+															+'<div class="selectPay">'
+															+'</div>'
+							   							+'</div>');
+		});
 		
-		/* $('input:button[id="4"]').click(function(){
-			var ppWorkListNum = $(this).parent('div.ppWork').find().attr();
-			$('div#addPayForm').append('<div id="insurancepay">'
-						  				+'<div>'
-											+'보험명 : <input type="text" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayMame" id="eInsurancepayMame">'
-											+'<input type="hidden" name="ppWorkList[0].woInsurancePayList[0].categoryTheme.themeNumber" id="themeNumber" value="">'
-										+'</div>'
-										+'<div>'
-											+'보험내용 : <textarea rows="4" cols="50" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayContent" id="eInsurancepayContent"></textarea>'
-										+'</div>'
-							   			+'<div>'
-							   				+'보험가입일 : <input type="date" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayStartday" id="eInsurancepayStartday">'
-							   			+'</div>'
-							   			+'<div>'
-							   				+'보험만료일 : <input type="date" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayEndday" id="eInsurancepayEndday">'
-							   			+'</div>'
-							   			+'<div>'
-							   				+'보헙가입기간 : <input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayTerm" id="eInsurancepayTerm">'
-							   			+'</div>'
-							   			+'<div>'
-							   				+'총보험비 : <input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayTotalcost" id="eInsurancepayTotalcost">'
-							   			+'</div>'
-							   			+'<div>'
-							   				+'예상보험비(월) : <input type="text" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayExpectcost" id="eInsurancepayExpectcost">'
-							   			+'</div>'
-							   			+'<div>'
-							   				+'공개여부 : <input type="radio" value="true" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret" checked="checked">공개 <input type="radio" value="false" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret">비공개'							   			'</div>'
-										+'</div>'
-									+'</div>');
-		}); */
+		$(document).on('change','select.themeNumber',function(){
+			var select = $(this);
+			var ppWorkName = $(select).parents('.ppWork').find('input.ppWorkName').attr('name');
+			var ppWorkList = ppWorkName.split('.')[0];
+			var selectVal = select.val();
+			switch (selectVal) {
+			case '4':
+				$(select).parent().find('.selectPay').empty();
+				var insurancePayNum = $(select).parents('.ppWork').find('.insurancePay').length;
+				$(select).parent().find('.selectPay').append('<div class="insurancePay">'
+												   				+'<div>'
+																	+'보험명 : <input type="text" name="'+ppWorkList+'.woInsurancePayList['+insurancePayNum+'].eInsurancepayMame">'
+																	+'<input type="hidden" name="'+ppWorkList+'.woInsurancePayList['+insurancePayNum+'].categoryTheme.themeNumber" value="'+selectVal+'">'
+																+'</div>'
+																+'<div>'
+																	+'보험내용 : <textarea rows="4" cols="50" name="'+ppWorkList+'.woInsurancePayList['+insurancePayNum+'].eInsurancepayContent"></textarea>'
+																+'</div>'
+																+'<div>'
+																	+'보험가입일 : <input type="date" name="'+ppWorkList+'.woInsurancePayList['+insurancePayNum+'].eInsurancepayStartday">'
+																+'</div>'
+																+'<div>'
+																	+'보험만료일 : <input type="date" name="'+ppWorkList+'.woInsurancePayList['+insurancePayNum+'].eInsurancepayEndday">'
+																+'</div>'
+																+'<div>'
+																	+'보헙가입기간 : <input type="number" name="'+ppWorkList+'.woInsurancePayList['+insurancePayNum+'].eInsurancepayTerm">'
+																+'</div>'
+																+'<div>'
+																	+'총보험비 : <input type="number" name="'+ppWorkList+'.woInsurancePayList['+insurancePayNum+'].eInsurancepayTotalcost">'
+																+'</div>'
+																+'<div>'
+																	+'예상보험비(월) : <input type="text" name="'+ppWorkList+'.woInsurancePayList['+insurancePayNum+'].eInsurancepayExpectcost">'
+																+'</div>'
+																+'<div>'
+																	+'공개여부 : <input type="radio" value="true" name="'+ppWorkList+'.woInsurancePayList['+insurancePayNum+'].eInsurancepaySecret" checked="checked">공개 <input type="radio" value="false" name="'+ppWorkList+'.woInsurancePayList['+insurancePayNum+'].eInsurancepaySecret">비공개'
+																+'</div>'
+															+'</div>');
+				break;
+			default :
+				$(select).parent().find('.selectPay').empty();
+				break;
+			}
+		});
 		
 		/* $('div#addPpWorkForm').on('click','div#deletePpWork',function(){
 			$('div#deletePpWork').parent('div.ppWork').remove();
@@ -138,10 +153,10 @@
 	    				공개여부 : <input type="radio" value="true" name="ppSecret" checked="checked">공개 <input type="radio" value="false" name="ppSecret">비공개
 	    			</div>
 	    			<div id="addPpWorkForm">
-		    			<div class="ppWork">
+		    			<%-- <div class="ppWork">
 	   						<div>
 	   							<label>
-	   								작업명 : <input type="text" name="ppWorkList[0].ppWorkName">
+	   								작업명 : <input type="text" name="ppWorkList[0].ppWorkName" class="ppWorkName">
 	   							</label>
 	   						</div>
 	   						<div>
@@ -164,42 +179,47 @@
 	   								작업상세내용 : <textarea rows="10" cols="80" name="ppWorkList[0].ppWorkContent"></textarea>
 	   							</label>
 	   						</div>
-	   						<div>
-	   							<c:forEach items="${themeList}" var="categoryTheme">
-		    						<input type="button" id="${categoryTheme.themeNumber}" value="${categoryTheme.themeName}추가">
-		    					</c:forEach>
-   							</div>
-	   						<div id="addPayForm">
-	   							<!-- <div id="insurancepay">
-					   				<div>
-				    					보험명 : <input type="text" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayMame" id="eInsurancepayMame">
-				    					<input type="hidden" name="ppWorkList[0].woInsurancePayList[0].categoryTheme.themeNumber" id="themeNumber" value="">
-				    				</div>
-				    				<div>
-				    					보험내용 : <textarea rows="4" cols="50" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayContent" id="eInsurancepayContent"></textarea>
-				    				</div>
-					    			<div>
-					    				보험가입일 : <input type="date" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayStartday" id="eInsurancepayStartday">
-					    			</div>
-					    			<div>
-					    				보험만료일 : <input type="date" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayEndday" id="eInsurancepayEndday">
-					    			</div>
-					    			<div>
-					    				보헙가입기간 : <input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayTerm" id="eInsurancepayTerm">
-					    			</div>
-					    			<div>
-					    				총보험비 : <input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayTotalcost" id="eInsurancepayTotalcost">
-					    			</div>
-					    			<div>
-					    				예상보험비(월) : <input type="text" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayExpectcost" id="eInsurancepayExpectcost">
-					    			</div>
-					    			<div>
-					    				공개여부 : <input type="radio" value="true" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret" checked="checked">공개 <input type="radio" value="false" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret">비공개
-					    			</div>
-	   							</div> -->
+	   						<div class="addPayForm">
+	   							<div class="pay">
+	   								<select class="themeNumber">
+				    					<c:forEach items="${themeList}" var="categoryTheme">
+				    						<option value="${categoryTheme.themeNumber}">${categoryTheme.themeName}</option>
+				    					</c:forEach>
+				    				</select>
+					   				<div class="selectPay">
+						   				<div class="insurancePay">
+							   				<div>
+						    					보험명 : <input type="text" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayMame">
+						    					<input type="hidden" name="ppWorkList[0].woInsurancePayList[0].categoryTheme.themeNumber">
+						    				</div>
+						    				<div>
+						    					보험내용 : <textarea rows="4" cols="50" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayContent"></textarea>
+						    				</div>
+							    			<div>
+							    				보험가입일 : <input type="date" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayStartday">
+							    			</div>
+							    			<div>
+							    				보험만료일 : <input type="date" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayEndday">
+							    			</div>
+							    			<div>
+							    				보헙가입기간 : <input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayTerm">
+							    			</div>
+							    			<div>
+							    				총보험비 : <input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayTotalcost">
+							    			</div>
+							    			<div>
+							    				예상보험비(월) : <input type="text" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayExpectcost">
+							    			</div>
+							    			<div>
+							    				공개여부 : <input type="radio" value="true" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret" checked="checked">공개 <input type="radio" value="false" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret">비공개
+							    			</div>
+						   				</div>
+					   				</div>
+	   							</div>
 	   						</div>
+	   						<input type="button" class="addPay" value="예상 비용 작성란 추가">
 	   						<!-- <input type="button" id="deletePpWork" value="작업단계 제거"> -->
-		    			</div>
+		    			</div> --%>
 	    			</div>
 	    			<input type="button" id="addPpWork" value="작업단계 추가"><br>
 	    			<button type="submit">계획서 등록</button>

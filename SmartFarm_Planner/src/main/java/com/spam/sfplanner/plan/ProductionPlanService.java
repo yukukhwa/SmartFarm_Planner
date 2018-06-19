@@ -40,7 +40,7 @@ public class ProductionPlanService {
 	@Autowired
 	private CategoryThemeDao categoryThemeDao;
 	
-	public List<ProductionPlan> myListSelectProductionPlan(int fNumber) {
+	public List<ProductionPlan> listSelectMyProductionPlan(int fNumber) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("search", "yes");
 		map.put("column", "농가넘버");
@@ -70,14 +70,24 @@ public class ProductionPlanService {
 	}
 	
 	public void insertProductionPlan(ProductionPlan productionPlan,HttpSession session) {
+		
 		String fMemberId = ((Login)session.getAttribute("loginMember")).getId();
 		int fNumber = ((Login)session.getAttribute("loginMember")).getCorpNumber();
+		List<WoInsurancePay> WoInsurancePayList = null;
+		
 		productionPlan.getFarmMember().setfMemberId(fMemberId);
 		productionPlanDao.insertProductionPlan(productionPlan);
 		for(PpWork ppWork : productionPlan.getPpWorkList()) {
 			ppWork.getProductionPlan().setPpNumber(productionPlan.getPpNumber());
 			ppWork.getFarm().setfNumber(fNumber);
 			ppWorkDao.insertPpWork(ppWork);
+			WoInsurancePayList = ppWork.getWoInsurancePayList();
+			if(WoInsurancePayList != null) {
+				for(WoInsurancePay woInsurancePay : WoInsurancePayList) {
+					woInsurancePay.getPpWork().setPpWorkNumber(ppWork.getPpWorkNumber());
+					woInsurancePayDao.insertWoInsurancePay(woInsurancePay);
+				}
+			}
 		}
 	}
 	
@@ -92,7 +102,7 @@ public class ProductionPlanService {
 			map.put("search", "yes");
 			map.put("column", "작업단계넘버");
 			map.put("ppWorkNumber", ppWork.getPpWorkNumber());
-			ppWork.setWoMaterialsPayList(woMaterialsPayDao.listSelectWoMaterialsPay(ppWork.getPpWorkNumber()));
+			ppWork.setWoMaterialsPayList(woMaterialsPayDao.listSelectWoMaterialsPay(map));
 			ppWork.setWoInsurancePayList(woInsurancePayDao.listSelectWoInsurancePay(map));
 			ppWork.setWoHumanPayList(woHumanPayDao.listSelectWoHumanPay(map));
 			map.clear();
