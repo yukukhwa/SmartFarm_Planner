@@ -1,13 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper 
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="com.spam.sfplanner.actresult.WrNeedEquipMapper">
-<!-- 리절트맵(조회결과매핑) -->
-<!-- 업데이트 -->
-<!-- 수정화면출력 셀렉트 -->
-<!-- 삭제 -->
-<!-- 리스트 -->
-<!-- 등록 -->
+
+<!-- 필요장비결과 리절트맵(조회결과매핑) -->
+<resultMap type="com.spam.sfplanner.actresult.WrNeedEquip" id="resultWrNeedEquip">
+	<id column="wr_needequip_number" property="wrNeedequipNumber"/>
+	<result column="wr_needequip_state" property="wrNeedequipState"/>
+	<collection ofType="com.spam.sfplanner.actresult.PpWoResult" property="ppWoResult">
+		<id column="wr_number" property="wrNumber"/>
+		<result column="wr_totalarea" property="wrTotalarea"/>	
+		<result column="wr_reworkarea" property="wrReworkarea"/>	
+	</collection>
+	<collection ofType="com.spam.sfplanner.plan.WoNeedEquip" property="woNeedEquip">
+		<id column="e_needequip_number" property="eNeedequipNumber"/>
+		<result column="e_needequip_state" property="eNeedequipState"/>
+	</collection>
+</resultMap>
+
+<!-- 필요장비결과 업데이트 -->
+<!-- 필요장비결과 수정화면출력 셀렉트 -->
+<!-- 필요장비결과 삭제 -->
+<!-- 필요장비결과등록 -->
+
+<!-- 필요장비결과 전체리스트 -->
+<select id="listSelectWrNeedEquip"
+		parameterType="Map"
+		resultMap="resultWrNeedEquip">
+	SELECT sp_wr_needequip.wr_needequip_number
+		, sp_wr_needequip.wr_needequip_state
+		, sp_wr.wr_number
+		, sp_wr.wr_totalarea
+		, sp_wr.wr_reworkarea
+		, sp_e_needequip.e_needequip_number
+		, sp_e_needequip.e_needequip_state
+	FROM sp_wr_needequip
+	JOIN sp_wr
+	JOIN sp_e_needequip
+	ON sp_wr_needequip.wr_number = sp_wr.wr_number 
+	AND sp_wr_needequip.e_needequip_number = sp_e_needequip.e_needequip_number
+	WHERE sp_wr.wr_number = #{wrNumber}
+</select>
 </mapper>

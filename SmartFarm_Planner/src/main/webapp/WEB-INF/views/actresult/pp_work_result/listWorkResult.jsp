@@ -33,19 +33,19 @@
 					</tr>					
 					</thead>
 					<tbody>
-						<c:forEach var="list" items="${list}">
+						<c:forEach var="workResultList" items="${workResultList}">
 							<tr>
-							<td>${list.wrNumber }</td>
-							<td>${list.actResult.ppResultlistNumber}</td>
-							<td>${list.actResult.ppResultlistDate }</td>
-							<td>${list.ppWork.ppWorkNumber }</td>
-							<td>${list.ppWork.ppWorkName }</td>
-							<td>${list.ppWork.ppWorkStartday }</td>
-							<td>${list.ppWork.ppWorkEndday }</td>							
-							<td>${list.ppWork.ppWorkArea }</td>
-							<td>${list.ppWork.ppWorkContent }</td>
-							<td>${list.wrReworkarea }</td>
-							<td>${list.wrTotalarea }</td>
+							<td>${workResultList.wrNumber }</td>
+							<td>${workResultList.actResult.ppResultlistNumber}</td>
+							<td>${workResultList.actResult.ppResultlistDate }</td>
+							<td>${workResultList.ppWork.ppWorkNumber }</td>
+							<td>${workResultList.ppWork.ppWorkName }</td>
+							<td>${workResultList.ppWork.ppWorkStartday }</td>
+							<td>${workResultList.ppWork.ppWorkEndday }</td>							
+							<td>${workResultList.ppWork.ppWorkArea }</td>
+							<td>${workResultList.ppWork.ppWorkContent }</td>
+							<td>${workResultList.wrReworkarea }</td>
+							<td>${workResultList.wrTotalarea }</td>
 							</tr>
 						</c:forEach>
 					</tbody>				

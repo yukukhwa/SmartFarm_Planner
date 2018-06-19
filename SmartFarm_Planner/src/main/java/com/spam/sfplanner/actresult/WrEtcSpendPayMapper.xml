@@ -21,30 +21,16 @@
 		<result column="e_etcspendpay_cost" property="eEtcspendpayCost"/>
 		<result column="e_etcspendpay_secret" property="eEtcspendpaySecret"/>
 	</collection>
+	<collection ofType="com.spam.sfplanner.category.CategoryEtcSpendPay" property="categoryEtcSpendPay">
+		<id column="etcspendpay_number" property="etcspendpayNumber"/>
+		<result column="etcspendpay_name" property="etcspendpayName"/>
+	</collection>
 </resultMap>
 
 <!-- 기타지출비용 결과 레코드 하나 선택 후 수정 -->
-<update id="updateWrEtcSpendPay"
-		parameterType="com.spam.sfplanner.actresult.WrEtcSpendPay">
-	UPDATE sp_wr_etcspendpay
-	SET
-		wr_etcspendpay_realcost=#{wrEtcspendpayRealcost}
-		wr_etcspendpay_date=#{wrEtcspendpayDate}
-	WHERE wr_etcspendpay_number=#{wrEtcspendpayNumber}
-</update>
- 
+
 <!-- 기타지출비용 결과 레코드 하나 선택 -->
-<select id="oneSelectWrEtcSpendPay"
-		parameterType="int"
-		resultType="com.spam.sfplanner.actresult.WrEtcSpendPay">
-	SELECT wr_etcspendpay_number AS wrEtcspendpayNumber
-		, wr_number AS wrNumber
-		, e_etcspendpay_number AS eEtcspendpayNumber
-		, wr_etcspendpay_realcost AS wrEtcspendpayRealcost
-		, wr_etcspendpay_date AS wrEtcspendpayDate
-	FROM sp_wr_etcspendpay
-	WHERE wr_etcspendpay_number=#{wrEtcspendpayNumber}
-</select>
+
  
 <!-- 기타지출비용 결과 리스트 -->
 <select id="listSelectWrEtcSpendPay"
@@ -53,19 +39,24 @@
 	SELECT sp_wr_etcspendpay.wr_etcspendpay_number
 		, sp_wr_etcspendpay.wr_etcspendpay_realcost
 		, sp_wr_etcspendpay.wr_etcspendpay_date
-		, sp_wr.wr_number, sp_wr.wr_totalarea
+		, sp_wr.wr_number
+		, sp_wr.wr_totalarea
 		, sp_wr.wr_reworkarea
 		, sp_e_etcspendpay.e_etcspendpay_number
 		, sp_e_etcspendpay.e_etcspendpay_content
 		, sp_e_etcspendpay.e_etcspendpay_day
 		, sp_e_etcspendpay.e_etcspendpay_cost
 		, sp_e_etcspendpay.e_etcspendpay_secret
+		, sp_etcspendpay_cate.etcspendpay_number
+		, sp_etcspendpay_cate.etcspendpay_name
 	FROM sp_wr_etcspendpay
 	JOIN sp_wr
 	JOIN sp_e_etcspendpay
+	JOIN sp_etcspendpay_cate
 	ON sp_wr_etcspendpay.wr_number = sp_wr.wr_number
 	AND sp_wr_etcspendpay.e_etcspendpay_number = sp_e_etcspendpay.e_etcspendpay_number
-	WHERE sp_wr_etcspendpay.wr_number = #{wrNumber}
+	AND sp_e_etcspendpay.etcspendpay_number = sp_etcspendpay_cate.etcspendpay_number
+	WHERE sp_wr.wr_number = #{wrNumber}
 </select>
  
 <!-- 기타지출비용 결과 입력 -->

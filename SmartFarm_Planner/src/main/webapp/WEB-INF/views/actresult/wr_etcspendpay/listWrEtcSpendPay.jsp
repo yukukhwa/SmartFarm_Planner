@@ -20,20 +20,36 @@
 					<thead>
 					<tr>
 						<th>기타지출비결과넘버</th>
-						<th>작업단계결과 넘버</th>
-						<th>예상 기타지출비용 넘버</th>
-						<th>작업단계결과별 실제 기타지출비</th>
-						<th>작업단계별 기타지출비 등록일</th>	
+						<th>기타지출비결과 비용</th>
+						<th>기타지출비결과 등록일</th>
+						<th>작업단계 결과 넘버</th>
+						<th>작업단계결과 총 작업면적</th>
+						<th>작업단계결과 이미작업한면적</th>
+						<th>예상기타지출비넘버</th>
+						<th>지출상세내용</th>
+						<th>예상기타지출일</th>
+						<th>예상기타지출비</th>
+						<th>공개/비공개 여부</th>
+						<th>기타지출비용카테넘버</th>
+						<th>기타지출비용명</th>
 					</tr>					
 					</thead>
 					<tbody>
-						<c:forEach var="list" items="${list}">
+						<c:forEach var="wrEtcSpendPayList" items="${wrEtcSpendPayList}">
 							<tr>
-							<td>${list.wrEtcspendpayNumber }</td>
-							<td>${list.wrNumber}</td>
-							<td>${list.eEtcspendpayNumber }</td>
-							<td>${list.wrEtcspendpayRealcost }</td>
-							<td>${list.wrEtcspendpayDate }</td>
+							<td>${wrEtcSpendPayList.wrEtcspendpayNumber }</td>
+							<td>${wrEtcSpendPayList.wrEtcspendpayRealcost }</td>
+							<td>${wrEtcSpendPayList.wrEtcspendpayDate }</td>
+							<td>${wrEtcSpendPayList.ppWoResult.wrNumber }</td>
+							<td>${wrEtcSpendPayList.ppWoResult.wrTotalarea }</td>
+							<td>${wrEtcSpendPayList.ppWoResult.wrReworkarea }</td>
+							<td>${wrEtcSpendPayList.woEtcSpendPay.eEtcspendpayNumber }</td>
+							<td>${wrEtcSpendPayList.woEtcSpendPay.eEtcspendpayContent }</td>
+							<td>${wrEtcSpendPayList.woEtcSpendPay.eEtcspendpayDay }</td>
+							<td>${wrEtcSpendPayList.woEtcSpendPay.eEtcspendpayCost }</td>
+							<td>${wrEtcSpendPayList.woEtcSpendPay.eEtcspendpaySecret }</td>
+							<td>${wrEtcSpendPayList.categoryEtcSpendPay.etcspendpayNumber }</td>
+							<td>${wrEtcSpendPayList.categoryEtcSpendPay.etcspendpayName }</td>
 							</tr>
 						</c:forEach>
 					</tbody>				

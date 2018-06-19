@@ -1,5 +1,5 @@
+//[유국화]
 package com.spam.sfplanner.actresult;
-
 import java.util.List;
 import java.util.Map;
 
@@ -12,16 +12,12 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class WrInsurancePayDao {
 	private static final Logger LOGGER = LoggerFactory.getLogger(PpWoResultController.class);
-	@Autowired private SqlSessionTemplate session;
-	final String nameSpace ="com.spam.sfplanner.actresult.WrInsurancePayMapper.";
+	@Autowired private SqlSessionTemplate sqlsession;
+	private final String nameSpace ="com.spam.sfplanner.actresult.WrInsurancePayMapper.";
 	
-	/**
-	 * 보험비 결과 전체리스트 메서드
-	 * @param map
-	 * @return
-	 */
+	//보험비 결과 전체리스트
 	public List<WrInsurancePay> listSelectWrInsurancePay(Map<String, Object> map) {
-		LOGGER.info("WrInsurancePayDao 호출");
-		return session.selectList(nameSpace+"listSelectWrInsurancePay", map);
+		LOGGER.info("listSelectWrInsurancePay 호출");
+		return sqlsession.selectList(nameSpace+"listSelectWrInsurancePay", map);
 	}
 }

@@ -1,5 +1,5 @@
+//[유국화]
 package com.spam.sfplanner.actresult;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,33 +16,27 @@ public class WrInsurancePayController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(WrInsurancePayController.class);
 	@Autowired private WrInsurancePayService wrInsurancePayService;
 	
-	/**
-	 * 보험비 결과 전체리스트 GET으로 출력
-	 * @param model
-	 * @return 보험비 결과 전체리스트 화면으로 포워드
-	 */
-	@RequestMapping(value="/listlistWrInsurancePay", method=RequestMethod.GET)
-	public String listSelectWrEtcSpendPay(Model model) {			
-		LOGGER.info("리스트 보험비 화면으로 GET");
+	//보험비결과 전체리스트 화면으로 포워드
+	@RequestMapping(value="/listWrInsurancePay", method=RequestMethod.GET)
+	public String listSelectWrInsurancePay(Model model) {			
+		LOGGER.info("listSelectWrInsurancePay get 호출");
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("ppWoResult.wrNumber", 1);
-		model.addAttribute("list", wrInsurancePayService.WrInsurancePayService(map));
+		map.put("wrNumber", 1); //테스트 : 작업단계넘버1
+		model.addAttribute("wrInsurancePayList", wrInsurancePayService.listSelectWrInsurancePay(map));
 		return "actresult/wr_insurancepay/listWrInsurancePay";
 	}
 	
-	
+	//보험비결과 등록화면에서 보낸 정보 입력처리
 	@RequestMapping(value="/addWrInsurancePay", method=RequestMethod.POST)
-	public String addWrInsurancePay(WrInsurancePay wrinsurancepaydb) {
-		LOGGER.info("작업단계별 실제 보험비 화면에서 post로 넘김");
-		
+	public String insertWrInsurancePay(WrInsurancePay wrinsurancepaydb) {
+		LOGGER.info("insertWrInsurancePay post 호출");		
 		return "actresult/wr_insurancepay/listWrInsurancePay";
 	}
 	
+	//보험비결과 등록화면으로 포워드
 	@RequestMapping(value="/addWrInsurancePay", method=RequestMethod.GET)
-	public String addWrInsurancePay(Model model) {
-		LOGGER.info("작업단계별 실제 보험비 화면으로 포워드");
-		// EInsurancepayNumber : 예상 보험비 넘버를 입력변수로 받아온다.
-		// 화면에 뿌려줄 정보를 셀렉트한다.
+	public String insertWrInsurancePay(Model model) {
+		LOGGER.info("insertWrInsurancePay get 호출");
 		return "actresult/wr_insurancepay/addWrInsurancePay";
 	}
 }
