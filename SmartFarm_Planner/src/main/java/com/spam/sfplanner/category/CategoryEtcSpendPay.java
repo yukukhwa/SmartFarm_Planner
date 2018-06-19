@@ -2,6 +2,7 @@
 package com.spam.sfplanner.category;
 
 import com.spam.sfplanner.corporation.Farm;
+import com.spam.sfplanner.user.FarmMember;
 
 public class CategoryEtcSpendPay {
 	
@@ -9,6 +10,7 @@ public class CategoryEtcSpendPay {
 	private  CategoryTheme categoryTheme;
 	private String etcspendpayName;
 	private Farm farm;
+	private FarmMember farmMember;
 	public int getEtcspendpayNumber() {
 		return etcspendpayNumber;
 	}
@@ -33,9 +35,17 @@ public class CategoryEtcSpendPay {
 	public void setFarm(Farm farm) {
 		this.farm = farm;
 	}
+	public FarmMember getFarmMember() {
+		return farmMember;
+	}
+	public void setFarmMember(FarmMember farmMember) {
+		this.farmMember = farmMember;
+	}
 	@Override
 	public String toString() {
 		return "CategoryEtcSpendPay [etcspendpayNumber=" + etcspendpayNumber + ", categoryTheme=" + categoryTheme
-				+ ", etcspendpayName=" + etcspendpayName + ", farm=" + farm + "]";
+				+ ", etcspendpayName=" + etcspendpayName + ", farm=" + farm + ", farmMember=" + farmMember + "]";
 	}
+	
+	
 }

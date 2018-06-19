@@ -52,7 +52,7 @@
 		    				   ${categoryEtcSpendPay.farm.fName} 				
 		    				</td>
 		    				<td>
-		    				    ${categoryEtcSpendPay.farm.fMemberId}				
+		    				    ${categoryEtcSpendPay.farmMember.fMemberId}				
 		    				</td>
 		    				<c:if test="${loginMember.corpName == categoryEtcSpendPay.farm.fName}">
 		    					<td>

@@ -26,10 +26,10 @@ public class CompanyMember {
 	public void setcMemberId(String cMemberId) {
 		this.cMemberId = cMemberId;
 	}
-	public Company getCompanyDb() {
+	public Company getCompany() {
 		return company;
 	}
-	public void setCompanyDb(Company company) {
+	public void setCompany(Company company) {
 		this.company = company;
 	}
 	public String getcMemberPw() {
@@ -100,6 +100,5 @@ public class CompanyMember {
 				+ cMemberDoroaddress + ", cMemberJibunaddress=" + cMemberJibunaddress + ", cMemberDetailaddress="
 				+ cMemberDetailaddress + ", cMemberRegistdate=" + cMemberRegistdate + "]";
 	}
-	
 	
 }

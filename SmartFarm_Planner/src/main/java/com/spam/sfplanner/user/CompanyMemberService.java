@@ -43,7 +43,7 @@ public class CompanyMemberService {
 	public Map<String, Object> listSelectCompanyMember(String cName){
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("list",companyMemberDao.listSelectCompanyMember(cName));
-		map.put("bossId",companyDao.oneSelectCompany(cName).getCompanyMemberDb().getcMemberId());
+		map.put("bossId",companyDao.oneSelectCompany(cName).getCompanyMember().getcMemberId());
 		return map;
 	}
 	

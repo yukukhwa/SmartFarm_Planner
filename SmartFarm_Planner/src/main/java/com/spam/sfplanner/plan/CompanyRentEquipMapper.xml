@@ -3,6 +3,125 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <!-- 배건혜 -->
- <mapper namespace="com.spam.sfplanner.plan.RentEquipMapper">
+ <mapper namespace="com.spam.sfplanner.plan.CompanyRentEquipMapper">
+ <resultMap type="com.spam.sfplanner.plan.CompanyRentEquip" id="companyRentEquip">
+ 	<id column="c_rent_number" property="cRentNumber"/>
+	<result column="c_rent_cost" property="cRentCost"/>
+	<result column="c_rent_date" property="cRentDate"/>
+	<result column="c_rent_modelname" property="cRentModelname"/>
+	<result column="c_rent_registdate" property="cRentRegistdate"/>
+	<collection property="company" ofType="com.spam.sfplanner.corporation.Company">
+	 	<id column="c_number" property="cNumber"/>
+	 	<result column="c_name" property="cName"/>
+	 	<result column="c_member_id" property="cMemberId"/>
+	 	<result column="c_doroaddress" property="cDoroaddress"/>
+	 	<result column="c_jibunaddress" property="cJibunaddress"/>
+	 	<result column="c_phone" property="cPhone"/>
+	 	<result column="c_registdate" property="cRegistdate"/>
+	 	<result column="c_party" property="cParty"/>
+	</collection>
+	 <collection property="categoryEquip" ofType="com.spam.sfplanner.category.CategoryEquip">
+	 	<id column="equip_number" property="equipNumber"/>
+	 	<result column="equip_name" property="equipName"/>	 	
+	 </collection>
+ </resultMap>
  
+
+<!-- <update id="updateCompanyRentEquip"
+		parameterType="com.spam.sfplanner.plan.CompanyRentEquip">
+		UPDATE sp_deal_company_rent
+	SET
+		c_number= #{company.cNumber}
+		,equip_number=#{categoryEquip.equipNumber}
+		,c_rent_cost=#{cRentCost}
+		,c_rent_date=#{cRentDate}
+		,c_rent_modelname=#{cRentModelname}
+		,c_rent_registdate=NOW()
+	WHERE c_rent_number=#{cRentNumber}
+	
+</update>  -->
+<!-- 대여가능장비 리스트에서 하나의 리스트를 수정하는 화면 출력하는 쿼리문장 -->
+<select id="oneSelectCompanyRentEquip"
+		parameterType="int"
+		resultMap="companyRentEquip">
+	select
+		sp_deal_company_rent.c_rent_number
+		,sp_deal_company_rent.c_number
+		,sp_deal_company.c_name
+		,sp_deal_company_rent.equip_number
+		,sp_equip_cate.equip_name
+		,sp_deal_company_rent.c_rent_cost
+		,sp_deal_company_rent.c_rent_date
+		,sp_deal_company_rent.c_rent_modelname
+		,sp_deal_company_rent.c_rent_registdate
+	from
+		sp_deal_company_rent join sp_deal_company join sp_equip_cate
+	on
+		sp_deal_company_rent.c_number = sp_deal_company.c_number
+	and
+		sp_deal_company_rent.equip_number = sp_equip_cate.equip_number	
+	where
+		sp_deal_company_rent.c_rent_number = #{cRentNumber}
+</select> 
+
+<!-- 대여가능장비 삭제쿼리문장 -->
+<delete id="deleteCompanyRentEquip"
+		parameterType="int">
+	DELETE FROM sp_deal_company_rent WHERE c_rent_number= #{cRentNumber}
+	
+
+</delete>
+<!-- 대여가능장비 리스트와 검색 쿼리문장 -->
+<select id="listSelectCompanyRentEquip"
+		parameterType="java.util.Map"
+		resultMap="companyRentEquip">
+select
+	sp_deal_company_rent.c_rent_number
+	,sp_deal_company_rent.c_number
+	,sp_deal_company.c_name
+	,sp_deal_company_rent.equip_number
+	,sp_equip_cate.equip_name
+	,sp_deal_company_rent.c_rent_cost
+	,sp_deal_company_rent.c_rent_date
+	,sp_deal_company_rent.c_rent_modelname
+	,sp_deal_company_rent.c_rent_registdate
+from
+	sp_deal_company_rent join sp_deal_company join sp_equip_cate
+on
+	sp_deal_company_rent.c_number = sp_deal_company.c_number
+and
+	sp_deal_company_rent.equip_number = sp_equip_cate.equip_number
+	
+	<if test="search == 'yes'">
+		where
+		<if test="column == '업체명'">
+			sp_deal_company.c_name like concat('%',#{property},'%')
+		</if>
+		<if test="column == '장비종류'">
+			sp_equip_cate.equip_name like concat('%',#{property},'%')
+		</if>
+		<if test="column == '모델명'">
+			sp_deal_company_rent.c_rent_modelname like concat('%'#{property},'%')
+		</if>
+	</if>
+</select>
+
+<!--  대여가능장비 등록 처리 쿼리문장 -->
+ <insert id="insertCompanyRentEquip"
+ 		parameterType="com.spam.sfplanner.plan.CompanyRentEquip">
+ 	INSERT INTO sp_deal_company_rent
+	(c_number
+	, equip_number
+	, c_rent_cost
+	, c_rent_date
+	, c_rent_modelname
+	, c_rent_registdate)
+	VALUES 
+	(#{company.cNumber}
+	,#{categoryEquip.equipNumber}
+	,#{cRentCost}
+	,#{cRentDate}
+	,#{cRentModelname}
+	,NOW())
+ </insert>
  </mapper>

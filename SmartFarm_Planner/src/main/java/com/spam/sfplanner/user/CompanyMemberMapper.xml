@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.spam.sfplanner.user.CompanyMemberMapper">
-  <resultMap type="com.spam.sfplanner.user.CompanyMember" id="companyMemberDb">
+  <resultMap type="com.spam.sfplanner.user.CompanyMember" id="companyMember">
 		<id column="c_member_id" property="cMemberId"/>
 		<result column="c_member_pw" property="cMemberPw"/>
 		<result column="c_member_name" property="cMemberName"/>
@@ -15,7 +15,7 @@
 		<result column="c_member_jibunaddress" property="cMemberJibunaddress"/>
 		<result column="c_member_detailaddress" property="cMemberDetailaddress"/>
 		<result column="c_member_registdate" property="cMemberRegistdate"/>
-		<collection property="companyDb" ofType="com.spam.sfplanner.corporation.Company">
+		<collection property="company" ofType="com.spam.sfplanner.corporation.Company">
 			<id column="c_number" property="cNumber"/>
 			<result column="c_name" property="cName"/>
 			<result column="c_member_id" property="cMemberId"/>
@@ -52,7 +52,7 @@
 	<!-- 업체회원 상세내용 출력쿼리문장 -->
 	<select id="oneSelectCompanyMember"
 			parameterType="String"
-			resultMap="companyMemberDb">
+			resultMap="companyMember">
 	select
 		 sp_deal_company_member.c_member_id
 		 ,sp_deal_company_member.c_member_pw
@@ -76,7 +76,7 @@
 	<!-- 업체 직원 리스트 출력 처리 쿼리문장 -->
 	<select id="listSelectCompanyMember"
 			parameterType="String"
-			resultMap="companyMemberDb">
+			resultMap="companyMember">
 	SELECT
 		sp_deal_company_member.c_member_id
 		,sp_deal_company_member.c_member_name
@@ -93,7 +93,7 @@
 	<!-- 업체 회원등록 할때 아이디 중복체크 쿼리문장 -->
 	<select id="checkId"
 			parameterType="String" 
-			resultMap="companyMemberDb">
+			resultMap="companyMember">
 		select
 			sp_deal_company_member.c_member_id
 		from

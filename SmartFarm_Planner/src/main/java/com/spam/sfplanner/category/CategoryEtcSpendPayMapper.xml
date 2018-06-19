@@ -14,12 +14,24 @@
 	 	<collection property="farm" ofType="com.spam.sfplanner.corporation.Farm">
 	 		<id column="f_number" property="fNumber"/>
 	 		<result column="f_name" property="fName"/>
-	 		<result column="f_member_id" property="fMemberId"/>
 	 		<result column="f_phone" property="fPhone"/>
 	 		<result column="f_doroaddress" property="fDoroaddress"/>
 	 		<result column="f_jibunaddress" property="fJibunaddress"/>
 	 		<result column="f_party" property="fParty"/>
 	 		<result column="f_registdate" property="fRegistdate"/>
+	 	</collection>
+	 	<collection property="farmMember" ofType="com.spam.sfplanner.user.FarmMember">
+	 		<id column="f_member_id" property="fMemberId"/>
+	 		<result column="f_member_pw" property="fMemberPw"/>
+	 		<result column="f_member_name" property="fMemberName"/>
+	 		<result column="f_member_phone" property="fMemberPhone"/>
+	 		<result column="f_member_gender" property="fMemberGender"/>
+	 		<result column="f_member_email" property="fMemberEmail"/>
+	 		<result column="f_member_privacy" property="fMemberPrivacy"/>
+	 		<result column="f_member_doroaddress" property="fMemberDoroaddress"/>
+	 		<result column="f_member_jibunaddress" property="fMemberJibunaddress"/>
+	 		<result column="f_member_detailaddress" property="fMemberDetailaddress"/>
+	 		<result column="f_member_registdate" property="fMemberRegistdate"/>
 	 	</collection>
  	</resultMap>
  	
@@ -83,10 +95,10 @@ delete from sp_etcspendpay_cate where etcspendpay_number= #{etcspendpayNumber}
 	,f_number
 	,f_member_id)
 	VALUES 
-	(#{themeNumber}
+	(#{categoryTheme.themeNumber}
 	,#{etcspendpayName}
-	,#{fNumber}
-	,#{fMemberId})
+	,#{farm.fNumber}
+	,#{farmMember.fMemberId})
 </insert>
  
 </mapper>

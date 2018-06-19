@@ -22,10 +22,10 @@ public class Company {
 	public void setcNumber(int cNumber) {
 		this.cNumber = cNumber;
 	}
-	public CategoryDeal getCategoryDealDb() {
+	public CategoryDeal getCategoryDeal() {
 		return categoryDeal;
 	}
-	public void setCategoryDealDb(CategoryDeal categoryDeal) {
+	public void setCategoryDeal(CategoryDeal categoryDeal) {
 		this.categoryDeal = categoryDeal;
 	}
 	public String getcName() {
@@ -34,10 +34,10 @@ public class Company {
 	public void setcName(String cName) {
 		this.cName = cName;
 	}
-	public CompanyMember getCompanyMemberDb() {
+	public CompanyMember getCompanyMember() {
 		return companyMember;
 	}
-	public void setCompanyMemberDb(CompanyMember companyMember) {
+	public void setCompanyMember(CompanyMember companyMember) {
 		this.companyMember = companyMember;
 	}
 	public String getcDoroaddress() {
@@ -76,5 +76,6 @@ public class Company {
 				+ ", companyMember=" + companyMember + ", cDoroaddress=" + cDoroaddress + ", cJibunaddress="
 				+ cJibunaddress + ", cPhone=" + cPhone + ", cRegistdate=" + cRegistdate + ", cParty=" + cParty + "]";
 	}
+	
 
 }

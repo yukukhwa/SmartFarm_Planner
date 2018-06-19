@@ -72,7 +72,7 @@ public class CategoryEtcSpendPayController {
 	 */
 	@RequestMapping(value="/addCategoryEtcSpendPay", method=RequestMethod.POST)
 	public String insertCategoryEtcSpendPay(CategoryEtcSpendPay categoryEtcSpendPay, HttpSession session) {
-		System.out.println("insertCategoryEtcSpendPay categoryEtcSpendPayDb====> "+categoryEtcSpendPay);
+		System.out.println("insertCategoryEtcSpendPay categoryEtcSpendPay====> "+categoryEtcSpendPay);
 		categoryEtcSpendPayService.insertCategoryEtcSpendPay(categoryEtcSpendPay, session);
 		return "redirect:/listCategoryEtcSpendPays";
 	}
@@ -83,7 +83,7 @@ public class CategoryEtcSpendPayController {
 	 */
 	@RequestMapping(value="/addCategoryEtcSpendPay", method=RequestMethod.GET)
 	public String insertCategoryEtcSpendPay(Model model) {
-		model.addAttribute("categoryThemeDb", categoryEtcSpendPayService.insertCategoryEtcSpendPay());
+		model.addAttribute("categoryTheme", categoryEtcSpendPayService.insertCategoryEtcSpendPay());
 		return "category/etcspendpay/addCategoryEtcSpendPay";
 	}
 }

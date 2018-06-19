@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
 <mapper namespace="com.spam.sfplanner.corporation.CompanyMapper">
-	<resultMap type="com.spam.sfplanner.corporation.Company" id="companyDb">
+	<resultMap type="com.spam.sfplanner.corporation.Company" id="company">
 		<id column="c_number" property="cNumber"/>
 		<result column="c_name" property="cName"/>
 		<result column="c_doroaddress" property="cDoroaddress"/>
@@ -11,11 +11,20 @@
 		<result column="c_phone" property="cPhone"/>
 		<result column="c_registdate" property="cRegistdate"/>
 		<result column="c_party" property="cParty"/>
-		<collection property="companyMemberDb" ofType="com.spam.sfplanner.user.CompanyMember">
+		<collection property="companyMember" ofType="com.spam.sfplanner.user.CompanyMember">
 			<id column="c_member_id" property="cMemberId"/>
+			<result column="c_member_pw" property="cMemberPw"/>
 			<result column="c_member_name" property="cMemberName"/>
+			<result column="c_member_phone" property="cMemberPhone"/>
+			<result column="c_member_gender" property="cMemberGender"/>
+			<result column="c_member_email" property="cMemberEmail"/>
+			<result column="c_member_privacy" property="cMemberPrivacy"/>
+			<result column="c_member_doroaddress" property="cMemberDoroaddress"/>
+			<result column="c_member_jibunaddress" property="cMemberJibunaddree"/>
+			<result column="c_member_detailaddress" property="cMemberDetailaddress"/>
+			<result column="c_member_registdate" property="cMemberRegistdate"/>
 		</collection>
-		<collection property="categoryDealDb" ofType="com.spam.sfplanner.category.CategoryDeal">
+		<collection property="categoryDeal" ofType="com.spam.sfplanner.category.CategoryDeal">
 			<id column="deal_number" property="dealNumber"/>
 			<result column="deal_classification" property="dealClassification"/>	
 		</collection>
@@ -47,7 +56,7 @@
 	<!-- 업체 상세내용 출력하는  쿼리문장 -->
 	<select id="oneSelectCompany"
 			parameterType="String"
-			resultMap="companyDb">
+			resultMap="company">
 	select
 		sp_deal_company.c_number
 		,sp_deal_cate.deal_number
@@ -69,7 +78,7 @@
 	
 	<!-- 모든 업체  출력하는 쿼리 문장 -->
 	<select id="listSelectCompany"
-			resultMap="companyDb">
+			resultMap="company">
 	select
 		sp_deal_company.c_name 
 	from
@@ -80,7 +89,7 @@
 	<!-- 업체 있는지 확인하는 쿼리문장 -->
 	<select id="listOneSelectCompany" 
 			parameterType="int"
-			resultMap="companyDb">
+			resultMap="company">
 		select
 			sp_deal_company.c_name
 		from

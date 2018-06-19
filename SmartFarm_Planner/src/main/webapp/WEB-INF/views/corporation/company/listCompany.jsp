@@ -28,10 +28,10 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="companyDb" items="${list}">
+					<c:forEach var="company" items="${list}">
 						<tr>
 							<td>
-								<a href="${pageContext.request.contextPath}/oneCompany?cName=${companyDd.cName}">${companyDb.cName}</a>
+								<a href="${pageContext.request.contextPath}/oneCompany?cName=${company.cName}">${company.cName}</a>
 							</td>
 						</tr>
 					</c:forEach>

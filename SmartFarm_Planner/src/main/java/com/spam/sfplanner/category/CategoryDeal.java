@@ -12,10 +12,10 @@ public class CategoryDeal {
 	public void setDealNumber(int dealNumber) {
 		this.dealNumber = dealNumber;
 	}
-	public Agency getAgencyDb() {
+	public Agency getAgency() {
 		return agency;
 	}
-	public void setAgencyDb(Agency agency) {
+	public void setAgency(Agency agency) {
 		this.agency = agency;
 	}
 	public String getDealClassification() {
@@ -29,5 +29,6 @@ public class CategoryDeal {
 		return "CategoryDeal [dealNumber=" + dealNumber + ", agency=" + agency + ", dealClassification="
 				+ dealClassification + "]";
 	}
+	
 	
 }

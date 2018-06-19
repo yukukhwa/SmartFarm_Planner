@@ -18,24 +18,24 @@
     <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
-    		<div>${companyDb.cName}&nbsp;업체 상세보기</div>
+    		<div>${company.cName}&nbsp;업체 상세보기</div>
  			<div>
- 				대표 : ${companyDb.companyMemberDb.cMemberName}<br>
- 				거래처넘버 : ${companyDb.categoryDealDb.dealNumber}<br>
-		 		업체주소 : ${companyDb.cDoroaddress}(${companyDb.cJibunaddress})<br>
-		 		업체 연락처 : ${companyDb.cPhone}<br>
-		 		업체 인원 : ${companyDb.cParty}<br>
+ 				대표 : ${company.companyMember.cMemberName}<br>
+ 				거래처넘버 : ${company.categoryDeal.dealNumber}<br>
+		 		업체주소 : ${company.cDoroaddress}(${company.cJibunaddress})<br>
+		 		업체 연락처 : ${company.cPhone}<br>
+		 		업체 인원 : ${company.cParty}<br>
  			</div>
  			<div>
- 				<a href="${pageContext.request.contextPath}/listCompanyMember?cName=${companyDb.cName}">업체회원정보</a>
+ 				<a href="${pageContext.request.contextPath}/listCompanyMember?cName=${company.cName}">업체회원정보</a>
  			</div>
- 			<c:if test="${loginMember.level == 'company' && loginMember.corpNumber == companyDb.cNumber}">
+ 			<c:if test="${loginMember.level == 'company' && loginMember.corpNumber == company.cNumber}">
  				<div>
- 					<a href="${pageContext.request.contextPath}/updateCompany?cName=${companyDb.cName}">업체정보 수정</a>
+ 					<a href="${pageContext.request.contextPath}/updateCompany?cName=${company.cName}">업체정보 수정</a>
  				</div>
 	 			<c:if test="${loginMember.boss == 'boss'}">
 	 				<div>
-	 					<a href="${pageContext.request.contextPath}/deleteCompany?cNumber=${companyDb.cNumber}&cName=${companyDb.cName}">업체정보 삭제</a>
+	 					<a href="${pageContext.request.contextPath}/deleteCompany?cNumber=${company.cNumber}&cName=${company.cName}">업체정보 삭제</a>
 	 				</div>
 	 			</c:if>
  			</c:if>
