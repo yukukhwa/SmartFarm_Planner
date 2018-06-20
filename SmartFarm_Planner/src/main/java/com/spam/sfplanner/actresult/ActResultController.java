@@ -27,6 +27,8 @@ public class ActResultController {
 	
 	/*
 	 * 실행결과리스트 상세보기 보여주는 화면 매핑
+	 * 선택한 실행결과리스트 넘버를 매개변수로 받아 매서드를 호출한 후 결과를 model에 셋팅한후
+	 * oneActResultList.jsp로 이동한다.
 	 */
 	@RequestMapping(value="/oneActResultList", method = RequestMethod.GET)
 	public String oneSelectActResult (Model model
@@ -94,15 +96,15 @@ public class ActResultController {
 	 * 그리고 choicePlanner.jsp로 포워드하였다.
 	 */
 	@RequestMapping(value="/choicePlanner", method = RequestMethod.GET)
-	public String listSelectPlan (HttpSession session, Model model) {
+	public String listSelectProductionPlan (HttpSession session, Model model) {
 		Login login = (Login) session.getAttribute("loginMember");
-		model.addAttribute("plannerList", actResultService.listSelectPlan(login.getCorpNumber()));
+		model.addAttribute("plannerList", actResultService.listSelectProductionPlan(login.getCorpNumber()));
 		return "actresult/choicePlanner";
 	}
 	
 	@RequestMapping(value="/addActResultList", method = RequestMethod.POST)
-	public String insertActResult (ActResult actResult, WrHumanPay wrHumanPay) {
-		actResultService.insertActResult(actResult, wrHumanPay);
+	public String insertActResult (ActResult actResult) {
+		actResultService.insertActResult(actResult);
 		return "redirect:/home";
 	}
 	/*
@@ -111,7 +113,7 @@ public class ActResultController {
 	@RequestMapping(value="/addActResultList", method = RequestMethod.GET)
 	public String insertActResult (Model model
 			, @RequestParam(value="ppNumber") int ppNumber) {
-		model.addAttribute("plannList", actResultService.insertActResult(ppNumber));
+		model.addAttribute("plannList", actResultService.oneSelectProductionPlan(ppNumber));
 		return "actresult/addActResultList";
 	}
 }

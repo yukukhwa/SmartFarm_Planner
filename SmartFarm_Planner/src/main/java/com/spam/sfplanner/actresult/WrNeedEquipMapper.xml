@@ -16,11 +16,12 @@
 	<collection ofType="com.spam.sfplanner.plan.WoNeedEquip" property="woNeedEquip">
 		<id column="e_needequip_number" property="eNeedequipNumber"/>
 		<result column="e_needequip_state" property="eNeedequipState"/>
+		<collection ofType="com.spam.sfplanner.category.CategoryEquip" property="categoryEquip">
+			<id column="equip_number" property="equipNumber"/>
+			<result column="equip_name" property="equipName"/>
+		</collection>
 	</collection>
-	<collection ofType="com.spam.sfplanner.category.CategoryEquip" property="categoryEquip">
-		<id column="equip_number" property="equipNumber"/>
-		<result column="equip_name" property="equipName"/>
-	</collection>
+	
 </resultMap>
 
 <!-- 필요장비결과 업데이트 -->
@@ -59,6 +60,7 @@
 	JOIN sp_equip_cate
 	ON sp_wr_needequip.wr_number = sp_wr.wr_number 
 	AND sp_wr_needequip.e_needequip_number = sp_e_needequip.e_needequip_number
+	AND sp_equip_cate.equip_number = sp_e_needequip.equip_number
 	WHERE sp_wr.wr_number = #{wrNumber}
 </select>
 </mapper>

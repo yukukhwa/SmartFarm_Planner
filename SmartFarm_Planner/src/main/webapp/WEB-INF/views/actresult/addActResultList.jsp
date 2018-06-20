@@ -56,6 +56,22 @@
 								<div class="color">
 									<div class="panel-heading col-lg-12">${ppWorkList.ppWorkName}</div>
 									<div class="panel-content" style="display:none">
+										<table class="table table-striped table-advance table-hover">
+											<thead>
+												<tr>
+													<th>예상 작업 면적</th>
+													<th>총작업 면적</th>
+													<th>이미작업한 면적</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>${ppWorkList.ppWorkArea}</td>
+													<td><input type="text" name="productionPlan.ppNumber"></td>
+													<td>${humanPay.eHumanpayExpectpay}</td>
+												</tr>
+											</tbody>
+										</table>
 										인건비
 										<input type="text" name="ppWoResult.wrNumber">
 										<input type="text" name="woHumanPay.eHumanpayNumber">

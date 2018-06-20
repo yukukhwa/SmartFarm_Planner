@@ -18,6 +18,8 @@ import com.spam.sfplanner.plan.PpWork;
 import com.spam.sfplanner.plan.PpWorkDao;
 import com.spam.sfplanner.plan.ProductionPlan;
 import com.spam.sfplanner.plan.WoHumanPayDao;
+import com.spam.sfplanner.plan.WoInsurancePayDao;
+import com.spam.sfplanner.plan.WoMaterialsPayDao;
 import com.spam.sfplanner.plan.WoHumanPay;
 
 @Service
@@ -42,41 +44,70 @@ public class ActResultService {
 	private WrInsurancePayDao wrInsurancePayDao;
 	@Autowired
 	private PpWorkDao ppWorkDao;
+	@Autowired
+	private WrNeedEquipDao wrNeedEquipDao;
+	@Autowired
+	private WrNeRentPayDao wrNeRentPayDao;
+	@Autowired
+	private WoMaterialsPayDao woMaterialsPayDao;
+	@Autowired
+	private WoInsurancePayDao woInsurancePayDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ActResultService.class);
-	
+	/*
+	 * 실행결과리스트넘버를 매개변수로 받아 해당하는 실행결과리스트 한개를 리턴하는 dao를 호출하여 actResult에 대입하고
+	 * 해당하는 작업단계 리스트를 리턴하는 dao를 호출하여 list에 대입한다.
+	 * 작업단계 넘버를 map에 셋팅하여 해당하는 인건비/원자재/기타지출비/인건비/필요장비/메모 리스트를 리턴하는 dao를 호출하여  ppWoResult에 셋팅하고
+	 * 필요장비/메모 하위인 대여비/메모파일도 같은 방식으로 각각 세팅한 후
+	 * actResult에 list를 셋팅하여 리턴한다.
+	 */
 	public ActResult oneSelectActResult(int ppResultlistNumber) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ppResultlistNumber", ppResultlistNumber);
 		ActResult actResult = actResultDao.oneSelectActResult(map);
-		List<PpWoResult> list = ppWoResultDao.listSelectWorkResult(map);
-		for(PpWoResult ppWoResult : list) {
+		/*
+		 * 작업단계리스트별로 하위항목들을 각각 세팅하는 반복문
+		 */
+		List<PpWoResult> PpWoResultList = ppWoResultDao.listSelectWorkResult(map);
+		for(PpWoResult ppWoResult : PpWoResultList) {
 			map.put("wrNumber", ppWoResult.getWrNumber());
 			ppWoResult.setWrHumanPayList(wrHumanPayDao.listSelectWrHumanPay(map));
 			ppWoResult.setWrMaterialsPayList(wrMaterialsPayDao.listSelectWrMaterialsPay(map));
-			/*ppWoResult.setWrEtcSpendPayList(wrEtcSpendPayDao.listSelectWrEtcSpendPay(map));
-			ppWoResult.setWrInsurancePayList(wrInsurancePayDao.listSelectWrInsurancePay(map));*/
+			ppWoResult.setWrEtcSpendPayList(wrEtcSpendPayDao.listSelectWrEtcSpendPay(map));
+			ppWoResult.setWrInsurancePayList(wrInsurancePayDao.listSelectWrInsurancePay(map));
+			/*
+			 * 필요장비별 대여비를 셋팅하는 반복문
+			 */
+			List<WrNeedEquip> WrNeedEquipList = wrNeedEquipDao.listSelectWrNeedEquip(map);
+			for(WrNeedEquip wrNeedEquip : WrNeedEquipList) {
+				map.put("wrNeedequipNumber", wrNeedEquip.getWrNeedequipNumber());
+				wrNeedEquip.setWrNeRentPayList(wrNeRentPayDao.listselectWrNeRentPay(map));
+			}
+			ppWoResult.setWrNeedEquipList(WrNeedEquipList);
 		}
-		actResult.setPpWoResultList(list);
+		actResult.setPpWoResultList(PpWoResultList);
 		return actResult;
 	}
 	
-	public int insertActResult(ActResult actResult, WrHumanPay wrHumanPay) {
-		/*actResultDao.insertActResult(actResult);*/
-		wrHumanPayDao.insertWrHumanPay(wrHumanPay);
+	public int insertActResult(ActResult actResult) {
+		/*actResultDao.insertActResult(actResult);
+		wrHumanPayDao.insertWrHumanPay(wrHumanPay);*/
 		return 0;
 	}
 	
-	public ProductionPlan insertActResult(int ppNumber) {
+	public ProductionPlan oneSelectProductionPlan(int ppNumber) {
 		ProductionPlan productionPlan =productionPlanDao.oneSelectProductionPlan(ppNumber);
-		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ppNumber", ppNumber);
-		List<PpWork> list = ppWorkDao.listSelectPpWork(map);
-		for(PpWork ppWork : list) {
-			
+		List<PpWork> ppWorkList = ppWorkDao.listSelectPpWork(map);
+		for(PpWork ppWork : ppWorkList) {
+			map.put("ppWorkNumber", ppWork.getPpWorkNumber());
+			ppWork.setWoMaterialsPayList(woMaterialsPayDao.listSelectWoMaterialsPay(map));
+			ppWork.setWoInsurancePayList(woInsurancePayDao.listSelectWoInsurancePay(map));
+			ppWork.setWoHumanPayList(woHumanPayDao.listSelectWoHumanPay(map));
 		}
-		productionPlan.setPpWorkList(list);
+		productionPlan.setPpWorkList(ppWorkList);
+		
 		return productionPlan;
 	}
 	/*
@@ -127,7 +158,7 @@ public class ActResultService {
 	 * 농가넘버를 매개변수로 받아 map에 농가코드를 셋팅해준 후 생산계획 리스트를 출력하는 매서드를 호출하여
 	 * 그 목록을 리턴한다.
 	 */
-	public List<ProductionPlan> listSelectPlan(int corpNumber) {
+	public List<ProductionPlan> listSelectProductionPlan(int corpNumber) {
 		/*
 		 * search에 yes를 넣으면 조건절이 붙고
 		 * column에 농가넘버를 넣어 농가인지 조건을 붙고
