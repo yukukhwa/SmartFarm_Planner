@@ -16,6 +16,7 @@ public class WoMaterialsPayDao {
 	private final static Logger LOGGER = LoggerFactory.getLogger(WoMaterialsPayDao.class);
 	private final static String NAMESPACE = "com.spam.sfplanner.plan.WoMaterialsPayMapper.";
 	
+	/*woMaterialsPay를 매개변수로 받아 수정할 예상언자재비를 수정처리하는 메서드*/
 	public void updateWoMaterialsPay(WoMaterialsPay woMaterialsPay) {
 		sqlSession.update(NAMESPACE+"updateWoMaterialsPay", woMaterialsPay);
 	}

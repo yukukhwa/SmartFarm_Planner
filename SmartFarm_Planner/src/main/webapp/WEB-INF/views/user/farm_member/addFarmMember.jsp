@@ -10,21 +10,62 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		// 주소 api쓰기
+		$(document).on("click","#searchFarmAddress",function goPopup(){
+			// 주소검색을 수행할 팝업 페이지를 호출합니다.
+			// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+			var pop = window.open("${pageContext.request.contextPath}/jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+			whoJuso = 2;
+			// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+		    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+		})
+		
+
+		$('#searchFarmMemberAddress').click(function goPopup(){
+			// 주소검색을 수행할 팝업 페이지를 호출합니다.
+			// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+			var pop = window.open("${pageContext.request.contextPath}/jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+			whoJuso = 3;
+			// 모바일 웹인 경우, 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrMobileLinkUrl.do)를 호출하게 됩니다.
+		    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
+		})
+		
+		
 		
 		$("input:radio[name=formCheck]").click(function(){
 			// 농가직원이면 addFarmForm이 농합코드 입력폼이 오게 
 			if($(this).val() == 'staff'){
-				$('#addFarmForm').html('<div><b>농가통합넘버 입력 : </b>'
-						+'<input type="number" id="fNumber" name="fNumber" placeholder="농가코드를 입력해주세요">'
-						+'<br></div>');
+				$('#addFarmForm').html('<div>'
+											+'<b>농가통합넘버 입력 : </b>'
+											+'<input type="number" id="fNumber" name="fNumber" placeholder="농가코드를 입력해주세요"><br>'
+										+'</div>');
 				return;
 			}else{
-				$('#addFarmForm').html('<h3>농가등록하기</h3>'
-						+'<div><b>농장이름 : </b><input type="text" placeholder="농장이름을 등록해주세요" name="fName" id="fName"></div>'
-						+'<div><b>농가연락처</b><input type="text" placeholder="-를 붙이고 입력해주세요" name="fPhone" id="fPhone"></div>'
-						+'<div><b>도로명 주소 : </b><input type="text" name="fDoroaddress" placeholder="도로명주소를 입력해주세요"><br>'
-						+'<b>지번 주소 : </b><input type="text" name="fJibunaddress" placeholder="지번주소를 입력해주세요"><br></div>'
-						+'<div><b>농가인원</b> <br><input type="text" placeholder="농가인원 숫자를 입력해주세요" name="fParty" id="fParty"> 명</div>');
+				$('#addFarmForm').html('<div>'
+											+'<h3>농가등록하기</h3>'
+										+'</div>'
+										+'<div>'
+											+'<b>농장이름 : </b>'
+											+'<input type="text" placeholder="농장이름을 등록해주세요" name="fName" id="fName">'
+										+'</div>'
+										+'<div>'
+											+'<b>농가연락처 : </b>'
+											+'<input type="text" placeholder="-를 붙이고 입력해주세요" name="fPhone" id="fPhone">'
+										+'</div>'
+										+'<div>'
+											+'<input type="button" id="searchFarmAddress" value="주소검색하기">'
+										+'</div>'
+										+'<div>'
+											+'<b>도로명 주소 : </b>'
+											+'<input type="text" name="fDoroaddress" id="farmDoroaddress" placeholder="도로명주소를 입력해주세요"><br>'
+										+'</div>'
+										+'<div>'
+											+'<b>지번 주소 : </b>'
+											+'<input type="text" name="fJibunaddress" id="farmJibunaddress" placeholder="지번주소를 입력해주세요"><br>'
+										+'</div>'
+										+'<div>'
+											+'<b>농가인원 : </b>'
+											+'<input type="number" placeholder="농가인원 숫자를 입력해주세요" name="fParty" id="fParty"> 명'
+										+'</div>');
 				return;
 			}
 			return;
@@ -125,7 +166,7 @@
 				<b>회원가입폼 선택</b><br>
 				<input type="radio" name="formCheck" value="exponent" checked="checked"/> 농가대표
 				<input type="radio" name="formCheck" value="staff" /> 농가직원
-			</div>
+			</div><br>
 			<form id="farmMemberInsert" action="${pageContext.request.contextPath}/addFarmMember" method="post">
 				<div>
 					<b>개인정보제공동의</b><br>
@@ -145,14 +186,19 @@
 						<input type="text" placeholder="-를 붙이고 입력해주세요" name="fPhone" id="fPhone">
 					</div>
 					<div>
+						<input type="button" id="searchFarmAddress" value="주소검색하기">
+					</div>
+					<div>
 						<b>도로명 주소 : </b>
-						<input type="text" name="fDoroaddress" id="fDoroaddress" placeholder="도로명주소를 입력해주세요"><br>
+						<input type="text" name="fDoroaddress" id="farmDoroaddress" placeholder="도로명주소를 입력해주세요"><br>
+					</div>
+					<div>
 						<b>지번 주소 : </b>
-						<input type="text" name="fJibunaddress" id="fJibunaddress" placeholder="지번주소를 입력해주세요"><br>
+						<input type="text" name="fJibunaddress" id="farmJibunaddress" placeholder="지번주소를 입력해주세요"><br>
 					</div>
 					<div>
 						<b>농가인원</b> <br>
-						<input type="text" placeholder="농가인원 숫자를 입력해주세요" name="fParty" id="fParty"> 명
+						<input type="number" placeholder="농가인원 숫자를 입력해주세요" name="fParty" id="fParty"> 명
 					</div>
 				</div>
 				<!-- 농가등록 폼 끝 -->
@@ -194,19 +240,19 @@
 						<input type="text" name="fMemberEmail" placeholder="이메일을 입력해주세요">
 					</div>
 					<div>
-						<input type="button" id="searchAddress" value="searchAddress">
+						<input type="button" id="searchFarmMemberAddress" value="주소검색하기">
 					</div>
 					<div>	
 						<b>도로명 주소 : </b>
-						<input type="text" id="fMemberDoroaddress" name="fMemberDoroaddress" placeholder="도로명주소를 입력해주세요"><br>
+						<input type="text" id="farmMemberDoroaddress" name="fMemberDoroaddress" placeholder="도로명주소를 입력해주세요"><br>
 					</div>
 					<div>
 						<b>지번 주소 : </b>
-						<input type="text" id="fMemberJibunaddress" name="fMemberJibunaddress" placeholder="지번주소를 입력해주세요"><br>
+						<input type="text" id="farmMemberJibunaddress" name="fMemberJibunaddress" placeholder="지번주소를 입력해주세요"><br>
 					</div>
 					<div>
 						<b>상세 주소 : </b>
-						<input type="text" name="fMemberDetailaddress" placeholder="나머지 상세주소를 입력해주세요"><br>
+						<input type="text" id="farmMemberDetailaddress" name="fMemberDetailaddress" placeholder="나머지 상세주소를 입력해주세요"><br>
 					</div>
 				</div>
 			<br>

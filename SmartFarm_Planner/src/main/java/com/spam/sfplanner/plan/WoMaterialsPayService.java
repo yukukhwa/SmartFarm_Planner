@@ -34,7 +34,7 @@ public class WoMaterialsPayService {
 	
 	public List<WoMaterialsPay> searchListSelectWoMaterialsPay(int ppWorkNumber, String searchMaterialsPayOption, String searchKeyword)	{
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("ppWorkNumber",ppWorkNumber);
+		map.put("ppWorkNumber", ppWorkNumber);
 		map.put("searchMaterialsPayOption", searchMaterialsPayOption);
 		map.put("searchKeyword", searchKeyword);
 		return woMaterialsPayDao.listSelectWoMaterialsPay(map);

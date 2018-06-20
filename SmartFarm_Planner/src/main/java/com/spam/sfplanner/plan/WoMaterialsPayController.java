@@ -48,12 +48,13 @@ public class WoMaterialsPayController {
 		return "plan/wo_materials_pay/updateMaterialsPay";
 	}
 	
+	/*검색조건과 키워드, 작업단계 매개변수를 받아 검색조건에 따른 정보리스트들을 출력해 list로 포워드*/
 	@RequestMapping(value="listMaterialsPay", method=RequestMethod.POST)
 	public String listSelectWoMaterialsPay(int ppWorkNumber
 										, Model model
 										, String searchMaterialsPayOption
 										, String searchKeyword) {
-		model.addAttribute("ppWorkNumber",ppWorkNumber);
+		model.addAttribute("ppWorkNumber", ppWorkNumber);
 		model.addAttribute("list", woMaterialsPayService.searchListSelectWoMaterialsPay(ppWorkNumber, searchMaterialsPayOption, searchKeyword));
 		return "plan/wo_materials_pay/listMaterialsPay";
 	}

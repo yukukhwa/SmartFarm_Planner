@@ -34,6 +34,7 @@
 				    			<option value="materialsName">원자재명</option>
 				    		</select>
 			    			<input type="text" name="searchKeyword">
+			    			<input type="hidden" name="ppWorkNumber" value="${ppWorkNumber}">
 		    			<button id="searchMaterialsPay">예상원자재비 검색하기</button>
 	    			</form>
 	    		</div>

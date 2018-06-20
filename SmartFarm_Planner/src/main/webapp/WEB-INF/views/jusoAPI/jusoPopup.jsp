@@ -65,8 +65,15 @@ function init(){
 			window.opener.document.getElementById("memberDoroaddress").value = "<%=roadAddrPart1%>";
 			window.opener.document.getElementById("memberJibunaddress").value = "<%=jibunAddr%>";
 			window.opener.document.getElementById("memberDetailaddress").value = "<%=addrDetail%>";
+		}else if(whoJuso == 2){
+			window.opener.document.getElementById("farmDoroaddress").value = "<%=roadAddrPart1%>";
+			window.opener.document.getElementById("farmJibunaddress").value = "<%=jibunAddr%>";
+		}else if(whoJuso == 3){
+			window.opener.document.getElementById("farmMemberDoroaddress").value = "<%=roadAddrPart1%>";
+			window.opener.document.getElementById("farmMemberJibunaddress").value = "<%=jibunAddr%>";
+			window.opener.document.getElementById("farmMemberDetailaddress").value = "<%=addrDetail%>";
 		}
-		window.close();
+			window.close();
 		}
 }
 </script>
