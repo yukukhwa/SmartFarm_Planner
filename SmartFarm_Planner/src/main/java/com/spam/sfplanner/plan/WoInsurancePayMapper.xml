@@ -103,11 +103,9 @@
 			sp_e_insurancepay.pp_work_number = sp_pp_work.pp_work_number
 		and
 			sp_pp_work.pp_number = sp_pp.pp_number
+		where
+			sp_e_insurancepay.pp_work_number = #{ppWorkNumber}
 		<if test="search == 'yes'">
-			where
-			<if test="column == '작업단계넘버'">
-				sp_e_insurancepay.pp_work_number = #{ppWorkNumber}
-			</if>
 			<if test="column == '작업명'">
 					sp_pp_work.pp_work_name like concat('%',#{property},'%')
 				and

@@ -86,7 +86,13 @@ public class AgencyMemberService {
 	 * @return
 	 */
 	public String idCheck(String aMemberId) {
-		return agencyMemberDao.idCheck(aMemberId);
+		String result = agencyMemberDao.idCheck(aMemberId);
+		if(result == null) {
+			System.out.println(aMemberId+"아이디는 사용가능합니다");
+			return "T";//아이디 사용가능
+		}
+		System.out.println(aMemberId+"아이디는 사용불가능합니다");
+		return "F";//아이디 사용불가능
 	}
 	
 	/**

@@ -80,15 +80,20 @@
 	</select>
 	
 	<!-- 관리기관 존재여부 확인처리 select 쿼리문장 -->
-	<select id="numberCheck"
-			parameterType="int"
+	<select id="nameOrNumberCheck"
+			parameterType="java.util.Map"
 			resultType="String">
 		select
 			sp_agency.a_name
 		from
 			sp_agency
 		where
-			sp_agency.a_number = #{aNumber}
+			<if test="column == '관리기관넘버'">
+				sp_agency.a_number = #{aNumber}
+			</if>
+			<if test="column == '관리기관명'">
+				sp_agency.a_name = #{aName}
+			</if>
 	</select>
 	
 	<!-- 관리기관 등록처리 insert 쿼리문장 -->

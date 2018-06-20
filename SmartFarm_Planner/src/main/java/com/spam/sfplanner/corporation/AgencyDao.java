@@ -2,6 +2,7 @@
 package com.spam.sfplanner.corporation;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,7 +76,7 @@ public class AgencyDao {
 	 * @param 관리기관코드
 	 * @return 관리기관 존재여부결과
 	 */
-	public String numberCheck(int aNumber) {
-		return sqlSessionTemplate.selectOne(NAMESPACE+"numberCheck", aNumber);
+	public String nameOrNumberCheck(Map<String,Object> map) {
+		return sqlSessionTemplate.selectOne(NAMESPACE+"nameOrNumberCheck", map);
 	}
 }

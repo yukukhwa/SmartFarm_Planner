@@ -109,7 +109,8 @@ public class ProductionPlanController {
 	public String insertProductionPlan(HttpSession session,Model model) {
 		Map<String, Object> map = productionPlanService.insertProductionPlan(session);
 		model.addAttribute("titleList", map.get("titleList"));
-		model.addAttribute("themeList", map.get("themeList"));
+		//model.addAttribute("themeList", map.get("themeList"));
+		model.addAttribute("materialsList", map.get("materialsList"));
 		return "plan/productionplan/addPlanner";
 	}
 }

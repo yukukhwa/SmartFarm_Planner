@@ -1,7 +1,9 @@
 /*나성수*/
 package com.spam.sfplanner.corporation;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -91,13 +93,46 @@ public class AgencyService {
 		return agencyDao.listSelectAgency();
 	}
 	
+	public Map<String, Object> nameOrNumberCheck(String aName) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("aName", aName);
+		map.put("column", "관리기관명");
+		String result = agencyDao.nameOrNumberCheck(map);
+		map.clear();
+		if(result == null) {
+			System.out.println(aName+"해당 관리기관명은 등록되어있지 않습니다.");
+			map.put("TF", "T");
+			map.put("result", "해당 등록기관명은 등록가능합니다.");
+			return map;// 해당 관리기관명으로 가입가능
+		}
+		System.out.println(aName+"해당 관리기관명은 등록되어있습니다.");
+		map.put("TF", "F");
+		map.put("result", result);
+		return map;// 해당 관리기관명으로 가입불가능
+	}
+	
 	/**
 	 * 관리기관코드 존재여부 확인 서비스
+	 * @param map 
 	 * @param 관리기관코드
 	 * @return 관리기관 존재여부 결과
 	 */
-	public String numberCheck(int aNumber) {
-		return agencyDao.numberCheck(aNumber);
+	public Map<String, Object> nameOrNumberCheck(int aNumber) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("aNumber", aNumber);
+		map.put("column", "관리기관넘버");
+		String result = agencyDao.nameOrNumberCheck(map);
+		map.clear();
+		if(result == null) {
+			System.out.println(aNumber+"해당관리기관코드는 존재하지 않습니다.");
+			map.put("TF", "F");
+			map.put("result", "해당기관은 존재하지 않습니다.");
+			return map;// 해당 관리기관코드로 가입불가능
+		}
+		System.out.println(aNumber+"해당관리기관코드는 존재합니다.");
+		map.put("TF", "T");
+		map.put("result", result);
+		return map;// 해당 관리기관코드로 가입가능
 	}
 	
 	/**

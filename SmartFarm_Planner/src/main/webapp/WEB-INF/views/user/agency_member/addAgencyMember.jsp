@@ -15,12 +15,12 @@
 		$(document).on('click','input:button[id="aNumberCheck"]',function(){
 			var aNumber = $('input#aNumber').val();
 			if(aNumber == ''){
-				alert('관리기관코드를 입력해주세요');
+				alert('관리기관넘버를 입력해주세요');
 				$('input#aNumber').focus();
 				return;
 			}
 			$.ajax({
-				type: "GET",
+				type: "POST",
 				url: "${pageContext.request.contextPath}/agencyNumberCheck",
 				data: {"aNumber":aNumber},
 				success:function(resultMap) {		
@@ -41,6 +41,35 @@
 			return;
 		});
 		
+		$(document).on('click','input:button[id="aNameCheck"]',function(){
+			var aName = $('input#aName').val();
+			if(aName == ''){
+				alert('관리기관명을 입력해주세요');
+				$('input#aName').focus();
+				return;
+			}
+			$.ajax({
+				type: "POST",
+				url: "${pageContext.request.contextPath}/agencyNameCheck",
+				data: {"aName":aName},
+				success:function(resultMap) {	
+				    	if(resultMap.TF == 'F'){// 해당 등록기관명이 이미 등록되어있을때
+				    		//alert(resultMap.result);
+				    		$('p#NameCheckResult').show();
+				    		$('p#NameCheckResult').text(resultMap.result+"은(는) 이미 존재하는 기관입니다.");
+				    		return;
+				    	}
+				    	if(resultMap.TF == 'T'){// 해당 등록 기관명이 등록되어있지 않을때
+				    		alert(resultMap.result);
+				    		$('p#NameCheckResult').hide();
+				    		$('p#NameCheckResult').text(resultMap.result);
+				    		return;
+				    	}
+				    }
+			});
+			return;
+		});
+		
 		/* 아이디 중복체크버튼을 클릭시 ajax처리로 아이디 중복체크를 해준다 */
 		$('input:button[id="aMemberIdCheck"]').click(function(){
 			var aMemberId = $('input#aMemberId').val();
@@ -53,14 +82,14 @@
 				type: "POST",
 				url: "${pageContext.request.contextPath}/agencyMemberIdCheck",
 				data: {"aMemberId":aMemberId},
-				success:function(result) {		
-				    	if(result == 'F'){// 아이디가 이미 존재할시
+				success:function(resultString) {		
+				    	if(resultString == 'F'){// 아이디가 이미 존재할시
 				    		alert('사용불가능한 아이디입니다.');
 				    		$('p#idCheckResult').text('사용불가능한 아이디입니다.');
 				    		$('p#idCheckResult').show();
 				    		return;
 				    	}
-				    	if(result == 'T'){// 아이디가 존재하지 않을시
+				    	if(resultString == 'T'){// 아이디가 존재하지 않을시
 				    		alert('사용가능한 아이디입니다.');
 				    		$('p#idCheckResult').text('사용가능한 아이디입니다.');
 				    		$('p#idCheckResult').hide();
@@ -74,6 +103,7 @@
 		/* 첫화면에서 불필요한 공간을 줄이기 위해서 숨겨준다 */
 		$('p#idCheckResult').hide();
 		$('p#PwCheckResult').hide();
+		$('p#NameCheckResult').hide();
 		
 		/* 관리기관 회원가입시 대표를 선택하면 관리기관등록폼이 나오며, 직원을 선택시 관기기관코드입력폼이 나오도록함 */
 		$('input[name="level"]').click(function(){
@@ -89,6 +119,8 @@
 									+'</h4>'
 									+'<div>'
 										+'관리기관명 : <input type="text" name="aName" id="aName">'
+										+'<input type="button" id="aNameCheck" value="관리기관명 중복 확인">'
+										+'<strong><p id="NameCheckResult"/></strong>'
 									+'</div>'
 									+'<div>'
 										+'관리기관연락처 : <input type="text" name="aPhone" id="aPhone">'
@@ -158,6 +190,9 @@
 			if($('input#aName').val() == ''){
 				alert('관리기관명을 입력해주세요.');
 				$('input#aName').focus();
+				return;
+			}else if($('p#NameCheckResult').text() != '해당 등록기관명은 등록가능합니다.'){
+				alert('관리기관명을 다시 확인하세요.');
 				return;
 			}
 			if($('input#aPhone').val() == ''){
@@ -264,6 +299,8 @@
 							</h4>
 							<div>
 								관리기관명 : <input type="text" name="aName" id="aName">
+								<input type="button" id="aNameCheck" value="관리기관명 중복 확인">
+								<strong><p id="NameCheckResult"/></strong>
 							</div>
 							<div>
 								관리기관연락처 : <input type="text" name="aPhone" id="aPhone">

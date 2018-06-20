@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spam.sfplanner.category.CategoryMaterials;
+import com.spam.sfplanner.category.CategoryMaterialsDao;
 import com.spam.sfplanner.category.CategoryTheme;
 import com.spam.sfplanner.category.CategoryThemeDao;
 import com.spam.sfplanner.login.Login;
@@ -39,6 +41,9 @@ public class ProductionPlanService {
 	
 	@Autowired
 	private CategoryThemeDao categoryThemeDao;
+	
+	@Autowired
+	private CategoryMaterialsDao categoryMaterialsDao;
 	
 	public List<ProductionPlan> listSelectMyProductionPlan(int fNumber) {
 		Map<String,Object> map = new HashMap<String, Object>();
@@ -73,19 +78,39 @@ public class ProductionPlanService {
 		
 		String fMemberId = ((Login)session.getAttribute("loginMember")).getId();
 		int fNumber = ((Login)session.getAttribute("loginMember")).getCorpNumber();
-		List<WoInsurancePay> WoInsurancePayList = null;
+		List<PpWork> ppWorkList = null;
+		List<WoInsurancePay> woInsurancePayList = null;
+		List<WoHumanPay> woHumanPayList = null;
+		List<WoMaterialsPay> woMaterialsPayList = null;
 		
 		productionPlan.getFarmMember().setfMemberId(fMemberId);
 		productionPlanDao.insertProductionPlan(productionPlan);
-		for(PpWork ppWork : productionPlan.getPpWorkList()) {
-			ppWork.getProductionPlan().setPpNumber(productionPlan.getPpNumber());
-			ppWork.getFarm().setfNumber(fNumber);
-			ppWorkDao.insertPpWork(ppWork);
-			WoInsurancePayList = ppWork.getWoInsurancePayList();
-			if(WoInsurancePayList != null) {
-				for(WoInsurancePay woInsurancePay : WoInsurancePayList) {
-					woInsurancePay.getPpWork().setPpWorkNumber(ppWork.getPpWorkNumber());
-					woInsurancePayDao.insertWoInsurancePay(woInsurancePay);
+		ppWorkList = productionPlan.getPpWorkList();
+		if(ppWorkList != null) {
+			for(PpWork ppWork : ppWorkList) {
+				ppWork.getProductionPlan().setPpNumber(productionPlan.getPpNumber());
+				ppWork.getFarm().setfNumber(fNumber);
+				ppWorkDao.insertPpWork(ppWork);
+				woInsurancePayList = ppWork.getWoInsurancePayList();
+				woHumanPayList = ppWork.getWoHumanPayList();
+				woMaterialsPayList = ppWork.getWoMaterialsPayList();
+				if(woInsurancePayList != null) {
+					for(WoInsurancePay woInsurancePay : woInsurancePayList) {
+						woInsurancePay.getPpWork().setPpWorkNumber(ppWork.getPpWorkNumber());
+						woInsurancePayDao.insertWoInsurancePay(woInsurancePay);
+					}
+				}
+				if(woHumanPayList != null) {
+					for(WoHumanPay woHumanPay : woHumanPayList) {
+						woHumanPay.getPpWork().setPpWorkNumber(ppWork.getPpWorkNumber());
+						woHumanPayDao.insertWoHumanPay(woHumanPay);
+					}
+				}
+				if(woMaterialsPayList != null) {
+					for(WoMaterialsPay woMaterialsPay : woMaterialsPayList) {
+						woMaterialsPay.getPpWork().setPpWorkNumber(ppWork.getPpWorkNumber());
+						woMaterialsPayDao.insertWoMaterialsPay(woMaterialsPay);
+					}
 				}
 			}
 		}
@@ -99,8 +124,6 @@ public class ProductionPlanService {
 		productionPlan.setPpWorkList(ppWorkList);
 		map.clear();
 		for(PpWork ppWork : ppWorkList) {
-			map.put("search", "yes");
-			map.put("column", "작업단계넘버");
 			map.put("ppWorkNumber", ppWork.getPpWorkNumber());
 			ppWork.setWoMaterialsPayList(woMaterialsPayDao.listSelectWoMaterialsPay(map));
 			ppWork.setWoInsurancePayList(woInsurancePayDao.listSelectWoInsurancePay(map));
@@ -130,10 +153,12 @@ public class ProductionPlanService {
 		map.put("column", "농가넘버");
 		map.put("property", ((Login)session.getAttribute("loginMember")).getCorpNumber());
 		List<TitlePlan> titleList = titlePlanDao.listSelectTitlePlan(map);
-		List<CategoryTheme> themeList = categoryThemeDao.listSelectCategoryTheme();
+		//List<CategoryTheme> themeList = categoryThemeDao.listSelectCategoryTheme();
+		List<CategoryMaterials> materialsList = categoryMaterialsDao.listSelectCategoryMaterials();
 		map.clear();
 		map.put("titleList", titleList);
-		map.put("themeList", themeList);
+		//map.put("themeList", themeList);
+		map.put("materialsList", materialsList);
 		return map;
 	}
 }
