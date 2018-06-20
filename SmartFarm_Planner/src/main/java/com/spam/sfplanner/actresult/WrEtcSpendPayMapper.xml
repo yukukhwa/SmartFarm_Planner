@@ -31,6 +31,19 @@
 
 <!-- 기타지출비용 결과 레코드 하나 선택 -->
 
+<!-- 기타지출비용 결과 입력 -->
+<insert id="insertWrEtcSpendPay"
+		parameterType="com.spam.sfplanner.actresult.WrEtcSpendPay">
+		<selectKey resultType="int" keyColumn="wr_etcspendpay_number" keyProperty="wrEtcspendpayNumber" order="AFTER" >
+			SELECT @@IDENTITY
+		</selectKey>
+	INSERT INTO sp_wr_etcspendpay(
+		wr_number
+		, e_etcspendpay_number
+		, wr_etcspendpay_realcost
+		, wr_etcspendpay_date)
+	VALUES (#{ppWoResult.wrNumber}, #{woEtcSpendPay.eEtcspendpayNumber}, #{wrEtcspendpayRealcost}, #{wrEtcspendpayDate}); 
+</insert>
  
 <!-- 기타지출비용 결과 리스트 -->
 <select id="listSelectWrEtcSpendPay"
@@ -58,16 +71,5 @@
 	AND sp_e_etcspendpay.etcspendpay_number = sp_etcspendpay_cate.etcspendpay_number
 	WHERE sp_wr.wr_number = #{wrNumber}
 </select>
- 
-<!-- 기타지출비용 결과 입력 -->
-<insert id="insertWrEtcSpendPay"
-		parameterType="com.spam.sfplanner.actresult.WrEtcSpendPay">
-	INSERT INTO sp_wr_etcspendpay(
-		wr_number
-		, e_etcspendpay_number
-		, wr_etcspendpay_realcost
-		, wr_etcspendpay_date)
-	VALUES (#{ppWoResult.wrNumber}, #{woEtcSpendPay.eEtcspendpayNumber}, #{wrEtcspendpayRealcost}, #{wrEtcspendpayDate}); 
-</insert>
 
 </mapper>

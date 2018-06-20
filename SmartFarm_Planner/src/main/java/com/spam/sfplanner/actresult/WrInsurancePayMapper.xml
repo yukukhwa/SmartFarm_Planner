@@ -30,7 +30,20 @@
 <!-- 보험비 결과 업데이트 -->
 <!-- 보험비 결과 수정화면출력 셀렉트 -->
 <!-- 보험비 결과 삭제 -->
+
 <!-- 보험비 결과 등록 -->
+<insert id="insertWrInsurancePay"
+		parameterType="com.spam.sfplanner.actresult.WrInsurancePay">
+		<selectKey resultType="int" keyColumn="wr_insurancepay_number" keyProperty="wrInsurancepayNumber" order="AFTER" >
+			SELECT @@IDENTITY
+		</selectKey>
+	INSERT INTO sp_wr_insurancepay(
+		wr_number
+		, e_insurancepay_number
+		, wr_insurancepay_monthcost
+		, wr_insurancepay_date)
+	VALUES (#{ppWoResult.wrNumber}, #{woInsurancePay.eInsurancepayNumber}, #{wrInsurancepayMonthcost}, #{wrInsurancepayDate})
+</insert>
 
 <!-- 보험비 결과 리스트 -->
 <select id="listSelectWrInsurancePay"

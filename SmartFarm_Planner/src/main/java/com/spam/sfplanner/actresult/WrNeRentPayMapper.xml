@@ -17,12 +17,31 @@
 		<id column="ne_e_rentpay_number" property="neERentpayNumber"/>
 		<result column="ne_e_rentpay_secret" property="neERentpaySecret"/>			
 	</collection>
+	<collection ofType="com.spam.sfplanner.plan.CompanyRentEquip" property="companyRentEquip">
+		<id column="c_rent_number" property="cRentNumber"/>
+		<result column="c_rent_cost" property="cRentCost"/>	
+		<result column="c_rent_date" property="cRentDate"/>			
+		<result column="c_rent_modelname" property="cRentModelname"/>			
+	</collection>
 </resultMap>
 
 <!-- 대여비결과 업데이트 -->
 <!-- 대여비결과 수정화면출력 셀렉트 -->
 <!-- 대여비결과 삭제 -->
+
 <!-- 대여비결과 등록 -->
+<insert id="insertWrNeRentPay"
+		parameterType="com.spam.sfplanner.actresult.WrNeRentPay">
+		<selectKey resultType="int" keyColumn="ne_rentpay_number" keyProperty="neRentpayNumber" order="AFTER" >
+			SELECT @@IDENTITY
+		</selectKey>
+	INSERT INTO sp_ne_rentpay(
+		ne_e_rentpay_number
+		, wr_needequip_number
+		, ne_rentpay_cost
+		, ne_rentpay_date)
+	VALUES (#{neERentpayNumber}, #{wrNeedequipNumber}, #{neRentpayCost}, #{neRentpayDate})
+</insert>
 
 <!-- 대여비결과 리스트 -->
 <select id="listselectWrNeRentPay"
@@ -35,9 +54,13 @@
 	, sp_wr_needequip.wr_needequip_state
 	, sp_ne_e_rentpay.ne_e_rentpay_number
 	, sp_ne_e_rentpay.ne_e_rentpay_secret
+	, sp_deal_company_rent.c_rent_cost
+	, sp_deal_company_rent.c_rent_date
+	, sp_deal_company_rent.c_rent_modelname
 	FROM sp_ne_rentpay
 	JOIN sp_ne_e_rentpay
 	JOIN sp_wr_needequip
+	JOIN sp_deal_company_rent
 	ON sp_ne_rentpay.ne_e_rentpay_number=sp_ne_e_rentpay.ne_e_rentpay_number 
 	AND sp_ne_rentpay.wr_needequip_number=sp_wr_needequip.wr_needequip_number
 	WHERE sp_wr_needequip.wr_needequip_number = #{wrNeedequipNumber}

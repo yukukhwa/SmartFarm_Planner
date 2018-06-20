@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class WrEtcSpendPayController {
@@ -33,10 +34,10 @@ public class WrEtcSpendPayController {
 	
 	//기타지출비용결과 전체리스트 화면으로 포워드	 
 	@RequestMapping(value="/listWrEtcSpendPay", method=RequestMethod.GET)
-	public String listSelectWrEtcSpendPay(Model model) {			
+	public String listSelectWrEtcSpendPay(Model model, @RequestParam(value="wrNumber") int wrNumber) {			
 		LOGGER.info("listSelectWrEtcSpendPay get 호출");
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("wrNumber", 1); //테스트 : 작업단계넘버1
+		map.put("wrNumber", wrNumber);
 		model.addAttribute("wrEtcSpendPayList", wrEtcSpendPayService.listSelectWrEtcSpendPay(map));
 		return "actresult/wr_etcspendpay/listWrEtcSpendPay";
 	}		

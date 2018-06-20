@@ -22,7 +22,7 @@ public class WrNeRentPayController {
 		LOGGER.info("listSelectWrNeedEquip get 호출");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("wrNeedequipNumber", 1); //테스트 : 필요장비결과넘버1
-		model.addAttribute("list", wrNeedEquipService.listselectWrNeRentPay(map));
+		model.addAttribute("wrNeRentPayList", wrNeedEquipService.listselectWrNeRentPay(map));
 		return "actresult/wr_ne_rentpay/listNeRentpay";
 	}
 }

@@ -49,7 +49,7 @@
              	</h5>
                 </div>
                 <div class="col-lg-2 col-sm-6 follow-info weather-category">
-                <a href="#" style="color: white">
+                <a href="/team27d" style="color: white">
                   <ul>                  
                     <li class="active" style="font-size: 20px">
                       <i class="fa fa-comments fa-2x"> </i><br> go JSP
@@ -58,7 +58,7 @@
                   </a>
                 </div>
                 <div class="col-lg-2 col-sm-6 follow-info weather-category">
-                <a href="${pageContext.request.contextPath}/PDS4" style="color: white">
+                <a href="/mall4" style="color: white">
                   <ul>                  
                     <li class="active" style="font-size: 20px">
                       <i class="fa fa-bell fa-2x"> </i><br> go MVC1

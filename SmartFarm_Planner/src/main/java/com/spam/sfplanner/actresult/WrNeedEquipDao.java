@@ -13,12 +13,18 @@ import org.springframework.stereotype.Repository;
 public class WrNeedEquipDao {
 	private static final Logger LOGGER = LoggerFactory.getLogger(WrNeedEquipDao.class);
 	@Autowired private SqlSessionTemplate sqlsession;
-	private final String nameSpact = "com.spam.sfplanner.actresult.WrNeedEquipMapper.";
+	private final String nameSpace = "com.spam.sfplanner.actresult.WrNeedEquipMapper.";
+	
+	//필요장비 결과 등록
+	public void insertWrNeedEquip(WrNeedEquip wrNeedEquip) {
+		LOGGER.info("insertWrNeedEquip 호출");
+		sqlsession.insert(nameSpace+"insertWrNeedEquip",wrNeedEquip);
+	}
 	
 	//필요장비결과 전체리스트
 	public List<WrNeedEquip> listSelectWrNeedEquip(Map<String, Object> map){
 		LOGGER.info("listSelectWrNeedEquip 호출");
-		return sqlsession.selectList(nameSpact+"listSelectWrNeedEquip", map);
+		return sqlsession.selectList(nameSpace+"listSelectWrNeedEquip", map);
 	}
 	
 }

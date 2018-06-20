@@ -47,13 +47,13 @@ public class HomeController {
 	@RequestMapping(value = "/nongsaroApi", method = RequestMethod.GET)
 	public String nongsaroApi(@RequestParam(value="number") int number) {
 		if(number == 1) {
-			return "nongAPI1";
+			return "nongsaroAPI/nongAPI1";
 		} else if(number == 2) {
-			return "nongAPI2";
+			return "nongsaroAPI/nongAPI2";
 		} else if(number == 3) {
-			return "nongAPI3";			
+			return "nongsaroAPI/nongAPI3";			
 		} else if(number == 4) {
-			return "nongAPI4";			
+			return "nongsaroAPI/nongAPI4";			
 		} else {
 			return "home";
 		}		

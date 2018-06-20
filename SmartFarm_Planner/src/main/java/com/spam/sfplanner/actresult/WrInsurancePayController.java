@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class WrInsurancePayController {
@@ -18,10 +19,10 @@ public class WrInsurancePayController {
 	
 	//보험비결과 전체리스트 화면으로 포워드
 	@RequestMapping(value="/listWrInsurancePay", method=RequestMethod.GET)
-	public String listSelectWrInsurancePay(Model model) {			
+	public String listSelectWrInsurancePay(Model model, @RequestParam(value="wrNumber") int wrNumber) {			
 		LOGGER.info("listSelectWrInsurancePay get 호출");
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("wrNumber", 1); //테스트 : 작업단계넘버1
+		map.put("wrNumber", wrNumber); 
 		model.addAttribute("wrInsurancePayList", wrInsurancePayService.listSelectWrInsurancePay(map));
 		return "actresult/wr_insurancepay/listWrInsurancePay";
 	}

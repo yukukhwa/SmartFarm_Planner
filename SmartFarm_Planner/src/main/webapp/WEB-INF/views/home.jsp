@@ -30,58 +30,7 @@
           </div>
         </div>
 
-        <div class="row">
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="height: 100%">
-           <a href="${pageContext.request.contextPath}/nongsaroApi?number=1"> 
-           	<div class="info-box blue-bg" style="margin: 0 0 0 0; padding: 0 20 0 0 " >
-              <i class="fa fa-tachometer fa-2x"></i>
-              <div class="count" style="font-size: 20px;">과수</div>
-              <div class="title">표준 데이터</div>
-            </div>
-            </a>
-            <!--/.info-box-->
-          </div>
-          <!--/.col-->
-
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="height: 100%">
-           <a href="${pageContext.request.contextPath}/nongsaroApi?number=2"> 
-            <div class="info-box brown-bg" style="margin: 0 0 0 0; padding: 0 20 0 0 ">
-              <i class="fa fa-bell fa-2x"></i>
-              <div class="count" style="font-size: 20px;">축산</div>
-              <div class="title">표준 데이터</div>
-            </div>
-            </a>
-            <!--/.info-box-->
-          </div>
-          <!--/.col-->
-
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="height: 100%">
-           <a href="${pageContext.request.contextPath}/nongsaroApi?number=3"> 
-            <div class="info-box dark-bg" style="margin: 0 0 0 0; padding: 0 20 0 0 ">
-              <i class="fa fa-th"></i>
-              <div class="count" style="font-size: 20px;">식량작물</div>
-              <div class="title">표준 데이터</div>
-            </div>
-            </a>
-            <!--/.info-box-->
-          </div>
-          <!--/.col-->
-
-          <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="height: 100%">
-           <a href="${pageContext.request.contextPath}/nongsaroApi?number=4"> 
-            <div class="info-box green-bg" style="margin: 0 0 0 0; padding: 0 20 0 0 ">
-              <i class="fa fa-bars"></i>
-              <div class="count" style="font-size: 20px;">특용작물</div>
-              <div class="title">표준 데이터</div>
-            </div>
-            </a>
-            <!--/.info-box-->
-          </div>
-          <!--/.col-->
-
-        </div>
-        <!--/.row-->
-        <div class="row">
+        <div class="row" style="height: 420px;">
           <div class="col-lg-12 col-md-12">
 				<!-- 여기에 슬라이드 -->
             	<div id="c-slide" class="carousel slide auto panel-body" style="height: 100%;">
@@ -90,56 +39,52 @@
                   <li class="" data-slide-to="1" data-target="#c-slide"></li>
                   <li class="" data-slide-to="2" data-target="#c-slide"></li>
                 </ol>
-                <div class="carousel-inner" style="width: 100%; height: auto;">
-                  <div class="item text-center active">
-                  	<span>
-                  		<a href="#">
-                  			<img src="img/slide1.jpg" style="width: 33%; height: 100%;">
-                  		</a>
+                
+                <div class="carousel-inner" style="width: 100%; height: 100%;">
+                  <div class="item text-center active" > 
+                 	 <div style="height: 150px;">                 	
+	                 	<h3>step1. 농가(대표or직원) 가입</h3>
+	                 	<h3>step2. 농가로 로그인</h3>
+	                    <small class="">Based on Bootstrap 3</small> 
+	                   </div>            
+                  	<span>                  		
+                  		<img src="img/slide1.jpg" style="width: 33%; height: auto;">                  		
                   	</span>
-                  	<span>
-                  		<a href="#">
-                  			<img src="img/slide3.jpg" style="width: 33%; height: 100%;">
-                  		</a>
+                  	<span>                 		
+                  		<img src="img/slide3.jpg" style="width: 33%; height: auto;">                  		
                   	</span>
-                  	<span>
-                  		<a href="#">
-                  			<img src="img/slide2.jpg" style="width: 33%; height: 100%;">
-                  		</a>
-                  	</span>
-                  </div>
-                  <div class="item text-center">
-                    <span>
-                  		<a href="#">
-                  			<img src="img/compa1.jpg" style="width: 33%; height: 100%;">
-                  		</a>
-                  	</span>
-                  	<span>
-                  		<a href="#">
-                  			<img src="img/compa2.jpg" style="width: 33%; height: 100%;">
-                  		</a>
-                  	</span>
-                  	<span>
-                  		<a href="#">
-                  			<img src="img/compa3.jpg" style="width: 33%; height: 100%;">
-                  		</a>
+                  	<span>               
+                  		<img src="img/slide2.jpg" style="width: 33%; height: auto;">                  		
                   	</span>
                   </div>
                   <div class="item text-center">
-                    <span>
-                  		<a href="#">
-                  			<img src="img/agen1.jpg" style="width: 33%; height: 100%;">
-                  		</a>
+                  <div style="height: 150px;">
+                  	<h3>Massive UI Elements</h3>
+                    <small class="">Fully Responsive</small>
+                    </div>
+                    <span>                  		
+                  		<img src="img/compa1.jpg" style="width: 33%; height: auto;">                  		
+                  	</span>
+                  	<span>                  		
+                  		<img src="img/compa2.jpg" style="width: 33%; height: auto;">                  		
+                  	</span>
+                  	<span>                  		
+                  		<img src="img/compa3.jpg" style="width: 33%; height: auto;">                  		
+                  	</span>
+                  </div>
+                  <div class="item text-center">
+                  <div style="height: 150px;">
+                  	<h3>Well Documentation</h3>
+                    <small class="">Easy to Use</small>
+                    </div>
+                    <span>                  		
+                  		<img src="img/agen1.jpg" style="width: 33%; height: auto;">                  	
                   	</span>
                   	<span>
-                  		<a href="#">
-                  			<img src="img/agen2.jpg" style="width: 33%; height: 100%;">
-                  		</a>
+						<img src="img/agen2.jpg" style="width: 33%; height: auto;">                  		
                   	</span>
-                  	<span>
-                  		<a href="#">
-                  			<img src="img/agen3.jpg" style="width: 33%; height: 100%;">
-                  		</a>
+                  	<span>                  		
+                  		<img src="img/agen3.jpg" style="width: 33%; height: auto;">                  		
                   	</span>
                   </div>
                 </div>
@@ -151,8 +96,7 @@
                               </a>
               </div>
           </div>
-        </div>
-
+    	</div>
 
         <!-- Today status end -->
         <div class="row">
@@ -162,9 +106,9 @@
               <div class="panel-heading">
                 <h2><i class="fa fa-flag-o red"></i><strong>대여장비 현황</strong></h2>
                 <div class="panel-actions">
-                  <a href="index.html#" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
-                  <a href="index.html#" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
-                  <a href="index.html#" class="btn-close"><i class="fa fa-times"></i></a>
+                  <a href="${pageContext.request.contextPath }/home" class="btn-setting"><i class="fa fa-rotate-right"></i></a>
+                  <a href="${pageContext.request.contextPath }/home" class="btn-minimize"><i class="fa fa-chevron-up"></i></a>
+                  <a href="${pageContext.request.contextPath }/home" class="btn-close"><i class="fa fa-times"></i></a>
                 </div>
               </div>
               <div class="panel-body" style="height: 385px; padding-top: 0">
@@ -306,236 +250,8 @@
               </li>
             </ul>
           </div>
-
         </div>
-
-
-
         <!-- statics end -->
-		<!-- project team & activity start -->
-        <div class="row">
-          <div class="col-md-4 portlets">
-            <!-- Widget -->
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <div class="pull-left">Message</div>
-                <div class="widget-icons pull-right">
-                  <a href="#" class="wminimize"><i class="fa fa-chevron-up"></i></a>
-                  <a href="#" class="wclose"><i class="fa fa-times"></i></a>
-                </div>
-                <div class="clearfix"></div>
-              </div>
-
-              <div class="panel-body">
-                <!-- Widget content -->
-                <div class="padd sscroll">
-
-                  <ul class="chats">
-
-                    <!-- Chat by us. Use the class "by-me". -->
-                    <li class="by-me">
-                      <!-- Use the class "pull-left" in avatar -->
-                      <div class="avatar pull-left">
-                        <img src="img/user.jpg" alt="" />
-                      </div>
-
-                      <div class="chat-content">
-                        <!-- In meta area, first include "name" and then "time" -->
-                        <div class="chat-meta">John Smith <span class="pull-right">3 hours ago</span></div>
-                        Vivamus diam elit diam, consectetur dapibus adipiscing elit.
-                        <div class="clearfix"></div>
-                      </div>
-                    </li>
-
-                    <!-- Chat by other. Use the class "by-other". -->
-                    <li class="by-other">
-                      <!-- Use the class "pull-right" in avatar -->
-                      <div class="avatar pull-right">
-                        <img src="img/user22.png" alt="" />
-                      </div>
-
-                      <div class="chat-content">
-                        <!-- In the chat meta, first include "time" then "name" -->
-                        <div class="chat-meta">3 hours ago <span class="pull-right">Jenifer Smith</span></div>
-                        Vivamus diam elit diam, consectetur fconsectetur dapibus adipiscing elit.
-                        <div class="clearfix"></div>
-                      </div>
-                    </li>
-
-                    <li class="by-me">
-                      <div class="avatar pull-left">
-                        <img src="img/user.jpg" alt="" />
-                      </div>
-
-                      <div class="chat-content">
-                        <div class="chat-meta">John Smith <span class="pull-right">4 hours ago</span></div>
-                        Vivamus diam elit diam, consectetur fermentum sed dapibus eget, Vivamus consectetur dapibus adipiscing elit.
-                        <div class="clearfix"></div>
-                      </div>
-                    </li>
-
-                    <li class="by-other">
-                      <!-- Use the class "pull-right" in avatar -->
-                      <div class="avatar pull-right">
-                        <img src="img/user22.png" alt="" />
-                      </div>
-
-                      <div class="chat-content">
-                        <!-- In the chat meta, first include "time" then "name" -->
-                        <div class="chat-meta">3 hours ago <span class="pull-right">Jenifer Smith</span></div>
-                        Vivamus diam elit diam, consectetur fermentum sed dapibus eget, Vivamus consectetur dapibus adipiscing elit.
-                        <div class="clearfix"></div>
-                      </div>
-                    </li>
-
-                  </ul>
-
-                </div>
-                <!-- Widget footer -->
-                <div class="widget-foot">
-
-                  <form class="form-inline">
-                    <div class="form-group">
-                      <input type="text" class="form-control" placeholder="Type your message here...">
-                    </div>
-                    <button type="submit" class="btn btn-info">Send</button>
-                  </form>
-
-
-                </div>
-              </div>
-
-
-            </div>
-          </div>
-
-          <div class="col-lg-8">
-            <!--Project Activity start-->
-            <section class="panel">
-              <div class="panel-body progress-panel">
-                <div class="row">
-                  <div class="col-lg-8 task-progress pull-left">
-                    <h1>To Do Everyday</h1>
-                  </div>
-                  <div class="col-lg-4">
-                    <span class="profile-ava pull-right">
-                                        <img alt="" class="simple" src="img/avatar1_small.jpg">
-                                        Jenifer smith
-                                </span>
-                  </div>
-                </div>
-              </div>
-              <table class="table table-hover personal-task">
-                <tbody>
-                  <tr>
-                    <td>Today</td>
-                    <td>
-                      web design
-                    </td>
-                    <td>
-                      <span class="badge bg-important">Upload</span>
-                    </td>
-                    <td>
-                      <span class="profile-ava">
-                                        <img alt="" class="simple" src="img/avatar1_small.jpg">
-                                    </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Yesterday</td>
-                    <td>
-                      Project Design Task
-                    </td>
-                    <td>
-                      <span class="badge bg-success">Task</span>
-                    </td>
-                    <td>
-                      <div id="work-progress2"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>21-10-14</td>
-                    <td>
-                      Generate Invoice
-                    </td>
-                    <td>
-                      <span class="badge bg-success">Task</span>
-                    </td>
-                    <td>
-                      <div id="work-progress3"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>22-10-14</td>
-                    <td>
-                      Project Testing
-                    </td>
-                    <td>
-                      <span class="badge bg-primary">To-Do</span>
-                    </td>
-                    <td>
-                      <span class="profile-ava">
-                                        <img alt="" class="simple" src="img/avatar1_small.jpg">
-                                      </span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>24-10-14</td>
-                    <td>
-                      Project Release Date
-                    </td>
-                    <td>
-                      <span class="badge bg-info">Milestone</span>
-                    </td>
-                    <td>
-                      <div id="work-progress4"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>28-10-14</td>
-                    <td>
-                      Project Release Date
-                    </td>
-                    <td>
-                      <span class="badge bg-primary">To-Do</span>
-                    </td>
-                    <td>
-                      <div id="work-progress5"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Last week</td>
-                    <td>
-                      Project Release Date
-                    </td>
-                    <td>
-                      <span class="badge bg-primary">To-Do</span>
-                    </td>
-                    <td>
-                      <div id="work-progress1"></div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>last month</td>
-                    <td>
-                      Project Release Date
-                    </td>
-                    <td>
-                      <span class="badge bg-success">To-Do</span>
-                    </td>
-                    <td>
-                      <span class="profile-ava">
-                                        <img alt="" class="simple" src="img/avatar1_small.jpg">
-                                      </span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </section>
-            <!--Project Activity end-->
-          </div>
-        </div><br><br>
-
         <div class="row">
           <div class="col-md-6 portlets">
             <div class="panel panel-default">

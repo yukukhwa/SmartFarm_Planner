@@ -12,18 +12,18 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class WrEtcSpendPayDao {
 	private static final Logger LOGGER = LoggerFactory.getLogger(WrEtcSpendPayService.class);
-	@Autowired private SqlSessionTemplate session;
+	@Autowired private SqlSessionTemplate sqlsession;
 	private final String nameSpace ="com.spam.sfplanner.actresult.WrEtcSpendPayMapper.";
-		
-	//기타지출비 결과 전체리스트
-	public List<WrEtcSpendPay> listSelectWrEtcSpendPay(Map<String, Object> map) {
-		LOGGER.info("listSelectWrEtcSpendPay 호출");
-		return session.selectList(nameSpace+"listSelectWrEtcSpendPay", map);
-	}
 	
 	//기타지출비 결과 등록
 	public void insertWrEtcSpendPay(WrEtcSpendPay wrEtcSpendPay) {
 		LOGGER.info("insertWrEtcSpendPay 호출");
-		session.insert(nameSpace+"insertWrEtcSpendPay",wrEtcSpendPay);
+		sqlsession.insert(nameSpace+"insertWrEtcSpendPay",wrEtcSpendPay);
 	}
+	
+	//기타지출비 결과 전체리스트
+	public List<WrEtcSpendPay> listSelectWrEtcSpendPay(Map<String, Object> map) {
+		LOGGER.info("listSelectWrEtcSpendPay 호출");
+		return sqlsession.selectList(nameSpace+"listSelectWrEtcSpendPay", map);
+	}	
 }

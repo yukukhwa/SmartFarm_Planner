@@ -10,7 +10,8 @@ public class WrEtcSpendPay {
 	private WoEtcSpendPay woEtcSpendPay; //예상 기타지출비용 넘버 외래키 기능 위한 객체
 	private CategoryEtcSpendPay categoryEtcSpendPay; //기타지출비용 카테고리 넘버 외래키 기능 위한 객체
 	private double wrEtcspendpayRealcost; //작업단계결과별 실제 기타지출비
-	private String wrEtcspendpayDate; //작업단계별 기타지출비 등록일
+	private String wrEtcspendpayDate; //작업단계별 기타지출비 지출일
+	
 	public int getWrEtcspendpayNumber() {
 		return wrEtcspendpayNumber;
 	}

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class WrNeedEquipController {
@@ -18,10 +19,10 @@ public class WrNeedEquipController {
 	
 	//필요장비결과 전체리스트 화면으로 포워드
 	@RequestMapping(value="/listWrNeedEquip", method=RequestMethod.GET)
-	public String listSelectWrNeedEquip(Model model) {			
+	public String listSelectWrNeedEquip(Model model, @RequestParam(value="wrNumber") int wrNumber) {			
 		LOGGER.info("listSelectWrNeedEquip get 호출");
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("wrNumber", 5); //테스트 : 작업단계넘버5
+		map.put("wrNumber", wrNumber);
 		model.addAttribute("wrNeedEquipList", wrNeedEquipService.listSelectWrNeedEquip(map));
 		return "actresult/wr_needrequip/listWrNeedEquip";
 	}	

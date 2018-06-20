@@ -15,6 +15,12 @@ public class WrNeRentPayDao {
 	@Autowired private SqlSessionTemplate sqlsession;
 	private final String nameSpace = "com.spam.sfplanner.actresult.WrNeRentPayMapper.";
 	
+	//필요장비 결과 등록
+	public void insertWrNeRentPay(WrNeRentPay wrNeRentPay) {
+		LOGGER.info("insertWrNeRentPay 호출");
+		sqlsession.insert(nameSpace+"insertWrNeRentPay",wrNeRentPay);
+	}
+	
 	// 대여비결과 전체리스트
 	public List<WrNeRentPay> listselectWrNeRentPay(Map<String, Object> map){
 		LOGGER.info("listselectWrNeRentPay 호출");

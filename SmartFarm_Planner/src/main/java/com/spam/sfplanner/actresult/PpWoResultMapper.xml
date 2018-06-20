@@ -27,6 +27,9 @@
 <!-- 작업단계결과 입력  -->
 <insert id="insertWorkResult"
 		parameterType="com.spam.sfplanner.actresult.PpWoResult">
+		<selectKey resultType="int" keyColumn="wr_number" keyProperty="wrNumber" order="AFTER" >
+			SELECT @@IDENTITY
+		</selectKey>
 	INSERT INTO sp_wr(
 		pp_resultlist_number
 		, pp_work_number

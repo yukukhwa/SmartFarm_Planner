@@ -15,6 +15,12 @@ public class WrInsurancePayDao {
 	@Autowired private SqlSessionTemplate sqlsession;
 	private final String nameSpace ="com.spam.sfplanner.actresult.WrInsurancePayMapper.";
 	
+	//보험비 결과 등록
+	public void insertWrInsurancePay(WrInsurancePay wrInsurancePay) {
+		LOGGER.info("insertWrInsurancePay 호출");
+		sqlsession.insert(nameSpace+"insertWrInsurancePay",wrInsurancePay);
+	}
+	
 	//보험비 결과 전체리스트
 	public List<WrInsurancePay> listSelectWrInsurancePay(Map<String, Object> map) {
 		LOGGER.info("listSelectWrInsurancePay 호출");

@@ -24,18 +24,28 @@
 						<th>필요장비결과넘버</th>
 						<th>대여비</th>
 						<th>대여비지불일</th>	
-						<th>실행할때보유상태</th>						
+						<th>실행할때보유상태</th>	
+						<th>대여가능장비넘버</th>	
+						<th>대여가능장비 대당사용료</th>
+						<th>대여가능장비 단위시간(일)</th>	
+						<th>대여가능장비 모델명</th>				
 					</tr>					
 					</thead>
 					<tbody>
-						<c:forEach var="list" items="${list}">
+						<c:forEach var="wrNeRentPayList" items="${wrNeRentPayList}">
 							<tr>
-							<td>${list.neRentpayNumber }</td>
-							<td>${list.wrNeedEquip.wrNeedequipNumber}</td>
-							<td>${list.woNeRentPay.neERentpayNumber }</td>
-							<td>${list.neRentpayCost }</td>
-							<td>${list.neRentpayDate }</td>
-							<td>${list.wrNeedEquip.wrNeedequipState }</td>
+							<td>${wrNeRentPayList.neRentpayNumber }</td>
+							<td>${wrNeRentPayList.wrNeedEquip.wrNeedequipNumber}</td>
+							<td>${wrNeRentPayList.woNeRentPay.neERentpayNumber }</td>
+							<td>${wrNeRentPayList.neRentpayCost }</td>
+							<td>${wrNeRentPayList.neRentpayDate }</td>
+							<td>${wrNeRentPayList.wrNeedEquip.wrNeedequipState }</td>
+							<td>${wrNeRentPayList.neRentpayDate }</td>
+							<td>${wrNeRentPayList.wrNeedEquip.wrNeedequipState }</td>
+							<td>${wrNeRentPayList.companyRentEquip.cRentNumber }</td>
+							<td>${wrNeRentPayList.companyRentEquip.cRentCost }</td>
+							<td>${wrNeRentPayList.companyRentEquip.cRentDate }</td>
+							<td>${wrNeRentPayList.companyRentEquip.cRentModelname }</td>
 							</tr>
 						</c:forEach>
 					</tbody>				

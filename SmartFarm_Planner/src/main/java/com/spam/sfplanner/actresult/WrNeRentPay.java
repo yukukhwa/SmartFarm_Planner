@@ -1,6 +1,8 @@
 //[유국화]
 package com.spam.sfplanner.actresult;
 import java.sql.Date;
+
+import com.spam.sfplanner.plan.CompanyRentEquip;
 import com.spam.sfplanner.plan.WoNeRentPay;
 
 //필요장비 결과별 대여비 결과 db
@@ -10,6 +12,7 @@ public class WrNeRentPay {
 	private WoNeRentPay woNeRentPay; //예상 대여비 넘버 외래키 기능 위한 객체
 	private double neRentpayCost; //대여비
 	private Date neRentpayDate; //대여비지불일
+	private CompanyRentEquip companyRentEquip; //대여비결과별 대여가능장비 카테고리 넘버 외래키 기능 위한 객체
 	
 	public int getNeRentpayNumber() {
 		return neRentpayNumber;
@@ -41,9 +44,16 @@ public class WrNeRentPay {
 	public void setNeRentpayDate(Date neRentpayDate) {
 		this.neRentpayDate = neRentpayDate;
 	}
+	public CompanyRentEquip getCompanyRentEquip() {
+		return companyRentEquip;
+	}
+	public void setCompanyRentEquip(CompanyRentEquip companyRentEquip) {
+		this.companyRentEquip = companyRentEquip;
+	}
 	@Override
 	public String toString() {
 		return "WrNeRentPay [neRentpayNumber=" + neRentpayNumber + ", wrNeedEquip=" + wrNeedEquip + ", woNeRentPay="
-				+ woNeRentPay + ", neRentpayCost=" + neRentpayCost + ", neRentpayDate=" + neRentpayDate + "]";
+				+ woNeRentPay + ", neRentpayCost=" + neRentpayCost + ", neRentpayDate=" + neRentpayDate
+				+ ", companyRentEquip=" + companyRentEquip + "]";
 	}	
 }

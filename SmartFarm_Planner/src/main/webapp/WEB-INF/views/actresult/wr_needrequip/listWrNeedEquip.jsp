@@ -25,7 +25,9 @@
 						<th>총작업면적</th>
 						<th>이미작업한면적</th>
 						<th>예상필요장비넘버</th>
-						<th>계획할때보유상태</th>							
+						<th>계획할때보유상태</th>
+						<th>장비종류카테고리넘버</th>
+						<th>장비종류명</th>							
 					</tr>					
 					</thead>
 					<tbody>
@@ -38,6 +40,8 @@
 							<td>${wrNeedEquipList.ppWoResult.wrReworkarea }</td>
 							<td>${wrNeedEquipList.woNeedEquip.eNeedequipNumber }</td>
 							<td>${wrNeedEquipList.woNeedEquip.eNeedequipState }</td>
+							<td>${wrNeedEquipList.categoryEquip.equipNumber }</td>
+							<td>${wrNeedEquipList.categoryEquip.equipName }</td>
 							</tr>
 						</c:forEach>
 					</tbody>				
