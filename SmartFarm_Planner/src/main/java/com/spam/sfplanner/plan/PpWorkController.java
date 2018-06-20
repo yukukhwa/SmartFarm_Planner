@@ -1,6 +1,8 @@
 /*[김재희]*/
 package com.spam.sfplanner.plan;
 
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +48,7 @@ public class PpWorkController {
 	public String listSelectPpWork(Model model, int ppNumber) {
 		model.addAttribute("list",ppWorkService.listSelectPpWork(ppNumber));
 		model.addAttribute("ppNumber", ppNumber);
-		return "plan/pp_work/listWorkPlan";
+		return "plan/pp_work/listWorkPlan ";
 	}
 	
 	@RequestMapping(value="/addWorkPlan", method=RequestMethod.POST)
@@ -58,7 +60,8 @@ public class PpWorkController {
 	
 	@RequestMapping(value="/addWorkPlan", method=RequestMethod.GET)
 	public String insertPpWork(Model model) {
-		model.addAttribute("productionPlanList", productionPlanService.listSelectProductionPlan());
+		Map<String, Object> map = null;
+		model.addAttribute("productionPlanList", ppWorkService.insertPpWork(map));
 		return "plan/pp_work/addWorkPlan";
 	}
 }

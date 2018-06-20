@@ -39,9 +39,10 @@
 	    					</label>
 	    					<form id="addWorkPlanForm" method="post" action="${pageContext.request.contextPath}/addWorkPlan">
 	    						<div>
-	    							농가 통합 넘버 : <input type="hidden" name="farm.fNumber" value="${loginMember.corpNumber}">
+	    							<input type="hidden" name="farm.fNumber" value="${loginMember.corpNumber}">
 	    						</div>
 	    						<div>
+	    							<label>생산계획서 넘버 등록 : </label>
 	    							<select name="productionPlan.ppNumber">
 	    								<c:forEach var="productionPlan" items="${productionPlanList}">
 	    									<option value="${productionPlan.ppNumber}">${productionPlan.ppNumber}</option>

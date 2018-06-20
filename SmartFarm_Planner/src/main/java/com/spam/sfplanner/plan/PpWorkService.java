@@ -18,6 +18,7 @@ public class PpWorkService {
 	@Autowired WoMaterialsPayDao woMaterialsPayDao;
 	@Autowired WoInsurancePayDao woInsurancePayDao;
 	@Autowired WoHumanPayDao woHumanPayDao;
+	@Autowired ProductionPlanDao productionPlanDao;
 	
 	private final static Logger LOGGER = LoggerFactory.getLogger(PpWorkService.class);
 	
@@ -52,5 +53,9 @@ public class PpWorkService {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ppNumber", ppNumber);
 		return ppWorkDao.listSelectPpWork(map);
+	}
+	
+	public List<ProductionPlan> insertPpWork(Map<String, Object> map){
+		return productionPlanDao.listSelectProductionPlan(map);
 	}
 }

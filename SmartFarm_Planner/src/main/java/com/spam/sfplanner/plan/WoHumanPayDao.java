@@ -31,7 +31,7 @@ public class WoHumanPayDao {
 	}
 	
 	/*예상 인건비에 등록된 정보들을 등록처리하는 메서드*/
-	public void insertPpWork(WoHumanPay woHumanPay) {
+	public void insertWoHumanPay(WoHumanPay woHumanPay) {
 		sqlSession.insert(NAMESPACE+"insertWoHumanPay", woHumanPay);
 	}
 	

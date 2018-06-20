@@ -9,7 +9,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		// 주소 api쓰기
+		// 주소 api쓰기 농가 등록에서
 		$(document).on("click","#searchFarmAddress",function goPopup(){
 			// 주소검색을 수행할 팝업 페이지를 호출합니다.
 			// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
@@ -19,7 +19,7 @@
 		    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
 		})
 		
-
+		// 농가회원 등록에서 회원주소부분에 주소 api 
 		$('#searchFarmMemberAddress').click(function goPopup(){
 			// 주소검색을 수행할 팝업 페이지를 호출합니다.
 			// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
@@ -161,8 +161,16 @@
      <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
-			<h3>농가회원가입하기</h3>
-			<div>
+    		<div style="margin: 5% 0 7% 18%;">
+    			<h2>
+    				<b>
+    					<i class="icon_profile">
+    						농가회원가입하기
+    					</i>
+    				</b>
+    			</h2>
+    		</div>
+			<div style="text-align: ">
 				<b>회원가입폼 선택</b><br>
 				<input type="radio" name="formCheck" value="exponent" checked="checked"/> 농가대표
 				<input type="radio" name="formCheck" value="staff" /> 농가직원

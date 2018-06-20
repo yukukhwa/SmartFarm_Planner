@@ -1,6 +1,8 @@
 /*[김재희]*/
 package com.spam.sfplanner.plan;
 
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,15 +38,13 @@ public class WoMaterialsPayController {
 	
 	/*하나의 예상원자재비의 정보들을 가져와 출력*/
 	@RequestMapping(value="updateMaterialsPay", method=RequestMethod.GET)
-	public String oneSelectWoMaterialsPay(Model model
-									, int eMaterialspayNumber
-									, int ppNumber) {
+	public String oneSelectWoMaterialsPay(Model model, int eMaterialspayNumber, int ppNumber) {
 		System.out.println("eMaterialspayNumber oneselect ==>"+eMaterialspayNumber);
 		System.out.println("Materials ppNumber==> "+ppNumber);
-		model.addAttribute("ppNumber", ppNumber);
-		model.addAttribute("woMaterialsPay", woMaterialsPayService.oneSelectWoMaterialsPay(eMaterialspayNumber));
-		model.addAttribute("categoryMaterialsList", categoryMaterialsService.listSelectCategoryMaterials());
-		model.addAttribute("ppWorkList", ppWorkService.listSelectPpWork(ppNumber));
+		Map<String, Object> map = woMaterialsPayService.oneSelectWoMaterialsPay(eMaterialspayNumber, ppNumber);
+		model.addAttribute("woMaterialsPay", map.get("woMaterialsPay"));
+		model.addAttribute("categoryMaterialsList", map.get("categoryMaterialsList"));
+		model.addAttribute("ppWorkList", map.get("ppWorkList"));
 		return "plan/wo_materials_pay/updateMaterialsPay";
 	}
 	
@@ -78,9 +78,9 @@ public class WoMaterialsPayController {
 	/*작업단계를 매개변수로 가져와 원자재 카테고리의 리스트를 출력하고 예상원자재비등록 화면으로 포워드*/
 	@RequestMapping(value="addMaterialsPay", method=RequestMethod.GET)
 	public String insertWoMaterialsPay(Model model, int ppNumber) {
-		model.addAttribute("ppNumber", ppNumber);
-		model.addAttribute("ppWorkList", ppWorkService.listSelectPpWork(ppNumber));
-		model.addAttribute("categoryMaterials", categoryMaterialsService.listSelectCategoryMaterials());
+		Map<String, Object> map = woMaterialsPayService.insertWoMaterialsPay(ppNumber);
+		model.addAttribute("ppWorkList", map.get("ppWorkList"));
+		model.addAttribute("categoryMaterials", map.get("categoryMaterials"));
 		return "plan/wo_materials_pay/addMaterialsPay";
 	}
 }

@@ -14,6 +14,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class CategoryMaterialsService {
 	@Autowired CategoryMaterialsDao categoryMaterialsDao;
+	@Autowired CategoryThemeDao categoryThemeDao;
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(CategoryMaterialsService.class);
 	
 	public void deleteCategoryMaterials(int materialsNumber) {
@@ -46,7 +48,13 @@ public class CategoryMaterialsService {
 		return categoryMaterialsDao.listSelectCategoryMaterials();
 	}
 	
+	// 등록처리
 	public void insertCategoryMaterials(CategoryMaterials categoryMaterials) {
 		categoryMaterialsDao.insertCategoryMaterials(categoryMaterials);
+	}
+	
+	// 등록화면
+	public List<CategoryTheme> insertCategoryMaterials() {
+		return categoryThemeDao.listSelectCategoryTheme();
 	}
 }

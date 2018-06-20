@@ -36,32 +36,46 @@
     <section id="main-content">
     	<section class="wrapper">
 			<div>
-				<h3>농가 리스트</h3>
-				<div>
-					<form id="searchFarmForm" method="post" action="${pageContext.request.contextPath}/listFarm">
-						<input type="text" name="fName" id="fName">
-						<button id="searchFarm">농가 검색</button>
-					</form>
+				<div style="margin: 5% 0 7% 18%;">
+					<h2>
+						<b>
+							<i class="fa fa-home"></i>
+							농가 리스트
+						</b>
+					</h2>
 				</div>
-				<table class="table">
-					<thead>
-						<tr>
-							<th>농가 이름</th>
-						</tr>
-					</thead>
-					<c:forEach var="farm" items="${list}">
-					<input type="hidden" name="fNumber" value="${farm.fNumber}">
-					<tbody>
-						<tr>
-							<td>
-								<a href="${pageContext.request.contextPath}/oneFarm?fName=${farm.fName}">${farm.fName}</a>
-							</td>
-						</tr>
-					</tbody>
-					</c:forEach>
-				</table>
-				<button id="goHome">메인으로 가기</button>
-				<a href="${pageContext.request.contextPath}/oneFarmMember?fMemberId=${loginMember.id}">내 정보 보기</a>
+				<div style="margin-right: 17%;">
+					<form id="searchFarmForm" method="post" action="${pageContext.request.contextPath}/listFarm" style="float: right;">
+						<input type="text" name="fName" id="fName" class="form-control" style="width: 60%; float: left;">&nbsp;
+						<button id="searchFarm" class="btn btn-primary">농가검색</button>
+					</form>
+				</div> <br><br>
+				<div style="text-align: center;">
+					<table class="table table-striped table-advance table-hover" style="width: 65%; margin: auto;" >
+						<thead>
+							<tr>
+								<th style="text-align: center; padding: 15px 0px 15px 0px;">
+									<h4><b><i class="fa fa-home"></i>농가 이름</b></h4>
+								</th>
+							</tr>
+						</thead>
+						<c:forEach var="farm" items="${list}">
+						<input type="hidden" name="fNumber" value="${farm.fNumber}">
+						<tbody>
+							<tr>
+								<td style="padding: 10px 0px 10px 0px;">
+									<a href="${pageContext.request.contextPath}/oneFarm?fName=${farm.fName}">${farm.fName}</a>
+								</td>
+							</tr>
+						</tbody>
+						</c:forEach>
+					</table> <br>
+					<button id="goHome" class="btn btn-primary" style="float: right; margin: 2% 18% 8% 0%;">메인으로 가기</button> 
+				</div>
+				<div>
+					
+				</div><br><br>
+				<%-- <a href="${pageContext.request.contextPath}/oneFarmMember?fMemberId=${loginMember.id}">내 정보 보기</a> --%>
 			</div>
 		</section>
 	</section>

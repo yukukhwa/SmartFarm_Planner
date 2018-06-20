@@ -37,7 +37,7 @@ public class CategoryMaterialsController {
 	@RequestMapping(value="/updateMaterialsCate", method=RequestMethod.GET)
 	public String updateCategoryMaterials(Model model, String materialsName) {
 		//System.out.println("materialsName===> "+materialsName);
-		model.addAttribute("categoryMaterials",categoryMaterialsService.oneSelectCategoryMaterials(materialsName));
+		model.addAttribute("categoryMaterials", categoryMaterialsService.oneSelectCategoryMaterials(materialsName));
 		return "category/materials/updateMaterialsCate";
 	}
 	
@@ -70,7 +70,7 @@ public class CategoryMaterialsController {
 	/*addMaterialsCate로 겟방식으로 요철받을때 addMaterialsCate view로 포워드*/
 	@RequestMapping(value="/addMaterialsCate", method=RequestMethod.GET)
 	public String insertCategoryMaterials(Model model) {
-		model.addAttribute("categoryThemeList", categoryThemeService.listSelectCategoryTheme());
+		model.addAttribute("categoryThemeList", categoryMaterialsService.insertCategoryMaterials());
 		//System.out.println("categoryThemeDb===> "+categoryThemeService.listSelectCategoryTheme());
 		return "category/materials/addMaterialsCate";
 	}
