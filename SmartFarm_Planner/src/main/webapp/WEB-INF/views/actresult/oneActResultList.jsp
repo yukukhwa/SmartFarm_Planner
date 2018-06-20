@@ -107,13 +107,13 @@
 									보험비
 									<table class="table table-striped table-advance table-hover">
 										<thead>
-										<tr>
-											<th>보험명</th>
-											<th>예상 총보험비</th>
-											<th>예상 보험비(월)</th>
-											<th>실제 납부한 보험비</th>
-											<th>실제 납부일</th>	
-										</tr>					
+											<tr>
+												<th>보험명</th>
+												<th>예상 총보험비</th>
+												<th>예상 보험비(월)</th>
+												<th>실제 납부한 보험비</th>
+												<th>실제 납부일</th>
+											</tr>
 										</thead>
 										<tbody>
 											<c:forEach var="wrInsurancePayList" items="${woResultList.wrInsurancePayList}">
@@ -125,18 +125,18 @@
 													<td>${wrInsurancePayList.wrInsurancepayDate}</td>
 												</tr>
 											</c:forEach>
-										</tbody>				
+										</tbody>
 									</table>
 									기타지출비
 									<table class="table table-striped table-advance table-hover">
 										<thead>
-										<tr>
-											<th>기타지출명</th>
-											<th>예상 지출비</th>
-											<th>예상 지출일</th>
-											<th>실제 지출비</th>
-											<th>실제 지출일</th>	
-										</tr>					
+											<tr>
+												<th>기타지출명</th>
+												<th>예상 지출비</th>
+												<th>예상 지출일</th>
+												<th>실제 지출비</th>
+												<th>실제 지출일</th>
+											</tr>
 										</thead>
 										<tbody>
 											<c:forEach var="wrEtcSpendPayList" items="${woResultList.wrEtcSpendPayList}">
@@ -148,20 +148,20 @@
 													<td>${wrEtcSpendPayList.wrEtcspendpayDate}</td>
 												</tr>
 											</c:forEach>
-										</tbody>				
+										</tbody>
 									</table>
 									필요장비
 									<table class="table table-striped table-advance table-hover">
 										<thead>
-										<tr>
-											<th>장비명</th>
-											<th>계획할때 보유상태</th>
-											<th>실행할때 보유상태</th>
-											<th>대당 사용료</th>
-											<th>단위 시간(일)</th>
-											<th>대여비</th>
-											<th>대여비 지불일</th>
-										</tr>					
+											<tr>
+												<th>장비명</th>
+												<th>계획할때 보유상태</th>
+												<th>실행할때 보유상태</th>
+												<th>대당 사용료</th>
+												<th>단위 시간(일)</th>
+												<th>대여비</th>
+												<th>대여비 지불일</th>
+											</tr>
 										</thead>
 										<tbody>
 											<c:forEach var="wrNeedEquipList" items="${woResultList.wrNeedEquipList}">
@@ -175,7 +175,7 @@
 													<td>${wrNeedEquipList.wrNeRentPayList[0].neRentpayDate}</td>
 												</tr>
 											</c:forEach>
-										</tbody>				
+										</tbody>
 									</table>
 									메모
 								</div>
