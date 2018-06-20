@@ -24,10 +24,23 @@ public class ActResultController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ActResultController.class);
 	
+	
+	/*
+	 * 실행결과리스트 상세보기 보여주는 화면 매핑
+	 */
+	@RequestMapping(value="/oneActResultList", method = RequestMethod.GET)
+	public String oneSelectActResult (Model model
+			, @RequestParam(value="ppResultlistNumber") int ppResultlistNumber) {
+		model.addAttribute("actResult", actResultService.oneSelectActResult(ppResultlistNumber));
+		return "actresult/oneActResultList";
+	}
 	/*
 	 * 자신의 농가 실행결과 리스트를 보여주는 화면 매핑
+	 * 전체 리스트와 동일하게 사용하였지만,
+	 * session에 있는 회사넘버를 가져와 서비스에 있는 listSelectActResult 매서드에 농가넘버매개변수를 넣어
+	 * 자신의 농가 실행결과리스트만 호출하게 하였다.
 	 */
-	@RequestMapping(value="/listSelectMyActResult", method = RequestMethod.GET)
+	@RequestMapping(value="/listMyActResultList", method = RequestMethod.GET)
 	public String listSelectMyActResult (Model model, HttpSession session
 			, @RequestParam(value="currentPage",defaultValue="1") int currentPage
 			, @RequestParam(value="pagePerRow",defaultValue="5") int pagePerRow
@@ -42,23 +55,20 @@ public class ActResultController {
 		model.addAttribute("totalPage", map.get("totalPage"));
 		model.addAttribute("pagePerRow", map.get("pagePerRow"));
 		model.addAttribute("pageList", map.get("pageList"));
-		return "actresult/listActResultList";
-	}
-	/*
-	 * 실행결과리스트 상세보기 보여주는 화면 매핑
-	 */
-	@RequestMapping(value="/oneSelectActResult", method = RequestMethod.GET)
-	public String oneSelectActResult (Model model
-			, @RequestParam(value="ppResultlistNumber") int ppResultlistNumber) {
-		model.addAttribute("actResult", actResultService.oneSelectActResult(ppResultlistNumber));
-		return "actresult/oneActResultList";
+		model.addAttribute("searchOption", searchOption);
+		model.addAttribute("searchKeyword", searchKeyword);
+		model.addAttribute("startDate", startDate);
+		model.addAttribute("endDate", endDate);
+		return "actresult/listMyActResultList";
 	}
 	/*
 	 * 실행결과리스트 전체 보여주는 화면 매핑
-	 * 실행결과리스트 전체를 보여주기 위해서 조건절을 안넣기 위해 0을 매개변수로 하여 실행결과 리스트를 호출한 후 model에 셋팅하였다.
+	 * 페이징을 위한 currentPage, pagePerRow / 검색을 위한 searchOption, searchKeyword, startDate, endDate 를 매개변수로받아
+	 * 실행결과리스트 전체를 보여주기 위해서 fNumber를 0으로 매개변수로 하여 실행결과 리스트를 호출한 후 model에 셋팅하였다.
+	 * 페이징, 검색을 위한 변수는 계속 유지하기 위해 model에 셋팅하였다.
 	 * 그리고 askActResultList.jsp로 포워드하였다.
 	 */
-	@RequestMapping(value="/listSelectActResult", method = RequestMethod.GET)
+	@RequestMapping(value="/listActResultList", method = RequestMethod.GET)
 	public String listSelectActResult (Model model
 			, @RequestParam(value="currentPage", defaultValue="1") int currentPage
 			, @RequestParam(value="pagePerRow", defaultValue="5") int pagePerRow
@@ -72,6 +82,10 @@ public class ActResultController {
 		model.addAttribute("totalPage", map.get("totalPage"));
 		model.addAttribute("pagePerRow", map.get("pagePerRow"));
 		model.addAttribute("pageList", map.get("pageList"));
+		model.addAttribute("searchOption", searchOption);
+		model.addAttribute("searchKeyword", searchKeyword);
+		model.addAttribute("startDate", startDate);
+		model.addAttribute("endDate", endDate);
 		return "actresult/listActResultList";
 	}
 	/*
@@ -80,22 +94,13 @@ public class ActResultController {
 	 * 그리고 choicePlanner.jsp로 포워드하였다.
 	 */
 	@RequestMapping(value="/choicePlanner", method = RequestMethod.GET)
-	public String choicePlanner (HttpSession session, Model model) {
+	public String listSelectPlan (HttpSession session, Model model) {
 		Login login = (Login) session.getAttribute("loginMember");
 		model.addAttribute("plannerList", actResultService.listSelectPlan(login.getCorpNumber()));
 		return "actresult/choicePlanner";
 	}
 	
-	/*
-	 * 실행결과리스트 등록화면에서 리스트가는 매핑
-	 */
-	@RequestMapping(value="/oneSelectActResult", method = RequestMethod.POST)
-	public String oneSelectActResult (ActResult actResult) {
-		
-		return "redirect:/addActResultList";
-	}
-	
-	@RequestMapping(value="/insertActResult", method = RequestMethod.POST)
+	@RequestMapping(value="/addActResultList", method = RequestMethod.POST)
 	public String insertActResult (ActResult actResult, WrHumanPay wrHumanPay) {
 		actResultService.insertActResult(actResult, wrHumanPay);
 		return "redirect:/home";
@@ -103,11 +108,10 @@ public class ActResultController {
 	/*
 	 * 실행결과리스트 등록화면으로 가는 매핑
 	 */
-	@RequestMapping(value="/insertActResult", method = RequestMethod.GET)
+	@RequestMapping(value="/addActResultList", method = RequestMethod.GET)
 	public String insertActResult (Model model
 			, @RequestParam(value="ppNumber") int ppNumber) {
-		model.addAttribute("humanPayList", actResultService.listSelectWoHumanPay());
-		model.addAttribute("ppNumber", ppNumber);
+		model.addAttribute("plannList", actResultService.insertActResult(ppNumber));
 		return "actresult/addActResultList";
 	}
 }

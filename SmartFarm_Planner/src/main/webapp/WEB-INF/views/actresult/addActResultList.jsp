@@ -46,15 +46,15 @@
 				<section class="panel">
 					<form action="${pageContext.request.contextPath}/insertActResult" method="post">
 						<header class="panel-heading">
-							{계획서명}
-							<input type="text" name="productionPlan.ppNumber" value="${ppNumber}">
+							${plannList.titlePlan.ppNamePlanname}
+							<input type="text" name="productionPlan.ppNumber" value="${plannList.ppNumber}">
 							<input type="text" name="farmMember.fMemberId" value="${loginMember.id}">
 							<input type="text" name="farm.fNumber" value="${loginMember.corpNumber}">
 						</header>
 						<div class="panel-body">
-							<c:forEach var="i" begin="0" end="0">
+							<c:forEach var="ppWorkList" items="${plannList.ppWorkList}" varStatus="i">
 								<div class="color">
-									<div class="panel-heading col-lg-12">{작업단계명}</div>
+									<div class="panel-heading col-lg-12">${ppWorkList.ppWorkName}</div>
 									<div class="panel-content" style="display:none">
 										인건비
 										<input type="text" name="ppWoResult.wrNumber">

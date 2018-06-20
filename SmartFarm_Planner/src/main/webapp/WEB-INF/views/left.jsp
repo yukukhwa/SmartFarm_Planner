@@ -10,18 +10,20 @@
 			</li>
 			<li class="active">
 				<a class="" href="${pageContext.request.contextPath}/"><i class="icon_document_alt"></i><span>포트폴리오 가기</span></a>
-			</li>			
-			<li class="sub-menu">
-				<a href="javascript:;" class=""><i class="icon_profile"></i><span>회원가입</span><span class="menu-arrow arrow_carrot-right"></span></a>
-				<ul class="sub">					
-					<li><a class="" href="${pageContext.request.contextPath}/addFarmMember">농가</a></li>
-					<li><a class="" href="${pageContext.request.contextPath}/addCompanyMember">업체</a></li>
-					<li><a class="" href="${pageContext.request.contextPath}/addAgencyMember">관리기관</a></li>					
-				</ul>
 			</li>
-			<li class="sub-menu">
-				<a class="" href="${pageContext.request.contextPath}/login"><i class="icon_key_alt"></i><span>로그인</span></a>				
-			</li>
+			<c:if test="${empty loginMember}">
+				<li class="sub-menu">
+					<a href="javascript:;" class=""><i class="icon_profile"></i><span>회원가입</span><span class="menu-arrow arrow_carrot-right"></span></a>
+					<ul class="sub">					
+						<li><a class="" href="${pageContext.request.contextPath}/addFarmMember">농가</a></li>
+						<li><a class="" href="${pageContext.request.contextPath}/addCompanyMember">업체</a></li>
+						<li><a class="" href="${pageContext.request.contextPath}/addAgencyMember">관리기관</a></li>					
+					</ul>
+				</li>
+				<li class="sub-menu">
+					<a class="" href="${pageContext.request.contextPath}/login"><i class="icon_key_alt"></i><span>로그인</span></a>				
+				</li>
+			</c:if>	
 			<li class="sub-menu">
 				<a href="javascript:;" class=""><i class="icon_table"></i><span>표준 데이터</span><span class="menu-arrow arrow_carrot-right"></span></a>
 				<ul class="sub">					
@@ -80,9 +82,9 @@
 				<ul class="sub">
 					<c:if test="${loginMember.level eq 'farm'}">
 						<li><a class="" href="${pageContext.request.contextPath}/choicePlanner">My 실행결과 등록</a></li>
-						<li><a class="" href="${pageContext.request.contextPath}/listSelectMyActResult">My 실행결과 리스트</a></li>
+						<li><a class="" href="${pageContext.request.contextPath}/listMyActResultList">My 실행결과 리스트</a></li>
 					</c:if>
-					<li><a class="" href="${pageContext.request.contextPath}/listSelectActResult">전체 농가 실행결과 리스트</a></li>
+					<li><a class="" href="${pageContext.request.contextPath}/listActResultList">전체 농가 실행결과 리스트</a></li>
 				</ul>
 			</li>
 			<li>

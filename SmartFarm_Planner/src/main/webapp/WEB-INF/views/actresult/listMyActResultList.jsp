@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>listActResultList.jsp</title>
+	<title>listMyActResultList.jsp</title>
 	<jsp:include page="/WEB-INF/views/css.jsp"></jsp:include>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script>
@@ -48,7 +48,7 @@
 			<h3 class="page-header"><i class="icon_desktop"></i> 실행결과 리스트</h3>
 			<div class="col-lg-1"></div>
 			<div class="col-lg-10">
-				<form action="${pageContext.request.contextPath}/listActResultList"method="get">
+				<form action="${pageContext.request.contextPath}/listMyActResultList"method="get">
 					<!-- 검색값과 현재페이지를 유지하기 위해 hidden으로 값을 다시 보낸다. -->
 					<input type="hidden" name="currentPage" value="${currentPage}">
 					<input type="hidden" name="searchOption" value="${searchOption}">
@@ -70,7 +70,7 @@
 						<tr>
 							<th>계획명</th>
 							<th>실행결과리스트 작성일</th>
-							<th>농가명</th>
+							<th>회원아이디</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -78,13 +78,13 @@
 							<tr>
 								<td>${actResultList.productionPlan.titlePlan.ppNamePlanname}</td>
 								<td><a href="${pageContext.request.contextPath}/oneActResultList?ppResultlistNumber=${actResultList.ppResultlistNumber}">${actResultList.ppResultlistDate}</a></td>
-								<td>${actResultList.farm.fName}</td>
+								<td>${actResultList.farmMember.fMemberId}</td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 				<div class="panel-body">
-					<form action="${pageContext.request.contextPath}/listActResultList"method="get">
+					<form action="${pageContext.request.contextPath}/listMyActResultList"method="get">
 						<!-- 검색할때 현재페이지는 1로 변경하고, pagePerRow는 hidden으로 값을 숨겨 그대로 유지한다. -->
 						<input type="hidden" name="currentPage" value="1">
 						<input type="hidden" name="pagePerRow" value="${pagePerRow}">
@@ -93,7 +93,7 @@
 							<select name="searchOption" id="searchOption" class="form-control m-bot15">
 								<option value="planName">계획명</option>
 								<option value="date">기간별</option>
-								<option value="farmName">농가명</option>
+								<option value="memberId">회원아이디</option>
 							</select>
 						</div>
 						<div class="col-lg-4">
@@ -111,23 +111,23 @@
 					<ul class="pagination">
 						<c:if test="${currentPage > 1}">
 							<li>
-								<a href="${pageContext.request.contextPath}/listActResultList?currentPage=1&pagePerRow=${pagePerRow}&searchOption=${searchOption}&searchKeyword=${searchKeyword}&startDate=${startDate}&endDate=${endDate}">&laquo;</a>
+								<a href="${pageContext.request.contextPath}/listMyActResultList?currentPage=1&pagePerRow=${pagePerRow}&searchOption=${searchOption}&searchKeyword=${searchKeyword}&startDate=${startDate}&endDate=${endDate}">&laquo;</a>
 							</li>
 							<li>
-								<a href="${pageContext.request.contextPath}/listActResultList?currentPage=${currentPage - 1}&pagePerRow=${pagePerRow}&searchOption=${searchOption}&searchKeyword=${searchKeyword}&startDate=${startDate}&endDate=${endDate}">&lsaquo;</a>
+								<a href="${pageContext.request.contextPath}/listMyActResultList?currentPage=${currentPage - 1}&pagePerRow=${pagePerRow}&searchOption=${searchOption}&searchKeyword=${searchKeyword}&startDate=${startDate}&endDate=${endDate}">&lsaquo;</a>
 							</li>
 						</c:if>
 						<c:forEach var="i" items="${pageList}">
 							<li>
-								<a href="${pageContext.request.contextPath}/listActResultList?currentPage=${i}&pagePerRow=${pagePerRow}&searchOption=${searchOption}&searchKeyword=${searchKeyword}&startDate=${startDate}&endDate=${endDate}">${i}</a>
+								<a href="${pageContext.request.contextPath}/listMyActResultList?currentPage=${i}&pagePerRow=${pagePerRow}&searchOption=${searchOption}&searchKeyword=${searchKeyword}&startDate=${startDate}&endDate=${endDate}">${i}</a>
 							</li>
 						</c:forEach>
 						<c:if test="${currentPage < totalPage}">
 							<li>
-								<a href="${pageContext.request.contextPath}/listActResultList?currentPage=${currentPage + 1}&pagePerRow=${pagePerRow}&searchOption=${searchOption}&searchKeyword=${searchKeyword}&startDate=${startDate}&endDate=${endDate}">&rsaquo;</a>
+								<a href="${pageContext.request.contextPath}/listMyActResultList?currentPage=${currentPage + 1}&pagePerRow=${pagePerRow}&searchOption=${searchOption}&searchKeyword=${searchKeyword}&startDate=${startDate}&endDate=${endDate}">&rsaquo;</a>
 							</li>
 							<li>
-								<a href="${pageContext.request.contextPath}/listActResultList?currentPage=${totalPage}&pagePerRow=${pagePerRow}&searchOption=${searchOption}&searchKeyword=${searchKeyword}&startDate=${startDate}&endDate=${endDate}">&raquo;</a>
+								<a href="${pageContext.request.contextPath}/listMyActResultList?currentPage=${totalPage}&pagePerRow=${pagePerRow}&searchOption=${searchOption}&searchKeyword=${searchKeyword}&startDate=${startDate}&endDate=${endDate}">&raquo;</a>
 							</li>
 						</c:if>
 					</ul>

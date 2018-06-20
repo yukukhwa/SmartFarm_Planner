@@ -53,9 +53,13 @@ public class Paging {
 	}
 
 	public void setTotalPage() {
-		this.totalPage = totalRow / pagePerRow;
-		if (totalRow % pagePerRow != 0) {
-			++this.totalPage;
+		if(totalRow != 0) {
+			this.totalPage = totalRow / pagePerRow;
+			if (totalRow % pagePerRow != 0) {
+				++this.totalPage;
+			}
+		} else {
+			this.totalPage = 1;
 		}
 	}
 

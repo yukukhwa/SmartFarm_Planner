@@ -23,6 +23,10 @@ public class ActResultDao {
 	public ActResult oneSelectActResult(Map<String, Object> map) {
 		return sqlSession.selectOne(NS+"oneSelectActResult", map);
 	}
+	/*
+	 * map을 매개변수로 받아 조건에 맞는 리스트 개수를 새는 쿼리문을 실행한 후
+	 * 결과를 리턴하는 매서드
+	 */
 	public int countActResult(Map<String, Object> map) {
 		return sqlSession.selectOne(NS+"countActResult", map);
 	}

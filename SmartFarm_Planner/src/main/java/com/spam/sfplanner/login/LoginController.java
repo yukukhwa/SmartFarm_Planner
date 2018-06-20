@@ -33,12 +33,12 @@ public class LoginController {
 	 * farm, company, agency로 로그인하는 것에 따라 매핑이 나누어 진다.
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String loginFarm() {
+	public String login() {
 		
 		return "/login/login";
 	}
 	@RequestMapping(value = "/loginFarm", method = RequestMethod.POST)
-	public String loginFarm(Login login, HttpSession session) {
+	public String oneSelectFarmMember(Login login, HttpSession session) {
 		Login returnLogin = loginService.oneSelectFarmMember(login);
 		/*
 		 * 로그인 실패시 login.jsp로 포워드한다.
@@ -52,7 +52,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/loginCompany", method = RequestMethod.POST)
-	public String loginCompany(Login login, HttpSession session) {
+	public String oneSelectCompanyMember(Login login, HttpSession session) {
 		Login returnLogin = loginService.oneSelectCompanyMember(login);
 		
 		if(returnLogin == null) {
@@ -63,7 +63,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/loginAgency", method = RequestMethod.POST)
-	public String loginAgency(Login login, HttpSession session) {
+	public String oneSelectAgencyMember(Login login, HttpSession session) {
 		Login returnLogin = loginService.oneSelectAgencyMember(login);
 		
 		if(returnLogin == null) {

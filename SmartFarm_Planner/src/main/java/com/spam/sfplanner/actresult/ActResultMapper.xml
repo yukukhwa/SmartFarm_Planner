@@ -65,27 +65,18 @@
 		JOIN sp_farm_member ON sp_farm_member.f_member_id = sp_pp_resultlist.f_member_id
 		WHERE sp_pp_resultlist.pp_resultlist_number = #{ppResultlistNumber}
 	</select>
+	<!-- map에 해당하는 조건을 활용하여 listSelectActResult와 동일하게 리스트를 가져와
+	그 개수를 새는 쿼리문 -->
 	<select id="countActResult"
 			parameterType="Map"
 			resultType="integer">
-		SELECT COUNT(*) AS totalRow FROM sp_pp_resultlist
-		<if test="fNumber != null">
-			WHERE sp_pp_resultlist.f_number = #{fNumber}
-		</if>
-	</select>
-	<select id="listSelectActResult"
-			parameterType="Map"
-			resultMap="actResult">
-		SELECT
-			sp_pp_name_cate.pp_name_planname,
-			sp_pp_resultlist.pp_resultlist_number,
-			sp_pp_resultlist.f_number,
-			sp_pp_resultlist.pp_resultlist_date,
-			sp_farm.f_name
+		SELECT 
+			COUNT(*) AS totalRow 
 		FROM sp_pp_resultlist
 		JOIN sp_pp ON sp_pp.pp_number = sp_pp_resultlist.pp_number
 		JOIN sp_pp_name_cate ON sp_pp_name_cate.pp_name_number = sp_pp.pp_name_number
 		JOIN sp_farm ON sp_farm.f_number = sp_pp_resultlist.f_number
+		JOIN sp_farm_member ON sp_farm_member.f_member_id = sp_pp_resultlist.f_member_id
 		WHERE sp_pp_resultlist.pp_resultlist_number = sp_pp_resultlist.pp_resultlist_number
 		<if test="fNumber != null">
 			AND sp_pp_resultlist.f_number = #{fNumber}
@@ -99,6 +90,49 @@
 			</if>
 			<if test="searchOption eq 'farmName'">
 				AND sp_farm.f_name LIKE CONCAT('%',#{searchKeyword},'%')
+			</if>
+			<if test="searchOption eq 'memberId'">
+				AND sp_farm_member.f_member_id LIKE CONCAT('%',#{searchKeyword},'%')
+			</if>
+		</if>
+	</select>
+	<!-- 실행결과 리스트를 가져오는 쿼리문
+	계획서, 계획서와 연결되어있는 계획서 카테고리, 농가 와 조인을 하고
+	if문을 사용하기 위해 전체목록이 나오도록 조건을 걸었다.
+	농가넘버가 있다면 해당하는 농가의 실행결과 리스트가 나오도록 하였고,
+	계획명/농가명/기간별/회원아이디 검색을 하기 위해 조건무을 넣었다.
+	페이징 작업을 하기 위해 내림차순으로 정렬하였고 limit을 활용였다. -->
+	<select id="listSelectActResult"
+			parameterType="Map"
+			resultMap="actResult">
+		SELECT
+			sp_pp_name_cate.pp_name_planname,
+			sp_pp_resultlist.pp_resultlist_number,
+			sp_pp_resultlist.f_number,
+			sp_pp_resultlist.pp_resultlist_date,
+			sp_farm.f_name,
+			sp_farm_member.f_member_id
+		FROM sp_pp_resultlist
+		JOIN sp_pp ON sp_pp.pp_number = sp_pp_resultlist.pp_number
+		JOIN sp_pp_name_cate ON sp_pp_name_cate.pp_name_number = sp_pp.pp_name_number
+		JOIN sp_farm ON sp_farm.f_number = sp_pp_resultlist.f_number
+		JOIN sp_farm_member ON sp_farm_member.f_member_id = sp_pp_resultlist.f_member_id
+		WHERE sp_pp_resultlist.pp_resultlist_number = sp_pp_resultlist.pp_resultlist_number
+		<if test="fNumber != null">
+			AND sp_pp_resultlist.f_number = #{fNumber}
+		</if>
+		<if test="searchOption != null">
+			<if test="searchOption eq 'planName'">
+				AND sp_pp_name_cate.pp_name_planname LIKE CONCAT('%',#{searchKeyword},'%')
+			</if>
+			<if test="searchOption eq 'date'">
+				AND sp_pp_resultlist.pp_resultlist_date BETWEEN #{startDate} AND #{endDate}
+			</if>
+			<if test="searchOption eq 'farmName'">
+				AND sp_farm.f_name LIKE CONCAT('%',#{searchKeyword},'%')
+			</if>
+			<if test="searchOption eq 'memberId'">
+				AND sp_farm_member.f_member_id LIKE CONCAT('%',#{searchKeyword},'%')
 			</if>
 		</if>
 		ORDER BY sp_pp_resultlist.pp_resultlist_number DESC 
