@@ -8,9 +8,12 @@ public class WrEtcSpendPay {
 	private int wrEtcspendpayNumber; //기타지출비용 결과 넘버
 	private PpWoResult ppWoResult; //작업단계결과 넘버 외래키 기능 위한 객체
 	private WoEtcSpendPay woEtcSpendPay; //예상 기타지출비용 넘버 외래키 기능 위한 객체
-	private CategoryEtcSpendPay categoryEtcSpendPay; //기타지출비용 카테고리 넘버 외래키 기능 위한 객체
 	private double wrEtcspendpayRealcost; //작업단계결과별 실제 기타지출비
 	private String wrEtcspendpayDate; //작업단계별 기타지출비 지출일
+	
+	public WrEtcSpendPay() {
+		this.ppWoResult = new PpWoResult();
+	}
 	
 	public int getWrEtcspendpayNumber() {
 		return wrEtcspendpayNumber;
@@ -30,12 +33,7 @@ public class WrEtcSpendPay {
 	public void setWoEtcSpendPay(WoEtcSpendPay woEtcSpendPay) {
 		this.woEtcSpendPay = woEtcSpendPay;
 	}
-	public CategoryEtcSpendPay getCategoryEtcSpendPay() {
-		return categoryEtcSpendPay;
-	}
-	public void setCategoryEtcSpendPay(CategoryEtcSpendPay categoryEtcSpendPay) {
-		this.categoryEtcSpendPay = categoryEtcSpendPay;
-	}
+	
 	public double getWrEtcspendpayRealcost() {
 		return wrEtcspendpayRealcost;
 	}
@@ -51,7 +49,6 @@ public class WrEtcSpendPay {
 	@Override
 	public String toString() {
 		return "WrEtcSpendPay [wrEtcspendpayNumber=" + wrEtcspendpayNumber + ", ppWoResult=" + ppWoResult
-				+ ", woEtcSpendPay=" + woEtcSpendPay + ", categoryEtcSpendPay=" + categoryEtcSpendPay
-				+ ", wrEtcspendpayRealcost=" + wrEtcspendpayRealcost + ", wrEtcspendpayDate=" + wrEtcspendpayDate + "]";
+				+ ", woEtcSpendPay=" + woEtcSpendPay + ", wrEtcspendpayRealcost=" + wrEtcspendpayRealcost + ", wrEtcspendpayDate=" + wrEtcspendpayDate + "]";
 	}	
 }

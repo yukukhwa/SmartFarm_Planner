@@ -20,8 +20,7 @@ public class WrEtcSpendPayController {
 	//기타지출비용결과 수정화면에서 보낸 정보 업데이트처리
 	@RequestMapping(value="/updateWrEtcSpendPay", method=RequestMethod.POST)
 	public String updateWrEtcSpendPay(WrEtcSpendPay wrEtcSpendPay) {
-		LOGGER.info("updateWrEtcSpendPay post 호출");
-		
+		LOGGER.info("updateWrEtcSpendPay post 호출");		
 		return "actresult/wr_etcspendpay/listWrEtcSpendPay";
 	}
 	

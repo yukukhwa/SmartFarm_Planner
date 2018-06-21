@@ -12,7 +12,10 @@ public class WrNeedEquip {
 	private WoNeedEquip woNeedEquip; //예상필요장비 넘버 외래키 기능 위한 객체
 	private String wrNeedequipState; //실행할때 보유상태
 	private List<WrNeRentPay> wrNeRentPayList; //필요장비결과별 대여비결과 리스트객체
-	private CategoryEquip categoryEquip; //필요장비결과별 장비종류카테 넘버 외래키 기능 위한 객체
+	
+	public WrNeedEquip() {
+		this.ppWoResult = new PpWoResult();
+	}
 	
 	public int getWrNeedequipNumber() {
 		return wrNeedequipNumber;
@@ -44,16 +47,11 @@ public class WrNeedEquip {
 	public void setWrNeRentPayList(List<WrNeRentPay> wrNeRentPayList) {
 		this.wrNeRentPayList = wrNeRentPayList;
 	}
-	public CategoryEquip getCategoryEquip() {
-		return categoryEquip;
-	}
-	public void setCategoryEquip(CategoryEquip categoryEquip) {
-		this.categoryEquip = categoryEquip;
-	}
+	
 	@Override
 	public String toString() {
 		return "WrNeedEquip [wrNeedequipNumber=" + wrNeedequipNumber + ", ppWoResult=" + ppWoResult + ", woNeedEquip="
 				+ woNeedEquip + ", wrNeedequipState=" + wrNeedequipState + ", wrNeRentPayList=" + wrNeRentPayList
-				+ ", categoryEquip=" + categoryEquip + "]";
+				+ "]";
 	}	
 }

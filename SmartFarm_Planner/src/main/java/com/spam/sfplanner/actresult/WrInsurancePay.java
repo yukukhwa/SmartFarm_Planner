@@ -11,6 +11,10 @@ public class WrInsurancePay {
 	private double wrInsurancepayMonthcost; //작업단계결과별 실제 납부한 보험비(월)
 	private Date wrInsurancepayDate; //보험비 납부일
 	
+	public WrInsurancePay() {
+		this.ppWoResult = new PpWoResult();
+	}
+	
 	public int getWrInsurancepayNumber() {
 		return wrInsurancepayNumber;
 	}

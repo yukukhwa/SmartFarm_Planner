@@ -13,13 +13,13 @@ public class FindDao {
 	final private String namespace = "com.spam.sfplanner.login.FindMapper.";
 	private static final Logger LOGGER = LoggerFactory.getLogger(FindController.class);
 	
-	// 농가 회원 비밀번호 찾기
+	// 관리자 비밀번호 찾기
 	public String oneSelectFindAgencyPw(Find finddb) {
 		LOGGER.info("비번 찾기 Dao");
 		return sqlSession.selectOne(namespace+"selectAgencyMemberPw", finddb);
 	}
 	
-	// 농가 회원 비밀번호 찾기
+	// 업체 회원 비밀번호 찾기
 	public String oneSelectFindCompanyPw(Find finddb) {
 		LOGGER.info("비번 찾기 Dao");
 		return sqlSession.selectOne(namespace+"selectCompanyMemberPw", finddb);
@@ -31,7 +31,7 @@ public class FindDao {
 		return sqlSession.selectOne(namespace+"selectFarmMemberPw", finddb);
 	}
 	
-	// 업체 회원 아이디 찾기
+	// 관리자 아이디 찾기
 	public String oneSelectFindAgencyId(Find finddb) {
 		LOGGER.info("아이디 찾기 Dao");
 		return sqlSession.selectOne(namespace+"selectAgencyMemberId", finddb);

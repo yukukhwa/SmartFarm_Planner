@@ -42,7 +42,7 @@ public class FindController {
 		}
 	}
 	
-	// 농가회원 아이디찾기 GET
+	// 회원 아이디찾기 GET
 	@RequestMapping(value="/findId", method=RequestMethod.GET)
 	public String findFarmId() {
 		LOGGER.info("아이디 찾기 화면으로 포워드");

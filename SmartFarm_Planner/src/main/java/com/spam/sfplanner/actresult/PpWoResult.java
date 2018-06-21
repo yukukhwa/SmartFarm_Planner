@@ -17,6 +17,10 @@ public class PpWoResult {
 	private List<WrInsurancePay> wrInsurancePayList; //작업단계결과별 보험비결과 리스트객체
 	private List<WrNeedEquip> wrNeedEquipList; //작업단계결과별 필요장비결과 리스트객체
 	
+	public PpWoResult() {
+		this.actResult = new ActResult();
+	}
+	
 	public int getWrNumber() {
 		return wrNumber;
 	}
