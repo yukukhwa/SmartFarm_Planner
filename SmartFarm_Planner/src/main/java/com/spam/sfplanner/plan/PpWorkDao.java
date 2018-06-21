@@ -16,6 +16,10 @@ public class PpWorkDao {
 	private final static Logger LOGGER = LoggerFactory.getLogger(PpWorkDao.class);
 	private final static String NAMESPACE = "com.spam.sfplanner.plan.PpWorkMapper.";
 	
+	public PpWork oneSelectPpWork(int ppWorkNumber) {
+		return sqlSession.selectOne(NAMESPACE+"oneSelectPpWork", ppWorkNumber);
+	}
+	
 	public void deletePpWork(int ppWorkNumber) {
 		sqlSession.delete(NAMESPACE+"deletePpWork", ppWorkNumber);
 	}

@@ -32,30 +32,30 @@
     					</div>
     					<div>
     						계획서넘버 :
-    						<select name="ppNumber">
-    							<c:forEach var="" items="">
-    								<option value=""></option>
+    						<select name="productionPlan.ppNumber">
+    							<c:forEach var="productionPlan" items="${productionPlanList}">
+    								<option value="${productionPlan.ppNumber}">${productionPlan.ppNumber}</option>
     							</c:forEach>
     						</select>
     					</div>
     					<div>
     						<label> 
-    							작업단계 명 : <input type="text" name="ppWorkName" value="">
+    							작업단계 명 : <input type="text" name="ppWorkName" value="${ppWork.ppWorkName}">
     						</label>
     					</div>
     					<div>
     						<label> 
-    							작업날짜 : <input type="date" name="ppWorkStartday" value=""> ~ <input type="date" name="ppWorkEndday" value="">
+    							작업날짜 : <input type="date" name="ppWorkStartday" value="${ppWork.ppWorkStartday}"> ~ <input type="date" name="ppWorkEndday" value="${ppWork.ppWorkEndday}">
     						</label>
     					</div>
     					<div>
     						<label> 
-    							작업면적 : <input type="number" name="ppWorkArea" value="">
+    							작업면적 : <input type="number" name="ppWorkArea" value="${ppWork.ppWorkArea}">
     						</label>
     					</div>
     					<div>
     						<label> 
-    							작업면적 : <input type="text" name="ppWorkContent" value="">
+    							작업상세내용  : <input type="text" name="ppWorkContent" value="${ppWork.ppWorkContent}">
     						</label>
     					</div>
     					<button id="updateWorkPlan">작업단계 수정하기</button>

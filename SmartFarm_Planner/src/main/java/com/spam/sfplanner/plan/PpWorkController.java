@@ -38,9 +38,9 @@ public class PpWorkController {
 	
 	@RequestMapping(value="/updateWorkPlan", method=RequestMethod.GET)
 	public String updatePpWork(Model model, int ppWorkNumber) {
-		model.addAttribute("ppWorkNumber",ppWorkNumber);
-		Map<String, Object> map = null;
-		ppWorkService.updatePpWork(map);
+		Map<String, Object> map = ppWorkService.updatePpWork(ppWorkNumber);
+		model.addAttribute("productionPlanList", map.get("productionPlanList"));
+		model.addAttribute("ppWork", map.get("ppWork"));
 		return "plan/pp_work/updateWorkPlan";
 	}
 	
@@ -60,7 +60,7 @@ public class PpWorkController {
 	public String listSelectPpWork(Model model, int ppNumber) {
 		model.addAttribute("list", ppWorkService.listSelectPpWork(ppNumber));
 		model.addAttribute("ppNumber", ppNumber);
-		return "plan/pp_work/listWorkPlan ";
+		return "plan/pp_work/listWorkPlan";
 	}
 	
 	@RequestMapping(value="/addWorkPlan", method=RequestMethod.POST)

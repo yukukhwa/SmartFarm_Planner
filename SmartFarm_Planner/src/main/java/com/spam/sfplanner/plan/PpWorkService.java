@@ -25,8 +25,13 @@ public class PpWorkService {
 	
 	private final static Logger LOGGER = LoggerFactory.getLogger(PpWorkService.class);
 	
-	public Map<String, Object> updatePpWork(Map<String, Object> map){
-		productionPlanDao.listSelectProductionPlan(map);
+	public Map<String, Object> updatePpWork(int ppWorkNumber){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ppWorkNumber", ppWorkNumber);
+		List<ProductionPlan> productionPlanList = productionPlanDao.listSelectProductionPlan(map);
+		map.clear();
+		map.put("productionPlanList", productionPlanList);
+		map.put("ppWork", ppWorkDao.oneSelectPpWork(ppWorkNumber));
 		return map;
 	}
 	
