@@ -10,10 +10,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#deleteWorkPlan').click(function(){
-			location.href = "${pageContext.request.contextPaht}/";
-		})
-		
 	})
 </script>
 </head>
@@ -107,7 +103,7 @@
     						</tr>
     					</thead>
     					<c:forEach var="woHumanPay" items="${ppWork.woHumanPayList}">
-    						<c:if test="${woHumanPayList.eHumanpaySecret != 'false'}">
+    						<c:if test="${woHumanPay.eHumanpaySecret != 'false'}">
 		    					<tbody>
 		    						<tr>
 			    						<td>${woHumanPay.eHumanpayNumber}</td>
@@ -122,11 +118,59 @@
 	    					</c:if>
     					</c:forEach>
     				</table>
-    			</div>
+    			</div> <br><br>
     			<div>
-    				<button id="deleteWorkPlan">이 작업단계 삭제하기</button>
+    				<label>예상 기타지출비 리스트</label>
+    				<table class="table">
+    					<thead>
+    						<tr>
+    							<th>에상기타지출비넘버</th>
+								<th>작업명</th>
+								<th>기타지출비명</th>
+								<th>지출상세내용</th>
+								<th>예상기타지출일</th>
+								<th>예상기타지출비</th>
+    						</tr>
+    					</thead>
+    					<c:forEach var="woEtcSpendPay" items="${ppWork.woEtcSpendPayList}">
+    						<c:if test="${woEtcSpendPay.eEtcspendpaySecret !='false'}">
+		    					<tbody>
+		    						<tr>
+		    							<td>${woEtcSpendPay.eEtcspendpayNumber}</td>
+										<td>${woEtcSpendPay.ppWork.ppWorkName}</td>
+										<td>${woEtcSpendPay.categoryEtcSpendPay.etcspendpayName}</td>
+										<td>${woEtcSpendPay.eEtcspendpayContent}</td>
+										<td>${woEtcSpendPay.eEtcspendpayDay}</td>
+										<td>${woEtcSpendPay.eEtcspendpayCost}</td>
+		    						</tr>
+		    					</tbody>
+	    					</c:if>
+    					</c:forEach>
+    				</table>
     			</div>
-    			
+    			<%-- <div>
+    				<label>예상 필요장비</label>
+    				<table class="table">
+    					<thead>
+    						<tr>
+    							<th>예상필요장비넘버</th>
+	    						<th>작업명</th>
+	    						<th>장비명</th>
+	    						<th>보유상태</th>
+    						</tr>
+    					</thead>
+    					<c:forEach var="woNeedEquip" items="${ppWork.woNeedEquipsList}">
+		    				<tbody>
+		    					<tr>
+		    						<td>${woNeedEquip.eNeedequipNumber}</td>
+			    					<td>${woNeedEquip.ppWork.ppWorkName}</td>
+			    					<td>${woNeedEquip.categoryEquip.equipName}</td>
+			    					<td>${woNeedEquip.eNeedequipState}</td>
+		    					</tr>
+		    				</tbody>
+    					</c:forEach>
+    				</table>
+    			</div> --%>
     		</div>
     	</section>
     </section>

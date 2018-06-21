@@ -19,6 +19,8 @@ public class PpWorkService {
 	@Autowired WoInsurancePayDao woInsurancePayDao;
 	@Autowired WoHumanPayDao woHumanPayDao;
 	@Autowired ProductionPlanDao productionPlanDao;
+	@Autowired WoEtcSpendPayDao woEtcSpendPayDao;
+	@Autowired WoNeedEquipDao woNeedEquipDao;
 	
 	private final static Logger LOGGER = LoggerFactory.getLogger(PpWorkService.class);
 	
@@ -34,6 +36,8 @@ public class PpWorkService {
 		ppWork.setWoMaterialsPayList(woMaterialsPayDao.listSelectWoMaterialsPay(map));
 		ppWork.setWoInsurancePayList(woInsurancePayDao.listSelectWoInsurancePay(map));
 		ppWork.setWoHumanPayList(woHumanPayDao.listSelectWoHumanPay(map));
+		ppWork.setWoEtcSpendPayList(woEtcSpendPayDao.listSelectWoEtcSpendPay(map));
+		ppWork.setWoNeedEquipsList(woNeedEquipDao.listSelectWoNeedEquip(map));
 		System.out.println("ppWork"+ppWork);
 		System.out.println("materialsPayList====> "+ppWork.getWoMaterialsPayList());
 		System.out.println("ppWork.to==> "+ppWork.toString());
