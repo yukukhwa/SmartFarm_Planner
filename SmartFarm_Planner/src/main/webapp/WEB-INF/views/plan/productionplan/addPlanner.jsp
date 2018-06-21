@@ -14,7 +14,12 @@
 			var ppWorkSize = $('.ppWork').length;
 			$('#ppWorkList').append('<div class="ppWork col-lg-12">'
 										+'<div class="panel-heading">'
-											+'작업명 : <input type="text" name="ppWorkList['+ppWorkSize+'].ppWorkName" class="ppWorkName">'
+											+'<span>'
+												+'작업명 : <input type="text" name="ppWorkList['+ppWorkSize+'].ppWorkName" class="ppWorkName">'
+											+'</span>'
+											+'<span style="float: right;">'
+												+'<input type="button" class="deletePpWork" value="제거">'
+											+'</span>'
 										+'</div>'
 										+'<div class="panel-content">'
 											+'<div>'
@@ -90,6 +95,120 @@
 			return;
 		});
 		
+		$(document).on('click','.deletePpWork',function(){
+			$(this).parents('.ppWork').remove();
+			$('#ppWorkList').find('.ppWork').each(function(i,e){
+				var ppWorkListName = 'ppWorkList['+i+']';
+				//alert(ppWorkListName);
+				$(e).find('input').each(function(i,e){
+					if($(e).attr('name') != null){
+						var inputNameArray = $(e).attr('name').split('.');
+						var newInputName = '';
+						for(var i = 0; i<inputNameArray.length; i++){
+							switch (i) {
+							case 0:
+								newInputName += ppWorkListName;
+								break;
+							case 1:
+								newInputName += '.'+inputNameArray[1];
+								break;
+							case 2:
+								newInputName += '.'+inputNameArray[2];
+								break;
+							case 3:
+								newInputName += '.'+inputNameArray[3];
+								break;
+							case 4:
+								newInputName += '.'+inputNameArray[4];
+								break;
+							case 5:
+								newInputName += '.'+inputNameArray[5];
+								break;
+							default:
+								alert('error');
+								break;
+							}
+							if(i == inputNameArray.length-1){
+								//alert(newInputName);
+								$(e).attr('name',newInputName);
+							}
+						}
+					}
+				});
+				$(e).find('select').each(function(i,e){
+					if($(e).attr('name') != null){
+						var selectNameArray = $(e).attr('name').split('.');
+						var newSelectName = '';
+						for(var i = 0; i<selectNameArray.length; i++){
+							switch (i) {
+							case 0:
+								newSelectName += ppWorkListName;
+								break;
+							case 1:
+								newSelectName += '.'+selectNameArray[1];
+								break;
+							case 2:
+								newSelectName += '.'+selectNameArray[2];
+								break;
+							case 3:
+								newSelectName += '.'+selectNameArray[3];
+								break;
+							case 4:
+								newSelectName += '.'+selectNameArray[4];
+								break;
+							case 5:
+								newSelectName += '.'+selectNameArray[5];
+								break;
+							default:
+								alert('error');
+								break;
+							}
+							if(i == selectNameArray.length-1){
+								//alert(newInputName);
+								$(e).attr('name',newSelectName);
+							}
+						}
+					}
+				});
+				$(e).find('textarea').each(function(i,e){
+					if($(e).attr('name') != null){
+						var textareaNameArray = $(e).attr('name').split('.');
+						var newTextareaName = '';
+						for(var i = 0; i<textareaNameArray.length; i++){
+							switch (i) {
+							case 0:
+								newTextareaName += ppWorkListName;
+								break;
+							case 1:
+								newTextareaName += '.'+textareaNameArray[1];
+								break;
+							case 2:
+								newTextareaName += '.'+textareaNameArray[2];
+								break;
+							case 3:
+								newTextareaName += '.'+textareaNameArray[3];
+								break;
+							case 4:
+								newTextareaName += '.'+textareaNameArray[4];
+								break;
+							case 5:
+								newTextareaName += '.'+textareaNameArray[5];
+								break;
+							default:
+								alert('error');
+								break;
+							}
+							if(i == textareaNameArray.length-1){
+								//alert(newInputName);
+								$(e).attr('name',newTextareaName);
+							}
+						}
+					}
+				});
+			});
+			return;
+		});
+		
 		$(document).on('click','input:radio[name="ppSecret"]',function(){
 			if($(this).val() == 'true'){
 				$('input:radio[value="true"]').prop('checked',true);
@@ -115,8 +234,56 @@
 																		+'<td><input type="number" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepayTerm"></td>'
 																		+'<td><input type="number" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepayTotalcost"></td>'
 																		+'<td><input type="number" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepayExpectcost"></td>'
-																		+'<td><input type="radio" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepaySecret" value="true" checked="checked">공개<input type="radio" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepaySecret" value="false">비공개</td>'
+																		+'<td>'
+																			+'<input type="radio" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepaySecret" value="true" checked="checked">공개<input type="radio" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepaySecret" value="false">비공개'
+																			+'<input type="button" class="deleteInsurancePay" value="제거" style="float: right;">'
+																		+'</td>'
 																	+'</tr>');
+			return;
+		});
+		
+		$(document).on('click','.deleteInsurancePay',function(){
+			var insurancePayList = $(this).parents('.insurancePayList');
+			$(this).parents('tr').remove();
+			insurancePayList.find('tbody tr').each(function(i,e){
+				var insurancePayListName = 'woInsurancePayList['+i+']';
+				//alert(insurancePayListName);
+				$(e).find('input').each(function(i,e){
+					if($(e).attr('name') != null){
+						var inputNameArray = $(e).attr('name').split('.');
+						var newInputName = '';
+						for(var i = 0; i<inputNameArray.length; i++){
+							switch (i) {
+							case 0:
+								newInputName += inputNameArray[0];
+								break;
+							case 1:
+								newInputName += '.'+insurancePayListName;
+								break;
+							case 2:
+								newInputName += '.'+inputNameArray[2];
+								break;
+							case 3:
+								newInputName += '.'+inputNameArray[3];
+								break;
+							case 4:
+								newInputName += '.'+inputNameArray[4];
+								break;
+							case 5:
+								newInputName += '.'+inputNameArray[5];
+								break;
+							default:
+								alert('error');
+								break;
+							}
+							if(i == inputNameArray.length-1){
+								//alert(newInputName);
+								$(e).attr('name',newInputName);
+							}
+						}
+					}
+				});
+			});
 			return;
 		});
 		
@@ -131,8 +298,56 @@
 																				+'<td><input type="text" name="'+ppWorkList+'.woHumanPayList['+humanPaySize+'].eHumanpayResidentnumber"></td>'
 																				+'<td><input type="number" name="'+ppWorkList+'.woHumanPayList['+humanPaySize+'].eHumanpayExpectpay"></td>'
 																				+'<td><input type="date" name="'+ppWorkList+'.woHumanPayList['+humanPaySize+'].eHumanpayExpectday"></td>'
-																				+'<td><input type="radio" name="'+ppWorkList+'.woHumanPayList['+humanPaySize+'].eHumanpaySecret" value="true" checked="checked">공개<input type="radio" name="'+ppWorkList+'.woHumanPayList['+humanPaySize+'].eHumanpaySecret" value="false">비공개</td>'
+																				+'<td>'
+																					+'<input type="radio" name="'+ppWorkList+'.woHumanPayList['+humanPaySize+'].eHumanpaySecret" value="true" checked="checked">공개<input type="radio" name="'+ppWorkList+'.woHumanPayList['+humanPaySize+'].eHumanpaySecret" value="false">비공개'
+																					+'<input type="button" class="deleteEHumanpay" value="제거" style="float: right;">'
+																				+'</td>'
 																			+'</tr>');
+			return;
+		});
+		
+		$(document).on('click','.deleteEHumanpay',function(){
+			var humanPayList = $(this).parents('.humanPayList');
+			$(this).parents('tr').remove();
+			humanPayList.find('tbody tr').each(function(i,e){
+				var humanPayListName = 'woHumanPayList['+i+']';
+				//alert(humanPayListName);
+				$(e).find('input').each(function(i,e){
+					if($(e).attr('name') != null){
+						var inputNameArray = $(e).attr('name').split('.');
+						var newInputName = '';
+						for(var i = 0; i<inputNameArray.length; i++){
+							switch (i) {
+							case 0:
+								newInputName += inputNameArray[0];
+								break;
+							case 1:
+								newInputName += '.'+humanPayListName;
+								break;
+							case 2:
+								newInputName += '.'+inputNameArray[2];
+								break;
+							case 3:
+								newInputName += '.'+inputNameArray[3];
+								break;
+							case 4:
+								newInputName += '.'+inputNameArray[4];
+								break;
+							case 5:
+								newInputName += '.'+inputNameArray[5];
+								break;
+							default:
+								alert('error');
+								break;
+							}
+							if(i == inputNameArray.length-1){
+								//alert(newInputName);
+								$(e).attr('name',newInputName);
+							}
+						}
+					}
+				});
+			});
 			return;
 		});
 		
@@ -149,8 +364,91 @@
 																					+'</td>'
 																					+'<td><input type="number" name="'+ppWorkList+'.woMaterialsPayList['+materialsPaySize+'].eMaterialspayUnitcost"></td>'
 																					+'<td><input type="text" name="'+ppWorkList+'.woMaterialsPayList['+materialsPaySize+'].eMaterialspayUse"></td>'
-																					+'<td><input type="radio" name="'+ppWorkList+'.woMaterialsPayList['+materialsPaySize+'].eMaterialspaySecret" value="true" checked="checked">공개<input type="radio" name="'+ppWorkList+'.woMaterialsPayList['+materialsPaySize+'].eMaterialspaySecret" value="false">비공개</td>'
+																					+'<td>'
+																						+'<input type="radio" name="'+ppWorkList+'.woMaterialsPayList['+materialsPaySize+'].eMaterialspaySecret" value="true" checked="checked">공개<input type="radio" name="'+ppWorkList+'.woMaterialsPayList['+materialsPaySize+'].eMaterialspaySecret" value="false">비공개'
+																						+'<input type="button" class="deleteMaterialsPay" value="제거" style="float: right;">'
+																					+'</td>'
 																				+'</tr>');
+			return;
+		});
+		
+		$(document).on('click','.deleteMaterialsPay',function(){
+			var materialsPayList = $(this).parents('.materialsPayList');
+			$(this).parents('tr').remove();
+			materialsPayList.find('tbody tr').each(function(i,e){
+				var materialsPayListName = 'woMaterialsPayList['+i+']';
+				//alert(materialsPayListName);
+				$(e).find('input').each(function(i,e){
+					if($(e).attr('name') != null){
+						var inputNameArray = $(e).attr('name').split('.');
+						var newInputName = '';
+						for(var i = 0; i<inputNameArray.length; i++){
+							switch (i) {
+							case 0:
+								newInputName += inputNameArray[0];
+								break;
+							case 1:
+								newInputName += '.'+materialsPayListName;
+								break;
+							case 2:
+								newInputName += '.'+inputNameArray[2];
+								break;
+							case 3:
+								newInputName += '.'+inputNameArray[3];
+								break;
+							case 4:
+								newInputName += '.'+inputNameArray[4];
+								break;
+							case 5:
+								newInputName += '.'+inputNameArray[5];
+								break;
+							default:
+								alert('error');
+								break;
+							}
+							if(i == inputNameArray.length-1){
+								//alert(newInputName);
+								$(e).attr('name',newInputName);
+							}
+						}
+					}
+				});
+				$(e).find('select').each(function(i,e){
+					if($(e).attr('name') != null){
+						var selectNameArray = $(e).attr('name').split('.');
+						var newSelectName = '';
+						for(var i = 0; i<selectNameArray.length; i++){
+							switch (i) {
+							case 0:
+								newSelectName += selectNameArray[0];
+								break;
+							case 1:
+								newSelectName += '.'+materialsPayListName;
+								break;
+							case 2:
+								newSelectName += '.'+selectNameArray[2];
+								break;
+							case 3:
+								newSelectName += '.'+selectNameArray[3];
+								break;
+							case 4:
+								newSelectName += '.'+selectNameArray[4];
+								break;
+							case 5:
+								newSelectName += '.'+selectNameArray[5];
+								break;
+							default:
+								alert('error');
+								break;
+							}
+							if(i == selectNameArray.length-1){
+								//alert(newInputName);
+								$(e).attr('name',newSelectName);
+							}
+						}
+					}
+				});
+			});
 			return;
 		});
 		
@@ -168,8 +466,91 @@
 																				+'<td><input type="text" name="'+ppWorkList+'.woEtcSpendPayList['+etcSpendPaySize+'].eEtcspendpayContent"></td>'
 																				+'<td><input type="date" name="'+ppWorkList+'.woEtcSpendPayList['+etcSpendPaySize+'].eEtcspendpayDay"></td>'
 																				+'<td><input type="number" name="'+ppWorkList+'.woEtcSpendPayList['+etcSpendPaySize+'].eEtcspendpayCost"></td>'
-																				+'<td><input type="radio" name="'+ppWorkList+'.woEtcSpendPayList['+etcSpendPaySize+'].eEtcspendpaySecret" value="true" checked="checked">공개<input type="radio" name="'+ppWorkList+'.woEtcSpendPayList['+etcSpendPaySize+'].eEtcspendpaySecret" value="false">비공개</td>'
+																				+'<td>'
+																					+'<input type="radio" name="'+ppWorkList+'.woEtcSpendPayList['+etcSpendPaySize+'].eEtcspendpaySecret" value="true" checked="checked">공개<input type="radio" name="'+ppWorkList+'.woEtcSpendPayList['+etcSpendPaySize+'].eEtcspendpaySecret" value="false">비공개'
+																					+'<input type="button" class="deleteEtcSpendPay" value="제거" style="float: right;">'
+																				+'</td>'
 																			+'</tr>');
+			return;
+		});
+		
+		$(document).on('click','.deleteEtcSpendPay',function(){
+			var etcSpendPayList = $(this).parents('.etcSpendPayList');
+			$(this).parents('tr').remove();
+			etcSpendPayList.find('tbody tr').each(function(i,e){
+				var etcSpendPayListName = 'woEtcSpendPayList['+i+']';
+				//alert(etcSpendPayListName);
+				$(e).find('input').each(function(i,e){
+					if($(e).attr('name') != null){
+						var inputNameArray = $(e).attr('name').split('.');
+						var newInputName = '';
+						for(var i = 0; i<inputNameArray.length; i++){
+							switch (i) {
+							case 0:
+								newInputName += inputNameArray[0];
+								break;
+							case 1:
+								newInputName += '.'+etcSpendPayListName;
+								break;
+							case 2:
+								newInputName += '.'+inputNameArray[2];
+								break;
+							case 3:
+								newInputName += '.'+inputNameArray[3];
+								break;
+							case 4:
+								newInputName += '.'+inputNameArray[4];
+								break;
+							case 5:
+								newInputName += '.'+inputNameArray[5];
+								break;
+							default:
+								alert('error');
+								break;
+							}
+							if(i == inputNameArray.length-1){
+								//alert(newInputName);
+								$(e).attr('name',newInputName);
+							}
+						}
+					}
+				});
+				$(e).find('select').each(function(i,e){
+					if($(e).attr('name') != null){
+						var selectNameArray = $(e).attr('name').split('.');
+						var newSelectName = '';
+						for(var i = 0; i<selectNameArray.length; i++){
+							switch (i) {
+							case 0:
+								newSelectName += selectNameArray[0];
+								break;
+							case 1:
+								newSelectName += '.'+etcSpendPayListName;
+								break;
+							case 2:
+								newSelectName += '.'+selectNameArray[2];
+								break;
+							case 3:
+								newSelectName += '.'+selectNameArray[3];
+								break;
+							case 4:
+								newSelectName += '.'+selectNameArray[4];
+								break;
+							case 5:
+								newSelectName += '.'+selectNameArray[5];
+								break;
+							default:
+								alert('error');
+								break;
+							}
+							if(i == selectNameArray.length-1){
+								//alert(newInputName);
+								$(e).attr('name',newSelectName);
+							}
+						}
+					}
+				});
+			});
 			return;
 		});
 		
@@ -229,7 +610,12 @@
 									<div id="ppWorkList">
 										<%-- <div class="ppWork col-lg-12">
 											<div class="panel-heading">
-												작업명 : <input type="text" name="ppWorkList[0].ppWorkName" class="ppWorkName">
+												<span>
+													작업명 : <input type="text" name="ppWorkList[0].ppWorkName" class="ppWorkName">
+												</span>
+												<span style="float: right;">
+													<input type="button" class="deletePpWork" value="제거">
+												</span>
 											</div>
 											<div class="panel-content">
 												<div>
@@ -262,7 +648,10 @@
 															<td><input type="text" name="ppWorkList[0].woHumanPayList[0].eHumanpayResidentnumber"></td>
 															<td><input type="number" name="ppWorkList[0].woHumanPayList[0].eHumanpayExpectpay"></td>
 															<td><input type="date" name="ppWorkList[0].woHumanPayList[0].eHumanpayExpectday"></td>
-															<td><input type="radio" name="ppWorkList[0].woHumanPayList[0].eHumanpaySecret" value="true" checked="checked">공개<input type="radio" name="ppWorkList[0].woHumanPayList[0].eHumanpaySecret" value="false">비공개</td>
+															<td>
+																<input type="radio" name="ppWorkList[0].woHumanPayList[0].eHumanpaySecret" value="true" checked="checked">공개<input type="radio" name="ppWorkList[0].woHumanPayList[0].eHumanpaySecret" value="false">비공개
+																<input type="button" class="deleteEHumanpay" value="제거" style="float: right;">
+															</td>
 														</tr>
 													</tbody>
 												</table>
@@ -287,7 +676,10 @@
 															</td>
 															<td><input type="number" name="ppWorkList[0].woMaterialsPayList[0].eMaterialspayUnitcost"></td>
 															<td><input type="text" name="ppWorkList[0].woMaterialsPayList[0].eMaterialspayUse"></td>
-															<td><input type="radio" name="ppWorkList[0].woMaterialsPayList[0].eMaterialspaySecret" value="true" checked="checked">공개<input type="radio" name="ppWorkList[0].woMaterialsPayList[0].eMaterialspaySecret" value="false">비공개</td>
+															<td>
+																<input type="radio" name="ppWorkList[0].woMaterialsPayList[0].eMaterialspaySecret" value="true" checked="checked">공개<input type="radio" name="ppWorkList[0].woMaterialsPayList[0].eMaterialspaySecret" value="false">비공개
+																<input type="button" class="deleteMaterialsPay" value="제거" style="float: right;">
+															</td>
 														</tr>
 													</tbody>
 												</table>
@@ -317,7 +709,10 @@
 															<td><input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayTerm"></td>
 															<td><input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayTotalcost"></td>
 															<td><input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayExpectcost"></td>
-															<td><input type="radio" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret" value="true" checked="checked">공개<input type="radio" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret" value="false">비공개</td>
+															<td>
+																<input type="radio" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret" value="true" checked="checked">공개<input type="radio" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret" value="false">비공개
+																<input type="button" class="deleteInsurancePay" value="제거" style="float: right;">
+															</td>
 														</tr>
 													</tbody>
 												</table>
@@ -344,11 +739,14 @@
 															<td><input type="text" name="ppWorkList[0].woEtcSpendPayList[0].eEtcspendpayContent"></td>
 															<td><input type="date" name="ppWorkList[0].woEtcSpendPayList[0].eEtcspendpayDay"></td>
 															<td><input type="number" name="ppWorkList[0].woEtcSpendPayList[0].eEtcspendpayCost"></td>
-															<td><input type="radio" name="ppWorkList[0].woEtcSpendPayList[0].eEtcspendpaySecret" value="true" checked="checked">공개<input type="radio" name="ppWorkList[0].woEtcSpendPayList[0].eEtcspendpaySecret" value="false">비공개</td>
+															<td>
+																<input type="radio" name="ppWorkList[0].woEtcSpendPayList[0].eEtcspendpaySecret" value="true" checked="checked">공개<input type="radio" name="ppWorkList[0].woEtcSpendPayList[0].eEtcspendpaySecret" value="false">비공개
+																<input type="button" class="deleteEtcSpendPay" value="제거" style="float: right;">
+															</td>
 														</tr>
 													</tbody>
 												</table>
-												<br>필요장비계획 <input type="button" value="보험비 추가" class="addInsurancePay" style="float: right;">
+												<!-- <br>필요장비계획 <input type="button" value="보험비 추가" class="addInsurancePay" style="float: right;">
 												<table class="insurancePayList table table-striped table-advance table-hover">
 													<thead>
 														<tr>
@@ -377,7 +775,7 @@
 															<td><input type="radio" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret" value="true" checked="checked">공개<input type="radio" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret" value="false">비공개</td>
 														</tr>
 													</tbody>
-												</table>
+												</table> -->
 											</div>
 										</div> --%>
 									</div>

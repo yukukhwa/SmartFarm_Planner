@@ -152,6 +152,44 @@
 												</c:forEach>
 											</tbody>
 										</table>
+										기타지출
+										<table class="table table-striped table-advance table-hover">
+											<thead>
+												<tr>
+													<th>기타지출명</th>
+													<th>기타지출상세내용</th>
+													<th>예상기타지출일</th>
+													<th>예상기타지출비</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach var="woEtcSpendPay" items="${ppWork.woEtcSpendPayList}">
+													<tr>
+														<td>${woEtcSpendPay.categoryEtcSpendPay.etcspendpayName}</td>
+														<td>${woEtcSpendPay.eEtcspendpayContent}</td>
+														<td>${woEtcSpendPay.eEtcspendpayDay}</td>
+														<td>${woEtcSpendPay.eEtcspendpayCost}</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+										필요장비계획
+										<table class="table table-striped table-advance table-hover">
+											<thead>
+												<tr>
+													<th>필요장비명</th>
+													<th>계획시 보유현황</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach var="woNeedEquip" items="${ppWork.woNeedEquipList}">
+													<tr>
+														<td>${woNeedEquip.categoryEquip.equipName}</td>
+														<td>${woNeedEquip.eNeedequipState}</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
 									</div>
 								</div>
 								<c:set var="i" value="${i+1}"/>
