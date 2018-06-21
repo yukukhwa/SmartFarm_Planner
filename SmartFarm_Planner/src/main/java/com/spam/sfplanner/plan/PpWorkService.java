@@ -37,8 +37,7 @@ public class PpWorkService {
 		ppWork.setWoInsurancePayList(woInsurancePayDao.listSelectWoInsurancePay(map));
 		ppWork.setWoHumanPayList(woHumanPayDao.listSelectWoHumanPay(map));
 		ppWork.setWoEtcSpendPayList(woEtcSpendPayDao.listSelectWoEtcSpendPay(map));
-		ppWork.setWoNeedEquipsList(woNeedEquipDao.listSelectWoNeedEquip(map));
-		System.out.println("ppWork"+ppWork);
+		ppWork.setWoNeedEquipList(woNeedEquipDao.listSelectWoNeedEquip(map));
 		System.out.println("materialsPayList====> "+ppWork.getWoMaterialsPayList());
 		System.out.println("ppWork.to==> "+ppWork.toString());
 		return ppWork;

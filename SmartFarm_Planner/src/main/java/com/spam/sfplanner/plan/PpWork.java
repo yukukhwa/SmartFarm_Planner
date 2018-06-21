@@ -19,7 +19,7 @@ public class PpWork {
 	private List<WoHumanPay> woHumanPayList; // 작업단계 내의 예상 인건비 리스트
 	private List<WoInsurancePay> woInsurancePayList; // 작업단계 내의 예상 보험비 리스트
 	private List<WoEtcSpendPay> woEtcSpendPayList; // 작업단계 내의 예상 기타지출비 리스트
-	private List<WoNeedEquip> woNeedEquipsList; // 작업단계 내의 필요장비 리스트
+	private List<WoNeedEquip> woNeedEquipList; // 작업단계 내의 필요장비 리스트
 	public int getPpWorkNumber() {
 		return ppWorkNumber;
 	}
@@ -92,11 +92,11 @@ public class PpWork {
 	public void setWoEtcSpendPayList(List<WoEtcSpendPay> woEtcSpendPayList) {
 		this.woEtcSpendPayList = woEtcSpendPayList;
 	}
-	public List<WoNeedEquip> getWoNeedEquipsList() {
-		return woNeedEquipsList;
+	public List<WoNeedEquip> getWoNeedEquipList() {
+		return woNeedEquipList;
 	}
-	public void setWoNeedEquipsList(List<WoNeedEquip> woNeedEquipsList) {
-		this.woNeedEquipsList = woNeedEquipsList;
+	public void setWoNeedEquipList(List<WoNeedEquip> woNeedEquipList) {
+		this.woNeedEquipList = woNeedEquipList;
 	}
 	@Override
 	public String toString() {
@@ -104,9 +104,10 @@ public class PpWork {
 				+ ppWorkStartday + ", ppWorkEndday=" + ppWorkEndday + ", ppWorkArea=" + ppWorkArea + ", ppWorkContent="
 				+ ppWorkContent + ", farm=" + farm + ", productionPlan=" + productionPlan + ", woMaterialsPayList="
 				+ woMaterialsPayList + ", woHumanPayList=" + woHumanPayList + ", woInsurancePayList="
-				+ woInsurancePayList + ", woEtcSpendPayList=" + woEtcSpendPayList + ", woNeedEquipsList="
-				+ woNeedEquipsList + "]";
+				+ woInsurancePayList + ", woEtcSpendPayList=" + woEtcSpendPayList + ", woNeedEquipList="
+				+ woNeedEquipList + "]";
 	}
+	
 	
 	
 }

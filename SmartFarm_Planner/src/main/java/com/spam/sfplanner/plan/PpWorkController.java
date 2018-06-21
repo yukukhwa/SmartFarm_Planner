@@ -19,6 +19,13 @@ public class PpWorkController {
 	
 	private final static Logger LOGGER = LoggerFactory.getLogger(PpWorkController.class);
 	
+	@RequestMapping(value="/deletePpWork", method=RequestMethod.GET)
+	public String deletePpWork() {
+		return "redirect:/";
+	}
+	
+	
+	
 	@RequestMapping(value="/oneWorkPlan", method=RequestMethod.GET)
 	public String oneSelectPpWork(Model model, int ppWorkNumber) {
 		LOGGER.info("PpWorkController 호출");

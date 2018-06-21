@@ -147,8 +147,8 @@
 	    					</c:if>
     					</c:forEach>
     				</table>
-    			</div>
-    			<%-- <div>
+    			</div> <br><br>
+    			<div>
     				<label>예상 필요장비</label>
     				<table class="table">
     					<thead>
@@ -159,7 +159,7 @@
 	    						<th>보유상태</th>
     						</tr>
     					</thead>
-    					<c:forEach var="woNeedEquip" items="${ppWork.woNeedEquipsList}">
+    					<c:forEach var="woNeedEquip" items="${ppWork.woNeedEquipList}">
 		    				<tbody>
 		    					<tr>
 		    						<td>${woNeedEquip.eNeedequipNumber}</td>
@@ -170,7 +170,7 @@
 		    				</tbody>
     					</c:forEach>
     				</table>
-    			</div> --%>
+    			</div>
     		</div>
     	</section>
     </section>
