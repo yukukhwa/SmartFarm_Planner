@@ -44,7 +44,7 @@
 			<div class="col-lg-10">
 				<h3 class="page-header"><i class="fa fa-table"></i> 실행결과등록</h3>
 				<section class="panel">
-					<form action="${pageContext.request.contextPath}/insertActResult" method="post">
+					<form action="${pageContext.request.contextPath}/addActResultList" method="post">
 						<header class="panel-heading">
 							${plannList.titlePlan.ppNamePlanname}
 							<input type="text" name="productionPlan.ppNumber" value="${plannList.ppNumber}">
@@ -67,11 +67,12 @@
 											<tbody>
 												<tr>
 													<td>${ppWorkList.ppWorkArea}</td>
-													<td><input type="text" name="ppWoResultList[${i.index}].wrTotalarea"></td>
-													<td><input type="text" name="ppWoResultList[${i.index}].wrReworkarea"></td>
+													<td><input type="number" class="form-control" name="ppWoResultList[${i.index}].wrTotalarea"></td>
+													<td><input type="number" class="form-control" name="ppWoResultList[${i.index}].wrReworkarea"></td>
 												</tr>
 											</tbody>
 										</table>
+										<input type="text" name="ppWoResultList[${i.index}].ppWork.ppWorkNumber" value="${ppWorkList.ppWorkNumber}">
 										인건비
 										<table class="table table-striped table-advance table-hover">
 											<thead>
@@ -86,16 +87,17 @@
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach var="wrHumanPayList" items="${woResultList.wrHumanPayList}" varStatus="j"><!-- 예상인건비로 교체 해야됨 -->
+												<c:forEach var="woHumanPayList" items="${ppWorkList.woHumanPayList}" varStatus="j">
 													<tr>
-														<td>${wrHumanPayList.woHumanPay.eHumanpayName}</td>
-														<td>${wrHumanPayList.woHumanPay.eHumanpayResidentnumber}</td>
-														<td>${wrHumanPayList.woHumanPay.eHumanpayExpectpay}</td>
-														<td>${wrHumanPayList.woHumanPay.eHumanpayExpectday}</td>
+														<td>${woHumanPayList.eHumanpayName}</td>
+														<td>${woHumanPayList.eHumanpayResidentnumber}</td>
+														<td>${woHumanPayList.eHumanpayExpectpay}</td>
+														<td>${woHumanPayList.eHumanpayExpectday}</td>
 														<td><input type="checkbox"></td>
-														<td><input type="text" name="ppWoResultList[${i.index}].wrHumanPayList[${j.index}].wrHumanpayRealcost"></td>
-														<td><input type="date" name="ppWoResultList[${i.index}].wrHumanPayList[${j.index}].wrHumanpayDate"></td>
+														<td><input type="number" class="form-control" name="ppWoResultList[${i.index}].wrHumanPayList[${j.index}].wrHumanpayRealcost"></td>
+														<td><input type="date" class="form-control" name="ppWoResultList[${i.index}].wrHumanPayList[${j.index}].wrHumanpayDate"></td>
 													</tr>
+													<input type="text" name="ppWoResultList[${i.index}].wrHumanPayList[${j.index}].woHumanPay.eHumanpayNumber" value="${woHumanPayList.eHumanpayNumber}">
 												</c:forEach>
 											</tbody>
 										</table>
@@ -112,15 +114,21 @@
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach var="wrMaterialsPayList" items="${woResultList.wrMaterialsPayList}" varStatus="j"><!-- 예상원자재로 교체 -->
+												<c:forEach var="woMaterialsPayList" items="${ppWorkList.woMaterialsPayList}" varStatus="j">
 													<tr>
-														<td>${wrMaterialsPayList.woMaterialsPay.categoryMaterials.materialsName}</td>
-														<td>${wrMaterialsPayList.woMaterialsPay.eMaterialspayUnitcost}</td>
-														<td>${wrMaterialsPayList.woMaterialsPay.eMaterialspayUse}${wrMaterialsPayList.woMaterialsPay.categoryMaterials.materialsUnit}</td>
+														<td>${woMaterialsPayList.categoryMaterials.materialsName}</td>
+														<td>${woMaterialsPayList.eMaterialspayUnitcost}</td>
+														<td>${woMaterialsPayList.eMaterialspayUse}${woMaterialsPayList.categoryMaterials.materialsUnit}</td>
 														<td><input type="checkbox"></td>
-														<td><input type="text" name="ppWoResultList[${i.index}].wrMaterialsPayList[${j.index}].wrMaterialspayUnitcost"></td>
-														<td><input type="text" name="ppWoResultList[${i.index}].wrMaterialsPayList[${j.index}].wrMaterialspayQuantity"></td>
+														<td><input type="number" class="form-control" name="ppWoResultList[${i.index}].wrMaterialsPayList[${j.index}].wrMaterialspayUnitcost"></td>
+														<td>
+															<div class="col-lg-10">
+																<input type="number" class="form-control" name="ppWoResultList[${i.index}].wrMaterialsPayList[${j.index}].wrMaterialspayQuantity">
+															</div>
+															${woMaterialsPayList.categoryMaterials.materialsUnit}
+														</td>
 													</tr>
+													<input type="text" name="ppWoResultList[${i.index}].wrMaterialsPayList[${j.index}].woMaterialsPay.eMaterialspayNumber" value="${woMaterialsPayList.eMaterialspayNumber}">
 												</c:forEach>
 											</tbody>
 										</table>
@@ -137,15 +145,16 @@
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach var="wrInsurancePayList" items="${woResultList.wrInsurancePayList}" varStatus="j"><!-- 예상보험비로 교체 -->
+												<c:forEach var="woInsurancePayList" items="${ppWorkList.woInsurancePayList}" varStatus="j">
 													<tr>
-														<td>${wrInsurancePayList.woInsurancePay.eInsurancepayMame}</td>
-														<td>${wrInsurancePayList.woInsurancePay.eInsurancepayTotalcost}</td>
-														<td>${wrInsurancePayList.woInsurancePay.eInsurancepayExpectcost}</td>
+														<td>${woInsurancePayList.eInsurancepayMame}</td>
+														<td>${woInsurancePayList.eInsurancepayTotalcost}</td>
+														<td>${woInsurancePayList.eInsurancepayExpectcost}</td>
 														<td><input type="checkbox"></td>
-														<td><input type="text" name="ppWoResultList[${i.index}].wrInsurancePayList[${j.index}].wrInsurancepayMonthcost"></td>
-														<td><input type="date" name="ppWoResultList[${i.index}].wrInsurancePayList[${j.index}].wrInsurancepayDate"></td>
+														<td><input type="number" class="form-control" name="ppWoResultList[${i.index}].wrInsurancePayList[${j.index}].wrInsurancepayMonthcost"></td>
+														<td><input type="date" class="form-control" name="ppWoResultList[${i.index}].wrInsurancePayList[${j.index}].wrInsurancepayDate"></td>
 													</tr>
+													<input type="text" name="ppWoResultList[${i.index}].wrInsurancePayList[${j.index}].woInsurancePay.eInsurancepayNumber" value="${woInsurancePayList.eInsurancepayNumber}">
 												</c:forEach>
 											</tbody>
 										</table>
@@ -162,20 +171,22 @@
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach var="wrEtcSpendPayList" items="${woResultList.wrEtcSpendPayList}" varStatus="j"><!-- 예상으로 변경 -->
+												<c:forEach var="woEtcSpendPayList" items="${ppWorkList.woEtcSpendPayList}" varStatus="j">
 													<tr>
-														<td>${wrEtcSpendPayList.woEtcSpendPay.etcspendpayNumber}</td><!-- dto 수정하면 넘버에서 이름으로 변경 -->
-														<td>${wrEtcSpendPayList.woEtcSpendPay.eEtcspendpayCost}</td>
-														<td>${wrEtcSpendPayList.woEtcSpendPay.eEtcspendpayDay}</td>
+														<td>${woEtcSpendPayList.categoryEtcSpendPay.etcspendpayName}</td>
+														<td>${woEtcSpendPayList.eEtcspendpayCost}</td>
+														<td>${woEtcSpendPayList.eEtcspendpayDay}</td>
 														<td><input type="checkbox"></td>
-														<td><input type="text" name="ppWoResultList[${i.index}].wrEtcSpendPayList[${j.index}].wrEtcspendpayRealcost"></td>
-														<td><input type="date" name="ppWoResultList[${i.index}].wrEtcSpendPayList[${j.index}].wrEtcspendpayDate"></td>
+														<td><input type="number" class="form-control" name="ppWoResultList[${i.index}].wrEtcSpendPayList[${j.index}].wrEtcspendpayRealcost"></td>
+														<td><input type="date" class="form-control" name="ppWoResultList[${i.index}].wrEtcSpendPayList[${j.index}].wrEtcspendpayDate"></td>
 													</tr>
+													<input type="text" name="ppWoResultList[${i.index}].wrEtcSpendPayList[${j.index}].woEtcSpendPay.eEtcspendpayNumber" value="${woEtcSpendPaysList.eEtcspendpayNumber}">
 												</c:forEach>
 											</tbody>
 										</table>
 										필요장비
-										<table class="table table-striped table-advance table-hover">
+										건혜완성시 주석해제
+										<%-- <table class="table table-striped table-advance table-hover">
 											<thead>
 												<tr>
 													<th>장비명</th>
@@ -188,19 +199,21 @@
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach var="wrNeedEquipList" items="${woResultList.wrNeedEquipList}" varStatus="j"><!-- 예상으로변경 -->
+												<c:forEach var="woNeedEquipList" items="${ppWorkList.woNeedEquipList}" varStatus="j">
 													<tr>
-														<td>${wrNeedEquipList.woNeedEquip.categoryEquip.equipName}</td>
-														<td>${wrNeedEquipList.woNeedEquip.eNeedequipState}</td>
+														<td>${woNeedEquipList.categoryEquip.equipName}</td>
+														<td>${woNeedEquipList.eNeedequipState}</td>
 														<td><input type="text" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeedequipState"></td>
-														<td>${wrNeedEquipList.wrNeRentPayList[0].woNeRentPay.companyRentEquip.cRentCost}</td>
-														<td>${wrNeedEquipList.wrNeRentPayList[0].woNeRentPay.companyRentEquip.cRentDate}</td>
-														<td><input type="text" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeRentPayList[0].neRentpayCost"></td>
-														<td><input type="text" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeRentPayList[0].neRentpayDate"></td>
+														<td>${woNeedEquipList.woNeRentPayList[0].companyRentEquip.cRentCost}</td>
+														<td>${woNeedEquipList.woNeRentPayList[0].companyRentEquip.cRentDate}</td>
+														<td><input type="number" class="form-control" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeRentPayList[0].neRentpayCost"></td>
+														<td><input type="date" class="form-control" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeRentPayList[0].neRentpayDate"></td>
 													</tr>
+													<input type="text" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].woNeedEquip.eNeedequipNumber" value="${woNeedEquipList.eNeedequipNumber}">
+													<input type="text" class="form-control" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeRentPayList[0].woNeRentPay.neERentpayNumber" value="${woNeedEquipList.woNeRentPayList[0].neERentpayNumber}">
 												</c:forEach>
 											</tbody>
-										</table>
+										</table> --%>
 									</div>
 								</div>
 							</c:forEach>

@@ -12,6 +12,9 @@ public class WrHumanPay {
 	private double wrHumanpayRealcost; // 실제인건비
 	private Date wrHumanpayDate; // 실제작업일
 	
+	public WrHumanPay() {
+		this.ppWoResult = new PpWoResult();
+	}
 	public int getWrHumanpayNumber() {
 		return wrHumanpayNumber;
 	}

@@ -141,7 +141,7 @@
 										<tbody>
 											<c:forEach var="wrEtcSpendPayList" items="${woResultList.wrEtcSpendPayList}">
 												<tr>
-													<td>${wrEtcSpendPayList.woEtcSpendPay.etcspendpayNumber}</td><!-- dto 수정하면 넘버에서 이름으로 변경 -->
+													<td>${wrEtcSpendPayList.woEtcSpendPay.categoryEtcSpendPay.etcspendpayName}</td>
 													<td>${wrEtcSpendPayList.woEtcSpendPay.eEtcspendpayCost}</td>
 													<td>${wrEtcSpendPayList.woEtcSpendPay.eEtcspendpayDay}</td>
 													<td>${wrEtcSpendPayList.wrEtcspendpayRealcost}</td>

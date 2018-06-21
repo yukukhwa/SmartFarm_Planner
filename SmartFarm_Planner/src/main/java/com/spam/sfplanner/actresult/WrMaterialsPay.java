@@ -10,6 +10,9 @@ public class WrMaterialsPay {
 	private double wrMaterialspayQuantity; // 실제 사용량
 	private String wrMaterialspayUnitcost; // 현재 원자재 단가
 	
+	public WrMaterialsPay() {
+		this.ppWoResult = new PpWoResult();
+	}
 	public int getWrMaterialspayNumber() {
 		return wrMaterialspayNumber;
 	}

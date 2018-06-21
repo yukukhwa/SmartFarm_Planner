@@ -70,7 +70,7 @@
 						<tr>
 							<th>계획명</th>
 							<th>실행결과리스트 작성일</th>
-							<th>회원아이디</th>
+							<th>작성자(아이디)</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -78,7 +78,7 @@
 							<tr>
 								<td>${actResultList.productionPlan.titlePlan.ppNamePlanname}</td>
 								<td><a href="${pageContext.request.contextPath}/oneActResultList?ppResultlistNumber=${actResultList.ppResultlistNumber}">${actResultList.ppResultlistDate}</a></td>
-								<td>${actResultList.farmMember.fMemberId}</td>
+								<td>${actResultList.farmMember.fMemberName}(${actResultList.farmMember.fMemberId})</td>
 							</tr>
 						</c:forEach>
 					</tbody>

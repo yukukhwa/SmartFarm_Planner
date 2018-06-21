@@ -20,10 +20,10 @@
 		<result column="e_etcspendpay_day" property="eEtcspendpayDay"/>
 		<result column="e_etcspendpay_cost" property="eEtcspendpayCost"/>
 		<result column="e_etcspendpay_secret" property="eEtcspendpaySecret"/>
-	</collection>
-	<collection ofType="com.spam.sfplanner.category.CategoryEtcSpendPay" property="categoryEtcSpendPay">
-		<id column="etcspendpay_number" property="etcspendpayNumber"/>
-		<result column="etcspendpay_name" property="etcspendpayName"/>
+		<collection ofType="com.spam.sfplanner.category.CategoryEtcSpendPay" property="categoryEtcSpendPay">
+			<id column="etcspendpay_number" property="etcspendpayNumber"/>
+			<result column="etcspendpay_name" property="etcspendpayName"/>
+		</collection>
 	</collection>
 </resultMap>
 

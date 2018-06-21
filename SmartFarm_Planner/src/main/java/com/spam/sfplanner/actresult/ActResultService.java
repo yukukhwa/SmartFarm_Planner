@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spam.sfplanner.plan.ProductionPlanDao;
+import com.spam.sfplanner.plan.WoEtcSpendPayDao;
 import com.spam.sfplanner.Paging;
 import com.spam.sfplanner.plan.PpWork;
 import com.spam.sfplanner.plan.PpWorkDao;
@@ -52,6 +53,8 @@ public class ActResultService {
 	private WoMaterialsPayDao woMaterialsPayDao;
 	@Autowired
 	private WoInsurancePayDao woInsurancePayDao;
+	@Autowired
+	private WoEtcSpendPayDao woEtcSpendPayDao;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ActResultService.class);
 	/*
@@ -90,8 +93,23 @@ public class ActResultService {
 	}
 	
 	public int insertActResult(ActResult actResult) {
-		/*actResultDao.insertActResult(actResult);
-		wrHumanPayDao.insertWrHumanPay(wrHumanPay);*/
+		actResultDao.insertActResult(actResult);
+		List<PpWoResult> ppWoResultList = actResult.getPpWoResultList();
+		if(ppWoResultList != null) {
+			for(PpWoResult ppWoResult : ppWoResultList) {
+				ppWoResult.getActResult().setPpResultlistNumber(actResult.getPpResultlistNumber());
+				ppWoResultDao.insertWorkResult(ppWoResult);
+				List<WrHumanPay> wrHumanPayList = ppWoResult.getWrHumanPayList();
+				if(wrHumanPayList != null) {
+					for(WrHumanPay wrHumanPay : wrHumanPayList) {
+						wrHumanPay.getPpWoResult().setWrNumber(ppWoResult.getWrNumber());
+						wrHumanPayDao.insertWrHumanPay(wrHumanPay);
+					}
+				}
+				
+			}
+		}
+		
 		return 0;
 	}
 	
@@ -105,6 +123,7 @@ public class ActResultService {
 			ppWork.setWoMaterialsPayList(woMaterialsPayDao.listSelectWoMaterialsPay(map));
 			ppWork.setWoInsurancePayList(woInsurancePayDao.listSelectWoInsurancePay(map));
 			ppWork.setWoHumanPayList(woHumanPayDao.listSelectWoHumanPay(map));
+			ppWork.setWoEtcSpendPayList(woEtcSpendPayDao.listSelectWoEtcSpendPay(map));
 		}
 		productionPlan.setPpWorkList(ppWorkList);
 		

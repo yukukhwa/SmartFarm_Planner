@@ -30,33 +30,43 @@
           </div>
         </div>
 
-        <div class="row" style="height: 420px;">
-          <div class="col-lg-12 col-md-12">
+		<div class="row">
+			<div class="col-lg-12">
+				<section class="panel panel-default">
+					<div class="panel-heading">
+						<strong>스마트팜 이용 방법(화면 전환시 설명서 제공)</strong>
+					</div>
 				<!-- 여기에 슬라이드 -->
-            	<div id="c-slide" class="carousel slide auto panel-body" style="height: 100%;">
+            	<div id="c-slide" class="carousel slide auto panel-body">
                 <ol class="carousel-indicators out">
                   <li class="active" data-slide-to="0" data-target="#c-slide"></li>
                   <li class="" data-slide-to="1" data-target="#c-slide"></li>
                   <li class="" data-slide-to="2" data-target="#c-slide"></li>
                 </ol>
                 
-                <div class="carousel-inner" style="width: 100%; height: 100%;">
-                  <div class="item text-center active" > 
-                 	 <div style="height: 150px;">                 	
-	                 	<h3>step1. 농가(대표or직원) 가입</h3>
-	                 	<h3>step2. 농가로 로그인</h3>
-	                    <small class="">Based on Bootstrap 3</small> 
-	                   </div>            
-                  	<span>                  		
-                  		<img src="img/slide1.jpg" style="width: 33%; height: auto;">                  		
-                  	</span>
-                  	<span>                 		
-                  		<img src="img/slide3.jpg" style="width: 33%; height: auto;">                  		
-                  	</span>
-                  	<span>               
-                  		<img src="img/slide2.jpg" style="width: 33%; height: auto;">                  		
-                  	</span>
-                  </div>
+					<div class="carousel-inner">
+						<div class="item active" >
+							<h3>step1. 농가 로그인</h3>
+							<h3>step2. 계획서 선택</h3>
+							<h3>step3. my 계획서 등록 선택</h3>
+							<h3>step4. 등록 후 리스트 보기</h3>
+							<h3>step5. 실행결과 선택</h3>
+							<h3>step6. my 실행결과 등록 선택</h3>
+							<h3>step7. 원하는 계획서 선택 후 등록</h3>
+							<h3>step8. 계획과 결과를 비교·분석</h3>
+							<p></p>
+		                 	<div class="col-lg-12 text-center">
+								<span>
+									<img src="img/slide1.jpg" style="width: 33%; height: auto;">
+								</span>
+								<span>
+									<img src="img/slide3.jpg" style="width: 33%; height: auto;">
+								</span>
+								<span>
+									<img src="img/slide2.jpg" style="width: 33%; height: auto;">
+								</span>
+							</div>
+						</div>
                   <div class="item text-center">
                   <div style="height: 150px;">
                   	<h3>Massive UI Elements</h3>
@@ -95,13 +105,14 @@
                                   <i class="arrow_carrot-right_alt2"></i>
                               </a>
               </div>
-          </div>
-    	</div>
+				</section>
+			</div>
+		</div>
 
         <!-- Today status end -->
         <div class="row">
 
-          <div class="col-lg-9 col-md-12" style="height: 420px; margin-bottom: 20px">
+          <div class="col-lg-9 col-md-9">
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h2><i class="fa fa-flag-o red"></i><strong>대여장비 현황</strong></h2>
@@ -111,11 +122,10 @@
                   <a href="${pageContext.request.contextPath }/home" class="btn-close"><i class="fa fa-times"></i></a>
                 </div>
               </div>
-              <div class="panel-body" style="height: 385px; padding-top: 0">
+              <div class="panel-body">
                 <table class="table bootstrap-datatable countries">
                   <thead>
                     <tr>
-                      <th></th>
                       <th>업체</th>
                       <th>대여장비 모델</th>
                       <th>가격</th>
@@ -124,10 +134,9 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
-                      <td>Germany</td>
-                      <td>2563</td>
-                      <td>1025</td>
+                      <td>전주농장비</td>
+                      <td>ND10DEH/DT10DE</td>
+                      <td>1,025,000</td>
                       <td>
                         <div class="progress thin">
                           <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" style="width: 73%">
@@ -139,10 +148,9 @@
                       </td>
                     </tr>
                     <tr>
-                      <td><img src="img/India.png" style="height:18px; margin-top:-2px;"></td>
-                      <td>India</td>
-                      <td>3652</td>
-                      <td>2563</td>
+                      <td>전북농장비임대사업소</td>
+                      <td>BK-35</td>
+                      <td>2,563,000</td>
                       <td>
                         <div class="progress thin">
                           <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="57" aria-valuemin="0" aria-valuemax="100" style="width: 57%">
@@ -154,10 +162,9 @@
                       </td>
                     </tr>
                     <tr>
-                      <td><img src="img/Spain.png" style="height:18px; margin-top:-2px;"></td>
-                      <td>Spain</td>
-                      <td>562</td>
-                      <td>452</td>
+                      <td>튼튼장비</td>
+                      <td>EP2921</td>
+                      <td>452,000</td>
                       <td>
                         <div class="progress thin">
                           <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="93" aria-valuemin="0" aria-valuemax="100" style="width: 93%">
@@ -169,10 +176,9 @@
                       </td>
                     </tr>
                     <tr>
-                      <td><img src="img/India.png" style="height:18px; margin-top:-2px;"></td>
-                      <td>Russia</td>
-                      <td>1258</td>
-                      <td>958</td>
+                      <td>여기가 제일좋아 농장비</td>
+                      <td>SH-170A</td>
+                      <td>958,000</td>
                       <td>
                         <div class="progress thin">
                           <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
@@ -184,10 +190,9 @@
                       </td>
                     </tr>
                     <tr>
-                      <td><img src="img/Spain.png" style="height:18px; margin-top:-2px;"></td>
-                      <td>USA</td>
-                      <td>4856</td>
-                      <td>3621</td>
+                      <td>전주 농기계</td>
+                      <td>SDS-A1630N</td>
+                      <td>3,621,000</td>
                       <td>
                         <div class="progress thin">
                           <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
@@ -199,10 +204,9 @@
                       </td>
                     </tr>
                     <tr>
-                      <td><img src="img/Germany.png" style="height:18px; margin-top:-2px;"></td>
-                      <td>Brazil</td>
-                      <td>265</td>
-                      <td>102</td>
+                      <td>배관 전문 관리점</td>
+                      <td>SSP850</td>
+                      <td>102,000</td>
                       <td>
                         <div class="progress thin">
                           <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
@@ -222,7 +226,7 @@
             </div>
 
           </div>
-          <div class="col-md-3">
+          <div class="col-lg-3 col-md-3">
             <!-- List starts -->
             <ul class="today-datas">
               <!-- List #1 -->
@@ -230,23 +234,23 @@
                 <!-- Graph -->
                 <div><span id="todayspark1" class="spark"></span></div>
                 <!-- Text -->
-                <div class="datas-text">11,500 visitors/day</div>
+                <div class="datas-text">11,500 방문자/일</div>
               </li>
               <li>
                 <div><span id="todayspark2" class="spark"></span></div>
-                <div class="datas-text">15,000 Pageviews</div>
+                <div class="datas-text">75,000명의 회원수</div>
               </li>
               <li>
                 <div><span id="todayspark3" class="spark"></span></div>
-                <div class="datas-text">30.55% Bounce Rate</div>
+                <div class="datas-text">30.55% 반송률</div>
               </li>
               <li>
                 <div><span id="todayspark4" class="spark"></span></div>
-                <div class="datas-text">$16,00 Revenue/Day</div>
+                <div class="datas-text">1,600,000 수익/일</div>
               </li>
               <li>
                 <div><span id="todayspark5" class="spark"></span></div>
-                <div class="datas-text">12,000000 visitors every Month</div>
+                <div class="datas-text">월 4,000,000명의 방문자</div>
               </li>
             </ul>
           </div>
