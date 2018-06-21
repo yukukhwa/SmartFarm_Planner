@@ -1,3 +1,4 @@
+/*[김재희]*/
 package com.spam.sfplanner.category;
 
 import java.util.List;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class CategoryThemeController {
 	@Autowired CategoryThemeService categoryThemeService;
-	private final static Logger LOGGER = LoggerFactory.getLogger(CategoryController.class);
+	private final static Logger LOGGER = LoggerFactory.getLogger(CategoryThemeController.class);
 	
 	/*겟방식으로 요청이 들어올 때 삭제처리 후 listTheme으로 리다이렉트 한다*/
 	@RequestMapping(value="/deleteTheme", method=RequestMethod.GET)

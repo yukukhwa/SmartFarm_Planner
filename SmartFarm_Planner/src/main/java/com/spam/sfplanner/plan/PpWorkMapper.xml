@@ -32,6 +32,11 @@
  		</collection>
  	</resultMap>
  	
+ 	<delete id="deletePpWork"
+ 		parameterType="integer">
+ 			DELETE FROM sp_pp_work WHERE pp_work_number=#{ppWorkNumber}
+ 	</delete>
+ 	
  	<insert id="insertPpWork"
  		parameterType="com.spam.sfplanner.plan.PpWork">
  		<selectKey resultType="int" keyProperty="ppWorkNumber" order="AFTER">

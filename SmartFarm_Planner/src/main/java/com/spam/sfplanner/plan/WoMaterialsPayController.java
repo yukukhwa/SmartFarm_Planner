@@ -22,7 +22,7 @@ public class WoMaterialsPayController {
 	private final static Logger LOGGER = LoggerFactory.getLogger(WoMaterialsPayController.class);
 	
 	/*해당 예상원자재넘버를 매개변수로 받아 삭제처리*/
-	@RequestMapping(value="deleteWoMaterialsPay", method=RequestMethod.GET)
+	@RequestMapping(value="/deleteWoMaterialsPay", method=RequestMethod.GET)
 	public String deleteWoMaterialsPay(int eMaterialspayNumber) {
 		System.out.println("delete eMaterialspayNumber ===> "+eMaterialspayNumber);
 		woMaterialsPayService.deleteWoMaterialsPay(eMaterialspayNumber);
@@ -30,14 +30,14 @@ public class WoMaterialsPayController {
 	}
 	
 	/*수정할 예상원자재비의 정보들을 수정처리*/
-	@RequestMapping(value="updateMaterialsPay", method=RequestMethod.POST)
+	@RequestMapping(value="/updateMaterialsPay", method=RequestMethod.POST)
 	public String updateWoMaterialsPay(WoMaterialsPay woMaterialsPay) {
 		woMaterialsPayService.updateWoMaterialsPay(woMaterialsPay);
 		return "plan/wo_materials_pay/updateMaterialsPay";
 	}
 	
 	/*하나의 예상원자재비의 정보들을 가져와 출력*/
-	@RequestMapping(value="updateMaterialsPay", method=RequestMethod.GET)
+	@RequestMapping(value="/updateMaterialsPay", method=RequestMethod.GET)
 	public String oneSelectWoMaterialsPay(Model model, int eMaterialspayNumber, int ppNumber) {
 		System.out.println("eMaterialspayNumber oneselect ==>"+eMaterialspayNumber);
 		System.out.println("Materials ppNumber==> "+ppNumber);
@@ -49,7 +49,7 @@ public class WoMaterialsPayController {
 	}
 	
 	/*검색조건과 키워드, 작업단계 매개변수를 받아 검색조건에 따른 정보리스트들을 출력해 list로 포워드*/
-	@RequestMapping(value="listMaterialsPay", method=RequestMethod.POST)
+	@RequestMapping(value="/listMaterialsPay", method=RequestMethod.POST)
 	public String listSelectWoMaterialsPay(int ppWorkNumber
 										, Model model
 										, String searchMaterialsPayOption
@@ -60,7 +60,7 @@ public class WoMaterialsPayController {
 	}
 	
 	/*예상 원자재비 전체 리스트를 조회*/ 
-	@RequestMapping(value="listMaterialsPay", method=RequestMethod.GET)
+	@RequestMapping(value="/listMaterialsPay", method=RequestMethod.GET)
 	public String listSelectWoMaterialsPay(int ppWorkNumber, Model model) {
 		model.addAttribute("list", woMaterialsPayService.listSelectWoMaterialsPay(ppWorkNumber));
 		model.addAttribute("ppWorkNumber", ppWorkNumber);
@@ -68,7 +68,7 @@ public class WoMaterialsPayController {
 	}
 	
 	/*등록한 정보들을 등록처리 한 후 등록화면으로 포워드*/
-	@RequestMapping(value="addMaterialsPay", method=RequestMethod.POST)
+	@RequestMapping(value="/addMaterialsPay", method=RequestMethod.POST)
 	public String insertWoMaterialsPay(WoMaterialsPay woMaterialsPay) {
 		System.out.println("add woMaterialsPay===> "+woMaterialsPay);
 		woMaterialsPayService.insertWoMaterialsPay(woMaterialsPay);
@@ -76,7 +76,7 @@ public class WoMaterialsPayController {
 	}
 	
 	/*작업단계를 매개변수로 가져와 원자재 카테고리의 리스트를 출력하고 예상원자재비등록 화면으로 포워드*/
-	@RequestMapping(value="addMaterialsPay", method=RequestMethod.GET)
+	@RequestMapping(value="/addMaterialsPay", method=RequestMethod.GET)
 	public String insertWoMaterialsPay(Model model, int ppNumber) {
 		Map<String, Object> map = woMaterialsPayService.insertWoMaterialsPay(ppNumber);
 		model.addAttribute("ppWorkList", map.get("ppWorkList"));

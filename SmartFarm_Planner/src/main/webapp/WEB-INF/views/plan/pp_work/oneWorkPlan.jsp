@@ -10,6 +10,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('#deletePpWork').click(function(){
+			location.href = "${pageContext.request.contextPath}/deletePpWork?ppWorkNumber=${ppWorkNumber}";
+		})
+		
+		$('#updatePpWork').click(function(){
+			location.href = "${pageContext.request.contextPath}/updateWorkPlan?ppWorkNumber=${ppWorkNumber}";
+		})
 	})
 </script>
 </head>
@@ -26,6 +33,8 @@
     			<h3>작업단계별 상세리스트</h3>
     			<div>
     				<label>예상 원자재비 리스트</label>
+    				<button id="deletePpWork">이 작업단계 삭제하기</button>
+    				<button id="updatePpWork">이 작업단계 수정하기</button>
     				<table class="table">
     					<thead>
     						<tr>

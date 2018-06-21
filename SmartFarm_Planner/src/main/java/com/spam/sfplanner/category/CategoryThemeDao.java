@@ -1,3 +1,4 @@
+/*[김재희]*/
 package com.spam.sfplanner.category;
 
 import java.util.List;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class CategoryThemeDao {
 	@Autowired private SqlSessionTemplate sqlSession;
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(CategoryThemeDao.class);
 	private static final String NAMESPACE = "com.spam.sfplanner.category.CategoryThemeMapper.";
 	

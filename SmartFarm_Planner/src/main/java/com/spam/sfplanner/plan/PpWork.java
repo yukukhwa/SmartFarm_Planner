@@ -20,6 +20,12 @@ public class PpWork {
 	private List<WoInsurancePay> woInsurancePayList; // 작업단계 내의 예상 보험비 리스트
 	private List<WoEtcSpendPay> woEtcSpendPayList; // 작업단계 내의 예상 기타지출비 리스트
 	private List<WoNeedEquip> woNeedEquipList; // 작업단계 내의 필요장비 리스트
+	
+	public PpWork() {
+		this.productionPlan = new ProductionPlan();
+		this.farm = new Farm();
+	}
+	
 	public int getPpWorkNumber() {
 		return ppWorkNumber;
 	}

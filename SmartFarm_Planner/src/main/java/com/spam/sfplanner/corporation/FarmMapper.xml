@@ -27,18 +27,18 @@
 		</collection>
 	</resultMap>
   
+  <!-- 농가의 정보를 수정처리하는 쿼리문 -->
+  <!-- <update id=""
+  		parameterType="">
+  
+  </update> -->
+  
   <!-- 농가넘버에 해당하는 농가의 정보를 삭제하는 쿼리문 -->
   <delete id="deleteFarm"
   		parameterType="integer">
   			DELETE FROM sp_farm WHERE f_number=#{fNumber}
   </delete>
-  
-  <!-- 농가정보를 수정처리하는 쿼리문 -->
-  <!-- <update id="updateFarm"
-  	parameterType="com.spam.sfplanner.user.FarmMemberRequest">
-  		
-  </update> -->
-  
+
   <!-- 한개의 농가에 대한 상세정보를 조회하는 쿼리문 -->
   <select id="oneSelectFarm"
        parameterType="String"

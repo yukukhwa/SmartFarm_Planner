@@ -1,3 +1,4 @@
+/*[깆재희]*/
 package com.spam.sfplanner.category;
 
 import java.util.HashMap;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class CategoryThemeService {
 	@Autowired CategoryThemeDao categoryThemeDao;	
+	
 	private static final Logger LOGGER = LoggerFactory.getLogger(CategoryThemeService.class);
 	
 	/*해당 테마카테고리를 삭제처리*/

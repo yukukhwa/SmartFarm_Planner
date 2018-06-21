@@ -26,7 +26,7 @@ public class FarmMemberController {
 		private final static Logger LOGGER = LoggerFactory.getLogger(FarmMemberController.class);
 		
 		/*삭제요청이 겟방식으로 넘어올때 삭제처리*/
-		@RequestMapping(value="deleteFarmMember", method=RequestMethod.GET)
+		@RequestMapping(value="/deleteFarmMember", method=RequestMethod.GET)
 		public String deleteFarmMember(String fMemberId) {
 			LOGGER.info("FarmMemberController deleteFarmMember 호출");
 			farmMemberService.deleteFarmMember(fMemberId);
@@ -34,7 +34,7 @@ public class FarmMemberController {
 		}
 		
 		/*포스트 방식으로 넘어올때 수정처리*/
-		@RequestMapping(value="updateFarmMember", method=RequestMethod.POST)
+		@RequestMapping(value="/updateFarmMember", method=RequestMethod.POST)
 		public String updateFarmMember(FarmMemberRequest farmMemberRequest) {
 			LOGGER.info("FarmMemberController updateFarmMember post 호출");
 			farmMemberService.updateFarmMember(farmMemberRequest);
@@ -42,7 +42,7 @@ public class FarmMemberController {
 		}
 		
 		/*업데이트를 하기 위해 수정할 화면을 불러옴*/
-		@RequestMapping(value="updateFarmMember", method=RequestMethod.GET)
+		@RequestMapping(value="/updateFarmMember", method=RequestMethod.GET)
 		public String updateFarmMember(Model model, String fMemberId) {
 			LOGGER.info("FarmMemberController updateFarmMember 호출");
 			model.addAttribute("farmMember", farmMemberService.oneSelectFarmMember(fMemberId));
@@ -50,7 +50,7 @@ public class FarmMemberController {
 		}
 		
 		/*한 농가회원의 정보를 상세보기*/
-		@RequestMapping(value="oneFarmMember", method=RequestMethod.GET)
+		@RequestMapping(value="/oneFarmMember", method=RequestMethod.GET)
 		public String oneSelectFarmMember(Model model
 										,  String fMemberId) {
 			LOGGER.info("FarmMemberController oneFarmMember 호출");

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Delete;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,36 @@ public class PpWorkService {
 	@Autowired WoNeedEquipDao woNeedEquipDao;
 	
 	private final static Logger LOGGER = LoggerFactory.getLogger(PpWorkService.class);
+	
+	public Map<String, Object> updatePpWork(Map<String, Object> map){
+		productionPlanDao.listSelectProductionPlan(map);
+		return map;
+	}
+	
+	public void deletePpWork(int ppWorkNumber) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ppWorkNumber", ppWorkNumber);
+		for(WoHumanPay woHumanPay : woHumanPayDao.listSelectWoHumanPay(map)) {
+			woHumanPayDao.deleteWoHumanPay(woHumanPay.geteHumanpayNumber());
+		}
+		
+		for(WoMaterialsPay woMaterialsPay : woMaterialsPayDao.listSelectWoMaterialsPay(map)) {
+			woMaterialsPayDao.deleteWoMaterialsPay(woMaterialsPay.geteMaterialspayNumber());
+		}
+		
+		for(WoInsurancePay woInsurancePay : woInsurancePayDao.listSelectWoInsurancePay(map)) {
+			woInsurancePayDao.deleteWoInsurancePay(woInsurancePay.geteInsurancepayNumber());
+		}	
+		
+		/*for(WoEtcSpendPay woEtcSpendPay : woEtcSpendPayDao.listSelectWoEtcSpendPay(map)) {
+			WoEtcSpendPayDao.삭제
+		}
+		
+		for(WoNeedEquip woNeedEquip : woNeedEquipDao.listSelectWoNeedEquip(map)) {
+			woNeedEquipDao.삭제
+		}*/
+		ppWorkDao.deletePpWork(ppWorkNumber);
+	}
 	
 	public void insertPpWork(PpWork ppWork) {
 		ppWorkDao.insertPpWork(ppWork); 
