@@ -35,7 +35,7 @@ public class CategoryItemController {
 	 * @param model
 	 * @return 품목카테고리 수정 화면
 	 */
-	@RequestMapping(value="/updateItem")
+	@RequestMapping(value="/updateItem",method = RequestMethod.GET)
 	public String updateCategoryItem(@RequestParam(value="iItemNumber",required=true)int iItemNumber,Model model) {
 		Map<String, Object> map = categoryItemService.updateCategoryItem(iItemNumber);
 		model.addAttribute("item", map.get("item"));

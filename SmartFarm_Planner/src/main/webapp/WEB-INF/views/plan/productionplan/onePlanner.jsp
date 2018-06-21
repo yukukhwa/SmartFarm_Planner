@@ -42,7 +42,7 @@
     	<section class="wrapper">
 	    	<!--overview start-->
 			<div class="col">
-				<div class="col-lg-10">
+				<div class="col-lg-12">
     				<section class="panel">
     					<header class="panel-heading">
 							${productionPlan.titlePlan.ppNamePlanname}
@@ -56,6 +56,12 @@
 							</div>
 							<div>
 								소유면적/임대면적 : ${productionPlan.ppOwnarea} / ${productionPlan.ppRentarea}
+							</div>
+							<div>
+								소속 : ${productionPlan.farmMember.farm.fName}
+							</div>
+							<div>
+								작성자 : ${productionPlan.farmMember.fMemberName}(${productionPlan.farmMember.fMemberId})
 							</div>
 							<div>
 								등록일자 : ${productionPlan.ppRecordday}
@@ -152,10 +158,56 @@
 												</c:forEach>
 											</tbody>
 										</table>
+										기타지출
+										<table class="table table-striped table-advance table-hover">
+											<thead>
+												<tr>
+													<th>기타지출명</th>
+													<th>기타지출상세내용</th>
+													<th>예상기타지출일</th>
+													<th>예상기타지출비</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach var="woEtcSpendPay" items="${ppWork.woEtcSpendPayList}">
+													<c:if test="${woEtcSpendPay.eEtcspendpaySecret != 'false'}">
+														<tr>
+															<td>${woEtcSpendPay.categoryEtcSpendPay.etcspendpayName}</td>
+															<td>${woEtcSpendPay.eEtcspendpayContent}</td>
+															<td>${woEtcSpendPay.eEtcspendpayDay}</td>
+															<td>${woEtcSpendPay.eEtcspendpayCost}</td>
+														</tr>
+													</c:if>
+												</c:forEach>
+											</tbody>
+										</table>
+										필요장비계획
+										<table class="table table-striped table-advance table-hover">
+											<thead>
+												<tr>
+													<th>필요장비명</th>
+													<th>계획시 보유현황</th>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach var="woNeedEquip" items="${ppWork.woNeedEquipList}">
+													<tr>
+														<td>${woNeedEquip.categoryEquip.equipName}</td>
+														<td>${woNeedEquip.eNeedequipState}</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
 									</div>
 								</div>
 								<c:set var="i" value="${i+1}"/>
-							</c:forEach>	
+							</c:forEach>
+							<c:if test="${loginMember.corpNumber == productionPlan.farmMember.farm.fNumber}">
+								<div style="float: right;">
+									<a href="${pageContext.request.contextPath}/updatePlanner?ppNumber=${productionPlan.ppNumber}">수정하기</a>
+									<a href="<%-- ${pageContext.request.contextPath}/deletePlanner?ppNumber=${productionPlan.ppNumber} --%>">삭제하기</a>
+								</div>
+							</c:if>	
 						</div>
 						</section>
 					</div>

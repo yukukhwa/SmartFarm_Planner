@@ -17,6 +17,20 @@
  		</collection>
  	</resultMap>
  	
+ 	<insert id="insertMemo"
+ 			parameterType="com.spam.sfplanner.actresult.Memo">
+ 		INSERT INTO sp_wr_memo
+			(theme_number
+			,wr_number
+			,wr_memo_subject
+			,wr_memo_content)
+		VALUES 
+			(#{categoryTheme.themeNumber}
+			,#{ppWoResult.wrNumber}
+			,#{wrMemoSubject}
+			,#{wrMemoContent})
+ 	</insert>
+ 	
  	<select id="listSelectMemo"
  			parameterType="java.util.Map"
  			resultMap="memo">

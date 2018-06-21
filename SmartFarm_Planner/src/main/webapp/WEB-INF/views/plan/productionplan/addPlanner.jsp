@@ -71,6 +71,20 @@
 												+'<tbody>'
 												+'</tbody>'
 											+'</table>'
+											+'<br>기타지출 <input type="button" value="기타지출 추가" class="addEtcSpendPay" style="float: right;">'
+											+'<table class="etcSpendPayList table table-striped table-advance table-hover">'
+												+'<thead>'
+													+'<tr>'
+														+'<th>기타지출명</th>'
+														+'<th>지출상세내용</th>'
+														+'<th>예상기타지출일</th>'
+														+'<th>예상기타지출비</th>'
+														+'<th>공개/비공개</th>'
+													+'</tr>'
+												+'</thead>'
+												+'<tbody>'
+												+'</tbody>'
+											+'</table>'
 										+'</div>'
 									+'</div>');
 			return;
@@ -137,6 +151,25 @@
 																					+'<td><input type="text" name="'+ppWorkList+'.woMaterialsPayList['+materialsPaySize+'].eMaterialspayUse"></td>'
 																					+'<td><input type="radio" name="'+ppWorkList+'.woMaterialsPayList['+materialsPaySize+'].eMaterialspaySecret" value="true" checked="checked">공개<input type="radio" name="'+ppWorkList+'.woMaterialsPayList['+materialsPaySize+'].eMaterialspaySecret" value="false">비공개</td>'
 																				+'</tr>');
+			return;
+		});
+		
+		$(document).on('click','.addEtcSpendPay',function(){
+			var ppWorkList = $(this).parents('.ppWork').find('.ppWorkName').attr('name').split('.')[0];
+			var etcSpendPaySize = $(this).parents('.ppWork').find('.etcSpendPayList tbody tr').length;
+			$(this).parents('.ppWork').find('.etcSpendPayList tbody').append('<tr>'
+																				+'<td>'
+																					+'<select name="'+ppWorkList+'.woEtcSpendPayList['+etcSpendPaySize+'].categoryEtcSpendPay.etcspendpayNumber">'
+																						+'<c:forEach var="etcSpendPay" items="${etcSpendPayList}">'
+																						+'<option value="${etcSpendPay.etcspendpayNumber}">${etcSpendPay.etcspendpayName}</option>'
+																						+'</c:forEach>'
+																					+'</select>'
+																				+'</td>'
+																				+'<td><input type="text" name="'+ppWorkList+'.woEtcSpendPayList['+etcSpendPaySize+'].eEtcspendpayContent"></td>'
+																				+'<td><input type="date" name="'+ppWorkList+'.woEtcSpendPayList['+etcSpendPaySize+'].eEtcspendpayDay"></td>'
+																				+'<td><input type="number" name="'+ppWorkList+'.woEtcSpendPayList['+etcSpendPaySize+'].eEtcspendpayCost"></td>'
+																				+'<td><input type="radio" name="'+ppWorkList+'.woEtcSpendPayList['+etcSpendPaySize+'].eEtcspendpaySecret" value="true" checked="checked">공개<input type="radio" name="'+ppWorkList+'.woEtcSpendPayList['+etcSpendPaySize+'].eEtcspendpaySecret" value="false">비공개</td>'
+																			+'</tr>');
 			return;
 		});
 		
@@ -259,6 +292,63 @@
 													</tbody>
 												</table>
 												<br>보험비 <input type="button" value="보험비 추가" class="addInsurancePay" style="float: right;">
+												<table class="insurancePayList table table-striped table-advance table-hover">
+													<thead>
+														<tr>
+															<th>보험명</th>
+															<th>보험내용</th>
+															<th>보험가입일</th>
+															<th>보험만료일</th>
+															<th>보험가입기간</th>
+															<th>총보험비</th>
+															<th>예상보험비</th>
+															<th>공개/비공개</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>
+																<input type="text" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayMame">
+																<input type="hidden" name="ppWorkList[0].woInsurancePayList[0].categoryTheme.themeNumber" value="4">
+															</td>
+															<td><input type="text" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayContent"></td>
+															<td><input type="date" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayStartday"></td>
+															<td><input type="date" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayEndday"></td>
+															<td><input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayTerm"></td>
+															<td><input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayTotalcost"></td>
+															<td><input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayExpectcost"></td>
+															<td><input type="radio" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret" value="true" checked="checked">공개<input type="radio" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret" value="false">비공개</td>
+														</tr>
+													</tbody>
+												</table>
+												<br>기타지출 <input type="button" value="기타지출 추가" class="addEtcSpendPay" style="float: right;">
+												<table class="etcSpendPayList table table-striped table-advance table-hover">
+													<thead>
+														<tr>
+															<th>기타지출명</th>
+															<th>지출상세내용</th>
+															<th>예상기타지출일</th>
+															<th>예상기타지출비</th>
+															<th>공개/비공개</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<td>
+																<select name="ppWorkList[0].woEtcSpendPayList[0].categoryEtcSpendPay.etcspendpayNumber">
+									    							<c:forEach var="etcSpendPay" items="${etcSpendPayList}">
+									    							<option value="${etcSpendPay.etcspendpayNumber}">${etcSpendPay.etcspendpayName}</option>
+									    							</c:forEach>
+									    						</select>
+															</td>
+															<td><input type="text" name="ppWorkList[0].woEtcSpendPayList[0].eEtcspendpayContent"></td>
+															<td><input type="date" name="ppWorkList[0].woEtcSpendPayList[0].eEtcspendpayDay"></td>
+															<td><input type="number" name="ppWorkList[0].woEtcSpendPayList[0].eEtcspendpayCost"></td>
+															<td><input type="radio" name="ppWorkList[0].woEtcSpendPayList[0].eEtcspendpaySecret" value="true" checked="checked">공개<input type="radio" name="ppWorkList[0].woEtcSpendPayList[0].eEtcspendpaySecret" value="false">비공개</td>
+														</tr>
+													</tbody>
+												</table>
+												<br>필요장비계획 <input type="button" value="보험비 추가" class="addInsurancePay" style="float: right;">
 												<table class="insurancePayList table table-striped table-advance table-hover">
 													<thead>
 														<tr>

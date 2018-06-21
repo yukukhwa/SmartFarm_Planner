@@ -18,6 +18,7 @@
  			<result column="f_member_name" property="fMemberName"/>
  			 <collection property="farm" ofType="com.spam.sfplanner.corporation.Farm">
 	            <id column="f_number" property="fNumber"/>
+	            <result column="f_name" property="fName"/>
 	        </collection>
  		</collection>
  		<collection ofType="com.spam.sfplanner.plan.TitlePlan" property="titlePlan">
@@ -83,13 +84,17 @@
 			,sp_pp.pp_recordday
 			,sp_pp.f_member_id
 			,sp_farm_member.f_member_name
+			,sp_farm_member.f_number
+			,sp_farm.f_name
 			,sp_pp.pp_secret
 		from
-			sp_pp join sp_pp_name_cate join sp_farm_member
+			sp_pp join sp_pp_name_cate join sp_farm_member join sp_farm
 		on
 			sp_pp.pp_name_number = sp_pp_name_cate.pp_name_number
 		and
 			sp_pp.f_member_id = sp_farm_member.f_member_id
+		and
+			sp_farm_member.f_number = sp_farm.f_number
 		where
 			sp_pp.pp_number = #{ppNumber}
  	</select>
@@ -109,13 +114,16 @@
 			,sp_pp.f_member_id
 			,sp_farm_member.f_member_name
 			,sp_farm_member.f_number
+			,sp_farm.f_name
 			,sp_pp.pp_secret
 		from
-			sp_pp join sp_pp_name_cate join sp_farm_member
+			sp_pp join sp_pp_name_cate join sp_farm_member join sp_farm
 		on
 			sp_pp.pp_name_number = sp_pp_name_cate.pp_name_number
 		and
 			sp_pp.f_member_id = sp_farm_member.f_member_id
+		and
+			sp_farm_member.f_number = sp_farm.f_number
 		<if test="search == 'yes'">
 			WHERE
 			<if test="column == '농가넘버'">
@@ -126,6 +134,9 @@
 			</if>
 			<if test="column == '작성자'">
 				sp_farm_member.f_member_name like concat('%',#{property},'%')
+			</if>
+			<if test="column == '농가명'">
+				sp_farm.f_name like concat('%',#{property},'%')
 			</if>
 		</if>
 		ORDER BY sp_pp.pp_number DESC

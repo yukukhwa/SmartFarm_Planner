@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spam.sfplanner.category.CategoryEtcSpendPay;
+import com.spam.sfplanner.category.CategoryEtcSpendPayDao;
 import com.spam.sfplanner.category.CategoryMaterials;
 import com.spam.sfplanner.category.CategoryMaterialsDao;
 import com.spam.sfplanner.category.CategoryTheme;
@@ -44,6 +46,15 @@ public class ProductionPlanService {
 	
 	@Autowired
 	private CategoryMaterialsDao categoryMaterialsDao;
+	
+	@Autowired
+	private WoEtcSpendPayDao woEtcSpendPayDao;
+	
+	@Autowired
+	private WoNeedEquipDao woNeedEquipDao;
+	
+	@Autowired
+	private CategoryEtcSpendPayDao categoryEtcSpendPayDao;
 	
 	public List<ProductionPlan> listSelectMyProductionPlan(int fNumber) {
 		Map<String,Object> map = new HashMap<String, Object>();
@@ -82,6 +93,7 @@ public class ProductionPlanService {
 		List<WoInsurancePay> woInsurancePayList = null;
 		List<WoHumanPay> woHumanPayList = null;
 		List<WoMaterialsPay> woMaterialsPayList = null;
+		List<WoEtcSpendPay> WoEtcSpendPayList = null;
 		
 		productionPlan.getFarmMember().setfMemberId(fMemberId);
 		productionPlanDao.insertProductionPlan(productionPlan);
@@ -94,6 +106,7 @@ public class ProductionPlanService {
 				woInsurancePayList = ppWork.getWoInsurancePayList();
 				woHumanPayList = ppWork.getWoHumanPayList();
 				woMaterialsPayList = ppWork.getWoMaterialsPayList();
+				WoEtcSpendPayList = ppWork.getWoEtcSpendPayList();
 				if(woInsurancePayList != null) {
 					for(WoInsurancePay woInsurancePay : woInsurancePayList) {
 						woInsurancePay.getPpWork().setPpWorkNumber(ppWork.getPpWorkNumber());
@@ -112,6 +125,12 @@ public class ProductionPlanService {
 						woMaterialsPayDao.insertWoMaterialsPay(woMaterialsPay);
 					}
 				}
+				if(WoEtcSpendPayList != null) {
+					for(WoEtcSpendPay woEtcSpendPay : WoEtcSpendPayList) {
+						woEtcSpendPay.getPpWork().setPpWorkNumber(ppWork.getPpWorkNumber());
+						woEtcSpendPayDao.insertWoEtcSpendPay(woEtcSpendPay);
+					}
+				}
 			}
 		}
 	}
@@ -128,6 +147,8 @@ public class ProductionPlanService {
 			ppWork.setWoMaterialsPayList(woMaterialsPayDao.listSelectWoMaterialsPay(map));
 			ppWork.setWoInsurancePayList(woInsurancePayDao.listSelectWoInsurancePay(map));
 			ppWork.setWoHumanPayList(woHumanPayDao.listSelectWoHumanPay(map));
+			ppWork.setWoEtcSpendPayList(woEtcSpendPayDao.listSelectWoEtcSpendPay(map));
+			ppWork.setWoNeedEquipList(woNeedEquipDao.listSelectWoNeedEquip(map));
 			map.clear();
 		}
 		System.out.println(productionPlan);
@@ -155,10 +176,12 @@ public class ProductionPlanService {
 		List<TitlePlan> titleList = titlePlanDao.listSelectTitlePlan(map);
 		//List<CategoryTheme> themeList = categoryThemeDao.listSelectCategoryTheme();
 		List<CategoryMaterials> materialsList = categoryMaterialsDao.listSelectCategoryMaterials();
+		List<CategoryEtcSpendPay> etcSpendPayList = categoryEtcSpendPayDao.listSelectCategoryEtcSpendPay();
 		map.clear();
 		map.put("titleList", titleList);
 		//map.put("themeList", themeList);
 		map.put("materialsList", materialsList);
+		map.put("etcSpendPayList", etcSpendPayList);
 		return map;
 	}
 }

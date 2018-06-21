@@ -58,6 +58,12 @@
 								소유면적/임대면적 : ${productionPlan.ppOwnarea} / ${productionPlan.ppRentarea}
 							</div>
 							<div>
+								소속 : ${productionPlan.farmMember.farm.fName}
+							</div>
+							<div>
+								작성자 : ${productionPlan.farmMember.fMemberName}(${productionPlan.farmMember.fMemberId})
+							</div>
+							<div>
 								등록일자 : ${productionPlan.ppRecordday}
 							</div>
 							<c:set var="i" value="1"/>
@@ -150,10 +156,16 @@
 								</div>
 								<c:set var="i" value="${i+1}"/>
 							</c:forEach>	
+							<c:if test="${loginMember.corpNumber == productionPlan.farmMember.farm.fNumber}">
+								<div style="float: right;">
+									<a href="${pageContext.request.contextPath}/updatePlanner?ppNumber=${productionPlan.ppNumber}">수정하기</a>
+									<a href="<%-- ${pageContext.request.contextPath}/deletePlanner?ppNumber=${productionPlan.ppNumber} --%>">삭제하기</a>
+								</div>
+							</c:if>	
 						</div>
-						</section>
-					</div>
+					</section>
 				</div>
+			</div>
     	</section>
    	</section>
 </body>

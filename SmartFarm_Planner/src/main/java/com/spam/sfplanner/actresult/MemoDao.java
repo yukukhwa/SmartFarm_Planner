@@ -16,6 +16,10 @@ public class MemoDao {
 	
 	private static final String NAMESPACE = "com.spam.sfplanner.actresult.MemoMapper.";
 	
+	public void insertMemo(Memo memo) {
+		sqlSessionTemplate.insert(NAMESPACE+"insertMemo", memo);
+	}
+	
 	public List<Memo> listSelectMemo(Map<String,Object> map) {
 		return sqlSessionTemplate.selectList(NAMESPACE+"listSelectMemo", map);
 	}

@@ -24,6 +24,13 @@ public class ProductionPlanController {
 		return "plan/productionplan/oneMyPlanner";
 	}
 	
+	@RequestMapping(value="/listMyPlanner",method = RequestMethod.POST)
+	public String listSelectMyProductionPlan(@RequestParam(value="column",required=true)String column
+											,@RequestParam(value="property",required=false)Object property,Model model) {
+		model.addAttribute("list", productionPlanService.listSelectProductionPlan(column, property));
+		return "plan/productionplan/listMyPlanner";
+	}
+	
 	@RequestMapping(value="/listMyPlanner",method = RequestMethod.GET)
 	public String listSelectMyProductionPlan(@RequestParam(value="fNumber",required=true)int fNumber,Model model) {
 		model.addAttribute("list", productionPlanService.listSelectMyProductionPlan(fNumber));
@@ -111,6 +118,7 @@ public class ProductionPlanController {
 		model.addAttribute("titleList", map.get("titleList"));
 		//model.addAttribute("themeList", map.get("themeList"));
 		model.addAttribute("materialsList", map.get("materialsList"));
+		model.addAttribute("etcSpendPayList", map.get("etcSpendPayList"));
 		return "plan/productionplan/addPlanner";
 	}
 }

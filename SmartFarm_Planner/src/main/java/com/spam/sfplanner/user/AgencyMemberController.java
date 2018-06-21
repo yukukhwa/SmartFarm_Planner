@@ -74,7 +74,7 @@ public class AgencyMemberController {
 	 * @param 해당 회원아이디
 	 * @return 로그아웃 처리 요청주소
 	 */
-	@RequestMapping(value="/deleteAgencyMember")
+	@RequestMapping(value="/deleteAgencyMember",method = RequestMethod.GET)
 	public String deleteAgencyMember(@RequestParam(value="aMemberId",required=true)String aMemberId
 									,@RequestParam(value="aName",required=true)String aName,Model model) {
 		int result = agencyMemberService.deleteAgencyMember(aMemberId, aName);
