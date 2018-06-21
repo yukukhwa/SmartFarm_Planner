@@ -1,10 +1,12 @@
 /*배건혜*/
 package com.spam.sfplanner.plan;
 
+import com.spam.sfplanner.category.CategoryEtcSpendPay;
+
 public class WoEtcSpendPay {
 	private int eEtcspendpayNumber; //예상기타지출비넘버
-	private int etcspendpayNumber; //기타지출비용카테넘버
-	private int ppWorkNumber; //작업단계넘버
+	private CategoryEtcSpendPay categoryEtcSpendPay; //기타지출비용카테고리 테이블
+	private PpWork ppWork; //작업단계테이블
 	private String eEtcspendpayContent; //지출상세내용
 	private String eEtcspendpayDay; //예상기타지출일
 	private double eEtcspendpayCost; //예상기타지출비
@@ -15,17 +17,17 @@ public class WoEtcSpendPay {
 	public void seteEtcspendpayNumber(int eEtcspendpayNumber) {
 		this.eEtcspendpayNumber = eEtcspendpayNumber;
 	}
-	public int getEtcspendpayNumber() {
-		return etcspendpayNumber;
+	public CategoryEtcSpendPay getCategoryEtcSpendPay() {
+		return categoryEtcSpendPay;
 	}
-	public void setEtcspendpayNumber(int etcspendpayNumber) {
-		this.etcspendpayNumber = etcspendpayNumber;
+	public void setCategoryEtcSpendPay(CategoryEtcSpendPay categoryEtcSpendPay) {
+		this.categoryEtcSpendPay = categoryEtcSpendPay;
 	}
-	public int getPpWorkNumber() {
-		return ppWorkNumber;
+	public PpWork getPpWork() {
+		return ppWork;
 	}
-	public void setPpWorkNumber(int ppWorkNumber) {
-		this.ppWorkNumber = ppWorkNumber;
+	public void setPpWork(PpWork ppWork) {
+		this.ppWork = ppWork;
 	}
 	public String geteEtcspendpayContent() {
 		return eEtcspendpayContent;
@@ -53,11 +55,10 @@ public class WoEtcSpendPay {
 	}
 	@Override
 	public String toString() {
-		return "WoEtcSpendPay [eEtcspendpayNumber=" + eEtcspendpayNumber + ", etcspendpayNumber=" + etcspendpayNumber
-				+ ", ppWorkNumber=" + ppWorkNumber + ", eEtcspendpayContent=" + eEtcspendpayContent
+		return "WoEtcSpendPay [eEtcspendpayNumber=" + eEtcspendpayNumber + ", categoryEtcSpendPay="
+				+ categoryEtcSpendPay + ", ppWork=" + ppWork + ", eEtcspendpayContent=" + eEtcspendpayContent
 				+ ", eEtcspendpayDay=" + eEtcspendpayDay + ", eEtcspendpayCost=" + eEtcspendpayCost
 				+ ", eEtcspendpaySecret=" + eEtcspendpaySecret + "]";
 	}
 	
-
 }

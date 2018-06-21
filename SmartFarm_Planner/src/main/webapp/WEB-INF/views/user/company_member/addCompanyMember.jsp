@@ -41,7 +41,15 @@
 				return;
 			});
 	}); 
-	$('#submitCompanyMember').click(function(){
+	$(document).on('click','input#companyJusoCheck',function(){
+		var pop = window.open("${pageContext.request.contextPath}/jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes");
+		whoJuso = 0;
+	});
+	$('input#memberJusoCheck').click(function(){
+		var pop = window.open("${pageContext.request.contextPath}/jusoPopup","pop","width=570,height=420, scrollbars=yes, resizable=yes");
+		whoJuso = 1;
+	});
+	$('button#submitCompanyMember').click(function(){
 		var cMemberPrivacy = $('#cMemberPrivacy').val();
 		var dealNumber = $('#dealNumber').val();
 		var cName = $('#cName').val();
@@ -145,7 +153,7 @@
 			return false;
 		}
 		$('form#companyMember').submit();
-	});	
+	});
 	</script>
 </head>
 <body>
@@ -186,15 +194,19 @@
 						업체연락처 : <input type="text" name="cPhone" id="cPhone" placeholder="-를 넣고 입력해주세요">
 					</div>
 					<div>
-						도로명주소 : <input type="text" name="cDoroaddress" id="cDoroaddress" placeholder="도로명주소를 입력해주세요">
+						<input type="button" id="companyJusoCheck" value="주소검색" />
 					</div>
 					<div>
-						지번주소 : <input type="text" name="cJibunaddress" id="cJibunaddress" placeholder="지번주소를 입력해주세요">
+						도로명주소 : <input type="text" style="width: 500px;" name="cDoroaddress" id="corporationDoroaddress" readonly="readonly">
+					</div>
+					<div>
+						지번주소 : <input type="text" style="width: 500px;" name="cJibunaddress" id="corporationJibunaddress" readonly="readonly">
 					</div>
 					<div>
 						업체인원 : <input type="number" name="cParty" id="cParty" placeholder="숫자로 입력해주세요">명
 					</div>
 				</div>
+			<div>	
 				<div>
 					회원가입<br>
 					아이디 : 
@@ -226,14 +238,22 @@
 					<input type="text" name="cMemberEmail" id="cMemberEmail">
 				</div>
 				<div>
+					<input type="button" id="memberJusoCheck" value="주소검색" />
+				</div>
+				<div>
 					도로명주소
-					<input type="text" name="cMemberDoroaddress" id="cMemberDoroaddress" placeholder="도로명주소를 입력해주세요">
+					<input type="text" style="width: 500px;" name="cMemberDoroaddress" id="memberDoroaddress" readonly="readonly"/>
+				</div>
+				<div>
 					지번주소
-					<input type="text" name="cMemberJibunaddress" id="cMemberJibunaddress" placeholder="지번주소를 입력해주세요">
+					<input type="text" style="width: 500px;" name="cMemberJibunaddress" id="memberJibunaddress" readonly="readonly"/>
+				</div>
+				<div>
 					상세주소
-					<input type="text" name="cMemberDetailaddress" id="cMemberDetailaddress" placeholder="상세주소를 입력해주세요">
+					<input type="text" style="width: 500px;" name="cMemberDetailaddress" id="memberDetailaddress"/>
 				</div>	
-			<button type="submit" id="submitCompanyMember">회원가입 </button>
+			</div>
+			<button id="submitCompanyMember">회원가입 </button>
 			</form>
 		</section>
 	</section>

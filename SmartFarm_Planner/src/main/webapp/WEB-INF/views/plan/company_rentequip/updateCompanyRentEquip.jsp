@@ -34,11 +34,7 @@
     						<option value="${categoryEquip.equipNumber}">${categoryEquip.equipName}</option>
     					</c:forEach>
     				</select><br>
-    				<select name="company.cNumber" id="cNumber">
-    					<c:forEach var="company" items="${company}">
-    						<option value="${company.cNumber}">${company.cName}</option>
-    					</c:forEach>
-    				</select>
+    				
     			<div>
     				대여가능장비넘버 : <input type="number" value="${companyRentEquip.cRentNumber}" disabled="disabled">
     			</div>

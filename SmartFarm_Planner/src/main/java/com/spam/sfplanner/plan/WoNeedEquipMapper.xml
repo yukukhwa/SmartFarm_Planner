@@ -4,4 +4,73 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.spam.sfplanner.plan.WoNeedEquipMapper">
+<resultMap type="com.spam.sfplanner.plan.WoNeedEquip" id="woNeedEquip">
+	<id column="e_needequip_number" property="eNeedequipNumber"/>
+	<result column="e_needequip_state" property="eNeedequipState"/>
+	<collection property="categoryEquip" ofType="com.spam.sfplanner.category.CategoryEquip">
+		<id column="equip_number" property="equipNumber"/>
+		<result column="equip_name" property="equipName"/>
+	</collection>
+	<collection property="ppWork" ofType="com.spam.sfplanner.plan.PpWork">
+ 			<id column="pp_work_number" property="ppWorkNumber"/>
+ 			<result column="pp_work_name" property="ppWorkName"/>
+ 			<result column="pp_work_startday" property="ppWorkStartday"/>
+ 			<result column="pp_work_endday" property="ppWorkEndday"/>
+ 			<result column="pp_work_area" property="ppWorkArea"/>
+ 			<result column="pp_work_content" property="ppWorkContent"/>
+ 			<collection property="productionPlan" ofType="com.spam.sfplanner.plan.ProductionPlan">
+ 				<id column="pp_number" property="ppNumber"/>
+ 			</collection>
+ 		</collection>
+</resultMap>
+
+<select id="listSelectWoNeedEquip"
+		parameterType="java.util.Map"
+		resultMap="woNeedEquip">
+	select
+		sp_e_needequip.e_needequip_number 
+		,sp_e_needequip.equip_number
+		,sp_equip_cate.equip_name
+		,sp_pp.pp_number
+		,sp_e_needequip.pp_work_number
+		,sp_pp_work.pp_work_name
+		,sp_e_needequip.e_needequip_state
+	from 
+		sp_e_needequip join sp_equip_cate join sp_pp join sp_pp_work
+	on 
+		sp_e_needequip.equip_number = sp_equip_cate.equip_number
+	and 
+		sp_e_needequip.pp_work_number = sp_pp_work.pp_work_number
+	and 
+		sp_pp_work.pp_number = sp_pp.pp_number
+	where  
+		sp_e_needequip.pp_work_number = #{ppWorkNumber}
+	<if test="search == 'yes'">
+		<if test="column == '작업명'">
+			sp_pp_work.pp_work_name like concat('%',#{property},'%')
+		and
+			sp_e_etcspendpay.pp_work_number = #{ppWorkNumber}
+		</if>
+		<if test="column == '장비명'">
+			sp_equip_cate.equip_name like concat('%',#{property},'%')
+		and
+			sp_e_etcspendpay.pp_work_number = #{ppWorkNumber}	
+		</if>
+		<if test="column == '예상필요장비넘버'">
+			sp_e_etcspendpay.e_neeequip_number = #{property}
+		</if>
+	</if>
+</select>
+
+<insert id="insertWoNeedEquip"
+		parameterType="com.spam.sfplanner.plan.WoNeedEquip">
+	INSERT INTO sp_e_needequip
+	(pp_work_number
+	,equip_number
+	,e_needequip_state)
+	VALUES 
+	(#{ppWork.ppWorkNumber}
+	,#{categoryEquip.equipNumber}
+	,#{eNeedequipState})
+</insert>
  </mapper>

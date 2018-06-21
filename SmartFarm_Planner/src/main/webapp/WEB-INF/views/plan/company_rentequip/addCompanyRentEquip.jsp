@@ -34,15 +34,13 @@
     			<h3>대여가능장비 등록</h3>
     			<form action="${pageContext.request.contextPath}/addCompanyRentEquip" method="post">
     				<select name="categoryEquip.equipNumber" id="equipNumber">
-    					<c:forEach var="categoryEquip" items="${categoryEquip}">
-    						<option value="${categoryEquip.equipNumber}">${categoryEquip.equipName}</option>
+    					<c:forEach var="categoryEquipList" items="${categoryEquipList}">
+    						<option value="${categoryEquipList.equipNumber}">${categoryEquipList.equipName}</option>
     					</c:forEach>
     				</select><br>
-    				<select name="company.cNumber" id="cNumber">
-    					<c:forEach var="company" items="${company}">
-    						<option value="${company.cNumber}">${company.cName}</option>
-    					</c:forEach>
-    				</select>
+    				<div>
+    					업체명 : <input type="text" value="${login.corpName}">
+    				</div>
     				<div>
     					대당사용료 : <input type="text" name="cRentCost" id="cRentCost">원
     				</div>
