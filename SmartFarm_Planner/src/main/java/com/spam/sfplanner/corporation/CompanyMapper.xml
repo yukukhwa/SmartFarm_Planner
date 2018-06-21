@@ -2,6 +2,7 @@
 <!DOCTYPE mapper 
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<!-- 배건혜 -->
 <mapper namespace="com.spam.sfplanner.corporation.CompanyMapper">
 	<resultMap type="com.spam.sfplanner.corporation.Company" id="company">
 		<id column="c_number" property="cNumber"/>

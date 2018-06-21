@@ -1,6 +1,8 @@
 /*배건혜*/
 package com.spam.sfplanner.plan;
 
+import java.sql.Date;
+
 import com.spam.sfplanner.category.CategoryEtcSpendPay;
 
 public class WoEtcSpendPay {
@@ -8,7 +10,7 @@ public class WoEtcSpendPay {
 	private CategoryEtcSpendPay categoryEtcSpendPay; //기타지출비용카테고리 테이블
 	private PpWork ppWork; //작업단계테이블
 	private String eEtcspendpayContent; //지출상세내용
-	private String eEtcspendpayDay; //예상기타지출일
+	private Date eEtcspendpayDay; //예상기타지출일
 	private double eEtcspendpayCost; //예상기타지출비
 	private String eEtcspendpaySecret; //공개/비공개 
 	public int geteEtcspendpayNumber() {
@@ -35,10 +37,10 @@ public class WoEtcSpendPay {
 	public void seteEtcspendpayContent(String eEtcspendpayContent) {
 		this.eEtcspendpayContent = eEtcspendpayContent;
 	}
-	public String geteEtcspendpayDay() {
+	public Date geteEtcspendpayDay() {
 		return eEtcspendpayDay;
 	}
-	public void seteEtcspendpayDay(String eEtcspendpayDay) {
+	public void seteEtcspendpayDay(Date eEtcspendpayDay) {
 		this.eEtcspendpayDay = eEtcspendpayDay;
 	}
 	public double geteEtcspendpayCost() {
@@ -60,5 +62,6 @@ public class WoEtcSpendPay {
 				+ ", eEtcspendpayDay=" + eEtcspendpayDay + ", eEtcspendpayCost=" + eEtcspendpayCost
 				+ ", eEtcspendpaySecret=" + eEtcspendpaySecret + "]";
 	}
+	
 	
 }

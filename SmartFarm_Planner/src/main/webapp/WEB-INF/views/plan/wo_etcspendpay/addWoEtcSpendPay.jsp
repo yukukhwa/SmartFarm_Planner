@@ -61,7 +61,7 @@
     					</div>
     					<div>
     						<label>
-    							예상기타지출일<input type="text" name="eEtcspendpayDay">
+    							예상기타지출일<input type="date" name="eEtcspendpayDay">
     						</label>
     					</div>
     					<div>

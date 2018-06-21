@@ -1,3 +1,4 @@
+/*배건혜*/
 package com.spam.sfplanner.plan;
 
 import java.util.HashMap;
@@ -10,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.spam.sfplanner.category.CategoryEquip;
 import com.spam.sfplanner.category.CategoryEquipDao;
+import com.spam.sfplanner.category.CategoryTheme;
+import com.spam.sfplanner.category.CategoryThemeDao;
 @Transactional
 @Service
 public class WoNeedEquipService {
@@ -19,6 +22,10 @@ public class WoNeedEquipService {
 	private PpWorkDao ppWorkDao;
 	@Autowired
 	private CategoryEquipDao categoryEquipDao;
+	@Autowired
+	private CompanyRentEquipDao companyRentEquipDao;
+	@Autowired
+	private CategoryThemeDao categoryThemeDao;
 	
 	public List<WoNeedEquip> listSelectWoNeedEquip(){
 		Map<String, Object> map = null;
@@ -51,9 +58,14 @@ public class WoNeedEquipService {
 		map.put("ppNumber", ppNumber);
 		List<PpWork> ppWorkList = ppWorkDao.listSelectPpWork(map);
 		List<CategoryEquip> categoryEquip = categoryEquipDao.listSelectCategoryEquip();
+		List<CompanyRentEquip> companyRentEquipList = companyRentEquipDao.listSelectCompanyRentEquip(map);
+		List<CategoryTheme> categoryThemeList = categoryThemeDao.listSelectCategoryTheme();
 		map.clear();
 		map.put("ppWorkList", ppWorkList);
 		map.put("categoryEquip", categoryEquip);
+		map.put("companyRentEquipList", companyRentEquipList);
+		map.put("categoryThemeList", categoryThemeList);
+		
 		return map;
 	}
 	

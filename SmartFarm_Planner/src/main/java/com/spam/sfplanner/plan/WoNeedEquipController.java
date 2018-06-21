@@ -1,3 +1,4 @@
+/*배건혜*/
 package com.spam.sfplanner.plan;
 
 import java.util.Map;
@@ -18,6 +19,8 @@ public class WoNeedEquipController {
 	private CategoryEquipService categoryEquipService;
 	@Autowired
 	private PpWorkService ppWorkService;
+	@Autowired
+	private WoNeRentPayService woNeRentPayService;
 	
 	@RequestMapping(value="/updateNeedEquip", method=RequestMethod.GET)
 	public String updateWoNeedEquip() {
@@ -41,6 +44,10 @@ public class WoNeedEquipController {
 	@RequestMapping(value="/addWoNeedEquip", method=RequestMethod.POST)
 	public String insertWoNeedEquip(WoNeedEquip woNeedEquip) {
 		System.out.println("addWoNeedEquip===> "+woNeedEquip);
+		int eNeedequipNumber = woNeedEquip.geteNeedequipNumber();
+		if(eNeedequipNumber == 0) {
+			woNeRentPayService.insertWoNeRentPay(eNeedequipNumber);
+		}
 		woNeedEquipService.insertWoNeedEquip(woNeedEquip);
 		return "plan/wo_needequip/addWoNeedEquip";
 	}
@@ -50,6 +57,8 @@ public class WoNeedEquipController {
 		Map<String, Object> map = woNeedEquipService.insertWoNeedEquip(ppNumber);
 		model.addAttribute("ppWorkList", map.get("ppWorkList"));
 		model.addAttribute("categoryEquip", map.get("categoryEquip"));
+		model.addAttribute("companyRentEquipList", map.get("companyRentEquipList"));
+		model.addAttribute("categoryThemeList", map.get("categoryThemeList"));
 		return "plan/wo_needequip/addWoNeedEquip";
 	}
 }

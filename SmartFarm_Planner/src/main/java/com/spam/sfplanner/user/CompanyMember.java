@@ -1,7 +1,7 @@
 //배건혜
 package com.spam.sfplanner.user;
 
-import java.util.Date;
+import java.sql.Date;
 
 import com.spam.sfplanner.corporation.Company;
 

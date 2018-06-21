@@ -2,7 +2,7 @@
 <!DOCTYPE mapper 
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+<!-- 배건혜 -->
  <mapper namespace="com.spam.sfplanner.category.CategoryEquipMapper">
  <resultMap type="com.spam.sfplanner.category.CategoryEquip" id="categoryEquip">
  	<id column="equip_number" property="equipNumber"/>
