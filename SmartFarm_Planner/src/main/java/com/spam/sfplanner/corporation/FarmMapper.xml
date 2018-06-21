@@ -27,13 +27,19 @@
 		</collection>
 	</resultMap>
   
+  <!-- 농가넘버에 해당하는 농가의 정보를 삭제하는 쿼리문 -->
+  <delete id="deleteFarm"
+  		parameterType="integer">
+  			DELETE FROM sp_farm WHERE f_number=#{fNumber}
+  </delete>
+  
   <!-- 농가정보를 수정처리하는 쿼리문 -->
   <!-- <update id="updateFarm"
   	parameterType="com.spam.sfplanner.user.FarmMemberRequest">
   		
   </update> -->
   
-  <!-- 한개의 농가에 대한 상세정보 -->
+  <!-- 한개의 농가에 대한 상세정보를 조회하는 쿼리문 -->
   <select id="oneSelectFarm"
        parameterType="String"
        resultMap="farm">
@@ -51,7 +57,7 @@
 		   WHERE sp_farm.f_Name=#{fName}
     </select>
  	
- 	<!-- 검색 키워드에 해당하는 농가의 전체 리스트를 조회 -->
+ 	<!-- 검색 키워드에 해당하는 농가의 전체 리스트를 조회하는 쿼리문 -->
  	<select id="searchlistSelectFarm"
  		resultType="com.spam.sfplanner.corporation.Farm"
  		parameterType="String">
@@ -61,7 +67,7 @@
 	 		WHERE sp_farm.f_name LIKE CONCAT('%',#{fName},'%')
  	</select>
  	
- 	<!-- 농가의 전체 리스트를 조회 -->
+ 	<!-- 농가의 전체 리스트를 조회하는 쿼리문 -->
  	<select id="listSelectFarm"
  		resultType="com.spam.sfplanner.corporation.Farm">
 	 		SELECT f_number AS fNumber
@@ -69,9 +75,10 @@
 	 		FROM sp_farm
  	</select>
  	
- 	<!-- 농가 등록 후 농가의 통합코드pk를 다음 쿼리로 리턴한다 -->
+	<!-- farmMemberRequest에서 입력한 데이터를 가져와 등록처리 하는 쿼리문-->
  	<insert id="insertFarm"
  		parameterType="com.spam.sfplanner.user.FarmMemberRequest">
+ 		 <!-- 농가 등록 후 농가의 통합코드pk를 다음 쿼리로 리턴한다 -->
  		<selectKey resultType="int"
  					keyProperty="fNumber"
  					order="AFTER">

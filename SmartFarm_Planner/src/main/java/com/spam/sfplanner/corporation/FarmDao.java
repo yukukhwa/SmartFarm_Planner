@@ -18,6 +18,11 @@ public class FarmDao {
 	private final static Logger LOGGER = LoggerFactory.getLogger(FarmDao.class);
 	private static final String NAMESPACE = "com.spam.sfplanner.corporation.FarmMapper.";
 	
+	/*농가의 넘버가 당겨있는 int타입의 fNumber를 매개변수로 받아 해당 농가의 정보를 삭제하는 메서드*/
+	public void deleteFarm(int fNumber) {
+		sqlSession.delete(NAMESPACE+"deleteFarm", fNumber);
+	}
+	
 	public List<Farm> searchlistSelectFarm(String fName){
 		return sqlSession.selectList(NAMESPACE+"searchlistSelectFarm", fName);
 	}

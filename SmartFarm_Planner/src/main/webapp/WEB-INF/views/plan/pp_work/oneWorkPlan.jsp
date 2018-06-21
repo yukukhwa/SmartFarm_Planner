@@ -10,6 +10,10 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('#deleteWorkPlan').click(function(){
+			location.href = "${pageContext.request.contextPaht}/";
+		})
+		
 	})
 </script>
 </head>
@@ -119,6 +123,10 @@
     					</c:forEach>
     				</table>
     			</div>
+    			<div>
+    				<button id="deleteWorkPlan">이 작업단계 삭제하기</button>
+    			</div>
+    			
     		</div>
     	</section>
     </section>

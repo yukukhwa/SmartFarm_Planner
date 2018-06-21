@@ -46,7 +46,7 @@ public class PpWorkController {
 	
 	@RequestMapping(value="/listWorkPlan", method=RequestMethod.GET)
 	public String listSelectPpWork(Model model, int ppNumber) {
-		model.addAttribute("list",ppWorkService.listSelectPpWork(ppNumber));
+		model.addAttribute("list", ppWorkService.listSelectPpWork(ppNumber));
 		model.addAttribute("ppNumber", ppNumber);
 		return "plan/pp_work/listWorkPlan ";
 	}

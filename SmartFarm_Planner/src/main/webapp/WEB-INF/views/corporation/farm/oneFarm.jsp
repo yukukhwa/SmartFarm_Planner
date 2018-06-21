@@ -23,7 +23,7 @@
 		})
 		
 		$('#deleteFarm').click(function(){
-			location.href = "deleteFarm?fNumber=${farm.fNumber}";
+			location.href = "deleteFarm?fNumber=${farm.fNumber}&fName=${farm.fName}";
 		})
 	})
 </script>
@@ -67,6 +67,8 @@
 				<button id="goList">리스트로 돌아가기</button>
 				<c:if test="${loginMember.level == 'farm' && loginMember.corpName == farm.fName && loginMember.boss == 'boss'}">
 					<button id="updateFarm">농가정보 수정하기</button>
+				</c:if>
+				<c:if test="${loginMember.boss == 'boss'}">
 					<button id="deleteFarm">농가정보 삭제하기</button>
 				</c:if>
 			</div>
