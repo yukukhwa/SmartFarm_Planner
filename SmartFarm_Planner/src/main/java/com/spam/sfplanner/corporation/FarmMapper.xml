@@ -28,10 +28,19 @@
 	</resultMap>
   
   <!-- 농가의 정보를 수정처리하는 쿼리문 -->
-  <!-- <update id=""
-  		parameterType="">
-  
-  </update> -->
+  <update id="updateFarm"
+  		parameterType="com.spam.sfplanner.user.FarmMemberRequest">
+  			UPDATE sp_farm
+			SET 
+				f_name=#{fName}
+				, f_member_id=#{fMemberId}
+				, f_phone=#{fPhone}
+				, f_doroaddress=#{fDoroaddress}
+				, f_jibunaddress=#{fJibunaddress}
+				, f_party=#{fParty}
+			WHERE 
+				f_number=#{fNumber}
+  </update>
   
   <!-- 농가넘버에 해당하는 농가의 정보를 삭제하는 쿼리문 -->
   <delete id="deleteFarm"

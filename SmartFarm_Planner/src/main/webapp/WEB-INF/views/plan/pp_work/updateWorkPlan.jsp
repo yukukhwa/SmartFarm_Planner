@@ -10,6 +10,9 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('#updateWorkPlan').click(function(){
+			$('#updateWorkPlanForm').submit();
+		})		
 	})
 </script>
 </head>
@@ -27,8 +30,8 @@
     			<div>
     				<form id="updateWorkPlanForm" method="post" action="${pageContext.request.contextPath}/updateWorkPlan">
     					<div>
-    						<input type="hidden" name="ppWorkNumber" value="${ppWorkNumber}">
-    						<input type="hidden" name="fNumber" value="${loginMember.corpNumber}">
+    						<input type="text" name="ppWorkNumber" value="${ppWorkNumber}">
+    						<input type="text" name="farm.fNumber" value="${loginMember.corpNumber}">
     					</div>
     					<div>
     						계획서넘버 :

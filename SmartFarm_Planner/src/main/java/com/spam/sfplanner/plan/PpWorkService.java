@@ -25,6 +25,11 @@ public class PpWorkService {
 	
 	private final static Logger LOGGER = LoggerFactory.getLogger(PpWorkService.class);
 	
+	public void updatePpWork(PpWork ppWork) {
+		LOGGER.info("ppWorkService update처리 호출");
+		ppWorkDao.updatePpWork(ppWork);
+	}
+	
 	public Map<String, Object> updatePpWork(int ppWorkNumber){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ppWorkNumber", ppWorkNumber);

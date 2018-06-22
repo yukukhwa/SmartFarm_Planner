@@ -2,6 +2,7 @@
 package com.spam.sfplanner.category;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +39,9 @@ public class CategoryMaterialsController {
 	@RequestMapping(value="/updateMaterialsCate", method=RequestMethod.GET)
 	public String updateCategoryMaterials(Model model, String materialsName) {
 		//System.out.println("materialsName===> "+materialsName);
-		model.addAttribute("categoryMaterials", categoryMaterialsService.oneSelectCategoryMaterials(materialsName));
+		Map<String, Object> map = categoryMaterialsService.oneSelectCategoryMaterials(materialsName);
+		model.addAttribute("categoryThemeList", map.get("categoryThemeList"));
+		model.addAttribute("categoryMaterials", map.get("categoryMaterials"));
 		return "category/materials/updateMaterialsCate";
 	}
 	

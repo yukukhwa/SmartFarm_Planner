@@ -34,12 +34,13 @@
 	    			<h3>원자재 카테고리 수정하기</h3>
 	    			<form id="updateMaterialsForm" action="${pageContext.request.contextPath}/updateMaterialsCate" method="post">
 	    				<div>
-	    					<label>
-	    						<input type="hidden" name="themeNumber" readonly="readonly" value="${categoryMaterials.categoryTheme.themeNumber}">
-	    						테마 이름 : <input type="text" disabled="disabled" value="${categoryMaterials.categoryTheme.themeName}">
-	    						<input type="hidden" name="themeName" value="${categoryMaterials.categoryTheme.themeName}">
-	    					</label>
-	    				</div> 
+	    					테마 이름 선택 :
+	    					<select name="categoryTheme.themeNumber">
+	    						<c:forEach var="categoryTheme" items="${categoryThemeList}">
+	    							<option value="${categoryTheme.themeNumber}">${categoryTheme.themeName}</option>
+	    						</c:forEach>
+	    					</select>
+	    				</div>
 	    				<div>
 	    					<label>
 	    						<input type="hidden" name="materialsNumber" readonly="readonly" value="${categoryMaterials.materialsNumber}">
@@ -53,9 +54,7 @@
 	    				</div> 
 	    				<div>
 	    					<label>
-	    						<input type="hidden" name="aNumber" readonly="readonly" value="${categoryMaterials.agency.aNumber}">
-	    						등록기관 명 : <input type="text" disabled="disabled" value="${categoryMaterials.agency.aName}">
-	    						<input type="hidden" name="aName" value="${categoryMaterials.agency.aName}">
+	    						<input type="text" name="agency.aNumber" readonly="readonly" value="${loginMember.corpNumber}">
 	    					</label> 
 	    				</div> <br>
 	    				<button id="updateMaterials">원자재 카테고리 수정하기</button>

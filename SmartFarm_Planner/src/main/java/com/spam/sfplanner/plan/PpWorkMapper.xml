@@ -32,6 +32,21 @@
  		</collection>
  	</resultMap>
  	
+ 	<update id="updatePpWork"
+ 		parameterType="com.spam.sfplanner.plan.PpWork">
+	 		UPDATE sp_pp_work
+			SET
+				pp_number=#{productionPlan.ppNumber}
+				, f_number=#{farm.fNumber}
+				, pp_work_name=#{ppWorkName}
+				, pp_work_startday=#{ppWorkStartday}
+				, pp_work_endday=#{ppWorkEndday}
+				, pp_work_area=#{ppWorkArea}
+				, pp_work_content=#{ppWorkContent}
+			WHERE 
+				pp_work_number=#{ppWorkNumber}
+ 	</update>
+ 	
  	<select id="oneSelectPpWork"
  		parameterType="integer"
  		resultMap="ppWork">
@@ -110,5 +125,6 @@
 					AND sp_pp_work.pp_work_content LIKE CONCAT('%',#{searchKeyword},'%')
 				</if>
 			</if>
+			ORDER BY sp_pp_work.pp_work_number
  	</select>
  </mapper>

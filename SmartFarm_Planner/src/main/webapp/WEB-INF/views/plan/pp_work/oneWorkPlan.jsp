@@ -31,6 +31,7 @@
     	<section class="wrapper">
     		<div>
     			<h3>작업단계별 상세리스트</h3>
+    			<input type="hidden" value="${ppWorkNumber}" name="ppWorkNumber">
     			<div>
     				<label>예상 원자재비 리스트</label>
     				<button id="deletePpWork">이 작업단계 삭제하기</button>

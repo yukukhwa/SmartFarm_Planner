@@ -20,6 +20,10 @@ public class FarmService {
 	@Autowired FarmMemberDao farmMemberDao;
 	private final static Logger LOGGER = LoggerFactory.getLogger(FarmService.class);
 	
+	public void updateFarm(FarmMemberRequest farmMemberRequest) {
+		farmDao.updateFarm(farmMemberRequest);
+	}
+	
 	/* fNumber와 fName을 매개변수로 받아 해당하는 농가의 정보와 그 농가에 해당하는 농가멤버들을 동시에 삭제처리 하는 서비스 */
 	public void deleteFarm(int fNumber, String fName) {
 		/* fName을 매개변수로 FarmMemberDao의 listFarmMember 메서드를 호출해 for문으로 돌려 리스트를 출력하고

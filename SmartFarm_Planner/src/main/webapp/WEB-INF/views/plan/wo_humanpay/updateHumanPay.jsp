@@ -29,7 +29,7 @@
     		<form id="updateHumanPayForm" method="post" action="${pageContext.request.contextPath}/updateHumanPay">
     			<div>
     				<input type="hidden" name="eHumanpayNumber" value="${woHumanPay.eHumanpayNumber}">
-    				<input type="hidden" name="ppWorkNumber" value="${woHumanPay.ppWork.ppWorkNumber}">
+    				<input type="hidden" value="${woHumanPay.ppWork.ppWorkNumber}">
    				</div>
    				<div>
    					<input type="hidden" name="ppNumber" value="${ppNumber}">

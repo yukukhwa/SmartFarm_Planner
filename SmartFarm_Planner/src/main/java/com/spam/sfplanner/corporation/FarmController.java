@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.spam.sfplanner.user.FarmMemberRequest;
+
 
 @Controller
 public class FarmController {
@@ -19,7 +21,8 @@ public class FarmController {
 		
 		/*농가의 정보 수정처리 후 리다이렉트 한다.*/
 		@RequestMapping(value="/updateFarm", method=RequestMethod.POST)
-		public String updateFarm() {
+		public String updateFarm(FarmMemberRequest farmMemberRequest) {
+			farmService.updateFarm(farmMemberRequest);
 			return "redirect:/home";
 		}
 		

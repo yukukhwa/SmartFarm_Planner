@@ -4,7 +4,6 @@ package com.spam.sfplanner.category;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +26,12 @@ public class CategoryMaterialsService {
 		categoryMaterialsDao.updateCategoryMaterials(categoryMaterials);
 	}
 	
-	public CategoryMaterials oneSelectCategoryMaterials(String materialsName) {
-		return categoryMaterialsDao.oneSelectCategoryMaterials(materialsName);
+	public Map<String, Object> oneSelectCategoryMaterials(String materialsName) {
+		List<CategoryTheme> categoryThemeList = categoryThemeDao.listSelectCategoryTheme();
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("categoryThemeList", categoryThemeList);
+		map.put("categoryMaterials", categoryMaterialsDao.oneSelectCategoryMaterials(materialsName));
+		return map;
 	}
 	
 	public List<CategoryMaterials> searchListSelectCategoryMaterials(String searchKeyword, String materialsCateSearchOption){

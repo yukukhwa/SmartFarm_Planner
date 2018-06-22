@@ -1,7 +1,6 @@
 /*[김재희]*/
 package com.spam.sfplanner.plan;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -20,6 +19,13 @@ public class PpWorkController {
 	
 	private final static Logger LOGGER = LoggerFactory.getLogger(PpWorkController.class);
 	
+	@RequestMapping(value="/updateWorkPlan", method=RequestMethod.POST)
+	public String updatePpWork(PpWork ppWork) {
+		LOGGER.info("PPWORK UPDATE처리");
+		System.out.println("PPwork ==> "+ppWork);
+		ppWorkService.updatePpWork(ppWork);
+		return "redirect:/home";
+	}
 	
 	@RequestMapping(value="/deletePpWork", method=RequestMethod.GET)
 	public String deletePpWork(int ppWorkNumber) {
@@ -41,6 +47,7 @@ public class PpWorkController {
 		Map<String, Object> map = ppWorkService.updatePpWork(ppWorkNumber);
 		model.addAttribute("productionPlanList", map.get("productionPlanList"));
 		model.addAttribute("ppWork", map.get("ppWork"));
+		model.addAttribute("ppWorkNumber", ppWorkNumber);
 		return "plan/pp_work/updateWorkPlan";
 	}
 	

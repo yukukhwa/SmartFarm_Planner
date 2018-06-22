@@ -35,6 +35,8 @@
  			UPDATE sp_materials_cate
 			SET sp_materials_cate.materials_name=#{materialsName}
 				, sp_materials_cate.materials_unit=#{materialsUnit}
+				, sp_materials_cate.theme_number=#{categoryTheme.themeNumber}
+				, sp_materials_cate.a_number=#{agency.aNumber}
 			WHERE sp_materials_cate.materials_number=#{materialsNumber}
  	</update>
  	
