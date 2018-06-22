@@ -80,7 +80,9 @@ public class CompanyMemberController {
 		
 		/*업체 회원가입 화면 호출 Controller*/ 
 		@RequestMapping(value="/addCompanyMember", method=RequestMethod.GET)
-		public String insertCompanyMember() {
+		public String insertCompanyMember(Model model) {
+			Map<String, Object> map = companyMemberService.insertCompanyMember();
+			model.addAttribute("categoryDealList", map.get("categoryDealList"));
 			return "user/company_member/addCompanyMember";
 		}
 		

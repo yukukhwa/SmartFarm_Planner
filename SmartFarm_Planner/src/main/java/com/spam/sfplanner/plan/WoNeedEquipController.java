@@ -49,7 +49,7 @@ public class WoNeedEquipController {
 			woNeRentPayService.insertWoNeRentPay(eNeedequipNumber);
 		}
 		woNeedEquipService.insertWoNeedEquip(woNeedEquip);
-		return "plan/wo_needequip/addWoNeedEquip";
+		return "redirect:/listWoNeedEquip";
 	}
 	
 	@RequestMapping(value="/addWoNeedEquip", method=RequestMethod.GET)

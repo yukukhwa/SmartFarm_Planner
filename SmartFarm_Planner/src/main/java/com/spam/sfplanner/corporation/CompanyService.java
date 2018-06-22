@@ -1,7 +1,9 @@
 /*배건헤*/
 package com.spam.sfplanner.corporation;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spam.sfplanner.user.CompanyMemberDao;
+import com.spam.sfplanner.category.CategoryDeal;
+import com.spam.sfplanner.category.CategoryDealDao;
 import com.spam.sfplanner.user.CompanyMember;
 import com.spam.sfplanner.user.CompanyMemberRequest;
 @Transactional
@@ -19,6 +23,9 @@ public class CompanyService {
 	private CompanyDao companyDao;
 	@Autowired
 	private CompanyMemberDao companyMemberDao;
+	@Autowired
+	private CategoryDealDao categoryDealDao;
+	
 	private static final Logger logger = LoggerFactory.getLogger(CompanyService.class);
 	
 	/*업체 삭제처리 Service*/
@@ -68,5 +75,13 @@ public class CompanyService {
 	public void insertCompany(CompanyMemberRequest companyMemberRequest) {
 		logger.info("CompanyService 호출");
 		companyDao.insertCompany(companyMemberRequest);
+	}
+	public Map<String, Object> insertCompany(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<CategoryDeal> categoryDealList = categoryDealDao.listSelectCategoryDeal();
+		map.clear();
+		map.put("categoryDealList", categoryDealList);
+		return map;
+	
 	}
 }

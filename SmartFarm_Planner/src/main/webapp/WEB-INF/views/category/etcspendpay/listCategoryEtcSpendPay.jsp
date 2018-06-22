@@ -67,6 +67,12 @@
 	    			</c:forEach>
 	    		</tbody>
 	    	</table>
+	    	<c:if test="${loginMember.level == 'agency'}">
+	    		<a href="${pageContext.request.contextPath}/addCategoryEtcSpendPay">기타지출 카테고리 등록하기</a>
+	    	</c:if>
+	    	<c:if test="${loginMember.level == 'farm'}">
+	    		<a href="${pageContext.request.contextPath}/addCategoryEtcSpendPay">기타지출 카테고리 등록하기</a>
+	    	</c:if>
     	</section>
     </section>
 </body>

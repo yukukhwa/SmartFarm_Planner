@@ -29,11 +29,11 @@ public class CompanyRentEquipService {
 	/**
 	 * 대여가능장비 수정처리 Service
 	 * @param companyRentEquip
-	 *//*
+	 */
 	public void updateCompanyRentEquip(CompanyRentEquip companyRentEquip) {
 		companyRentEquipDao.updateCompanyRentEquip(companyRentEquip);
 	}
-	*/
+	
 	/**
 	 * 대여가능장비 리스트에서 하나의 리스트를 수정화면에서 출력하는 Service
 	 * @param cRentNumber
@@ -92,10 +92,8 @@ public class CompanyRentEquipService {
 	public Map<String, Object> insertCompanyRentEquip(){
 		Map<String, Object> map = new HashMap<String, Object>();
 		List<CategoryEquip> categoryEquipList = categoryEquipDao.listSelectCategoryEquip();
-		List<String> companyList = companyDao.listSelectCompany();
 		map.clear();
 		map.put("categoryEquipList", categoryEquipList);
-		map.put("companyList", companyList);
 		return map;
 	}
 }

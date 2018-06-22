@@ -66,6 +66,12 @@
     				</c:forEach>
     			</tbody>
     		</table>
+    		<c:if test="${loginMember.level == 'company'}">
+	    		<a href="${pageContext.request.contextPath}/addCompanyRentEquip">대여가능장비 등록하기</a>
+	    	</c:if>
+	    	<c:if test="${loginMember.level == 'agency'}">
+	    		<a href="${pageContext.request.contextPath}/addCompanyRentEquip">대여가능장비 등록하기</a>
+	    	</c:if>
     	</section>
     </section>	
 </body>

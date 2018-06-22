@@ -51,11 +51,15 @@
     							<td>
     								<a href="${pageContext.request.contextPath}/deleteCategoryEquip?equipNumber=${categoryEquip.equipNumber}">삭제</a>
     							</td>
+    								
     						</c:if>	
    						</tr>
    					</c:forEach>
    				</tbody>
    			</table>
+   			<c:if test="${loginMember.level == 'agency'}">
+   				<a href="${pageContext.request.contextPath}/addCategoryEquip">장비종류 카테고리 등록하기</a>
+   			</c:if>
     	</section>
     </section>	
 </body>

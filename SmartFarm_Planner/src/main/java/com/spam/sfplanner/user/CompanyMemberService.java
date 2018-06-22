@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spam.sfplanner.category.CategoryDeal;
+import com.spam.sfplanner.category.CategoryDealDao;
 import com.spam.sfplanner.corporation.CompanyDao;
 
 @Transactional
@@ -20,6 +22,8 @@ public class CompanyMemberService {
 	private CompanyMemberDao companyMemberDao;
 	@Autowired
 	private CompanyDao companyDao;
+	@Autowired
+	private CategoryDealDao categoryDealDao;
 	private static final Logger logger = LoggerFactory.getLogger(CompanyMemberService.class);
 	
 	/*업체회원 삭제처리 Service*/
@@ -57,5 +61,12 @@ public class CompanyMemberService {
 	public void insertCompanyMember(CompanyMemberRequest companyMemberRequest) {
 		logger.info("CompanyMemberService 호출");
 		companyMemberDao.insertCompanyMember(companyMemberRequest);
+	}
+	public Map<String, Object> insertCompanyMember(){
+		Map<String, Object> map = new HashMap<String, Object>();
+		List<CategoryDeal> categoryDealList = categoryDealDao.listSelectCategoryDeal();
+		map.clear();
+		map.put("categoryDealList", categoryDealList);
+		return map;
 	}
 }

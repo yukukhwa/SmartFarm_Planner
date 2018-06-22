@@ -56,6 +56,9 @@
     				</c:forEach>
     			</tbody>
     		</table>
+    		<c:if test="${loginMember.level == 'agency'}">
+   				<a href="${pageContext.request.contextPath}/addCategoryDeal">거래처 카테고리 등록하기</a>
+   			</c:if>
     	</section>
     </section>
 </body>
