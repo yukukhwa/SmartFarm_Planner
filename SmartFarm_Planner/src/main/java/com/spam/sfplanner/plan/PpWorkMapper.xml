@@ -36,9 +36,7 @@
  		parameterType="com.spam.sfplanner.plan.PpWork">
 	 		UPDATE sp_pp_work
 			SET
-				pp_number=#{productionPlan.ppNumber}
-				, f_number=#{farm.fNumber}
-				, pp_work_name=#{ppWorkName}
+				pp_work_name=#{ppWorkName}
 				, pp_work_startday=#{ppWorkStartday}
 				, pp_work_endday=#{ppWorkEndday}
 				, pp_work_area=#{ppWorkArea}

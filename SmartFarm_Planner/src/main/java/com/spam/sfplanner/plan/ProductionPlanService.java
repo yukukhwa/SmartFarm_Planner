@@ -65,6 +65,40 @@ public class ProductionPlanService {
 	}
 	
 	public void updateProductionPlan(ProductionPlan productionPlan) {
+		List<PpWork> ppWorkList = null;
+		List<WoInsurancePay> woInsurancePayList = null;
+		List<WoHumanPay> woHumanPayList = null;
+		List<WoMaterialsPay> woMaterialsPayList = null;
+		List<WoEtcSpendPay> WoEtcSpendPayList = null;
+		
+		ppWorkList = productionPlan.getPpWorkList();
+		if(ppWorkList != null) {
+			for(PpWork ppWork : ppWorkList) {
+				woInsurancePayList = ppWork.getWoInsurancePayList();
+				if(woInsurancePayList != null) {
+					for(WoInsurancePay woInsurancePay : woInsurancePayList) {
+						woInsurancePayDao.updateInsurancepay(woInsurancePay);
+					}
+				}
+				woHumanPayList = ppWork.getWoHumanPayList();
+				if(woHumanPayList != null) {
+					for(WoHumanPay woHumanPay : woHumanPayList) {
+						woHumanPayDao.updateWoHumanPay(woHumanPay);
+					}
+				}
+				woMaterialsPayList = ppWork.getWoMaterialsPayList();
+				if(woMaterialsPayList != null) {
+					for(WoMaterialsPay woMaterialsPay : woMaterialsPayList) {
+						woMaterialsPayDao.updateWoMaterialsPay(woMaterialsPay);
+					}
+				}
+				/*WoEtcSpendPayList = ppWork.getWoEtcSpendPayList();
+				for(WoEtcSpendPay woEtcSpendPay : WoEtcSpendPayList) {
+					
+				}*/
+				ppWorkDao.updatePpWork(ppWork);
+			}
+		}
 		productionPlanDao.updateProductionPlan(productionPlan);
 	}
 	
@@ -74,14 +108,53 @@ public class ProductionPlanService {
 		map.put("column", "농가넘버");
 		map.put("property", ((Login)session.getAttribute("loginMember")).getCorpNumber());
 		List<TitlePlan> titleList = titlePlanDao.listSelectTitlePlan(map);
-		ProductionPlan productionPlan = productionPlanDao.oneSelectProductionPlan(ppNumber);
 		map.clear();
+		
+		List<CategoryMaterials> materialsList = categoryMaterialsDao.listSelectCategoryMaterials();
+		List<CategoryEtcSpendPay> etcSpendPayList = categoryEtcSpendPayDao.listSelectCategoryEtcSpendPay();
+		
+		ProductionPlan productionPlan = productionPlanDao.oneSelectProductionPlan(ppNumber);
+		map.put("ppNumber", ppNumber);
+		List<PpWork> ppWorkList = ppWorkDao.listSelectPpWork(map);
+		productionPlan.setPpWorkList(ppWorkList);
+		map.clear();
+		for(PpWork ppWork : ppWorkList) {
+			map.put("ppWorkNumber", ppWork.getPpWorkNumber());
+			ppWork.setWoMaterialsPayList(woMaterialsPayDao.listSelectWoMaterialsPay(map));
+			ppWork.setWoInsurancePayList(woInsurancePayDao.listSelectWoInsurancePay(map));
+			ppWork.setWoHumanPayList(woHumanPayDao.listSelectWoHumanPay(map));
+			ppWork.setWoEtcSpendPayList(woEtcSpendPayDao.listSelectWoEtcSpendPay(map));
+			ppWork.setWoNeedEquipList(woNeedEquipDao.listSelectWoNeedEquip(map));
+			map.clear();
+		}
+		map.clear();
+		map.put("materialsList", materialsList);
+		map.put("etcSpendPayList", etcSpendPayList);
 		map.put("titleList", titleList);
 		map.put("productionPlan", productionPlan);
 		return map;
 	}
 	
 	public void deleteProductionPlan(int ppNumber) {
+		int ppWorkNumber = 0;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ppNumber", ppNumber);
+		for(PpWork ppWork : ppWorkDao.listSelectPpWork(map)) {
+			ppWorkNumber = ppWork.getPpWorkNumber();
+			for(WoHumanPay woHumanPay : woHumanPayDao.listSelectWoHumanPay(map)) {
+				woHumanPayDao.deleteWoHumanPay(woHumanPay.geteHumanpayNumber());
+			}
+			
+			for(WoMaterialsPay woMaterialsPay : woMaterialsPayDao.listSelectWoMaterialsPay(map)) {
+				woMaterialsPayDao.deleteWoMaterialsPay(woMaterialsPay.geteMaterialspayNumber());
+			}
+			
+			for(WoInsurancePay woInsurancePay : woInsurancePayDao.listSelectWoInsurancePay(map)) {
+				woInsurancePayDao.deleteWoInsurancePay(woInsurancePay.geteInsurancepayNumber());
+			}
+			map.put("ppWorkNumber", ppWorkNumber);
+			ppWorkDao.deletePpWork(ppWorkNumber);
+		}
 		productionPlanDao.deleteProductionPlan(ppNumber);
 	}
 	
@@ -151,7 +224,7 @@ public class ProductionPlanService {
 			ppWork.setWoNeedEquipList(woNeedEquipDao.listSelectWoNeedEquip(map));
 			map.clear();
 		}
-		System.out.println(productionPlan);
+		//System.out.println(productionPlan);
 		return productionPlan;
 	}
 	

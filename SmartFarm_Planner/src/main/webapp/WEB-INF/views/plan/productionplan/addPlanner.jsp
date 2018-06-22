@@ -10,6 +10,27 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		
+		/* $(document).on('change','.eInsurancepayEndday',function(){
+			var eInsurancepayStartday = $(this).parents('tr').find('.eInsurancepayStartday').val();
+			var eInsurancepayEndday = $(this).val();
+			var eInsurancepayStartdayArray = '';
+			var eInsurancepayEnddayArray = '';
+			if(eInsurancepayStartday == null){
+				alert('보험가입일자를 선택해주세요.');
+				return;
+			}
+			eInsurancepayStartdayArray = eInsurancepayStartday.split('-');
+			eInsurancepayEnddayArray = eInsurancepayEndday.split('-');
+			eInsurancepayStartday = new Date(eInsurancepayStartdayArray[0],eInsurancepayStartdayArray[1],eInsurancepayStartdayArray[2]);
+			eInsurancepayEndday = new Date(eInsurancepayEnddayArray[0],eInsurancepayEnddayArray[1],eInsurancepayEnddayArray[2]);
+			if(eInsurancepayStartday.getTime() > eInsurancepayEndday.getTime()){
+				alert('보험가입만료일이 보험가입시작일보단 빠를수없습니다.');
+				return;
+			}
+			return;
+		}); */
+		
 		$('#addPpWork').click(function(){
 			var ppWorkSize = $('.ppWork').length;
 			$('#ppWorkList').append('<div class="ppWork col-lg-12">'
@@ -229,11 +250,11 @@
 																			+'<input type="hidden" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].categoryTheme.themeNumber" value="4">'
 																		+'</td>'
 																		+'<td><input type="text" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepayContent"></td>'
-																		+'<td><input type="date" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepayStartday"></td>'
-																		+'<td><input type="date" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepayEndday"></td>'
-																		+'<td><input type="number" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepayTerm"></td>'
-																		+'<td><input type="number" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepayTotalcost"></td>'
-																		+'<td><input type="number" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepayExpectcost"></td>'
+																		+'<td><input type="date" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepayStartday" class="eInsurancepayStartday"></td>'
+																		+'<td><input type="date" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepayEndday" class="eInsurancepayEndday"></td>'
+																		+'<td><input type="number" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepayTerm" class="eInsurancepayTerm" readonly="readonly"></td>'
+																		+'<td><input type="number" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepayTotalcost" class="eInsurancepayTotalcost"></td>'
+																		+'<td><input type="text" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepayExpectcost" class="eInsurancepayExpectcost" readonly="readonly"></td>'
 																		+'<td>'
 																			+'<input type="radio" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepaySecret" value="true" checked="checked">공개<input type="radio" name="'+ppWorkList+'.woInsurancePayList['+insurancePaySize+'].eInsurancepaySecret" value="false">비공개'
 																			+'<input type="button" class="deleteInsurancePay" value="제거" style="float: right;">'
@@ -284,6 +305,42 @@
 					}
 				});
 			});
+			return;
+		});
+		
+		$(document).on('change','.eInsurancepayEndday',function(){
+			var eInsurancepayStartday = $(this).parents('tr').find('.eInsurancepayStartday').val();
+			var eInsurancepayEndday = $(this).val();
+			//alert(eInsurancepayStartday);
+			//alert(eInsurancepayEndday);
+			var eInsurancepayStartdayArray = '';
+			var eInsurancepayEnddayArray = '';
+			if(eInsurancepayStartday == ''){
+				alert('보험가입일자를 선택해주세요.');
+				return;
+			}
+			eInsurancepayStartdayArray = eInsurancepayStartday.split('-');
+			eInsurancepayEnddayArray = eInsurancepayEndday.split('-');
+			eInsurancepayStartday = new Date(eInsurancepayStartdayArray[0],eInsurancepayStartdayArray[1],eInsurancepayStartdayArray[2]);
+			eInsurancepayEndday = new Date(eInsurancepayEnddayArray[0],eInsurancepayEnddayArray[1],eInsurancepayEnddayArray[2]);
+			if(eInsurancepayStartday.getTime() > eInsurancepayEndday.getTime()){
+				alert('보험가입만료일이 보험가입시작일보단 빠를수없습니다.');
+				return;
+			}
+			//alert(eInsurancepayStartday);
+			//alert(eInsurancepayEndday);
+			var eInsurancepayTerm = (eInsurancepayEndday-eInsurancepayStartday)/12/30/24/60/60/1000;
+			//alert(eInsurancepayTerm);
+			$(this).parents('tr').find('.eInsurancepayTerm').val(eInsurancepayTerm.toFixed(1));
+			return;
+		});
+		
+		$(document).on('keyup','.eInsurancepayTotalcost',function(){
+			var eInsurancepayTotalcost = $(this).val();
+			var eInsurancepayTerm = $(this).parents('tr').find('.eInsurancepayTerm').val();
+			var eInsurancepayExpectcost = eInsurancepayTotalcost/(eInsurancepayTerm*12);
+			//alert(eInsurancepayExpectcost);
+			$(this).parents('tr').find('.eInsurancepayExpectcost').val(eInsurancepayExpectcost.toFixed(2));
 			return;
 		});
 		
@@ -567,6 +624,7 @@
     <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
+    		<h3 class="page-header"><i class="icon_desktop"></i> 계획서 등록화면</h3>
     		<c:if test="${loginMember.level == null}">
     			<a href="${pageContext.request.contextPath}/login">
     				<strong>
@@ -604,11 +662,14 @@
 										계획기간 : <input type="date" name="ppStartday"> ~ <input type="date" name="ppEndday">
 									</div>
 									<div>
-										소유면적/임대면적 : <input type="number" name="ppOwnarea"> / <input type="number" name="ppRentarea">
+										소유면적 : <input type="number" name="ppOwnarea">
+									</div>
+									<div>
+										임대면적 : <input type="number" name="ppRentarea">
 									</div>
 									<br>
 									<div id="ppWorkList">
-										<%-- <div class="ppWork col-lg-12">
+										<div class="ppWork col-lg-12">
 											<div class="panel-heading">
 												<span>
 													작업명 : <input type="text" name="ppWorkList[0].ppWorkName" class="ppWorkName">
@@ -691,7 +752,7 @@
 															<th>보험내용</th>
 															<th>보험가입일</th>
 															<th>보험만료일</th>
-															<th>보험가입기간</th>
+															<th>보험가입기간(년)</th>
 															<th>총보험비</th>
 															<th>예상보험비</th>
 															<th>공개/비공개</th>
@@ -704,11 +765,11 @@
 																<input type="hidden" name="ppWorkList[0].woInsurancePayList[0].categoryTheme.themeNumber" value="4">
 															</td>
 															<td><input type="text" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayContent"></td>
-															<td><input type="date" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayStartday"></td>
-															<td><input type="date" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayEndday"></td>
-															<td><input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayTerm"></td>
-															<td><input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayTotalcost"></td>
-															<td><input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayExpectcost"></td>
+															<td><input type="date" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayStartday" class="eInsurancepayStartday"></td>
+															<td><input type="date" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayEndday" class="eInsurancepayEndday"></td>
+															<td><input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayTerm" class="eInsurancepayTerm" readonly="readonly"></td>
+															<td><input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayTotalcost" class="eInsurancepayTotalcost"></td>
+															<td><input type="text" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayExpectcost" class="eInsurancepayExpectcost" readonly="readonly"></td>
 															<td>
 																<input type="radio" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret" value="true" checked="checked">공개<input type="radio" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret" value="false">비공개
 																<input type="button" class="deleteInsurancePay" value="제거" style="float: right;">
@@ -732,7 +793,7 @@
 															<td>
 																<select name="ppWorkList[0].woEtcSpendPayList[0].categoryEtcSpendPay.etcspendpayNumber">
 									    							<c:forEach var="etcSpendPay" items="${etcSpendPayList}">
-									    							<option value="${etcSpendPay.etcspendpayNumber}">${etcSpendPay.etcspendpayName}</option>
+									    								<option value="${etcSpendPay.etcspendpayNumber}">${etcSpendPay.etcspendpayName}</option>
 									    							</c:forEach>
 									    						</select>
 															</td>
@@ -746,17 +807,15 @@
 														</tr>
 													</tbody>
 												</table>
-												<!-- <br>필요장비계획 <input type="button" value="보험비 추가" class="addInsurancePay" style="float: right;">
+												<br>필요장비계획 <input type="button" value="필요장비 추가" class="addInsurancePay" style="float: right;">
 												<table class="insurancePayList table table-striped table-advance table-hover">
 													<thead>
 														<tr>
-															<th>보험명</th>
-															<th>보험내용</th>
-															<th>보험가입일</th>
-															<th>보험만료일</th>
-															<th>보험가입기간</th>
-															<th>총보험비</th>
-															<th>예상보험비</th>
+															<th>장비명</th>
+															<th>장비보유현황</th>
+															<th>모델명</th>
+															<th>대당대여비</th>
+															<th>단위대여시간</th>
 															<th>공개/비공개</th>
 														</tr>
 													</thead>
@@ -764,20 +823,18 @@
 														<tr>
 															<td>
 																<input type="text" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayMame">
-																<input type="hidden" name="ppWorkList[0].woInsurancePayList[0].categoryTheme.themeNumber" value="4">
+																<input type="hidden" name="ppWorkList[0].woInsurancePayList[0].categoryTheme.themeNumber" value="3">
 															</td>
 															<td><input type="text" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayContent"></td>
 															<td><input type="date" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayStartday"></td>
 															<td><input type="date" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayEndday"></td>
 															<td><input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayTerm"></td>
-															<td><input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayTotalcost"></td>
-															<td><input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayExpectcost"></td>
 															<td><input type="radio" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret" value="true" checked="checked">공개<input type="radio" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret" value="false">비공개</td>
 														</tr>
 													</tbody>
-												</table> -->
+												</table>
 											</div>
-										</div> --%>
+										</div>
 									</div>
 									<input type="button" value="작업단계 추가" id="addPpWork">
 								</div>

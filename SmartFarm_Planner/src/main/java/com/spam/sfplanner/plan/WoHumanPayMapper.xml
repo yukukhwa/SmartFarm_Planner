@@ -32,9 +32,7 @@
  		parameterType="com.spam.sfplanner.plan.WoHumanPay">
  			UPDATE sp_e_humanpay
 			SET
-				theme_number=#{categoryTheme.themeNumber}
-				, pp_work_number=#{ppWork.ppWorkNumber}
-				, e_humanpay_name=#{eHumanpayName}
+				e_humanpay_name=#{eHumanpayName}
 				, e_humanpay_residentnumber=#{eHumanpayResidentnumber}
 				, e_humanpay_expectpay=#{eHumanpayExpectpay}
 				, e_humanpay_expectday=#{eHumanpayExpectday}

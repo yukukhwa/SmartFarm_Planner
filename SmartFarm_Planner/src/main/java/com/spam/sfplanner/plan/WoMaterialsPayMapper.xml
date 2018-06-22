@@ -31,9 +31,7 @@
  		parameterType="com.spam.sfplanner.plan.WoMaterialsPay">
 	 		UPDATE sp_e_materialspay
 			SET 
-				materials_number=#{categoryMaterials.materialsNumber}
-				, pp_work_number=#{ppWork.ppWorkNumber}
-				, e_materialspay_unitcost=#{eMaterialspayUnitcost}
+				e_materialspay_unitcost=#{eMaterialspayUnitcost}
 				, e_materialspay_use=#{eMaterialspayUse}
 				, e_materialspay_secret=#{eMaterialspaySecret}
 			WHERE 

@@ -18,6 +18,7 @@
     <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
+    		<h3 class="page-header"><i class="icon_desktop"></i>농가전용 계획서 리스트</h3>
     		<c:if test="${loginMember.level == null}">
     			<a href="${pageContext.request.contextPath}/login">
     				<strong>
@@ -33,7 +34,6 @@
     			</a>
     		</c:if>
     		<c:if test="${loginMember.level == 'farm'}">
-		   		<h3 class="page-header"><i class="icon_desktop"></i> 계획서 리스트</h3>
 		    	<div class="row">
 		    		<div class="col-lg-2"></div>
 					<div class="col-lg-8">

@@ -32,9 +32,7 @@
  			parameterType="com.spam.sfplanner.plan.WoInsurancePay">
 	 	UPDATE sp_e_insurancepay
 		SET
-			sp_e_insurancepay.theme_number = #{categoryTheme.themeNumber}
-			,sp_e_insurancepay.pp_work_number = #{ppWork.ppWorkNumber}
-			,sp_e_insurancepay.e_insurancepay_name = #{eInsurancepayMame}
+			sp_e_insurancepay.e_insurancepay_name = #{eInsurancepayMame}
 			,sp_e_insurancepay.e_insurancepay_content = #{eInsurancepayContent}
 			,sp_e_insurancepay.e_insurancepay_startday = #{eInsurancepayStartday}
 			,sp_e_insurancepay.e_insurancepay_endday = #{eInsurancepayEndday}
