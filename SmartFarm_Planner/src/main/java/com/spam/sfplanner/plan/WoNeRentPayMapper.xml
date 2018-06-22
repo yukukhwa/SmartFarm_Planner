@@ -2,6 +2,78 @@
 <!DOCTYPE mapper 
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
- <mapper namespace="com.spam.sfplanner.plan.NeRentPayMapper">
+<!-- 배건혜 -->
+ <mapper namespace="com.spam.sfplanner.plan.WoNeRentPayMapper">
+ <resultMap type="com.spam.sfplanner.plan.WoNeRentPay" id="woNeRentPay">
+ 	<id column="ne_e_rentpay_number" property="neERentpayNumber"/>
+ 	<result column="ne_e_rentpay_secret" property="neERentpaySecret"/>
+ 	<collection ofType="com.spam.sfplanner.category.CategoryTheme" property="categoryTheme">
+ 			<id column="theme_number" property="themeNumber"/>
+ 			<result column="theme_name" property="themeName"/>
+ 	</collection>
+ 	<collection property="companyRentEquip" ofType="com.spam.sfplanner.plan.CompanyRentEquip">
+ 		<id column="c_rent_number" property="cRentNumber"/>
+ 		<result column="c_rent_cost" property="cRentCost"/>
+ 		<result column="c_rent_date" property="cRentDate"/>
+ 		<result column="c_rent_modelname" property="cRentModelname"/>
+ 		<result column="c_rent_registdate" property="cRentRegistdate"/>
+ 	</collection>
+ 	<collection property="woNeedEquip" ofType="com.spam.sfplanner.plan.WoNeedEquip">
+ 		<id column="e_needequip_number" property="eNeedequipNumber"/>
+ 		<result column="e_needequip_state" property="eNeedequipState"/>
+ 	</collection>
+ </resultMap>
+ 
+ <select id="listSelectWoNeRentPay"
+ 		parameterType="java.util.Map"
+ 		resultMap="woNeRentPay">
+	select
+		sp_ne_e_rentpay.ne_e_rentpay_number
+		,sp_ne_e_rentpay.theme_number
+		,sp_theme_cate.theme_name
+		,sp_ne_e_rentpay.e_needequip_number
+		,sp_e_needequip.e_needequip_state
+		,sp_ne_e_rentpay.c_rent_number
+		,sp_deal_company_rent.c_rent_cost
+		,sp_deal_company_rent.c_rent_date
+		,sp_deal_company_rent.c_rent_modelname
+		,sp_ne_e_rentpay.ne_e_rentpay_secret
+	from
+		sp_ne_e_rentpay join sp_theme_cate join sp_e_needequip join sp_deal_company_rent
+	on
+		sp_ne_e_rentpay.theme_number = sp_theme_cate.theme_number
+	and
+		sp_ne_e_rentpay.e_needequip_number = sp_e_needequip.e_needequip_number
+	and
+		sp_ne_e_rentpay.c_rent_number = sp_deal_company_rent.c_rent_number
+	where
+		sp_ne_e_rentpay.e_needequip_number = #{eNeedequipNumber}
+		<if test="search == 'yes'">
+			<if test="column == '테마명'">
+				sp_theme_cate.theme_name like concat('%',#{property},'%')
+			and
+				sp_ne_e_rentpay.e_needequip_number = #{eNeedequipNumber}
+			</if>
+			<if test="column == '보유상태'">
+				sp_e_needequip.e_needequip_state like concat('%',#{property},'%')
+			and
+				sp_ne_e_rentpay.e_needequip_number = #{eNeedequipNumber}
+			</if>	
+		</if>	
+ </select>
+ 
+ <insert id="insertWoNeRentPay"
+ 		parameterType="com.spam.sfplanner.plan.WoNeRentPay">
+ 	INSERT INTO sp_ne_e_rentpay
+	(theme_number
+	, e_needequip_number
+	, c_rent_number
+	, ne_e_rentpay_secret)
+	VALUES 
+	(#{categoryTheme.themeNumber}
+	,#{woNeedEquip.eNeedequipNumber}
+	,#{companyRentEquip.cRentNumber}
+	,#{neERentpaySecret})
+ </insert>
+ 
  </mapper>
