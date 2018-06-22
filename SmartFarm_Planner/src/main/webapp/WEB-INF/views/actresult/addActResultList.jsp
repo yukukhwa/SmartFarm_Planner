@@ -30,7 +30,32 @@
 				}
 				
 			});
-		});
+			$('.addMemo').click(function(){
+				var i = $(this).parents('div.panel').index();
+				var j = $(this).parent('div').children('div').size();
+				$(this).parent('div').append(
+						'<div class="panel">'
+							+'<div class="row">'
+								+'<div class="col-lg-2 col-md-2">'
+									+'<select class="form-control m-bot15" name="ppWoResultList['+i+'].memoList['+j+'].categoryTheme.themeNumber">'
+										+'<c:forEach var="categoryTheme" items="${categoryThemeList}">'
+    										+'<option value="${categoryTheme.themeNumber}">${categoryTheme.themeName}</option>'
+    									+'</c:forEach>'
+    								+'</select>'
+    							+'</div>'
+    							+'<div class="col-lg-4 col-md-4">'
+    								+'<input class="form-control" type="text" name="ppWoResultList['+i+'].memoList['+j+'].wrMemoSubject" placeholder="주제를 입력해주세요">'
+								+'</div>'
+								+'<div class="col-lg-6 col-md-6">'
+									+'<a class="removeMemo btn btn-danger"><i class="icon_close_alt2"></i></a>'
+								+'</div>'
+							+'</div>'
+							+'<div class="col-lg-12">'
+								+'<textarea class="form-control" rows="5" cols="100" name="ppWoResultList['+i+'].memoList['+j+'].wrMemoContent" placeholder="내용을 입력해주세요"></textarea>'
+							+'</div>'
+						+'</div>');
+				});
+			});
 	</script>
 </head>
 <body>
@@ -46,13 +71,13 @@
 				<section class="panel">
 					<form action="${pageContext.request.contextPath}/addActResultList" method="post">
 						<header class="panel-heading">
-							${plannList.titlePlan.ppNamePlanname}
-							<input type="text" name="productionPlan.ppNumber" value="${plannList.ppNumber}">
+							${productionPlan.titlePlan.ppNamePlanname}
+							<input type="text" name="productionPlan.ppNumber" value="${productionPlan.ppNumber}">
 							<input type="text" name="farmMember.fMemberId" value="${loginMember.id}">
 							<input type="text" name="farm.fNumber" value="${loginMember.corpNumber}">
 						</header>
 						<div class="panel-body">
-							<c:forEach var="ppWorkList" items="${plannList.ppWorkList}" varStatus="i">
+							<c:forEach var="ppWorkList" items="${productionPlan.ppWorkList}" varStatus="i">
 								<div class="color">
 									<div class="panel-heading col-lg-12">${ppWorkList.ppWorkName}</div>
 									<div class="panel-content" style="display:none">
@@ -185,8 +210,7 @@
 											</tbody>
 										</table>
 										필요장비
-										건혜완성시 주석해제
-										<%-- <table class="table table-striped table-advance table-hover">
+										<table class="table table-striped table-advance table-hover">
 											<thead>
 												<tr>
 													<th>장비명</th>
@@ -210,15 +234,18 @@
 														<td><input type="date" class="form-control" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeRentPayList[0].neRentpayDate"></td>
 													</tr>
 													<input type="text" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].woNeedEquip.eNeedequipNumber" value="${woNeedEquipList.eNeedequipNumber}">
-													<input type="text" class="form-control" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeRentPayList[0].woNeRentPay.neERentpayNumber" value="${woNeedEquipList.woNeRentPayList[0].neERentpayNumber}">
+													<input type="text" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeRentPayList[0].woNeRentPay.neERentpayNumber" value="${woNeedEquipList.woNeRentPayList[0].neERentpayNumber}">
 												</c:forEach>
 											</tbody>
-										</table> --%>
+										</table>
+										<div class="col-lg-12">
+											<a class="addMemo btn btn-info">메모 추가</a><p></p>
+										</div>
 									</div>
 								</div>
 							</c:forEach>
+						<button class="btn btn-primary" type="submit">등록</button>
 						</div>
-						<button type="submit">등록</button>
 					</form>
 				</section>
 			</div>

@@ -17,6 +17,10 @@ public class Memo {
 	private CategoryTheme categoryTheme; //테마카테고리 테이블
 	private PpWoResult ppWoResult; //실행결과작업단계테이블
 	private List<MemoFile> memoFile; //메모파일리스트
+	
+	public Memo() {
+		this.ppWoResult = new PpWoResult();
+	}
 	public int getWrMemoNumber() {
 		return wrMemoNumber;
 	}

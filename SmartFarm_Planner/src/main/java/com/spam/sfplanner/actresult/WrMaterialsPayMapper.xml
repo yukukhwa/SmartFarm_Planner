@@ -88,8 +88,8 @@
 			wr_materialspay_unitcost
 		)
 		VALUES (
-			#{wrNumber},
-			#{eMaterialspayNumber},
+			#{ppWoResult.wrNumber},
+			#{woMaterialsPay.eMaterialspayNumber},
 			#{wrMaterialspayQuantity},
 			#{wrMaterialspayUnitcost}
 		)

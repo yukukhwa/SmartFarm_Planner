@@ -113,7 +113,8 @@ public class ActResultController {
 	@RequestMapping(value="/addActResultList", method = RequestMethod.GET)
 	public String insertActResult (Model model
 			, @RequestParam(value="ppNumber") int ppNumber) {
-		model.addAttribute("plannList", actResultService.oneSelectProductionPlan(ppNumber));
+		model.addAttribute("productionPlan", actResultService.insertActResult(ppNumber).get("productionPlan"));
+		model.addAttribute("categoryThemeList", actResultService.insertActResult(ppNumber).get("categoryThemeList"));
 		return "actresult/addActResultList";
 	}
 }

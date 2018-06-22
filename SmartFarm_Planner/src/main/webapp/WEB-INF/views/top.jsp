@@ -36,7 +36,7 @@
 								<a href="${pageContext.request.contextPath}/oneFarmMember?fMemberId=${loginMember.id}"><i class="icon_profile"></i>나의 정보</a>
 							</li>
 							<li>
-								<a href="${pageContext.request.contextPath}/"><i class="icon_desktop"></i>나의 농가 정보</a>
+								<a href="${pageContext.request.contextPath}/oneFarm?fName=${loginMember.corpName}"><i class="icon_desktop"></i>나의 농가 정보</a>
 							</li>
 						</c:if>
 						<c:if test="${loginMember.level eq 'company'}">

@@ -15,12 +15,17 @@ import org.springframework.transaction.annotation.Transactional;
 import com.spam.sfplanner.plan.ProductionPlanDao;
 import com.spam.sfplanner.plan.WoEtcSpendPayDao;
 import com.spam.sfplanner.Paging;
+import com.spam.sfplanner.category.CategoryTheme;
+import com.spam.sfplanner.category.CategoryThemeDao;
 import com.spam.sfplanner.plan.PpWork;
 import com.spam.sfplanner.plan.PpWorkDao;
 import com.spam.sfplanner.plan.ProductionPlan;
 import com.spam.sfplanner.plan.WoHumanPayDao;
 import com.spam.sfplanner.plan.WoInsurancePayDao;
 import com.spam.sfplanner.plan.WoMaterialsPayDao;
+import com.spam.sfplanner.plan.WoNeRentPayDao;
+import com.spam.sfplanner.plan.WoNeedEquip;
+import com.spam.sfplanner.plan.WoNeedEquipDao;
 import com.spam.sfplanner.plan.WoHumanPay;
 
 @Service
@@ -28,33 +33,41 @@ import com.spam.sfplanner.plan.WoHumanPay;
 public class ActResultService {
 	
 	@Autowired
-	private ActResultDao actResultDao;
+	private ActResultDao actResultDao; // 실행결과 dao
 	@Autowired
-	private WrHumanPayDao wrHumanPayDao;
+	private ProductionPlanDao productionPlanDao; // 계획서 dao
 	@Autowired
-	private WoHumanPayDao woHumanPayDao;
+	private PpWoResultDao ppWoResultDao; // 작업단계결과 dao
 	@Autowired
-	private ProductionPlanDao productionPlanDao;
+	private PpWorkDao ppWorkDao; // (계획서) 작업단계 dao
 	@Autowired
-	private PpWoResultDao ppWoResultDao;
+	private WrHumanPayDao wrHumanPayDao; // 인건비 결과 dao
 	@Autowired
-	private WrMaterialsPayDao wrMaterialsPayDao;
+	private WoHumanPayDao woHumanPayDao; // (계획서) 인건비 dao
 	@Autowired
-	private WrEtcSpendPayDao wrEtcSpendPayDao;
+	private WrMaterialsPayDao wrMaterialsPayDao; // 원자재비 결과 dao
 	@Autowired
-	private WrInsurancePayDao wrInsurancePayDao;
+	private WoMaterialsPayDao woMaterialsPayDao; // (계획서) 원자재비 dao
 	@Autowired
-	private PpWorkDao ppWorkDao;
+	private WrInsurancePayDao wrInsurancePayDao; // 보험비 결과 dao
 	@Autowired
-	private WrNeedEquipDao wrNeedEquipDao;
+	private WoInsurancePayDao woInsurancePayDao; // (계획서) 보험비 dao
 	@Autowired
-	private WrNeRentPayDao wrNeRentPayDao;
+	private WrEtcSpendPayDao wrEtcSpendPayDao; // 기타지출비 결과 dao
 	@Autowired
-	private WoMaterialsPayDao woMaterialsPayDao;
+	private WoEtcSpendPayDao woEtcSpendPayDao; // (계획서) 기타지출비 dao
 	@Autowired
-	private WoInsurancePayDao woInsurancePayDao;
+	private WrNeedEquipDao wrNeedEquipDao; // 필요장비 결과 dao
 	@Autowired
-	private WoEtcSpendPayDao woEtcSpendPayDao;
+	private WoNeedEquipDao woNeedEquipDao; // (계획서) 필요장비 dao
+	@Autowired
+	private WrNeRentPayDao wrNeRentPayDao; // 대여비 결과 dao
+	@Autowired
+	private WoNeRentPayDao woNeRentPayDao; // (계획서) 대여비 dao
+	@Autowired
+	private CategoryThemeDao categoryThemeDao; // 카테고리 테마 dao
+	@Autowired
+	private MemoDao memoDao; // 메모 dao
 	
 	private static final Logger logger = LoggerFactory.getLogger(ActResultService.class);
 	/*
@@ -106,15 +119,35 @@ public class ActResultService {
 						wrHumanPayDao.insertWrHumanPay(wrHumanPay);
 					}
 				}
-				
+				List<WrMaterialsPay> wrMaterialsPayList = ppWoResult.getWrMaterialsPayList();
+				if(wrMaterialsPayList != null) {
+					for(WrMaterialsPay wrMaterialsPay : wrMaterialsPayList) {
+						wrMaterialsPay.getPpWoResult().setWrNumber(ppWoResult.getWrNumber());
+						wrMaterialsPayDao.insertWrMaterialsPay(wrMaterialsPay);
+					}
+				}
+				List<WrInsurancePay> wrInsurancePayList = ppWoResult.getWrInsurancePayList();
+				if(wrInsurancePayList != null) {
+					for(WrInsurancePay wrInsurancePay : wrInsurancePayList) {
+						wrInsurancePay.getPpWoResult().setWrNumber(ppWoResult.getWrNumber());
+						wrInsurancePayDao.insertWrInsurancePay(wrInsurancePay);
+					}
+				}
+				List<Memo> memoList = ppWoResult.getMemoList();
+				if(memoList != null) {
+					for(Memo memo : memoList) {
+						memo.getPpWoResult().setWrNumber(ppWoResult.getWrNumber());
+						memoDao.insertMemo(memo);
+					}
+				}
 			}
 		}
 		
 		return 0;
 	}
 	
-	public ProductionPlan oneSelectProductionPlan(int ppNumber) {
-		ProductionPlan productionPlan =productionPlanDao.oneSelectProductionPlan(ppNumber);
+	public Map<String, Object> insertActResult(int ppNumber) {
+		ProductionPlan productionPlan = productionPlanDao.oneSelectProductionPlan(ppNumber);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ppNumber", ppNumber);
 		List<PpWork> ppWorkList = ppWorkDao.listSelectPpWork(map);
@@ -124,10 +157,19 @@ public class ActResultService {
 			ppWork.setWoInsurancePayList(woInsurancePayDao.listSelectWoInsurancePay(map));
 			ppWork.setWoHumanPayList(woHumanPayDao.listSelectWoHumanPay(map));
 			ppWork.setWoEtcSpendPayList(woEtcSpendPayDao.listSelectWoEtcSpendPay(map));
+			
+			List<WoNeedEquip> WoNeedEquipList = woNeedEquipDao.listSelectWoNeedEquip(map);
+			for(WoNeedEquip woNeedEquip : WoNeedEquipList) {
+				map.put("eNeedequipNumber", woNeedEquip.geteNeedequipNumber());
+				woNeedEquip.setWoNeRentPayList(woNeRentPayDao.listSelectWoNeRentPay(map));
+			}
+			ppWork.setWoNeedEquipList(WoNeedEquipList);
 		}
 		productionPlan.setPpWorkList(ppWorkList);
-		
-		return productionPlan;
+		map.put("productionPlan", productionPlan);
+		List<CategoryTheme> categoryThemeList = categoryThemeDao.listSelectCategoryTheme();
+		map.put("categoryThemeList", categoryThemeList);
+		return map;
 	}
 	/*
 	 * 농가넘버, 페이징변수, 검색변수를 매개변수로 받아 조건에 해당하는 리스트 갯수를 새는 dao를 호출하여 나온 결과로
