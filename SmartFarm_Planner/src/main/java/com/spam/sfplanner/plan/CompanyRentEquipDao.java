@@ -13,10 +13,13 @@ public class CompanyRentEquipDao {
 	@Autowired
 	private SqlSessionTemplate sqlsession;
 	private static final String NAMESPACE = "com.spam.sfplanner.plan.CompanyRentEquipMapper.";
-	
-	/*public void updateCompanyRentEquip(CompanyRentEquip companyRentEquip) {
+	/**
+	 * 대여가능장비 수정처리 Dao
+	 * @param companyRentEquip
+	 */
+	public void updateCompanyRentEquip(CompanyRentEquip companyRentEquip) {
 		sqlsession.update(NAMESPACE+"updateCompanyRentEquip", companyRentEquip);
-	}*/
+	}
 	/**
 	 * 대여가능장비 하나의 리스트 수정화면 출력 Dao
 	 * @param 대여가능장비넘버
