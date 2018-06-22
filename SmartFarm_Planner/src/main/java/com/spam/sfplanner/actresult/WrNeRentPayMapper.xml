@@ -26,9 +26,45 @@
 	
 </resultMap>
 
-<!-- 대여비결과 업데이트 -->
-<!-- 대여비결과 수정화면출력 셀렉트 -->
 <!-- 대여비결과 삭제 -->
+<delete id="deleteWrNeRentPay"
+		parameterType="com.spam.sfplanner.actresult.WrNeRentPay">
+	DELETE FROM sp_ne_rentpay WHERE ne_rentpay_number = #{neEentpayNumber}
+</delete>
+
+<!-- 대여비결과 업데이트 -->
+<update id="updateWrNeRentPay"
+		parameterType="com.spam.sfplanner.actresult.WrNeRentPay">
+	UPDATE sp_ne_rentpay
+		SET
+			ne_rentpay_cost=#{neRentpayCost},
+			ne_rentpay_date=#{neRentpayDate}
+	WHERE ne_rentpay_number = #{neEentpayNumber}
+</update>
+
+<!-- 대여비결과 수정화면출력 셀렉트 -->
+<select id="oneselectWrNeRentPay"
+		parameterType="int"
+		resultMap="resultWrNeedEquipRentPay">
+	SELECT sp_ne_rentpay.ne_rentpay_number	
+	, sp_ne_rentpay.ne_rentpay_cost
+	, sp_ne_rentpay.ne_rentpay_date
+	, sp_wr_needequip.wr_needequip_number
+	, sp_wr_needequip.wr_needequip_state
+	, sp_ne_e_rentpay.ne_e_rentpay_number
+	, sp_ne_e_rentpay.ne_e_rentpay_secret
+	, sp_deal_company_rent.c_rent_cost
+	, sp_deal_company_rent.c_rent_date
+	, sp_deal_company_rent.c_rent_modelname
+	FROM sp_ne_rentpay
+	JOIN sp_ne_e_rentpay
+	JOIN sp_wr_needequip
+	JOIN sp_deal_company_rent
+	ON sp_ne_rentpay.ne_e_rentpay_number=sp_ne_e_rentpay.ne_e_rentpay_number 
+	AND sp_ne_rentpay.wr_needequip_number=sp_wr_needequip.wr_needequip_number
+	AND sp_deal_company_rent.c_rent_number = sp_ne_e_rentpay.c_rent_number
+	WHERE sp_ne_rentpay.ne_rentpay_number = #{neEentpayNumber}
+</select>
 
 <!-- 대여비결과 등록 -->
 <insert id="insertWrNeRentPay"

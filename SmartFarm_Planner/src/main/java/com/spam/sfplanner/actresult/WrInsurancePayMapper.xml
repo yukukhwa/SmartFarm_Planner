@@ -27,9 +27,47 @@
 	</collection>
 </resultMap>
 
-<!-- 보험비 결과 업데이트 -->
-<!-- 보험비 결과 수정화면출력 셀렉트 -->
 <!-- 보험비 결과 삭제 -->
+<delete id="deleteWrInsurancePay"
+		parameterType="com.spam.sfplanner.actresult.WrInsurancePay">
+	DELETE FROM sp_wr_insurancepay WHERE wr_insurancepay_number = #{wrInsurancepayNumber}
+</delete>
+
+<!-- 보험비 결과 업데이트 -->
+<update id="updateWrInsurancePay"
+		parameterType="com.spam.sfplanner.actresult.WrInsurancePay">
+	UPDATE sp_wr_insurancepay
+		SET
+			wr_insurancepay_monthcost=#{wrInsurancepayMonthcost},
+			wr_insurancepay_date=#{wrInsurancepayDate}
+		WHERE wr_insurancepay_number = #{wrInsurancepayNumber}
+</update>
+
+<!-- 보험비 결과 수정화면출력 셀렉트 -->
+<select id="oneSelectWrInsurancePay"
+		parameterType="int"
+		resultMap="resultWrInsurancePay">
+	SELECT sp_wr_insurancepay.wr_insurancepay_number	
+		, sp_wr_insurancepay.wr_insurancepay_monthcost
+		, sp_wr_insurancepay.wr_insurancepay_date
+		, sp_wr.wr_number
+		, sp_wr.wr_totalarea
+		, sp_wr.wr_reworkarea
+		, sp_e_insurancepay.e_insurancepay_number
+		, sp_e_insurancepay.e_insurancepay_name
+		, sp_e_insurancepay.e_insurancepay_content
+		, sp_e_insurancepay.e_insurancepay_startday
+		, sp_e_insurancepay.e_insurancepay_endday
+		, sp_e_insurancepay.e_insurancepay_term
+		, sp_e_insurancepay.e_insurancepay_totalcost
+		, sp_e_insurancepay.e_insurancepay_expectcost
+		, sp_e_insurancepay.e_insurancepay_secret
+	FROM sp_wr_insurancepay
+	JOIN sp_wr
+	JOIN sp_e_insurancepay
+	ON sp_wr_insurancepay.wr_number = sp_wr.wr_number AND sp_wr_insurancepay.e_insurancepay_number = sp_e_insurancepay.e_insurancepay_number
+	WHERE sp_wr_insurancepay.wr_insurancepay_number	= #{wrInsurancepayNumber}
+</select>
 
 <!-- 보험비 결과 등록 -->
 <insert id="insertWrInsurancePay"

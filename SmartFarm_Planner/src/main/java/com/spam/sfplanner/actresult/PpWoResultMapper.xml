@@ -23,6 +23,44 @@
 	</collection>
 </resultMap>
 
+<!-- 작업단계결과 삭제 -->
+<delete id="deleteWorkResult"
+		parameterType="com.spam.sfplanner.actresult.PpWoResult">
+	DELETE FROM sp_wr WHERE wr_number = #{wrNumber}
+</delete>
+
+<!-- 작업단계결과 레코드 하나 선택 후 수정 -->
+<update id="updateWorkResult"
+		parameterType="com.spam.sfplanner.actresult.PpWoResult">
+	UPDATE sp_wr
+	SET
+		wr_totalarea = #{wrTotalarea},
+		wr_reworkarea = #{wrTeworkarea}
+	WHERE wr_number = #{wrNumber}
+</update>
+
+<!-- 작업단계결과 레코드 하나 선택 -->
+<select id="oneSelectWorkResult"
+		parameterType="int"
+		resultMap="resultPpWoResult">
+	SELECT sp_wr.wr_number		
+		,sp_wr.wr_totalarea
+		,sp_wr.wr_reworkarea
+		,sp_pp_resultlist.pp_resultlist_number		
+		,sp_pp_resultlist.pp_resultlist_date
+		,sp_pp_work.pp_work_number
+		,sp_pp_work.pp_work_name
+		,sp_pp_work.pp_work_startday
+		,sp_pp_work.pp_work_endday
+		,sp_pp_work.pp_work_area
+		,sp_pp_work.pp_work_content
+	FROM sp_wr
+	JOIN sp_pp_resultlist
+	JOIN sp_pp_work
+	ON sp_wr.pp_resultlist_number = sp_pp_resultlist.pp_resultlist_number and
+		sp_wr.pp_work_number = sp_pp_work.pp_work_number
+	WHERE sp_wr.wr_number = {wrNumber}
+</select>
 
 <!-- 작업단계결과 입력  -->
 <insert id="insertWorkResult"
@@ -59,8 +97,6 @@
 	ON sp_wr.pp_resultlist_number = sp_pp_resultlist.pp_resultlist_number and
 		sp_wr.pp_work_number = sp_pp_work.pp_work_number
 	WHERE sp_pp_resultlist.pp_resultlist_number = #{ppResultlistNumber}
+	ORDER BY sp_wr.wr_number ASC
 </select>
-
-
-
 </mapper>

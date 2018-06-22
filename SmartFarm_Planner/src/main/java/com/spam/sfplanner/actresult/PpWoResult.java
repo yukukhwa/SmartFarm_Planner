@@ -16,11 +16,12 @@ public class PpWoResult {
 	private List<WrMaterialsPay> wrMaterialsPayList; //작업단계결과별 원자재비결과 리스트객체
 	private List<WrInsurancePay> wrInsurancePayList; //작업단계결과별 보험비결과 리스트객체
 	private List<WrNeedEquip> wrNeedEquipList; //작업단계결과별 필요장비결과 리스트객체
+	private List<Memo> memoList; //작업단계결과별 필요장비결과 리스트객체
 	
+	//실행결과리스트 생성자메서드
 	public PpWoResult() {
 		this.actResult = new ActResult();
 	}
-	
 	public int getWrNumber() {
 		return wrNumber;
 	}
@@ -81,12 +82,19 @@ public class PpWoResult {
 	public void setWrNeedEquipList(List<WrNeedEquip> wrNeedEquipList) {
 		this.wrNeedEquipList = wrNeedEquipList;
 	}
+	public List<Memo> getMemoList() {
+		return memoList;
+	}
+	public void setMemoList(List<Memo> memoList) {
+		this.memoList = memoList;
+	}
 	@Override
 	public String toString() {
 		return "PpWoResult [wrNumber=" + wrNumber + ", actResult=" + actResult + ", ppWork=" + ppWork + ", wrTotalarea="
 				+ wrTotalarea + ", wrReworkarea=" + wrReworkarea + ", wrEtcSpendPayList=" + wrEtcSpendPayList
 				+ ", wrHumanPayList=" + wrHumanPayList + ", wrMaterialsPayList=" + wrMaterialsPayList
-				+ ", wrInsurancePayList=" + wrInsurancePayList + ", wrNeedEquipList=" + wrNeedEquipList + "]";
+				+ ", wrInsurancePayList=" + wrInsurancePayList + ", wrNeedEquipList=" + wrNeedEquipList + ", memoList="
+				+ memoList + "]";
 	}
 	
 }

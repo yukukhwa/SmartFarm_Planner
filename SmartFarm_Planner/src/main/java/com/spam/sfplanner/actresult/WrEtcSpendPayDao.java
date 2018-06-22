@@ -15,13 +15,31 @@ public class WrEtcSpendPayDao {
 	@Autowired private SqlSessionTemplate sqlsession;
 	private final String nameSpace ="com.spam.sfplanner.actresult.WrEtcSpendPayMapper.";
 	
-	//기타지출비 결과 등록
+	//기타지출비결과 리스트 중 하나의 기타지출비결과 선택해서 삭제처리
+	public void deleteWrEtcSpendPay(WrEtcSpendPay wrEtcSpendPay) {
+	LOGGER.info("deleteWrEtcSpendPay dao에서 호출");
+	sqlsession.delete(nameSpace+"deleteWrEtcSpendPay", wrEtcSpendPay);
+	}
+
+	//기타지출비결과 수정화면에서 보낸 정보로 수정처리
+	public void updateWrEtcSpendPay(WrEtcSpendPay wrEtcSpendPay) {
+	LOGGER.info("updateWrEtcSpendPay dao에서 호출");
+	sqlsession.update(nameSpace+"updateWrEtcSpendPay", wrEtcSpendPay);
+	}
+	
+	//기타지출비결과 리스트 중 하나의 기타지출비결과 선택해서 화면에 뿌려주기 위한 메서드	
+	public WrEtcSpendPay oneSelectWrEtcSpendPay(int wrEtcspendpayNumber) {
+	LOGGER.info("oneSelectWrEtcSpendPay dao에서 호출");
+	return sqlsession.selectOne(nameSpace+"oneSelectWrEtcSpendPay", wrEtcspendpayNumber);
+	}
+	
+	//기타지출비결과 등록
 	public void insertWrEtcSpendPay(WrEtcSpendPay wrEtcSpendPay) {
 		LOGGER.info("insertWrEtcSpendPay 호출");
 		sqlsession.insert(nameSpace+"insertWrEtcSpendPay",wrEtcSpendPay);
 	}
 	
-	//기타지출비 결과 전체리스트
+	//기타지출비결과 전체리스트
 	public List<WrEtcSpendPay> listSelectWrEtcSpendPay(Map<String, Object> map) {
 		LOGGER.info("listSelectWrEtcSpendPay 호출");
 		return sqlsession.selectList(nameSpace+"listSelectWrEtcSpendPay", map);

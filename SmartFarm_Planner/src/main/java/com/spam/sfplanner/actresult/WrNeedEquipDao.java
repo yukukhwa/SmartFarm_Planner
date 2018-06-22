@@ -15,6 +15,24 @@ public class WrNeedEquipDao {
 	@Autowired private SqlSessionTemplate sqlsession;
 	private final String nameSpace = "com.spam.sfplanner.actresult.WrNeedEquipMapper.";
 	
+	//필요장비 결과 리스트 중 하나의 필요장비 결과 선택해서 삭제처리
+	public void deleteWrNeedEquip(WrNeedEquip wrNeedEquip) {
+	LOGGER.info("deleteWrNeedEquip dao에서 호출");
+	sqlsession.delete(nameSpace+"deleteWrNeedEquip", wrNeedEquip);
+	}
+
+	//필요장비 결과 수정화면에서 보낸 정보로 수정처리
+	public void updateWrNeedEquip(WrNeedEquip wrNeedEquip) {
+	LOGGER.info("updateWrNeedEquip dao에서 호출");
+	sqlsession.update(nameSpace+"updateWrNeedEquip", wrNeedEquip);
+	}
+	
+	//필요장비 결과 리스트 중 하나의 필요장비 결과 선택해서 화면에 뿌려주기 위한 메서드	
+	public WrNeedEquip oneSelectWrNeedEquip(int wrWrNeedEquipNumber) {
+	LOGGER.info("oneSelectWrNeedEquip dao에서 호출");
+	return sqlsession.selectOne(nameSpace+"oneSelectWrNeedEquip", wrWrNeedEquipNumber);
+	}
+		
 	//필요장비 결과 등록
 	public void insertWrNeedEquip(WrNeedEquip wrNeedEquip) {
 		LOGGER.info("insertWrNeedEquip 호출");
