@@ -27,8 +27,15 @@
 	</collection>
 </resultMap>
 
+<!-- 작업단계에서 기타지출비 결과 삭제 -->
+<delete id="deleteWrEtcSpendPay"
+		parameterType="int">
+	DELETE FROM sp_wr_etcspendpay WHERE wr_number = #{wrNumber}
+</delete>
+
 <!-- 기타지출비 결과 삭제 -->
-<delete id="deleteWrEtcSpendPay">
+<delete id="oneDeleteWrEtcSpendPay"
+		parameterType="com.spam.sfplanner.actresult.WrEtcSpendPay">
 	DELETE FROM sp_wr_etcspendpay WHERE wr_etcspendpay_number = #{wrEtcspendpayNumber}
 </delete>
 

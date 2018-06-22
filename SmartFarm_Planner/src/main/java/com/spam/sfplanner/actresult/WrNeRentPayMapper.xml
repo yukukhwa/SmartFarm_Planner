@@ -26,8 +26,14 @@
 	
 </resultMap>
 
-<!-- 대여비결과 삭제 -->
+<!-- 필요장비결과에서 대여비결과 삭제 -->
 <delete id="deleteWrNeRentPay"
+		parameterType="int">
+	DELETE FROM sp_ne_rentpay WHERE wr_needequip_number = #{wrNeedequipNumber}
+</delete>
+
+<!-- 대여비결과 삭제 -->
+<delete id="oneDeleteWrNeRentPay"
 		parameterType="com.spam.sfplanner.actresult.WrNeRentPay">
 	DELETE FROM sp_ne_rentpay WHERE ne_rentpay_number = #{neEentpayNumber}
 </delete>

@@ -15,10 +15,16 @@ public class WrNeedEquipDao {
 	@Autowired private SqlSessionTemplate sqlsession;
 	private final String nameSpace = "com.spam.sfplanner.actresult.WrNeedEquipMapper.";
 	
-	//필요장비 결과 리스트 중 하나의 필요장비 결과 선택해서 삭제처리
-	public void deleteWrNeedEquip(WrNeedEquip wrNeedEquip) {
+	//작업단계결과 리스트 중 하나의 필요장비 결과 선택해서 삭제처리
+	public void deleteWrNeedEquip(int wrNumber) {
 	LOGGER.info("deleteWrNeedEquip dao에서 호출");
-	sqlsession.delete(nameSpace+"deleteWrNeedEquip", wrNeedEquip);
+	sqlsession.delete(nameSpace+"deleteWrNeedEquip", wrNumber);
+	}
+	
+	//필요장비 결과 리스트 중 하나의 필요장비 결과 선택해서 삭제처리
+	public void oneDeleteWrNeedEquip(WrNeedEquip wrNeedEquip) {
+	LOGGER.info("oneDeleteWrNeedEquip dao에서 호출");
+	sqlsession.delete(nameSpace+"oneDeleteWrNeedEquip", wrNeedEquip);
 	}
 
 	//필요장비 결과 수정화면에서 보낸 정보로 수정처리

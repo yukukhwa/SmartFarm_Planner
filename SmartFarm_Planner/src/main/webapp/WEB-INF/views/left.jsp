@@ -41,6 +41,15 @@
 					<li><a class="" href="${pageContext.request.contextPath}/listAgency">관리기관 리스트</a></li>
 				</ul>
 			</li>
+			<li class="sub-menu">
+				<a href="javascript:;" class=""><i class="fa fa-cubes"></i><span>대여장비</span><span class="menu-arrow arrow_carrot-right"></span></a>
+				<ul class="sub">					
+					<li><a class="" href="${pageContext.request.contextPath}/listCompanyRentEquip">대여장비 리스트</a></li>	
+					<c:if test="${loginMember.level eq 'company'}">				
+						<li><a class="" href="${pageContext.request.contextPath}/addCompanyRentEquip">my 대여장비 등록</a></li>
+					</c:if>
+				</ul>
+			</li>
 		<c:if test="${loginMember.level eq 'farm'|| loginMember.level eq 'agency'}">		
 			<li class="sub-menu">
 				<a href="javascript:;" class=""><i class="icon_genius"></i><span>카테고리 관리</span><span class="menu-arrow arrow_carrot-right"></span></a>
@@ -50,26 +59,22 @@
 					</c:if>									
 					<c:if test="${loginMember.level eq 'agency'}">
 						<li><a class="" href="${pageContext.request.contextPath}/listCategoryDeal">거래처</a></li>						
-						<li><a class="" href="${pageContext.request.contextPath}/listCategoryEquip">장비종류</a></li>
-						<li><a class="" href="#">대여장비</a></li>
+						<li><a class="" href="${pageContext.request.contextPath}/listCategoryEquip">장비종류</a></li>						
 						<li><a class="" href="${pageContext.request.contextPath}/listIndustry">산업분류</a></li>
 						<li><a class="" href="${pageContext.request.contextPath}/listItem">품목분류</a></li>
 						<li><a class="" href="${pageContext.request.contextPath}/listTheme">테마 카테고리</a></li>
 						<li><a class="" href="${pageContext.request.contextPath}/listCategoryEtcSpendPay">기타비용 카테고리</a></li>
+						<li><a class="" href="${pageContext.request.contextPath}/listCompanyRentEquip">대여장비</a></li>
 						<li><a class="" href="${pageContext.request.contextPath}/listTitle">계획명</a></li>
 					</c:if>
 				</ul>
 			</li>
-		</c:if>
-		<c:if test="${loginMember.level eq 'company'}">
-			<li class="sub-menu">
-				<a class="" href="#"><i class="icon_genius"></i><span>대여장비</span></a>				
-			</li>
-		</c:if>
+		</c:if>		
 			<li class="sub-menu">
 				<a href="javascript:;" class=""><i class="icon_documents_alt"></i><span>계획서</span><span class="menu-arrow arrow_carrot-rignt"></span></a>
 				<ul class="sub">
 					<c:if test="${loginMember.level eq 'farm'}">
+						<li><a class="" href="${pageContext.request.contextPath}/addTitle">My 계획명 등록</a></li>
 						<li><a class="" href="${pageContext.request.contextPath}/addPlanner">My 계획서 등록</a></li>
 						<li><a class="" href="${pageContext.request.contextPath}/listMyPlanner?fNumber=${loginMember.corpNumber}">My 계획서 리스트</a></li>
 					</c:if>

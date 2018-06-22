@@ -24,8 +24,14 @@
 	
 </resultMap>
 
-<!-- 필요장비결과 삭제 -->
+<!-- 작업단계에서 필요장비결과 삭제 -->
 <delete id="deleteWrNeedEquip"
+		parameterType="int">
+	DELETE FROM sp_wr_needequip WHERE wr_number = #{wrNumber}
+</delete>
+
+<!-- 필요장비결과 삭제 -->
+<delete id="oneDeleteWrNeedEquip"
 		parameterType="com.spam.sfplanner.actresult.WrNeedEquip">
 	DELETE FROM sp_wr_needequip WHERE wr_needequip_number = #{wrNeedequipNumber}
 </delete>

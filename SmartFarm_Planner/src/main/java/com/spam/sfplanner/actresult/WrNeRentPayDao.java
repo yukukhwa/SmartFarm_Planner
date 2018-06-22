@@ -16,9 +16,15 @@ public class WrNeRentPayDao {
 	private final String nameSpace = "com.spam.sfplanner.actresult.WrNeRentPayMapper.";
 	
 	//대여비결과 리스트 중 하나의 대여비결과 선택해서 삭제처리
-	public void deleteWrNeRentPay(WrNeRentPay wrNeRentPay) {
+	public void oneDeleteWrNeRentPay(WrNeRentPay wrNeRentPay) {
+	LOGGER.info("oneDeleteWrNeRentPay dao에서 호출");
+	sqlsession.delete(nameSpace+"oneDeleteWrNeRentPay", wrNeRentPay);
+	}
+	
+	//필요장비결과 리스트 중 하나의 대여비결과 선택해서 삭제처리
+	public void deleteWrNeRentPay(int wrNeedequipNumber) {
 	LOGGER.info("deleteWrNeRentPay dao에서 호출");
-	sqlsession.delete(nameSpace+"deleteWrNeRentPay", wrNeRentPay);
+	sqlsession.delete(nameSpace+"deleteWrNeRentPay", wrNeedequipNumber);
 	}
 
 	//대여비결과 수정화면에서 보낸 정보로 수정처리

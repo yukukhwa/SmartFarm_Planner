@@ -15,10 +15,16 @@ public class WrInsurancePayDao {
 	@Autowired private SqlSessionTemplate sqlsession;
 	private final String nameSpace ="com.spam.sfplanner.actresult.WrInsurancePayMapper.";
 	
-	//보험비 결과 리스트 중 하나의 보험비 결과 선택해서 삭제처리
-	public void deleteWrInsurancePay(WrInsurancePay wrInsurancePay) {
+	//작업단계 결과 리스트 중 하나의 보험비 결과 선택해서 삭제처리
+	public void deleteWrInsurancePay(int wrNumber) {
 	LOGGER.info("deleteWrInsurancePay dao에서 호출");
-	sqlsession.delete(nameSpace+"deleteWrInsurancePay", wrInsurancePay);
+	sqlsession.delete(nameSpace+"deleteWrInsurancePay", wrNumber);
+	}
+	
+	//작업단계 결과 리스트 중 하나의 보험비 결과 선택해서 삭제처리
+	public void oneDeleteWrInsurancePay(WrInsurancePay wrInsurancePay) {
+	LOGGER.info("deleteWrIoneDeleteWrInsurancePaynsurancePay dao에서 호출");
+	sqlsession.delete(nameSpace+"oneDeleteWrInsurancePay", wrInsurancePay);
 	}
 
 	//보험비 결과 수정화면에서 보낸 정보로 수정처리

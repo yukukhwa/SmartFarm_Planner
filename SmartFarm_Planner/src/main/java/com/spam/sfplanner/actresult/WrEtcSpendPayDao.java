@@ -15,10 +15,16 @@ public class WrEtcSpendPayDao {
 	@Autowired private SqlSessionTemplate sqlsession;
 	private final String nameSpace ="com.spam.sfplanner.actresult.WrEtcSpendPayMapper.";
 	
-	//기타지출비결과 리스트 중 하나의 기타지출비결과 선택해서 삭제처리
-	public void deleteWrEtcSpendPay(WrEtcSpendPay wrEtcSpendPay) {
+	//작업단계결과 리스트 중 하나의 기타지출비결과 선택해서 삭제처리
+	public void deleteWrEtcSpendPay(int wrNumber) {
 	LOGGER.info("deleteWrEtcSpendPay dao에서 호출");
-	sqlsession.delete(nameSpace+"deleteWrEtcSpendPay", wrEtcSpendPay);
+	sqlsession.delete(nameSpace+"deleteWrEtcSpendPay", wrNumber);
+	}
+	
+	//기타지출비결과 리스트 중 하나의 기타지출비결과 선택해서 삭제처리
+	public void oneDeleteWrEtcSpendPay(WrEtcSpendPay wrEtcSpendPay) {
+	LOGGER.info("oneDeleteWrEtcSpendPay dao에서 호출");
+	sqlsession.delete(nameSpace+"oneDeleteWrEtcSpendPay", wrEtcSpendPay);
 	}
 
 	//기타지출비결과 수정화면에서 보낸 정보로 수정처리

@@ -27,8 +27,14 @@
 	</collection>
 </resultMap>
 
-<!-- 보험비 결과 삭제 -->
+<!-- 작업단계에서 보험비 결과 삭제 -->
 <delete id="deleteWrInsurancePay"
+		parameterType="int">
+	DELETE FROM sp_wr_insurancepay WHERE wr_number = #{wrNumber}
+</delete>
+
+<!-- 보험비 결과 삭제 -->
+<delete id="oneDeleteWrInsurancePay"
 		parameterType="com.spam.sfplanner.actresult.WrInsurancePay">
 	DELETE FROM sp_wr_insurancepay WHERE wr_insurancepay_number = #{wrInsurancepayNumber}
 </delete>

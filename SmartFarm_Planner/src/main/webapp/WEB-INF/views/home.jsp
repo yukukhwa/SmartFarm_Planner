@@ -34,80 +34,123 @@
 			<div class="col-lg-12">
 				<section class="panel panel-default">
 					<div class="panel-heading">
-						<strong>스마트팜 이용 방법(화면 전환시 설명서 제공)</strong>
+						<strong>▼ 스마트팜 플래너 - 이렇게 이용하세요! (슬라이드를 넘기면서 봐주세요.)</strong>
 					</div>
-				<!-- 여기에 슬라이드 -->
+				<!-- 슬라이드 start -->
             	<div id="c-slide" class="carousel slide auto panel-body">
-                <ol class="carousel-indicators out">
-                  <li class="active" data-slide-to="0" data-target="#c-slide"></li>
-                  <li class="" data-slide-to="1" data-target="#c-slide"></li>
-                  <li class="" data-slide-to="2" data-target="#c-slide"></li>
-                </ol>
-                
-					<div class="carousel-inner">
-						<div class="item active" >
-							<h3>step1. 농가 로그인</h3>
-							<h3>step2. 계획서 선택</h3>
-							<h3>step3. my 계획서 등록 선택</h3>
-							<h3>step4. 등록 후 리스트 보기</h3>
-							<h3>step5. 실행결과 선택</h3>
-							<h3>step6. my 실행결과 등록 선택</h3>
-							<h3>step7. 원하는 계획서 선택 후 등록</h3>
-							<h3>step8. 계획과 결과를 비교·분석</h3>
-							<p></p>
-		                 	<div class="col-lg-12 text-center">
-								<span>
-									<img src="img/slide1.jpg" style="width: 33%; height: auto;">
-								</span>
-								<span>
-									<img src="img/slide3.jpg" style="width: 33%; height: auto;">
-								</span>
-								<span>
-									<img src="img/slide2.jpg" style="width: 33%; height: auto;">
-								</span>
+	                <ol class="carousel-indicators out">
+	                  <li class="active" data-slide-to="0" data-target="#c-slide"></li>
+	                  <li class="" data-slide-to="1" data-target="#c-slide"></li>
+	                  <li class="" data-slide-to="2" data-target="#c-slide"></li>
+	                </ol>                
+						<div class="carousel-inner">
+							<div class="item active" >
+								<h1>로그인하지 않을 시(비회원일 시)</h1>
+								<ol>
+									<li>왼쪽 메뉴바에서 회원가입을 할 수 있습니다.</li>								
+									<li>농가/업체/관리기관 처음 등록시 같이 입력되는 정보가 대표자입니다.</li>
+									<li>농사로 API 데이터 검색을 제공합니다.</li>
+									<li>등록되어있는 농가/업체/관리기관 리스트를 제공합니다.</li>
+									<li>공개에 동의한 농가의 계획서에 한해서 리스트를 제공합니다.</li>
+								</ol>
+								<h1>농가 소속으로 로그인 시</h1>
+								<ol>
+									<li>로그인 > 아이디, 비밀번호 입력되있으니 클릭만해주세요!</li>
+									<li>계획서/실행결과를 등록하실 수 있습니다.</li>
+									<li>카테고리-기타비용 카테고리-를 관리하실 수 있습니다.</li>														
+									<li>계획서  > my 계획서 등록</li>
+									<li>실행결과  > my 실행결과 등록</li>
+									<li>비교분석  > my 비교분석 리스트</li>						
+								</ol>
+								<p></p>
+			                 	<div class="col-lg-12 text-center">
+									<span>
+										<img src="img/slide1.jpg" style="width: 33%; height: auto;">
+									</span>
+									<span>
+										<img src="img/slide3.jpg" style="width: 33%; height: auto;">
+									</span>
+									<span>
+										<img src="img/slide2.jpg" style="width: 33%; height: auto;">
+									</span>
+								</div>
 							</div>
-						</div>
-                  <div class="item text-center">
-                  <div style="height: 150px;">
-                  	<h3>Massive UI Elements</h3>
-                    <small class="">Fully Responsive</small>
-                    </div>
-                    <span>                  		
-                  		<img src="img/compa1.jpg" style="width: 33%; height: auto;">                  		
-                  	</span>
-                  	<span>                  		
-                  		<img src="img/compa2.jpg" style="width: 33%; height: auto;">                  		
-                  	</span>
-                  	<span>                  		
-                  		<img src="img/compa3.jpg" style="width: 33%; height: auto;">                  		
-                  	</span>
-                  </div>
-                  <div class="item text-center">
-                  <div style="height: 150px;">
-                  	<h3>Well Documentation</h3>
-                    <small class="">Easy to Use</small>
-                    </div>
-                    <span>                  		
-                  		<img src="img/agen1.jpg" style="width: 33%; height: auto;">                  	
-                  	</span>
-                  	<span>
-						<img src="img/agen2.jpg" style="width: 33%; height: auto;">                  		
-                  	</span>
-                  	<span>                  		
-                  		<img src="img/agen3.jpg" style="width: 33%; height: auto;">                  		
-                  	</span>
-                  </div>
-                </div>
-                <a data-slide="prev" href="#c-slide" class="left carousel-control">
-                                  <i class="arrow_carrot-left_alt2"></i>
-                              </a>
-                <a data-slide="next" href="#c-slide" class="right carousel-control">
+						
+					
+						
+							<div class="item" >
+								<h1>로그인하지 않을 시(비회원일 시)</h1>
+								<ol>
+									<li>왼쪽 메뉴바에서 회원가입을 할 수 있습니다.</li>								
+									<li>농가/업체/관리기관 처음 등록시 같이 입력되는 정보가 대표자입니다.</li>
+									<li>농사로 API 데이터 검색을 제공합니다.</li>
+									<li>등록되어있는 농가/업체/관리기관 리스트를 제공합니다.</li>
+									<li>공개에 동의한 농가의 계획서에 한해서 리스트를 제공합니다.</li>
+								</ol>
+								<h1>업체 소속으로 로그인 시</h1>
+								<ol>
+									<li>로그인 > 아이디, 비밀번호 입력되있으니 클릭만해주세요!</li>
+									<li>대여장비를 등록하실 수 있습니다.</li>															
+								</ol>
+								<p></p>
+			                 	<div class="col-lg-12 text-center">
+									<span>
+										<img src="img/compa1.jpg" style="width: 33%; height: auto;">     
+									</span>
+									<span>
+										<img src="img/compa2.jpg" style="width: 33%; height: auto;"> 
+									</span>
+									<span>
+										<img src="img/compa3.jpg" style="width: 33%; height: auto;">    
+									</span>
+								</div>
+							</div>
+						
+					 
+						
+							<div class="item" >
+								<h1>로그인하지 않을 시(비회원일 시)</h1>
+								<ol>
+									<li>왼쪽 메뉴바에서 회원가입을 할 수 있습니다.</li>								
+									<li>농가/업체/관리기관 처음 등록시 같이 입력되는 정보가 대표자입니다.</li>
+									<li>농사로 API 데이터 검색을 제공합니다.</li>
+									<li>등록되어있는 농가/업체/관리기관 리스트를 제공합니다.</li>
+									<li>공개에 동의한 농가의 계획서에 한해서 리스트를 제공합니다.</li>
+								</ol>
+								<h1>관리기관 소속으로 로그인 시</h1>
+								<ol>
+									<li>로그인 > 아이디, 비밀번호 입력되있으니 클릭만해주세요!</li>									
+									<li>카테고리를 관리하실 수 있습니다.</li>	
+									<li>가능한 카테고리 : 거래처 / 장비종류 / 산업분류 / 품목분류 / 테마 / 기타비용 / 대여장비 / 계획명</li>																						
+									<li>카테고리 중 대여장비 / 계획명은 관리자 권한으로 삭제만 가능합니다.</li>	
+									<li>계획서/실행결과를 삭제만 하실 수 있습니다.</li>	
+								</ol>
+								<p></p>
+			                 	<div class="col-lg-12 text-center">
+									<span>
+										<img src="img/agen1.jpg" style="width: 33%; height: auto;">      
+									</span>
+									<span>
+										<img src="img/agen2.jpg" style="width: 33%; height: auto;"> 
+									</span>
+									<span>
+										<img src="img/agen3.jpg" style="width: 33%; height: auto;">    
+									</span>
+								</div>
+							</div>
+                		</div>
+                	
+		                <a data-slide="prev" href="#c-slide" class="left carousel-control">
+		                                  <i class="arrow_carrot-left_alt2"></i>
+		                              </a>
+		                <a data-slide="next" href="#c-slide" class="right carousel-control">
                                   <i class="arrow_carrot-right_alt2"></i>
                               </a>
-              </div>
+					</div>
 				</section>
 			</div>
 		</div>
+		<!-- 슬라이드 end -->
 
         <!-- Today status end -->
         <div class="row">

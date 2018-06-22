@@ -5,6 +5,19 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>PortFolio</title>
 	<jsp:include page="/WEB-INF/views/css.jsp"></jsp:include>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.panel-heading').click(function(){
+				if($(this).parent('div').find('.panel-content').css("display") == "none"){
+					$(this).parent('div').find('.panel-content').show();
+				}else{
+					$(this).parent('div').find('.panel-content').hide();
+				}
+				
+			});
+		})
+	</script>
 	<style type="text/css">
 	.wrapper {
 		position: absolute;
@@ -59,7 +72,7 @@
 					</section>
 					<section>
 						<div class="col-lg-2 col-sm-6 follow-info weather-category">
-							<a href="/team27d" style="color: white">
+							<a href="/onlyJSP/mlist/m_list.jsp" style="color: white">
 								<ul>
 									<li class="active" style="font-size: 20px"><i
 										class="fa fa-comments fa-2x"> </i><br> go JSP</li>
@@ -70,7 +83,7 @@
 					</section>
 					<section>
 						<div class="col-lg-2 col-sm-6 follow-info weather-category">
-							<a href="/mall4" style="color: white">
+							<a href="/team27d" style="color: white">
 								<ul>
 									<li class="active" style="font-size: 20px"><i
 										class="fa fa-bell fa-2x"> </i><br> go MVC1</li>
@@ -139,7 +152,7 @@
 													<a href="#" class="activity-img"><img class="avatar"
 														src="img/bae.jpg" alt=""></a>
 													<p class="attribution">
-														<a href="http://cjsghka.cafe24.com/">배건혜</a> 15th June
+														<a href="http://jjerrybae77.cafe24.com/">배건혜</a> 15th June
 														1990
 													</p>
 													<p>기능구현, 팀원간 상세일정 조정, API 승인을 위한 활동, UI 구성, 오픈API 활용</p>
@@ -181,7 +194,7 @@
 													<a href="#" class="activity-img"><img class="avatar"
 														src="img/kks.jpg" alt=""></a>
 													<p class="attribution">
-														<a href="http://cjsghka.cafe24.com/">김기성</a> 23th Nomember
+														<a href="http://cliatyw.cafe24.com/">김기성</a> 23th Nomember
 														1990
 													</p>
 													<p>기능구현, 템플릿 조사 및 디자인 수정, 전체 문서 오타 수정, UI 구성, 오픈API 활용</p>
@@ -203,10 +216,7 @@
 												</div>
 											</div>
 										</div>
-
-
 									</div>
-
 								</div>
 
 								<!-- profile -->
@@ -218,16 +228,13 @@
 											</div>
 											<div class="">
 												<p>
-													웹, 어플 제품SW 개발자양성-응용SW 및 DB엔지니어링 융합- <br>훈련과정 수료
+													웹, 어플 제품SW 개발자양성 - 응용SW 및 DB엔지니어링 융합 - <br>훈련과정 수료
 													(2017.12.28 ~ 2018.07.09)
 												</p>
-												<p>
-													훈련기관 : 한국스마트정보교육원, <a href="http://ksmart.or.kr/">http://ksmart.or.kr/</a>
-												</p>
-												<p>훈련목표 : NCS 직종 분류 중 정보통신-정보기술-정보기술개발 세분류 직종에서
-													응용SW엔지니어링을 중심으로 DB엔지니어링을 활용하여 웹, 어플 제품 SW개발자를 양성</p>
-
-
+												<h4>훈련기관</h4>
+												<p> - 한국스마트정보교육원, <a href="http://ksmart.or.kr/">http://ksmart.or.kr/</a></p>
+												<h4>훈련목표</h4>
+												<p> - NCS 직종 분류 중 정보통신-정보기술-정보기술개발 세분류 직종에서 응용SW엔지니어링을 중심으로 DB엔지니어링을 활용하여 웹, 어플 제품 SW개발자를 양성</p>
 											</div>
 										</div>
 										<div class="panel-body bio-graph-info">
@@ -289,60 +296,199 @@
 								<!-- Project : JSP -->
 								<div id="Project1" class="tab-pane">
 									<section class="panel">
-										<div class="panel-body bio-graph-info">
-											<h3>프로젝트 주제 :</h3>
-											<p>프로젝트 목적 :</p>
-											<p>프로젝트 기대효과 :</p>
-											<p>프로젝트 개발환경 :</p>
-											<p>프로젝트 주기능 : </p>
-											<p>프로젝트 ERD : </p>
-											<p>프로젝트 프로세스 : </p>
-
-										</div>
+										<div class="panel-body" class="col-lg-12">	
+											<h3>&nbsp; 프로젝트 주제</h3>
+											<div style="text-align: center"><h3>"tb_member테이블에 CRUD 실습"</h3></div><br><br>
+												<ul class="col-lg-8">
+													<li><h4>프로젝트 목적</h4></li>
+													<li style="list-style-type: circle">자바 기초 문법 연습</li>
+													<li style="list-style-type: circle">입력, 수정, 삭제 SQL 쿼리문 연습</li>
+													<li><h4>프로젝트 기대효과</h4></li>
+													<li style="list-style-type: circle">이클립스를 통해 JAVA 기본 문법을 익힐 수 있다.</li>
+													<li style="list-style-type: circle">SQL 쿼리문을 작성할 수 있다.</li>	
+													<li style="list-style-type: circle">형상관리 툴인 깃허브를 활용하여 효율적인 팀프로젝트를 수행할 수 있다.</li>																							
+												</ul><br>
+												<div class="col-lg-4">
+													<img src="img/JSP.png" style="width: 100%; height: 100%;">
+												</div>
+											</div>
+											<div>
+												<p>▼ 클릭해주세요!</p>
+												<div>				
+													<div class="panel-heading">
+														<h3>개발환경</h3>														
+													</div>
+													<div class="panel-content" style="display:none">
+														<ul >
+															<li>OS : window7</li>
+															<li>웹브라우저 : Crome</li>
+															<li>개발언어 : java</li>
+															<li>DBMS : MySQL</li>
+															<li>TOOLS : eclipse, HeidiSQL</li>																						
+														</ul>
+													</div>
+												</div>												
+												<div>
+													<div class="panel-heading">
+														<h3>주요기능</h3>
+													</div>
+													<div class="panel-content" style="display:none">
+														<ul >
+															<li>member 등록</li>
+															<li>member 리스트</li>
+															<li>member 수정</li>
+															<li>member 삭제</li>
+															<li>member 검색</li>
+														</ul>
+													</div>
+												</div>	
+												<div>
+													<div class="panel-heading">
+														<h3>디렉토리 구조</h3>
+													</div>
+													<div class="panel-content" style="display:none">
+														<img src="img/20180622_jspDirectory.png">														
+													</div>
+												</div>												
+											</div>	
 									</section>
 								</div>
 
 								<!-- Project : MVC1 -->
 								<div id="Project2" class="tab-pane">
 									<section class="panel">
-										<div class="panel-body bio-graph-info">
-											<h3>프로젝트 주제 :</h3>
-											<p>프로젝트 목적 :</p>
-											<p>프로젝트 기대효과 :</p>
-											<p>프로젝트 개발환경 :</p>
-											<p>프로젝트 주기능 : </p>
-											<p>프로젝트 ERD : </p>
-											<p>프로젝트 프로세스 : </p>
-
-										</div>
+										<div class="panel-body" class="col-lg-12">	
+											<h3>&nbsp; 프로젝트 주제</h3>
+											<div style="text-align: center"><h3>"간단한 직업정보로 CRUD 실습"</h3></div><br><br>
+												<ul class="col-lg-8">
+													<li><h4>프로젝트 목적</h4></li>
+													<li style="list-style-type: circle">이클립스와 깃허브를 활용하는 팀프로젝트</li>
+													<li style="list-style-type: circle">깃허브 주소 : 
+														<a href="https://github.com/Leejunhee89/team27d.git">https://github.com/Leejunhee89/team27d.git</a></li>
+													<li style="list-style-type: circle">입력, 수정, 삭제 SQL 쿼리문 연습</li>
+													<li><h4>프로젝트 기대효과</h4></li>
+													<li style="list-style-type: circle">이클립스를 통해 JAVA 기본 문법을 익힐 수 있다.</li>
+													<li style="list-style-type: circle">SQL 쿼리문을 작성할 수 있다.</li>	
+													<li style="list-style-type: circle">형상관리 툴인 깃허브를 활용하여 효율적인 팀프로젝트를 수행할 수 있다.</li>																							
+												</ul><br>
+												<div class="col-lg-4">
+													<img src="img/MVC1.png" style="width: 100%; height: 100%;">
+												</div>
+											</div>
+											<div>
+												<p>▼ 클릭해주세요!</p>
+												<div>				
+													<div class="panel-heading">
+														<h3>개발환경</h3>														
+													</div>
+													<div class="panel-content" style="display:none">
+														<ul >
+															<li>OS : window7</li>
+															<li>웹브라우저 : Crome</li>
+															<li>개발언어 : java</li>
+															<li>DBMS : MySQL</li>
+															<li>TOOLS : eclipse, HeidiSQL</li>																						
+														</ul>
+													</div>
+												</div>												
+												<div>
+													<div class="panel-heading">
+														<h3>주요기능</h3>
+													</div>
+													<div class="panel-content" style="display:none">
+														<ul >
+															<li>actor CUD</li>
+															<li>actress CUD</li>
+															<li>anaunseo CUD</li>
+															<li>rapper CUD</li>
+															<li>singer CUD</li>
+															<li>comedian CUD</li>																							
+														</ul>
+													</div>
+												</div>
+												<div>
+													<div class="panel-heading">
+														<h3>디렉토리 구조</h3>
+													</div>
+													<div class="panel-content" style="display:none">
+														<img src="img/20180622_mvc1Directory.png">														
+													</div>
+												</div>														
+											</div>		
 									</section>
 								</div>
 
 								<!-- Project : MVC2 -->
 								<div id="Project3" class="tab-pane">
-									<section class="panel">
-										<div class="panel-body bio-graph-info" >
-											<h3>프로젝트 주제</h3>
-											<div style="text-align: center"><h3>"6차 산업을 위한 생산계획과 실행관리를 쉽게 할 수 있고 <br>한 눈에 비교할 수 있는 스마트팜 플래너 프로그램"</h3></div>
-											<ul >
-												<li><h4>프로젝트 목적</h4></li>
-												<li>한국형 스마트팜 표준 데이터 활용으로 종자산업, 농업생명공학 기능성소재 등 신산업을 위한 빅데이터 스택</li>
-												<li>동시에 스마트한 생산계획을 수립하여 농업의 이익과 생산성 증진을 도모<li>
-												<li>실제 실행내용과 비교하여 효율적인 생산방향을 예상하기 위한 서비스 제공</li>
-												<li><h4>프로젝트 기대효과</h4></li>
-												<li>한 곳에서 수요자 맞춤형 작물 정보를 제공하며, 단순 가공산업에서 혼반용 외 다양한 가공 및 6차 산업화를 기대</li>
-												<li>품질 우위 확보를 위한 기술경쟁력 제고 및 농업분야 개도국 지원 성공모델 개발</li>	
-												<li>자립형 농촌공동체 활성화와 전문인력양성을 통해 농가소득 지원 및 신규 창업을 지원, 창출</li>
-												<li>농업인 재해예방 및 고령농업인 소일거리 사업화 지원으로 인한 삶의 질 향상</li>																							
-											</ul>										
-											<p><h3>개발환경</h3></p>
-											<p><h3>주기능</h3></p>
-											<p><h3>ERD</h3></p>
-											<p><h3>프로세스</h3></p>
-										</div>
+									<section class="panel">										
+										<div class="panel-body" class="col-lg-12">	
+											<h3>&nbsp; 프로젝트 주제</h3>
+											<div style="text-align: center"><h3>"6차 산업을 위한 생산계획과 실행 후 결과관리를 쉽게 할 수 있고, <br>한 눈에 비교할 수 있는 스마트팜 플래너 프로그램"</h3></div><br><br>
+												<ul class="col-lg-8">
+													<li><h4>프로젝트 목적</h4></li>
+													<li style="list-style-type: circle">깃허브 주소 : 
+														<a href="https://github.com/yukukhwa/SmartFarm_Planner.git">https://github.com/yukukhwa/SmartFarm_Planner.git</a></li>													
+													<li style="list-style-type: circle">한국형 스마트팜 표준 데이터 활용으로 종자산업, 농업생명공학 기능성소재 등 신산업을 위한 빅데이터 스택</li>
+													<li style="list-style-type: circle">동시에 스마트한 생산계획을 수립하여 농업의 이익과 생산성 증진을 도모<li>
+													<li style="list-style-type: circle">실제 실행내용과 비교하여 효율적인 생산방향을 예상하기 위한 서비스 제공</li><br>												
+													<li><h4>프로젝트 기대효과</h4></li>
+													<li style="list-style-type: circle">한 곳에서 수요자 맞춤형 작물 정보를 제공하며, 단순 가공산업에서 혼반용 외 다양한 가공 및 6차 산업화를 기대</li>
+													<li style="list-style-type: circle">품질 우위 확보를 위한 기술경쟁력 제고 및 농업분야 개도국 지원 성공모델 개발</li>	
+													<li style="list-style-type: circle">자립형 농촌공동체 활성화와 전문인력양성을 통해 농가소득 지원 및 신규 창업을 지원, 창출</li>
+													<li style="list-style-type: circle">농업인 재해예방 및 고령농업인 소일거리 사업화 지원으로 인한 삶의 질 향상</li>																							
+												</ul><br>
+												<div class="col-lg-4">
+													<img src="img/MVC2.png" style="width: 100%; height: 100%;">
+												</div>
+											</div>
+											<div>
+												<p>▼ 클릭해주세요!</p>
+												<div>				
+													<div class="panel-heading">
+														<h3>개발환경</h3>
+													</div>
+													<div class="panel-content" style="display:none">
+														<img src="img/20180622_devEnv.png" style="width: 100%">
+													</div>
+												</div>
+												<div>
+													<div class="panel-heading">
+														<h3>프로세스</h3>
+													</div>
+													<div class="panel-content" style="display:none">
+														<img src="img/20180622_process.png" style="width: 100%">
+													</div>
+												</div>
+												<div>
+													<div class="panel-heading">
+														<h3>주요기능</h3>
+													</div>
+													<div class="panel-content" style="display:none">
+														<img src="img/20180622_mainfunction.png" style="width: 100%">
+													</div>
+												</div>
+												<div>
+													<div class="panel-heading">
+														<h3>디렉토리 구조</h3>
+													</div>
+													<div class="panel-content" style="display:none">
+														<img src="img/20180622_mvc2Directory.png">														
+													</div>
+												</div>	
+												<div>
+													<div class="panel-heading">
+														<h3>ERD</h3>
+													</div>
+													<div class="panel-content" style="display:none">
+														<h3>논리모드</h3>
+														<img src="img/20180622_erdNonri.png" style="width: 100%"><br>
+														<h3>물리모드</h3>
+														<img src="img/20180622_erdMuri.png" style="width: 100%">
+													</div>
+												</div>
+											</div>										
 									</section>
 								</div>
-
 							</div>
 						</div>
 					</section>
