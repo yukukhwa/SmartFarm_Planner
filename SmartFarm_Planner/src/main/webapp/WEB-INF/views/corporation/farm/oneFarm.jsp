@@ -63,13 +63,13 @@
 						</tr>
 					</tbody>
 				</table>
-				<button type="button" id="selectFarmMemberList">농가회원보기</button>
-				<button id="goList">리스트로 돌아가기</button>
+				<button type="button" class="btn btn-primary" id="selectFarmMemberList">농가회원보기</button>
+				<button type="button" class="btn btn-default" id="goList">리스트로 돌아가기</button>
 				<c:if test="${loginMember.level == 'farm' && loginMember.corpName == farm.fName && loginMember.boss == 'boss'}">
-					<button id="updateFarm">농가정보 수정하기</button>
+					<button type="button" class="btn btn-default" id="updateFarm">농가정보 수정하기</button>
 				</c:if>
-				<c:if test="${loginMember.boss == 'boss'}">
-					<button id="deleteFarm">농가정보 삭제하기</button>
+				<c:if test="${loginMember.level == 'farm' && loginMember.corpName == farm.fName && loginMember.boss == 'boss'}">
+					<button type="button" class="btn btn-danger" id="deleteFarm">농가정보 삭제하기</button>
 				</c:if>
 			</div>
 		</section>

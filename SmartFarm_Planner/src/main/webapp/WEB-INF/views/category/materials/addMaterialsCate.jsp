@@ -1,3 +1,4 @@
+<!-- [김재희] -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -9,9 +10,29 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('#goLogin').click(function(){
+			location.href = "${pageContext.request.contextPath}/login";
+		})
+		
+		$('#goCateMaterialsList').click(function(){
+			location.href = "${pageContext.request.contextPath}/listMaterialsCate";
+		})
+		
 		$('#insertMaterialsCate').click(function(){
+			if($('#materialsName').val() == ''){
+				alert('원자재 이름을 입력해주세요');
+				$('#materialsName').focus();
+				return false;
+			}
+			
+			if($('#materialsUnit').val() == ''){
+				alert('원자재 단위를 입력해주세요');
+				$('#materialsUnit').focus();
+				return false;
+			}
 			$('#insertMaterialsCateForm').submit();
 		})
+		
 	})
 </script>
 </head>
@@ -25,14 +46,15 @@
     <section id="main-content">
     	<section class="wrapper">
     		<c:if test="${loginMember.level != 'agency'}">
-    			해당 페이지에 접근할 수 없는 권한입니다.
+    			<h3>해당 페이지에 접근할 수 없는 권한입니다.</h3> <br>
+    			<button type="button" id="goLogin" class="btn btn-primary">로그인하러가기</button>
     		</c:if>
     		<c:if test="${loginMember.level == 'agency'}">
 	    		<div>
 	    			<h3>원자재 카테고리 등록</h3>
 	    			<form id="insertMaterialsCateForm" method="post" action="${pageContext.request.contextPath}/addMaterialsCate">
 	    				<div>
-	    					등록기관넘버 : <input type="text" name="agency.aNumber" value="${loginMember.corpNumber}">
+	    					<input type="hidden" name="agency.aNumber" value="${loginMember.corpNumber}">
 	    				</div>
 	    				<div>
 	    					<label>
@@ -46,16 +68,16 @@
 	    				</div>
 	    				<div>
     						<label>
-    							원자재 카테고리 이름 : <input type="text" name="materialsName">
+    							원자재 카테고리 이름 : <input type="text" id="materialsName" name="materialsName">
     						</label>
 	    				</div>
 	    				<div>
     						<label>
-    							원자재 카테고리 단위 : <input type="text" name="materialsUnit">
+    							원자재 카테고리 단위 : <input type="text" id="materialsUnit" name="materialsUnit">
     						</label>
 	    				</div>
-	    				<button id="insertMaterialsCate">원자재카테고리 등록하기</button>
-	    				<a href="${pageContext.request.contextPath}/listMaterialsCate">원자재 카테고리 리스트로 가기</a>
+	    				<button type="button" class="btn btn-primary" id="insertMaterialsCate">원자재카테고리 등록하기</button>
+	    				<button type="button" id="goCateMaterialsList" class="btn btn-default">원자재 카테고리 리스트</button>
 	    			</form>
 	    		</div>
 			</c:if>

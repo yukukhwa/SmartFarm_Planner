@@ -1,3 +1,4 @@
+<!-- [김재희] -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -57,7 +58,7 @@
 	    						<input type="text" name="agency.aNumber" readonly="readonly" value="${loginMember.corpNumber}">
 	    					</label> 
 	    				</div> <br>
-	    				<button id="updateMaterials">원자재 카테고리 수정하기</button>
+	    				<button type="button" class="btn btn-primary" id="updateMaterials">원자재 카테고리 수정하기</button>
 	    			</form>
 	    			<a href="${pageContext.request.contextPath}/listMaterialsCate">원자재 카테고리 리스트로 가기</a>
 	    		</div>

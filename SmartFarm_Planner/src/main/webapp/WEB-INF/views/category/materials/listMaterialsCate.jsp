@@ -1,3 +1,4 @@
+<!-- [김재희] -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -10,12 +11,22 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#goHome').click(function(){
-			location.href = "${pageContext.request.contextPath}/";
+			location.href = "${pageContext.request.contextPath}/home";
+		})
+		
+		$('#addMaterialsCate').click(function(){
+			location.href = "${pageContext.request.contextPath}/addMaterialsCate";
 		})
 		
 		$('#materialsCateSearch').click(function(){
+			if($('#searchKeyword').val() == ''){
+				alert('검색어를 입력해주세요');
+				$('#searchKeyword').focus();
+				return false;
+			}
 			$('#materialsCateSearchForm').submit();
 		})
+		
 	})
 </script>
 </head>
@@ -42,7 +53,7 @@
 	    					<option value="materialsName">원자재 이름</option>
 	    					<option value="aName">등록기관이름</option>
 	    				</select> <br>
-	    				<input type="text" name="searchKeyword">
+	    				<input type="text" id="searchKeyword" name="searchKeyword">
 	    				<button id="materialsCateSearch">테마 검색하기</button>
 	    			</form>
     			</div>
@@ -71,19 +82,19 @@
 							<td>${categoryMaterials.materialsUnit}</td>
 							<td>${categoryMaterials.agency.aName}</td>
 							<c:if test="${loginMember.corpName == categoryMaterials.agency.aName}">
-							<td>
-								<a href="${pageContext.request.contextPath}/updateMaterialsCate?materialsName=${categoryMaterials.materialsName}">수정</a>
-							</td>
-							<td>
-								<a href="${pageContext.request.contextPath}/deleteMaterialsCate?materialsNumber=${categoryMaterials.materialsNumber}">삭제</a>
-							</td>
+								<td>
+									<a href="${pageContext.request.contextPath}/updateMaterialsCate?materialsName=${categoryMaterials.materialsName}">수정</a>
+								</td>
+								<td>
+									<a href="${pageContext.request.contextPath}/deleteMaterialsCate?materialsNumber=${categoryMaterials.materialsNumber}">삭제</a>
+								</td>
 							</c:if>
 						</tr>
 					</tbody>
 					</c:forEach>
 				</table>
-				<button id="goHome">메인으로</button>
-				<a href="${pageContext.request.contextPath}/addMaterialsCate">원자재 카테고리 등록하기</a>
+				<button id="goHome" type="button" class="btn btn-default">메인으로</button>
+				<button id="addMaterialsCate" type="button" class="btn btn-primary">원자재 카테고리 등록</button>
 			</div>
 			<%-- </c:if> --%>
 		</section>

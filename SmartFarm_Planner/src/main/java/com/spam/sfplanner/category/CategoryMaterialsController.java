@@ -68,7 +68,7 @@ public class CategoryMaterialsController {
 	public String insertCategoryMaterials(CategoryMaterials categoryMaterials) {
 		System.out.println("insertCateMaterials categoryMaterialsDb====> "+categoryMaterials);
 		categoryMaterialsService.insertCategoryMaterials(categoryMaterials);
-		return "category/materials/listMaterialsCate";
+		return "redirect:/listMaterialsCate";
 	}
 	
 	/*addMaterialsCate로 겟방식으로 요철받을때 addMaterialsCate view로 포워드*/

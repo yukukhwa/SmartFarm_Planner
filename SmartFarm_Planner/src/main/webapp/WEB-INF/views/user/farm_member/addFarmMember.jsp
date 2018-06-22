@@ -30,10 +30,8 @@
 		})
 		
 		// 아이디 중복 체크
-		$('#idCheck').click(function(){
-			
+		$('#idCheck').on('click',function(){
 		})
-		
 		
 		
 		$("input:radio[name=formCheck]").click(function(){
@@ -57,7 +55,7 @@
 											+'<input type="text" placeholder="-를 붙이고 입력해주세요" name="fPhone" id="fPhone">'
 										+'</div>'
 										+'<div>'
-											+'<input type="button" id="searchFarmAddress" value="주소검색하기">'
+											+'<button type="button" id="searchFarmAddress" class="btn btn-info">주소검색</button>'
 										+'</div>'
 										+'<div>'
 											+'<b>도로명 주소 : </b>'
@@ -76,6 +74,10 @@
 			return;
 		})
 		
+		//입력폼을 결정하는 라디오 버튼 선택에 따라 alert문구가 나옴
+		
+		
+		
 		$("#insertFarmMember").click(function(){
 			var fName = $('#fName').val();
 			var fPhone = $('#fPhone').val();
@@ -87,7 +89,7 @@
 			
 			//개인정보동의에 체크하지 않으면 경고문과 함께 submit하지 못하게
 			if($('#fMemberPrivacy').prop('checked')){
-				alert('개인정보 제공을 동의하셨습니다');
+				alert('개인정보 제공에 동의하셨습니다');
 				return;
 			}else{
 				alert('개인정보제공동의를 체크하셔야 회원가입 됩니다');
@@ -166,21 +168,21 @@
      <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
-    		<div class="col">
-	    		<div class="col-lg-12" style="margin: 5% 0 7% 17%;">
+    		<div class="col" align="center">
+	    		<div class="col-lg-12" align="left" style="margin: 10% 0% 5% 18%;">
 	    			<h2>
 	    				<b><i class="icon_profile">농가회원가입하기</i></b>
 	    			</h2>
 	    		</div>
-				<div class="col-lg-12" style="text-align: center;">
-					<b>회원가입폼 선택</b><br>
-					<input type="radio" name="formCheck" value="exponent" checked="checked"/> 농가대표
-					<input type="radio" name="formCheck" value="staff" /> 농가직원
+				<div class="col-lg-12" align="center" style="margin: auto;">
+					<h4><b><i class="fa fa-file-text-o"></i>회원가입폼 선택</b></h4><br>
+					<input type="radio" id="farmdaepyo" name="formCheck" value="exponent" checked="checked"/> 농가대표 &nbsp;
+					<input type="radio" id="farmStaff" name="formCheck" value="staff" /> 농가직원
 				</div> <br>
-				<div class="col-lg-12" style="width: 60%; height: 30%; padding: 5% 0% 10% 0%; margin: 0% 0% 0% 20%; text-align: center; background-color: #FAFAFA;">
+				<div class="col-lg-12" style="align-content: center; width: 60%; height: 30%; padding: 8% 0% 10% 0%; margin: 3% 0% 0% 0%; text-align: center; background-color: #FAFAFA;">
 					<form id="farmMemberInsert" action="${pageContext.request.contextPath}/addFarmMember" method="post">
 						<div>
-							<b>개인정보제공동의</b><br>
+							<b>개인정보제공동의</b><br><br>
 							<textarea rows="20" cols="90" id="fMemberPrivacyContent" readonly="readonly">스마트팜 플래너는 통합회원 서비스에 필요한 개인정보 수집·이용을 위하여 개인정보보호법 제15조 및 제22조, 제24조에 따라 귀하의 동의를 받고자 합니다.
 
 1. 개인정보 수집 목적
@@ -207,65 +209,68 @@
 
 4. 동의 거부권 및 거부에 대한 불이익
 - 정보주체는 개인정보 수집·이용에 대해 동의를 거부할 권리가 있으며, 최소한의 개인정보 이외의 개인정보 수집에 동의하지 아니한다는 이유로 회원에게 회원 가입 불가 및 홈페이지서비스 거부와 같은 불이익을 주지 않습니다. 단, 최소한의 개인정보 수집에 대해 동의 거부 시에는 통합회원가입이 제한됩니다. 
-※ 만 14세미만 아동의 경우 개인정보 처리 목적 상 회원가입을 하실 수 없습니다.</textarea> <br>
-							<input style="" type="checkbox" id="fMemberPrivacy" name="fMemberPrivacy" value="true"> 예, 동의합니다.
-						</div>
+※ 만 14세미만 아동의 경우 개인정보 처리 목적 상 회원가입을 하실 수 없습니다.</textarea> <br><br>
+							<div align="right" style="margin: 0% 11% 0% 0%;">
+								<input type="checkbox" id="fMemberPrivacy" name="fMemberPrivacy" value="true"> 예, 동의합니다.
+							</div>
+						</div> <br><br>
+						
 						<!-- 농가등록 폼 시작 -->
-						<!-- include버리고 html체인지로 하기 -->
-						<div id="addFarmForm">
-							<h3>농가등록하기</h3>
-							<div>
-								<b>농장이름 : </b>
-								<input type="text" placeholder="농장이름을 등록해주세요" name="fName" id="fName">
+						<div id="addFarmForm" align="center">
+							<h3>농가등록하기</h3> <br>
+							<div align="left">
+								<label class="col-sm-2 control-label"><b>농장이름</b></label>
+								<input type="text" class="form-control" style="width: 20%;" placeholder="농장이름을 등록해주세요" name="fName" id="fName">
 							</div>
 							<div>
-								<b>농가연락처</b>
-								<input type="text" placeholder="-를 붙이고 입력해주세요" name="fPhone" id="fPhone">
+								<label class="col-sm-2 control-label"><b>농가연락처</b></label>
+								<input type="text" class="form-control" style="width: 20%;" placeholder="-를 붙이고 입력해주세요" name="fPhone" id="fPhone">
 							</div>
 							<div>
-								<input type="button" id="searchFarmAddress" value="주소검색하기">
+								<button type="button" class="btn btn-info" id="searchFarmAddress">주소검색</button>
+								<!-- <input type="button" class id="searchFarmAddress" value="주소검색하기"> -->
 							</div>
 							<div>
-								<b>도로명 주소 : </b>
-								<input type="text" name="fDoroaddress" id="farmDoroaddress" placeholder="도로명주소를 입력해주세요"><br>
+								<label class="col-sm-2 control-label"><b>도로명 주소</b></label>
+								<input type="text" class="form-control" style="width: 20%;" name="fDoroaddress" id="farmDoroaddress"><br>
 							</div>
 							<div>
-								<b>지번 주소 : </b>
-								<input type="text" name="fJibunaddress" id="farmJibunaddress" placeholder="지번주소를 입력해주세요"><br>
+								<label class="col-sm-2 control-label"><b>지번 주소 : </b></label>
+								<input type="text" class="form-control" style="width: 20%;" name="fJibunaddress" id="farmJibunaddress"><br>
 							</div>
 							<div>
-								<b>농가인원</b> <br>
-								<input type="number" placeholder="농가인원 숫자를 입력해주세요" name="fParty" id="fParty"> 명
+								<label class="col-sm-2 control-label"><b>농가인원</b></label>
+								<input type="number" class="form-control" style="width: 20%;" placeholder="농가인원 숫자를 입력해주세요" name="fParty" id="fParty"> 명
 							</div>
 						</div>
 						<!-- 농가등록 폼 끝 -->
-					<br>
-					<br>
+						<br><br>
+		
+					
 						<!-- 기본 회원가입 폼 -->
 						<div id="addFarmMemberForm">
 							<h3>회원가입 폼</h3>
 							<div>
 								<b>아이디 : </b>
-								<input type="text" name="fMemberId" id="fMemberId" placeholder="아이디를 입력해주세요">
-								<button id="idCheck">아이디 중복확인</button><br>
+								<input type="text" name="fMemberId" id="fMemberId" placeholder="아이디를 입력해주세요" class="form-control">
+								<button type="button" class="btn btn-default" id="idCheck">아이디 중복확인</button><br>
 							</div>
 							<div>			
 								<b>비밀번호 입력 : </b>
-								<input type="password" name="fMemberPw" id="fMemberPw">
+								<input type="password" name="fMemberPw" id="fMemberPw" class="form-control">
 								<input type="checkbox" id="pwOpen"> 비밀번호 보이기 <br>
 							</div>
 							<div>		
 								<b>비밀번호 확인  : </b>
-								<input type="password" id="fPwCheckFomr">
-								<button type="button" id="fPwCheck">비밀번호 일치확인</button><br>
+								<input type="password" id="fPwCheckFomr" class="form-control">
 							</div>
 							<div>		
 								<b>이름 : </b>
-								<input type="text" name="fMemberName" id="fMemberName" placeholder="이름을 입력해주세요"> <br>
+								<input type="text" name="fMemberName" id="fMemberName" placeholder="이름을 입력해주세요" class="form-control"> <br>
 							</div>
 							<div>
 								<b>연락처 : </b>
-								<input type="text" name="fMemberPhone" id="fMemberPhone" placeholder="-를 붙이고 연락처를 입력해주세요"> <br>
+								<input type="text" name="fMemberPhone" id="fMemberPhone" placeholder="-를 붙이고 연락처를 입력해주세요" class="form-control"> <br>
 							</div>
 							<div>
 								<b>성별 : </b>
@@ -274,32 +279,33 @@
 							</div>
 							<div>
 								<b>이메일 : </b>
-								<input type="text" name="fMemberEmail" placeholder="이메일을 입력해주세요">
+								<input type="text" name="fMemberEmail" placeholder="이메일을 입력해주세요" class="form-control">
 							</div>
 							<div>
-								<input type="button" id="searchFarmMemberAddress" value="주소검색하기">
+								<button type="button" class="btn btn-info" id="searchFarmMemberAddress">주소검색</button>
+								<!-- <input type="button" id="searchFarmMemberAddress" value="주소검색하기"> -->
 							</div>
 							<div>	
 								<b>도로명 주소 : </b>
-								<input type="text" id="farmMemberDoroaddress" name="fMemberDoroaddress" placeholder="도로명주소를 입력해주세요"><br>
+								<input type="text" id="farmMemberDoroaddress" name="fMemberDoroaddress" placeholder="도로명주소를 입력해주세요" class="form-control"><br>
 							</div>
 							<div>
 								<b>지번 주소 : </b>
-								<input type="text" id="farmMemberJibunaddress" name="fMemberJibunaddress" placeholder="지번주소를 입력해주세요"><br>
+								<input type="text" id="farmMemberJibunaddress" name="fMemberJibunaddress" placeholder="지번주소를 입력해주세요" class="form-control"><br>
 							</div>
 							<div>
 								<b>상세 주소 : </b>
-								<input type="text" id="farmMemberDetailaddress" name="fMemberDetailaddress" placeholder="나머지 상세주소를 입력해주세요"><br>
+								<input type="text" id="farmMemberDetailaddress" name="fMemberDetailaddress" placeholder="나머지 상세주소를 입력해주세요" class="form-control"><br>
 							</div>
 							
 						</div>
 					<br>
-					<button id="insertFarmMember">회원가입</button>
+					<button type="button" class="btn btn-primary" id="insertFarmMember">회원가입</button>
 					<!-- 회원가입 폼 끝 -->
 					</form>
 				</div>
 				<div>
-					<a class="btn btn-primary" id="goFarmList" href="${pageContext.request.contextPath}/listFarm" title="Bootstrap 3 themes generator">농가 리스트로 가기</a>
+					<a class="btn btn-default" id="goFarmList" href="${pageContext.request.contextPath}/listFarm" title="Bootstrap 3 themes generator">농가 리스트로 가기</a>
 				</div>
 			</div>
 		</section>

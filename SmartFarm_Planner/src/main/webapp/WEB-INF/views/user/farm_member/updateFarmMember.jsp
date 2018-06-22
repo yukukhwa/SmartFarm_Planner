@@ -10,7 +10,11 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#updateMember').click(function(){
+		$('#goLogin').click(function(){
+			location.href = "${pageContext.request.contextPath}/login";
+		})
+		
+		$('#updateMember').click(function(){			
 			$('#updateFMember').submit();
 		})
 	})
@@ -25,9 +29,8 @@
     <section id="main-content">
 		<section class="wrapper">
 			<c:if test="${loginMember.level != 'farm' || loginMember.id != farmMember.fMemberId}">
-				<div>
-					해당페이지에 접근할 수 없는 권한입니다.
-				</div>
+				<h3>해당 페이지에 접근할 수 없는 권한입니다.</h3> <br>
+    			<button type="button" id="goLogin" class="btn btn-primary">로그인하러가기</button>
 			</c:if>
 			<c:if test="${loginMember.level == 'farm' && loginMember.id == farmMember.fMemberId}">
 				<div>
@@ -50,19 +53,19 @@
 						<div>
 							<label>
 								<b>패스워드 : </b><br>
-								<input type="text" name="fMemberPw" value="${farmMember.fMemberPw}">
+								<input type="text" id="fMemberPw" name="fMemberPw" value="${farmMember.fMemberPw}">
 							</label>
 						</div>
 						<div>
 							<label>
 								<b>이름 : </b><br>
-								<input type="text" name="fMemberName" value="${farmMember.fMemberName}">
+								<input type="text" id="fMemberName" name="fMemberName" value="${farmMember.fMemberName}">
 							</label>
 						</div>
 						<div>
 							<label>
 								<b>연락처 : </b><br>
-								<input type="text" name="fMemberPhone" value="${farmMember.fMemberPhone}">
+								<input type="text" id="fMemberPhone" name="fMemberPhone" value="${farmMember.fMemberPhone}">
 							</label>
 						</div>
 						<div>
@@ -75,7 +78,7 @@
 						<div>
 							<label>
 								<b>이메일 : </b><br>
-								<input type="text" name="fMemberEmail" value="${farmMember.fMemberEmail}">
+								<input type="text" id="fMemberEmail" name="fMemberEmail" value="${farmMember.fMemberEmail}">
 							</label>
 						</div>
 						<div>
@@ -103,7 +106,7 @@
 								<input type="hidden" name="fMemberRegistdate" value="${farmMember.fMemberRegistdate}">						
 							</label>
 						</div>
-						<button id="updateMember">내 정보 업데이트하기</button>
+						<button type="button" class="btn btn-primary" id="updateMember">내 정보 업데이트하기</button>
 					</form>
 				</div>
 			</c:if>

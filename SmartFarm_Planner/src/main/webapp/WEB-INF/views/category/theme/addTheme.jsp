@@ -10,7 +10,16 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$('#goLogin').click(function(){
+			location.href = "${pageContext.request.contextPath}/login";
+		})
+		
 		$('#insertThemeCate').click(function(){
+			if($('#themeName').val() == ''){
+				alert('테마이름을 입력해주세요');
+				$('#themeName').focus();
+				return false;
+			}
 			$('#insertThemeForm').submit();
 		})
 	})
@@ -27,7 +36,8 @@
     	<section class="wrapper">
     		<div>
     			<c:if test="${loginMember.level != 'agency'}">
-    				테마를 등록할 수 없는 권한입니다.
+    				<h3>해당 페이지에 접근할 수 없는 권한입니다.</h3> <br>
+    			<button type="button" id="goLogin" class="btn btn-primary">로그인하러가기</button>
     			</c:if>
 	    		<c:if test="${loginMember.level == 'agency'}">
 	    		<h3>테마 등록하기</h3>
@@ -41,7 +51,7 @@
 			    				테마명 : <input type="text" name="themeName" id="themeName">
 			    			</label>
 			    		</div>
-			    		<button id="insertThemeCate">테마등록하기</button>
+			    		<button class="btn btn-primary" type="button" id="insertThemeCate">테마등록하기</button>
 		    		</form>
 		    		<a href="${pageContext.request.contextPath}/listTheme">테마 리스트로 가기</a>
 	    		</c:if>

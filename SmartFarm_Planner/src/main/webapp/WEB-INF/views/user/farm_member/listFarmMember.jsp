@@ -51,8 +51,8 @@
 					</tbody>
 					</c:forEach>
 				</table>
-				<button id="goHome">메인으로</button>
-				<button id="goFarmMemberList">농가 상세정보로 돌아가기</button>
+				<button type="button" class="btn btn-default" id="goHome">메인으로</button>
+				<button type="button" class="btn btn-default" id="goFarmMemberList">농가 상세정보로 돌아가기</button>
 			</div>
 		</section>
 	</section>

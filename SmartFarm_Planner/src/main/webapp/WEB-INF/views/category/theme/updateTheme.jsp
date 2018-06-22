@@ -1,3 +1,4 @@
+<!-- [김재희] -->
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -46,7 +47,7 @@
 							테마 카테고리이름 : <input type="text" name="themeName" value="${categoryTheme.themeName}">
 						</label>
 					</div>
-					<button id="updateTheme">테마 카테고리 수정하기</button>
+					<button type="button" class="btn btn-primary" id="updateTheme">테마 카테고리 수정하기</button>
 				</form>
 				<a href="${pageContext.request.contextPath}/listTheme">테마 리스트로 가기</a>
 			</div>

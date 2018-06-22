@@ -79,7 +79,7 @@
 						<input type="hidden" value="${farm.fRegistdate}" name="fRegistdate">
 					</label>
 				</div>
-				<button id="updateFarmBtn">농가정보 수정하기</button>
+				<button class="btn btn-primary" type="button" id="updateFarmBtn">농가정보 수정하기</button>
 			</form>
 		</section>
 	</section>
