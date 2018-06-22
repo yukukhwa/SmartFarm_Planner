@@ -43,8 +43,7 @@
     					</tr>
     				</thead>
     				<tbody>
-    					<c:forEach var="woNeRentPay" items="${woNeRentPayList}" >
-    						<c:if test="${woNeRentPay.neERentpaySecret != 'false'} ">
+    					<c:forEach var="woNeRentPay" items="${list}" >
 		    					<tr>
 		    						<td>${woNeRentPay.neERentpayNumber}</td>
 		    						<td>${woNeRentPay.woNeedEquip.eNeedequipState}</td>
@@ -59,7 +58,6 @@
 		    							<a href="#">삭제</a>
 		    						</td>
 		    					</tr>
-	    					</c:if>
     					</c:forEach>
     				</tbody>
     			</table>

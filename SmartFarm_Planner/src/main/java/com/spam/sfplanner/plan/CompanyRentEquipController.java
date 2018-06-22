@@ -1,3 +1,4 @@
+/*배건혜*/
 package com.spam.sfplanner.plan;
 
 import java.util.Map;
@@ -19,12 +20,22 @@ public class CompanyRentEquipController {
 	@Autowired
 	private CompanyService companyService;
 	
-	/*@RequestMapping(value="/updateCompanyRentEquip", method=RequestMethod.POST)
+	/**
+	 * 대여가능장비 수정처리 Controller 
+	 * @param companyRentEquip
+	 * @return
+	 */
+	@RequestMapping(value="/updateCompanyRentEquip", method=RequestMethod.POST)
 	public String updateCompanyRentEquip(CompanyRentEquip companyRentEquip) {
 		companyRentEquipService.updateCompanyRentEquip(companyRentEquip);
-		return "rediredct:/listCompanyRentEquip";
-	}*/
-	
+		return "redirect:/listCompanyRentEquip";
+	}
+	/**
+	 * 대여가능장비 하나의 리스트를 수정화면에 출력하는 Controller
+	 * @param cRentNumber
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/updateCompanyRentEquip", method=RequestMethod.GET)
 	public String oneSelectCompanyRentEquip(int cRentNumber, Model model) {
 		Map<String, Object> map = companyRentEquipService.oneSelectCompanyRentEquip(cRentNumber);
@@ -81,7 +92,6 @@ public class CompanyRentEquipController {
 	public String insertCompanyRentEquip( Model model) {
 		Map<String, Object> map = companyRentEquipService.insertCompanyRentEquip();
 		model.addAttribute("categoryEquipList", map.get("categoryEquipList"));
-		model.addAttribute("companyList", map.get("companyList"));
 		return "plan/company_rentequip/addCompanyRentEquip";
 	}
 }

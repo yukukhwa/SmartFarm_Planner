@@ -75,5 +75,5 @@
 	,#{companyRentEquip.cRentNumber}
 	,#{neERentpaySecret})
  </insert>
- 
+
  </mapper>
