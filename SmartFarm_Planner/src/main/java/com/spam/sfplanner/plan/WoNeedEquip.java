@@ -11,6 +11,10 @@ public class WoNeedEquip {
 	private CategoryEquip categoryEquip; //장비종류카테고리
 	private String eNeedequipState; //계획시 보유상태
 	private List<WoNeRentPay> woNeRentPayList;
+	public WoNeedEquip() {
+		this.ppWork = new PpWork();
+	}
+	
 	public int geteNeedequipNumber() {
 		return eNeedequipNumber;
 	}

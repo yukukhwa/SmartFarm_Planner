@@ -23,18 +23,30 @@ public class WoNeRentPayService {
 	@Autowired
 	private CompanyRentEquipDao companyRentEquipDao;
 	
-	/**
-	 * 
-	 * @param woNeRentPay
-	 */
+	public List<WoNeRentPay> listSelectWoNeRentPay(){
+		Map<String, Object> map = null;
+		return woNeRentPayDao.listSelectWoNeRentPay(map);
+	}
+	
+	public List<WoNeRentPay> listSelectWoNeRentPay(int eNeedequipNumber){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("eNeedequipNumber", eNeedequipNumber);
+		return woNeRentPayDao.listSelectWoNeRentPay(map);
+	}
+	
+	public List<WoNeRentPay> listSelectWoNeRentPay(int eNeedequipNumber, String column, String property){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("search", "yes");
+		map.put("column", column);
+		map.put("property", property);
+		map.put("eNeedequipNumber", eNeedequipNumber);
+		return woNeRentPayDao.listSelectWoNeRentPay(map);
+	}
+	
 	public void insertWoNeRentPay(WoNeRentPay woNeRentPay) {
 		woNeRentPayDao.insertWoNeRentPay(woNeRentPay);
 	}
-	/**
-	 * 대여비 등록
-	 * @param eNeedequipNumber
-	 * @return 
-	 */
+	
 	public Map<String,Object> insertWoNeRentPay(int eNeedequipNumber){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("eNeedequipNumber", eNeedequipNumber);

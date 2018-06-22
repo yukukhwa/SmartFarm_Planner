@@ -9,6 +9,9 @@ public class WoNeRentPay {
 	private WoNeedEquip woNeedEquip; //에상필요장비테이블
 	private CompanyRentEquip companyRentEquip; //대여가능장비테이블
 	private String neERentpaySecret; //공개/비공개여부
+	public WoNeRentPay() {
+		this.woNeedEquip = new WoNeedEquip();
+	}
 	public int getNeERentpayNumber() {
 		return neERentpayNumber;
 	}

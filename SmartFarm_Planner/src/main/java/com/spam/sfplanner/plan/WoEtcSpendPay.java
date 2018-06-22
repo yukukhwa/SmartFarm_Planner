@@ -13,6 +13,9 @@ public class WoEtcSpendPay {
 	private Date eEtcspendpayDay; //예상기타지출일
 	private double eEtcspendpayCost; //예상기타지출비
 	private String eEtcspendpaySecret; //공개/비공개 
+	public WoEtcSpendPay() {
+		this.ppWork = new PpWork();
+	}
 	public int geteEtcspendpayNumber() {
 		return eEtcspendpayNumber;
 	}

@@ -64,6 +64,11 @@
 
 <insert id="insertWoNeedEquip"
 		parameterType="com.spam.sfplanner.plan.WoNeedEquip">
+		<selectKey resultType="int" 
+					keyProperty="eNeedequipNumber"
+					order="AFTER">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
 	INSERT INTO sp_e_needequip
 	(pp_work_number
 	,equip_number
