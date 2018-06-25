@@ -111,6 +111,21 @@
 												+'<tbody>'
 												+'</tbody>'
 											+'</table>'
+											+'<br>필요장비계획 <input type="button" value="필요장비 추가" class="addNeedEquip" style="float: right;">'
+											+'<table class="needEquipList table table-striped table-advance table-hover">'
+												+'<thead>'
+													+'<tr>'
+														+'<th>장비명</th>'
+														+'<th>장비보유현황</th>'
+														+'<th>모델명</th>'
+														+'<th>대당대여비</th>'
+														+'<th>단위대여시간</th>'
+														+'<th>공개/비공개</th>'
+													+'</tr>'
+												+'</thead>'
+												+'<tbody>'
+												+'</tbody>'
+											+'</table>'
 										+'</div>'
 									+'</div>');
 			return;
@@ -611,6 +626,204 @@
 			return;
 		});
 		
+		$(document).on('click','.addNeedEquip',function(){
+			var ppWorkList = $(this).parents('.ppWork').find('.ppWorkName').attr('name').split('.')[0];
+			var needEquipSize = $(this).parents('.ppWork').find('.needEquipList tbody tr').length;
+			$(this).parents('.ppWork').find('.needEquipList tbody').append('<tr>'
+																				+'<td>'
+																					+'<select name="'+ppWorkList+'.woNeedEquipList['+needEquipSize+'].categoryEquip.equipNumber">'
+														    							+'<c:forEach var="categoryEquip" items="${categoryEquipList}">'
+														    								+'<option value="${categoryEquip.equipNumber}">${categoryEquip.equipName}</option>'
+														    							+'</c:forEach>'
+														    						+'</select>'
+													    						+'</td>'
+																				+'<td>'
+																					+'<select name="'+ppWorkList+'.woNeedEquipList['+needEquipSize+'].eNeedequipState" class="eNeedequipState">'
+														    							+'<option>대여</option>'
+														    							+'<option>구매예정</option>'
+														    							+'<option>보유</option>'
+														    						+'</select>'
+																				+'</td>'
+																				+'<td>'
+																					+'<select name="'+ppWorkList+'.woNeedEquipList['+needEquipSize+'].woNeRentPayList[0].companyRentEquip.cRentNumber" class="cRentNumber">'
+														    							+'<c:forEach var="companyRentEquip" items="${companyRentEquipList}">'
+														    								+'<option value="${companyRentEquip.cRentNumber}">${companyRentEquip.cRentModelname}[${companyRentEquip.categoryEquip.equipName}]</option>'
+														    							+'</c:forEach>'
+														    						+'</select>'
+														    						+'<input type="hidden" name="'+ppWorkList+'.woNeedEquipList['+needEquipSize+'].woNeRentPayList[0].categoryTheme.themeNumber" value="3">'
+																				+'</td>'
+																				+'<td>'
+																					+'<select class="cRentCost" disabled="disabled">'
+														    							+'<c:forEach var="companyRentEquip" items="${companyRentEquipList}">'
+														    								+'<option value="${companyRentEquip.cRentNumber}">${companyRentEquip.cRentCost}</option>'
+														    							+'</c:forEach>'
+														    						+'</select>'
+																				+'</td>'
+																				+'<td>'
+																					+'<select class="cRentDate" disabled="disabled">'
+														    							+'<c:forEach var="companyRentEquip" items="${companyRentEquipList}">'
+														    								+'<option value="${companyRentEquip.cRentNumber}">${companyRentEquip.cRentDate}</option>'
+														    							+'</c:forEach>'
+														    						+'</select>'
+																				+'</td>'
+																				+'<td>'
+																					+'<input type="radio" name="'+ppWorkList+'.woNeedEquipList['+needEquipSize+'].woNeRentPayList[0].neERentpaySecret" value="true" checked="checked">공개<input type="radio" name="'+ppWorkList+'.woNeedEquipList['+needEquipSize+'].woNeRentPayList[0].neERentpaySecret" value="false">비공개'
+																					+'<input type="button" class="deleteNeedEquip" value="제거" style="float: right;">'
+																				+'</td>'
+																			+'</tr>');
+			return;
+		});
+		
+		$(document).on('click','.deleteNeedEquip',function(){
+			var needEquipList = $(this).parents('.needEquipList');
+			$(this).parents('tr').remove();
+			var needEquipListName = '';
+			needEquipList.find('tbody tr').each(function(i,e){
+				needEquipListName = 'woNeedEquipList['+i+']';
+				//alert(needEquipListName);
+				$(e).find('input').each(function(i,e){
+					if($(e).attr('name') != null){
+						var inputNameArray = $(e).attr('name').split('.');
+						var newInputName = '';
+						for(var i = 0; i<inputNameArray.length; i++){
+							switch (i) {
+							case 0:
+								newInputName += inputNameArray[0];
+								break;
+							case 1:
+								newInputName += '.'+needEquipListName;
+								break;
+							case 2:
+								newInputName += '.'+inputNameArray[2];
+								break;
+							case 3:
+								newInputName += '.'+inputNameArray[3];
+								break;
+							case 4:
+								newInputName += '.'+inputNameArray[4];
+								break;
+							case 5:
+								newInputName += '.'+inputNameArray[5];
+								break;
+							default:
+								alert('error');
+								break;
+							}
+							if(i == inputNameArray.length-1){
+								//alert(newInputName);
+								$(e).attr('name',newInputName);
+							}
+						}
+					}
+				});
+				$(e).find('select').each(function(i,e){
+					if($(e).attr('name') != null){
+						var selectNameArray = $(e).attr('name').split('.');
+						var newSelectName = '';
+						for(var i = 0; i<selectNameArray.length; i++){
+							switch (i) {
+							case 0:
+								newSelectName += selectNameArray[0];
+								break;
+							case 1:
+								newSelectName += '.'+needEquipListName;
+								break;
+							case 2:
+								newSelectName += '.'+selectNameArray[2];
+								break;
+							case 3:
+								newSelectName += '.'+selectNameArray[3];
+								break;
+							case 4:
+								newSelectName += '.'+selectNameArray[4];
+								break;
+							case 5:
+								newSelectName += '.'+selectNameArray[5];
+								break;
+							default:
+								alert('error');
+								break;
+							}
+							if(i == selectNameArray.length-1){
+								//alert(newInputName);
+								$(e).attr('name',newSelectName);
+							}
+						}
+					}
+				});
+			});
+			return;
+		});
+		
+		$(document).on('change','select.eNeedequipState',function(){
+			var eNeedequipState = $(this).val();
+			if(eNeedequipState != '대여'){
+				$(this).parents('tr').find('td').each(function(i,e){
+					switch (i) {
+					case 2:
+						$(e).empty();
+						break;
+					case 3:
+						$(e).empty();
+						break;
+					case 4:
+						$(e).empty();
+						break;
+					case 5:
+						$(e).empty();
+						$(e).append('<input type="button" class="deleteNeedEquip" value="제거" style="float: right;">');
+						break;
+					default:
+						break;
+					}
+				});
+				return;
+			}
+			var needEquipIndex = '';
+			var ppWorkIndex = '';
+			$(this).parents('tr').find('td').each(function(i,e){
+				needEquipIndex = $(e).parent().index();
+				ppWorkIndex = $(e).parents('.ppWork').index();
+				switch (i) {
+				case 2:
+					$(e).append('<select name="ppWorkList['+ppWorkIndex+'].woNeedEquipList['+needEquipIndex+'].woNeRentPayList[0].companyRentEquip.cRentNumber" class="cRentNumber">'
+										+'<c:forEach var="companyRentEquip" items="${companyRentEquipList}">'
+										+'<option value="${companyRentEquip.cRentNumber}">${companyRentEquip.cRentModelname}[${companyRentEquip.categoryEquip.equipName}]</option>'
+									+'</c:forEach>'
+								+'</select>'
+								+'<input type="hidden" name="ppWorkList['+ppWorkIndex+'].woNeedEquipList['+needEquipIndex+'].woNeRentPayList[0].categoryTheme.themeNumber" value="3">');
+					break;
+				case 3:
+					$(e).append('<select class="cRentCost" disabled="disabled">'
+										+'<c:forEach var="companyRentEquip" items="${companyRentEquipList}">'
+										+'<option value="${companyRentEquip.cRentNumber}">${companyRentEquip.cRentCost}</option>'
+									+'</c:forEach>'
+								+'</select>');
+					break;
+				case 4:
+					$(e).append('<select class="cRentDate" disabled="disabled">'
+										+'<c:forEach var="companyRentEquip" items="${companyRentEquipList}">'
+										+'<option value="${companyRentEquip.cRentNumber}">${companyRentEquip.cRentDate}</option>'
+									+'</c:forEach>'
+								+'</select>');
+					break;
+				case 5:
+					$(e).prepend('<input type="radio" name="ppWorkList['+ppWorkIndex+'].woNeedEquipList['+needEquipIndex+'].woNeRentPayList[0].neERentpaySecret" value="true" checked="checked">공개<input type="radio" name="ppWorkList['+ppWorkIndex+'].woNeedEquipList['+needEquipIndex+'].woNeRentPayList[0].neERentpaySecret" value="false">비공개');
+					break;
+				default:
+					break;
+				}
+			});
+			return;
+		});
+		
+		$(document).on('change','select.cRentNumber',function(){
+			var cRentNumber = $(this).val();
+			$(this).parents('tr').find('select.cRentCost').val(cRentNumber);
+			$(this).parents('tr').find('select.cRentDate').val(cRentNumber);
+			return;
+		});
+		
 	});
 </script>
 </head>
@@ -807,13 +1020,13 @@
 														</tr>
 													</tbody>
 												</table>
-												<br>필요장비계획 <input type="button" value="필요장비 추가" class="addInsurancePay" style="float: right;">
-												<table class="insurancePayList table table-striped table-advance table-hover">
+												<br>필요장비계획 <input type="button" value="필요장비 추가" class="addNeedEquip" style="float: right;">
+												<table class="needEquipList table table-striped table-advance table-hover">
 													<thead>
 														<tr>
 															<th>장비명</th>
 															<th>장비보유현황</th>
-															<th>모델명</th>
+															<th>대여모델명</th>
 															<th>대당대여비</th>
 															<th>단위대여시간</th>
 															<th>공개/비공개</th>
@@ -822,14 +1035,45 @@
 													<tbody>
 														<tr>
 															<td>
-																<input type="text" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayMame">
-																<input type="hidden" name="ppWorkList[0].woInsurancePayList[0].categoryTheme.themeNumber" value="3">
+																<select name="ppWorkList[0].woNeedEquipList[0].categoryEquip.equipNumber">
+									    							<c:forEach var="categoryEquip" items="${categoryEquipList}">
+									    								<option value="${categoryEquip.equipNumber}">${categoryEquip.equipName}</option>
+									    							</c:forEach>
+									    						</select>
+								    						</td>
+															<td>
+																<select name="ppWorkList[0].woNeedEquipList[0].eNeedequipState" class="eNeedequipState">
+									    							<option>대여</option>
+									    							<option>구매예정</option>
+									    							<option>보유</option>
+									    						</select>
 															</td>
-															<td><input type="text" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayContent"></td>
-															<td><input type="date" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayStartday"></td>
-															<td><input type="date" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayEndday"></td>
-															<td><input type="number" name="ppWorkList[0].woInsurancePayList[0].eInsurancepayTerm"></td>
-															<td><input type="radio" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret" value="true" checked="checked">공개<input type="radio" name="ppWorkList[0].woInsurancePayList[0].eInsurancepaySecret" value="false">비공개</td>
+															<td>
+																<select name="ppWorkList[0].woNeedEquipList[0].woNeRentPayList[0].companyRentEquip.cRentNumber" class="cRentNumber">
+									    							<c:forEach var="companyRentEquip" items="${companyRentEquipList}">
+									    								<option value="${companyRentEquip.cRentNumber}">${companyRentEquip.cRentModelname}[${companyRentEquip.categoryEquip.equipName}]</option>
+									    							</c:forEach>
+									    						</select>
+									    						<input type="hidden" name="ppWorkList[0].woNeedEquipList[0].woNeRentPayList[0].categoryTheme.themeNumber" value="3">
+															</td>
+															<td>
+																<select class="cRentCost" disabled="disabled">
+									    							<c:forEach var="companyRentEquip" items="${companyRentEquipList}">
+									    								<option value="${companyRentEquip.cRentNumber}">${companyRentEquip.cRentCost}</option>
+									    							</c:forEach>
+									    						</select>
+															</td>
+															<td>
+																<select class="cRentDate" disabled="disabled">
+									    							<c:forEach var="companyRentEquip" items="${companyRentEquipList}">
+									    								<option value="${companyRentEquip.cRentNumber}">${companyRentEquip.cRentDate}</option>
+									    							</c:forEach>
+									    						</select>
+															</td>
+															<td>
+																<input type="radio" name="ppWorkList[0].woNeedEquipList[0].woNeRentPayList[0].neERentpaySecret" value="true" checked="checked">공개<input type="radio" name="ppWorkList[0].woNeedEquipList[0].woNeRentPayList[0].neERentpaySecret" value="false">비공개
+																<input type="button" class="deleteNeedEquip" value="제거" style="float: right;">
+															</td>
 														</tr>
 													</tbody>
 												</table>

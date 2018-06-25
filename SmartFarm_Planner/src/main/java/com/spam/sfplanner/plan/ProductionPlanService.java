@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spam.sfplanner.category.CategoryEquip;
+import com.spam.sfplanner.category.CategoryEquipDao;
 import com.spam.sfplanner.category.CategoryEtcSpendPay;
 import com.spam.sfplanner.category.CategoryEtcSpendPayDao;
 import com.spam.sfplanner.category.CategoryMaterials;
@@ -56,6 +58,15 @@ public class ProductionPlanService {
 	@Autowired
 	private CategoryEtcSpendPayDao categoryEtcSpendPayDao;
 	
+	@Autowired
+	private CategoryEquipDao categoryEquipDao;
+	
+	@Autowired
+	private CompanyRentEquipDao companyRentEquipDao;
+	
+	@Autowired
+	private WoNeRentPayDao woNeRentPayDao;
+	
 	public List<ProductionPlan> listSelectMyProductionPlan(int fNumber) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("search", "yes");
@@ -93,8 +104,10 @@ public class ProductionPlanService {
 					}
 				}
 				/*WoEtcSpendPayList = ppWork.getWoEtcSpendPayList();
-				for(WoEtcSpendPay woEtcSpendPay : WoEtcSpendPayList) {
-					
+				if(WoEtcSpendPayList != null) {
+					for(WoEtcSpendPay woEtcSpendPay : WoEtcSpendPayList) {
+						
+					}
 				}*/
 				ppWorkDao.updatePpWork(ppWork);
 			}
@@ -167,19 +180,26 @@ public class ProductionPlanService {
 		List<WoHumanPay> woHumanPayList = null;
 		List<WoMaterialsPay> woMaterialsPayList = null;
 		List<WoEtcSpendPay> WoEtcSpendPayList = null;
+		List<WoNeedEquip> woNeedEquipList = null;
+		List<WoNeRentPay> woNeRentPayList = null;
 		
 		productionPlan.getFarmMember().setfMemberId(fMemberId);
 		productionPlanDao.insertProductionPlan(productionPlan);
+		
 		ppWorkList = productionPlan.getPpWorkList();
+		
 		if(ppWorkList != null) {
 			for(PpWork ppWork : ppWorkList) {
 				ppWork.getProductionPlan().setPpNumber(productionPlan.getPpNumber());
 				ppWork.getFarm().setfNumber(fNumber);
 				ppWorkDao.insertPpWork(ppWork);
+				
 				woInsurancePayList = ppWork.getWoInsurancePayList();
 				woHumanPayList = ppWork.getWoHumanPayList();
 				woMaterialsPayList = ppWork.getWoMaterialsPayList();
 				WoEtcSpendPayList = ppWork.getWoEtcSpendPayList();
+				woNeedEquipList = ppWork.getWoNeedEquipList();
+				
 				if(woInsurancePayList != null) {
 					for(WoInsurancePay woInsurancePay : woInsurancePayList) {
 						woInsurancePay.getPpWork().setPpWorkNumber(ppWork.getPpWorkNumber());
@@ -204,6 +224,23 @@ public class ProductionPlanService {
 						woEtcSpendPayDao.insertWoEtcSpendPay(woEtcSpendPay);
 					}
 				}
+				if(woNeedEquipList != null) {
+					for(WoNeedEquip woNeedEquip : woNeedEquipList) {
+						woNeedEquip.getPpWork().setPpWorkNumber(ppWork.getPpWorkNumber());
+						woNeedEquipDao.insertWoNeedEquip(woNeedEquip);
+						
+						woNeRentPayList = woNeedEquip.getWoNeRentPayList();
+						
+						if(woNeRentPayList != null) {
+							for(WoNeRentPay woNeRentPay : woNeRentPayList) {
+								if(woNeRentPay.getCompanyRentEquip().getcRentNumber() != 0) {
+									woNeRentPay.getWoNeedEquip().seteNeedequipNumber(woNeedEquip.geteNeedequipNumber());
+									woNeRentPayDao.insertWoNeRentPay(woNeRentPay);
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}
@@ -215,13 +252,21 @@ public class ProductionPlanService {
 		List<PpWork> ppWorkList = ppWorkDao.listSelectPpWork(map);
 		productionPlan.setPpWorkList(ppWorkList);
 		map.clear();
+		
+		List<WoNeedEquip> woNeedEquipList = null;
+		
 		for(PpWork ppWork : ppWorkList) {
 			map.put("ppWorkNumber", ppWork.getPpWorkNumber());
 			ppWork.setWoMaterialsPayList(woMaterialsPayDao.listSelectWoMaterialsPay(map));
 			ppWork.setWoInsurancePayList(woInsurancePayDao.listSelectWoInsurancePay(map));
 			ppWork.setWoHumanPayList(woHumanPayDao.listSelectWoHumanPay(map));
 			ppWork.setWoEtcSpendPayList(woEtcSpendPayDao.listSelectWoEtcSpendPay(map));
-			ppWork.setWoNeedEquipList(woNeedEquipDao.listSelectWoNeedEquip(map));
+			woNeedEquipList = woNeedEquipDao.listSelectWoNeedEquip(map);
+			for(WoNeedEquip woNeedEquip : woNeedEquipList) {
+				map.put("eNeedequipNumber", woNeedEquip.geteNeedequipNumber());
+				woNeedEquip.setWoNeRentPayList(woNeRentPayDao.listSelectWoNeRentPay(map));
+			}
+			ppWork.setWoNeedEquipList(woNeedEquipList);
 			map.clear();
 		}
 		//System.out.println(productionPlan);
@@ -250,11 +295,15 @@ public class ProductionPlanService {
 		//List<CategoryTheme> themeList = categoryThemeDao.listSelectCategoryTheme();
 		List<CategoryMaterials> materialsList = categoryMaterialsDao.listSelectCategoryMaterials();
 		List<CategoryEtcSpendPay> etcSpendPayList = categoryEtcSpendPayDao.listSelectCategoryEtcSpendPay();
+		List<CategoryEquip> categoryEquipList = categoryEquipDao.listSelectCategoryEquip();
 		map.clear();
+		List<CompanyRentEquip> companyRentEquipList = companyRentEquipDao.listSelectCompanyRentEquip(map);
 		map.put("titleList", titleList);
 		//map.put("themeList", themeList);
 		map.put("materialsList", materialsList);
 		map.put("etcSpendPayList", etcSpendPayList);
+		map.put("categoryEquipList", categoryEquipList);
+		map.put("companyRentEquipList", companyRentEquipList);
 		return map;
 	}
 }

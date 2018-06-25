@@ -121,6 +121,8 @@ public class ProductionPlanController {
 		//model.addAttribute("themeList", map.get("themeList"));
 		model.addAttribute("materialsList", map.get("materialsList"));
 		model.addAttribute("etcSpendPayList", map.get("etcSpendPayList"));
+		model.addAttribute("categoryEquipList", map.get("categoryEquipList"));
+		model.addAttribute("companyRentEquipList", map.get("companyRentEquipList"));
 		return "plan/productionplan/addPlanner";
 	}
 }

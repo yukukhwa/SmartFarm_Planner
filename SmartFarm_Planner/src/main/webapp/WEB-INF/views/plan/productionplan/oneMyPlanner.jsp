@@ -174,14 +174,31 @@
 												<tr>
 													<th>필요장비명</th>
 													<th>계획시 보유현황</th>
+													<th>대여모델명</th>
+													<th>대당대여비</th>
+													<th>단위대여시간</th>
 												</tr>
 											</thead>
 											<tbody>
 												<c:forEach var="woNeedEquip" items="${ppWork.woNeedEquipList}">
-													<tr>
-														<td>${woNeedEquip.categoryEquip.equipName}</td>
-														<td>${woNeedEquip.eNeedequipState}</td>
-													</tr>
+													<c:if test="${woNeedEquip.eNeedequipState != '대여'}">
+														<tr>
+															<td>${woNeedEquip.categoryEquip.equipName}</td>
+															<td>${woNeedEquip.eNeedequipState}</td>
+															<td>0</td>
+															<td>0</td>
+															<td>0</td>
+														</tr>												
+													</c:if>
+													<c:forEach var="woNeRentPay" items="${woNeedEquip.woNeRentPayList}">
+														<tr>
+															<td>${woNeedEquip.categoryEquip.equipName}</td>
+															<td>${woNeedEquip.eNeedequipState}</td>
+															<td>${woNeRentPay.companyRentEquip.cRentModelname}</td>
+															<td>${woNeRentPay.companyRentEquip.cRentCost}</td>
+															<td>${woNeRentPay.companyRentEquip.cRentDate}</td>
+														</tr>
+													</c:forEach>
 												</c:forEach>
 											</tbody>
 										</table>
