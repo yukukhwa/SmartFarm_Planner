@@ -14,6 +14,18 @@ public class WoEtcSpendPayDao {
 	private SqlSessionTemplate sqlSession;
 	private final static String NAMESPACE = "com.spam.sfplanner.plan.WoEtcSpendPayMapper.";
 	
+	public void updateWoEtcSpendPay(WoEtcSpendPay woEtcSpendPay) {
+		sqlSession.update(NAMESPACE+"updateWoEtcSpendPay", woEtcSpendPay);  
+	}
+	
+	public WoEtcSpendPay oneSelectWoEtcSpendPay(int eEtcspendpayNumber) {
+		return sqlSession.selectOne(NAMESPACE+"oneSelectWoEtcSpendPay", eEtcspendpayNumber);
+	}
+	
+	public void deleteEtcSpendPay(int eEtcspendpayNumber) {
+		sqlSession.delete(NAMESPACE+"deleteEtcSpendPay", eEtcspendpayNumber);
+	}
+	
 	public List<WoEtcSpendPay> listSelectWoEtcSpendPay(Map<String, Object> map){
 		return sqlSession.selectList(NAMESPACE+"listSelectWoEtcSpendPay", map);
 	}

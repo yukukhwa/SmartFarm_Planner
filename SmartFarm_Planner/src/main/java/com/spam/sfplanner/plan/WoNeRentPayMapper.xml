@@ -23,6 +23,45 @@
  		<result column="e_needequip_state" property="eNeedequipState"/>
  	</collection>
  </resultMap>
+
+<update id="updateWoNeRentPay"
+		parameterType="com.spam.sfplanner.plan.WoNeRentPay">
+UPDATE sp_ne_e_rentpay
+	SET
+		ne_e_rentpay_secret=#{neERentpaySecret}
+	WHERE ne_e_rentpay_number=#{neERentpayNumber}
+
+</update>
+
+<select id="oneselectWoNeRentPay"
+		parameterType="int"
+		resultMap="woNeRentPay">
+select
+	sp_ne_e_rentpay.ne_e_rentpay_number
+	,sp_ne_e_rentpay.theme_number
+	,sp_theme_cate.theme_name
+	,sp_ne_e_rentpay.e_needequip_number
+	,sp_e_needequip.e_needequip_state
+	,sp_ne_e_rentpay.c_rent_number
+	,sp_deal_company_rent.c_rent_modelname
+	,sp_ne_e_rentpay.ne_e_rentpay_secret
+from
+	sp_ne_e_rentpay join sp_theme_cate join sp_e_needequip join sp_deal_company_rent
+on 
+	sp_ne_e_rentpay.theme_number = sp_theme_cate.theme_number
+and
+	sp_ne_e_rentpay.e_needequip_number = sp_e_needequip.e_needequip_number
+and
+	sp_ne_e_rentpay.c_rent_number = sp_deal_company_rent.c_rent_number
+where
+	sp_ne_e_rentpay.ne_e_rentpay_number = #{neERentpayNumber}
+
+</select>
+
+<delete id="deleteWoNeRentPay"
+		parameterType="int">
+DELETE FROM sp_ne_e_rentpay WHERE ne_e_rentpay_number=#{neERentpayNumber}		
+</delete>
  
  <select id="listSelectWoNeRentPay"
  		parameterType="java.util.Map"

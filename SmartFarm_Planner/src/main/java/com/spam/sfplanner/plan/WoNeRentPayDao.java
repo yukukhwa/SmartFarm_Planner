@@ -14,6 +14,18 @@ public class WoNeRentPayDao {
 	private SqlSessionTemplate sqlSession;
 	final static String NAMESPACE = "com.spam.sfplanner.plan.WoNeRentPayMapper.";
 	
+	public void updateWoNeRentPay(WoNeRentPay woNeRnetPay) {
+		sqlSession.update(NAMESPACE+"updateWoNeRentPay", woNeRnetPay);
+	}
+	
+	public WoNeRentPay oneSelectWoNeRentPay(int neERentpayNumber) {
+		return sqlSession.selectOne(NAMESPACE+"oneSelectWoNeRentPay", neERentpayNumber);
+	}
+	
+	public void deleteWoNeRentPay(int neERentpayNumber) {
+		sqlSession.delete(NAMESPACE+"deleteWoNeRentPay", neERentpayNumber);
+	}
+	
 	public List<WoNeRentPay> listSelectWoNeRentPay(Map<String, Object> map){
 		return sqlSession.selectList(NAMESPACE+"listSelectWoNeRentPay", map);
 	}

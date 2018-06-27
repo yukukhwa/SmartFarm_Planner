@@ -14,6 +14,18 @@ public class WoNeedEquipDao {
 	private SqlSessionTemplate sqlSession;
 	private final static String NAMESPACE = "com.spam.sfplanner.plan.WoNeedEquipMapper.";
 	
+	public void updateWoNeedEquip(WoNeedEquip woNeedEquip) {
+		sqlSession.update(NAMESPACE+"updateWoNeedEquip", woNeedEquip);
+	}
+	
+	public WoNeedEquip oneSelectWoNeedEquip(int eNeedequipNumber) {
+		return sqlSession.selectOne(NAMESPACE+"oneSelectWoNeedEquip", eNeedequipNumber);
+	}
+	
+	public void deleteWoNeedEquip(int eNeedequipNumber) {
+		sqlSession.delete(NAMESPACE+"deleteWoNeedEquip", eNeedequipNumber);
+	}
+	
 	public List<WoNeedEquip> listSelectWoNeedEquip(Map<String, Object> map){
 		return sqlSession.selectList(NAMESPACE+"listSelectWoNeedEquip", map);
 	}

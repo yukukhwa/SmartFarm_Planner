@@ -24,6 +24,39 @@
  		</collection>
 </resultMap>
 
+<update id="updateWoNeedEquip"
+		parameterType="com.spam.sfplanner.plan.WoNeedEquip">
+UPDATE sp_e_needequip
+	SET
+		e_needequip_state=#{eNeedequipState}
+	WHERE e_needequip_number=#{eNeedequipNumber}		
+</update>
+
+<select id="oneSelectWoNeedEquip"
+		parameterType="int"
+		resultMap="woNeedEquip">
+select
+	sp_e_needequip.e_needequip_number
+	,sp_e_needequip.pp_work_number
+	,sp_pp_work.pp_work_name
+	,sp_e_needequip.equip_number
+	,sp_equip_cate.equip_name
+	,sp_e_needequip.e_needequip_state
+from
+	sp_e_needequip join sp_pp_work join sp_equip_cate
+on
+	sp_e_needequip.pp_work_number = sp_pp_work.pp_work_number
+and
+	sp_e_needequip.equip_number = sp_equip_cate.equip_number
+where
+	sp_e_needequip.e_needequip_number = #{eNeedequipNumber}
+</select>
+
+<delete id="deleteWoNeedEquip"
+		parameterType="int">
+DELETE FROM sp_e_needequip WHERE e_needequip_number=#{eNeedequipNumber}
+</delete>
+
 <select id="listSelectWoNeedEquip"
 		parameterType="java.util.Map"
 		resultMap="woNeedEquip">

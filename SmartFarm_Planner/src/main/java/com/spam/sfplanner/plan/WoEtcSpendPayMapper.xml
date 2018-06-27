@@ -26,23 +26,46 @@
 		</collection>
 	 </collection>
 </resultMap>
-<insert id="insertWoEtcSpendPay"
+
+<update id="updateWoEtcSpendPay"
 		parameterType="com.spam.sfplanner.plan.WoEtcSpendPay">
-	INSERT INTO sp_e_etcspendpay
-		(etcspendpay_number
-		, pp_work_number
-		, e_etcspendpay_content
-		, e_etcspendpay_day
-		, e_etcspendpay_cost
-		, e_etcspendpay_secret)
-	VALUES 
-		(#{categoryEtcSpendPay.etcspendpayNumber}
-		,#{ppWork.ppWorkNumber}
-		,#{eEtcspendpayContent}
-		,#{eEtcspendpayDay}
-		,#{eEtcspendpayCost}
-		,#{eEtcspendpaySecret})
-</insert>
+	UPDATE sp_e_etcspendpay
+		SET
+			sp_e_etcspendpay.e_etcspendpay_content=#{eEtcspendpayContent}
+			,sp_e_etcspendpay.e_etcspendpay_day=#{eEtcspendpayDay}
+			,sp_e_etcspendpay.e_etcspendpay_cost=#{eEtcspendpayCost}
+			,sp_e_etcspendpay.e_etcspendpay_secret=#{eEtcspendpaySecret}
+		WHERE e_etcspendpay_number=#{eEtcspendpayNumber}
+</update>
+
+<select id="oneSelectWoEtcSpendPay"
+		parameterType="int"
+		resultMap="woEtcSpendPay">
+select
+	sp_e_etcspendpay.e_etcspendpay_number
+	,sp_e_etcspendpay.etcspendpay_number
+	,sp_etcspendpay_cate.etcspendpay_name
+	,sp_e_etcspendpay.pp_work_number
+	,sp_pp_work.pp_work_name
+	,sp_e_etcspendpay.e_etcspendpay_content
+	,sp_e_etcspendpay.e_etcspendpay_day
+	,sp_e_etcspendpay.e_etcspendpay_cost
+	,sp_e_etcspendpay.e_etcspendpay_secret
+from
+	sp_e_etcspendpay join sp_etcspendpay_cate join sp_pp_work
+on
+	sp_e_etcspendpay.pp_work_number = sp_pp_work.pp_work_number
+and
+	sp_e_etcspendpay.etcspendpay_number = sp_etcspendpay_cate.etcspendpay_number
+where
+	sp_e_etcspendpay.e_etcspendpay_number = #{eEtcspendpayNumber}
+</select>
+
+
+<delete id="deleteWoEtcSpendPay"
+		parameterType="int">
+DELETE FROM sp_e_etcspendpay WHERE e_etcspendpay_number=#{eEtcspendpayNumber}
+</delete>
 
 <select id="listSelectWoEtcSpendPay"
 		parameterType="java.util.Map"
@@ -74,5 +97,23 @@
 		</if>
 	</if>
 </select>
+
+<insert id="insertWoEtcSpendPay"
+		parameterType="com.spam.sfplanner.plan.WoEtcSpendPay">
+	INSERT INTO sp_e_etcspendpay
+		(etcspendpay_number
+		, pp_work_number
+		, e_etcspendpay_content
+		, e_etcspendpay_day
+		, e_etcspendpay_cost
+		, e_etcspendpay_secret)
+	VALUES 
+		(#{categoryEtcSpendPay.etcspendpayNumber}
+		,#{ppWork.ppWorkNumber}
+		,#{eEtcspendpayContent}
+		,#{eEtcspendpayDay}
+		,#{eEtcspendpayCost}
+		,#{eEtcspendpaySecret})
+</insert>
 
 </mapper>
