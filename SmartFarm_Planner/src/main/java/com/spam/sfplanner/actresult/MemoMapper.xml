@@ -45,11 +45,7 @@
 			sp_wr_memo join sp_theme_cate
 		on
 			sp_wr_memo.theme_number = sp_theme_cate.theme_number
-		<if test="search == 'yes'">
-			where
-			<if test="column == '실행결과작업단계넘버'">
-				sp_wr_memo.wr_number = #{property}
-			</if>
-		</if>
+		where
+			sp_wr_memo.wr_number = #{wrNumber}
  	</select>
  </mapper>

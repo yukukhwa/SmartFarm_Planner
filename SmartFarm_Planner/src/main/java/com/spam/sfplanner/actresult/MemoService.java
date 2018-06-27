@@ -42,9 +42,7 @@ public class MemoService {
 	
 	public List<Memo> listSelectMemo(int wrNumber) {
 		Map<String,Object> map = new HashMap<String, Object>();
-		map.put("search", "yes");
-		map.put("column", "실행결과작업단계넘버");
-		map.put("property", wrNumber);
+		map.put("wrNumber", wrNumber);
 		return memoDao.listSelectMemo(map);
 	}
 }

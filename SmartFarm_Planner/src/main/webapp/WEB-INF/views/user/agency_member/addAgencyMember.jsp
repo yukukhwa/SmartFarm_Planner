@@ -273,14 +273,14 @@
     <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
-			<h1>관리기관 회원가입</h1>
-			<form id="agencyMember" action="${pageContext.request.contextPath}/addAgencyMember" method="post">
+			<h1>
+   				<b><i class="icon_profile">관리기관 회원가입</i></b>
+   			</h1>
+			<form id="agencyMember" action="${pageContext.request.contextPath}/addAgencyMember" method="post" class="form-horizontal" style="width: 70%; margin: 0 auto; padding: 30px; background-color: white;">
 				<div>
 					<div>
-						<div style="width: 100%; height: 300px; background-color: white; padding: 0 5px 10px 10px; overflow:scroll;">
-							<h3>
-								<strong>개인정보동의</strong>
-							</h3>
+						<h4 align="center"><b><i class="fa fa-file-text-o"></i>개인정보동의</b></h4><br>
+						<div style="width: 100%; height: 300px; background-color: white; padding: 0 5px 10px 10px; overflow:scroll; overflow-x:hidden;  border: solid 0.5px;">
 							<p>
 								스마트팜 플래너는 통합회원 서비스에 필요한 개인정보 수집·이용을 위하여 개인정보보호법 제15조 및 제22조, 제24조에 따라 귀하의 동의를 받고자 합니다.
 								
@@ -353,8 +353,11 @@
 					</div>
 					<br>
 					<div>
-						<div>
-							이름 : <input type="text" name="aMemberName" id="aMemberName">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">이름</label>
+							<div class="col-sm-10">
+								<input type="text" name="aMemberName" id="aMemberName" class="form-control">
+							</div>
 						</div>
 						<div>
 							성별
