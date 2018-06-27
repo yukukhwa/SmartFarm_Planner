@@ -1,7 +1,9 @@
 /*[김재희]*/
 package com.spam.sfplanner.user;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +18,14 @@ import com.spam.sfplanner.corporation.FarmService;
 public class FarmMemberService {
 	@Autowired FarmMemberDao farmMemberDao;
 	private final static Logger LOGGER = LoggerFactory.getLogger(FarmService.class);
+	
+	public Map<Object, Object> idCheck(String fMemberId) {
+		int count = 0;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		count = farmMemberDao.idCheck(fMemberId);
+		map.put("count", count);
+		return map;
+	}
 	
 	public void deleteFarmMember(String fMemberId) {
 		farmMemberDao.deleteFarmMember(fMemberId);

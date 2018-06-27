@@ -29,6 +29,18 @@
 	        </collection>
 	  </resultMap>
 	
+	<!-- 아이디 중복검사시 해당아이디가 존재하는지 여부 쿼리문 -->
+	<select id="farmIdCheck"
+		parameterType="String"
+		resultType="Integer">
+			SELECT 
+				COUNT(*)
+			FROM 
+				sp_farm_member 
+			WHERE 
+				sp_farm_member.f_member_id=#{fMemberId}
+	</select>
+	
 	<!-- 해당회원의 정보를 삭제처리하는 쿼리문 -->
 	<delete id="deleteFarmMember"
 		parameterType="String">

@@ -26,14 +26,14 @@ public class WoMaterialsPayController {
 	public String deleteWoMaterialsPay(int eMaterialspayNumber) {
 		System.out.println("delete eMaterialspayNumber ===> "+eMaterialspayNumber);
 		woMaterialsPayService.deleteWoMaterialsPay(eMaterialspayNumber);
-		return "redirect:/home";
+		return "redirect:/listPlanner";
 	}
 	
 	/*수정할 예상원자재비의 정보들을 수정처리*/
 	@RequestMapping(value="/updateMaterialsPay", method=RequestMethod.POST)
 	public String updateWoMaterialsPay(WoMaterialsPay woMaterialsPay) {
 		woMaterialsPayService.updateWoMaterialsPay(woMaterialsPay);
-		return "plan/wo_materials_pay/updateMaterialsPay";
+		return "redirect:/listPlanner";
 	}
 	
 	/*하나의 예상원자재비의 정보들을 가져와 출력*/
@@ -72,7 +72,7 @@ public class WoMaterialsPayController {
 	public String insertWoMaterialsPay(WoMaterialsPay woMaterialsPay) {
 		System.out.println("add woMaterialsPay===> "+woMaterialsPay);
 		woMaterialsPayService.insertWoMaterialsPay(woMaterialsPay);
-		return "plan/wo_materials_pay/addMaterialsPay";
+		return "redirect:/listPlanner";
 	}
 	
 	/*작업단계를 매개변수로 가져와 원자재 카테고리의 리스트를 출력하고 예상원자재비등록 화면으로 포워드*/

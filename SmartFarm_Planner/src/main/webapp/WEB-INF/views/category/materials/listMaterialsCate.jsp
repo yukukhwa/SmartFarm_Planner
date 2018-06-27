@@ -54,7 +54,7 @@
 	    					<option value="aName">등록기관이름</option>
 	    				</select> <br>
 	    				<input type="text" id="searchKeyword" name="searchKeyword">
-	    				<button id="materialsCateSearch">테마 검색하기</button>
+	    				<button id="materialsCateSearch">원자재 검색하기</button>
 	    			</form>
     			</div>
 				<table class="table">

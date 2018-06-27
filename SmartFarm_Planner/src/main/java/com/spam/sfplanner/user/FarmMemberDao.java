@@ -17,6 +17,11 @@ public class FarmMemberDao {
 	private final static Logger LOGGER = LoggerFactory.getLogger(FarmDao.class);
 	private final static String NAMESPACE = "com.spam.sfplanner.user.FarmMemberMapper.";
 	
+	/*아이디 체크하는 메서드*/
+	public int idCheck(String fMemberId) {
+		return sqlSession.selectOne(NAMESPACE+"farmIdCheck", fMemberId);
+	}
+	
 	/*농가회원정보를 삭제처리하는 메서드*/
 	public void deleteFarmMember(String fMemberId) {
 		LOGGER.info("FarmMemberDao deleteFarmMember");

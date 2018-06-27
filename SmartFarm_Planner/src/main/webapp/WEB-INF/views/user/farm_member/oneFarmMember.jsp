@@ -112,7 +112,7 @@
 					<button type="button" class="btn btn-primary" id="updateFarmMember">내정보 수정하기</button>
 					<button type="button" class="btn btn-primary" id="goHome">메인으로</button>
 					<button type="button" class="btn btn-danger" id="deleteFarmMember">탈퇴하기</button>
-					<a href="${pageContext.request.contextPath}/oneFarm?fName=${farmMember.farm.fName}">나의 농가 정보로 가기</a>
+					<a href="${pageContext.request.contextPath}/oneFarm?fName=${loginMember.corpName}">나의 농가 로그인 정보로 가기</a>
 				</div>
 			</c:if>
 			</section>

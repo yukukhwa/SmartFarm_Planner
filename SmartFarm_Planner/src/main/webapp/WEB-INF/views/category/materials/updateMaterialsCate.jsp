@@ -11,7 +11,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#updateMaterials').click(function(){
-			('#updateMaterialsForm').submit();
+			$('#updateMaterialsForm').submit();
 		})
 	})
 </script>

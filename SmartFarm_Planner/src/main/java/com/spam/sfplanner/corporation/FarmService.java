@@ -1,13 +1,16 @@
 /*[김재희]*/
 package com.spam.sfplanner.corporation;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.spam.sfplanner.user.FarmMember;
 import com.spam.sfplanner.user.FarmMemberDao;
@@ -19,6 +22,15 @@ public class FarmService {
 	@Autowired FarmDao farmDao;
 	@Autowired FarmMemberDao farmMemberDao;
 	private final static Logger LOGGER = LoggerFactory.getLogger(FarmService.class);
+	
+	public Map<Object, Object> fNameCheck(String fName) {
+		int count = 0;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		count = farmDao.fNameCheck(fName);
+		System.out.println(count);
+		map.put("count", count);
+		return map;
+	}
 	
 	public void updateFarm(FarmMemberRequest farmMemberRequest) {
 		farmDao.updateFarm(farmMemberRequest);

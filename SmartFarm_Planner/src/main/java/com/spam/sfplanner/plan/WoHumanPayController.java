@@ -25,7 +25,7 @@ public class WoHumanPayController {
 	@RequestMapping(value="/deleteWoHumanPay", method=RequestMethod.GET)
 	public String deleteWoHumanPay(int eHumanpayNumber) {
 		woHumanPayService.deleteWoHumanPay(eHumanpayNumber);
-		return "redirect:/home";
+		return "redirect:/listPlanner";
 	}
 	
 	/*수정처리*/
@@ -34,7 +34,7 @@ public class WoHumanPayController {
 		System.out.println("woHumanPay update ==> "+woHumanPay);
 		LOGGER.info("WoHumanPayController UPDATE 호출");
 		woHumanPayService.updateWoHumanPay(woHumanPay);
-		return "plan/wo_humanpay/updateHumanPay";
+		return "redirect:/listPlanner";
 	}
 	
 	/*수정할 해당인건비 하나의 정보들을 출력*/ 
@@ -72,7 +72,7 @@ public class WoHumanPayController {
 	public String insertWoHumanPay(WoHumanPay woHumanPay) {
 		System.out.println("add woHumanPay ==> "+woHumanPay);
 		woHumanPayService.insertWoHumanPay(woHumanPay);
-		return "plan/wo_humanpay/addHumanPay";
+		return "redirect:/listPlanner";
 	}
 	
 	/*예상 인건비 등록화면 폼으로 포워드*/

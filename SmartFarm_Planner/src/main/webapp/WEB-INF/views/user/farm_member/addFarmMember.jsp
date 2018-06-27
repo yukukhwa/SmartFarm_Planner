@@ -9,6 +9,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		
+		
+		$('#goFarmList').click(function(){
+			location.href = "${pageContext.request.contextPath}/listFarm";
+		})
+		
 		// 주소 api쓰기 농가 등록에서
 		$(document).on("click","#searchFarmAddress",function goPopup(){
 			// 주소검색을 수행할 팝업 페이지를 호출합니다.
@@ -29,9 +35,79 @@
 		    //var pop = window.open("/popup/jusoPopup.jsp","pop","scrollbars=yes, resizable=yes"); 
 		})
 		
+		//농장이름 중복체크
+		$('#farmNameCheck').click(function(){
+			var fName = $('#fName').val();
+			
+			// 농장 inputbox에 농장이름의 값이 들어있어야 중복체크 실행 할 수 있게 분기문처리
+			if(fName == ""){ 
+				alert("농장이름을 입력해주세요");
+				$('#fName').focus();
+				return;
+			} else {
+				$.ajax({ // 농장이름 ajax실행 시작
+					type : "POST",
+					data : fName,
+					url : "${pageContext.request.contextPath}/farmNameCheck",
+					dataType : "json",
+					contentType : "application/json; charset=UTF-8",
+					success : function(resultData){
+						// 만약 농장이름이 존재할 경우 0이상이므로 분기문 처리해 인풋박스로 포커스
+						if(resultData.count > 0){
+							alert("해당 이름이 존재합니다. 다른 이름으로 입력해주세요.");
+							$('#fName').focus();
+							return;
+						} else {
+							alert("사용가능한 농장이름입니다.");
+							$('#fPhone').focus();
+							return;
+						}
+					},
+					error : function(error){
+						alert("error : "+error);
+						return;
+					}
+				});// 농장이름 ajax실행 끝
+			}
+		})// 농장이름 중복체크 끝
+		
 		// 아이디 중복 체크
-		$('#idCheck').on('click',function(){
-		})
+		$('#idCheck').click(function(){
+			var fMemberId = $('#fMemberId').val();
+			var idCk = 0;
+			if(fMemberId == ""){
+				alert("아이디를 입력해주세요 ");
+				$('#fMemberId').focus();
+				return;
+			} else {
+				$.ajax({ //ajax 시작
+					type : "POST",
+					data : fMemberId,
+					url : "${pageContext.request.contextPath}/farmIdCheck",
+					dataType : "json",
+					contentType : "application/json; charset=UTF-8",
+					success : function(resultData){
+						// 아이디가 존재할 경우 0이상이므로 분기문처리
+						if(resultData.count > 0) {
+							alert("아이디가 이미 존재합니다. 다른 아이디를 입력해주세요.");
+							$('#fMemberId').focus();
+							return;
+						} else {
+							alert("사용가능한 아이디입니다.");
+							$('#fMemberPw').focus();
+							idCk = 1;
+							return;
+						}
+					},
+					error : function(error){
+						alert("error : "+error);
+						return;
+					} 
+				}); // ajax 끝
+			}
+			
+		}) // 아이디 중복체크 끝
+		
 		
 		
 		$("input:radio[name=formCheck]").click(function(){
@@ -39,7 +115,7 @@
 			if($(this).val() == 'staff'){
 				$('#addFarmForm').html('<div>'
 											+'<b>농가통합넘버 입력 : </b>'
-											+'<input type="number" id="fNumber" name="fNumber" placeholder="농가코드를 입력해주세요"><br>'
+											+'<input type="number"  class="form-control" id="fNumber" name="fNumber" placeholder="농가코드를 입력해주세요"><br>'
 										+'</div>');
 				return;
 			}else{
@@ -48,26 +124,27 @@
 										+'</div>'
 										+'<div>'
 											+'<b>농장이름 : </b>'
-											+'<input type="text" placeholder="농장이름을 등록해주세요" name="fName" id="fName">'
+											+'<input type="text" placeholder="농장이름을 등록해주세요" class="form-control" name="fName" id="fName">'
+											+'<button type="button" id="farmNameCheck" class="btn btn-info">농장이름 중복체크</button>'
 										+'</div>'
 										+'<div>'
 											+'<b>농가연락처 : </b>'
-											+'<input type="text" placeholder="-를 붙이고 입력해주세요" name="fPhone" id="fPhone">'
+											+'<input type="text" placeholder="-를 붙이고 입력해주세요" class="form-control" name="fPhone" id="fPhone">'
 										+'</div>'
 										+'<div>'
 											+'<button type="button" id="searchFarmAddress" class="btn btn-info">주소검색</button>'
 										+'</div>'
 										+'<div>'
 											+'<b>도로명 주소 : </b>'
-											+'<input type="text" name="fDoroaddress" id="farmDoroaddress" placeholder="도로명주소를 입력해주세요"><br>'
+											+'<input type="text" name="fDoroaddress" class="form-control" id="farmDoroaddress" placeholder="도로명주소를 입력해주세요"><br>'
 										+'</div>'
 										+'<div>'
 											+'<b>지번 주소 : </b>'
-											+'<input type="text" name="fJibunaddress" id="farmJibunaddress" placeholder="지번주소를 입력해주세요"><br>'
+											+'<input type="text" name="fJibunaddress" class="form-control" id="farmJibunaddress" placeholder="지번주소를 입력해주세요"><br>'
 										+'</div>'
 										+'<div>'
 											+'<b>농가인원 : </b>'
-											+'<input type="number" placeholder="농가인원 숫자를 입력해주세요" name="fParty" id="fParty"> 명'
+											+'<input type="number"  class="form-control" placeholder="농가인원 숫자를 입력해주세요" name="fParty" id="fParty"> 명'
 										+'</div>');
 				return;
 			}
@@ -79,7 +156,7 @@
 		
 		
 		$("#insertFarmMember").click(function(){
-			var fName = $('#fName').val();
+			/* var fName = $('#fName').val();
 			var fPhone = $('#fPhone').val();
 			var fDoroaddress = $('#fDoroaddress').val();
 			var fJibunaddress = $('#fJibunaddress').val();
@@ -94,7 +171,7 @@
 			}else{
 				alert('개인정보제공동의를 체크하셔야 회원가입 됩니다');
 				$('#fMemberPrivacy').focus();
-				return false;
+				return;
 			}
 				
 			//아이디를 입력하지 않으면 아이디입력칸으로 돌아감
@@ -145,7 +222,7 @@
 				$('#fParty').focus();
 				return;
 				
-			}
+			} */
 			$('#farmMemberInsert').submit();
 			// 농가의 인원은 숫자만 받을 수 있게
 			/* if(fParty) */
@@ -175,11 +252,11 @@
 	    			</h2>
 	    		</div>
 				<div class="col-lg-12" align="center" style="margin: auto;">
-					<h4><b><i class="fa fa-file-text-o"></i>회원가입폼 선택</b></h4><br>
+					<h4><b><i class="fa fa-file-text-o"></i>회원가입폼 선택</b></h4>
 					<input type="radio" id="farmdaepyo" name="formCheck" value="exponent" checked="checked"/> 농가대표 &nbsp;
 					<input type="radio" id="farmStaff" name="formCheck" value="staff" /> 농가직원
 				</div> <br>
-				<div class="col-lg-12" style="align-content: center; width: 60%; height: 30%; padding: 8% 0% 10% 0%; margin: 3% 0% 0% 0%; text-align: center; background-color: #FAFAFA;">
+				<div class="col-lg-12" style="align-content: center; width: 60%; height: 30%; padding: 8% 0% 10% 0%; margin: 3% 0% 20% 0%; text-align: center; background-color: #FAFAFA;">
 					<form id="farmMemberInsert" action="${pageContext.request.contextPath}/addFarmMember" method="post">
 						<div>
 							<b>개인정보제공동의</b><br><br>
@@ -218,42 +295,67 @@
 						<!-- 농가등록 폼 시작 -->
 						<div id="addFarmForm" align="center">
 							<h3>농가등록하기</h3> <br>
-							<div align="left">
+							<div class="form-group">
 								<label class="col-sm-2 control-label"><b>농장이름</b></label>
-								<input type="text" class="form-control" style="width: 20%;" placeholder="농장이름을 등록해주세요" name="fName" id="fName">
+								<div class="col-sm-10" align="left">
+									<input type="text" class="form-control" style="width: 30%;" placeholder="농장이름을 등록해주세요" name="fName" id="fName">
+									<button type="button" id="farmNameCheck" class="btn btn-info">농장이름 중복체크</button>
+								</div>
+								<span class="help-block" id="addFarmFormHelpfName">
+									농장이름을 등록하셔야합니다.
+								</span>
 							</div>
-							<div>
+							<div class="form-group">
 								<label class="col-sm-2 control-label"><b>농가연락처</b></label>
-								<input type="text" class="form-control" style="width: 20%;" placeholder="-를 붙이고 입력해주세요" name="fPhone" id="fPhone">
+								<div class="col-sm-10" align="left">
+									<input type="text" class="form-control" style="width: 30%;" placeholder="-를 붙이고 입력해주세요" name="fPhone" id="fPhone">
+								</div>
+								<span class="help-block" id="addFarmFormHelpfPhone">
+									농장번호를 등록하셔야 합니다.
+								</span>
 							</div>
 							<div>
 								<button type="button" class="btn btn-info" id="searchFarmAddress">주소검색</button>
 								<!-- <input type="button" class id="searchFarmAddress" value="주소검색하기"> -->
 							</div>
-							<div>
+							<div class="form-group">
 								<label class="col-sm-2 control-label"><b>도로명 주소</b></label>
-								<input type="text" class="form-control" style="width: 20%;" name="fDoroaddress" id="farmDoroaddress"><br>
+								<div class="col-sm-10" align="left">
+									<input type="text" class="form-control" style="width: 30%;" name="fDoroaddress" id="farmDoroaddress"><br>
+								</div>
+								<span class="help-block" id="addFarmFormHelpfDoroaddress">
+									주소검색을 눌러주세요
+								</span>
 							</div>
-							<div>
+							<div class="form-group">
 								<label class="col-sm-2 control-label"><b>지번 주소 : </b></label>
-								<input type="text" class="form-control" style="width: 20%;" name="fJibunaddress" id="farmJibunaddress"><br>
+								<div class="col-sm-10" align="left">
+									<input type="text" class="form-control" style="width: 30%;" name="fJibunaddress" id="farmJibunaddress"><br>
+								</div>
+								<span class="help-block" id="addFarmFormHelpfJibunaddress">
+									주소검색을 눌러주세요
+								</span>
 							</div>
-							<div>
+							<div class="form-group">
 								<label class="col-sm-2 control-label"><b>농가인원</b></label>
-								<input type="number" class="form-control" style="width: 20%;" placeholder="농가인원 숫자를 입력해주세요" name="fParty" id="fParty"> 명
+								<div class="col-sm-10" align="center">
+									<input type="number" class="form-control" style="width: 30%;" placeholder="농가인원 숫자를 입력해주세요" name="fParty" id="fParty"> 명
+								</div>
+								<span class="help-block" id="addFarmFormHelpfParty">
+									농가 인원을 등록해주세요
+								</span>
 							</div>
 						</div>
 						<!-- 농가등록 폼 끝 -->
 						<br><br>
-		
-					
+
 						<!-- 기본 회원가입 폼 -->
 						<div id="addFarmMemberForm">
 							<h3>회원가입 폼</h3>
 							<div>
 								<b>아이디 : </b>
 								<input type="text" name="fMemberId" id="fMemberId" placeholder="아이디를 입력해주세요" class="form-control">
-								<button type="button" class="btn btn-default" id="idCheck">아이디 중복확인</button><br>
+								<button type="button" class="btn btn-info" id="idCheck">아이디 중복확인</button><br>
 							</div>
 							<div>			
 								<b>비밀번호 입력 : </b>
@@ -297,16 +399,14 @@
 								<b>상세 주소 : </b>
 								<input type="text" id="farmMemberDetailaddress" name="fMemberDetailaddress" placeholder="나머지 상세주소를 입력해주세요" class="form-control"><br>
 							</div>
-							
 						</div>
 					<br>
 					<button type="button" class="btn btn-primary" id="insertFarmMember">회원가입</button>
+					<button type="button" class="btn btn-default" id="goFarmList">농장리스트로 가기</button>
 					<!-- 회원가입 폼 끝 -->
 					</form>
 				</div>
-				<div>
-					<a class="btn btn-default" id="goFarmList" href="${pageContext.request.contextPath}/listFarm" title="Bootstrap 3 themes generator">농가 리스트로 가기</a>
-				</div>
+		
 			</div>
 		</section>
 	</section>

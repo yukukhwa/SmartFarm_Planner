@@ -27,6 +27,18 @@
 		</collection>
 	</resultMap>
   
+  <!-- 농가이름 중보체크 하면 해당 농가의 이름을 체크해 카운트해주는 쿼리문 -->
+  <select id="fNameCheck"
+  	parameterType="String"
+  	resultType="int">
+	  	SELECT 
+	  		COUNT(*)
+		FROM 
+			sp_farm 
+		WHERE 
+			sp_farm.f_name=#{fName}
+  </select>
+  
   <!-- 농가의 정보를 수정처리하는 쿼리문 -->
   <update id="updateFarm"
   		parameterType="com.spam.sfplanner.user.FarmMemberRequest">
