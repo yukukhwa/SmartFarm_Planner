@@ -100,6 +100,13 @@ public class ActResultService {
 				wrNeedEquip.setWrNeRentPayList(wrNeRentPayDao.listselectWrNeRentPay(map));
 			}
 			ppWoResult.setWrNeedEquipList(WrNeedEquipList);
+			
+			List<Memo> memoList= memoDao.listSelectMemo(map);
+			/*for(Memo memo : memoList) {
+				map.put("wrMemoNumber", memo.getWrMemoNumber());
+				memo.setMemoFile(memoFileDao.listselectMemoFile(map));
+			}*/
+			ppWoResult.setMemoList(memoList);
 		}
 		actResult.setPpWoResultList(PpWoResultList);
 		return actResult;

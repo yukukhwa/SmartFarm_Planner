@@ -153,6 +153,15 @@
 					$(this).parents('tr').find('td').eq(4).find('.form-control').val('');
 				}
 			});
+			/* 등록버튼 클릭시 빈칸이 있으면 경고창 띄우고, 빈칸이 없다면 submit한다. */
+			$('#signUpBtn').click(function(){
+				if($('.form-control').val() == ''){
+					alert('모든 입력란을 기입하시오.');
+					return 0;
+				} else{
+					$('#signUpForm').submit();
+				}
+			});
 		});
 	</script>
 </head>
@@ -167,7 +176,7 @@
 			<div class="col-lg-10">
 				<h3 class="page-header"><i class="fa fa-table"></i> 실행결과등록</h3>
 				<section class="panel">
-					<form action="${pageContext.request.contextPath}/addActResultList" method="post">
+					<form id="signUpForm" action="${pageContext.request.contextPath}/addActResultList" method="post">
 						<header class="panel-heading">
 							${productionPlan.titlePlan.ppNamePlanname}
 							<input type="text" name="productionPlan.ppNumber" value="${productionPlan.ppNumber}">
@@ -356,7 +365,7 @@
 									</div>
 								</div>
 							</c:forEach>
-						<button class="btn btn-primary" type="submit">등록</button>
+						<a id="signUpBtn" class="btn btn-primary" type="submit">등록</a>
 						</div>
 					</form>
 				</section>

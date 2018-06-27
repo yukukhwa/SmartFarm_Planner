@@ -178,10 +178,29 @@
 										</tbody>
 									</table>
 									메모
+									<table class="table table-striped table-advance table-hover">
+										<thead>
+											<tr>
+												<th>테마명</th>
+												<th>메모주제</th>
+												<th>메모내용</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:forEach var="memoList" items="${woResultList.memoList}">
+												<tr>
+													<td>${memoList.categoryTheme.themeName}</td>
+													<td>${memoList.wrMemoSubject}</td>
+													<td>${memoList.wrMemoContent}</td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</c:forEach>
 					</div>
+					<a class="btn btn-primary" type="submit">삭제</a>
 				</section>
 			</div>
 		</div>

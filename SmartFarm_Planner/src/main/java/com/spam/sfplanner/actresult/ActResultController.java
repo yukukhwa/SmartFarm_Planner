@@ -109,7 +109,7 @@ public class ActResultController {
 	@RequestMapping(value="/addActResultList", method = RequestMethod.POST)
 	public String insertActResult (ActResult actResult) {
 		actResultService.insertActResult(actResult);
-		return "redirect:/home";
+		return "redirect:/listActResultList";
 	}
 	/*
 	 * 실행결과리스트 등록화면으로 가는 매핑
