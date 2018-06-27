@@ -104,8 +104,13 @@ public class ActResultService {
 		actResult.setPpWoResultList(PpWoResultList);
 		return actResult;
 	}
-	
-	public int insertActResult(ActResult actResult) {
+	/*
+	 * actResult를 매개변수로 받아 actResultDao에 insertActResult를 호출하여 실행결과리스트를 db에 등록하고
+	 * 1:N관계인 작업단계결과도 리턴받은 넘버를 셋팅한 후 dao를 호출하여 db에 입력한다.
+	 * 작업단계의 하위 항목인 인건비, 원자재, 기타지출비, 보험비, 필요장비, 메모도 마찬가지로 입력한다.
+	 * 그리고 필요장비의 하위항목인 대여비도 마찬가지로 입력한다.
+	 */
+	public void insertActResult(ActResult actResult) {
 		actResultDao.insertActResult(actResult);
 		List<PpWoResult> ppWoResultList = actResult.getPpWoResultList();
 		if(ppWoResultList != null) {
@@ -142,8 +147,6 @@ public class ActResultService {
 				}
 			}
 		}
-		
-		return 0;
 	}
 	
 	public Map<String, Object> insertActResult(int ppNumber) {

@@ -101,7 +101,11 @@ public class ActResultController {
 		model.addAttribute("plannerList", actResultService.listSelectProductionPlan(login.getCorpNumber()));
 		return "actresult/choicePlanner";
 	}
-	
+	/*
+	 * 싱행결과리스트 등록하는 매핑
+	 * actResult로 매개변수로 받아 service의 insertActResult매서드를 호출하고
+	 * home으로 리다이렉트한다.
+	 */
 	@RequestMapping(value="/addActResultList", method = RequestMethod.POST)
 	public String insertActResult (ActResult actResult) {
 		actResultService.insertActResult(actResult);
@@ -109,6 +113,9 @@ public class ActResultController {
 	}
 	/*
 	 * 실행결과리스트 등록화면으로 가는 매핑
+	 * 생산계획서리스트를 가져와 model에 셋팅한다.
+	 * 메모등록에 필요한 카테고리를 가져와 model에 셋팅한다.
+	 * 그 후 addActResultList.jsp로 이동한다.
 	 */
 	@RequestMapping(value="/addActResultList", method = RequestMethod.GET)
 	public String insertActResult (Model model
