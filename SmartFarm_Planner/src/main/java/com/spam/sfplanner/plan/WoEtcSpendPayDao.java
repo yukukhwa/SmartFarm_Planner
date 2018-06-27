@@ -22,8 +22,8 @@ public class WoEtcSpendPayDao {
 		return sqlSession.selectOne(NAMESPACE+"oneSelectWoEtcSpendPay", eEtcspendpayNumber);
 	}
 	
-	public void deleteEtcSpendPay(int eEtcspendpayNumber) {
-		sqlSession.delete(NAMESPACE+"deleteEtcSpendPay", eEtcspendpayNumber);
+	public void deleteWoEtcSpendPay(int eEtcspendpayNumber) {
+		sqlSession.delete(NAMESPACE+"deleteWoEtcSpendPay", eEtcspendpayNumber);
 	}
 	
 	public List<WoEtcSpendPay> listSelectWoEtcSpendPay(Map<String, Object> map){

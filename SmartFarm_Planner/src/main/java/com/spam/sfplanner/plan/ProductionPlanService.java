@@ -191,7 +191,7 @@ public class ProductionPlanService {
 			
 			for(WoEtcSpendPay woEtcSpendPay : woEtcSpendPayDao.listSelectWoEtcSpendPay(map)) {
 				System.out.println(woEtcSpendPay.geteEtcspendpayNumber());
-				woEtcSpendPayDao.deleteEtcSpendPay(woEtcSpendPay.geteEtcspendpayNumber());
+				woEtcSpendPayDao.deleteWoEtcSpendPay(woEtcSpendPay.geteEtcspendpayNumber());
 			}
 			
 			for(WoNeedEquip woNeedEquip : woNeedEquipDao.listSelectWoNeedEquip(map)) {

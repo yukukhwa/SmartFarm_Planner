@@ -14,8 +14,8 @@ public class WoNeRentPayDao {
 	private SqlSessionTemplate sqlSession;
 	final static String NAMESPACE = "com.spam.sfplanner.plan.WoNeRentPayMapper.";
 	
-	public void updateWoNeRentPay(WoNeRentPay woNeRnetPay) {
-		sqlSession.update(NAMESPACE+"updateWoNeRentPay", woNeRnetPay);
+	public void updateWoNeRentPay(WoNeRentPay woNeRentPay) {
+		sqlSession.update(NAMESPACE+"updateWoNeRentPay", woNeRentPay);
 	}
 	
 	public WoNeRentPay oneSelectWoNeRentPay(int neERentpayNumber) {

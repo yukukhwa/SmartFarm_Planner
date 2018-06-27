@@ -35,7 +35,7 @@
 	    				<label>
 	    				테마카테고리 선택
 		    				<select name="categoryTheme.themeNumber" id="categoryTheme.themeNumber">
-		    					<option selected="selected">테마선택</option>
+		    					<option>테마선택</option>
 		    					<c:forEach var="categoryTheme" items="${categoryTheme}">
 		    						<option value="${categoryTheme.themeNumber}">${categoryTheme.themeName}</option>
 		    					</c:forEach>
@@ -45,9 +45,9 @@
 	    			<div>
 	    				기타지출비용명<br>
 	    				<input type="text" name="etcspendpayName" id="etcspendpayName" placeholder="기타지출비명을 입력하세요">
-	    				<button type="submit">등록하기</button>
 	    			</div>
 	    		</form>
+	    		<button type="submit">등록하기</button>
     		</c:if>
     	</section>
     </section>

@@ -39,7 +39,7 @@
     					</c:forEach>
     				</select><br>
     				<div>
-    					업체명 : <input type="text" value="${login.corpName}">
+    					업체명 : <input type="text" value="${loginMember.corpName}">
     				</div>
     				<div>
     					대당사용료 : <input type="text" name="cRentCost" id="cRentCost">원

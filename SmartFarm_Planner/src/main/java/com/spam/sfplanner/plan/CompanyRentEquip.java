@@ -14,6 +14,9 @@ public class CompanyRentEquip {
 	private double cRentDate; //단위시간
 	private String cRentModelname; //모델명
 	private	Date cRentRegistdate; //장비등록일
+	public CompanyRentEquip() {
+		this.company = new Company();
+	}
 	public int getcRentNumber() {
 		return cRentNumber;
 	}

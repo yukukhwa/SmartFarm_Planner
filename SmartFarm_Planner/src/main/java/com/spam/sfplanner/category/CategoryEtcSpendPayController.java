@@ -75,7 +75,7 @@ public class CategoryEtcSpendPayController {
 	public String insertCategoryEtcSpendPay(CategoryEtcSpendPay categoryEtcSpendPay, HttpSession session) {
 		System.out.println("insertCategoryEtcSpendPay categoryEtcSpendPay====> "+categoryEtcSpendPay);
 		categoryEtcSpendPayService.insertCategoryEtcSpendPay(categoryEtcSpendPay, session);
-		return "redirect:/listCategoryEtcSpendPays";
+		return "redirect:/listCategoryEtcSpendPay";
 	}
 	
 	/**
