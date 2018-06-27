@@ -46,9 +46,11 @@ public class ProductionPlanController {
 	@RequestMapping(value="/updatePlanner",method = RequestMethod.GET)
 	public String updateProductionPlan(@RequestParam(value="ppNumber",required=true)int ppNumber,HttpSession session,Model model) {
 		Map<String, Object> map = productionPlanService.updateProductionPlan(ppNumber, session);
+		model.addAttribute("titleList", map.get("titleList"));
 		model.addAttribute("materialsList", map.get("materialsList"));
 		model.addAttribute("etcSpendPayList", map.get("etcSpendPayList"));
-		model.addAttribute("titleList", map.get("titleList"));
+		model.addAttribute("categoryEquipList", map.get("categoryEquipList"));
+		model.addAttribute("companyRentEquipList", map.get("companyRentEquipList"));
 		model.addAttribute("productionPlan", map.get("productionPlan"));
 		return "plan/productionplan/updatePlanner";
 	}

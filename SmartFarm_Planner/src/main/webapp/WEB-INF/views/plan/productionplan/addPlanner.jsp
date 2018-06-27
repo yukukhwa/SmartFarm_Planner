@@ -1078,7 +1078,7 @@
 													</tbody>
 												</table>
 											</div>
-										</div>
+										</div> 
 									</div>
 									<input type="button" value="작업단계 추가" id="addPpWork">
 								</div>

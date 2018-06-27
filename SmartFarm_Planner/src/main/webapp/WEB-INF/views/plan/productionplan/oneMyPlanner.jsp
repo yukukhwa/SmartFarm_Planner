@@ -202,7 +202,7 @@
 												</c:forEach>
 											</tbody>
 										</table>
-									</div>
+									</div> 
 								</div>
 								<c:set var="i" value="${i+1}"/>
 							</c:forEach>	

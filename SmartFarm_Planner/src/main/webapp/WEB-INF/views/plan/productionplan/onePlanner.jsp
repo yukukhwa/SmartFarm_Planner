@@ -199,15 +199,20 @@
 														</tr>												
 													</c:if>
 													<c:forEach var="woNeRentPay" items="${woNeedEquip.woNeRentPayList}">
-														<c:if test="${woNeRentPay.neERentpaySecret != 'false'}">	
-															<tr>
-																<td>${woNeedEquip.categoryEquip.equipName}</td>
-																<td>${woNeedEquip.eNeedequipState}</td>
+														<tr>
+															<td>${woNeedEquip.categoryEquip.equipName}</td>
+															<td>${woNeedEquip.eNeedequipState}</td>
+															<c:if test="${woNeRentPay.neERentpaySecret != 'false'}">	
 																<td>${woNeRentPay.companyRentEquip.cRentModelname}</td>
 																<td>${woNeRentPay.companyRentEquip.cRentCost}</td>
 																<td>${woNeRentPay.companyRentEquip.cRentDate}</td>
-															</tr>												
-														</c:if>
+															</c:if>
+															<c:if test="${woNeRentPay.neERentpaySecret == 'false'}">
+																<td>****</td>
+																<td>****</td>
+																<td>****</td>
+															</c:if>
+														</tr>
 													</c:forEach>
 												</c:forEach>
 											</tbody>

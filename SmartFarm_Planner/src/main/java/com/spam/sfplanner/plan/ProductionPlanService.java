@@ -17,8 +17,6 @@ import com.spam.sfplanner.category.CategoryEtcSpendPay;
 import com.spam.sfplanner.category.CategoryEtcSpendPayDao;
 import com.spam.sfplanner.category.CategoryMaterials;
 import com.spam.sfplanner.category.CategoryMaterialsDao;
-import com.spam.sfplanner.category.CategoryTheme;
-import com.spam.sfplanner.category.CategoryThemeDao;
 import com.spam.sfplanner.login.Login;
 
 @Transactional
@@ -42,9 +40,6 @@ public class ProductionPlanService {
 	
 	@Autowired
 	private WoHumanPayDao woHumanPayDao;
-	
-	@Autowired
-	private CategoryThemeDao categoryThemeDao;
 	
 	@Autowired
 	private CategoryMaterialsDao categoryMaterialsDao;
@@ -81,6 +76,8 @@ public class ProductionPlanService {
 		List<WoHumanPay> woHumanPayList = null;
 		List<WoMaterialsPay> woMaterialsPayList = null;
 		List<WoEtcSpendPay> WoEtcSpendPayList = null;
+		List<WoNeedEquip> woNeedEquipList = null;
+		List<WoNeRentPay> woNeRentPayList = null;
 		
 		ppWorkList = productionPlan.getPpWorkList();
 		if(ppWorkList != null) {
@@ -103,12 +100,24 @@ public class ProductionPlanService {
 						woMaterialsPayDao.updateWoMaterialsPay(woMaterialsPay);
 					}
 				}
-				/*WoEtcSpendPayList = ppWork.getWoEtcSpendPayList();
+				WoEtcSpendPayList = ppWork.getWoEtcSpendPayList();
 				if(WoEtcSpendPayList != null) {
 					for(WoEtcSpendPay woEtcSpendPay : WoEtcSpendPayList) {
-						
+						woEtcSpendPayDao.updateWoEtcSpendPay(woEtcSpendPay);
 					}
-				}*/
+				}
+				woNeedEquipList = ppWork.getWoNeedEquipList();
+				if(woNeedEquipList != null) {
+					for(WoNeedEquip woNeedEquip : woNeedEquipList) {
+						woNeRentPayList = woNeedEquip.getWoNeRentPayList();
+						if(woNeRentPayList != null) {
+							for(WoNeRentPay woNeRentPay : woNeRentPayList) {
+								woNeRentPayDao.updateWoNeRentPay(woNeRentPay);
+							}
+						}
+						woNeedEquipDao.updateWoNeedEquip(woNeedEquip);
+					}
+				}
 				ppWorkDao.updatePpWork(ppWork);
 			}
 		}
@@ -125,8 +134,13 @@ public class ProductionPlanService {
 		
 		List<CategoryMaterials> materialsList = categoryMaterialsDao.listSelectCategoryMaterials();
 		List<CategoryEtcSpendPay> etcSpendPayList = categoryEtcSpendPayDao.listSelectCategoryEtcSpendPay();
+		List<CategoryEquip> categoryEquipList = categoryEquipDao.listSelectCategoryEquip();
+		List<CompanyRentEquip> companyRentEquipList = companyRentEquipDao.listSelectCompanyRentEquip(map);
+		
+		List<WoNeedEquip> woNeedEquipList = null;
 		
 		ProductionPlan productionPlan = productionPlanDao.oneSelectProductionPlan(ppNumber);
+		
 		map.put("ppNumber", ppNumber);
 		List<PpWork> ppWorkList = ppWorkDao.listSelectPpWork(map);
 		productionPlan.setPpWorkList(ppWorkList);
@@ -137,23 +151,32 @@ public class ProductionPlanService {
 			ppWork.setWoInsurancePayList(woInsurancePayDao.listSelectWoInsurancePay(map));
 			ppWork.setWoHumanPayList(woHumanPayDao.listSelectWoHumanPay(map));
 			ppWork.setWoEtcSpendPayList(woEtcSpendPayDao.listSelectWoEtcSpendPay(map));
-			ppWork.setWoNeedEquipList(woNeedEquipDao.listSelectWoNeedEquip(map));
+			woNeedEquipList = woNeedEquipDao.listSelectWoNeedEquip(map);
+			for(WoNeedEquip woNeedEquip : woNeedEquipList) {
+				map.put("eNeedequipNumber", woNeedEquip.geteNeedequipNumber());
+				woNeedEquip.setWoNeRentPayList(woNeRentPayDao.listSelectWoNeRentPay(map));
+			}
+			ppWork.setWoNeedEquipList(woNeedEquipList);
 			map.clear();
 		}
 		map.clear();
+		map.put("titleList", titleList);
 		map.put("materialsList", materialsList);
 		map.put("etcSpendPayList", etcSpendPayList);
-		map.put("titleList", titleList);
+		map.put("categoryEquipList", categoryEquipList);
+		map.put("companyRentEquipList", companyRentEquipList);
 		map.put("productionPlan", productionPlan);
 		return map;
 	}
 	
 	public void deleteProductionPlan(int ppNumber) {
 		int ppWorkNumber = 0;
+		int eNeedequipNumber = 0;
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ppNumber", ppNumber);
 		for(PpWork ppWork : ppWorkDao.listSelectPpWork(map)) {
 			ppWorkNumber = ppWork.getPpWorkNumber();
+			map.put("ppWorkNumber", ppWorkNumber);
 			for(WoHumanPay woHumanPay : woHumanPayDao.listSelectWoHumanPay(map)) {
 				woHumanPayDao.deleteWoHumanPay(woHumanPay.geteHumanpayNumber());
 			}
@@ -165,7 +188,20 @@ public class ProductionPlanService {
 			for(WoInsurancePay woInsurancePay : woInsurancePayDao.listSelectWoInsurancePay(map)) {
 				woInsurancePayDao.deleteWoInsurancePay(woInsurancePay.geteInsurancepayNumber());
 			}
-			map.put("ppWorkNumber", ppWorkNumber);
+			
+			for(WoEtcSpendPay woEtcSpendPay : woEtcSpendPayDao.listSelectWoEtcSpendPay(map)) {
+				System.out.println(woEtcSpendPay.geteEtcspendpayNumber());
+				woEtcSpendPayDao.deleteEtcSpendPay(woEtcSpendPay.geteEtcspendpayNumber());
+			}
+			
+			for(WoNeedEquip woNeedEquip : woNeedEquipDao.listSelectWoNeedEquip(map)) {
+				eNeedequipNumber = woNeedEquip.geteNeedequipNumber();
+				map.put("eNeedequipNumber", eNeedequipNumber);
+				for(WoNeRentPay woNeRentPay : woNeRentPayDao.listSelectWoNeRentPay(map)) {
+					woNeRentPayDao.deleteWoNeRentPay(woNeRentPay.getNeERentpayNumber());
+				}
+				woNeedEquipDao.deleteWoNeedEquip(eNeedequipNumber);
+			}
 			ppWorkDao.deletePpWork(ppWorkNumber);
 		}
 		productionPlanDao.deleteProductionPlan(ppNumber);
@@ -292,14 +328,12 @@ public class ProductionPlanService {
 		map.put("column", "농가넘버");
 		map.put("property", ((Login)session.getAttribute("loginMember")).getCorpNumber());
 		List<TitlePlan> titleList = titlePlanDao.listSelectTitlePlan(map);
-		//List<CategoryTheme> themeList = categoryThemeDao.listSelectCategoryTheme();
 		List<CategoryMaterials> materialsList = categoryMaterialsDao.listSelectCategoryMaterials();
 		List<CategoryEtcSpendPay> etcSpendPayList = categoryEtcSpendPayDao.listSelectCategoryEtcSpendPay();
 		List<CategoryEquip> categoryEquipList = categoryEquipDao.listSelectCategoryEquip();
 		map.clear();
 		List<CompanyRentEquip> companyRentEquipList = companyRentEquipDao.listSelectCompanyRentEquip(map);
 		map.put("titleList", titleList);
-		//map.put("themeList", themeList);
 		map.put("materialsList", materialsList);
 		map.put("etcSpendPayList", etcSpendPayList);
 		map.put("categoryEquipList", categoryEquipList);

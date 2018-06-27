@@ -18,6 +18,7 @@
 			B = Math.round(Math.random()*255);
 			$('#color'+i).find('.panel-heading').css('background-color','rgba('+R+','+G+','+B+',.25)');
 		}
+		
 		$('.panel-heading').click(function(){
 			if($(this).parent('div').find('.panel-content').css("display") == "none"){
 				$(this).parent('div').find('.panel-content').show();
@@ -71,6 +72,13 @@
 			var eInsurancepayExpectcost = eInsurancepayTotalcost/(eInsurancepayTerm*12);
 			//alert(eInsurancepayExpectcost);
 			$(this).parents('tr').find('.eInsurancepayExpectcost').val(eInsurancepayExpectcost.toFixed(2));
+			return;
+		});
+		
+		$(document).on('change','select.cRentNumber',function(){
+			var cRentNumber = $(this).val();
+			$(this).parents('tr').find('select.cRentCost').val(cRentNumber);
+			$(this).parents('tr').find('select.cRentDate').val(cRentNumber);
 			return;
 		});
 		
@@ -232,6 +240,7 @@
 														<th>보험가입기간</th>
 														<th>총보험비</th>
 														<th>예상보험비</th>
+														<th>공개/비공개</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -267,6 +276,7 @@
 														<th>기타지출상세내용</th>
 														<th>예상기타지출일</th>
 														<th>예상기타지출비</th>
+														<th>공개/비공개</th>
 													</tr>
 												</thead>
 												<tbody>
@@ -300,23 +310,129 @@
 													</c:forEach>
 												</tbody>
 											</table>
-											<%-- 필요장비계획
+											필요장비계획
 											<table class="table table-striped table-advance table-hover">
 												<thead>
 													<tr>
 														<th>필요장비명</th>
 														<th>계획시 보유현황</th>
+														<th>대여모델명</th>
+														<th>대당대여비</th>
+														<th>단위대여시간</th>
+														<th>공개/비공개</th>
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach var="woNeedEquip" items="${ppWork.woNeedEquipList}">
-														<tr>
-															<td>${woNeedEquip.categoryEquip.equipName}</td>
-															<td>${woNeedEquip.eNeedequipState}</td>
-														</tr>
+													<c:forEach var="woNeedEquip" items="${ppWork.woNeedEquipList}" varStatus="k">
+														<c:if test="${woNeedEquip.eNeedequipState != '대여'}">
+															<tr>
+																<td>
+																	<select name="ppWorkList[${j.index}].woNeedEquipList[${k.index}].categoryEquip.equipNumber">
+										    							<c:forEach var="categoryEquip" items="${categoryEquipList}">
+										    								<c:if test="${woNeedEquip.categoryEquip.equipNumber == categoryEquip.equipNumber}">
+										    									<option value="${categoryEquip.equipNumber}" selected="selected">${categoryEquip.equipName}</option>
+										    								</c:if>
+										    								<c:if test="${woNeedEquip.categoryEquip.equipNumber != categoryEquip.equipNumber}">
+										    									<option value="${categoryEquip.equipNumber}">${categoryEquip.equipName}</option>
+										    								</c:if>
+										    							</c:forEach>
+										    						</select>
+										    						<input type="hidden" name="ppWorkList[${j.index}].woNeedEquipList[${k.index}].eNeedequipNumber" value="${woNeedEquip.eNeedequipNumber}">
+									    						</td>
+																<td>
+																	<select name="ppWorkList[${j.index}].woNeedEquipList[${k.index}].eNeedequipState" class="eNeedequipState">
+																		<c:if test="${woNeedEquip.eNeedequipState == '구매예정'}">
+											    							<option>대여</option>
+											    							<option selected="selected">구매예정</option>
+											    							<option>보유</option>
+																		</c:if>
+																		<c:if test="${woNeedEquip.eNeedequipState == '보유'}">
+											    							<option>대여</option>
+											    							<option>구매예정</option>
+											    							<option selected="selected">보유</option>
+																		</c:if>
+										    						</select>
+																</td>
+																<td>0</td>
+																<td>0</td>
+																<td>0</td>
+																<td></td>
+															</tr>												
+														</c:if>
+														<c:forEach var="woNeRentPay" items="${woNeedEquip.woNeRentPayList}">
+															<tr>
+																<td>
+																	<select name="ppWorkList[${j.index}].woNeedEquipList[${k.index}].categoryEquip.equipNumber">
+										    							<c:forEach var="categoryEquip" items="${categoryEquipList}">
+										    								<c:if test="${woNeedEquip.categoryEquip.equipNumber == categoryEquip.equipNumber}">
+										    									<option value="${categoryEquip.equipNumber}" selected="selected">${categoryEquip.equipName}</option>
+										    								</c:if>
+										    								<c:if test="${woNeedEquip.categoryEquip.equipNumber != categoryEquip.equipNumber}">
+										    									<option value="${categoryEquip.equipNumber}">${categoryEquip.equipName}</option>
+										    								</c:if>
+										    							</c:forEach>
+										    						</select>
+										    						<input type="hidden" name="ppWorkList[${j.index}].woNeedEquipList[${k.index}].eNeedequipNumber" value="${woNeedEquip.eNeedequipNumber}">
+									    						</td>
+																<td>
+																	<select name="ppWorkList[${j.index}].woNeedEquipList[${k.index}].eNeedequipState" class="eNeedequipState">
+																		<c:if test="${woNeedEquip.eNeedequipState == '대여'}">
+											    							<option selected="selected">대여</option>
+											    							<option>구매예정</option>
+											    							<option>보유</option>
+																		</c:if>
+										    						</select>
+																</td>
+																<td>
+																	<select name="ppWorkList[${j.index}].woNeedEquipList[${k.index}].woNeRentPayList[0].companyRentEquip.cRentNumber" class="cRentNumber">
+										    							<c:forEach var="companyRentEquip" items="${companyRentEquipList}">
+										    								<c:if test="${woNeRentPay.companyRentEquip.cRentNumber == companyRentEquip.cRentNumber}">
+										    									<option value="${companyRentEquip.cRentNumber}" selected="selected">${companyRentEquip.cRentModelname}</option>
+										    								</c:if>
+										    								<c:if test="${woNeRentPay.companyRentEquip.cRentNumber != companyRentEquip.cRentNumber}">
+										    									<option value="${companyRentEquip.cRentNumber}">${companyRentEquip.cRentModelname}</option>
+										    								</c:if>
+										    							</c:forEach>
+										    						</select>
+										    						<input type="hidden" name="ppWorkList[${j.index}].woNeedEquipList[${k.index}].woNeRentPayList[0].neERentpayNumber" value="${woNeRentPay.neERentpayNumber}">
+																</td>
+																<td>
+																	<select class="cRentCost" disabled="disabled">
+										    							<c:forEach var="companyRentEquip" items="${companyRentEquipList}">
+										    								<c:if test="${woNeRentPay.companyRentEquip.cRentNumber == companyRentEquip.cRentNumber}">
+										    									<option value="${companyRentEquip.cRentNumber}" selected="selected">${companyRentEquip.cRentCost}</option>
+										    								</c:if>
+										    								<c:if test="${woNeRentPay.companyRentEquip.cRentNumber != companyRentEquip.cRentNumber}">
+										    									<option value="${companyRentEquip.cRentNumber}">${companyRentEquip.cRentCost}</option>
+										    								</c:if>
+										    							</c:forEach>
+										    						</select>
+																</td>
+																<td>
+																	<select class="cRentDate" disabled="disabled">
+										    							<c:forEach var="companyRentEquip" items="${companyRentEquipList}">
+										    								<c:if test="${woNeRentPay.companyRentEquip.cRentNumber == companyRentEquip.cRentNumber}">
+										    									<option value="${companyRentEquip.cRentNumber}" selected="selected">${companyRentEquip.cRentDate}</option>
+										    								</c:if>
+										    								<c:if test="${woNeRentPay.companyRentEquip.cRentNumber != companyRentEquip.cRentNumber}">
+										    									<option value="${companyRentEquip.cRentNumber}">${companyRentEquip.cRentDate}</option>
+										    								</c:if>
+										    							</c:forEach>
+										    						</select>
+																</td>
+																<td>
+																	<c:if test="${woNeRentPay.neERentpaySecret == 'true'}">
+																		<input type="radio" name="ppWorkList[${j.index}].woNeedEquipList[${k.index}].woNeRentPayList[0].neERentpaySecret" value="true" checked="checked">공개<input type="radio" name="ppWorkList[${j.index}].woNeedEquipList[${k.index}].woNeRentPayList[0].neERentpaySecret" value="false">비공개
+																	</c:if>
+																	<c:if test="${woNeRentPay.neERentpaySecret == 'false'}">
+																		<input type="radio" name="ppWorkList[${j.index}].woNeedEquipList[${k.index}].woNeRentPayList[0].neERentpaySecret" value="true">공개<input type="radio" name="ppWorkList[${j.index}].woNeedEquipList[${k.index}].woNeRentPayList[0].neERentpaySecret" value="false" checked="checked">비공개
+																	</c:if>
+																</td>
+															</tr>
+														</c:forEach>
 													</c:forEach>
 												</tbody>
-											</table> --%>
+											</table>
 										</div>
 									</div>
 									<c:set var="i" value="${i+1}"/>
