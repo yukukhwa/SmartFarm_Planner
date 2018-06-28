@@ -9,8 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public class PpWoResultDao {
+@Repository 
+public class PpWoResultDao { //작업단계결과 Dao
 	private static final Logger LOGGER = LoggerFactory.getLogger(PpWoResultController.class);
 	@Autowired private SqlSessionTemplate sqlsession;
 	private final String nameSpace = "com.spam.sfplanner.actresult.PpWoResultMapper.";
@@ -33,7 +33,8 @@ public class PpWoResultDao {
 	sqlsession.update(nameSpace+"updateWorkResult", ppWoResult);
 	}
 	
-	//작업단계결과 리스트 중 하나의 작업단계결과 선택해서 화면에 뿌려주기 위한 메서드	
+	//작업단계결과 리스트 중 하나의 작업단계결과 선택해서 화면에 뿌려주기 위한 메서드
+	//선택한 작업단계결과를 리턴
 	public PpWoResult oneSelectWorkResult(int wrNumber) {
 		LOGGER.info("oneSelectWorkResult dao에서 호출");
 		return sqlsession.selectOne(nameSpace+"oneSelectWorkResult", wrNumber);
@@ -45,9 +46,15 @@ public class PpWoResultDao {
 		sqlsession.insert(nameSpace+"insertWorkResult", ppWoResult);
 	}
 	
-	//작업단계결과 전체리스트
+	//실행결과리스트 넘버별 작업단계결과 리스트
 	public List<PpWoResult> listSelectWorkResult(Map<String, Object> map) {
 		LOGGER.info("listSelectWorkResult dao에서 호출");			
 		return sqlsession.selectList(nameSpace+"listSelectWorkResult", map);
+	}
+	
+	//작업단계결과 전체리스트
+	public List<PpWoResult> listAllSelectWorkResult() {
+		LOGGER.info("listAllSelectWorkResult dao에서 호출");			
+		return sqlsession.selectList(nameSpace+"listAllSelectWorkResult");
 	}	
 }

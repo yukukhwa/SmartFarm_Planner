@@ -3,132 +3,158 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spam.sfplanner.actresult.WrEtcSpendPayMapper">
-<!-- 
-	기타지출비결과 Mapper : 유국화
-	기본키(PK)는 기타지출비결과 넘버(wr_etcspendpay_number)
-	기타지출비결과에서 기타지출비결과 실제비용(wr_etcspendpay_realcost), 기타지출비결과 지출일(wr_etcspendpay_date)은 종속컬럼
-	작업단계결과 넘버와 예상 기타지출비넘버는 외래키 역할(FK)
-	작업단계결과에서 작업단계결과 넘버(wr_number), 총작업면적(wr_totalarea), 이미작업한면적(wr_reworkarea)을 매핑
-	예상 기타지출비에서 예상 기타지출비 넘버(e_etcspendpay_number), 예상 기타지출비 내용(e_etcspendpay_content), 예상 기타지출비 등록일(e_etcspendpay_day)
-		, 예상 기타지출비 금액(e_etcspendpay_cost), 기타지출비 공개여부(e_etcspendpay_secret)을 매핑
-		
-	예상 기타지출비에서 기타지출 카테고리를 매핑
-		기타지출비 카테고리 넘버(etcspendpay_number), 기타지출비 카테고리 명(etcspendpay_name)
--->
-<!--
-	배포하려는 웹 호스팅(cafe24)의 MySQL이 외래키(FK)를 지원하지 않아서(InnoDB) SELECT쿼리문마다 ON에 외래키조건을 모두 추가했다.
- -->
-<!-- 기타지출비 결과 리절트맵(조회결과매핑) -->
-<resultMap type="com.spam.sfplanner.actresult.WrEtcSpendPay" id="resultWrEtcSpendPay">
-	<id column="wr_etcspendpay_number" property="wrEtcspendpayNumber"/>
-	<result column="wr_etcspendpay_realcost" property="wrEtcspendpayRealcost"/>
-	<result column="wr_etcspendpay_date" property="wrEtcspendpayDate"/>
-	<collection ofType="com.spam.sfplanner.actresult.PpWoResult" property="ppWoResult">
-		<id column="wr_number" property="wrNumber"/>
-		<result column="wr_totalarea" property="wrTotalarea"/>
-		<result column="wr_reworkarea" property="wrReworkarea"/>
-	</collection>
-	<collection ofType="com.spam.sfplanner.plan.WoEtcSpendPay" property="woEtcSpendPay">
-		<id column="e_etcspendpay_number" property="eEtcspendpayNumber"/>
-		<result column="e_etcspendpay_content" property="eEtcspendpayContent"/>
-		<result column="e_etcspendpay_day" property="eEtcspendpayDay"/>
-		<result column="e_etcspendpay_cost" property="eEtcspendpayCost"/>
-		<result column="e_etcspendpay_secret" property="eEtcspendpaySecret"/>
-		<collection ofType="com.spam.sfplanner.category.CategoryEtcSpendPay" property="categoryEtcSpendPay">
-			<id column="etcspendpay_number" property="etcspendpayNumber"/>
-			<result column="etcspendpay_name" property="etcspendpayName"/>
+	<!-- 
+		기타지출비결과 Mapper : 유국화
+		기본키(PK)는 기타지출비결과 넘버(wr_etcspendpay_number)
+		기타지출비결과에서 기타지출비결과 실제비용(wr_etcspendpay_realcost), 기타지출비결과 지출일(wr_etcspendpay_date)은 종속컬럼
+		작업단계결과 넘버와 예상 기타지출비넘버는 외래키 역할(FK)
+		작업단계결과에서 작업단계결과 넘버(wr_number), 총작업면적(wr_totalarea), 이미작업한면적(wr_reworkarea)을 매핑
+		예상 기타지출비에서 예상 기타지출비 넘버(e_etcspendpay_number), 예상 기타지출비 내용(e_etcspendpay_content), 예상 기타지출비 등록일(e_etcspendpay_day)
+			, 예상 기타지출비 금액(e_etcspendpay_cost), 기타지출비 공개여부(e_etcspendpay_secret)을 매핑
+			
+		예상 기타지출비에서 기타지출 카테고리를 매핑
+			기타지출비 카테고리 넘버(etcspendpay_number), 기타지출비 카테고리 명(etcspendpay_name)
+	-->
+	<!--
+		배포하려는 웹 호스팅(cafe24)의 MySQL이 외래키(FK)를 지원하지 않아서(InnoDB) SELECT쿼리문마다 ON에 외래키조건을 모두 추가했다.
+	 -->
+	<!-- 기타지출비 결과 리절트맵(조회결과매핑) -->
+	<resultMap type="com.spam.sfplanner.actresult.WrEtcSpendPay" id="resultWrEtcSpendPay">
+		<id column="wr_etcspendpay_number" property="wrEtcspendpayNumber"/>
+		<result column="wr_etcspendpay_realcost" property="wrEtcspendpayRealcost"/>
+		<result column="wr_etcspendpay_date" property="wrEtcspendpayDate"/>
+		<collection ofType="com.spam.sfplanner.actresult.PpWoResult" property="ppWoResult">
+			<id column="wr_number" property="wrNumber"/>
+			<result column="wr_totalarea" property="wrTotalarea"/>
+			<result column="wr_reworkarea" property="wrReworkarea"/>
 		</collection>
-	</collection>
-</resultMap>
-
-<!-- 작업단계넘버로 기타지출비 결과 삭제 -->
-<delete id="deleteWrEtcSpendPay"
-		parameterType="int">
-	DELETE FROM sp_wr_etcspendpay WHERE wr_number = #{wrNumber}
-</delete>
-
-<!-- 기타지출비 결과 삭제 -->
-<delete id="oneDeleteWrEtcSpendPay"
-		parameterType="com.spam.sfplanner.actresult.WrEtcSpendPay">
-	DELETE FROM sp_wr_etcspendpay WHERE wr_etcspendpay_number = #{wrEtcspendpayNumber}
-</delete>
-
-<!-- 기타지출비 결과 레코드 하나 선택 후 수정 -->
-<update id="updateWrEtcSpendPay"
-		parameterType="com.spam.sfplanner.actresult.WrEtcSpendPay">
-	UPDATE sp_wr_etcspendpay
-		SET
-			wr_etcspendpay_realcost=#{wrEtcspendpayRealcost},
-			wr_etcspendpay_date=#{wrEtcspendpayDate}
-		WHERE wr_etcspendpay_number = #{wrEtcspendpayNumber}
-</update>
-
-<!-- 기타지출비 결과 레코드 하나 선택 -->
-<select id="oneSelectWrEtcSpendPay"
-		parameterType="int"
-		resultMap="resultWrEtcSpendPay">
-	SELECT sp_wr_etcspendpay.wr_etcspendpay_number
-		, sp_wr_etcspendpay.wr_etcspendpay_realcost
-		, sp_wr_etcspendpay.wr_etcspendpay_date
-		, sp_wr.wr_number
-		, sp_wr.wr_totalarea
-		, sp_wr.wr_reworkarea
-		, sp_e_etcspendpay.e_etcspendpay_number
-		, sp_e_etcspendpay.e_etcspendpay_content
-		, sp_e_etcspendpay.e_etcspendpay_day
-		, sp_e_etcspendpay.e_etcspendpay_cost
-		, sp_e_etcspendpay.e_etcspendpay_secret
-		, sp_etcspendpay_cate.etcspendpay_number
-		, sp_etcspendpay_cate.etcspendpay_name
-	FROM sp_wr_etcspendpay
-	JOIN sp_wr
-	JOIN sp_e_etcspendpay
-	JOIN sp_etcspendpay_cate
-	ON sp_wr_etcspendpay.wr_number = sp_wr.wr_number
-	AND sp_wr_etcspendpay.e_etcspendpay_number = sp_e_etcspendpay.e_etcspendpay_number
-	AND sp_e_etcspendpay.etcspendpay_number = sp_etcspendpay_cate.etcspendpay_number
-	WHERE sp_wr_etcspendpay.wr_etcspendpay_number = #{wrEtcspendpayNumber}
-</select>
-
-<!-- 기타지출비 결과 입력 -->
-<insert id="insertWrEtcSpendPay"
-		parameterType="com.spam.sfplanner.actresult.WrEtcSpendPay">
-		<selectKey resultType="int" keyColumn="wr_etcspendpay_number" keyProperty="wrEtcspendpayNumber" order="AFTER" >
-			SELECT @@IDENTITY
-		</selectKey>
-	INSERT INTO sp_wr_etcspendpay(
-		wr_number
-		, e_etcspendpay_number
-		, wr_etcspendpay_realcost
-		, wr_etcspendpay_date)
-	VALUES (#{ppWoResult.wrNumber}, #{woEtcSpendPay.eEtcspendpayNumber}, #{wrEtcspendpayRealcost}, #{wrEtcspendpayDate}); 
-</insert>
- 
-<!-- 기타지출비 결과 리스트 -->
-<select id="listSelectWrEtcSpendPay"
-		parameterType="Map"
-		resultMap="resultWrEtcSpendPay">
-	SELECT sp_wr_etcspendpay.wr_etcspendpay_number
-		, sp_wr_etcspendpay.wr_etcspendpay_realcost
-		, sp_wr_etcspendpay.wr_etcspendpay_date
-		, sp_wr.wr_number
-		, sp_wr.wr_totalarea
-		, sp_wr.wr_reworkarea
-		, sp_e_etcspendpay.e_etcspendpay_number
-		, sp_e_etcspendpay.e_etcspendpay_content
-		, sp_e_etcspendpay.e_etcspendpay_day
-		, sp_e_etcspendpay.e_etcspendpay_cost
-		, sp_e_etcspendpay.e_etcspendpay_secret
-		, sp_etcspendpay_cate.etcspendpay_number
-		, sp_etcspendpay_cate.etcspendpay_name
-	FROM sp_wr_etcspendpay
-	JOIN sp_wr
-	JOIN sp_e_etcspendpay
-	JOIN sp_etcspendpay_cate
-	ON sp_wr_etcspendpay.wr_number = sp_wr.wr_number
-	AND sp_wr_etcspendpay.e_etcspendpay_number = sp_e_etcspendpay.e_etcspendpay_number
-	AND sp_e_etcspendpay.etcspendpay_number = sp_etcspendpay_cate.etcspendpay_number
-	WHERE sp_wr.wr_number = #{wrNumber}
-</select>
-
+		<collection ofType="com.spam.sfplanner.plan.WoEtcSpendPay" property="woEtcSpendPay">
+			<id column="e_etcspendpay_number" property="eEtcspendpayNumber"/>
+			<result column="e_etcspendpay_content" property="eEtcspendpayContent"/>
+			<result column="e_etcspendpay_day" property="eEtcspendpayDay"/>
+			<result column="e_etcspendpay_cost" property="eEtcspendpayCost"/>
+			<result column="e_etcspendpay_secret" property="eEtcspendpaySecret"/>
+			<collection ofType="com.spam.sfplanner.category.CategoryEtcSpendPay" property="categoryEtcSpendPay">
+				<id column="etcspendpay_number" property="etcspendpayNumber"/>
+				<result column="etcspendpay_name" property="etcspendpayName"/>
+			</collection>
+		</collection>
+	</resultMap>
+	
+	<!-- 작업단계넘버로 기타지출비 결과 삭제 -->
+	<delete id="deleteWrEtcSpendPay"
+			parameterType="int">
+		DELETE FROM sp_wr_etcspendpay WHERE wr_number = #{wrNumber}
+	</delete>
+	
+	<!-- 기타지출비 결과 삭제 -->
+	<delete id="oneDeleteWrEtcSpendPay"
+			parameterType="com.spam.sfplanner.actresult.WrEtcSpendPay">
+		DELETE FROM sp_wr_etcspendpay WHERE wr_etcspendpay_number = #{wrEtcspendpayNumber}
+	</delete>
+	
+	<!-- 기타지출비 결과 레코드 하나 선택 후 수정 -->
+	<update id="updateWrEtcSpendPay"
+			parameterType="com.spam.sfplanner.actresult.WrEtcSpendPay">
+		UPDATE sp_wr_etcspendpay
+			SET
+				wr_etcspendpay_realcost=#{wrEtcspendpayRealcost},
+				wr_etcspendpay_date=#{wrEtcspendpayDate}
+			WHERE wr_etcspendpay_number = #{wrEtcspendpayNumber}
+	</update>
+	
+	<!-- 기타지출비 결과 레코드 하나 선택 -->
+	<select id="oneSelectWrEtcSpendPay"
+			parameterType="int"
+			resultMap="resultWrEtcSpendPay">
+		SELECT sp_wr_etcspendpay.wr_etcspendpay_number
+			, sp_wr_etcspendpay.wr_etcspendpay_realcost
+			, sp_wr_etcspendpay.wr_etcspendpay_date
+			, sp_wr.wr_number
+			, sp_wr.wr_totalarea
+			, sp_wr.wr_reworkarea
+			, sp_e_etcspendpay.e_etcspendpay_number
+			, sp_e_etcspendpay.e_etcspendpay_content
+			, sp_e_etcspendpay.e_etcspendpay_day
+			, sp_e_etcspendpay.e_etcspendpay_cost
+			, sp_e_etcspendpay.e_etcspendpay_secret
+			, sp_etcspendpay_cate.etcspendpay_number
+			, sp_etcspendpay_cate.etcspendpay_name
+		FROM sp_wr_etcspendpay
+		JOIN sp_wr
+		JOIN sp_e_etcspendpay
+		JOIN sp_etcspendpay_cate
+		ON sp_wr_etcspendpay.wr_number = sp_wr.wr_number
+		AND sp_wr_etcspendpay.e_etcspendpay_number = sp_e_etcspendpay.e_etcspendpay_number
+		AND sp_e_etcspendpay.etcspendpay_number = sp_etcspendpay_cate.etcspendpay_number
+		WHERE sp_wr_etcspendpay.wr_etcspendpay_number = #{wrEtcspendpayNumber}
+	</select>
+	
+	<!-- 기타지출비 결과 입력 -->
+	<insert id="insertWrEtcSpendPay"
+			parameterType="com.spam.sfplanner.actresult.WrEtcSpendPay">
+			<selectKey resultType="int" keyColumn="wr_etcspendpay_number" keyProperty="wrEtcspendpayNumber" order="AFTER" >
+				SELECT @@IDENTITY
+			</selectKey>
+		INSERT INTO sp_wr_etcspendpay(
+			wr_number
+			, e_etcspendpay_number
+			, wr_etcspendpay_realcost
+			, wr_etcspendpay_date)
+		VALUES (#{ppWoResult.wrNumber}, #{woEtcSpendPay.eEtcspendpayNumber}, #{wrEtcspendpayRealcost}, #{wrEtcspendpayDate}); 
+	</insert>
+	 
+	<!-- 작업단계결과 넘버별 기타지출비결과 리스트 -->
+	<select id="listSelectWrEtcSpendPay"
+			parameterType="Map"
+			resultMap="resultWrEtcSpendPay">
+		SELECT sp_wr_etcspendpay.wr_etcspendpay_number
+			, sp_wr_etcspendpay.wr_etcspendpay_realcost
+			, sp_wr_etcspendpay.wr_etcspendpay_date
+			, sp_wr.wr_number
+			, sp_wr.wr_totalarea
+			, sp_wr.wr_reworkarea
+			, sp_e_etcspendpay.e_etcspendpay_number
+			, sp_e_etcspendpay.e_etcspendpay_content
+			, sp_e_etcspendpay.e_etcspendpay_day
+			, sp_e_etcspendpay.e_etcspendpay_cost
+			, sp_e_etcspendpay.e_etcspendpay_secret
+			, sp_etcspendpay_cate.etcspendpay_number
+			, sp_etcspendpay_cate.etcspendpay_name
+		FROM sp_wr_etcspendpay
+		JOIN sp_wr
+		JOIN sp_e_etcspendpay
+		JOIN sp_etcspendpay_cate
+		ON sp_wr_etcspendpay.wr_number = sp_wr.wr_number
+		AND sp_wr_etcspendpay.e_etcspendpay_number = sp_e_etcspendpay.e_etcspendpay_number
+		AND sp_e_etcspendpay.etcspendpay_number = sp_etcspendpay_cate.etcspendpay_number
+		WHERE sp_wr.wr_number = #{wrNumber}
+	</select>
+	
+	<!-- 기타지출비결과 전체리스트 -->
+	<select id="listAllSelectWrEtcSpendPay"
+			parameterType="Map"
+			resultMap="resultWrEtcSpendPay">
+		SELECT sp_wr_etcspendpay.wr_etcspendpay_number
+			, sp_wr_etcspendpay.wr_etcspendpay_realcost
+			, sp_wr_etcspendpay.wr_etcspendpay_date
+			, sp_wr.wr_number
+			, sp_wr.wr_totalarea
+			, sp_wr.wr_reworkarea
+			, sp_e_etcspendpay.e_etcspendpay_number
+			, sp_e_etcspendpay.e_etcspendpay_content
+			, sp_e_etcspendpay.e_etcspendpay_day
+			, sp_e_etcspendpay.e_etcspendpay_cost
+			, sp_e_etcspendpay.e_etcspendpay_secret
+			, sp_etcspendpay_cate.etcspendpay_number
+			, sp_etcspendpay_cate.etcspendpay_name
+		FROM sp_wr_etcspendpay
+		JOIN sp_wr
+		JOIN sp_e_etcspendpay
+		JOIN sp_etcspendpay_cate
+		ON sp_wr_etcspendpay.wr_number = sp_wr.wr_number
+		AND sp_wr_etcspendpay.e_etcspendpay_number = sp_e_etcspendpay.e_etcspendpay_number
+		AND sp_e_etcspendpay.etcspendpay_number = sp_etcspendpay_cate.etcspendpay_number
+		ORDER BY sp_wr_etcspendpay.wr_etcspendpay_number ASC	
+	</select>
 </mapper>

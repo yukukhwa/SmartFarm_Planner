@@ -21,8 +21,7 @@
 					<div><label>계획서 작업단계넘버<input type="text" name="ppWork.ppWorkNumber"></label></div>
 					<div><label>실행결과 작업 총 면적<input type="text" name="wrTotalarea"></label></div>
 					<div><label>실행결과 다시 작업한 면적<input type="text" name="wrReworkarea"></label></div>									
-					<button type="submit">작업단계결과 등록</button>
-					
+					<button type="submit">작업단계결과 등록</button>					
 				</form>
 			</div>
 		</div>

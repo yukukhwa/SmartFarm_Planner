@@ -3,124 +3,147 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="com.spam.sfplanner.actresult.WrNeRentPayMapper">
-<!-- 
-	대여비결과 Mapper : 유국화
-	기본키(PK)는 대여비결과 넘버(ne_rentpay_number)
-	대여비결과에서 실제 대여비(ne_rentpay_cost), 실제 대여일(ne_rentpay_date)은 종속컬럼
-	필요장비결과 넘버와 예상  필요장비 넘버는 외래키 역할(FK)
-	필요장비결과에서 필요장비결과 넘버(wr_needequip_number), 필요장비결과 보유상태(wr_needequip_state)를 매핑
-	예상  필요장비에서 예상  필요장비 넘버(ne_e_rentpay_number), 예상 필요장비 공개여부(ne_e_rentpay_secret)를 매핑
-		
-	예상 필요장비에서 대여가능장비를 매핑
-		대여가능장비 넘버(c_rent_number), 대여가능장비 비용(c_rent_cost), 단위시간(c_rent_date), 모델명(c_rent_modelname)
--->
-<!--
-	배포하려는 웹 호스팅(cafe24)의 MySQL이 외래키(FK)를 지원하지 않아서(InnoDB) SELECT쿼리문마다 ON에 외래키조건을 모두 추가했다.
- -->
-
-<!-- 대여비결과 리절트맵(조회결과매핑) -->
-<resultMap type="com.spam.sfplanner.actresult.WrNeRentPay" id="resultWrNeedEquipRentPay">
-	<id column="ne_rentpay_number" property="neRentpayNumber"/>
-	<result column="ne_rentpay_cost" property="neRentpayCost"/>
-	<result column="ne_rentpay_date" property="neRentpayDate"/>
-	<collection ofType="com.spam.sfplanner.actresult.WrNeedEquip" property="wrNeedEquip">
-		<id column="wr_needequip_number" property="wrNeedequipNumber"/>
-		<result column="wr_needequip_state" property="wrNeedequipState"/>		
-	</collection>
-	<collection ofType="com.spam.sfplanner.plan.WoNeRentPay" property="woNeRentPay">
-		<id column="ne_e_rentpay_number" property="neERentpayNumber"/>
-		<result column="ne_e_rentpay_secret" property="neERentpaySecret"/>
-		<collection ofType="com.spam.sfplanner.plan.CompanyRentEquip" property="companyRentEquip">
-			<id column="c_rent_number" property="cRentNumber"/>
-			<result column="c_rent_cost" property="cRentCost"/>	
-			<result column="c_rent_date" property="cRentDate"/>			
-			<result column="c_rent_modelname" property="cRentModelname"/>			
-		</collection>
-	</collection>
+	<!-- 
+		대여비결과 Mapper : 유국화
+		기본키(PK)는 대여비결과 넘버(ne_rentpay_number)
+		대여비결과에서 실제 대여비(ne_rentpay_cost), 실제 대여일(ne_rentpay_date)은 종속컬럼
+		필요장비결과 넘버와 예상  필요장비 넘버는 외래키 역할(FK)
+		필요장비결과에서 필요장비결과 넘버(wr_needequip_number), 필요장비결과 보유상태(wr_needequip_state)를 매핑
+		예상  필요장비에서 예상  필요장비 넘버(ne_e_rentpay_number), 예상 필요장비 공개여부(ne_e_rentpay_secret)를 매핑
+			
+		예상 필요장비에서 대여가능장비를 매핑
+			대여가능장비 넘버(c_rent_number), 대여가능장비 비용(c_rent_cost), 단위시간(c_rent_date), 모델명(c_rent_modelname)
+	-->
+	<!--
+		배포하려는 웹 호스팅(cafe24)의 MySQL이 외래키(FK)를 지원하지 않아서(InnoDB) SELECT쿼리문마다 ON에 외래키조건을 모두 추가했다.
+	 -->
 	
-</resultMap>
-
-<!-- 필요장비결과 넘버로 대여비결과 삭제 -->
-<delete id="deleteWrNeRentPay"
-		parameterType="int">
-	DELETE FROM sp_ne_rentpay WHERE wr_needequip_number = #{wrNeedequipNumber}
-</delete>
-
-<!-- 대여비결과 삭제 -->
-<delete id="oneDeleteWrNeRentPay"
-		parameterType="com.spam.sfplanner.actresult.WrNeRentPay">
-	DELETE FROM sp_ne_rentpay WHERE ne_rentpay_number = #{neEentpayNumber}
-</delete>
-
-<!-- 대여비결과 업데이트 -->
-<update id="updateWrNeRentPay"
-		parameterType="com.spam.sfplanner.actresult.WrNeRentPay">
-	UPDATE sp_ne_rentpay
-		SET
-			ne_rentpay_cost=#{neRentpayCost},
-			ne_rentpay_date=#{neRentpayDate}
-	WHERE ne_rentpay_number = #{neEentpayNumber}
-</update>
-
-<!-- 대여비결과 수정화면출력 셀렉트 -->
-<select id="oneselectWrNeRentPay"
-		parameterType="int"
-		resultMap="resultWrNeedEquipRentPay">
-	SELECT sp_ne_rentpay.ne_rentpay_number	
-	, sp_ne_rentpay.ne_rentpay_cost
-	, sp_ne_rentpay.ne_rentpay_date
-	, sp_wr_needequip.wr_needequip_number
-	, sp_wr_needequip.wr_needequip_state
-	, sp_ne_e_rentpay.ne_e_rentpay_number
-	, sp_ne_e_rentpay.ne_e_rentpay_secret
-	, sp_deal_company_rent.c_rent_cost
-	, sp_deal_company_rent.c_rent_date
-	, sp_deal_company_rent.c_rent_modelname
-	FROM sp_ne_rentpay
-	JOIN sp_ne_e_rentpay
-	JOIN sp_wr_needequip
-	JOIN sp_deal_company_rent
-	ON sp_ne_rentpay.ne_e_rentpay_number=sp_ne_e_rentpay.ne_e_rentpay_number 
-	AND sp_ne_rentpay.wr_needequip_number=sp_wr_needequip.wr_needequip_number
-	AND sp_deal_company_rent.c_rent_number = sp_ne_e_rentpay.c_rent_number
-	WHERE sp_ne_rentpay.ne_rentpay_number = #{neEentpayNumber}
-</select>
-
-<!-- 대여비결과 등록 -->
-<insert id="insertWrNeRentPay"
-		parameterType="com.spam.sfplanner.actresult.WrNeRentPay">
-		<selectKey resultType="int" keyColumn="ne_rentpay_number" keyProperty="neRentpayNumber" order="AFTER" >
-			SELECT @@IDENTITY
-		</selectKey>
-	INSERT INTO sp_ne_rentpay(
-		ne_e_rentpay_number
-		, wr_needequip_number
-		, ne_rentpay_cost
-		, ne_rentpay_date)
-	VALUES (#{neERentpayNumber}, #{wrNeedequipNumber}, #{neRentpayCost}, #{neRentpayDate})
-</insert>
-
-<!-- 대여비결과 리스트 -->
-<select id="listselectWrNeRentPay"
-		parameterType="Map"
-		resultMap="resultWrNeedEquipRentPay">
-	SELECT sp_ne_rentpay.ne_rentpay_number	
-	, sp_ne_rentpay.ne_rentpay_cost
-	, sp_ne_rentpay.ne_rentpay_date
-	, sp_wr_needequip.wr_needequip_number
-	, sp_wr_needequip.wr_needequip_state
-	, sp_ne_e_rentpay.ne_e_rentpay_number
-	, sp_ne_e_rentpay.ne_e_rentpay_secret
-	, sp_deal_company_rent.c_rent_cost
-	, sp_deal_company_rent.c_rent_date
-	, sp_deal_company_rent.c_rent_modelname
-	FROM sp_ne_rentpay
-	JOIN sp_ne_e_rentpay
-	JOIN sp_wr_needequip
-	JOIN sp_deal_company_rent
-	ON sp_ne_rentpay.ne_e_rentpay_number=sp_ne_e_rentpay.ne_e_rentpay_number 
-	AND sp_ne_rentpay.wr_needequip_number=sp_wr_needequip.wr_needequip_number
-	AND sp_deal_company_rent.c_rent_number = sp_ne_e_rentpay.c_rent_number
-	WHERE sp_wr_needequip.wr_needequip_number = #{wrNeedequipNumber}
-</select>
+	<!-- 대여비결과 리절트맵(조회결과매핑) -->
+	<resultMap type="com.spam.sfplanner.actresult.WrNeRentPay" id="resultWrNeedEquipRentPay">
+		<id column="ne_rentpay_number" property="neRentpayNumber"/>
+		<result column="ne_rentpay_cost" property="neRentpayCost"/>
+		<result column="ne_rentpay_date" property="neRentpayDate"/>
+		<collection ofType="com.spam.sfplanner.actresult.WrNeedEquip" property="wrNeedEquip">
+			<id column="wr_needequip_number" property="wrNeedequipNumber"/>
+			<result column="wr_needequip_state" property="wrNeedequipState"/>		
+		</collection>
+		<collection ofType="com.spam.sfplanner.plan.WoNeRentPay" property="woNeRentPay">
+			<id column="ne_e_rentpay_number" property="neERentpayNumber"/>
+			<result column="ne_e_rentpay_secret" property="neERentpaySecret"/>
+			<collection ofType="com.spam.sfplanner.plan.CompanyRentEquip" property="companyRentEquip">
+				<id column="c_rent_number" property="cRentNumber"/>
+				<result column="c_rent_cost" property="cRentCost"/>	
+				<result column="c_rent_date" property="cRentDate"/>			
+				<result column="c_rent_modelname" property="cRentModelname"/>			
+			</collection>
+		</collection>		
+	</resultMap>
+	
+	<!-- 필요장비결과 넘버로 대여비결과 삭제 -->
+	<delete id="deleteWrNeRentPay"
+			parameterType="int">
+		DELETE FROM sp_ne_rentpay WHERE wr_needequip_number = #{wrNeedequipNumber}
+	</delete>
+	
+	<!-- 대여비결과 삭제 -->
+	<delete id="oneDeleteWrNeRentPay"
+			parameterType="com.spam.sfplanner.actresult.WrNeRentPay">
+		DELETE FROM sp_ne_rentpay WHERE ne_rentpay_number = #{neEentpayNumber}
+	</delete>
+	
+	<!-- 대여비결과 업데이트 -->
+	<update id="updateWrNeRentPay"
+			parameterType="com.spam.sfplanner.actresult.WrNeRentPay">
+		UPDATE sp_ne_rentpay
+			SET
+				ne_rentpay_cost=#{neRentpayCost},
+				ne_rentpay_date=#{neRentpayDate}
+		WHERE ne_rentpay_number = #{neRentpayNumber}
+	</update>
+	
+	<!-- 대여비결과 수정화면출력 셀렉트 -->
+	<select id="oneselectWrNeRentPay"
+			parameterType="int"
+			resultMap="resultWrNeedEquipRentPay">
+		SELECT sp_ne_rentpay.ne_rentpay_number	
+		, sp_ne_rentpay.ne_rentpay_cost
+		, sp_ne_rentpay.ne_rentpay_date
+		, sp_wr_needequip.wr_needequip_number
+		, sp_wr_needequip.wr_needequip_state
+		, sp_ne_e_rentpay.ne_e_rentpay_number
+		, sp_ne_e_rentpay.ne_e_rentpay_secret
+		, sp_deal_company_rent.c_rent_cost
+		, sp_deal_company_rent.c_rent_date
+		, sp_deal_company_rent.c_rent_modelname
+		FROM sp_ne_rentpay
+		JOIN sp_ne_e_rentpay
+		JOIN sp_wr_needequip
+		JOIN sp_deal_company_rent
+		ON sp_ne_rentpay.ne_e_rentpay_number=sp_ne_e_rentpay.ne_e_rentpay_number 
+		AND sp_ne_rentpay.wr_needequip_number=sp_wr_needequip.wr_needequip_number
+		AND sp_deal_company_rent.c_rent_number = sp_ne_e_rentpay.c_rent_number
+		WHERE sp_ne_rentpay.ne_rentpay_number = #{neEentpayNumber}
+	</select>
+	
+	<!-- 대여비결과 등록 -->
+	<insert id="insertWrNeRentPay"
+			parameterType="com.spam.sfplanner.actresult.WrNeRentPay">
+			<selectKey resultType="int" keyColumn="ne_rentpay_number" keyProperty="neRentpayNumber" order="AFTER" >
+				SELECT @@IDENTITY
+			</selectKey>
+		INSERT INTO sp_ne_rentpay(
+			ne_e_rentpay_number
+			, wr_needequip_number
+			, ne_rentpay_cost
+			, ne_rentpay_date)
+		VALUES (#{woNeRentPay.neERentpayNumber}, #{wrNeedEquip.wrNeedequipNumber}, #{neRentpayCost}, #{neRentpayDate})
+	</insert>
+	
+	<!-- 필요장비결과 넘버별 대여비결과 리스트 -->
+	<select id="listselectWrNeRentPay"
+			parameterType="Map"
+			resultMap="resultWrNeedEquipRentPay">
+		SELECT sp_ne_rentpay.ne_rentpay_number	
+		, sp_ne_rentpay.ne_rentpay_cost
+		, sp_ne_rentpay.ne_rentpay_date
+		, sp_wr_needequip.wr_needequip_number
+		, sp_wr_needequip.wr_needequip_state
+		, sp_ne_e_rentpay.ne_e_rentpay_number
+		, sp_ne_e_rentpay.ne_e_rentpay_secret
+		, sp_deal_company_rent.c_rent_cost
+		, sp_deal_company_rent.c_rent_date
+		, sp_deal_company_rent.c_rent_modelname
+		FROM sp_ne_rentpay
+		JOIN sp_ne_e_rentpay
+		JOIN sp_wr_needequip
+		JOIN sp_deal_company_rent
+		ON sp_ne_rentpay.ne_e_rentpay_number=sp_ne_e_rentpay.ne_e_rentpay_number 
+		AND sp_ne_rentpay.wr_needequip_number=sp_wr_needequip.wr_needequip_number
+		AND sp_deal_company_rent.c_rent_number = sp_ne_e_rentpay.c_rent_number
+		WHERE sp_wr_needequip.wr_needequip_number = #{wrNeedequipNumber}
+	</select>
+	
+	<!-- 대여비결과 전체리스트 -->
+	<select id="listAllselectWrNeRentPay"
+			parameterType="Map"
+			resultMap="resultWrNeedEquipRentPay">
+		SELECT sp_ne_rentpay.ne_rentpay_number	
+		, sp_ne_rentpay.ne_rentpay_cost
+		, sp_ne_rentpay.ne_rentpay_date
+		, sp_wr_needequip.wr_needequip_number
+		, sp_wr_needequip.wr_needequip_state
+		, sp_ne_e_rentpay.ne_e_rentpay_number
+		, sp_ne_e_rentpay.ne_e_rentpay_secret
+		, sp_deal_company_rent.c_rent_cost
+		, sp_deal_company_rent.c_rent_date
+		, sp_deal_company_rent.c_rent_modelname
+		FROM sp_ne_rentpay
+		JOIN sp_ne_e_rentpay
+		JOIN sp_wr_needequip
+		JOIN sp_deal_company_rent
+		ON sp_ne_rentpay.ne_e_rentpay_number=sp_ne_e_rentpay.ne_e_rentpay_number 
+		AND sp_ne_rentpay.wr_needequip_number=sp_wr_needequip.wr_needequip_number
+		AND sp_deal_company_rent.c_rent_number = sp_ne_e_rentpay.c_rent_number
+		ORDER BY sp_ne_rentpay.ne_rentpay_number	 ASC		
+	</select>
 </mapper>

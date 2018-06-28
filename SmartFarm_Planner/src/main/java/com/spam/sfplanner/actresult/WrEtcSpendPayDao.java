@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class WrEtcSpendPayDao {
+public class WrEtcSpendPayDao { //기타지출비결과 Dao
 	private static final Logger LOGGER = LoggerFactory.getLogger(WrEtcSpendPayService.class);
 	@Autowired private SqlSessionTemplate sqlsession;
 	private final String nameSpace ="com.spam.sfplanner.actresult.WrEtcSpendPayMapper.";
@@ -45,9 +45,15 @@ public class WrEtcSpendPayDao {
 		sqlsession.insert(nameSpace+"insertWrEtcSpendPay",wrEtcSpendPay);
 	}
 	
-	//기타지출비결과 전체리스트
+	//작업단계결과 넘버별 기타지출비결과 리스트
 	public List<WrEtcSpendPay> listSelectWrEtcSpendPay(Map<String, Object> map) {
 		LOGGER.info("listSelectWrEtcSpendPay 호출");
 		return sqlsession.selectList(nameSpace+"listSelectWrEtcSpendPay", map);
+	}
+
+	//기타지출비결과 전체리스트
+	public List<WrEtcSpendPay> listAllSelectWrEtcSpendPay() {
+		LOGGER.info("listSelectWrEtcSpendPay 호출");
+		return sqlsession.selectList(nameSpace+"listSelectWrEtcSpendPay");
 	}	
 }

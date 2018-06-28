@@ -3,118 +3,141 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="com.spam.sfplanner.actresult.WrNeedEquipMapper">
-<!-- 
-	필요장비결과 Mapper : 유국화
-	기본키(PK)는 필요장비결과 넘버(wr_needequip_number)
-	필요장비결과에서 필요장비결과 보유상태(wr_needequip_state)는 종속컬럼
-	작업단계결과 넘버와 예상  필요장비 넘버는 외래키 역할(FK)
-	작업단계결과에서 작업단계결과 넘버(wr_number), 총작업면적(wr_totalarea), 이미작업한면적(wr_reworkarea)을 매핑
-	예상  필요장비에서 예상  필요장비 넘버(e_needequip_number), 예상 필요장비 보유상태(e_needequip_state)를 매핑
-		
-	예상 필요장비에서 장비종류 카테고리를 매핑
-		장비종류 카테고리 넘버(equip_number), 장비종류 카테고리 명(equip_name)
--->
-<!--
-	배포하려는 웹 호스팅(cafe24)의 MySQL이 외래키(FK)를 지원하지 않아서(InnoDB) SELECT쿼리문마다 ON에 외래키조건을 모두 추가했다.
- -->
-
-<!-- 필요장비결과 리절트맵(조회결과매핑) -->
-<resultMap type="com.spam.sfplanner.actresult.WrNeedEquip" id="resultWrNeedEquip">
-	<id column="wr_needequip_number" property="wrNeedequipNumber"/>
-	<result column="wr_needequip_state" property="wrNeedequipState"/>
-	<collection ofType="com.spam.sfplanner.actresult.PpWoResult" property="ppWoResult">
-		<id column="wr_number" property="wrNumber"/>
-		<result column="wr_totalarea" property="wrTotalarea"/>	
-		<result column="wr_reworkarea" property="wrReworkarea"/>	
-	</collection>
-	<collection ofType="com.spam.sfplanner.plan.WoNeedEquip" property="woNeedEquip">
-		<id column="e_needequip_number" property="eNeedequipNumber"/>
-		<result column="e_needequip_state" property="eNeedequipState"/>
-		<collection ofType="com.spam.sfplanner.category.CategoryEquip" property="categoryEquip">
-			<id column="equip_number" property="equipNumber"/>
-			<result column="equip_name" property="equipName"/>
-		</collection>
-	</collection>
+	<!-- 
+		필요장비결과 Mapper : 유국화
+		기본키(PK)는 필요장비결과 넘버(wr_needequip_number)
+		필요장비결과에서 필요장비결과 보유상태(wr_needequip_state)는 종속컬럼
+		작업단계결과 넘버와 예상  필요장비 넘버는 외래키 역할(FK)
+		작업단계결과에서 작업단계결과 넘버(wr_number), 총작업면적(wr_totalarea), 이미작업한면적(wr_reworkarea)을 매핑
+		예상  필요장비에서 예상  필요장비 넘버(e_needequip_number), 예상 필요장비 보유상태(e_needequip_state)를 매핑
+			
+		예상 필요장비에서 장비종류 카테고리를 매핑
+			장비종류 카테고리 넘버(equip_number), 장비종류 카테고리 명(equip_name)
+	-->
+	<!--
+		배포하려는 웹 호스팅(cafe24)의 MySQL이 외래키(FK)를 지원하지 않아서(InnoDB) SELECT쿼리문마다 ON에 외래키조건을 모두 추가했다.
+	 -->
 	
-</resultMap>
-
-<!-- 작업단계 넘버로 필요장비결과 삭제 -->
-<delete id="deleteWrNeedEquip"
-		parameterType="int">
-	DELETE FROM sp_wr_needequip WHERE wr_number = #{wrNumber}
-</delete>
-
-<!-- 필요장비결과 삭제 -->
-<delete id="oneDeleteWrNeedEquip"
-		parameterType="com.spam.sfplanner.actresult.WrNeedEquip">
-	DELETE FROM sp_wr_needequip WHERE wr_needequip_number = #{wrNeedequipNumber}
-</delete>
-
-<!-- 필요장비결과 업데이트 -->
-<update id="updateWrNeedEquip"
-		parameterType="com.spam.sfplanner.actresult.WrNeedEquip">
-	UPDATE sp_wr_needequip
-	SET
-		wr_needequip_state=#{wrNeedequipState}
-	WHERE wr_needequip_number = #{wrNeedequipNumber}
-</update>
-
-<!-- 필요장비결과 수정화면출력 셀렉트 -->
-<select id="oneSelectWrNeedEquip"
-		parameterType="int"
-		resultMap="resultWrNeedEquip">
-	SELECT sp_wr_needequip.wr_needequip_number
-		, sp_wr_needequip.wr_needequip_state
-		, sp_wr.wr_number
-		, sp_wr.wr_totalarea
-		, sp_wr.wr_reworkarea
-		, sp_e_needequip.e_needequip_number
-		, sp_e_needequip.e_needequip_state
-		, sp_equip_cate.equip_number
-		, sp_equip_cate.equip_name
-	FROM sp_wr_needequip
-	JOIN sp_wr
-	JOIN sp_e_needequip
-	JOIN sp_equip_cate
-	ON sp_wr_needequip.wr_number = sp_wr.wr_number 
-	AND sp_wr_needequip.e_needequip_number = sp_e_needequip.e_needequip_number
-	AND sp_equip_cate.equip_number = sp_e_needequip.equip_number
-	WHERE sp_wr_needequip.wr_needequip_number = #{wrNeedequipNumber}
-</select>
-
-<!-- 필요장비결과등록 -->
-<insert id="insertWrNeedEquip"
-		parameterType="com.spam.sfplanner.actresult.WrNeedEquip">
-		<selectKey resultType="int" keyColumn="wr_needequip_number" keyProperty="wrNeedequipNumber" order="AFTER" >
-			SELECT @@IDENTITY
-		</selectKey>
-	 INSERT INTO sp_wr_needequip(
-		 wr_number
-		 , e_needequip_number
-		 , wr_needequip_state)
-	VALUES (#{wrNumber}, #{eNeedequipNumber}, #{wrNeedequipState})
-</insert>
-
-<!-- 필요장비결과 전체리스트 -->
-<select id="listSelectWrNeedEquip"
-		parameterType="Map"
-		resultMap="resultWrNeedEquip">
-	SELECT sp_wr_needequip.wr_needequip_number
-		, sp_wr_needequip.wr_needequip_state
-		, sp_wr.wr_number
-		, sp_wr.wr_totalarea
-		, sp_wr.wr_reworkarea
-		, sp_e_needequip.e_needequip_number
-		, sp_e_needequip.e_needequip_state
-		, sp_equip_cate.equip_number
-		, sp_equip_cate.equip_name
-	FROM sp_wr_needequip
-	JOIN sp_wr
-	JOIN sp_e_needequip
-	JOIN sp_equip_cate
-	ON sp_wr_needequip.wr_number = sp_wr.wr_number 
-	AND sp_wr_needequip.e_needequip_number = sp_e_needequip.e_needequip_number
-	AND sp_equip_cate.equip_number = sp_e_needequip.equip_number
-	WHERE sp_wr.wr_number = #{wrNumber}
-</select>
+	<!-- 필요장비결과 리절트맵(조회결과매핑) -->
+	<resultMap type="com.spam.sfplanner.actresult.WrNeedEquip" id="resultWrNeedEquip">
+		<id column="wr_needequip_number" property="wrNeedequipNumber"/>
+		<result column="wr_needequip_state" property="wrNeedequipState"/>
+		<collection ofType="com.spam.sfplanner.actresult.PpWoResult" property="ppWoResult">
+			<id column="wr_number" property="wrNumber"/>
+			<result column="wr_totalarea" property="wrTotalarea"/>	
+			<result column="wr_reworkarea" property="wrReworkarea"/>	
+		</collection>
+		<collection ofType="com.spam.sfplanner.plan.WoNeedEquip" property="woNeedEquip">
+			<id column="e_needequip_number" property="eNeedequipNumber"/>
+			<result column="e_needequip_state" property="eNeedequipState"/>
+			<collection ofType="com.spam.sfplanner.category.CategoryEquip" property="categoryEquip">
+				<id column="equip_number" property="equipNumber"/>
+				<result column="equip_name" property="equipName"/>
+			</collection>
+		</collection>
+		
+	</resultMap>
+	
+	<!-- 작업단계 넘버로 필요장비결과 삭제 -->
+	<delete id="deleteWrNeedEquip"
+			parameterType="int">
+		DELETE FROM sp_wr_needequip WHERE wr_number = #{wrNumber}
+	</delete>
+	
+	<!-- 필요장비결과 삭제 -->
+	<delete id="oneDeleteWrNeedEquip"
+			parameterType="com.spam.sfplanner.actresult.WrNeedEquip">
+		DELETE FROM sp_wr_needequip WHERE wr_needequip_number = #{wrNeedequipNumber}
+	</delete>
+	
+	<!-- 필요장비결과 업데이트 -->
+	<update id="updateWrNeedEquip"
+			parameterType="com.spam.sfplanner.actresult.WrNeedEquip">
+		UPDATE sp_wr_needequip
+		SET
+			wr_needequip_state=#{wrNeedequipState}
+		WHERE wr_needequip_number = #{wrNeedequipNumber}
+	</update>
+	
+	<!-- 필요장비결과 수정화면출력 셀렉트 -->
+	<select id="oneSelectWrNeedEquip"
+			parameterType="int"
+			resultMap="resultWrNeedEquip">
+		SELECT sp_wr_needequip.wr_needequip_number
+			, sp_wr_needequip.wr_needequip_state
+			, sp_wr.wr_number
+			, sp_wr.wr_totalarea
+			, sp_wr.wr_reworkarea
+			, sp_e_needequip.e_needequip_number
+			, sp_e_needequip.e_needequip_state
+			, sp_equip_cate.equip_number
+			, sp_equip_cate.equip_name
+		FROM sp_wr_needequip
+		JOIN sp_wr
+		JOIN sp_e_needequip
+		JOIN sp_equip_cate
+		ON sp_wr_needequip.wr_number = sp_wr.wr_number 
+		AND sp_wr_needequip.e_needequip_number = sp_e_needequip.e_needequip_number
+		AND sp_equip_cate.equip_number = sp_e_needequip.equip_number
+		WHERE sp_wr_needequip.wr_needequip_number = #{wrNeedequipNumber}
+	</select>
+	
+	<!-- 필요장비결과등록 -->
+	<insert id="insertWrNeedEquip"
+			parameterType="com.spam.sfplanner.actresult.WrNeedEquip">
+			<selectKey resultType="int" keyColumn="wr_needequip_number" keyProperty="wrNeedequipNumber" order="AFTER" >
+				SELECT @@IDENTITY
+			</selectKey>
+		 INSERT INTO sp_wr_needequip(
+			 wr_number
+			 , e_needequip_number
+			 , wr_needequip_state)
+		VALUES (#{ppWoResult.wrNumber}, #{woNeedEquip.eNeedequipNumber}, #{wrNeedequipState})
+	</insert>
+	
+	<!--작업단계결과 넘버별 필요장비결과 리스트 -->
+	<select id="listSelectWrNeedEquip"
+			parameterType="Map"
+			resultMap="resultWrNeedEquip">
+		SELECT sp_wr_needequip.wr_needequip_number
+			, sp_wr_needequip.wr_needequip_state
+			, sp_wr.wr_number
+			, sp_wr.wr_totalarea
+			, sp_wr.wr_reworkarea
+			, sp_e_needequip.e_needequip_number
+			, sp_e_needequip.e_needequip_state
+			, sp_equip_cate.equip_number
+			, sp_equip_cate.equip_name
+		FROM sp_wr_needequip
+		JOIN sp_wr
+		JOIN sp_e_needequip
+		JOIN sp_equip_cate
+		ON sp_wr_needequip.wr_number = sp_wr.wr_number 
+		AND sp_wr_needequip.e_needequip_number = sp_e_needequip.e_needequip_number
+		AND sp_equip_cate.equip_number = sp_e_needequip.equip_number
+		WHERE sp_wr.wr_number = #{wrNumber}
+	</select>
+	
+	<!-- 필요장비결과 전체리스트 -->
+	<select id="listAllSelectWrNeedEquip"
+			parameterType="Map"
+			resultMap="resultWrNeedEquip">
+		SELECT sp_wr_needequip.wr_needequip_number
+			, sp_wr_needequip.wr_needequip_state
+			, sp_wr.wr_number
+			, sp_wr.wr_totalarea
+			, sp_wr.wr_reworkarea
+			, sp_e_needequip.e_needequip_number
+			, sp_e_needequip.e_needequip_state
+			, sp_equip_cate.equip_number
+			, sp_equip_cate.equip_name
+		FROM sp_wr_needequip
+		JOIN sp_wr
+		JOIN sp_e_needequip
+		JOIN sp_equip_cate
+		ON sp_wr_needequip.wr_number = sp_wr.wr_number 
+		AND sp_wr_needequip.e_needequip_number = sp_e_needequip.e_needequip_number
+		AND sp_equip_cate.equip_number = sp_e_needequip.equip_number		
+		ORDER BY sp_wr_needequip.wr_needequip_number ASC
+	</select>
 </mapper>
