@@ -55,7 +55,7 @@ public class CategoryEtcSpendPayDao {
 	 * 기타지출비카테고리 등록 Dao
 	 * @param map
 	 */
-	public void insertCategoryEtcSpendPay(Map<String, Object> map) {
-		sqlSession.insert(NAMESPACE+"insertCategoryEtcSpendPay", map);
+	public void insertCategoryEtcSpendPay(CategoryEtcSpendPay categoryEtcSpendPay) {
+		sqlSession.insert(NAMESPACE+"insertCategoryEtcSpendPay", categoryEtcSpendPay);
 	}
 }

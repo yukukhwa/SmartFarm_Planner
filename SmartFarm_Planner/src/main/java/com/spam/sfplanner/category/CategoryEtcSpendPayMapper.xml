@@ -88,7 +88,7 @@ delete from sp_etcspendpay_cate where etcspendpay_number= #{etcspendpayNumber}
  
 <!-- 기타지출비 카테고리 등록 쿼리문장 -->
 <insert id="insertCategoryEtcSpendPay"
- 		parameterType="java.util.Map">
+ 		parameterType="com.spam.sfplanner.category.CategoryEtcSpendPay">
  	INSERT INTO sp_etcspendpay_cate
 	(theme_number
 	,etcspendpay_name

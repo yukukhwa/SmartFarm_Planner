@@ -63,16 +63,11 @@ public class CategoryEtcSpendPayService {
 	 * @param categoryEtcSpendPay
 	 * @param session
 	 */
-	public void insertCategoryEtcSpendPay(CategoryEtcSpendPay categoryEtcSpendPay, HttpSession session) {
-		Map<String, Object> map = new HashMap<String, Object>();	
-		map.put("themeNumber", categoryEtcSpendPay.getCategoryTheme().getThemeNumber());
-		map.put("fNumber", ((Login)session.getAttribute("loginMember")).getCorpNumber());
-		map.put("fMemberId", ((Login)session.getAttribute("loginMember")).getId());
-		map.put("etcspendpayName", categoryEtcSpendPay.getEtcspendpayName());	
-		categoryEtcSpendPayDao.insertCategoryEtcSpendPay(map);
+	public void insertCategoryEtcSpendPay(CategoryEtcSpendPay categoryEtcSpendPay) {
+		categoryEtcSpendPayDao.insertCategoryEtcSpendPay(categoryEtcSpendPay);
 	}
 	/**
-	 * 기타지출비카테고리 화면 출력 Service
+	 * 기타지출비카테고리 등록화면 출력 Service
 	 * @return 
 	 */
 	public List<CategoryTheme> insertCategoryEtcSpendPay(){

@@ -10,9 +10,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#addWoNeedEquip').click(function(){
-			$('#addWoNeedEquipForm').submit();
-		});
 		$('select#eNeedequipState').change(function(){
 			var eNeedequipState = $(this).val();
 			if(eNeedequipState == '보유' || eNeedequipState == '구매예정'){
@@ -45,6 +42,9 @@
 				return;
 			}
 			return;
+		});
+		$('#addWoNeedEquip').click(function(){
+			$('#addWoNeedEquipForm').submit();
 		});
 	});
 </script>

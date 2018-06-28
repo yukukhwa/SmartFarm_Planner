@@ -1,6 +1,7 @@
 /*배건혜*/
 package com.spam.sfplanner.plan;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,12 +45,13 @@ public class WoNeedEquipController {
 	@RequestMapping(value="/addWoNeedEquip", method=RequestMethod.POST)
 	public String insertWoNeedEquip(WoNeedEquip woNeedEquip) {
 		System.out.println("addWoNeedEquip===> "+woNeedEquip);
+		woNeedEquipService.insertWoNeedEquip(woNeedEquip);
 		int eNeedequipNumber = woNeedEquip.geteNeedequipNumber();
-		if(eNeedequipNumber == 0) {
+		if(eNeedequipNumber != 0) {
 			woNeRentPayService.insertWoNeRentPay(eNeedequipNumber);
 		}
-		woNeedEquipService.insertWoNeedEquip(woNeedEquip);
-		return "redirect:/listWoNeedEquip";
+		
+		return "redirect:/listPlanner";
 	}
 	
 	@RequestMapping(value="/addWoNeedEquip", method=RequestMethod.GET)

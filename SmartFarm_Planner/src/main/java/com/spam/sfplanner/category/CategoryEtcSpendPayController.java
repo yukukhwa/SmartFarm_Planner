@@ -72,9 +72,9 @@ public class CategoryEtcSpendPayController {
 	 * @return
 	 */
 	@RequestMapping(value="/addCategoryEtcSpendPay", method=RequestMethod.POST)
-	public String insertCategoryEtcSpendPay(CategoryEtcSpendPay categoryEtcSpendPay, HttpSession session) {
+	public String insertCategoryEtcSpendPay(CategoryEtcSpendPay categoryEtcSpendPay) {
 		System.out.println("insertCategoryEtcSpendPay categoryEtcSpendPay====> "+categoryEtcSpendPay);
-		categoryEtcSpendPayService.insertCategoryEtcSpendPay(categoryEtcSpendPay, session);
+		categoryEtcSpendPayService.insertCategoryEtcSpendPay(categoryEtcSpendPay);
 		return "redirect:/listCategoryEtcSpendPay";
 	}
 	

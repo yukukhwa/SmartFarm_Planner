@@ -3,6 +3,8 @@ package com.spam.sfplanner.plan;
 
 
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,4 +45,18 @@ public class WoNeRentPayController {
 		return "plan/wo_ne_rentpay/listWoNeRentPay";
 	}
 	
+	@RequestMapping(value="/addNeRentPay", method=RequestMethod.POST)
+	public String insertWoNeRentPay(WoNeRentPay woNeRentPay) {
+		woNeRentPayService.insertWoNeRentPay(woNeRentPay);
+		return "redirect:/listPlanner";
+	}
+	
+	@RequestMapping(value="/addNeRentPay", method=RequestMethod.GET)
+	public String insertWoNeRentPay(Model model ,int eNeedequipNumber) {
+		Map<String, Object> map = woNeRentPayService.insertWoNeRentPay(eNeedequipNumber);
+		model.addAttribute("woNeedEquipList", map.get("woNeedEquipList"));
+		model.addAttribute("categoryThemeList", map.get("categoryThemeList"));
+		model.addAttribute("companyRentEquipList", map.get("companyRentEquipList"));
+		return "plan/wo_ne_rentpay/addWoNeedEquip";
+	}
 }

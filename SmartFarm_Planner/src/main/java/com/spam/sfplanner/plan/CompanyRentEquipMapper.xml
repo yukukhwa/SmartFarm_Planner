@@ -26,20 +26,19 @@
 	 </collection>
  </resultMap>
  
-
-<!-- <update id="updateCompanyRentEquip"
+<!-- 대여가능장비 수정처리쿼리문장 -->
+<update id="updateCompanyRentEquip"
 		parameterType="com.spam.sfplanner.plan.CompanyRentEquip">
 		UPDATE sp_deal_company_rent
 	SET
-		c_number= #{company.cNumber}
-		,equip_number=#{categoryEquip.equipNumber}
+		equip_number=#{categoryEquip.equipNumber}
 		,c_rent_cost=#{cRentCost}
 		,c_rent_date=#{cRentDate}
 		,c_rent_modelname=#{cRentModelname}
 		,c_rent_registdate=NOW()
 	WHERE c_rent_number=#{cRentNumber}
 	
-</update>  -->
+</update> 
 <!-- 대여가능장비 리스트에서 하나의 리스트를 수정하는 화면 출력하는 쿼리문장 -->
 <select id="oneSelectCompanyRentEquip"
 		parameterType="int"

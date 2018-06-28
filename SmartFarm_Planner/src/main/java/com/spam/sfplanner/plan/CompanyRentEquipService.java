@@ -30,7 +30,7 @@ public class CompanyRentEquipService {
 	 * 대여가능장비 수정처리 Service
 	 * @param companyRentEquip
 	 */
-	public void updateCompanyRentEquip(CompanyRentEquip companyRentEquip) {
+	public void updateCompanyRentEquip(CompanyRentEquip companyRentEquip,HttpSession session) {
 		companyRentEquipDao.updateCompanyRentEquip(companyRentEquip);
 	}
 	

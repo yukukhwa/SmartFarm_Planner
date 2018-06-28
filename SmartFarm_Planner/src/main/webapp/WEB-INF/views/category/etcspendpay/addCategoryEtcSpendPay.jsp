@@ -12,8 +12,8 @@
 	$(document).ready(function(){
 		$('button').click(function(){
 			$('form').submit();
-		})
-	})
+		});
+	});
 	</script>
 </head>
 <body>
@@ -33,23 +33,24 @@
 	    		<form action="${pageContext.request.contextPath}/addCategoryEtcSpendPay" method="post">
 	    			<div>
 	    				<label>
-	    				테마카테고리 선택
-		    				<select name="categoryTheme.themeNumber" id="categoryTheme.themeNumber">
-		    					<option>테마선택</option>
-		    					<c:forEach var="categoryTheme" items="${categoryTheme}">
-		    						<option value="${categoryTheme.themeNumber}">${categoryTheme.themeName}</option>
-		    					</c:forEach>
-		    				</select>
+	    					테마카테고리 선택
 	    				</label>
+	    				<select name="categoryTheme.themeNumber" id="themeNumber">
+	    					<c:forEach var="categoryTheme" items="${categoryTheme}">
+	    						<option value="${categoryTheme.themeNumber}">${categoryTheme.themeName}</option>
+	    					</c:forEach>
+	    				</select>
 	    			</div>
 	    			<div>
-	    				기타지출비용명<br>
+	    				기타지출비명<br>
 	    				<input type="text" name="etcspendpayName" id="etcspendpayName" placeholder="기타지출비명을 입력하세요">
+	    				<input type="hidden" name="farm.fNumber" value="${loginMember.corpNumber}">
+	    				<input type="hidden" name="farmMember.fMemberId" value="${loginMember.id}">
 	    			</div>
 	    		</form>
 	    		<button type="submit">등록하기</button>
     		</c:if>
-    	</section>
+    	</section>    
     </section>
 </body>
 </html>

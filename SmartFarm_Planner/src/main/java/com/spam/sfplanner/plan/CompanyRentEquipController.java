@@ -26,8 +26,8 @@ public class CompanyRentEquipController {
 	 * @return
 	 */
 	@RequestMapping(value="/updateCompanyRentEquip", method=RequestMethod.POST)
-	public String updateCompanyRentEquip(CompanyRentEquip companyRentEquip) {
-		companyRentEquipService.updateCompanyRentEquip(companyRentEquip);
+	public String updateCompanyRentEquip(CompanyRentEquip companyRentEquip,HttpSession session) {
+		companyRentEquipService.updateCompanyRentEquip(companyRentEquip,session);
 		return "redirect:/listCompanyRentEquip";
 	}
 	/**

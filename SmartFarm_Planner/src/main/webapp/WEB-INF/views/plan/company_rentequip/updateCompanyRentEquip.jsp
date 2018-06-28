@@ -11,7 +11,6 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#equipNumber').val(${companyRentEquip.categoryEquip.equipNumber})
-		$('#cNumber').val(${companyRentEquip.company.cNumber})
 		$('button').click(function(){
 			$('form').submit();
 		});
