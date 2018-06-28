@@ -13,6 +13,7 @@ public class WrNeRentPay {
 	private double neRentpayCost; //대여비
 	private Date neRentpayDate; //대여비지불일
 	
+	//필요장비결과 생성자메서드
 	public WrNeRentPay() {
 		this.wrNeedEquip = new WrNeedEquip();
 	}

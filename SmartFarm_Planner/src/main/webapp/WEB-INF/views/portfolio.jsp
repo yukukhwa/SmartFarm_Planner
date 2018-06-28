@@ -211,8 +211,7 @@
 														<a href="http://cjsghka.cafe24.com/">유국화</a> 6th Octmber
 														1991
 													</p>
-													<p>기능구현, 개발문서 업데이트 및 프로젝트 일정 관리, 의견수렴 및 진행방향 결정, UI 구성,
-														오픈API 활용</p>
+													<p>기능구현, 개발문서 업데이트 및 프로젝트 일정 관리, 의견수렴 및 진행방향 결정, UI 구성, 오픈API 활용</p>
 												</div>
 											</div>
 										</div>
@@ -448,7 +447,7 @@
 														<h3>개발환경</h3>
 													</div>
 													<div class="panel-content" style="display:none">
-														<img src="img/20180622_devEnv.png" style="width: 100%">
+														<img src="img/20180627_dev_environment.png" style="width: 100%">
 													</div>
 												</div>
 												<div>

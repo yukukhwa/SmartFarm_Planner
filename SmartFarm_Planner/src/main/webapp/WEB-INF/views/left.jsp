@@ -96,9 +96,6 @@
 				<a class="" href="#"><i class="icon_piechart"></i><span>비교·분석</span></a>
 			</li>
 		</c:if>			
-			<li>
-				<a class="" href="https://bootstrapmade.com/demo/NiceAdmin/"><i class="icon_documents_alt"></i><span>데모 링크</span></a>
-			</li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>

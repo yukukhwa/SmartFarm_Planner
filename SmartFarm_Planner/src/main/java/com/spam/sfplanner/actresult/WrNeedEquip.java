@@ -13,6 +13,7 @@ public class WrNeedEquip {
 	private String wrNeedequipState; //실행할때 보유상태
 	private List<WrNeRentPay> wrNeRentPayList; //필요장비결과별 대여비결과 리스트객체
 	
+	//작업단계결과 생성자메서드
 	public WrNeedEquip() {
 		this.ppWoResult = new PpWoResult();
 	}

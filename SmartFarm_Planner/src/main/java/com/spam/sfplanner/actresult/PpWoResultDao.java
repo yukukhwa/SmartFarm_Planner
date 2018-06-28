@@ -15,10 +15,16 @@ public class PpWoResultDao {
 	@Autowired private SqlSessionTemplate sqlsession;
 	private final String nameSpace = "com.spam.sfplanner.actresult.PpWoResultMapper.";
 	
-	//작업단계결과 리스트 중 하나의 작업단계결과 선택해서 삭제처리
-	public void deleteWorkResult(PpWoResult ppWoResult) {
+	//실행결과리스트 넘버로 작업단계결과 삭제처리
+	public void deleteWorkResult(int ppResultlistNumber) {
 	LOGGER.info("deleteWorkResult dao에서 호출");
-	sqlsession.delete(nameSpace+"deleteWorkResult", ppWoResult);
+	sqlsession.delete(nameSpace+"deleteWorkResult", ppResultlistNumber);
+	}
+	
+	//작업단계결과 리스트 중 하나의 작업단계결과 선택해서 삭제처리
+	public void oneDeleteWorkResult(PpWoResult ppWoResult) {
+	LOGGER.info("oneDeleteWorkResult dao에서 호출");
+	sqlsession.delete(nameSpace+"oneDeleteWorkResult", ppWoResult);
 	}
 
 	//작업단계결과 수정화면에서 보낸 정보로 수정처리

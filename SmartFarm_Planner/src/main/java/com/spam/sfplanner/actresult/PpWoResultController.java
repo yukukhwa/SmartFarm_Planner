@@ -19,7 +19,7 @@ public class PpWoResultController {
 	//작업단계 등록화면에서 보낸 정보 입력처리
 	@RequestMapping(value="/addWorkResult", method=RequestMethod.POST)
 	public String insertWorkResult(PpWoResult ppWoResult) {
-		LOGGER.info("insertWorkResult 호출");
+		LOGGER.info("insertWorkResult post 호출");
 		ppWoResultService.insertWorkResult(ppWoResult);
 		return "redirect:/listWorkResult";
 	}

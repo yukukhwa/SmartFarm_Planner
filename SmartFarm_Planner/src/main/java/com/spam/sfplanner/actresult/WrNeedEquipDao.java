@@ -15,7 +15,7 @@ public class WrNeedEquipDao {
 	@Autowired private SqlSessionTemplate sqlsession;
 	private final String nameSpace = "com.spam.sfplanner.actresult.WrNeedEquipMapper.";
 	
-	//작업단계결과 리스트 중 하나의 필요장비 결과 선택해서 삭제처리
+	//작업단계결과 넘버로 필요장비결과 삭제처리
 	public void deleteWrNeedEquip(int wrNumber) {
 	LOGGER.info("deleteWrNeedEquip dao에서 호출");
 	sqlsession.delete(nameSpace+"deleteWrNeedEquip", wrNumber);

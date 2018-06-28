@@ -3,7 +3,21 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spam.sfplanner.actresult.WrEtcSpendPayMapper">
-
+<!-- 
+	기타지출비결과 Mapper : 유국화
+	기본키(PK)는 기타지출비결과 넘버(wr_etcspendpay_number)
+	기타지출비결과에서 기타지출비결과 실제비용(wr_etcspendpay_realcost), 기타지출비결과 지출일(wr_etcspendpay_date)은 종속컬럼
+	작업단계결과 넘버와 예상 기타지출비넘버는 외래키 역할(FK)
+	작업단계결과에서 작업단계결과 넘버(wr_number), 총작업면적(wr_totalarea), 이미작업한면적(wr_reworkarea)을 매핑
+	예상 기타지출비에서 예상 기타지출비 넘버(e_etcspendpay_number), 예상 기타지출비 내용(e_etcspendpay_content), 예상 기타지출비 등록일(e_etcspendpay_day)
+		, 예상 기타지출비 금액(e_etcspendpay_cost), 기타지출비 공개여부(e_etcspendpay_secret)을 매핑
+		
+	예상 기타지출비에서 기타지출 카테고리를 매핑
+		기타지출비 카테고리 넘버(etcspendpay_number), 기타지출비 카테고리 명(etcspendpay_name)
+-->
+<!--
+	배포하려는 웹 호스팅(cafe24)의 MySQL이 외래키(FK)를 지원하지 않아서(InnoDB) SELECT쿼리문마다 ON에 외래키조건을 모두 추가했다.
+ -->
 <!-- 기타지출비 결과 리절트맵(조회결과매핑) -->
 <resultMap type="com.spam.sfplanner.actresult.WrEtcSpendPay" id="resultWrEtcSpendPay">
 	<id column="wr_etcspendpay_number" property="wrEtcspendpayNumber"/>
@@ -27,7 +41,7 @@
 	</collection>
 </resultMap>
 
-<!-- 작업단계에서 기타지출비 결과 삭제 -->
+<!-- 작업단계넘버로 기타지출비 결과 삭제 -->
 <delete id="deleteWrEtcSpendPay"
 		parameterType="int">
 	DELETE FROM sp_wr_etcspendpay WHERE wr_number = #{wrNumber}

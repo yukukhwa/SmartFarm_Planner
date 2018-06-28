@@ -29,9 +29,11 @@ public class WrInsurancePayController {
 	
 	//보험비결과 등록화면에서 보낸 정보 입력처리
 	@RequestMapping(value="/addWrInsurancePay", method=RequestMethod.POST)
-	public String insertWrInsurancePay(WrInsurancePay wrinsurancepaydb) {
+	public String insertWrInsurancePay(WrInsurancePay wrInsurancePay, Model model) {
 		LOGGER.info("insertWrInsurancePay post 호출");		
-		return "actresult/wr_insurancepay/listWrInsurancePay";
+		wrInsurancePayService.insertWrInsurancePay(wrInsurancePay);
+		int wrNumber = wrInsurancePay.getPpWoResult().getWrNumber();
+		return "actresult/wr_insurancepay/listWrInsurancePay?wrNumber="+wrNumber;
 	}
 	
 	//보험비결과 등록화면으로 포워드

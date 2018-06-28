@@ -3,6 +3,18 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="com.spam.sfplanner.actresult.PpWoResultMapper">
+<!-- 
+	작업단계결과 Mapper : 유국화
+	기본키(PK)는 작업단계결과 넘버(wr_number)
+	작업단계 결과에서 총작업면적(wr_totalarea), 이미작업한면적(wr_reworkarea)은 종속컬럼
+	실행결과리스트 넘버와 예상 작업단계넘버는 외래키 역할(FK)
+	실행결과리스트에서 실행결과리스트 넘버(pp_resultlist_number), 실행결과리스트 등록일(pp_resultlist_date)을 매핑
+	예상작업단계에서 작업단계넘버(pp_work_number), 작업단계명(pp_work_name), 작업단계시작일(pp_work_startday)
+		, 작업단계종료일(pp_work_endday), 작업단계면적(pp_work_area), 작업단계내용(pp_work_content)을 매핑
+-->
+<!--
+	배포하려는 웹 호스팅(cafe24)의 MySQL이 외래키(FK)를 지원하지 않아서(InnoDB) SELECT쿼리문마다 ON에 외래키조건을 모두 추가했다.
+ -->
 
 <!-- 작업단계결과 리절트맵(조회결과매핑) -->
 <resultMap type="com.spam.sfplanner.actresult.PpWoResult" id="resultPpWoResult">
@@ -23,8 +35,14 @@
 	</collection>
 </resultMap>
 
-<!-- 작업단계결과 삭제 -->
+<!-- 작업단계결과 실행결과리스트 넘버로 삭제 -->
 <delete id="deleteWorkResult"
+		parameterType="int">
+	DELETE FROM sp_wr WHERE pp_resultlist_number = #{ppResultlistNumber}
+</delete>
+
+<!-- 작업단계결과 삭제 -->
+<delete id="oneDeleteWorkResult"
 		parameterType="com.spam.sfplanner.actresult.PpWoResult">
 	DELETE FROM sp_wr WHERE wr_number = #{wrNumber}
 </delete>

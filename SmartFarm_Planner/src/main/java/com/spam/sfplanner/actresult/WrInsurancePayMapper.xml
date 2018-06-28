@@ -3,12 +3,30 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">  
 <mapper namespace="com.spam.sfplanner.actresult.WrInsurancePayMapper">
+<!-- 
+	보험비결과 Mapper : 유국화
+	기본키(PK)는 보험비결과 넘버(wr_insurancepay_number)
+	보험비결과에서 보험비결과 월납부비(wr_insurancepay_monthcost), 보험비결과 지출일(wr_insurancepay_date)은 종속컬럼
+	작업단계결과 넘버와 예상 보험비넘버는 외래키 역할(FK)
+	작업단계결과에서 작업단계결과 넘버(wr_number), 총작업면적(wr_totalarea), 이미작업한면적(wr_reworkarea)을 매핑
+	예상 보험비에서 예상 보험비 넘버(e_insurancepay_number), 예상 보험비 이름(e_insurancepay_name), 예상 보험비 내용(e_insurancepay_content)
+		, 예상 보험비 가입시작일(e_insurancepay_startday), 예상 보험비 만료일(e_insurancepay_endday), 예상 보험비 가입기간(e_insurancepay_term)
+		, 예상 보험비 가입금액(e_insurancepay_totalcost), 예상 보험비(월)(e_insurancepay_expectcost), 보험비 공개여부(e_insurancepay_secret)을 매핑	
+-->
+<!--
+	배포하려는 웹 호스팅(cafe24)의 MySQL이 외래키(FK)를 지원하지 않아서(InnoDB) SELECT쿼리문마다 ON에 외래키조건을 모두 추가했다.
+ -->
 
 <!-- 보험비 결과 리절트맵(조회결과매핑) -->
 <resultMap type="com.spam.sfplanner.actresult.WrInsurancePay" id="resultWrInsurancePay">
 	<id column="wr_insurancepay_number" property="wrInsurancepayNumber"/>
 	<result column="wr_insurancepay_monthcost" property="wrInsurancepayMonthcost"/>
 	<result column="wr_insurancepay_date" property="wrInsurancepayDate"/>
+	<collection ofType="com.spam.sfplanner.actresult.PpWoResult" property="ppWoResult">
+		<id column="wr_number" property="wrNumber"/>
+		<result column="wr_totalarea" property="wrTotalarea"/>
+		<result column="wr_reworkarea" property="wrReworkarea"/>
+	</collection>
 	<collection ofType="com.spam.sfplanner.plan.WoInsurancePay" property="woInsurancePay">
 		<id column="e_insurancepay_number" property="eInsurancepayNumber"/>
 		<result column="e_insurancepay_name" property="eInsurancepayMame"/>
@@ -19,15 +37,10 @@
 		<result column="e_insurancepay_totalcost" property="eInsurancepayTotalcost"/>
 		<result column="e_insurancepay_expectcost" property="eInsurancepayExpectcost"/>
 		<result column="e_insurancepay_secret" property="eInsurancepaySecret"/>
-	</collection>
-	<collection ofType="com.spam.sfplanner.actresult.PpWoResult" property="ppWoResult">
-		<id column="wr_number" property="wrNumber"/>
-		<result column="wr_totalarea" property="wrTotalarea"/>
-		<result column="wr_reworkarea" property="wrReworkarea"/>
-	</collection>
+	</collection>	
 </resultMap>
 
-<!-- 작업단계에서 보험비 결과 삭제 -->
+<!-- 작업단계 넘버로 보험비 결과 삭제 -->
 <delete id="deleteWrInsurancePay"
 		parameterType="int">
 	DELETE FROM sp_wr_insurancepay WHERE wr_number = #{wrNumber}

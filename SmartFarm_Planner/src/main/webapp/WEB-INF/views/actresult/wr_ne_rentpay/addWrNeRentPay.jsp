@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>addNeRentpay</title>
+	<title>addWrNeRentPay</title>
 	<jsp:include page="/WEB-INF/views/css.jsp"></jsp:include>
 </head>
 <jsp:include page="/WEB-INF/views/top.jsp"></jsp:include>

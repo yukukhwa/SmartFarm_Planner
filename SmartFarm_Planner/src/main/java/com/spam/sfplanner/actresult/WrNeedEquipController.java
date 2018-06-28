@@ -17,6 +17,20 @@ public class WrNeedEquipController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(WrInsurancePayController.class);
 	@Autowired private WrNeedEquipService wrNeedEquipService;
 	
+	//필요장비결과 등록화면에서 보낸 정보 입력처리
+	@RequestMapping(value="/addWrNeedEquip", method=RequestMethod.POST)
+	public String insertWrNeedEquip(WrNeedEquip wrNeedEquip) {
+		LOGGER.info("insertWrNeedEquip post 호출");		
+		return "actresult/wr_needrequip/listWrNeedEquip";
+	}
+	
+	//필요장비결과 등록화면으로 포워드
+	@RequestMapping(value="/addWrNeedEquip", method=RequestMethod.GET)
+	public String insertWrNeedEquip(Model model) {
+		LOGGER.info("insertWrNeedEquip get 호출");
+		return "actresult/wr_needrequip/addWrNeedEquip";
+	}
+	
 	//필요장비결과 전체리스트 화면으로 포워드
 	@RequestMapping(value="/listWrNeedEquip", method=RequestMethod.GET)
 	public String listSelectWrNeedEquip(Model model, @RequestParam(value="wrNumber") int wrNumber) {			

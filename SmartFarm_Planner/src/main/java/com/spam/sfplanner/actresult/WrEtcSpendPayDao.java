@@ -15,7 +15,7 @@ public class WrEtcSpendPayDao {
 	@Autowired private SqlSessionTemplate sqlsession;
 	private final String nameSpace ="com.spam.sfplanner.actresult.WrEtcSpendPayMapper.";
 	
-	//작업단계결과 리스트 중 하나의 기타지출비결과 선택해서 삭제처리
+	//작업단계결과 넘버로 기타지출비결과 삭제처리
 	public void deleteWrEtcSpendPay(int wrNumber) {
 	LOGGER.info("deleteWrEtcSpendPay dao에서 호출");
 	sqlsession.delete(nameSpace+"deleteWrEtcSpendPay", wrNumber);
