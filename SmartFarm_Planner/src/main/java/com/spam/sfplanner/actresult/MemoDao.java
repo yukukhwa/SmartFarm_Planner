@@ -16,6 +16,14 @@ public class MemoDao {
 	
 	private static final String NAMESPACE = "com.spam.sfplanner.actresult.MemoMapper.";
 	
+	public void updateMemo(Memo memo) {
+		sqlSessionTemplate.update(NAMESPACE+"updateMemo", memo);
+	}
+	
+	public void deleteMemo(int wrNumber) {
+		sqlSessionTemplate.delete(NAMESPACE+"deleteMemo", wrNumber);
+	}
+	
 	public void insertMemo(Memo memo) {
 		sqlSessionTemplate.insert(NAMESPACE+"insertMemo", memo);
 	}

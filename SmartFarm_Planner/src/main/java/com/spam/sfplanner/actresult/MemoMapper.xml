@@ -17,6 +17,21 @@
  		</collection>
  	</resultMap>
  	
+ 	<update id="updateMemo"
+ 			parameterType="com.spam.sfplanner.actresult.Memo">
+	 	UPDATE sp_wr_memo
+		SET
+			wr_memo_subject=#{wrMemoSubject}
+			,wr_memo_content=#{wrMemoContent}
+		WHERE 
+			sp_wr_memo.wr_memo_number=#{wrMemoNumber}
+ 	</update>
+ 	
+ 	<delete id="deleteMemo"
+ 			parameterType="integer">
+ 		DELETE FROM sp_wr_memo WHERE sp_wr_memo.wr_number=#{wrNumber}
+ 	</delete>
+ 	
  	<insert id="insertMemo"
  			parameterType="com.spam.sfplanner.actresult.Memo">
  		INSERT INTO sp_wr_memo

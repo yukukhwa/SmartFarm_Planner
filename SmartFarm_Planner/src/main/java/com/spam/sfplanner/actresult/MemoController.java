@@ -16,6 +16,18 @@ public class MemoController {
 	@Autowired
 	private MemoService memoService;
 	
+	@RequestMapping(value="/updateMemo",method = RequestMethod.POST)
+	public String updateMemo(Memo memo) {
+		memoService.updateMemo(memo);
+		return "redirect:/home";
+	}
+	
+	@RequestMapping(value="/deleteMemo",method = RequestMethod.GET)
+	public String deleteMemo(@RequestParam(value="wrNumber",required=true)int wrNumber) {
+		memoService.deleteMemo(wrNumber);
+		return "redirect:/listMemo?wrNumber="+wrNumber;
+	}
+	
 	@RequestMapping(value="/addMemo",method = RequestMethod.POST)
 	public String insertMemo(Memo memo) {
 		memoService.insertMemo(memo);

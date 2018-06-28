@@ -25,6 +25,14 @@ public class MemoService {
 	@Autowired
 	private CategoryThemeDao categoryThemeDao;
 	
+	public void updateMemo(Memo memo) {
+		memoDao.updateMemo(memo);
+	}
+	
+	public void deleteMemo(int wrNumber) {
+		memoDao.deleteMemo(wrNumber);
+	}
+	
 	public void insertMemo(Memo memo) {
 		memoDao.insertMemo(memo);
 	}

@@ -9,8 +9,14 @@
 <jsp:include page="/WEB-INF/views/css.jsp"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-
 	$(document).ready(function(){
+		
+		/* 첫화면에서 불필요한 공간을 줄이기 위해서 숨겨준다 */
+		$('#idCheckResult').hide();
+		$('#PwCheckResult').hide();
+		$('#NameCheckResult').hide();
+		$('#NumberCheckResult').hide();
+		
 		/* 관리기관 확인버튼을 클릭시 ajax처리로 관리기관 존재여부를 파악해준다 */
 		$(document).on('click','input:button[id="aNumberCheck"]',function(){
 			var aNumber = $('input#aNumber').val();
@@ -26,14 +32,15 @@
 				success:function(resultMap) {		
 				    	if(resultMap.TF == 'F'){// 해당기관이 존재하지 않을때
 				    		alert(resultMap.result);
-				    		$('p#NumberCheckResult').hide();
-				    		$('p#NumberCheckResult').text(resultMap.result);
+				    		$('#NumberCheckResult').hide();
+				    		$('#NumberCheckResult').text(resultMap.result);
 				    		return;
 				    	}
 				    	if(resultMap.TF == 'T'){// 해당기관이 존재할때
 				    		//alert(resultMap.result);
-				    		$('p#NumberCheckResult').show();
-				    		$('p#NumberCheckResult').text(resultMap.result);
+				    		$('#NumberCheckResult').show();
+				    		$('#NumberCheckResult').text(resultMap.result);
+				    		aNumberBackup = $('input#aNumber').val();
 				    		return;
 				    	}
 				    }
@@ -55,14 +62,15 @@
 				success:function(resultMap) {	
 				    	if(resultMap.TF == 'F'){// 해당 등록기관명이 이미 등록되어있을때
 				    		//alert(resultMap.result);
-				    		$('p#NameCheckResult').show();
-				    		$('p#NameCheckResult').text(resultMap.result+"은(는) 이미 존재하는 기관입니다.");
+				    		$('#NameCheckResult').show();
+				    		$('#NameCheckResult').text(resultMap.result+"은(는) 이미 존재하는 기관입니다.");
 				    		return;
 				    	}
 				    	if(resultMap.TF == 'T'){// 해당 등록 기관명이 등록되어있지 않을때
 				    		alert(resultMap.result);
-				    		$('p#NameCheckResult').hide();
-				    		$('p#NameCheckResult').text(resultMap.result);
+				    		$('#NameCheckResult').hide();
+				    		$('#NameCheckResult').text(resultMap.result);
+				    		aNameBackup = $('input#aName').val();
 				    		return;
 				    	}
 				    }
@@ -85,14 +93,14 @@
 				success:function(resultString) {		
 				    	if(resultString == 'F'){// 아이디가 이미 존재할시
 				    		alert('사용불가능한 아이디입니다.');
-				    		$('p#idCheckResult').text('사용불가능한 아이디입니다.');
-				    		$('p#idCheckResult').show();
+				    		$('#idCheckResult').text('사용불가능한 아이디입니다.');
+				    		$('#idCheckResult').show();
 				    		return;
 				    	}
 				    	if(resultString == 'T'){// 아이디가 존재하지 않을시
 				    		alert('사용가능한 아이디입니다.');
-				    		$('p#idCheckResult').text('사용가능한 아이디입니다.');
-				    		$('p#idCheckResult').hide();
+				    		$('#idCheckResult').text('사용가능한 아이디입니다.');
+				    		$('#idCheckResult').hide();
 				    		return;
 				    	}
 				    }
@@ -100,39 +108,49 @@
 			return;
 		});
 		
-		/* 첫화면에서 불필요한 공간을 줄이기 위해서 숨겨준다 */
-		$('p#idCheckResult').hide();
-		$('p#PwCheckResult').hide();
-		$('p#NameCheckResult').hide();
-		
 		/* 관리기관 회원가입시 대표를 선택하면 관리기관등록폼이 나오며, 직원을 선택시 관기기관코드입력폼이 나오도록함 */
 		$('input[name="level"]').click(function(){
 			var level = $(this).val();
-			if(level == '직원'){
-				$('div#agency').html('<br>관리기관넘버 : <input type="number" name="aNumber" id="aNumber">'
+			if(level == '관리직원'){
+			$('div#agency').html('<div class="col-lg-10">'
+									+'<label class="col-sm-2 control-label">관리기관넘버</label>'
+									+'<div class="col-lg-10">'
+										+'<input type="number" name="aNumber" id="aNumber" class="form-control">'
+										+'<b id="NumberCheckResult"></b>'
+									+'</div>'
+								+'</div>'
+								+'<div class="col-lg-2">'
 									+'<input type="button" id="aNumberCheck" value="관리기관 확인">'
-									+'<strong><p id="NumberCheckResult"/></strong>');
+								+'</div>');
 				return;
 			}else{
-				$('div#agency').html('<h4>'
-									+'관리기관등록화면'
-									+'</h4>'
-									+'<div>'
-										+'관리기관명 : <input type="text" name="aName" id="aName">'
-										+'<input type="button" id="aNameCheck" value="관리기관명 중복 확인">'
-										+'<strong><p id="NameCheckResult"/></strong>'
-									+'</div>'
-									+'<div>'
-										+'관리기관연락처 : <input type="text" name="aPhone" id="aPhone">'
-									+'</div>'
-									+'<div>'
-										+'<input type="button" id="agencyJusoCheck" value="주소검색" />'
-									+'</div>'
-									+'<div>'
-										+'도로명주소 : <input type="text" style="width: 500px;" name="aDoroaddress" id="corporationDoroaddress" readonly="readonly">'
-									+'</div>'
-									+'<div>'
-										+'지번주소 : <input type="text" style="width: 500px;" name="aJibunaddress" id="corporationJibunaddress" readonly="readonly">'
+				$('div#agency').html('<div class="col-lg-10">'
+										+'<label class="col-sm-2 control-label">관리기관명</label>'
+											+'<div class="col-lg-10">'
+												+'<input type="text" name="aName" id="aName" class="form-control">'
+												+'<b id="NameCheckResult"></b>'
+											+'</div>'
+											+'<label class="col-sm-2 control-label">관리기관연락처</label>'
+											+'<div class="col-lg-10">'
+												+'<input type="text" name="aPhone" id="aPhone" class="form-control">'
+											+'</div>'
+										+'</div>'
+										+'<div class="col-lg-2">'
+											+'<input type="button" id="aNameCheck" value="관리기관명 중복 확인">'
+										+'</div>'
+										+'<div class="col-lg-10">'
+											+'<label class="col-sm-2 control-label">도로명주소</label>'
+											+'<div class="col-lg-10">'
+												+'<input type="text" name="aDoroaddress" id="corporationDoroaddress" readonly="readonly" class="form-control">'
+											+'</div>'
+											+'<label class="col-sm-2 control-label">지번주소</label>'
+											+'<div class="col-lg-10">'
+												+'<input type="text" name="aJibunaddress" id="corporationJibunaddress" readonly="readonly" class="form-control">'
+											+'</div>'
+										+'</div>'
+										+'<div class="col-lg-2">'
+											+'<input type="button" id="agencyJusoCheck" value="주소검색" />'
+										+'</div>'
 									+'</div>');
 				return;
 			}
@@ -164,51 +182,68 @@
 		$('input#aMemberPwCheck').change(function(){
 			if($('input#aMemberPw').val() != $('input#aMemberPwCheck').val()){
 				alert('비밀번호가 불일치 합니다. 확인해주세요.');
-				$('p#PwCheckResult').show();
+				$('#PwCheckResult').show();
 				$('input#aMemberPwCheck').focus();
 				return;
 			}
-			$('p#PwCheckResult').hide();
+			$('#PwCheckResult').hide();
 			return;
-		})
+		});
 		
 		/* 가입하기 버튼을 클릭시 내용이 다 작성됫는지 유효성 검사후 해당주소로 제출한다  */
-		$('button#insertAgencyMember').click(function(){
+		$(document).on('click','button#insertAgencyMember',function(){
 			if(!$('input#aMemberPrivacy').prop('checked')){
 				alert('개인정보동의를 하셔야만 가입이 가능합니다.');
 				$('input#aMemberPrivacy').focus();
 				return;
 			}
-			if($('input#aNumber').val() == ''){
-				alert('관리기관넘버를 입력해주세요.');
-				$('input#aNumber').focus();
-				return;
-			}else if($('p#NumberCheckResult').text() == '해당기관은 존재하지 않습니다.'){
-				alert('관리기관넘버를 다시 확인하세요.');
-				return;
+			var level = $('input:radio[name="level"]:checked').val();
+			if(level == '관리대표'){
+				var aName = $('input#aName').val();
+				if(aName == ''){
+					alert('관리기관명을 입력해주세요.');
+					$('input#aName').focus();
+					return;
+				}
+				if($('#NameCheckResult').text() != '해당 등록기관명은 등록가능합니다.'){
+					alert('관리기관명을 다시 확인하세요.');
+					return;
+				}
+				if(aNameBackup != aName){
+					alert('관리기관명을 다시 확인하세요.');
+					return;
+				}
+				if($('input#aPhone').val() == ''){
+					alert('관리기관 연락처를 입력해주세요.');
+					$('input#aPhone').focus();
+					return;
+				}
+				if($('input#corporationDoroaddress').val() == ''){
+					alert('관리기관 도로명주소를 입력해주세요.');
+					$('input#agencyJusoCheck').click();
+					return;
+				}
+				if($('input#corporationJibunaddress').val() == ''){
+					alert('관리기관 지번주소를 입력해주세요.');
+					$('input#agencyJusoCheck').click();
+					return;
+				}
 			}
-			if($('input#aName').val() == ''){
-				alert('관리기관명을 입력해주세요.');
-				$('input#aName').focus();
-				return;
-			}else if($('p#NameCheckResult').text() != '해당 등록기관명은 등록가능합니다.'){
-				alert('관리기관명을 다시 확인하세요.');
-				return;
-			}
-			if($('input#aPhone').val() == ''){
-				alert('관리기관 연락처를 입력해주세요.');
-				$('input#aPhone').focus();
-				return;
-			}
-			if($('input#corporationDoroaddress').val() == ''){
-				alert('관리기관 도로명주소를 입력해주세요.');
-				$('input#agencyJusoCheck').click();
-				return;
-			}
-			if($('input#corporationJibunaddress').val() == ''){
-				alert('관리기관 지번주소를 입력해주세요.');
-				$('input#agencyJusoCheck').click();
-				return;
+			if(level == '관리직원'){
+				var aNumber = $('input#aNumber').val();
+				if(aNumber == ''){
+					alert('관리기관넘버를 입력해주세요.');
+					$('input#aNumber').focus();
+					return;
+				}
+				if($('#NumberCheckResult').text() == '해당기관은 존재하지 않습니다.' || $('#NumberCheckResult').text() == ''){
+					alert('관리기관넘버를 다시 확인하세요.');
+					return;
+				}
+				if(aNumberback != aNumber){
+					alert('관리기관넘버를 다시 확인하세요.');
+					return;
+				}
 			}
 			if($('input#aMemberName').val() == ''){
 				alert('이름을 입력해주세요.');
@@ -219,7 +254,7 @@
 				alert('아이디를 입력해주세요.');
 				$('input#aMemberId').focus();
 				return;
-			}else if($('p#idCheckResult').text() == '사용불가능한 아이디입니다.'){
+			}else if($('#idCheckResult').text() == '사용불가능한 아이디입니다.'){
 				alert('아이디 중복확인을 다시해주세요.');
 				return;
 			}
@@ -229,7 +264,7 @@
 				return;
 			}else if($('input#aMemberPw').val() != $('input#aMemberPwCheck').val()){
 				alert('비밀번호를 다시 확인해주세요.');
-				$('p#PwCheckResult').show();
+				$('#PwCheckResult').show();
 				$('input#aMemberPwCheck').focus();
 				return;
 			}
@@ -276,47 +311,44 @@
 			<h1>
    				<b><i class="icon_profile">관리기관 회원가입</i></b>
    			</h1>
-			<form id="agencyMember" action="${pageContext.request.contextPath}/addAgencyMember" method="post" class="form-horizontal" style="width: 70%; margin: 0 auto; padding: 30px; background-color: white;">
+			<form id="agencyMember" action="${pageContext.request.contextPath}/addAgencyMember" method="post" class="form-horizontal" style="width: 80%; margin: 0 auto; padding: 15px; background-color: white;">
 				<div>
 					<div>
 						<h4 align="center"><b><i class="fa fa-file-text-o"></i>개인정보동의</b></h4><br>
-						<div style="width: 100%; height: 300px; background-color: white; padding: 0 5px 10px 10px; overflow:scroll; overflow-x:hidden;  border: solid 0.5px;">
-							<p>
-								스마트팜 플래너는 통합회원 서비스에 필요한 개인정보 수집·이용을 위하여 개인정보보호법 제15조 및 제22조, 제24조에 따라 귀하의 동의를 받고자 합니다.
-								
-								<dl>
-									<dt>1. 개인정보 수집 목적</dt>
-									<dd>스마트팜 플래너 통합로그인시스템에서는 다음의 목적을 위해 개인정보 수집하고 이용합니다.</dd>
+						<div style="width: 100%; height: 300px; background-color: white; padding: 10px 10px 10px 10px; overflow:scroll; overflow-x:hidden;  border: solid 0.5px;">
+							스마트팜 플래너는 통합회원 서비스에 필요한 개인정보 수집·이용을 위하여 개인정보보호법 제15조 및 제22조, 제24조에 따라 귀하의 동의를 받고자 합니다.
+							<dl>
+								<dt>1. 개인정보 수집 목적</dt>
+								<dd>스마트팜 플래너 통합로그인시스템에서는 다음의 목적을 위해 개인정보 수집하고 이용합니다.</dd>
+								<ul>
+									<li>가. 홈페이지 회원가입 및 관리 </li>
 									<ul>
-										<li>가. 홈페이지 회원가입 및 관리 </li>
-										<ul>
-											<li>- 회원 가입의사 확인, 회원제 서비스 제공에 따른 본인 식별·인증, 회원자격 유지·관리, 제한적 본인확인제 시행에 따른 본인확인, 서비스 부정이용 방지, 가입의사 확인 및 가입횟수 제한, 각종 고지·통지, 고충처리, 분쟁 조정을 위한 기록 보존 등을 목적으로 개인정보를 처리합니다. </li>
-										</ul>
-										<li>나. 서비스 제공 </li>
-										<ul>
-											<li>- 로그인 한 회원에게 각종 콘텐츠, 서비스 이용자격 등을 목적으로 개인정보를 처리합니다. </li>
-											<li>- 관련법령(산업기술혁신 촉진법, 중소기업기술혁신 촉진법 등 국가기술개발사업 관련)에 의거하여 국가 정부과제수행자(대표자, 책임자, 전문가 등)의 국가과제 운영정보로 활용을 목적으로 개인정보를 처리합니다. </li>
-										</ul>
+										<li>- 회원 가입의사 확인, 회원제 서비스 제공에 따른 본인 식별·인증, 회원자격 유지·관리, 제한적 본인확인제 시행에 따른 본인확인, 서비스 부정이용 방지, 가입의사 확인 및 가입횟수 제한, 각종 고지·통지, 고충처리, 분쟁 조정을 위한 기록 보존 등을 목적으로 개인정보를 처리합니다. </li>
 									</ul>
-									<dt>2. 수집항목</dt>
+									<li>나. 서비스 제공 </li>
 									<ul>
-										<li> 가. 스마트팜 플래너는 회원가입, 원활한 고객 상담, 각종 서비스의 제공을 위해 최초 회원가입 당시 아래와 같은 최소한의 개인정보를 필수항목과 선택항목으로 수집하고 있습니다. </li>
-										<ul>
-											<li>- 필수정보 : 아이디, 비밀번호, 성명, 이메일, 전화번호, 주소 </li>
-										</ul>
-										<li> 나. 서비스 이용과정에서 아래와 같은 정보들이 자동으로 생성되어 수집될 수 있습니다. </li>
-										<ul>
-											<li>- IP Address, 쿠키, 방문 일시, 서비스 이용기록, 시스템 로그 등 </li>
-										</ul>
+										<li>- 로그인 한 회원에게 각종 콘텐츠, 서비스 이용자격 등을 목적으로 개인정보를 처리합니다. </li>
+										<li>- 관련법령(산업기술혁신 촉진법, 중소기업기술혁신 촉진법 등 국가기술개발사업 관련)에 의거하여 국가 정부과제수행자(대표자, 책임자, 전문가 등)의 국가과제 운영정보로 활용을 목적으로 개인정보를 처리합니다. </li>
 									</ul>
-									<dt>3. 보유 및 이용기간</dt>
-									<dd>- 정보주체의 동의를 받은 날로부터 회원 탈퇴 시 까지</dd>
-									<dd>- 단, 국가 사업수행에 필수적인 정보에 포함된 개인정보에 대해서는 관련법령(산업기술혁신 촉진법, 중소기업기술혁신 촉진법 등 국가기술개발사업 관련)에 따라 법령에 따른 업무가 종료될 때까지 일정기간 보존합니다. </dd>
-									<dt>4. 동의 거부권 및 거부에 대한 불이익</dt>
-									<dd>- 정보주체는 개인정보 수집·이용에 대해 동의를 거부할 권리가 있으며, 최소한의 개인정보 이외의 개인정보 수집에 동의하지 아니한다는 이유로 회원에게 회원 가입 불가 및 홈페이지서비스 거부와 같은 불이익을 주지 않습니다. 단, 최소한의 개인정보 수집에 대해 동의 거부 시에는 통합회원가입이 제한됩니다. </dd>
-								</dl>
-								<strong>※ 만 14세미만 아동의 경우 개인정보 처리 목적 상 회원가입을 하실 수 없습니다. ※</strong>
-							</p>
+								</ul>
+								<dt>2. 수집항목</dt>
+								<ul>
+									<li> 가. 스마트팜 플래너는 회원가입, 원활한 고객 상담, 각종 서비스의 제공을 위해 최초 회원가입 당시 아래와 같은 최소한의 개인정보를 필수항목과 선택항목으로 수집하고 있습니다. </li>
+									<ul>
+										<li>- 필수정보 : 아이디, 비밀번호, 성명, 이메일, 전화번호, 주소 </li>
+									</ul>
+									<li> 나. 서비스 이용과정에서 아래와 같은 정보들이 자동으로 생성되어 수집될 수 있습니다. </li>
+									<ul>
+										<li>- IP Address, 쿠키, 방문 일시, 서비스 이용기록, 시스템 로그 등 </li>
+									</ul>
+								</ul>
+								<dt>3. 보유 및 이용기간</dt>
+								<dd>- 정보주체의 동의를 받은 날로부터 회원 탈퇴 시 까지</dd>
+								<dd>- 단, 국가 사업수행에 필수적인 정보에 포함된 개인정보에 대해서는 관련법령(산업기술혁신 촉진법, 중소기업기술혁신 촉진법 등 국가기술개발사업 관련)에 따라 법령에 따른 업무가 종료될 때까지 일정기간 보존합니다. </dd>
+								<dt>4. 동의 거부권 및 거부에 대한 불이익</dt>
+								<dd>- 정보주체는 개인정보 수집·이용에 대해 동의를 거부할 권리가 있으며, 최소한의 개인정보 이외의 개인정보 수집에 동의하지 아니한다는 이유로 회원에게 회원 가입 불가 및 홈페이지서비스 거부와 같은 불이익을 주지 않습니다. 단, 최소한의 개인정보 수집에 대해 동의 거부 시에는 통합회원가입이 제한됩니다. </dd>
+							</dl>
+							<strong>※ 만 14세미만 아동의 경우 개인정보 처리 목적 상 회원가입을 하실 수 없습니다. ※</strong>
 						</div>
 						<div style="float: right;">
 							<input type="checkbox" value="true" name="aMemberPrivacy" id="aMemberPrivacy">예, 동의합니다
@@ -324,34 +356,48 @@
 					</div>
 					<br>
 					<div id="level_agency">
-						<div id="level">
-							<input type="radio" value="대표" name="level" checked="checked">대표
-							<input type="radio" value="직원" name="level">직원
+						<div id="level"  class="form-group">
+							<label class="col-sm-2 control-label">권한</label>
+							<div class="col-lg-10">
+								<div class="radio">
+									<input type="radio" value="관리대표" name="level" checked="checked">관리대표
+								</div>
+								<div class="radio">
+									<input type="radio" value="관리직원" name="level">관리직원
+								</div>
+							</div>
 						</div>
-						<div id="agency">
-							<h4>
-								관리기관등록화면
-							</h4>
-							<div>
-								관리기관명 : <input type="text" name="aName" id="aName">
-								<input type="button" id="aNameCheck" value="관리기관명 중복 확인">
-								<strong><p id="NameCheckResult"/></strong>
+						<div id="agency" class="form-group">
+							<div class="col-lg-10">
+								<label class="col-sm-2 control-label">관리기관명</label>
+								<div class="col-lg-10">
+									<input type="text" name="aName" id="aName" class="form-control">
+									<b id="NameCheckResult"></b>
+								</div>
+								<label class="col-sm-2 control-label">관리기관연락처</label>
+								<div class="col-lg-10">
+									<input type="text" name="aPhone" id="aPhone" class="form-control">
+								</div>
 							</div>
-							<div>
-								관리기관연락처 : <input type="text" name="aPhone" id="aPhone">
+							<div class="col-lg-2">
+								<input type="button" id="aNameCheck" value="&#xf00e; 관리기관명 중복 확인" class="btn btn-default">
 							</div>
-							<div>
-								<input type="button" id="agencyJusoCheck" value="주소검색" />
+							<div class="col-lg-10">
+								<label class="col-sm-2 control-label">도로명주소</label>
+								<div class="col-lg-10">
+									<input type="text" name="aDoroaddress" id="corporationDoroaddress" readonly="readonly" class="form-control">
+								</div>
+								<label class="col-sm-2 control-label">지번주소</label>
+								<div class="col-lg-10">
+									<input type="text" name="aJibunaddress" id="corporationJibunaddress" readonly="readonly" class="form-control">
+								</div>
 							</div>
-							<div>
-								도로명주소 : <input type="text" style="width: 500px;" name="aDoroaddress" id="corporationDoroaddress" readonly="readonly" >
-							</div>
-							<div>
-								지번주소 : <input type="text" style="width: 500px;" name="aJibunaddress" id="corporationJibunaddress" readonly="readonly" >
+							<div class="col-lg-2">
+								<input type="button" id="agencyJusoCheck" value="&#xf124; 주소검색"  class="btn btn-default">
 							</div>
 						</div>
 					</div>
-					<br>
+					<hr>
 					<div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">이름</label>
@@ -359,47 +405,81 @@
 								<input type="text" name="aMemberName" id="aMemberName" class="form-control">
 							</div>
 						</div>
-						<div>
-							성별
-							<div>
-								<input type="radio" value="남" name="aMemberGender" checked="checked">남
-								<input type="radio" value="여" name="aMemberGender">여
+						<div class="form-group">
+							<label class="col-sm-2 control-label">성별</label>
+							<div class="col-lg-10">
+								<div class="radio">
+									<input type="radio" value="남" name="aMemberGender" checked="checked">남
+								</div>
+								<div class="radio">
+									<input type="radio" value="여" name="aMemberGender">여
+								</div>
 							</div>
 						</div>
-						<div>
-							ID : <input type="text" name="aMemberId" id="aMemberId">
-							<input type="button" id="aMemberIdCheck" value="아이디 중복체크">
-							<p id="idCheckResult">사용불가능한 아이디입니다.</p>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">ID</label>
+							<div class="col-sm-10">
+								<span class="col-sm-9">
+									<input type="text" name="aMemberId" id="aMemberId" class="form-control">
+									<b id="idCheckResult">사용불가능한 아이디입니다.</b>
+								</span>
+								<span class="col-sm-3">
+									<input type="button" id="aMemberIdCheck" value="&#xf4fc; 아이디 중복체크" class="btn btn-default">
+								</span>
+							</div>
 						</div>
-						<div>
-							PW : <input type="password" name="aMemberPw" id="aMemberPw">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">PW</label>
+							<div class="col-sm-10">
+								<input type="password" name="aMemberPw" id="aMemberPw" class="form-control">
+							</div>
 						</div>
-						<div>
-							PW확인 : <input type="password" id="aMemberPwCheck">
-							<p id="PwCheckResult">비밀번호 불일치</p>
+						<div class="form-group">
+							<label class="col-sm-2 control-label">PW확인</label>
+							<div class="col-sm-10">
+								<input type="password" id="aMemberPwCheck" class="form-control">
+								<b id="PwCheckResult">비밀번호 불일치</b>
+							</div>
 						</div>
-						<div>
-							연락처 : <input type="text" name="aMemberPhone" id="aMemberPhone">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">연락처확인</label>
+							<div class="col-sm-10">
+								<input type="text" name="aMemberPhone" id="aMemberPhone" class="form-control">
+							</div>
 						</div>
-						<div>
-							이메일 : <input type="email" name="aMemberEmail" id="aMemberEmail">
+						<div class="form-group">
+							<label class="col-sm-2 control-label">이메일</label>
+							<div class="col-sm-10">
+								<input type="email" name="aMemberEmail" id="aMemberEmail" class="form-control">
+							</div>
 						</div>
-						<div>
-							<input type="button" id="memberJusoCheck" value="주소검색" />
-						</div>
-						<div>
-							도로명주소 : <input type="text" style="width: 500px;" id="memberDoroaddress" name="aMemberDoroaddress" readonly="readonly" />
-						</div>
-						<div>
-							지번 : <input type="text" style="width: 500px;" id="memberJibunaddress" name="aMemberJibunaddress" readonly="readonly" />
-						</div>
-						<div>
-							상세주소 : <input type="text" style="width: 500px;" id="memberDetailaddress" name="aMemberDetailaddress"/>
+						<div class="form-group">
+							<div class="col-sm-10">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">도로명주소</label>
+									<div class="col-sm-10">
+										<input type="text" id="memberDoroaddress" name="aMemberDoroaddress" readonly="readonly" class="form-control"/>
+									</div>
+									<label class="col-sm-2 control-label">지번</label>
+									<div class="col-sm-10">
+										<input type="text" id="memberJibunaddress" name="aMemberJibunaddress" readonly="readonly" class="form-control"/>
+									</div>
+									<label class="col-sm-2 control-label">상세주소</label>
+									<div class="col-sm-10">
+										<input type="text" id="memberDetailaddress" name="aMemberDetailaddress" class="form-control"/>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-2">
+								<div align="center">
+									<input type="button" id="memberJusoCheck" value="주소검색"/>
+								</div>
+							</div>
 						</div>
 					</div>
+					<button id="insertAgencyMember" class="btn btn-default">&#xf00c; 가입하기</button>
 				</div>
 			</form>
-			<button id="insertAgencyMember">가입하기</button>
 		</section>
 	</section>
 </body>
