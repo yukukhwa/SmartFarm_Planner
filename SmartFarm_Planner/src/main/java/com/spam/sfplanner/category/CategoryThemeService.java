@@ -34,6 +34,7 @@ public class CategoryThemeService {
 		return categoryThemeDao.oneSelectCategoryTheme(themeName);
 	}
 	
+	/*매개변수 searchKeyword, themeCateSearchOption을 넘겨받아 검색한 리스트를 출력하는 서비스*/
 	public List<CategoryTheme> searchListSelectCategoryTheme(String searchKeyword, String themeCateSearchOption){
 		Map<String, String> map = new HashMap<String, String>();
 		// 테마의 검색옵션이 aName과 같다면 map에 테마검색옵션의 키의 밸류를 "aName"이라 저장후 dao에 매개변수로 map을 넘긴다.

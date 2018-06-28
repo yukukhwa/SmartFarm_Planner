@@ -54,14 +54,14 @@ public class CategoryThemeController {
 		return "category/theme/listTheme";
 	}
 	
-	/*listTheme으로 겟방식요청이 들어올때 listTheme으로 포워드 한다*/
+	/*테마 카테고리 리스트를 출력하는 컨트롤러*/
 	@RequestMapping(value="/listTheme", method=RequestMethod.GET)
 	public String listSelectCategoryTheme(Model model) {
 		model.addAttribute("list", categoryThemeService.listSelectCategoryTheme());
 		return "category/theme/listTheme";
 	}
 	
-	/*addTheme에서 포스트방식으로 요청하면 테마카테고리를 등록처리 후 인덱스로 리다이렉트 */
+	/*테마 카테고리 등록화면에서 등록처리 컨트롤러*/
 	@RequestMapping(value="/addTheme", method=RequestMethod.POST)
 	public String insertCategoryTheme(CategoryTheme categoryTheme) {
 		LOGGER.info("CategoryThemeController addTheme post호출");
@@ -70,7 +70,7 @@ public class CategoryThemeController {
 		return "redirect:/listTheme";
 	}
 	
-	/*addTheme에서 겟방식으로 요청하면 테마카테고리를 등록하는 폼으로 포워드*/
+	/*테마 카테고리 등록 화면 컨트롤러*/
 	@RequestMapping(value="/addTheme", method=RequestMethod.GET)
 	public String insertCategoryTheme() {
 		return "category/theme/addTheme";

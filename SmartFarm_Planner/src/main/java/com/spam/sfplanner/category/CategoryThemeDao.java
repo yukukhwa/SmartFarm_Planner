@@ -22,17 +22,18 @@ public class CategoryThemeDao {
 		sqlSession.delete(NAMESPACE+"deleteCategoryTheme", themeNumber);
 	}
 	
-	/*매개변수 categoryThemeDb를 받아 테마카테고리를 수정처리하는 메서드*/
+	/*매개변수 categoryTheme를 받아 테마카테고리를 수정처리하는 메서드*/
 	public void updateCategoryTheme(CategoryTheme categoryTheme) {
 		LOGGER.info("CategoryThemeDao updateCategoryTheme 호출");
 		sqlSession.update(NAMESPACE+"updateCategoryTheme", categoryTheme);
 	}
 	
-	/*매개변수 themeName을 받아 테마카테고리 수정할 때 수정할화면 하나를 조회해 출력하는 메서드*/
+	/*매개변수 themeName을 받아 해당하는 테마의 정보를 출력하는 메서드*/
 	public CategoryTheme oneSelectCategoryTheme(String themeName) {
 		return sqlSession.selectOne(NAMESPACE+"oneSelectCategoryTheme", themeName);
 	}
 	
+	/*매개변수 map을 넘겨받아 테마카테고리 리스트를 출력하는 메서드*/
 	public List<CategoryTheme> searchListSelectCategoryTheme(Map<String, String> map){
 		System.out.println("map: "+map);
 		return sqlSession.selectList(NAMESPACE+"searchListSelectCategoryTheme", map);

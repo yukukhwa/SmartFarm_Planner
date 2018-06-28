@@ -29,7 +29,8 @@
 	        </collection>
 	  </resultMap>
 	
-	<!-- 아이디 중복검사시 해당아이디가 존재하는지 여부 쿼리문 -->
+	<!-- [김재희] -->
+	<!-- 아이디 중복검사시 해당아이디가 존재하는지 여부 쿼리문 / 존재한다면 카운트 된다-->
 	<select id="farmIdCheck"
 		parameterType="String"
 		resultType="Integer">
@@ -85,7 +86,7 @@
 			WHERE sp_farm_member.f_member_id=#{fMemberId}
  	</select>
  	
- 	<!-- 해당 농가의 회원리스트를 보기 -->
+ 	<!-- 농가와 해당 농가의 회원리스트를 조인해 회원리스트 출력하는 쿼리문 -->
  	<select id="selectFarmMemberList"
  		parameterType="String"
  		resultMap="farmMember">

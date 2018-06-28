@@ -45,9 +45,15 @@
      <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
+    		<!-- 만약 로그인한 level이 'agency'가 아니라면 접근하지 못하는 권한을 알림과 동시에 로그인창으로 연결하는 버튼이 나타남 -->
     		<c:if test="${loginMember.level != 'agency'}">
-    			<h3>해당 페이지에 접근할 수 없는 권한입니다.</h3> <br>
-    			<button type="button" id="goLogin" class="btn btn-primary">로그인하러가기</button>
+    			<div align="center" style="width: 100%; float: right;">
+    				<div style="text-align: center; margin: 5% 0% 10% 0%; padding: 10% 0% 15% 0%; width: 65%; background-color: #FAFAFA;">
+		    			<h3>해당 페이지에 접근할 수 없는 권한입니다.</h3> <br><br><br>
+		    			<button type="button" id="goLogin" class="btn btn-primary">로그인하러가기</button>
+    					<button type="button" id="goCateMaterialsList" class="btn btn-default">원자재리스트로 가기</button>
+    				</div>
+    			</div>
     		</c:if>
     		<c:if test="${loginMember.level == 'agency'}">
 	    		<div>

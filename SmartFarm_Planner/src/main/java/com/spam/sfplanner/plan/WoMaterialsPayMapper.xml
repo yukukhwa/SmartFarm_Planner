@@ -27,6 +27,8 @@
  		</collection>
  	</resultMap>
  	
+ 	<!-- [김재희] -->
+ 	<!-- 예상원자재비넘버를 조건으로 해당 예상원자재비를 수정처리 할 수 있는 쿼리문 -->
  	<update id="updateWoMaterialsPay"
  		parameterType="com.spam.sfplanner.plan.WoMaterialsPay">
 	 		UPDATE sp_e_materialspay
@@ -37,7 +39,8 @@
 			WHERE 
 				e_materialspay_number=#{eMaterialspayNumber}
  	</update>
- 	
+ 	<!-- 하나의 예상원자재비를 예상원자재비테이블과,작업단계 테이블, 원자재비 카테고리 테이블을 조인해
+ 		 예상원자재비넘버를 조건으로 조회할 수 있는 쿼리문 -->
  	<select id="oneSelectWoMaterialsPay"
  		parameterType="integer"
  		resultMap="woMaterialsPay">
@@ -59,11 +62,13 @@
 				sp_e_materialspay.e_materialspay_number=#{eMaterialspayNumber}
  	</select>
  	
+ 	<!-- 예상원자재비넘버를 조건으로 해당 예상원자재비를 삭제처리 하는 쿼리문 -->
  	<delete id="deleteWoMaterialsPay"
  		parameterType="integer">
  			DELETE FROM sp_e_materialspay WHERE e_materialspay_number=#{eMaterialspayNumber}
  	</delete>
  	
+ 	<!-- 예상 원자재비를 등록하는 쿼리문 -->
  	<insert id="insertWoMaterialsPay"
  		parameterType="com.spam.sfplanner.plan.WoMaterialsPay">
 	 		INSERT INTO sp_e_materialspay(
@@ -79,7 +84,8 @@
 				, #{eMaterialspayUse}
 				, #{eMaterialspaySecret})
  	</insert>
- 
+ 	
+ 	<!-- 예상원자재비와, 작업단계, 원자재카테고리, 생산계획을 조인하고 작업단계넘버를 조건으로 원자재비 리스트를 출력하는 쿼리문-->
  	<select id="listSelectWoMaterialsPay"
  		parameterType="java.util.Map"
  		resultMap="woMaterialsPay">
@@ -110,7 +116,9 @@
 				sp_pp_work.pp_number = sp_pp.pp_number
 			WHERE 
 				sp_pp_work.pp_work_number=#{ppWorkNumber}
+			<!-- 원자재비 옵션이 null이 아니라면 /분기문 -->
 			<if test="searchMaterialsPayOption != null">
+				<!-- 검색 옵션이 materialsName이라면 and절 추가해 조회할 수 있다. -->
 				<if test="searchMaterialsPayOption == 'materialsName'">
 					AND sp_materials_cate.materials_name LIKE CONCAT('%',#{searchKeyword},'%') 
 				</if>

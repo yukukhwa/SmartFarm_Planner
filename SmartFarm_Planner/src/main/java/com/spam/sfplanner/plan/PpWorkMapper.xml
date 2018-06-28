@@ -32,6 +32,8 @@
  		</collection>
  	</resultMap>
  	
+ 	<!-- [김재희] -->
+ 	<!-- 작업단계에 해당하는 작업단계 정보들을 수정처리하는 쿼리문 -->
  	<update id="updatePpWork"
  		parameterType="com.spam.sfplanner.plan.PpWork">
 	 		UPDATE sp_pp_work
@@ -45,6 +47,7 @@
 				pp_work_number=#{ppWorkNumber}
  	</update>
  	
+ 	<!-- 작업단계넘버에 해당하는 정보를 작업단계테이블과 생산계획테이블, 농가테이블을 조인해 출력하는 쿼리문 -->
  	<select id="oneSelectPpWork"
  		parameterType="integer"
  		resultMap="ppWork">
@@ -72,6 +75,7 @@
  			DELETE FROM sp_pp_work WHERE pp_work_number=#{ppWorkNumber}
  	</delete>
  	
+ 	<!-- 작업단계의 정보들을 등록하는 쿼리문 -->
  	<insert id="insertPpWork"
  		parameterType="com.spam.sfplanner.plan.PpWork">
  		<selectKey resultType="int" keyProperty="ppWorkNumber" order="AFTER">
@@ -95,6 +99,7 @@
 				, #{ppWorkContent})
  	</insert>
  	
+ 	<!-- 작업단게테이블과 생산계획서테이블,농가테이블을 조인하여 생산계획서넘버에 해당하는 작업단계의 리스트들을 출력하는 쿼리문-->
  	<select id="listSelectPpWork"
  		parameterType="java.util.Map"
  		resultMap="ppWork">
@@ -115,10 +120,13 @@
 			JOIN sp_farm
 			ON sp_pp_work.f_number = sp_farm.f_number
 			WHERE sp_pp.pp_number=#{ppNumber}
+			<!-- 작업단계의 검색옵션이 NULL이 아니라면 / 분기문 시작 -->
 			<if test="searchWorkPlanOption != null">
+				<!-- 작업단계 검색옵션이 ppWorkName일 때 and절 추가해 키워드에 해당하는 모든 리스트를 출력 -->
 				<if test="searchWorkPlanOption == 'ppWorkName'">
 					AND sp_pp_work.pp_work_name LIKE CONCAT('%',#{searchKeyword},'%')
 				</if>
+				<!-- 작업단계 검색옵션이 ppWorkContent일 때 and절 추가해 키워드에 해당하는 모든리스트를 출력 -->
 				<if test="searchWorkPlanOption == 'ppWorkContent'">
 					AND sp_pp_work.pp_work_content LIKE CONCAT('%',#{searchKeyword},'%')
 				</if>

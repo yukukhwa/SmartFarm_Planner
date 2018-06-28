@@ -22,14 +22,15 @@
  		</collection>
  	</resultMap>
  	
- 	<!-- 해당하는 원자재카테고리넘버를 가져와 원자재 카테고리의 정보들을 삭제처리 하는 쿼리문  -->
+ 	<!-- [김재희] -->
+ 	<!-- 원자재카테고리의 넘버에 해당하는 원자재 카테고리의 정보들을 삭제처리 하는 쿼리문  -->
  	<delete id="deleteCategoryMaterials"
  		parameterType="integer">
  			DELETE FROM sp_materials_cate
 			WHERE sp_materials_cate.materials_number=#{materialsNumber}
  	</delete>
  	
- 	<!-- 원자재 카테고리의 정보를 수정처리하는 쿼리문 -->
+ 	<!-- 원자재카테고리의 넘버에 해당하는 정보를 수정처리하는 쿼리문 -->
  	<update id="updateCategoryMaterials"
  		parameterType="com.spam.sfplanner.category.CategoryMaterials">
  			UPDATE sp_materials_cate
@@ -40,7 +41,8 @@
 			WHERE sp_materials_cate.materials_number=#{materialsNumber}
  	</update>
  	
- 	<!-- 원자재 카테고리의 내용을 수정하기위해 해당 카테고리의 이름을 가져와 수정을 위한 조회화면을 출력하는 쿼리문  -->
+ 	<!-- 원자재 카테고리의 내용을 수정하기위해 원자재카테고리테이블, 테마카테고리테이블, 관리기관테이블을 조인하여
+ 		 원자재카테고리의 이름에 해당하는 정보를 출력하는 쿼리문  -->
  	<select id="oneSelectCategoryMaterials"
  		parameterType="String"
  		resultMap="categoryMaterials">
@@ -61,7 +63,8 @@
 				sp_materials_cate.materials_name=#{materialsName}
  	</select>
  
- 	<!-- 검색키워드에 해당하는 원자재카테고리의 전체 리스트를 출력하고 조회하는 쿼리문 -->
+ 	<!-- 원자재카테고리와 테마카테고리테이블과 관리기관 테이블을 조인해 검색키워드에 해당하는 
+ 		원자재카테고리의 전체 리스트를 출력하고 조회하는 쿼리문 -->
  	<select id="searchListSelectCategoryMaterials"
  		parameterType="java.util.Map"
  		resultMap="categoryMaterials">
@@ -77,10 +80,13 @@
 			ON sp_materials_cate.theme_number = sp_theme_cate.theme_number
 			JOIN sp_agency
 			ON sp_materials_cate.a_number = sp_agency.a_number
+			<!-- 원자재 카테고리의 검색옵션이 null이 아니라면 / 분기문 시작-->
 			<if test="materialsCateSearchOption != null">
+				<!-- 원자재 카테고리의 옵션설정이 aName으로 되었을 때 -->
 				<if test="materialsCateSearchOption == 'aName'">
 					WHERE sp_agency.a_name LIKE CONCAT('%',#{searchKeyword},'%')
 				</if>
+				<!-- 원자재 카테고리의 옵션설정이 materialsName일 경우 -->
 				<if test="materialsCateSearchOption == 'materialsName'">
 					WHERE sp_materials_cate.materials_name LIKE CONCAT('%',#{searchKeyword},'%')
 				</if>

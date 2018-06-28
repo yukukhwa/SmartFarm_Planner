@@ -28,6 +28,8 @@
  		</collection>
  	</resultMap>
  	
+ 	<!-- [김재희] -->
+ 	<!-- 예상인건비넘버에 해당하는 예상인건비정보들을 수정처리 하는 쿼리문 -->
  	<update id="updateWoHumanPay" 
  		parameterType="com.spam.sfplanner.plan.WoHumanPay">
  			UPDATE sp_e_humanpay
@@ -41,6 +43,7 @@
 				e_humanpay_number=#{eHumanpayNumber}
  	</update>
  	
+ 	<!-- 예상인건비 넘버에 해당하는 예상인건비를 테마카테고리테이블, 작업단계테이블, 예상인건비테이블을 조인해 출력하는 쿼리문 -->
  	<select id="oneSelectWoHumanPay"
  		parameterType="integer"
  		resultMap="woHumanPay">
@@ -64,11 +67,13 @@
 				sp_e_humanpay.e_humanpay_number=#{eHumanpayNumber}
  	</select>
  	
+ 	<!-- 예상인건비비넘버에 해당하는 예상인건비를 삭제한는 쿼리문 -->
  	<delete id="deleteWoHumanPay"
  		parameterType="integer">
  			DELETE FROM sp_e_humanpay WHERE e_humanpay_number=#{eHumanpayNumber}
  	</delete>
  	
+ 	<!-- 예상인건비를 등록처리 할 수 있는 쿼리문 -->
  	<insert id="insertWoHumanPay"
  		parameterType="com.spam.sfplanner.plan.WoHumanPay">
 	 		INSERT INTO sp_e_humanpay(
@@ -89,6 +94,8 @@
 				, #{eHumanpaySecret})
  	</insert>
  	
+ 	<!-- 예상인건비테이블과 테마카테고리테이블, 생산계획서테이블과, 작업단계테이블을 조인하여
+ 		조건인 작업단계넘버에 해당하는 예상인건비를 출력하는 쿼리문 -->
  	<select id="listSelectWoHumanPay"
  		parameterType="java.util.Map"
  		resultMap="woHumanPay">
@@ -113,14 +120,16 @@
 				sp_pp_work.pp_number = sp_pp.pp_number
 			WHERE
 				sp_e_humanpay.pp_work_number=#{ppWorkNumber}
+			<!-- 예상인건비의 검색조건이 null이 아니라면 / 분기문 시작  -->
 			<if test="searchHumanPayOption != null">
+				<!-- 예상인건비의 검색옵션이 eHumanpayName이면 and절 추가해 키워드에 해당하는 모든리스트 조회가능 -->
 				<if test="searchHumanPayOption == 'eHumanpayName'">
 					AND sp_e_humanpay.e_humanpay_name LIKE CONCAT('%',#{searchKeyword},'%')
 				</if>
+				<!-- 예상 인건비의 검색옵션이 eHumanpayResidentNumber이면 and절 추가해 키워드에 해당하는 모든 리스트 조회가능 -->
 				<if test="searchHumanPayOption == 'eHumanpayResidentnumber'">
 					AND sp_e_humanpay.e_humanpay_residentnumber LIKE CONCAT('%',#{searchKeyword},'%')
 				</if>
 			</if>
-			
  	</select>
  </mapper>

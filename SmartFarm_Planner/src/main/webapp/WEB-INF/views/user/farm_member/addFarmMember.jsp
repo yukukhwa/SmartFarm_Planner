@@ -156,82 +156,8 @@
 		
 		
 		$("#insertFarmMember").click(function(){
-			/* var fName = $('#fName').val();
-			var fPhone = $('#fPhone').val();
-			var fDoroaddress = $('#fDoroaddress').val();
-			var fJibunaddress = $('#fJibunaddress').val();
-			var fParty = $('#fParty').val();
-			var fMemberId = $('#fMemberId').val();
-			var fMemberPw = $('#fMemberPw').val();
-			
-			//개인정보동의에 체크하지 않으면 경고문과 함께 submit하지 못하게
-			if($('#fMemberPrivacy').prop('checked')){
-				alert('개인정보 제공에 동의하셨습니다');
-				return;
-			}else{
-				alert('개인정보제공동의를 체크하셔야 회원가입 됩니다');
-				$('#fMemberPrivacy').focus();
-				return;
-			}
-				
-			//아이디를 입력하지 않으면 아이디입력칸으로 돌아감
-			if(fMemberId.length == 0){
-				alert("아이디를 입력해주세요");
-				$('#fMemberId').focus();
-				return;
-			}
-			
-			//비밀번호를 입력하지 않으면 비밀번호 입력칸으로 돌아감
-			if(fMemberPw.length == 0){
-				alert("아이디를 입력해주세요");
-				$('#fMemberPw').focus();
-				return;
-			}
-			
-			//농가이름이 없으면 다시 입력칸으로 돌아감
-			if(fName.length == 0){
-				alert("농장이름을 입력해주세요");
-				$('#fName').focus();
-				return;
-			}
-			
-			//농가의 대표번호가 없으면 다시 입력칸으로 돌아감
-			if(fPhone.length == 0){
-				alert("농장의 대표번호를 입력해주세요");
-				$('#fPhone').focus();
-				return;
-			}
-			
-			// 농가의 도로명주소가 없으면 다시 입력칸으로 돌아가게
-			if(fDoroaddress.length == 0){
-				alert("농장의 도로명주소를 입력해주세요");
-				$('#fDoroaddress').focus();
-				return;
-			}
-			
-			// 농가의 지번주소가 없으면 다시 입력칸으로 돌아가게
-			if(fJibunaddress.length == 0){
-				alert("농장의 도로명주소를 입력해주세요");
-				$('#fJibunaddress').focus();
-				return;
-			}
-			
-			// 농가의 인원을 입력하지 않으면 다시 입력칸으로 돌아감
-			if(fParty.length == 0){
-				alert("농가의 인원을 입력해주세요");
-				$('#fParty').focus();
-				return;
-				
-			} */
 			$('#farmMemberInsert').submit();
-			// 농가의 인원은 숫자만 받을 수 있게
-			/* if(fParty) */
 			
-			// 모든 조건이 완료되면 submit으로 넘어가게
-			/* if(confirm("농가로 회원가입 하시겠습니까?")){
-				alert("농가로 회원가입 되셨습니다")
-				return true;
-			} */
 		})
 	})
 </script>
@@ -344,6 +270,7 @@
 								<span class="help-block" id="addFarmFormHelpfParty">
 									농가 인원을 등록해주세요
 								</span>
+
 							</div>
 						</div>
 						<!-- 농가등록 폼 끝 -->

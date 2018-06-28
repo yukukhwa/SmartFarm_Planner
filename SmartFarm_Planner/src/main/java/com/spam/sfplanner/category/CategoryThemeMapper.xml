@@ -17,11 +17,14 @@
  		</collection>
  	</resultMap>
  	
+ 	<!-- [김재희] -->
+ 	<!-- 테마카테고리의 넘버에 해당하는 테마 카테고리 정보를 삭제처리하는 쿼리문 -->
  	<delete id="deleteCategoryTheme"
  		parameterType="integer">
  			DELETE FROM sp_theme_cate WHERE theme_number=#{themeNumber}
  	</delete>
  	
+ 	<!-- 테마카테고리넘버에 해당하는 테마 카테고리 정보를 수정처리 하는 쿼리문 -->
  	<update id="updateCategoryTheme"
  		parameterType="com.spam.sfplanner.category.CategoryTheme">
 	 		UPDATE sp_theme_cate
@@ -43,7 +46,7 @@
 			WHERE sp_theme_cate.theme_name=#{themeName}
 	 </select>
 	 
-	<!-- 검색키워드에 해당하는 테마카테고리 전체리스트를 출력하는 셀렉트쿼리문  -->
+	<!-- 관리기관테이블과 테마카테고리테이블을 조인해 검색키워드에 해당하는 테마카테고리 전체리스트를 출력하는 셀렉트쿼리문  -->
  	<select id="searchListSelectCategoryTheme"
  		resultMap="categoryTheme"
  		parameterType="java.util.Map">
@@ -54,17 +57,20 @@
 			FROM sp_theme_cate
 			JOIN sp_agency
 			ON sp_theme_cate.a_number = sp_agency.a_number
+			<!-- 테마카테고리의 옵션이 null이 아니라면 /분기문 시작 -->
 			<if test="themeCateSearchOption != null">
+				<!-- 테마카테고리의 옵션이 themeName이라면 키워드에 해당하는 모든 리스트를 출력 -->
 				<if test="themeCateSearchOption == 'themeName'">
 					WHERE sp_theme_cate.theme_name LIKE CONCAT('%',#{searchKeyword},'%')
 				</if>
+				<!-- 테마카테고리의 옵션이 aName이라면 키워드에 해당하는 모든 리스트를 출력 -->
 				<if test="themeCateSearchOption == 'aName'">
 					WHERE sp_agency.a_name LIKE CONCAT('%',#{searchKeyword},'%')
 				</if>
 			</if>
  	</select>
 	 
- 	<!-- 테마카테고리 전체리스트를 출력하는 셀렉트쿼리문  -->
+ 	<!-- 테마카테고리 테이블과 관리기관테이블을 조인하여 테마카테고리 전체리스트를 출력하는 셀렉트쿼리문  -->
  	<select id="listSelectCategoryTheme"
  		resultMap="categoryTheme">
 	 		SELECT sp_theme_cate.theme_number

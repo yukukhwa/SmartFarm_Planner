@@ -27,7 +27,8 @@
 		</collection>
 	</resultMap>
   
-  <!-- 농가이름 중보체크 하면 해당 농가의 이름을 체크해 카운트해주는 쿼리문 -->
+  <!-- [김재희] -->
+  <!-- 농가이름 중복체크 하면 해당 농가의 이름을 체크해 카운트해주는 쿼리문 -->
   <select id="fNameCheck"
   	parameterType="String"
   	resultType="int">
@@ -39,7 +40,7 @@
 			sp_farm.f_name=#{fName}
   </select>
   
-  <!-- 농가의 정보를 수정처리하는 쿼리문 -->
+  <!-- 농가넘버에 해당하는 농가의 정보를 수정처리하는 쿼리문 -->
   <update id="updateFarm"
   		parameterType="com.spam.sfplanner.user.FarmMemberRequest">
   			UPDATE sp_farm
@@ -60,7 +61,7 @@
   			DELETE FROM sp_farm WHERE f_number=#{fNumber}
   </delete>
 
-  <!-- 한개의 농가에 대한 상세정보를 조회하는 쿼리문 -->
+  <!-- 농가이름에 해당하는 한개의 농가에 대한 상세정보를 농가멤버테이블과 조인하여 조회하는 쿼리문 -->
   <select id="oneSelectFarm"
        parameterType="String"
        resultMap="farm">
@@ -78,7 +79,7 @@
 		   WHERE sp_farm.f_Name=#{fName}
     </select>
  	
- 	<!-- 검색 키워드에 해당하는 농가의 전체 리스트를 조회하는 쿼리문 -->
+ 	<!-- 농가이름에 해당하는 농가의 전체 리스트를 조회하는 쿼리문 -->
  	<select id="searchlistSelectFarm"
  		resultType="com.spam.sfplanner.corporation.Farm"
  		parameterType="String">
