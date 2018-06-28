@@ -20,11 +20,11 @@ public class WrHumanPayDao {
 	
 	final String NS = "com.spam.sfplanner.actresult.WrHumanPayMapper.";
 	/*
-	 * wrHumanpayNumber를 매개변수로 받아 그 데이터를 삭제하는 쿼리문을 실행한 후
+	 * wrNumber를 매개변수로 받아 그 데이터를 삭제하는 쿼리문을 실행한 후
 	 * 실행횟수를 리턴받는 매서드
 	 */
-	public int deleteWrHumanPay(int wrHumanpayNumber) {
-		return sqlSession.delete(NS+"deleteWrHumanPay", wrHumanpayNumber);
+	public int deleteWrHumanPay(int wrNumber) {
+		return sqlSession.delete(NS+"deleteWrHumanPay", wrNumber);
 	}
 	/*
 	 * wrHumanPayDb를 매개변수로 받아 그 데이터로 수정하는 쿼리문을 실행한 후

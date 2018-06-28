@@ -4,8 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.spam.sfplanner.actresult.WrMaterialsPayMapper">
+	<!-- [김기성]
+	WrMaterialsPay 설계에 따라 외래키를 포함하는 객체의 컬럼값들을 쉽게 가져오기 위해서 collection을 활용하였다.
+	작업단계넘버를 포함하는 PpWoResult 객체를 collection하였고, 예상원자재비넘버를 포함하는 WoMaterialsPay 객체를 collection하였다.
+	원자재 카테고리의 정보도 필요해서 원자재카테넘버를 포함하는 CategoryMaterials 객체도 collection하였다. -->
 	<resultMap type="com.spam.sfplanner.actresult.WrMaterialsPay" id="wrMaterialsPay">
-		<id column="wr_materialspay" property="wrMaterialspayNumber"/>
+		<id column="wr_materialspay_number" property="wrMaterialspayNumber"/>
 		<result column="wr_materialspay_quantity" property="wrMaterialspayQuantity"/>
 		<result column="wr_materialspay_unitcost" property="wrMaterialspayUnitcost"/>
 		<collection property="ppWoResult" ofType="com.spam.sfplanner.actresult.PpWoResult">
@@ -30,7 +34,7 @@
 			parameterType="Integer">
 		DELETE FROM
 			sp_wr_materialspay
-		WHERE wr_materialspay_number = #{wrNumber}
+		WHERE wr_number = #{wrNumber}
 	</delete>
 	<!-- WrMaterialsPayDb를 매개변수로 받아 수정하고 싶은 원자재비결과넘버 조건에 맞춘 원자재비결과 내용을 수정하는 쿼리문 -->
 	<update id="updateWrMaterialsPay"

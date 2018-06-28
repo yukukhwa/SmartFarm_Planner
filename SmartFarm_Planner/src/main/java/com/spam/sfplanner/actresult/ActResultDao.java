@@ -19,7 +19,16 @@ public class ActResultDao {
 	private static final Logger logger = LoggerFactory.getLogger(ActResultDao.class);
 	
 	final String NS = "com.spam.sfplanner.actresult.ActResultMapper.";
-	
+	/*
+	 * ppResultlistNumber를 매개변수로 받아 해당하는 실행결과리스트를 삭제하는 쿼리문을 실행한 후
+	 * 나온 결과를 리턴받는 매서드
+	 */
+	public int deleteActResult(int ppResultlistNumber) {
+		return sqlSession.delete(NS+"deleteActResult", ppResultlistNumber);
+	}
+	/*
+	 * map을 매개변수로 받아 해당하는 실행결과리스트 한개를 ActResult로 리턴받는 매서드
+	 */
 	public ActResult oneSelectActResult(Map<String, Object> map) {
 		return sqlSession.selectOne(NS+"oneSelectActResult", map);
 	}
@@ -37,7 +46,9 @@ public class ActResultDao {
 	public List<ActResult> listSelectActResult(Map<String, Object> map) {
 		return sqlSession.selectList(NS+"listSelectActResult", map);
 	}
-	
+	/*
+	 * actResult를 매개변수로 받아 insert쿼리문을 실행시키고 나온 결과를 리턴하는 매서드
+	 */
 	public int insertActResult(ActResult actResult) {
 		return sqlSession.insert(NS+"insertActResult", actResult);
 	}

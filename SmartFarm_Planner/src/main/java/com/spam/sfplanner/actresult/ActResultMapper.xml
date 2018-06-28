@@ -4,12 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.spam.sfplanner.actresult.ActResultMapper">
-	<!-- 실행결과 리스트 db에서 1:N관계를 해결하기 위해 resultMap을 사용하였다
-	실행결과와 작업단계가 1:N관계라 작업단계db를 collection하였다.
-	작업단계와 보험비/기타지출비/원자재비/필요장비/인건비/메모가 1:N관계라 각각 collection하였다.
-	필요장비와 대여비가 1:N 관계라 collection하였다
-	메모와 메모파일이 1:N관계라 collection하였다.
-	외래키로 되어있는 컬럼이 상위와 하위에 중복되더라도 테이블에 컬림이 되어있으므로 추가해두었다. -->
+	<!-- [김기성]
+	dto 설계에 따라 외래키를 포함하는 객체의 컬럼값들을 쉽게 가져오기 위해서 resultMap을 사용하였다.
+	fMemberId(농가회원아이디)를 가지고 있는 FarmMember(농가회원)을 collection하였고,
+	ppNumber(계획서넘버)를 가지고 있는 ProductionPlan(계획서)를 collection하였다.
+	그리고 ppNameNumber(계획명 카테고리넘버)를 가지고 있는 TitlePlan(계획명)을 collection하였고,
+	fNumber(농가넘버)를 가지고 있는 Farm(농가)를 collection하였다. -->
 	<resultMap type="com.spam.sfplanner.actresult.ActResult" id="actResult">
 		<id column="pp_resultlist_number" property="ppResultlistNumber"/>
 		<result column="pp_resultlist_date" property="ppResultlistDate"/>
@@ -49,6 +49,17 @@
 			<result column="f_registdate" property="fRegistdate"/>
 		</collection>
 	</resultMap>
+	<!-- 실행결과넘버를 매개변수로 받아 해당하는 튜플을 삭제하는 쿼리문 -->
+	<delete id="deleteActResult"
+			parameterType="Integer">
+		DELETE FROM
+			sp_pp_resultlist
+		WHERE pp_resultlist_number = #{ppResultlistNumber}
+	</delete>
+	<!-- map을 매개변수로 받아 기본기인 실행결과리스트넘버에 해당하는 컬럼들을 select하는 쿼리문
+	계획서의 계획명을 가져오기위해서 계획서와 계획명카테고리를 조인하였다.
+	농가넘버를 가져오기 위해서 농가테이블을 조인하였다.
+	회원 아이디를 가져오기 위해서 농가회원테이블을 조인하였다. -->
 	<select id="oneSelectActResult"
 			parameterType="Map"
 			resultMap="actResult">
@@ -56,8 +67,14 @@
 			sp_pp_resultlist.pp_resultlist_number,
 			sp_pp_name_cate.pp_name_planname,
 			sp_farm.f_number,
+			sp_farm.f_name,
 			sp_pp_resultlist.pp_resultlist_date,
-			sp_farm_member.f_member_id
+			sp_farm_member.f_member_id,
+			sp_farm_member.f_member_name,
+			sp_pp.pp_startday,
+			sp_pp.pp_endday,
+			sp_pp.pp_ownarea,
+			sp_pp.pp_rentarea
 		FROM sp_pp_resultlist
 		JOIN sp_pp ON sp_pp.pp_number = sp_pp_resultlist.pp_number
 		JOIN sp_pp_name_cate ON sp_pp_name_cate.pp_name_number = sp_pp.pp_name_number
@@ -139,6 +156,8 @@
 		ORDER BY sp_pp_resultlist.pp_resultlist_number DESC 
 		LIMIT #{beginRow}, #{pagePerRow}
 	</select>
+	<!-- ActResult type으로 매개변수를 받아 실행결과를 입력하는 쿼리문
+	입력후에 기본키를 리턴받기 위해 selectKey를 활용하였다. -->
 	<insert id="insertActResult" parameterType="com.spam.sfplanner.actresult.ActResult">
 		<selectKey resultType="int"
 				   keyColumn="pp_resultlist_number"

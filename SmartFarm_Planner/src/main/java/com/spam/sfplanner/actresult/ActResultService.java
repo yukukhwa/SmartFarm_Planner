@@ -71,6 +71,110 @@ public class ActResultService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ActResultService.class);
 	/*
+	 * actResult를 매개변수로 받아 실행결과 하위인 작업단계를 리스트에 담아
+	 * 반복시켜 수정처리하고 작업단계 하위인 기타지출비, 인건비, 보험비, 원자재비, 필요장비, 메모를 각각 리스트에 담아
+	 * 마찬가지로 반복시켜 수정처리한다.
+	 * 필요장비의 하위인 대여비도 마찬가지로 작업한다.
+	 */
+	public void updateActResult(ActResult actResult) {
+		logger.debug("updateActResult.actResult : " + actResult);
+		List<PpWoResult> ppWoResultList = actResult.getPpWoResultList();
+		/*
+		 * 작업단계리스트가 null이라면 반복문을 실행하지 않기 위한 조건문
+		 * 하위 항목들도 마찬가지로 작업한다.
+		 */
+		if(ppWoResultList != null) {
+			/*
+			 * 작업단계리스트를 수정하기 위한 반복문
+			 * 하위 항목들도 마찬가지로 작업한다.
+			 */
+			for(PpWoResult ppWoResult : ppWoResultList) {
+				ppWoResultDao.updateWorkResult(ppWoResult);
+				
+				List<WrEtcSpendPay> WrEtcSpendPayList = ppWoResult.getWrEtcSpendPayList();
+				if(WrEtcSpendPayList != null) {
+					for(WrEtcSpendPay wrEtcSpendPay : WrEtcSpendPayList) {
+						wrEtcSpendPayDao.updateWrEtcSpendPay(wrEtcSpendPay);
+					}
+				}
+				List<WrHumanPay> wrHumanPayList = ppWoResult.getWrHumanPayList();
+				if(wrHumanPayList != null) {
+					for(WrHumanPay wrHumanPay : wrHumanPayList) {
+						wrHumanPayDao.updateWrHumanPay(wrHumanPay);
+					}
+				}
+				List<WrInsurancePay> wrInsurancePayList = ppWoResult.getWrInsurancePayList();
+				if(wrInsurancePayList != null) {
+					for(WrInsurancePay wrInsurancePay : wrInsurancePayList) {
+						wrInsurancePayDao.updateWrInsurancePay(wrInsurancePay);
+					}
+				}
+				List<WrMaterialsPay> wrMaterialsPayList = ppWoResult.getWrMaterialsPayList();
+				if(wrMaterialsPayList != null) {
+					for(WrMaterialsPay wrMaterialsPay : wrMaterialsPayList) {
+						wrMaterialsPayDao.updateWrMaterialsPay(wrMaterialsPay);
+					}
+				}
+				List<WrNeedEquip> wrNeedEquipList = ppWoResult.getWrNeedEquipList();
+				if(wrNeedEquipList != null) {
+					for(WrNeedEquip wrNeedEquip : wrNeedEquipList) {
+						wrNeedEquipDao.updateWrNeedEquip(wrNeedEquip);
+						
+						List<WrNeRentPay> wrNeRentPayList = wrNeedEquip.getWrNeRentPayList();
+						if(wrNeRentPayList != null) {
+							for(WrNeRentPay wrNeRentPay : wrNeRentPayList) {
+								wrNeRentPayDao.updateWrNeRentPay(wrNeRentPay);
+							}
+						}
+					}
+				}
+				List<Memo> memoList = ppWoResult.getMemoList();
+				if(memoList != null) {
+					for(Memo memo : memoList) {
+						memoDao.updateMemo(memo);
+					}
+				}
+			}
+		}
+	}
+	/*
+	 * ppResultlistNumber를 매개변수로 받아 해당하는 작업단계리스트를 List에 담은 후
+	 * 그 작업단계넘버에 해당하는 인건비, 원자재비, 보험비, 기타지출비, 메모를 반복해서 삭제한다.
+	 * 그리고 작업단계넘버에 해당하는 필요장비리스트를 가져온 후 필요장비넘버에 해당하는 대여비를 반복해서 삭제한다.
+	 * 마지막으로 실행결과넘버에 해당하는 작업단계와 실행결과리스트를 삭제한다.
+	 */
+	public void deleteActResult(int ppResultlistNumber) {
+		logger.debug("deleteActResult.ppResultlistNumber : " + ppResultlistNumber);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("ppResultlistNumber", ppResultlistNumber);
+		/*
+		 * 실행결과넘버에 해당하는 작업단계리스트를 가져와 작업단계마다 하위항목을삭제하기 위해서
+		 * 작업단계넘버를 반복문을 활용하였다.
+		 */
+		List<PpWoResult> PpWoResultList = ppWoResultDao.listSelectWorkResult(map);
+		for(PpWoResult ppWoResult : PpWoResultList) {
+			int wrNumber = ppWoResult.getWrNumber();
+			wrHumanPayDao.deleteWrHumanPay(wrNumber);
+			wrMaterialsPayDao.deleteWrMaterialsPay(wrNumber);
+			wrInsurancePayDao.deleteWrInsurancePay(wrNumber);
+			wrEtcSpendPayDao.deleteWrEtcSpendPay(wrNumber);
+			memoDao.deleteMemo(wrNumber);
+			/*
+			 * 작업단계넘버에 해당하는 필요장비리스트를 가져와
+			 * 하위항목인 대여비를 삭제하기 위해서 필요장비넘버를 활용하는 반복문이다.
+			 */
+			map.put("wrNumber", wrNumber);
+			List<WrNeedEquip> wrNeedEquipList= wrNeedEquipDao.listSelectWrNeedEquip(map);
+			for(WrNeedEquip wrNeedEquip : wrNeedEquipList) {
+				int wrNeedequipNumber = wrNeedEquip.getWrNeedequipNumber();
+				wrNeRentPayDao.deleteWrNeRentPay(wrNeedequipNumber);
+			}
+			wrNeedEquipDao.deleteWrNeedEquip(wrNumber);
+		}
+		ppWoResultDao.deleteWorkResult(ppResultlistNumber);
+		actResultDao.deleteActResult(ppResultlistNumber);
+	}
+	/*
 	 * 실행결과리스트넘버를 매개변수로 받아 해당하는 실행결과리스트 한개를 리턴하는 dao를 호출하여 actResult에 대입하고
 	 * 해당하는 작업단계 리스트를 리턴하는 dao를 호출하여 list에 대입한다.
 	 * 작업단계 넘버를 map에 셋팅하여 해당하는 인건비/원자재/기타지출비/인건비/필요장비/메모 리스트를 리턴하는 dao를 호출하여  ppWoResult에 셋팅하고
@@ -78,6 +182,7 @@ public class ActResultService {
 	 * actResult에 list를 셋팅하여 리턴한다.
 	 */
 	public ActResult oneSelectActResult(int ppResultlistNumber) {
+		logger.debug("oneSelectActResult.ppResultlistNumber : " + ppResultlistNumber);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ppResultlistNumber", ppResultlistNumber);
 		ActResult actResult = actResultDao.oneSelectActResult(map);
@@ -109,6 +214,7 @@ public class ActResultService {
 			ppWoResult.setMemoList(memoList);
 		}
 		actResult.setPpWoResultList(PpWoResultList);
+		logger.debug("oneSelectActResult.actResult : " + actResult);
 		return actResult;
 	}
 	/*
@@ -118,7 +224,14 @@ public class ActResultService {
 	 * 그리고 필요장비의 하위항목인 대여비도 마찬가지로 입력한다.
 	 */
 	public void insertActResult(ActResult actResult) {
+		logger.debug("insertActResult.actResult : " + actResult);
 		actResultDao.insertActResult(actResult);
+		/*
+		 * 실행결과객체에 있는 작업단계리스트를 리스트에 담아
+		 * null이라면 반복문을 실행하지 않기 위해 조건문을 달고
+		 * 각각의 작업단계에 외래키인 실행결과리스트를 셋팅하고 dao insert를 호출하는 반복문을 실행한다.
+		 * 하위항목들도 마찬가지로 조건문과 반복문을 실행한다.
+		 */
 		List<PpWoResult> ppWoResultList = actResult.getPpWoResultList();
 		if(ppWoResultList != null) {
 			for(PpWoResult ppWoResult : ppWoResultList) {
@@ -145,6 +258,28 @@ public class ActResultService {
 						wrInsurancePayDao.insertWrInsurancePay(wrInsurancePay);
 					}
 				}
+				List<WrEtcSpendPay> wrEtcSpendPayList = ppWoResult.getWrEtcSpendPayList();
+				if(wrEtcSpendPayList != null) {
+					for(WrEtcSpendPay wrEtcSpendPay : wrEtcSpendPayList) {
+						wrEtcSpendPay.getPpWoResult().setWrNumber(ppWoResult.getWrNumber());
+						wrEtcSpendPayDao.insertWrEtcSpendPay(wrEtcSpendPay);
+					}
+				}
+				List<WrNeedEquip> wrNeedEquipList = ppWoResult.getWrNeedEquipList();
+				if(wrNeedEquipList != null) {
+					for(WrNeedEquip wrNeedEquip : wrNeedEquipList) {
+						wrNeedEquip.getPpWoResult().setWrNumber(ppWoResult.getWrNumber());
+						wrNeedEquipDao.insertWrNeedEquip(wrNeedEquip);
+						
+						List<WrNeRentPay> wrNeRentPayList = wrNeedEquip.getWrNeRentPayList();
+						if(wrNeRentPayList != null) {
+							for(WrNeRentPay wrNeRentPay : wrNeRentPayList) {
+								wrNeRentPay.getWrNeedEquip().setWrNeedequipNumber(wrNeedEquip.getWrNeedequipNumber());
+								wrNeRentPayDao.insertWrNeRentPay(wrNeRentPay);
+							}
+						}
+					}
+				}
 				List<Memo> memoList = ppWoResult.getMemoList();
 				if(memoList != null) {
 					for(Memo memo : memoList) {
@@ -155,12 +290,26 @@ public class ActResultService {
 			}
 		}
 	}
-	
+	/*
+	 * 계획서넘버를 매개변수로 받아 계획서 한개를 가져오는 dao를 호출하여 변수에 담는다.
+	 * 계획서넘버를 map에 셋팅하여 작업단계리스트를 가져오는 dao를 호출하여 변수에 담는다.
+	 * 작업단계리스트를 반복해서 작업단계넘버에 해당하는 하위항목인 원자재비, 보험비, 인건비, 기타지출비, 필요장비의 리스트를 변수에담는다.
+	 * 필요장비넘버에 해당하는 대여비도 마찬가지로 반복해서 리스트를 변수에 담는다.
+	 * 변수에 담겨져있는 생산계획서객체를 map에 셋팅하고, 메모작성에 필요한 카테고리 리스트도 map에 셋팅하여
+	 * map을 리턴해준다.
+	 */
 	public Map<String, Object> insertActResult(int ppNumber) {
+		logger.debug("insertActResult.ppNumber : " + ppNumber);
 		ProductionPlan productionPlan = productionPlanDao.oneSelectProductionPlan(ppNumber);
+		/*
+		 * 생산계획서넘버를 map에 셋팅
+		 */
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("ppNumber", ppNumber);
 		List<PpWork> ppWorkList = ppWorkDao.listSelectPpWork(map);
+		/*
+		 * 작업단계넘버에 해당하는 하위항목의 리스트를 가져오기 위한 반복문
+		 */
 		for(PpWork ppWork : ppWorkList) {
 			map.put("ppWorkNumber", ppWork.getPpWorkNumber());
 			ppWork.setWoMaterialsPayList(woMaterialsPayDao.listSelectWoMaterialsPay(map));
@@ -169,6 +318,9 @@ public class ActResultService {
 			ppWork.setWoEtcSpendPayList(woEtcSpendPayDao.listSelectWoEtcSpendPay(map));
 			
 			List<WoNeedEquip> WoNeedEquipList = woNeedEquipDao.listSelectWoNeedEquip(map);
+			/*
+			 * 필요장비넘버에 해당하는 하위항목인 대여비리스트를 가져오기위한 반복문
+			 */
 			for(WoNeedEquip woNeedEquip : WoNeedEquipList) {
 				map.put("eNeedequipNumber", woNeedEquip.geteNeedequipNumber());
 				woNeedEquip.setWoNeRentPayList(woNeRentPayDao.listSelectWoNeRentPay(map));
@@ -176,9 +328,16 @@ public class ActResultService {
 			ppWork.setWoNeedEquipList(WoNeedEquipList);
 		}
 		productionPlan.setPpWorkList(ppWorkList);
+		/*
+		 * dao에서 호출한 매서드의 결과리스트들을 map에 셋팅해준다.
+		 */
 		map.put("productionPlan", productionPlan);
+		/*
+		 * 메모등록에 필요한 테마리스트를 map에 셋팅해준다.
+		 */
 		List<CategoryTheme> categoryThemeList = categoryThemeDao.listSelectCategoryTheme();
 		map.put("categoryThemeList", categoryThemeList);
+		logger.debug("insertActResult.map : " + map);
 		return map;
 	}
 	/*
@@ -230,6 +389,7 @@ public class ActResultService {
 	 * 그 목록을 리턴한다.
 	 */
 	public List<ProductionPlan> listSelectProductionPlan(int corpNumber) {
+		logger.debug("listSelectProductionPlan.corpNumber : " + corpNumber);
 		/*
 		 * search에 yes를 넣으면 조건절이 붙고
 		 * column에 농가넘버를 넣어 농가인지 조건을 붙고
@@ -242,5 +402,4 @@ public class ActResultService {
 		map.put("fNumber", corpNumber);
 		return productionPlanDao.listSelectProductionPlan(map);
 	}
-
 }

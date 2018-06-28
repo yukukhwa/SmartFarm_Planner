@@ -4,6 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="com.spam.sfplanner.actresult.WrHumanPayMapper">
+	<!-- [김기성]
+	WrHumanPay 설계에 따라 외래키를 포함하는 객체의 컬럼값들을 가져오기 위해서 collection을 활용하였다
+	작업단계외래키를 포함하는 PpWoResult를 collection하였고, 예상인건비넘버를 포함하는 WoHumanPay를 collection하였다. -->
 	<resultMap type="com.spam.sfplanner.actresult.WrHumanPay" id="wrHumanPay">
 		<id column="wr_humanpay_number" property="wrHumanpayNumber"/>
 		<result column="wr_humanpay_realcost" property="wrHumanpayRealcost"/>

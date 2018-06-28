@@ -41,21 +41,31 @@
 	<section class="wrapper">
 		<!--overview start-->
 		<div class="col">
-			<div class="col-lg-10">
+			<div class="col-lg-12">
 				<h3 class="page-header"><i class="icon_desktop"></i> 실행결과 리스트</h3>
+					<div align="right">
+							소속 : ${actResult.farm.fName} / 작성자 : ${actResult.farmMember.fMemberName}(${actResult.farmMember.fMemberId}) / 등록일자 : ${actResult.ppResultlistDate}
+					</div>
 				<section class="panel">
 					<header class="panel-heading">
 						${actResult.productionPlan.titlePlan.ppNamePlanname}
-						${actResult.ppResultlistDate}
-						${actResult.farmMember.fMemberId}
 					</header>
 					<div class="panel-body">
-						<c:forEach var="woResultList" items="${actResult.ppWoResultList}">
+						<div>
+							계획명 : ${actResult.productionPlan.titlePlan.ppNamePlanname}
+						</div>
+						<div>
+							계획기간 : ${actResult.productionPlan.ppStartday} ~ ${actResult.productionPlan.ppEndday}
+						</div>
+						<div>
+							소유면적/임대면적 : ${actResult.productionPlan.ppOwnarea} / ${actResult.productionPlan.ppRentarea}
+						</div>
+						<c:forEach var="ppWoResultList" items="${actResult.ppWoResultList}">
 							<div class="color">
-								<div class="panel-heading col-lg-12">${woResultList.ppWork.ppWorkName}</div>
+								<div class="panel-heading col-lg-12">${ppWoResultList.ppWork.ppWorkName}</div>
 								<div class="panel-content" style="display:none">
-									총 작업 면적 : ${woResultList.wrTotalarea}
-									이미 작업한 면적 : ${woResultList.wrReworkarea}
+									총 작업 면적 : ${ppWoResultList.wrTotalarea}
+									이미 작업한 면적 : ${ppWoResultList.wrReworkarea}
 									인건비
 									<table class="table table-striped table-advance table-hover">
 										<thead>
@@ -69,7 +79,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="wrHumanPayList" items="${woResultList.wrHumanPayList}">
+											<c:forEach var="wrHumanPayList" items="${ppWoResultList.wrHumanPayList}">
 												<tr>
 													<td>${wrHumanPayList.woHumanPay.eHumanpayName}</td>
 													<td>${wrHumanPayList.woHumanPay.eHumanpayResidentnumber}</td>
@@ -93,7 +103,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="wrMaterialsPayList" items="${woResultList.wrMaterialsPayList}">
+											<c:forEach var="wrMaterialsPayList" items="${ppWoResultList.wrMaterialsPayList}">
 												<tr>
 													<td>${wrMaterialsPayList.woMaterialsPay.categoryMaterials.materialsName}</td>
 													<td>${wrMaterialsPayList.woMaterialsPay.eMaterialspayUnitcost}</td>
@@ -116,7 +126,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="wrInsurancePayList" items="${woResultList.wrInsurancePayList}">
+											<c:forEach var="wrInsurancePayList" items="${ppWoResultList.wrInsurancePayList}">
 												<tr>
 													<td>${wrInsurancePayList.woInsurancePay.eInsurancepayMame}</td>
 													<td>${wrInsurancePayList.woInsurancePay.eInsurancepayTotalcost}</td>
@@ -139,7 +149,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="wrEtcSpendPayList" items="${woResultList.wrEtcSpendPayList}">
+											<c:forEach var="wrEtcSpendPayList" items="${ppWoResultList.wrEtcSpendPayList}">
 												<tr>
 													<td>${wrEtcSpendPayList.woEtcSpendPay.categoryEtcSpendPay.etcspendpayName}</td>
 													<td>${wrEtcSpendPayList.woEtcSpendPay.eEtcspendpayCost}</td>
@@ -164,7 +174,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="wrNeedEquipList" items="${woResultList.wrNeedEquipList}">
+											<c:forEach var="wrNeedEquipList" items="${ppWoResultList.wrNeedEquipList}">
 												<tr>
 													<td>${wrNeedEquipList.woNeedEquip.categoryEquip.equipName}</td>
 													<td>${wrNeedEquipList.woNeedEquip.eNeedequipState}</td>
@@ -187,7 +197,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="memoList" items="${woResultList.memoList}">
+											<c:forEach var="memoList" items="${ppWoResultList.memoList}">
 												<tr>
 													<td>${memoList.categoryTheme.themeName}</td>
 													<td>${memoList.wrMemoSubject}</td>
@@ -199,8 +209,11 @@
 								</div>
 							</div>
 						</c:forEach>
+						<div align="right">
+							<a href="${pageContext.request.contextPath}/updateActResultList?ppResultlistNumber=${actResult.ppResultlistNumber}" class="btn btn-info" type="submit">수정</a>
+							<a href="${pageContext.request.contextPath}/deleteActResultList?ppResultlistNumber=${actResult.ppResultlistNumber}" class="btn btn-danger" type="submit">삭제</a>
+						</div>
 					</div>
-					<a class="btn btn-primary" type="submit">삭제</a>
 				</section>
 			</div>
 		</div>

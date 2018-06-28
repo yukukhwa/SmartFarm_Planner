@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.connector.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +24,38 @@ public class ActResultController {
 	private ActResultService actResultService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(ActResultController.class);
-	
-	
+	/*
+	 * 실행결과리스트 수정처리하는 매핑
+	 * actResult를 매개변수로 받아 서비스의 updateActResult매서드를 호출하여 수정하고
+	 * 전체리스트 화면으로 리다이렉트한다.
+	 */
+	@RequestMapping(value="/updateActResultList", method = RequestMethod.POST)
+	public String updateActResult(ActResult actResult) {
+		actResultService.updateActResult(actResult);
+		return "redirect:/listActResultList";
+	}
+	/*
+	 * 실행결과리스트 수정화면으로 가는 매핑
+	 * 실행결과리스트넘버를 매개변수로 받아 상세리스트 매서드를 활용하여
+	 * 수정하기전 초기값을 model에 셋팅해주고 updateActResultList.jsp로 이동한다.
+	 */
+	@RequestMapping(value="/updateActResultList", method = RequestMethod.GET)
+	public String updateActResult(Model model
+			, @RequestParam(value="ppResultlistNumber") int ppResultlistNumber) {
+		model.addAttribute("actResult", actResultService.oneSelectActResult(ppResultlistNumber));
+		return "actresult/updateActResultList";
+	}
+	/*
+	 * 실행결과리스트 삭제처리 매핑
+	 * 실행결과리스트넘버를 매개변수로 받아 actResultService에 deleteActResult매서드를 호출하여
+	 * 해당하는 실행결과리스트와 그 외래키를 가지고 있는 하위항목들을 삭제하고
+	 * 실행결과전체리스트화면으로 리다이렉트한다.
+	 */
+	@RequestMapping(value="/deleteActResultList", method = RequestMethod.GET)
+	public String deleteActResult (@RequestParam(value="ppResultlistNumber") int ppResultlistNumber) {
+		actResultService.deleteActResult(ppResultlistNumber);
+		return "redirect:/listActResultList";
+	}
 	/*
 	 * 실행결과리스트 상세보기 보여주는 화면 매핑
 	 * 선택한 실행결과리스트 넘버를 매개변수로 받아 매서드를 호출한 후 결과를 model에 셋팅한후
