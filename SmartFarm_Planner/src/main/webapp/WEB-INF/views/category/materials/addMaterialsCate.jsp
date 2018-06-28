@@ -56,35 +56,37 @@
     			</div>
     		</c:if>
     		<c:if test="${loginMember.level == 'agency'}">
-	    		<div>
-	    			<h3>원자재 카테고리 등록</h3>
-	    			<form id="insertMaterialsCateForm" method="post" action="${pageContext.request.contextPath}/addMaterialsCate">
-	    				<div>
-	    					<input type="hidden" name="agency.aNumber" value="${loginMember.corpNumber}">
-	    				</div>
-	    				<div>
-	    					<label>
-	    						테마 카테고리 선택하기
-	    						<select name="categoryTheme.themeNumber" id="cateThemeOption">
-	    							<c:forEach var="categoryTheme" items="${categoryThemeList}">
-	    								<option value="${categoryTheme.themeNumber}">${categoryTheme.themeName}</option>
-	    							</c:forEach>
-	    						</select>
-	    					</label>
-	    				</div>
-	    				<div>
-    						<label>
-    							원자재 카테고리 이름 : <input type="text" id="materialsName" name="materialsName">
-    						</label>
-	    				</div>
-	    				<div>
-    						<label>
-    							원자재 카테고리 단위 : <input type="text" id="materialsUnit" name="materialsUnit">
-    						</label>
-	    				</div>
-	    				<button type="button" class="btn btn-primary" id="insertMaterialsCate">원자재카테고리 등록하기</button>
-	    				<button type="button" id="goCateMaterialsList" class="btn btn-default">원자재 카테고리 리스트</button>
-	    			</form>
+	    		<div style="width: 100%;">
+	    			<div style="background-color: #FAFAFA; text-align: center;">
+		    			<h3>원자재 카테고리 등록</h3>
+			    		<form id="insertMaterialsCateForm" method="post" action="${pageContext.request.contextPath}/addMaterialsCate">
+			    			<div>
+			    				<input type="hidden" name="agency.aNumber" value="${loginMember.corpNumber}">
+			    			</div>
+			    			<div>
+			    				<label>
+			    					테마 카테고리 선택하기
+			    					<select name="categoryTheme.themeNumber" id="cateThemeOption">
+			    						<c:forEach var="categoryTheme" items="${categoryThemeList}">
+			    							<option value="${categoryTheme.themeNumber}">${categoryTheme.themeName}</option>
+			    						</c:forEach>
+			    					</select>
+			    				</label>
+			    			</div>
+			    			<div>
+		    					<label>
+		    						원자재 카테고리 이름 : <input type="text" id="materialsName" name="materialsName">
+		    					</label>
+			    			</div>
+			    			<div>
+		    					<label>
+		    						원자재 카테고리 단위 : <input type="text" id="materialsUnit" name="materialsUnit">
+		    					</label>
+			    			</div>
+			    			<button type="button" class="btn btn-primary" id="insertMaterialsCate">원자재카테고리 등록하기</button>
+			    			<button type="button" id="goCateMaterialsList" class="btn btn-default">원자재 카테고리 리스트</button>
+			    		</form>
+	    			</div>
 	    		</div>
 			</c:if>
 		</section>

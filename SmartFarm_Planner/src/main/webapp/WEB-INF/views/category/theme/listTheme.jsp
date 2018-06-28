@@ -44,7 +44,7 @@
     	<section class="wrapper">
     		<div align="center" style="width: 100%">
     			<div style="background-color: #FAFAFA; margin: 5% 0% 2% 0%; padding: 5% 0% 4% 0%; width: 65%;">
-		    		<div style="text-align: left; margin-left: 8%;">
+		    		<div style="text-align: left; margin-left: 10%;">
 		    			<h3>
 		    				<b><i class="fa fa-cubes"></i>테마카테고리 전체 리스트</b>
 		    				
@@ -86,7 +86,7 @@
 	    		<div style="text-align: center; margin: 5% 15% 5% 15%;">
 	    			<form id="themeCateSearchForm" method="post" action="${pageContext.request.contextPath}/listTheme">
 	    				<div>
-		    				<div style="width: 15%; margin: auto;">
+		    				<div style="width: 15%; margin: 0%;">
 		    					<!-- 테마검색옵션을 설정하는 셀렉트 박스 -->
 			    				<select name="themeCateSearchOption" class="form-control m-bot15">
 			    					<option value="themeName">테마이름</option>
@@ -94,7 +94,7 @@
 			    				</select>
 		    				</div> <br>
 		    				<!-- 테마검색 키워드를 작성하는 input박스 -->
-		    				<div style="width: 30%; margin: auto;">
+		    				<div style="width: 30%; margin: 0%;">
 		    					<input type="text" class="form-control" id="searchKeyWord" name="searchKeyword">
 		    					<button type="button" class="btn btn-info" id="themeCateSearch">테마 검색하기</button>
 		    				</div>
@@ -103,8 +103,6 @@
 	    			</form>
     			</div>
 	    		<br>
-	    		
-	    		
     		</div>
     	</section>
     </section>
