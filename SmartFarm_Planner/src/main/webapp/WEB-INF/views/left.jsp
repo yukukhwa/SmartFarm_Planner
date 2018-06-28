@@ -27,10 +27,11 @@
 			<li class="sub-menu">
 				<a href="javascript:;" class=""><i class="icon_table"></i><span>표준 데이터</span><span class="menu-arrow arrow_carrot-right"></span></a>
 				<ul class="sub">					
-					<li><a class="" href="${pageContext.request.contextPath}/nongsaroApi?number=1">과수</a></li>
-					<li><a class="" href="${pageContext.request.contextPath}/nongsaroApi?number=2">축산</a></li>
-					<li><a class="" href="${pageContext.request.contextPath}/nongsaroApi?number=3">식량작물</a></li>
-					<li><a class="" href="${pageContext.request.contextPath}/nongsaroApi?number=4">특용작물</a></li>					
+					<li><a class="" href="${pageContext.request.contextPath}/nongsaroApi?number=1">품종정보</a></li>
+					<li><a class="" href="${pageContext.request.contextPath}/nongsaroApi?number=2">품목별관리메뉴얼</a></li>
+					<li><a class="" href="${pageContext.request.contextPath}/nongsaroApi?number=3">작목별 농업기술정보</a></li>
+					<li><a class="" href="${pageContext.request.contextPath}/nongsaroApi?number=4">현장기술지원</a></li>
+					<li><a class="" href="${pageContext.request.contextPath}/nongsaroApi?number=5">농축산물 소득정보</a></li>					
 				</ul>
 			</li>
 			<li class="sub-menu">

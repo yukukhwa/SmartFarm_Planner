@@ -120,7 +120,7 @@
 									+'</div>'
 								+'</div>'
 								+'<div class="col-lg-2">'
-									+'<input type="button" id="aNumberCheck" value="관리기관 확인">'
+									+'<input type="button" id="aNumberCheck" value="&#xf00c; 관리기관 확인" class="btn btn-default">'
 								+'</div>');
 				return;
 			}else{
@@ -136,7 +136,7 @@
 											+'</div>'
 										+'</div>'
 										+'<div class="col-lg-2">'
-											+'<input type="button" id="aNameCheck" value="관리기관명 중복 확인">'
+											+'<input type="button" id="aNameCheck" value="&#xf00e; 관리기관명 중복 확인" class="btn btn-default">'
 										+'</div>'
 										+'<div class="col-lg-10">'
 											+'<label class="col-sm-2 control-label">도로명주소</label>'
@@ -149,7 +149,7 @@
 											+'</div>'
 										+'</div>'
 										+'<div class="col-lg-2">'
-											+'<input type="button" id="agencyJusoCheck" value="주소검색" />'
+											+'<input type="button" id="agencyJusoCheck" value="&#xf124; 주소검색"  class="btn btn-default">'
 										+'</div>'
 									+'</div>');
 				return;
@@ -179,9 +179,9 @@
 		});
 		
 		/* 비밀번호확인부분 유효성검사를 해준다 */
-		$('input#aMemberPwCheck').change(function(){
+		$('input#aMemberPwCheck').keyup(function(){
 			if($('input#aMemberPw').val() != $('input#aMemberPwCheck').val()){
-				alert('비밀번호가 불일치 합니다. 확인해주세요.');
+				//alert('비밀번호가 불일치 합니다. 확인해주세요.');
 				$('#PwCheckResult').show();
 				$('input#aMemberPwCheck').focus();
 				return;
@@ -424,7 +424,7 @@
 									<b id="idCheckResult">사용불가능한 아이디입니다.</b>
 								</span>
 								<span class="col-sm-3">
-									<input type="button" id="aMemberIdCheck" value="&#xf4fc; 아이디 중복체크" class="btn btn-default">
+									<input type="button" id="aMemberIdCheck" value="&#xf00c; 아이디 중복체크" class="btn btn-default">
 								</span>
 							</div>
 						</div>
@@ -472,7 +472,7 @@
 							</div>
 							<div class="col-sm-2">
 								<div align="center">
-									<input type="button" id="memberJusoCheck" value="주소검색"/>
+									<input type="button" id="memberJusoCheck" value="&#xf124; 주소검색" class="btn btn-default">
 								</div>
 							</div>
 						</div>

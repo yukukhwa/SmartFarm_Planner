@@ -5,7 +5,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta content="no-cache" http-equiv="pragma">
 	<jsp:include page="/WEB-INF/views/css.jsp"></jsp:include>
-	<title>nongAPI3.jsp</title>
+	<title>nongAPI5.jsp</title>
 	
 	<!-- 공통 CSS, JS 선언 -->
 	<link href="http://api.nongsaro.go.kr/css/api.css" rel="stylesheet" type="text/css">
@@ -14,9 +14,9 @@
 		
 	<script type="text/javascript">
 		nongsaroOpenApiRequest.apiKey = "20180504WPMFUW3WJMKM21VATDD0Q";//Api Key  - 발급받은 인증키로변경
-		nongsaroOpenApiRequest.serviceName = "cropTechInfo";//서비스명
-		nongsaroOpenApiRequest.operationName = "mainCategoryList";//오퍼레이션명 - nongsaroApiLoadingArea 영역에 로딩할 오퍼레이션 
-		nongsaroOpenApiRequest.htmlArea="nongsaroApiLoadingArea";//첫번째로 HTML을 로딩할영역 
+		nongsaroOpenApiRequest.serviceName = "farmPrdtIncome";//서비스명
+		nongsaroOpenApiRequest.operationName = "farmPrdtIncomeMtchprList";//오퍼레이션명 - nongsaroApiLoadingArea 영역에 로딩할 오퍼레이션 
+		nongsaroOpenApiRequest.htmlArea="nongsaroApiLoadingArea";//첫번째로 HTML을 로딩할영역
 		nongsaroOpenApiRequest.callback = "${pageContext.request.contextPath}/resources/nongsaroAjax/ajax_local_callback.jsp";//크로스 도메인 처리를 위한 콜백페이지 - 샘플소스에 있는 콜백페이지를 서버에 올리고 올린 경로로 수정
 	</script>
 </head>
@@ -29,10 +29,9 @@
 		<section class="wrapper">
 			<!-- ID를 변경하지 말고 제공할 페이지에 삽입하세요 -->
 			<div id="nongsaroApiLoadingArea"></div><!-- 메인카테고리 HTML 로딩 영역 -->
-			<div id="nongsaroApiLoadingArea1"></div><!-- 중분류카테고리 HTML 로딩 영역 -->
-			<div id="nongsaroApiLoadingArea3"></div><!-- 대분류기술코드 HTML 로딩 영역 -->
-			<div id="nongsaroApiLoadingArea4"></div><!-- 소분류기술코드 HTML 로딩 영역 -->
-			<div id="nongsaroApiLoadingArea5"></div><!-- 작목기술목록 HTML 로딩 영역 -->
+			<div id="nongsaroApiLoadingArea1"></div><!-- 연도,지역 카테고리  HTML 로딩 영역 -->
+			<div id="nongsaroApiLoadingArea3"></div><!-- 농산물 목록 HTML 로딩 영역 -->
+			<div id="nongsaroApiLoadingArea4"></div><!-- 농산물 소득정보 HTML 로딩 영역 -->
 		</section>
 	</section>
 </body>

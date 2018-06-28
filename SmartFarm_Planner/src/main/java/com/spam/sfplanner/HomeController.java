@@ -54,6 +54,8 @@ public class HomeController {
 			return "nongsaroAPI/nongAPI3";			
 		} else if(number == 4) {
 			return "nongsaroAPI/nongAPI4";			
+		} else if(number == 5){
+			return "nongsaroAPI/nongAPI5";
 		} else {
 			return "home";
 		}		
