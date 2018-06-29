@@ -98,6 +98,9 @@
 		<if test="fNumber != null">
 			AND sp_pp_resultlist.f_number = #{fNumber}
 		</if>
+		<if test="ppNumber != null">
+			AND sp_pp_resultlist.pp_number = #{ppNumber}
+		</if>
 		<if test="searchOption != null">
 			<if test="searchOption eq 'planName'">
 				AND sp_pp_name_cate.pp_name_planname LIKE CONCAT('%',#{searchKeyword},'%')

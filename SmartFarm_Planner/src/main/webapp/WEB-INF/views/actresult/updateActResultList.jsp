@@ -35,12 +35,14 @@
 			});
 			/* 등록버튼 클릭시 빈칸이 있으면 경고창 띄우고, 빈칸이 없다면 submit한다. */
 			$('#signUpBtn').click(function(){
-				if($('.form-control').val() == ''){
-					alert('모든 입력란을 기입하시오.');
-					return 0;
-				} else{
-					$('#signUpForm').submit();
-				}
+				$('input').each(function(i,e){
+					if($(e).val() == ''){
+						alert('모든 입력란을 기입하시오.');
+						$(e).focus();
+						preventDefault();
+					}
+				});
+				$('#signUpForm').submit();
 			});
 		});
 	</script>
