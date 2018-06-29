@@ -32,7 +32,7 @@ public class FarmDao {
 		sqlSession.delete(NAMESPACE+"deleteFarm", fNumber);
 	}
 	
-	public List<Farm> searchlistSelectFarm(String fName){
+	public List<Farm> searchListSelectFarm(String fName){
 		return sqlSession.selectList(NAMESPACE+"searchlistSelectFarm", fName);
 	}
 	

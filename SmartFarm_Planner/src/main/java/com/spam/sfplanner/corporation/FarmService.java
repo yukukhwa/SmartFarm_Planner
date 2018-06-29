@@ -50,7 +50,7 @@ public class FarmService {
 	
 	/* 검색조건인 fName을 매개변수로 받아 해당하는 농가들을 리스트로 출력하는 서비스 */
 	public List<Farm> searchlistSelectFarm(String fName) {
-		return farmDao.searchlistSelectFarm(fName);
+		return farmDao.searchListSelectFarm(fName);
 	}
 	
 	/* 농가의 이름인 fName을 매개변수로 받아 해당하는 농가의 정보하나를 출력하는 서비스 */
