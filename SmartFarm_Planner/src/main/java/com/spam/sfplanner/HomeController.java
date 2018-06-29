@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,24 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	
+	@Autowired
+	private HomeService homeService;
+	
+	@RequestMapping(value="/compare",method = RequestMethod.GET)
+	public String compare(@RequestParam(value="number") int number,@RequestParam(value="ppNumber") int ppNumber,Model model) {
+		String resultReturn = null;
+		switch (number) {
+		case 1:
+			model.addAttribute("resultList", homeService.compare1(ppNumber));
+			resultReturn = "/compare/compare1";
+			break;
+		default:
+			resultReturn = "/home";
+			break;
+		}
+		return resultReturn;
+	}
 	
 	/**
 	 * 주소(팝업) api GET

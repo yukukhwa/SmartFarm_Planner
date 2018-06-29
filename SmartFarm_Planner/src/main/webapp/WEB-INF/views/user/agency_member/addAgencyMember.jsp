@@ -356,7 +356,7 @@
 					</div>
 					<br>
 					<div id="level_agency">
-						<div id="level"  class="form-group">
+						<div id="level" class="form-group">
 							<label class="col-sm-2 control-label">권한</label>
 							<div class="col-lg-10">
 								<div class="radio">
@@ -477,7 +477,7 @@
 							</div>
 						</div>
 					</div>
-					<button id="insertAgencyMember" class="btn btn-default">&#xf00c; 가입하기</button>
+					<button type="button" id="insertAgencyMember" class="btn btn-primary">&#xf00c; 가입하기</button>
 				</div>
 			</form>
 		</section>

@@ -824,6 +824,18 @@
 			return;
 		});
 		
+		$('#addProductionPlan').click(function(){
+			$('input').each(function(i,e){
+				var inputValue = $(e).val();
+				if(inputValue == ''){
+					alert('값을 채워주세요');
+					$(e).focus();
+					preventDefault();
+				}
+			});
+			alert('등록합니다.');
+		});
+		
 	});
 </script>
 </head>
@@ -1080,10 +1092,16 @@
 											</div>
 										</div> 
 									</div>
-									<input type="button" value="작업단계 추가" id="addPpWork">
+									<div>
+										<div>
+											<input type="button" value="작업단계 추가" id="addPpWork">
+										</div>
+										<div style="float: right;">
+											<button type="button" id="addProductionPlan">등록</button>
+										</div>
+									</div>
 								</div>
 							</section>
-							<button type="submit">등록</button>
 	    				</form>
 					</div>
 				</div>
