@@ -11,6 +11,13 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('button').click(function(){
+			$('input').each(function(i,e){
+				if($(e).val() == ''){
+					alert('값을 채워주세요');
+					$(e).focus();
+					preventDefault();
+				}
+			});
 			$('form').submit();
 		});
 	});
@@ -41,16 +48,40 @@
     			</a>
     		</c:if>
     		<c:if test="${loginMember.level == 'agency'}">
-	    		<h1>품목카테고리를 등록해주세요.</h1>
-	    		<form action="${pageContext.request.contextPath}/addItem" method="post">
-	    			<select name="categoryIndustryDb.industryNumber" id="industryNumber">
-	    				<c:forEach items="${listIndustry}" var="industry">
-	    					<option value="${industry.industryNumber}">${industry.industryName}</option>
-	    				</c:forEach>
-	    			</select>
-	    			품목명 : <input type="text" name="iItemName" id="iItemName">
-	    		</form>
-	    		<button type="button">등록</button>
+    		
+    			<div align="center">
+	    			<div style="background-color: #FAFAFA; margin: 5% 0% 2% 0%; padding: 5% 0% 4% 0%; width: 65%;">
+	    				<div style="margin: 0 auto; padding-bottom: 50px;">
+			    			<h3><b><i class="fa fa-cubes"></i>품목카테고리를 등록해주세요.</b></h3>
+			    		</div>
+						<div class="row">
+				    		<div class="col-lg-2"></div>
+							<div class="col-lg-8">
+						   		<form action="${pageContext.request.contextPath}/addItem" method="post" class="form-horizontal">
+									<div class="form-group">
+										<div class="col-lg-3">
+											<select name="categoryIndustryDb.industryNumber" id="industryNumber" class="form-control m-bot15">
+							    				<c:forEach items="${listIndustry}" var="industry">
+							    					<option value="${industry.industryNumber}">${industry.industryName}</option>
+							    				</c:forEach>
+							    			</select>
+										</div>
+										<div class="col-lg-6">
+											<label class="control-label col-lg-3">품목명</label>
+											<div class="col-lg-9">
+					    						<input type="text" name="iItemName" id="iItemName" class="form-control">
+											</div>
+										</div>
+										<div class="col-lg-3">
+					    					<button type="button" class="btn btn-primary">등록</button>
+										</div>
+									</div>
+					    		</form>
+						   	</div>
+					    	<div class="col-lg-2"></div>
+						</div>
+	    			</div>
+	    		</div>
     		</c:if>
     	</section>
     </section>

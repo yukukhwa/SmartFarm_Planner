@@ -120,7 +120,7 @@
 									+'</div>'
 								+'</div>'
 								+'<div class="col-lg-2">'
-									+'<input type="button" id="aNumberCheck" value="&#xf00c; 관리기관 확인" class="btn btn-default">'
+									+'<input type="button" id="aNumberCheck" value="&#xf00c; 관리기관 확인" class="btn btn-info">'
 								+'</div>');
 				return;
 			}else{
@@ -136,7 +136,7 @@
 											+'</div>'
 										+'</div>'
 										+'<div class="col-lg-2">'
-											+'<input type="button" id="aNameCheck" value="&#xf00e; 관리기관명 중복 확인" class="btn btn-default">'
+											+'<input type="button" id="aNameCheck" value="&#xf00c; 관리기관명 중복 확인" class="btn btn-info">'
 										+'</div>'
 										+'<div class="col-lg-10">'
 											+'<label class="col-sm-2 control-label">도로명주소</label>'
@@ -149,7 +149,7 @@
 											+'</div>'
 										+'</div>'
 										+'<div class="col-lg-2">'
-											+'<input type="button" id="agencyJusoCheck" value="&#xf124; 주소검색"  class="btn btn-default">'
+											+'<input type="button" id="agencyJusoCheck" value="&#xf124; 주소검색"  class="btn btn-success">'
 										+'</div>'
 									+'</div>');
 				return;
@@ -240,7 +240,7 @@
 					alert('관리기관넘버를 다시 확인하세요.');
 					return;
 				}
-				if(aNumberback != aNumber){
+				if(aNumberBackup != aNumber){
 					alert('관리기관넘버를 다시 확인하세요.');
 					return;
 				}
@@ -380,7 +380,7 @@
 								</div>
 							</div>
 							<div class="col-lg-2">
-								<input type="button" id="aNameCheck" value="&#xf00e; 관리기관명 중복 확인" class="btn btn-default">
+								<input type="button" id="aNameCheck" value="&#xf00c; 관리기관명 중복 확인" class="btn btn-info">
 							</div>
 							<div class="col-lg-10">
 								<label class="col-sm-2 control-label">도로명주소</label>
@@ -393,7 +393,7 @@
 								</div>
 							</div>
 							<div class="col-lg-2">
-								<input type="button" id="agencyJusoCheck" value="&#xf124; 주소검색"  class="btn btn-default">
+								<input type="button" id="agencyJusoCheck" value="&#xf124; 주소검색"  class="btn btn-success">
 							</div>
 						</div>
 					</div>
@@ -401,9 +401,10 @@
 					<div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">이름</label>
-							<div class="col-sm-10">
+							<div class="col-sm-8">
 								<input type="text" name="aMemberName" id="aMemberName" class="form-control">
 							</div>
+							<div class="col-sm-2"></div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">성별</label>
@@ -418,40 +419,42 @@
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">ID</label>
-							<div class="col-sm-10">
-								<span class="col-sm-9">
-									<input type="text" name="aMemberId" id="aMemberId" class="form-control">
-									<b id="idCheckResult">사용불가능한 아이디입니다.</b>
-								</span>
-								<span class="col-sm-3">
-									<input type="button" id="aMemberIdCheck" value="&#xf00c; 아이디 중복체크" class="btn btn-default">
-								</span>
+							<div class="col-sm-8">
+								<input type="text" name="aMemberId" id="aMemberId" class="form-control">
+								<b id="idCheckResult">사용불가능한 아이디입니다.</b>
+							</div>
+							<div class="col-sm-2">
+								<input type="button" id="aMemberIdCheck" value="&#xf00c; 아이디 중복체크" class="btn btn-info">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">PW</label>
-							<div class="col-sm-10">
+							<div class="col-sm-8">
 								<input type="password" name="aMemberPw" id="aMemberPw" class="form-control">
 							</div>
+							<div class="col-sm-2"></div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">PW확인</label>
-							<div class="col-sm-10">
+							<div class="col-sm-8">
 								<input type="password" id="aMemberPwCheck" class="form-control">
 								<b id="PwCheckResult">비밀번호 불일치</b>
 							</div>
+							<div class="col-sm-2"></div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">연락처확인</label>
-							<div class="col-sm-10">
+							<div class="col-sm-8">
 								<input type="text" name="aMemberPhone" id="aMemberPhone" class="form-control">
 							</div>
+							<div class="col-sm-2"></div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">이메일</label>
-							<div class="col-sm-10">
+							<div class="col-sm-8">
 								<input type="email" name="aMemberEmail" id="aMemberEmail" class="form-control">
 							</div>
+							<div class="col-sm-2"></div>
 						</div>
 						<div class="form-group">
 							<div class="col-sm-10">
@@ -472,7 +475,7 @@
 							</div>
 							<div class="col-sm-2">
 								<div align="center">
-									<input type="button" id="memberJusoCheck" value="&#xf124; 주소검색" class="btn btn-default">
+									<input type="button" id="memberJusoCheck" value="&#xf124; 주소검색" class="btn btn-success">
 								</div>
 							</div>
 						</div>

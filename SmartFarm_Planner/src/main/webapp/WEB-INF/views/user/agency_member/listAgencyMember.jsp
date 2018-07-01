@@ -18,43 +18,47 @@
      <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
-    		<h3>${aName}</h3>
-			<table>
-				<thead>
-					<tr>
-						<th>직급</th>
-						<th>이름</th>
-						<th>연락처</th>
-						<th>이메일</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${list}" var="agencyMember">
+    		<h3 class="page-header"><i class="icon_desktop"></i>${aName}</h3>
+			<div class="col-lg-2"></div>
+			<div class="col-lg-8">
+				<table class="table table-striped table-advance table-hover">
+					<thead>
 						<tr>
-							<c:if test="${bossId == agencyMember.aMemberId}">
-								<td>
-									대표
-								</td>
-							</c:if>
-							<c:if test="${bossId != agencyMember.aMemberId}">
-								<td>
-									직원
-								</td>
-							</c:if>
-							<td>
-								${agencyMember.aMemberName}
-							</td>
-							<td>
-								${agencyMember.aMemberPhone}
-							</td>
-							<td>
-								${agencyMember.aMemberEmail}
-							</td>
+							<th>직급</th>
+							<th>이름</th>
+							<th>연락처</th>
+							<th>이메일</th>
 						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-			<a href="${pageContext.request.contextPath}/oneAgency?aName=${aName}">뒤로가기</a>
+					</thead>
+					<tbody>
+						<c:forEach items="${list}" var="agencyMember">
+							<tr>
+								<c:if test="${bossId == agencyMember.aMemberId}">
+									<td>
+										대표
+									</td>
+								</c:if>
+								<c:if test="${bossId != agencyMember.aMemberId}">
+									<td>
+										직원
+									</td>
+								</c:if>
+								<td>
+									${agencyMember.aMemberName}
+								</td>
+								<td>
+									${agencyMember.aMemberPhone}
+								</td>
+								<td>
+									${agencyMember.aMemberEmail}
+								</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+				<a href="${pageContext.request.contextPath}/oneAgency?aName=${aName}" class="btn btn-primary">뒤로가기</a>
+			</div>
+			<div class="col-lg-2"></div>
     	</section>
     </section>
 </body>

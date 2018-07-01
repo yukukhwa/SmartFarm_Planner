@@ -82,6 +82,9 @@
 			return;
 		});
 		
+		$('button#updatePlan').click(function(){
+			$('form').submit();
+		});
 	});
 </script>
 </head>
@@ -97,7 +100,7 @@
     	<section class="wrapper">
     		<h3 class="page-header"><i class="icon_desktop"></i> 계획서 수정화면</h3>
     		<!--overview start-->
-			<div class="col">
+			<div class="row">
 				<div class="col-lg-12">
 					<div align="right">
 						소속 : ${productionPlan.farmMember.farm.fName} / 작성자 : ${productionPlan.farmMember.fMemberName}(${productionPlan.farmMember.fMemberId}) / 등록일자 : ${productionPlan.ppRecordday}
@@ -324,7 +327,7 @@
 												</thead>
 												<tbody>
 													<c:forEach var="woNeedEquip" items="${ppWork.woNeedEquipList}" varStatus="k">
-														<c:if test="${woNeedEquip.eNeedequipState != '대여'}">
+														<c:if test="${woNeedEquip.eNeedequipState != '대여예정' && woNeedEquip.eNeedequipState != '대여중'}">
 															<tr>
 																<td>
 																	<select name="ppWorkList[${j.index}].woNeedEquipList[${k.index}].categoryEquip.equipNumber">
@@ -342,13 +345,26 @@
 																<td>
 																	<select name="ppWorkList[${j.index}].woNeedEquipList[${k.index}].eNeedequipState" class="eNeedequipState">
 																		<c:if test="${woNeedEquip.eNeedequipState == '구매예정'}">
-											    							<option>대여</option>
+											    							<option>대여예정</option>
+											    							<option>대여중</option>
 											    							<option selected="selected">구매예정</option>
+											    							<option>구매중</option>
+											    							<option>보유</option>
+											    							<option>보유</option>
+																		</c:if>
+																		<c:if test="${woNeedEquip.eNeedequipState == '구매중'}">
+											    							<option>대여예정</option>
+											    							<option>대여중</option>
+											    							<option>구매예정</option>
+											    							<option selected="selected">구매중</option>
+											    							<option>보유</option>
 											    							<option>보유</option>
 																		</c:if>
 																		<c:if test="${woNeedEquip.eNeedequipState == '보유'}">
-											    							<option>대여</option>
+											    							<option>대여예정</option>
+											    							<option>대여중</option>
 											    							<option>구매예정</option>
+											    							<option>구매중</option>
 											    							<option selected="selected">보유</option>
 																		</c:if>
 										    						</select>
@@ -376,9 +392,18 @@
 									    						</td>
 																<td>
 																	<select name="ppWorkList[${j.index}].woNeedEquipList[${k.index}].eNeedequipState" class="eNeedequipState">
-																		<c:if test="${woNeedEquip.eNeedequipState == '대여'}">
-											    							<option selected="selected">대여</option>
+																		<c:if test="${woNeedEquip.eNeedequipState == '대여예정'}">
+											    							<option selected="selected">대여예정</option>
+											    							<option>대여중</option>
 											    							<option>구매예정</option>
+											    							<option>구매중</option>
+											    							<option>보유</option>
+																		</c:if>
+																		<c:if test="${woNeedEquip.eNeedequipState == '대여중'}">
+											    							<option>대여예정</option>
+											    							<option selected="selected">대여중</option>
+											    							<option>구매예정</option>
+											    							<option>구매중</option>
 											    							<option>보유</option>
 																		</c:if>
 										    						</select>
@@ -436,10 +461,10 @@
 										</div>
 									</div>
 									<c:set var="i" value="${i+1}"/>
-								</c:forEach>	
+								</c:forEach>
+								<button type="button" id="updatePlan" class="btn btn-warning" style="float: right;">수정</button>
 							</div>
 						</section>
-						<button type="submit">수정</button>
 	   				</form>
 				</div>
 			</div>

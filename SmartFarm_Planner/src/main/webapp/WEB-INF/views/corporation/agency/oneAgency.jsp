@@ -18,31 +18,33 @@
     <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
-	    	<div class="panel panel-danger">
+	    	<div class="panel panel-info" style="width: 80%; margin: 10% auto;">
     			<div class="panel-heading">
 	    			${agencyDb.aName}
+	    			<div class="panel-actions">
+	   					<a href="${pageContext.request.contextPath}/listAgency" class="btn-close"><i class="fa fa-times"></i></a>
+	    			</div>
 	    		</div>
-	   			<div class="panel-content">
-	   				대표 : ${agencyDb.agencyMemberDb.aMemberName}<br>
-	   				주소 : ${agencyDb.aDoroaddress}(${agencyDb.aJibunaddress})<br>
-	   				연락처 : ${agencyDb.aPhone}<br>
-	   				등록일자 : ${agencyDb.aRegistdate}
-	   			</div>
-	   			<div>
-	   				<a class="btn btn-danger  btn-sm" href="${pageContext.request.contextPath}/listAgencyMember?aName=${agencyDb.aName}">회사조직도</a>
-	   			</div>
-	   			<c:if test="${loginMember.level == 'agency' && loginMember.corpNumber == agencyDb.aNumber}">
+	   			<div class="panel-content" style="padding: 10px 10px 40px 10px;">
 	   				<div>
-		   				<a class="btn btn-danger  btn-sm" href="${pageContext.request.contextPath}/updateAgency?aName=${agencyDb.aName}">관리기관정보 수정하기</a>
+		   				대표 : ${agencyDb.agencyMemberDb.aMemberName}<br>
+		   				주소 : ${agencyDb.aDoroaddress}(${agencyDb.aJibunaddress})<br>
+		   				연락처 : ${agencyDb.aPhone}<br>
+		   				등록일자 : ${agencyDb.aRegistdate}
+	   				</div>
+	   				<div>
+		   				<div style="float: left;">
+		   					<a class="btn btn-info btn-sm" href="${pageContext.request.contextPath}/listAgencyMember?aName=${agencyDb.aName}">회사조직도</a>
+		   				</div>
+		   				<div style="float: right;">
+				   			<c:if test="${loginMember.level == 'agency' && loginMember.corpNumber == agencyDb.aNumber}">
+				   				<a class="btn btn-warning btn-sm" href="${pageContext.request.contextPath}/updateAgency?aName=${agencyDb.aName}">관리기관정보 수정하기</a>
+					   			<c:if test="${loginMember.boss == 'boss'}">
+					   				<a class="btn btn-danger btn-sm" href="${pageContext.request.contextPath}/deleteAgency?aNumber=${agencyDb.aNumber}&aName=${agencyDb.aName}">관리기관정보 삭제하기</a>
+					   			</c:if>
+				   			</c:if>
+		   				</div>
 		   			</div>
-		   			<c:if test="${loginMember.boss == 'boss'}">
-			   			<div>
-			   				<a class="btn btn-danger  btn-sm" href="${pageContext.request.contextPath}/deleteAgency?aNumber=${agencyDb.aNumber}&aName=${agencyDb.aName}">관리기관정보 삭제하기</a>
-			   			</div>
-		   			</c:if>
-	   			</c:if>
-	   			<div>
-	   				<a class="btn btn-danger  btn-sm" href="${pageContext.request.contextPath}/listAgency">목록보기</a>
 	   			</div>
 	    	</div>
     	</section>

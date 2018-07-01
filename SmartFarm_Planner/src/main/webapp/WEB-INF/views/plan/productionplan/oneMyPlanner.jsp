@@ -42,7 +42,7 @@
     	<section class="wrapper">
     		<h3 class="page-header"><i class="icon_desktop"></i>농가전용 계획서 상세화면</h3>
 	    	<!--overview start-->
-			<div class="col">
+			<div class="row">
 				<div class="col-lg-12">
 					<div align="right">
 						소속 : ${productionPlan.farmMember.farm.fName} / 작성자 : ${productionPlan.farmMember.fMemberName}(${productionPlan.farmMember.fMemberId}) / 등록일자 : ${productionPlan.ppRecordday}
@@ -181,7 +181,7 @@
 											</thead>
 											<tbody>
 												<c:forEach var="woNeedEquip" items="${ppWork.woNeedEquipList}">
-													<c:if test="${woNeedEquip.eNeedequipState != '대여'}">
+													<c:if test="${woNeedEquip.eNeedequipState != '대여예정' && woNeedEquip.eNeedequipState != '대여중'}">
 														<tr>
 															<td>${woNeedEquip.categoryEquip.equipName}</td>
 															<td>${woNeedEquip.eNeedequipState}</td>
@@ -208,8 +208,9 @@
 							</c:forEach>	
 							<c:if test="${loginMember.corpNumber == productionPlan.farmMember.farm.fNumber}">
 								<div style="float: right;">
-									<a href="${pageContext.request.contextPath}/updatePlanner?ppNumber=${productionPlan.ppNumber}">수정하기</a>
-									<a href="${pageContext.request.contextPath}/deletePlanner?ppNumber=${productionPlan.ppNumber}">삭제하기</a>
+									<a href="${pageContext.request.contextPath}/compare?number=1&ppNumber=${productionPlan.ppNumber}" class="btn btn-primary">달성도확인하러가기</a>
+									<a href="${pageContext.request.contextPath}/updatePlanner?ppNumber=${productionPlan.ppNumber}" class="btn btn-warning">수정하기</a>
+									<a href="${pageContext.request.contextPath}/deletePlanner?ppNumber=${productionPlan.ppNumber}" class="btn btn-danger">삭제하기</a>
 								</div>
 							</c:if>	
 						</div>

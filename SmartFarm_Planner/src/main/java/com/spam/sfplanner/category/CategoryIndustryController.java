@@ -89,7 +89,7 @@ public class CategoryIndustryController {
 	@RequestMapping(value="/addIndustry",method = RequestMethod.POST)
 	public String insertCategoryIndustry(CategoryIndustry categoryIndustry,HttpSession session) {
 		categoryIndustryService.insertCategoryIndustry(categoryIndustry, session);
-		return "redirect:/home";
+		return "redirect:/listIndustry";
 	}
 	
 	/**

@@ -62,6 +62,11 @@ public class ProductionPlanService {
 	@Autowired
 	private WoNeRentPayDao woNeRentPayDao;
 	
+	/**
+	 * 나의 농가 계획서 리스트 출력
+	 * @param fNumber
+	 * @return 나의 농가 계획서 리스트
+	 */
 	public List<ProductionPlan> listSelectMyProductionPlan(int fNumber) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("search", "yes");
@@ -70,6 +75,10 @@ public class ProductionPlanService {
 		return productionPlanDao.listSelectProductionPlan(map);
 	}
 	
+	/**
+	 * 계획서 수정 처리 서비스
+	 * @param productionPlan
+	 */
 	public void updateProductionPlan(ProductionPlan productionPlan) {
 		List<PpWork> ppWorkList = null;
 		List<WoInsurancePay> woInsurancePayList = null;
@@ -124,6 +133,12 @@ public class ProductionPlanService {
 		productionPlanDao.updateProductionPlan(productionPlan);
 	}
 	
+	/**
+	 * 계획서 수정 화면 출력 서비스
+	 * @param ppNumber
+	 * @param session
+	 * @return 계획서 수정화면
+	 */
 	public Map<String,Object> updateProductionPlan(int ppNumber,HttpSession session) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("search", "yes");
@@ -169,6 +184,10 @@ public class ProductionPlanService {
 		return map;
 	}
 	
+	/**
+	 * 계획서 삭제 처리 서비스
+	 * @param ppNumber
+	 */
 	public void deleteProductionPlan(int ppNumber) {
 		int ppWorkNumber = 0;
 		int eNeedequipNumber = 0;
@@ -207,8 +226,15 @@ public class ProductionPlanService {
 		productionPlanDao.deleteProductionPlan(ppNumber);
 	}
 	
+	/**
+	 * 계획서 등록 처리 서비스
+	 * @param productionPlan
+	 * @param session
+	 */
 	public void insertProductionPlan(ProductionPlan productionPlan,HttpSession session) {
-		
+		/*
+		 * Session에서 해당 로그인한 사람의 회원아이디와 농가코드를 가져와 변수에 셋팅한다.
+		 */
 		String fMemberId = ((Login)session.getAttribute("loginMember")).getId();
 		int fNumber = ((Login)session.getAttribute("loginMember")).getCorpNumber();
 		List<PpWork> ppWorkList = null;
@@ -219,9 +245,16 @@ public class ProductionPlanService {
 		List<WoNeedEquip> woNeedEquipList = null;
 		List<WoNeRentPay> woNeRentPayList = null;
 		
+		/*
+		 * 계획서를 등록한다.
+		 */
 		productionPlan.getFarmMember().setfMemberId(fMemberId);
 		productionPlanDao.insertProductionPlan(productionPlan);
 		
+		/*
+		 * 등록 화면에서 받아온 작업단계리스트를 가져온다.
+		 * 가져온 작업단계리스트 수만큼 등록한다.
+		 */
 		ppWorkList = productionPlan.getPpWorkList();
 		
 		if(ppWorkList != null) {
@@ -230,41 +263,62 @@ public class ProductionPlanService {
 				ppWork.getFarm().setfNumber(fNumber);
 				ppWorkDao.insertPpWork(ppWork);
 				
+				/*
+				 * 작업단계별 보험비리스트, 인건비리스트, 원자재리스트, 기타지출비리스트, 필요장비계획리스트를 가져온다.
+				 */
 				woInsurancePayList = ppWork.getWoInsurancePayList();
 				woHumanPayList = ppWork.getWoHumanPayList();
 				woMaterialsPayList = ppWork.getWoMaterialsPayList();
 				WoEtcSpendPayList = ppWork.getWoEtcSpendPayList();
 				woNeedEquipList = ppWork.getWoNeedEquipList();
 				
+				/*
+				 * 가져온 보험비리스트 수만큼 등록한다.
+				 */
 				if(woInsurancePayList != null) {
 					for(WoInsurancePay woInsurancePay : woInsurancePayList) {
 						woInsurancePay.getPpWork().setPpWorkNumber(ppWork.getPpWorkNumber());
 						woInsurancePayDao.insertWoInsurancePay(woInsurancePay);
 					}
 				}
+				/*
+				 * 가져온 인건비리스트 수만큼 등록한다.
+				 */
 				if(woHumanPayList != null) {
 					for(WoHumanPay woHumanPay : woHumanPayList) {
 						woHumanPay.getPpWork().setPpWorkNumber(ppWork.getPpWorkNumber());
 						woHumanPayDao.insertWoHumanPay(woHumanPay);
 					}
 				}
+				/*
+				 * 가져온 원자재리스트 수만큼 등록한다.
+				 */
 				if(woMaterialsPayList != null) {
 					for(WoMaterialsPay woMaterialsPay : woMaterialsPayList) {
 						woMaterialsPay.getPpWork().setPpWorkNumber(ppWork.getPpWorkNumber());
 						woMaterialsPayDao.insertWoMaterialsPay(woMaterialsPay);
 					}
 				}
+				/*
+				 * 가져온 기타지출비리스트 수만큼 등록한다.
+				 */
 				if(WoEtcSpendPayList != null) {
 					for(WoEtcSpendPay woEtcSpendPay : WoEtcSpendPayList) {
 						woEtcSpendPay.getPpWork().setPpWorkNumber(ppWork.getPpWorkNumber());
 						woEtcSpendPayDao.insertWoEtcSpendPay(woEtcSpendPay);
 					}
 				}
+				/*
+				 * 가져온 필요장비계획리스트 수만큼 등록한다.
+				 */
 				if(woNeedEquipList != null) {
 					for(WoNeedEquip woNeedEquip : woNeedEquipList) {
 						woNeedEquip.getPpWork().setPpWorkNumber(ppWork.getPpWorkNumber());
 						woNeedEquipDao.insertWoNeedEquip(woNeedEquip);
-						
+						/*
+						 * 필요장비계획별 대여비리스트를 가져온다
+						 * 가져온 대여비리스트 수만큼 등록한다.
+						 */
 						woNeRentPayList = woNeedEquip.getWoNeRentPayList();
 						
 						if(woNeRentPayList != null) {
@@ -281,6 +335,11 @@ public class ProductionPlanService {
 		}
 	}
 	
+	/**
+	 * 계획서 상세보기 출력 서비스
+	 * @param ppNumber
+	 * @return 계획서 상세내용
+	 */
 	public ProductionPlan oneSelectProductionPlan(int ppNumber) {
 		ProductionPlan productionPlan = productionPlanDao.oneSelectProductionPlan(ppNumber);
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -309,6 +368,12 @@ public class ProductionPlanService {
 		return productionPlan;
 	}
 	
+	/**
+	 * 계획서 검색 조건에 따른 리스트 출력 서비스
+	 * @param column
+	 * @param property
+	 * @return 검색 결과 리스트
+	 */
 	public List<ProductionPlan> listSelectProductionPlan(String column,Object property) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("search", "yes");
@@ -317,11 +382,20 @@ public class ProductionPlanService {
 		return productionPlanDao.listSelectProductionPlan(map);
 	}
 	
+	/**
+	 * 계획서 전체 리스트 출력 서비스
+	 * @return 전체 리스트
+	 */
 	public List<ProductionPlan> listSelectProductionPlan() {
 		Map<String,Object> map = null;
 		return productionPlanDao.listSelectProductionPlan(map);
 	}
 	
+	/**
+	 * 계획서 등록화면 출력 서비스
+	 * @param session
+	 * @return 계획서 등록화면
+	 */
 	public Map<String,Object> insertProductionPlan(HttpSession session) {
 		Map<String,Object> map = new HashMap<String, Object>();
 		map.put("search", "yes");

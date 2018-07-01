@@ -35,51 +35,74 @@ $(document).ready(function(){
     <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
-    		<form action="${pageContext.request.contextPath}/listItem" method="post">
-				<select id="column">
-					<option>품목명</option>
-					<option>산업명</option>
-					<option>등록기관명</option>
-				</select>
-				<input type="text" name="iItemName" id="property">
-				<button type="submit">검색</button>
-			</form>
-			<table>
-				<thead>
-					<tr>
-						<th>품목넘버</th>
-						<th>산업명</th>
-						<th>품목명</th>
-						<th>등록기관명</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:forEach items="${list}" var="categoryItemDb">
-						<tr>
-							<td>
-								${categoryItemDb.iItemNumber}
-							</td>
-							<td>
-								${categoryItemDb.categoryIndustryDb.industryName}
-							</td>
-							<td>
-								${categoryItemDb.iItemName}
-							</td>
-							<td>
-								<a href="${pageContext.request.contextPath}/oneAgency?aName=${categoryItemDb.agencyDb.aName}">${categoryItemDb.agencyDb.aName}</a>
-							</td>
-							<c:if test="${loginMember.corpName == categoryItemDb.agencyDb.aName}">
-								<td>
-									<a href="${pageContext.request.contextPath}/updateItem?iItemNumber=${categoryItemDb.iItemNumber}"><i class="icon_plus_alt2"></i></a>
-								</td>
-								<td>
-									<a href="${pageContext.request.contextPath}/deleteItem?iItemNumber=${categoryItemDb.iItemNumber}"><i class="icon_close_alt2"></i></a>
-								</td>
-							</c:if>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
+    		<div align="center">
+    			<div style="background-color: #FAFAFA; margin: 5% 0% 2% 0%; padding: 5% 0% 4% 0%; width: 65%;">
+    				<div style="margin: 0 auto; padding-bottom: 50px;">
+		    			<h3><b><i class="fa fa-cubes"></i>품목분류 리스트</b></h3>
+		    		</div>
+					<div class="row">
+			    		<div class="col-lg-2"></div>
+						<div class="col-lg-8">
+					   		<table class="table table-striped table-advance table-hover">
+					   			<thead>
+									<tr>
+										<th>품목넘버</th>
+										<th>산업명</th>
+										<th>품목명</th>
+										<th>등록기관명</th>
+										<th></th>
+									</tr>
+								</thead>
+					   			<tbody>
+									<c:forEach items="${list}" var="categoryItemDb">
+										<tr>
+											<td>
+												${categoryItemDb.iItemNumber}
+											</td>
+											<td>
+												${categoryItemDb.categoryIndustryDb.industryName}
+											</td>
+											<td>
+												${categoryItemDb.iItemName}
+											</td>
+											<td>
+												<a href="${pageContext.request.contextPath}/oneAgency?aName=${categoryItemDb.agencyDb.aName}">${categoryItemDb.agencyDb.aName}</a>
+											</td>
+											<c:if test="${loginMember.corpName == categoryItemDb.agencyDb.aName}">
+												<td>
+													<a href="${pageContext.request.contextPath}/updateItem?iItemNumber=${categoryItemDb.iItemNumber}" class="btn btn-warning"><i class="icon_plus_alt2"></i></a>
+													<a href="${pageContext.request.contextPath}/deleteItem?iItemNumber=${categoryItemDb.iItemNumber}" class="btn btn-danger"><i class="icon_close_alt2"></i></a>
+												</td>
+											</c:if>
+										</tr>
+									</c:forEach>
+								</tbody>
+					   		</table>
+					   		<div class="panel-body" style="margin-left: 10%;">
+						   		<form action="${pageContext.request.contextPath}/listItem" method="post">
+									<div class="col-lg-3">
+					    				<select name="column" id="column" class="form-control m-bot15">
+						    				<option>품목명</option>
+											<option>산업명</option>
+											<option>등록기관명</option>
+						    			</select>
+				    				</div>
+				    				<div class="col-lg-6">
+				    					<input type="text" name="iItemName" id="property" class="form-control">
+				    				</div>
+				    				<div class="col-lg-3">
+				    					<button type="submit" class="btn btn-primary">검색</button>
+				    				</div>
+								</form>
+				    		</div>
+					   	</div>
+				    	<div class="col-lg-2"></div>
+					</div>
+	    			<div align="center">
+	    				<a href="${pageContext.request.contextPath}/addItem"class="btn btn-primary">품목분류 등록하러가기</a>
+	    			</div>
+    			</div>
+    		</div>
     	</section>
     </section>
 </body>
