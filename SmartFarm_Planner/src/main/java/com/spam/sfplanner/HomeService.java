@@ -45,6 +45,9 @@ public class HomeService {
 			resultList.add((actResultTotalarea/planTotalarea)*100);
 		}
 		System.out.println(resultList);
+		if(resultList.size() == 0) {
+			System.out.println("데이터가 없음");
+		}
 		return resultList;
 	}
 }

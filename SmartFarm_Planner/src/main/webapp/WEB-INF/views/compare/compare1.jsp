@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,6 +63,10 @@
 								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">${result}% 달성</div>
 							</div>
 						</c:forEach>
+						<c:if test="${fn:length(resultList) == 0}">
+							데이터가 존재하지 않습니다.
+							<a href="${pageContext.request.contextPath}/listMyActResultList">데이터 등록하러가기</a>
+						</c:if>
 					</div>
 				</div>
 			</c:if>
