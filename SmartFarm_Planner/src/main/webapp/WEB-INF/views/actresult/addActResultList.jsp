@@ -350,7 +350,14 @@
 													<tr>
 														<td>${woNeedEquipList.categoryEquip.equipName}</td>
 														<td>${woNeedEquipList.eNeedequipState}</td>
-														<td><input type="text" class="form-control" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeedequipState"></td>
+														<td>
+															<select class="form-control" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeedequipState">
+																<option>대여중</option>
+																<option>대여완료</option>
+																<option>구매중</option>
+																<option>보유</option>
+															</select>
+														</td>
 														<td>${woNeedEquipList.woNeRentPayList[0].companyRentEquip.cRentCost}</td>
 														<td>${woNeedEquipList.woNeRentPayList[0].companyRentEquip.cRentDate}</td>
 														<td><input type="number" class="form-control" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeRentPayList[0].neRentpayCost"></td>

@@ -219,7 +219,34 @@
 													<tr>
 														<td>${wrNeedEquipList.woNeedEquip.categoryEquip.equipName}</td>
 														<td>${wrNeedEquipList.woNeedEquip.eNeedequipState}</td>
-														<td><input type="text" class="form-control" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeedequipState" value="${wrNeedEquipList.wrNeedequipState}"></td>
+														<td>
+															<select class="form-control" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeedequipState">
+																<c:if test="${wrNeedEquipList.wrNeedequipState == '대여중'}">
+																	<option selected="selected">대여중</option>
+																	<option>대여완료</option>
+																	<option>구매중</option>
+																	<option>보유</option>
+																</c:if>
+																<c:if test="${wrNeedEquipList.wrNeedequipState == '대여완료'}">
+																	<option>대여중</option>
+																	<option selected="selected">대여완료</option>
+																	<option>구매중</option>
+																	<option>보유</option>
+																</c:if>
+																<c:if test="${wrNeedEquipList.wrNeedequipState == '구매중'}">
+																	<option>대여중</option>
+																	<option>대여완료</option>
+																	<option selected="selected">구매중</option>
+																	<option>보유</option>
+																</c:if>
+																<c:if test="${wrNeedEquipList.wrNeedequipState == '보유'}">
+																	<option>대여중</option>
+																	<option>대여완료</option>
+																	<option>구매중</option>
+																	<option selected="selected">보유</option>
+																</c:if>
+															</select>
+															<input type="text" class="form-control" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeedequipState" value="${wrNeedEquipList.wrNeedequipState}"></td>
 														<td>${wrNeedEquipList.wrNeRentPayList[0].woNeRentPay.companyRentEquip.cRentCost}</td>
 														<td>${wrNeedEquipList.wrNeRentPayList[0].woNeRentPay.companyRentEquip.cRentDate}</td>
 														<td><input type="number" class="form-control" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeRentPayList[0].neRentpayCost" value="${wrNeedEquipList.wrNeRentPayList[0].neRentpayCost}"></td>

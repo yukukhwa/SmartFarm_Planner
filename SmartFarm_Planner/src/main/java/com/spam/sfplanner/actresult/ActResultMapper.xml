@@ -125,7 +125,7 @@
 		SELECT
 			sp_pp_name_cate.pp_name_planname,
 			sp_pp_resultlist.pp_resultlist_number,
-			sp_pp_resultlist.f_number,
+			sp_farm.f_number,
 			sp_pp_resultlist.pp_resultlist_date,
 			sp_farm.f_name,
 			sp_farm_member.f_member_id,

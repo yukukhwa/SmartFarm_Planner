@@ -27,7 +27,7 @@ public class LoginController {
 		return "redirect:/home";
 	}
 	/*
-	 * loginFarm 매핑
+	 * login 매핑
 	 * : get방식은 login.jsp로 이동
 	 * post방식은 loginDb를 매개변수로 받아 id, pw가 일치하면 session에 정보를 저장하고 home화면으로 redirect한다.
 	 * farm, company, agency로 로그인하는 것에 따라 매핑이 나누어 진다.
