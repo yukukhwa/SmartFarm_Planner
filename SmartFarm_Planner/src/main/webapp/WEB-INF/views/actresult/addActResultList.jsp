@@ -164,6 +164,17 @@
 				});
 				$('#signUpForm').submit();
 			});
+			/* 필요장비 상태에 선택에 따라 입력 폼을 삭제하거나 나타나게 할 수 있다. */
+			$(document).on('change','select.equipState', function(){
+				if($(this).val() == '구매중' || $(this).val() == '보유'){
+					$(this).parents('tr').find('.rentEquip').remove();
+				} else if($(this).val() == '대여중' || $(this).val() == '대여완료'){
+					$(this).parents('tr').find('.rentEquip').remove();
+					$(this).parents('tr').find('td').eq(5).append('<input type="number" class="form-control rentEquip" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeRentPayList[0].neRentpayCost">');
+					$(this).parents('tr').find('td').eq(6).append('<input type="date" class="form-control rentEquip" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeRentPayList[0].neRentpayDate">');
+					$(this).parents('tr').append('<input type="hidden" class="rentEquip" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeRentPayList[0].woNeRentPay.neERentpayNumber" value="${woNeedEquipList.woNeRentPayList[0].neERentpayNumber}">');
+				}
+			});
 		});
 	</script>
 </head>
@@ -351,7 +362,7 @@
 														<td>${woNeedEquipList.categoryEquip.equipName}</td>
 														<td>${woNeedEquipList.eNeedequipState}</td>
 														<td>
-															<select class="form-control" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeedequipState">
+															<select class="form-control equipState" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeedequipState">
 																<option>대여중</option>
 																<option>대여완료</option>
 																<option>구매중</option>
@@ -360,11 +371,11 @@
 														</td>
 														<td>${woNeedEquipList.woNeRentPayList[0].companyRentEquip.cRentCost}</td>
 														<td>${woNeedEquipList.woNeRentPayList[0].companyRentEquip.cRentDate}</td>
-														<td><input type="number" class="form-control" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeRentPayList[0].neRentpayCost"></td>
-														<td><input type="date" class="form-control" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeRentPayList[0].neRentpayDate"></td>
+														<td><input type="number" class="form-control rentEquip" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeRentPayList[0].neRentpayCost"></td>
+														<td><input type="date" class="form-control rentEquip" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeRentPayList[0].neRentpayDate"></td>
+														<input type="hidden" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].woNeedEquip.eNeedequipNumber" value="${woNeedEquipList.eNeedequipNumber}">
+														<input type="hidden" class="rentEquip" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeRentPayList[0].woNeRentPay.neERentpayNumber" value="${woNeedEquipList.woNeRentPayList[0].neERentpayNumber}">
 													</tr>
-													<input type="hidden" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].woNeedEquip.eNeedequipNumber" value="${woNeedEquipList.eNeedequipNumber}">
-													<input type="hidden" name="ppWoResultList[${i.index}].wrNeedEquipList[${j.index}].wrNeRentPayList[0].woNeRentPay.neERentpayNumber" value="${woNeedEquipList.woNeRentPayList[0].neERentpayNumber}">
 												</c:forEach>
 											</tbody>
 										</table>

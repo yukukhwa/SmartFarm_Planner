@@ -21,12 +21,15 @@
 				<c:if test="${!empty loginMember}">
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#">
 						<c:if test="${loginMember.level eq 'farm'}">
+							<span class="profile-ava"><img src="img/slide2.jpg" style="width: 34px; height: 34px;"></span>
 							<span class="username">농가 ${loginMember.id}님 환영합니다</span><b class="caret"></b>
 						</c:if>
 						<c:if test="${loginMember.level eq 'company'}">
+							<span class="profile-ava"><img src="img/compa3.jpg" style="width: 34px; height: 34px;"></span>
 							<span class="username">업체 ${loginMember.id}님 환영합니다</span><b class="caret"></b>
 						</c:if>
 						<c:if test="${loginMember.level eq 'agency'}">
+							<span class="profile-ava"><img src="img/agen2.jpg" style="width: 34px; height: 34px;"></span>
 							<span class="username">관리기관 ${loginMember.id}님 환영합니다</span><b class="caret"></b>
 						</c:if>
 					</a>

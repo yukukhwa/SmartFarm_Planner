@@ -210,7 +210,9 @@
 							</div>
 						</c:forEach>
 						<div align="right">
-							<a href="${pageContext.request.contextPath}/updateActResultList?ppResultlistNumber=${actResult.ppResultlistNumber}" class="btn btn-info" type="submit">수정</a>
+							<c:if test="${actResult.farm.fNumber == loginMember.corpNumber}">
+								<a href="${pageContext.request.contextPath}/updateActResultList?ppResultlistNumber=${actResult.ppResultlistNumber}" class="btn btn-info" type="submit">수정</a>
+							</c:if>
 							<a href="${pageContext.request.contextPath}/deleteActResultList?ppResultlistNumber=${actResult.ppResultlistNumber}" class="btn btn-danger" type="submit">삭제</a>
 						</div>
 					</div>
