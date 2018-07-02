@@ -175,7 +175,7 @@
 		    				<b><i class="icon_profile">농가회원가입하기</i></b>
 		    			</h2>
 		    		</div>
-					<div style="text-align: center; margin: 5% 0% 0% 0%;">
+					<div style="text-align: left; margin: 5% 0% 0% 0%;">
 						<form id="farmMemberInsert" action="${pageContext.request.contextPath}/addFarmMember" method="post">
 							<div>
 								<b>개인정보제공동의</b><br><br>
@@ -217,9 +217,11 @@
 							</div> <br>
 							<hr>
 							<!-- 농가등록 폼 시작 -->
-							<div id="addFarmForm" style="text-align: left; margin: 5% 0% 0% 0%;">
-								<h3>농가등록하기</h3> <br>
-								<div class="form-group">
+							<div id="addFarmForm">
+								<div>
+									<h3>농가등록하기</h3> <br>
+								</div>
+								<div>
 									<label><b>농장이름</b></label>
 									<div>
 										<input type="text" class="form-control" style="width: 30%;" placeholder="농장이름을 등록해주세요" name="fName" id="fName">
@@ -233,21 +235,16 @@
 									</div>
 								</div>
 								<div>
-									<button type="button" class="btn btn-info" id="searchFarmAddress">주소검색</button>
-									<!-- <input type="button" class id="searchFarmAddress" value="주소검색하기"> -->
-								</div>
-								<div class="form-group">
+									<label><b>도로명 주소</b></label>
 									<div>
-										<label><b>도로명 주소</b></label>
-										<div>
-											<input type="text" class="form-control" style="width: 30%;" name="fDoroaddress" id="farmDoroaddress"><br>
-										</div>
+										<input type="text" class="form-control" style="width: 30%;" name="fDoroaddress" id="farmDoroaddress"><br>
+									</div>
+									<label><b>지번 주소 : </b></label>
+									<div>
+										<input type="text" class="form-control" style="width: 30%;" name="fJibunaddress" id="farmJibunaddress"><br>
 									</div>
 									<div>
-										<label><b>지번 주소 : </b></label>
-										<div>
-											<input type="text" class="form-control" style="width: 30%;" name="fJibunaddress" id="farmJibunaddress"><br>
-										</div>
+										<button type="button" class="btn btn-info" id="searchFarmAddress">주소검색</button>
 									</div>
 								</div>
 								<div>
