@@ -948,6 +948,9 @@
 									<a href="${pageContext.request.contextPath}/addTitle">계획명을 더 추가하시겠어요?</a>
 									<div style="float: right;">
 										<input type="radio" name="ppSecret" value="true" checked="checked">공개<input type="radio" name="ppSecret" value="false">비공개
+										<div class="panel-actions">
+						   					<a href="${pageContext.request.contextPath}/listMyPlanner?fNumber=${loginMember.corpNumber}" class="btn-close"><i class="fa fa-times"></i></a>
+						    			</div>
 									</div>
 								</header>
 								<div class="panel-body">

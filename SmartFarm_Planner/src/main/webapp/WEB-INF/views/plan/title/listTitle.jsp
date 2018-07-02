@@ -45,7 +45,7 @@
 												${title.categoryItemDb.iItemName}
 											</td>
 											<td>
-												<a href="#">${title.ppNamePlanname}</a>
+												${title.ppNamePlanname}
 											</td>
 											<td>
 												<a href="${pageContext.request.contextPath}/oneFarm?fName=${title.farmDb.fName}">${title.farmDb.fName}</a>

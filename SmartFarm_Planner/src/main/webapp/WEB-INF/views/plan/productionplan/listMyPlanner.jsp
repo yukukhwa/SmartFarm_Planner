@@ -18,7 +18,9 @@
     <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
-    		<h3 class="page-header"><i class="icon_desktop"></i>농가전용 계획서 리스트</h3>
+    		<div align="center" style="padding: 30px 0 30px 0;">
+    			<h2><b><i class="icon_desktop"></i>농가전용 계획서 리스트</b></h2>
+    		</div>
     		<c:if test="${loginMember.level == null}">
     			<a href="${pageContext.request.contextPath}/login">
     				<strong>
@@ -36,7 +38,10 @@
     		<c:if test="${loginMember.level == 'farm'}">
 		    	<div class="row">
 		    		<div class="col-lg-2"></div>
-					<div class="col-lg-8">
+					<div class="col-lg-8">					
+		    		<div align="right" style="margin-bottom: 5px; margin-top: 30px;">
+		    			<a href="${pageContext.request.contextPath}/addPlanner" class="btn btn-sm btn-info">My 계획서 등록</a>
+		    		</div>
 				   		<table class="table table-striped table-advance table-hover">
 				   			<thead>
 				   				<tr>
@@ -70,20 +75,22 @@
 				   			</tbody>
 				   		</table>
 				   		<div class="panel-body" style="margin-left: 10%;">
-				    		<form action="${pageContext.request.contextPath}/listMyPlanner" method="post">
-			    				<div class="col-lg-3">
-				    				<select name="column" class="form-control m-bot15">
-					    				<option>계획명</option>
-					   					<option>작성자</option>
-					    			</select>
-			    				</div>
-			    				<div class="col-lg-6">
-			    					<input type="text" name="property" class="form-control">
-			    				</div>
-			    				<div class="col-lg-3">
-			    					<button type="submit" class="btn btn-primary">검색</button>
-			    				</div>
-				    		</form>
+				    		<div>
+					    		<form action="${pageContext.request.contextPath}/listMyPlanner" method="post">
+				    				<div class="col-lg-3">
+					    				<select name="column" class="form-control m-bot15">
+						    				<option>계획명</option>
+						   					<option>작성자</option>
+						    			</select>
+				    				</div>
+				    				<div class="col-lg-6">
+				    					<input type="text" name="property" class="form-control">
+				    				</div>
+				    				<div class="col-lg-3">
+				    					<button type="submit" class="btn btn-primary">검색</button>
+				    				</div>
+					    		</form>
+				    		</div>
 			    		</div>
 				   	</div>
 			    	<div class="col-lg-2"></div>

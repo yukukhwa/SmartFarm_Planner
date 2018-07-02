@@ -25,7 +25,6 @@
 		    		<table class="table table-striped table-advance table-hover">
 		    			<thead>
 		    				<tr>
-		    					<th>계획서넘버</th>
 		    					<th>계획명</th>
 		    					<th>계획시작일</th>
 		    					<th>계획종료일</th>
@@ -39,7 +38,6 @@
 		    				<c:forEach items="${list}" var="productionPlan">
 		    					<c:if test="${productionPlan.ppSecret != 'false'}">
 		    						<tr>
-		    							<td>${productionPlan.ppNumber}</td>
 		    							<td>
 		    								<a href="${pageContext.request.contextPath}/onePlanner?ppNumber=${productionPlan.ppNumber}">${productionPlan.titlePlan.ppNamePlanname}</a>
 		    							</td>

@@ -462,7 +462,9 @@
 									</div>
 									<c:set var="i" value="${i+1}"/>
 								</c:forEach>
-								<button type="button" id="updatePlan" class="btn btn-warning" style="float: right;">수정</button>
+								<c:if test="${productionPlan.farmMember.farm.fNumber == loginMember.corpNumber}">
+									<button type="button" id="updatePlan" class="btn btn-warning" style="float: right;">수정</button>
+								</c:if>
 							</div>
 						</section>
 	   				</form>

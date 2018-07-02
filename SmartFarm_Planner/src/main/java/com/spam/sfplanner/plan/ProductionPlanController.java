@@ -26,8 +26,9 @@ public class ProductionPlanController {
 	
 	@RequestMapping(value="/listMyPlanner",method = RequestMethod.POST)
 	public String listSelectMyProductionPlan(@RequestParam(value="column",required=true)String column
-											,@RequestParam(value="property",required=false)Object property,Model model) {
-		model.addAttribute("list", productionPlanService.listSelectProductionPlan(column, property));
+											,@RequestParam(value="property",required=false)Object property
+											,HttpSession session,Model model) {
+		model.addAttribute("list", productionPlanService.listSelectMyProductionPlan(session, column, property));
 		return "plan/productionplan/listMyPlanner";
 	}
 	

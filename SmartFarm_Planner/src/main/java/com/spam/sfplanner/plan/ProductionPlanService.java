@@ -63,6 +63,22 @@ public class ProductionPlanService {
 	private WoNeRentPayDao woNeRentPayDao;
 	
 	/**
+	 * 나의 농가 계획서 검색 조건에 따른 리스트 출력 서비스
+	 * @param 농가넘버
+	 * @param column
+	 * @param property
+	 * @return 나의 농가 검색 결과 리스트
+	 */
+	public List<ProductionPlan> listSelectMyProductionPlan(HttpSession session,String column,Object property) {
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("fNumber", ((Login)session.getAttribute("loginMember")).getCorpNumber());
+		map.put("search", "yes");
+		map.put("column", "농가넘버and"+column);
+		map.put("property", property);
+		return productionPlanDao.listSelectProductionPlan(map);
+	}
+	
+	/**
 	 * 나의 농가 계획서 리스트 출력
 	 * @param fNumber
 	 * @return 나의 농가 계획서 리스트
