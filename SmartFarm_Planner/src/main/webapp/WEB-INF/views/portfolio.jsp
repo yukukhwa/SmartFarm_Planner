@@ -72,7 +72,7 @@
 					</section>
 					<section>
 						<div class="col-lg-2 col-sm-6 follow-info weather-category">
-							<a href="/onlyJSP/mlist/m_list.jsp" style="color: white">
+							<a href="/jsp/index.jsp" style="color: white">
 								<ul>
 									<li class="active" style="font-size: 20px"><i
 										class="fa fa-comments fa-2x"> </i><br> go JSP</li>
@@ -83,7 +83,7 @@
 					</section>
 					<section>
 						<div class="col-lg-2 col-sm-6 follow-info weather-category">
-							<a href="/team27d" style="color: white">
+							<a href="/model1/index.jsp" style="color: white">
 								<ul>
 									<li class="active" style="font-size: 20px"><i
 										class="fa fa-bell fa-2x"> </i><br> go MVC1</li>
@@ -297,7 +297,7 @@
 									<section class="panel">
 										<div class="panel-body" class="col-lg-12">	
 											<h3>&nbsp; 프로젝트 주제</h3>
-											<div style="text-align: center"><h3>"tb_member테이블에 CRUD 실습"</h3></div><br><br>
+											<div style="text-align: center"><h3>"회원, 상품 정보를 jsp로만 입력, 수정, 삭제, 검색 실습"</h3></div><br><br>
 												<ul class="col-lg-8">
 													<li><h4>프로젝트 목적</h4></li>
 													<li style="list-style-type: circle">자바 기초 문법 연습</li>
@@ -305,51 +305,48 @@
 													<li><h4>프로젝트 기대효과</h4></li>
 													<li style="list-style-type: circle">이클립스를 통해 JAVA 기본 문법을 익힐 수 있다.</li>
 													<li style="list-style-type: circle">SQL 쿼리문을 작성할 수 있다.</li>	
-													<li style="list-style-type: circle">형상관리 툴인 깃허브를 활용하여 효율적인 팀프로젝트를 수행할 수 있다.</li>																							
 												</ul><br>
 												<div class="col-lg-4">
 													<img src="img/JSP.png" style="width: 100%; height: 100%;">
 												</div>
-											</div>
+										</div>
+										<div>
+											<p>▼ 클릭해주세요!</p>
+											<div>				
+												<div class="panel-heading">
+													<h3>개발환경</h3>														
+												</div>
+												<div class="panel-content" style="display:none">
+													<ul >
+														<li>OS : window7</li>
+														<li>웹브라우저 : Crome</li>
+														<li>개발언어 : java</li>
+														<li>DBMS : MySQL</li>
+														<li>TOOLS : eclipse, HeidiSQL</li>																						
+													</ul>
+												</div>
+											</div>												
 											<div>
-												<p>▼ 클릭해주세요!</p>
-												<div>				
-													<div class="panel-heading">
-														<h3>개발환경</h3>														
-													</div>
-													<div class="panel-content" style="display:none">
-														<ul >
-															<li>OS : window7</li>
-															<li>웹브라우저 : Crome</li>
-															<li>개발언어 : java</li>
-															<li>DBMS : MySQL</li>
-															<li>TOOLS : eclipse, HeidiSQL</li>																						
-														</ul>
-													</div>
-												</div>												
-												<div>
-													<div class="panel-heading">
-														<h3>주요기능</h3>
-													</div>
-													<div class="panel-content" style="display:none">
-														<ul >
-															<li>member 등록</li>
-															<li>member 리스트</li>
-															<li>member 수정</li>
-															<li>member 삭제</li>
-															<li>member 검색</li>
-														</ul>
-													</div>
-												</div>	
-												<div>
-													<div class="panel-heading">
-														<h3>디렉토리 구조</h3>
-													</div>
-													<div class="panel-content" style="display:none">
-														<img src="img/20180622_jspDirectory.png">														
-													</div>
-												</div>												
+												<div class="panel-heading">
+													<h3>주요기능</h3>
+												</div>
+												<div class="panel-content" style="display:none">
+													<ul >
+														<li>로그인/로그아웃</li>
+														<li>user CRUD</li>
+														<li>goods CRUD</li>
+													</ul>
+												</div>
 											</div>	
+											<div>
+												<div class="panel-heading">
+													<h3>디렉토리 구조</h3>
+												</div>
+												<div class="panel-content" style="display:none">
+													<img src="img/20180629_jspDirectory.png">													
+												</div>
+											</div>												
+										</div>	
 									</section>
 								</div>
 
@@ -358,62 +355,57 @@
 									<section class="panel">
 										<div class="panel-body" class="col-lg-12">	
 											<h3>&nbsp; 프로젝트 주제</h3>
-											<div style="text-align: center"><h3>"간단한 직업정보로 CRUD 실습"</h3></div><br><br>
+											<div style="text-align: center"><h3>"회원, 상품 정보를 Model 1 으로 입력, 수정, 삭제, 검색 실습"</h3></div><br><br>
 												<ul class="col-lg-8">
 													<li><h4>프로젝트 목적</h4></li>
-													<li style="list-style-type: circle">이클립스와 깃허브를 활용하는 팀프로젝트</li>
-													<li style="list-style-type: circle">깃허브 주소 : 
-														<a href="https://github.com/Leejunhee89/team27d.git">https://github.com/Leejunhee89/team27d.git</a></li>
+													<li style="list-style-type: circle">이클립스와 Model 1 을 활용하는 팀프로젝트</li>
 													<li style="list-style-type: circle">입력, 수정, 삭제 SQL 쿼리문 연습</li>
 													<li><h4>프로젝트 기대효과</h4></li>
 													<li style="list-style-type: circle">이클립스를 통해 JAVA 기본 문법을 익힐 수 있다.</li>
 													<li style="list-style-type: circle">SQL 쿼리문을 작성할 수 있다.</li>	
-													<li style="list-style-type: circle">형상관리 툴인 깃허브를 활용하여 효율적인 팀프로젝트를 수행할 수 있다.</li>																							
+													<li style="list-style-type: circle">DTO와 DAO를 활용하여 Model 1 을 학습할 수 있다.</li>																							
 												</ul><br>
 												<div class="col-lg-4">
 													<img src="img/MVC1.png" style="width: 100%; height: 100%;">
 												</div>
+										</div>
+										<div>
+											<p>▼ 클릭해주세요!</p>
+											<div>				
+												<div class="panel-heading">
+													<h3>개발환경</h3>														
+												</div>
+												<div class="panel-content" style="display:none">
+													<ul >
+														<li>OS : window7</li>
+														<li>웹브라우저 : Crome</li>
+														<li>개발언어 : java</li>
+														<li>DBMS : MySQL</li>
+														<li>TOOLS : eclipse, HeidiSQL</li>																						
+													</ul>
+												</div>
+											</div>												
+											<div>
+												<div class="panel-heading">
+													<h3>주요기능</h3>
+												</div>
+												<div class="panel-content" style="display:none">
+													<ul >
+														<li>로그인/로그아웃</li>
+														<li>user CRUD</li>
+														<li>goods CRUD</li>																							
+													</ul>
+												</div>
 											</div>
 											<div>
-												<p>▼ 클릭해주세요!</p>
-												<div>				
-													<div class="panel-heading">
-														<h3>개발환경</h3>														
-													</div>
-													<div class="panel-content" style="display:none">
-														<ul >
-															<li>OS : window7</li>
-															<li>웹브라우저 : Crome</li>
-															<li>개발언어 : java</li>
-															<li>DBMS : MySQL</li>
-															<li>TOOLS : eclipse, HeidiSQL</li>																						
-														</ul>
-													</div>
-												</div>												
-												<div>
-													<div class="panel-heading">
-														<h3>주요기능</h3>
-													</div>
-													<div class="panel-content" style="display:none">
-														<ul >
-															<li>actor CUD</li>
-															<li>actress CUD</li>
-															<li>anaunseo CUD</li>
-															<li>rapper CUD</li>
-															<li>singer CUD</li>
-															<li>comedian CUD</li>																							
-														</ul>
-													</div>
+												<div class="panel-heading">
+													<h3>디렉토리 구조</h3>
 												</div>
-												<div>
-													<div class="panel-heading">
-														<h3>디렉토리 구조</h3>
-													</div>
-													<div class="panel-content" style="display:none">
-														<img src="img/20180622_mvc1Directory.png">														
-													</div>
-												</div>														
-											</div>		
+												<div class="panel-content" style="display:none">
+													<img src="img/20180629_mvc1Directory.png">														
+												</div>
+											</div>														
+										</div>		
 									</section>
 								</div>
 
