@@ -48,6 +48,7 @@
 						</b>
 					</h2>
 				</div>
+				<!-- 농가 검색 form시작 -->
 				<div style="margin-right: 17%;">
 					<form id="searchFarmForm" method="post" action="${pageContext.request.contextPath}/listFarm" style="float: right;">
 						<input type="text" name="fName" id="searchfName" class="form-control" style="width: 60%; float: left;">&nbsp;

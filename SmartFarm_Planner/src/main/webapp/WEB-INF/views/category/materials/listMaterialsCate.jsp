@@ -39,64 +39,75 @@
      <!--main content start-->
     <section id="main-content">
     	<section class="wrapper">
-    		<%-- <c:if test="${loginMember.level != 'agency'}">
-    			<div>
-    				해당 페이지에 접근할 수 없는 권한입니다.
-    			</div>
-    		</c:if>
-    		<c:if test="${loginMember.level == 'agency'}"> --%>
-			<div>
-				<h3>원자재 카테고리 리스트</h3>
-				<div>
-	    			<form id="materialsCateSearchForm" method="post" action="${pageContext.request.contextPath}/listMaterialsCate">
-	    				<select name="materialsCateSearchOption">
-	    					<option value="materialsName">원자재 이름</option>
-	    					<option value="aName">등록기관이름</option>
-	    				</select> <br>
-	    				<input type="text" id="searchKeyword" name="searchKeyword">
-	    				<button id="materialsCateSearch">원자재 검색하기</button>
-	    			</form>
-    			</div>
-				<table class="table">
-					<thead>
-						<tr>
-							<th>원자재 넘버</th>
-							<th>테마명</th>
-							<th>원자재 이름</th>
-							<th>원자재 단위</th>
-							<th>등록기관명</th>
-							<!-- <th>수정</th>
-							<th>삭제</th> -->
-						</tr>
-					</thead>
-					<c:forEach var="categoryMaterials" items="${list}">
-					<div>
-						<input type="hidden" name="themeNumber" value="${categoryMaterials.categoryTheme.themeNumber}">
-						<input type="hidden" name="aNumber" value="${categoryMaterials.agency.aNumber}">	
+    		<div align="center" style="width: 100%;">
+				<div style="background-color: #FAFAFA; margin: 7% 0% 10% 0%; padding: 5% 0% 8% 0%; width: 75%;">
+					<div style="text-align: left; margin-left: 10%;">
+						<h3>
+							<b><i class="icon_genius"></i>원자재 카테고리 리스트</b>
+						</h3>
 					</div>
-					<tbody>
-						<tr>
-							<td>${categoryMaterials.materialsNumber}</td>
-							<td>${categoryMaterials.categoryTheme.themeName}</td>
-							<td>${categoryMaterials.materialsName}</td>
-							<td>${categoryMaterials.materialsUnit}</td>
-							<td>${categoryMaterials.agency.aName}</td>
-							<c:if test="${loginMember.corpName == categoryMaterials.agency.aName}">
-								<td>
-									<a href="${pageContext.request.contextPath}/updateMaterialsCate?materialsName=${categoryMaterials.materialsName}">수정</a>
-								</td>
-								<td>
-									<a href="${pageContext.request.contextPath}/deleteMaterialsCate?materialsNumber=${categoryMaterials.materialsNumber}">삭제</a>
-								</td>
-							</c:if>
-						</tr>
-					</tbody>
-					</c:forEach>
-				</table>
-				<button id="goHome" type="button" class="btn btn-default">메인으로</button>
-				<button id="addMaterialsCate" type="button" class="btn btn-primary">원자재 카테고리 등록</button>
+					<!-- 원자재 카테고리 검색 폼 시작 -->
+					<div style="float: right; margin: 6% 5% 1% 0%;">
+		    			<form id="materialsCateSearchForm" method="post" action="${pageContext.request.contextPath}/listMaterialsCate">
+		    				<div style="width: 27%; float: left;">
+			    				<select class="form-control m-bot15" name="materialsCateSearchOption">
+			    					<option value="materialsName">원자재이름</option>
+			    					<option value="aName">등록기관이름</option>
+			    				</select>
+		    				</div>
+		    				<div style="width: 30%; float: left;">
+		    					<input type="text" class="form-control" id="searchKeyword" name="searchKeyword">
+		    				</div>
+		    				<div style="width: 30%; float: left;">
+		    					<button class="btn btn-info" id="materialsCateSearch">원자재 검색하기</button>
+		    				</div>
+		    			</form>
+	    			</div>
+	    			<!-- 원자재 카테고리 검색 폼 끝 -->
+	    			<div style="text-align: center; margin: 1% 10% 5% 10%;">
+						<table class="table table-striped table-advance table-hover">
+							<thead>
+								<tr>
+									<th style="text-align: center;">원자재 넘버</th>
+									<th style="text-align: center;">테마명</th>
+									<th style="text-align: center;">원자재 이름</th>
+									<th style="text-align: center;">원자재 단위</th>
+									<th style="text-align: center;">등록기관명</th>
+									<!-- <th>수정</th>
+									<th>삭제</th> -->
+								</tr>
+							</thead>
+							<c:forEach var="categoryMaterials" items="${list}">
+								<div>
+									<input type="hidden" name="themeNumber" value="${categoryMaterials.categoryTheme.themeNumber}">
+									<input type="hidden" name="aNumber" value="${categoryMaterials.agency.aNumber}">	
+								</div>
+								<tbody>
+									<tr>
+										<td>${categoryMaterials.materialsNumber}</td>
+										<td>${categoryMaterials.categoryTheme.themeName}</td>
+										<td>${categoryMaterials.materialsName}</td>
+										<td>${categoryMaterials.materialsUnit}</td>
+										<td>${categoryMaterials.agency.aName}</td>
+										<c:if test="${loginMember.corpName == categoryMaterials.agency.aName}">
+											<td>
+												<div class="btn-group">
+													<a class="btn btn-default" href="${pageContext.request.contextPath}/updateMaterialsCate?materialsName=${categoryMaterials.materialsName}"><i class="icon_plus_alt2"></i></a>
+													<a class="btn btn-danger" href="${pageContext.request.contextPath}/deleteMaterialsCate?materialsNumber=${categoryMaterials.materialsNumber}"><i class="icon_close_alt2"></i></a>
+												</div>
+											</td>
+										</c:if>
+									</tr>
+								</tbody>
+							</c:forEach>
+						</table>
+					</div>
+					<div>
+						<button id="goHome" type="button" class="btn btn-default">메인으로</button>
+						<button id="addMaterialsCate" type="button" class="btn btn-primary">원자재 카테고리 등록</button>
+					</div>
+				</div>
 			</div>
-			<%-- </c:if> --%>
 		</section>
 	</section>
 </body>

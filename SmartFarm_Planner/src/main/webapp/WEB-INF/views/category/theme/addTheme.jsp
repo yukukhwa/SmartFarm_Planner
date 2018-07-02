@@ -59,7 +59,7 @@
 					    		<div style="text-align: left; margin-left: 15%;">
 					    			<h3>
 					    				<b><i class="fa fa-cubes"></i>테마 등록하기</b>
-					    			</h3> <br><br>
+					    			</h3> <br>
 					    		</div>
 						    		<form id="insertThemeForm" action="${pageContext.request.contextPath}/addTheme" method="post">
 							    		<div>
@@ -71,7 +71,7 @@
 							    				<!-- 테마이름을 등록하는 input박스 -->
 							    				<input class="form-control" type="text" name="themeName" id="themeName">
 							    			</div>	
-							    		</div> <br>
+							    		</div>
 							    		<div style="margin: 5% 0% 0% 0%;">
 								    		<button class="btn btn-primary" type="button" id="insertThemeCate">테마등록하기</button>
 								    		<button class="btn btn-default" type="button" id="goThemeList">테마 리스트로 가기</button>

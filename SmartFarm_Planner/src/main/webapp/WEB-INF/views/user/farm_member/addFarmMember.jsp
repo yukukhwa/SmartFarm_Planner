@@ -312,8 +312,10 @@
 								</div>
 							</div>
 						<br>
-						<button type="button" class="btn btn-primary" id="insertFarmMember">회원가입</button>
-						<button type="button" class="btn btn-default" id="goFarmList">농장리스트로 가기</button>
+						<div align="center">
+							<button type="button" style="width: 50%;" class="btn btn-primary btn-lg btn-block" id="insertFarmMember">회원가입</button>
+						</div>
+						<!-- <button type="button" class="btn btn-default" id="goFarmList">농장리스트로 가기</button> -->
 						<!-- 회원가입 폼 끝 -->
 						</form>
 					</div>

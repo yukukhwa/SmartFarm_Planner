@@ -56,9 +56,14 @@
     			</div>
     		</c:if>
     		<c:if test="${loginMember.level == 'agency'}">
-	    		<div style="width: 100%;">
-	    			<div style="background-color: #FAFAFA; text-align: center;">
-		    			<h3>원자재 카테고리 등록</h3>
+	    		<div style="width: 100%;" align="center">
+	    			<div style="background-color: #FAFAFA; text-align: center; margin: 5% 0% 10% 0%; padding: 5% 0% 10% 0%; width: 65%;">
+		    			<div style="text-align: left; margin-left: 15%; margin-bottom: 5%;">
+		    				<h3>
+		    					<b><i class="icon_genius">원자재 카테고리 등록</i></b>
+		    				</h3>
+		    			</div> <br>
+		    			
 			    		<form id="insertMaterialsCateForm" method="post" action="${pageContext.request.contextPath}/addMaterialsCate">
 			    			<div>
 			    				<input type="hidden" name="agency.aNumber" value="${loginMember.corpNumber}">

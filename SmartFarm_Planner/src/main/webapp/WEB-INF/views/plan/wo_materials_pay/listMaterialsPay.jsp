@@ -27,6 +27,7 @@
     	<section class="wrapper">
     		<div>
 	    		<h3>예상 원자재비 리스트</h3>
+	    		<!-- 예상원자재비 검색 폼 시작 -->
 	    		<div>
 	    			<form id="searchMaterialsPayForm" method="post" action="${pageContext.request.contextPath}/listMaterialsPay">
 		    			<label>예상 원자재비 검색</label>
@@ -35,9 +36,10 @@
 				    		</select>
 			    			<input type="text" name="searchKeyword">
 			    			<input type="hidden" name="ppWorkNumber" value="${ppWorkNumber}">
-		    			<button id="searchMaterialsPay">예상원자재비 검색하기</button>
+		    			<button class="btn btn-info" id="searchMaterialsPay">예상원자재비 검색하기</button>
 	    			</form>
 	    		</div>
+	    		<!-- 예상원자재비 검색 끝 -->
     			<div>
     				<table class="table">
     					<thead>
