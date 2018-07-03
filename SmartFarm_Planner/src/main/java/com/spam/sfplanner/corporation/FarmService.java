@@ -23,6 +23,14 @@ public class FarmService {
 	@Autowired FarmMemberDao farmMemberDao;
 	private final static Logger LOGGER = LoggerFactory.getLogger(FarmService.class);
 	
+	public Map<Object, Object> fNumberCheck(int fNumber) {
+		int count = 0;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		count = farmDao.fNumberCheck(fNumber);
+		map.put("count", count);
+		return map;
+	}
+	
 	public Map<Object, Object> fNameCheck(String fName) {
 		int count = 0;
 		Map<Object, Object> map = new HashMap<Object, Object>();

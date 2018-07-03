@@ -28,12 +28,23 @@
 	</resultMap>
   
   <!-- [김재희] -->
+  
+  <!-- 농가통합넘버 확인을 하면 해당 농가의 통합넘버를 체크해 카운트해주는 쿼리문 -->
+  <select id="fNumberCheck"
+  	parameterType="integer"
+  	resultType="int">
+	  	SELECT COUNT(*)
+		FROM 
+			sp_farm
+		WHERE 
+			sp_farm.f_number=#{fNumber}
+  </select>
+  
   <!-- 농가이름 중복체크 하면 해당 농가의 이름을 체크해 카운트해주는 쿼리문 -->
   <select id="fNameCheck"
   	parameterType="String"
   	resultType="int">
-	  	SELECT 
-	  		COUNT(*)
+	  	SELECT COUNT(*)
 		FROM 
 			sp_farm 
 		WHERE 

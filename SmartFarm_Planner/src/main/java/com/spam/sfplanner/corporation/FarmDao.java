@@ -18,6 +18,10 @@ public class FarmDao {
 	private final static Logger LOGGER = LoggerFactory.getLogger(FarmDao.class);
 	private static final String NAMESPACE = "com.spam.sfplanner.corporation.FarmMapper.";
 	
+	public int fNumberCheck(int fNumber) {
+		return sqlSession.selectOne(NAMESPACE+"fNumberCheck", fNumber);
+	}
+	
 	public int fNameCheck(String fName) {
 		System.out.println(fName);
 		return sqlSession.selectOne(NAMESPACE+"fNameCheck", fName);

@@ -15,6 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class FarmRestController {
 	@Autowired FarmService farmService;
 	
+	@RequestMapping(value="/farmNumberCheck", method=RequestMethod.POST)
+	public Map<Object, Object> fNumberCheck(@RequestBody int fNumber){
+		Map<Object, Object> map = farmService.fNumberCheck(fNumber);
+		return map;
+	}
+	
 	@RequestMapping(value="/farmNameCheck", method=RequestMethod.POST)
 	public Map<Object, Object> fNameCheck(@RequestBody String fName){
 		Map<Object, Object> map = farmService.fNameCheck(fName);

@@ -55,7 +55,7 @@
 	    				</div> 
 	    				<div>
 	    					<label>
-	    						<input type="text" name="agency.aNumber" readonly="readonly" value="${loginMember.corpNumber}">
+	    						<input type="hidden" name="agency.aNumber" readonly="readonly" value="${loginMember.corpNumber}">
 	    					</label> 
 	    				</div> <br>
 	    				<button type="button" class="btn btn-primary" id="updateMaterials">원자재 카테고리 수정하기</button>
